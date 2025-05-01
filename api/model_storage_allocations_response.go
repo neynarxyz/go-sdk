@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -20,8 +20,8 @@ var _ MappedNullable = &StorageAllocationsResponse{}
 
 // StorageAllocationsResponse struct for StorageAllocationsResponse
 type StorageAllocationsResponse struct {
-	TotalActiveUnits *int32 `json:"total_active_units,omitempty"`
-	Allocations []StorageAllocation `json:"allocations,omitempty"`
+	TotalActiveUnits *int32              `json:"total_active_units,omitempty"`
+	Allocations      []StorageAllocation `json:"allocations,omitempty"`
 }
 
 // NewStorageAllocationsResponse instantiates a new StorageAllocationsResponse object
@@ -106,7 +106,7 @@ func (o *StorageAllocationsResponse) SetAllocations(v []StorageAllocation) {
 }
 
 func (o StorageAllocationsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableStorageAllocationsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

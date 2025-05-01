@@ -11,10 +11,10 @@ package hub
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/hub"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/hub"
 )
 
 func Test_hub_InfoAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_hub_InfoAPIService(t *testing.T) {
 
 	t.Run("Test InfoAPIService LookupHubInfo", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.InfoAPI.LookupHubInfo(context.Background()).Execute()
 

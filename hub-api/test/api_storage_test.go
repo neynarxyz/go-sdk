@@ -11,10 +11,10 @@ package hub
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/hub"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/hub"
 )
 
 func Test_hub_StorageAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_hub_StorageAPIService(t *testing.T) {
 
 	t.Run("Test StorageAPIService LookupUserStorageLimit", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.StorageAPI.LookupUserStorageLimit(context.Background()).Execute()
 

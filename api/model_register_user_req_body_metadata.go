@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -20,13 +20,13 @@ var _ MappedNullable = &RegisterUserReqBodyMetadata{}
 
 // RegisterUserReqBodyMetadata struct for RegisterUserReqBodyMetadata
 type RegisterUserReqBodyMetadata struct {
-	Bio *string `json:"bio,omitempty"`
-	PfpUrl *string `json:"pfp_url,omitempty"`
-	Url *string `json:"url,omitempty"`
-	Username *string `json:"username,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
+	Bio              *string                            `json:"bio,omitempty"`
+	PfpUrl           *string                            `json:"pfp_url,omitempty"`
+	Url              *string                            `json:"url,omitempty"`
+	Username         *string                            `json:"username,omitempty"`
+	DisplayName      *string                            `json:"display_name,omitempty"`
 	VerifiedAccounts *UpdateUserReqBodyVerifiedAccounts `json:"verified_accounts,omitempty"`
-	Location *UpdateUserReqBodyLocation `json:"location,omitempty"`
+	Location         *UpdateUserReqBodyLocation         `json:"location,omitempty"`
 }
 
 // NewRegisterUserReqBodyMetadata instantiates a new RegisterUserReqBodyMetadata object
@@ -271,7 +271,7 @@ func (o *RegisterUserReqBodyMetadata) SetLocation(v UpdateUserReqBodyLocation) {
 }
 
 func (o RegisterUserReqBodyMetadata) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -339,5 +339,3 @@ func (v *NullableRegisterUserReqBodyMetadata) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

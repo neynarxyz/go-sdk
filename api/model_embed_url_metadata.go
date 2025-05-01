@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,13 +22,13 @@ var _ MappedNullable = &EmbedUrlMetadata{}
 
 // EmbedUrlMetadata struct for EmbedUrlMetadata
 type EmbedUrlMetadata struct {
-	Status string `json:"_status"`
-	ContentType NullableString `json:"content_type,omitempty"`
-	ContentLength NullableInt32 `json:"content_length,omitempty"`
-	Image *EmbedUrlMetadataImage `json:"image,omitempty"`
-	Video *EmbedUrlMetadataVideo `json:"video,omitempty"`
-	Html *HtmlMetadata `json:"html,omitempty"`
-	Frame *Frame `json:"frame,omitempty"`
+	Status        string                 `json:"_status"`
+	ContentType   NullableString         `json:"content_type,omitempty"`
+	ContentLength NullableInt32          `json:"content_length,omitempty"`
+	Image         *EmbedUrlMetadataImage `json:"image,omitempty"`
+	Video         *EmbedUrlMetadataVideo `json:"video,omitempty"`
+	Html          *HtmlMetadata          `json:"html,omitempty"`
+	Frame         *Frame                 `json:"frame,omitempty"`
 }
 
 type _EmbedUrlMetadata EmbedUrlMetadata
@@ -75,7 +75,6 @@ func (o *EmbedUrlMetadata) SetStatus(v string) {
 	o.Status = v
 }
 
-
 // GetContentType returns the ContentType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EmbedUrlMetadata) GetContentType() string {
 	if o == nil || IsNil(o.ContentType.Get()) {
@@ -108,6 +107,7 @@ func (o *EmbedUrlMetadata) HasContentType() bool {
 func (o *EmbedUrlMetadata) SetContentType(v string) {
 	o.ContentType.Set(&v)
 }
+
 // SetContentTypeNil sets the value for ContentType to be an explicit nil
 func (o *EmbedUrlMetadata) SetContentTypeNil() {
 	o.ContentType.Set(nil)
@@ -150,6 +150,7 @@ func (o *EmbedUrlMetadata) HasContentLength() bool {
 func (o *EmbedUrlMetadata) SetContentLength(v int32) {
 	o.ContentLength.Set(&v)
 }
+
 // SetContentLengthNil sets the value for ContentLength to be an explicit nil
 func (o *EmbedUrlMetadata) SetContentLengthNil() {
 	o.ContentLength.Set(nil)
@@ -289,7 +290,7 @@ func (o *EmbedUrlMetadata) SetFrame(v Frame) {
 }
 
 func (o EmbedUrlMetadata) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -330,32 +331,31 @@ func (o *EmbedUrlMetadata) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -409,5 +409,3 @@ func (v *NullableEmbedUrlMetadata) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

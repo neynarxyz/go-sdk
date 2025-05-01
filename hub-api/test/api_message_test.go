@@ -11,10 +11,10 @@ package hub
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/hub"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/hub"
 )
 
 func Test_hub_MessageAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_hub_MessageAPIService(t *testing.T) {
 
 	t.Run("Test MessageAPIService PublishMessage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.MessageAPI.PublishMessage(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_hub_MessageAPIService(t *testing.T) {
 
 	t.Run("Test MessageAPIService ValidateMessage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.MessageAPI.ValidateMessage(context.Background()).Execute()
 

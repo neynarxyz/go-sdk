@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,10 +12,10 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the CastEmbedded type satisfies the MappedNullable interface at compile time
@@ -23,18 +23,18 @@ var _ MappedNullable = &CastEmbedded{}
 
 // CastEmbedded struct for CastEmbedded
 type CastEmbedded struct {
-	Hash string `json:"hash"`
-	ParentHash NullableString `json:"parent_hash"`
-	ParentUrl NullableString `json:"parent_url"`
-	RootParentUrl NullableString `json:"root_parent_url"`
-	ParentAuthor CastEmbeddedParentAuthor `json:"parent_author"`
-	Author UserDehydrated `json:"author"`
-	App NullableUserDehydrated `json:"app,omitempty"`
-	Text string `json:"text"`
-	Timestamp time.Time `json:"timestamp"`
-	Type CastNotificationType `json:"type"`
-	Embeds []EmbedDeep `json:"embeds"`
-	Channel NullableChannelDehydrated `json:"channel"`
+	Hash          string                    `json:"hash"`
+	ParentHash    NullableString            `json:"parent_hash"`
+	ParentUrl     NullableString            `json:"parent_url"`
+	RootParentUrl NullableString            `json:"root_parent_url"`
+	ParentAuthor  CastEmbeddedParentAuthor  `json:"parent_author"`
+	Author        UserDehydrated            `json:"author"`
+	App           NullableUserDehydrated    `json:"app,omitempty"`
+	Text          string                    `json:"text"`
+	Timestamp     time.Time                 `json:"timestamp"`
+	Type          CastNotificationType      `json:"type"`
+	Embeds        []EmbedDeep               `json:"embeds"`
+	Channel       NullableChannelDehydrated `json:"channel"`
 }
 
 type _CastEmbedded CastEmbedded
@@ -91,7 +91,6 @@ func (o *CastEmbedded) SetHash(v string) {
 	o.Hash = v
 }
 
-
 // GetParentHash returns the ParentHash field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *CastEmbedded) GetParentHash() string {
@@ -117,7 +116,6 @@ func (o *CastEmbedded) GetParentHashOk() (*string, bool) {
 func (o *CastEmbedded) SetParentHash(v string) {
 	o.ParentHash.Set(&v)
 }
-
 
 // GetParentUrl returns the ParentUrl field value
 // If the value is explicit nil, the zero value for string will be returned
@@ -145,7 +143,6 @@ func (o *CastEmbedded) SetParentUrl(v string) {
 	o.ParentUrl.Set(&v)
 }
 
-
 // GetRootParentUrl returns the RootParentUrl field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *CastEmbedded) GetRootParentUrl() string {
@@ -172,7 +169,6 @@ func (o *CastEmbedded) SetRootParentUrl(v string) {
 	o.RootParentUrl.Set(&v)
 }
 
-
 // GetParentAuthor returns the ParentAuthor field value
 func (o *CastEmbedded) GetParentAuthor() CastEmbeddedParentAuthor {
 	if o == nil {
@@ -197,7 +193,6 @@ func (o *CastEmbedded) SetParentAuthor(v CastEmbeddedParentAuthor) {
 	o.ParentAuthor = v
 }
 
-
 // GetAuthor returns the Author field value
 func (o *CastEmbedded) GetAuthor() UserDehydrated {
 	if o == nil {
@@ -221,7 +216,6 @@ func (o *CastEmbedded) GetAuthorOk() (*UserDehydrated, bool) {
 func (o *CastEmbedded) SetAuthor(v UserDehydrated) {
 	o.Author = v
 }
-
 
 // GetApp returns the App field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CastEmbedded) GetApp() UserDehydrated {
@@ -255,6 +249,7 @@ func (o *CastEmbedded) HasApp() bool {
 func (o *CastEmbedded) SetApp(v UserDehydrated) {
 	o.App.Set(&v)
 }
+
 // SetAppNil sets the value for App to be an explicit nil
 func (o *CastEmbedded) SetAppNil() {
 	o.App.Set(nil)
@@ -289,7 +284,6 @@ func (o *CastEmbedded) SetText(v string) {
 	o.Text = v
 }
 
-
 // GetTimestamp returns the Timestamp field value
 func (o *CastEmbedded) GetTimestamp() time.Time {
 	if o == nil {
@@ -313,7 +307,6 @@ func (o *CastEmbedded) GetTimestampOk() (*time.Time, bool) {
 func (o *CastEmbedded) SetTimestamp(v time.Time) {
 	o.Timestamp = v
 }
-
 
 // GetType returns the Type field value
 func (o *CastEmbedded) GetType() CastNotificationType {
@@ -339,7 +332,6 @@ func (o *CastEmbedded) SetType(v CastNotificationType) {
 	o.Type = v
 }
 
-
 // GetEmbeds returns the Embeds field value
 func (o *CastEmbedded) GetEmbeds() []EmbedDeep {
 	if o == nil {
@@ -363,7 +355,6 @@ func (o *CastEmbedded) GetEmbedsOk() ([]EmbedDeep, bool) {
 func (o *CastEmbedded) SetEmbeds(v []EmbedDeep) {
 	o.Embeds = v
 }
-
 
 // GetChannel returns the Channel field value
 // If the value is explicit nil, the zero value for ChannelDehydrated will be returned
@@ -391,9 +382,8 @@ func (o *CastEmbedded) SetChannel(v ChannelDehydrated) {
 	o.Channel.Set(&v)
 }
 
-
 func (o CastEmbedded) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -439,32 +429,31 @@ func (o *CastEmbedded) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -518,5 +507,3 @@ func (v *NullableCastEmbedded) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

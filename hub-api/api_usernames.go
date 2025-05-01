@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type UsernamesAPI interface {
 
 	/*
-	FetchUsernameProofByName Proof for a username
+		FetchUsernameProofByName Proof for a username
 
-	Fetch a proof for a username.
+		Fetch a proof for a username.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUsernameProofByNameRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUsernameProofByNameRequest
 	*/
 	FetchUsernameProofByName(ctx context.Context) ApiFetchUsernameProofByNameRequest
 
@@ -37,12 +36,12 @@ type UsernamesAPI interface {
 	FetchUsernameProofByNameExecute(r ApiFetchUsernameProofByNameRequest) (*UserNameProof, *http.Response, error)
 
 	/*
-	FetchUsernameProofsByFid Proofs provided by an FID
+		FetchUsernameProofsByFid Proofs provided by an FID
 
-	Fetch proofs provided by a user.
+		Fetch proofs provided by a user.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUsernameProofsByFidRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUsernameProofsByFidRequest
 	*/
 	FetchUsernameProofsByFid(ctx context.Context) ApiFetchUsernameProofsByFidRequest
 
@@ -55,9 +54,9 @@ type UsernamesAPI interface {
 type UsernamesAPIService service
 
 type ApiFetchUsernameProofByNameRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService UsernamesAPI
-	name *string
+	name       *string
 }
 
 // The Farcaster username or ENS address
@@ -75,24 +74,25 @@ FetchUsernameProofByName Proof for a username
 
 Fetch a proof for a username.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUsernameProofByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUsernameProofByNameRequest
 */
 func (a *UsernamesAPIService) FetchUsernameProofByName(ctx context.Context) ApiFetchUsernameProofByNameRequest {
 	return ApiFetchUsernameProofByNameRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UserNameProof
+//
+//	@return UserNameProof
 func (a *UsernamesAPIService) FetchUsernameProofByNameExecute(r ApiFetchUsernameProofByNameRequest) (*UserNameProof, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UserNameProof
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UserNameProof
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsernamesAPIService.FetchUsernameProofByName")
@@ -163,14 +163,14 @@ func (a *UsernamesAPIService) FetchUsernameProofByNameExecute(r ApiFetchUsername
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -187,9 +187,9 @@ func (a *UsernamesAPIService) FetchUsernameProofByNameExecute(r ApiFetchUsername
 }
 
 type ApiFetchUsernameProofsByFidRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService UsernamesAPI
-	fid *int32
+	fid        *int32
 }
 
 // The FID being requested
@@ -207,24 +207,25 @@ FetchUsernameProofsByFid Proofs provided by an FID
 
 Fetch proofs provided by a user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUsernameProofsByFidRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUsernameProofsByFidRequest
 */
 func (a *UsernamesAPIService) FetchUsernameProofsByFid(ctx context.Context) ApiFetchUsernameProofsByFidRequest {
 	return ApiFetchUsernameProofsByFidRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsernameProofsResponse
+//
+//	@return UsernameProofsResponse
 func (a *UsernamesAPIService) FetchUsernameProofsByFidExecute(r ApiFetchUsernameProofsByFidRequest) (*UsernameProofsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UsernameProofsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UsernameProofsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsernamesAPIService.FetchUsernameProofsByFid")
@@ -295,14 +296,14 @@ func (a *UsernamesAPIService) FetchUsernameProofsByFidExecute(r ApiFetchUsername
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

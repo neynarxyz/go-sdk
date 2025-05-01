@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,13 +22,13 @@ var _ MappedNullable = &HubInfoResponse{}
 
 // HubInfoResponse struct for HubInfoResponse
 type HubInfoResponse struct {
-	Version string `json:"version"`
-	IsSyncing bool `json:"isSyncing"`
-	Nickname string `json:"nickname"`
-	RootHash string `json:"rootHash"`
-	DbStats *DbStats `json:"dbStats,omitempty"`
-	PeerId string `json:"peerId"`
-	HubOperatorFid int32 `json:"hubOperatorFid"`
+	Version        string   `json:"version"`
+	IsSyncing      bool     `json:"isSyncing"`
+	Nickname       string   `json:"nickname"`
+	RootHash       string   `json:"rootHash"`
+	DbStats        *DbStats `json:"dbStats,omitempty"`
+	PeerId         string   `json:"peerId"`
+	HubOperatorFid int32    `json:"hubOperatorFid"`
 }
 
 type _HubInfoResponse HubInfoResponse
@@ -80,7 +80,6 @@ func (o *HubInfoResponse) SetVersion(v string) {
 	o.Version = v
 }
 
-
 // GetIsSyncing returns the IsSyncing field value
 func (o *HubInfoResponse) GetIsSyncing() bool {
 	if o == nil {
@@ -104,7 +103,6 @@ func (o *HubInfoResponse) GetIsSyncingOk() (*bool, bool) {
 func (o *HubInfoResponse) SetIsSyncing(v bool) {
 	o.IsSyncing = v
 }
-
 
 // GetNickname returns the Nickname field value
 func (o *HubInfoResponse) GetNickname() string {
@@ -130,7 +128,6 @@ func (o *HubInfoResponse) SetNickname(v string) {
 	o.Nickname = v
 }
 
-
 // GetRootHash returns the RootHash field value
 func (o *HubInfoResponse) GetRootHash() string {
 	if o == nil {
@@ -154,7 +151,6 @@ func (o *HubInfoResponse) GetRootHashOk() (*string, bool) {
 func (o *HubInfoResponse) SetRootHash(v string) {
 	o.RootHash = v
 }
-
 
 // GetDbStats returns the DbStats field value if set, zero value otherwise.
 func (o *HubInfoResponse) GetDbStats() DbStats {
@@ -212,7 +208,6 @@ func (o *HubInfoResponse) SetPeerId(v string) {
 	o.PeerId = v
 }
 
-
 // GetHubOperatorFid returns the HubOperatorFid field value
 func (o *HubInfoResponse) GetHubOperatorFid() int32 {
 	if o == nil {
@@ -237,9 +232,8 @@ func (o *HubInfoResponse) SetHubOperatorFid(v int32) {
 	o.HubOperatorFid = v
 }
 
-
 func (o HubInfoResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -275,32 +269,31 @@ func (o *HubInfoResponse) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -354,5 +347,3 @@ func (v *NullableHubInfoResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

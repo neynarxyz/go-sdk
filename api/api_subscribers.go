@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type SubscribersAPI interface {
 
 	/*
-	FetchSubscribedToForFid Subscribed to
+		FetchSubscribedToForFid Subscribed to
 
-	Fetch what FIDs and contracts a FID is subscribed to.
+		Fetch what FIDs and contracts a FID is subscribed to.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchSubscribedToForFidRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchSubscribedToForFidRequest
 	*/
 	FetchSubscribedToForFid(ctx context.Context) ApiFetchSubscribedToForFidRequest
 
@@ -37,12 +36,12 @@ type SubscribersAPI interface {
 	FetchSubscribedToForFidExecute(r ApiFetchSubscribedToForFidRequest) (*SubscribedToResponse, *http.Response, error)
 
 	/*
-	FetchSubscribersForFid Subscribers of a user
+		FetchSubscribersForFid Subscribers of a user
 
-	Fetch subscribers for a given FID's contracts. Doesn't return addresses that don't have an FID.
+		Fetch subscribers for a given FID's contracts. Doesn't return addresses that don't have an FID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchSubscribersForFidRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchSubscribersForFidRequest
 	*/
 	FetchSubscribersForFid(ctx context.Context) ApiFetchSubscribersForFidRequest
 
@@ -51,12 +50,12 @@ type SubscribersAPI interface {
 	FetchSubscribersForFidExecute(r ApiFetchSubscribersForFidRequest) (*SubscribersResponse, *http.Response, error)
 
 	/*
-	FetchSubscriptionCheck Hypersub subscription check
+		FetchSubscriptionCheck Hypersub subscription check
 
-	Check if a wallet address is subscribed to a given STP (Hypersub) contract.
+		Check if a wallet address is subscribed to a given STP (Hypersub) contract.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchSubscriptionCheckRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchSubscriptionCheckRequest
 	*/
 	FetchSubscriptionCheck(ctx context.Context) ApiFetchSubscriptionCheckRequest
 
@@ -65,12 +64,12 @@ type SubscribersAPI interface {
 	FetchSubscriptionCheckExecute(r ApiFetchSubscriptionCheckRequest) (*SubscriptionCheckResponse, *http.Response, error)
 
 	/*
-	FetchSubscriptionsForFid Subscriptions created by FID
+		FetchSubscriptionsForFid Subscriptions created by FID
 
-	Fetch created subscriptions for a given FID's.
+		Fetch created subscriptions for a given FID's.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchSubscriptionsForFidRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchSubscriptionsForFidRequest
 	*/
 	FetchSubscriptionsForFid(ctx context.Context) ApiFetchSubscriptionsForFidRequest
 
@@ -83,11 +82,11 @@ type SubscribersAPI interface {
 type SubscribersAPIService service
 
 type ApiFetchSubscribedToForFidRequest struct {
-	ctx context.Context
-	ApiService SubscribersAPI
-	fid *int32
+	ctx                  context.Context
+	ApiService           SubscribersAPI
+	fid                  *int32
 	subscriptionProvider *SubscriptionProvider
-	viewerFid *int32
+	viewerFid            *int32
 }
 
 func (r ApiFetchSubscribedToForFidRequest) Fid(fid int32) ApiFetchSubscribedToForFidRequest {
@@ -114,24 +113,25 @@ FetchSubscribedToForFid Subscribed to
 
 Fetch what FIDs and contracts a FID is subscribed to.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchSubscribedToForFidRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchSubscribedToForFidRequest
 */
 func (a *SubscribersAPIService) FetchSubscribedToForFid(ctx context.Context) ApiFetchSubscribedToForFidRequest {
 	return ApiFetchSubscribedToForFidRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SubscribedToResponse
+//
+//	@return SubscribedToResponse
 func (a *SubscribersAPIService) FetchSubscribedToForFidExecute(r ApiFetchSubscribedToForFidRequest) (*SubscribedToResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscribedToResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscribedToResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.FetchSubscribedToForFid")
@@ -216,8 +216,8 @@ func (a *SubscribersAPIService) FetchSubscribedToForFidExecute(r ApiFetchSubscri
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -235,11 +235,11 @@ func (a *SubscribersAPIService) FetchSubscribedToForFidExecute(r ApiFetchSubscri
 }
 
 type ApiFetchSubscribersForFidRequest struct {
-	ctx context.Context
-	ApiService SubscribersAPI
-	fid *int32
+	ctx                  context.Context
+	ApiService           SubscribersAPI
+	fid                  *int32
 	subscriptionProvider *SubscriptionProviders
-	viewerFid *int32
+	viewerFid            *int32
 }
 
 func (r ApiFetchSubscribersForFidRequest) Fid(fid int32) ApiFetchSubscribersForFidRequest {
@@ -266,24 +266,25 @@ FetchSubscribersForFid Subscribers of a user
 
 Fetch subscribers for a given FID's contracts. Doesn't return addresses that don't have an FID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchSubscribersForFidRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchSubscribersForFidRequest
 */
 func (a *SubscribersAPIService) FetchSubscribersForFid(ctx context.Context) ApiFetchSubscribersForFidRequest {
 	return ApiFetchSubscribersForFidRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SubscribersResponse
+//
+//	@return SubscribersResponse
 func (a *SubscribersAPIService) FetchSubscribersForFidExecute(r ApiFetchSubscribersForFidRequest) (*SubscribersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscribersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscribersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.FetchSubscribersForFid")
@@ -368,8 +369,8 @@ func (a *SubscribersAPIService) FetchSubscribersForFidExecute(r ApiFetchSubscrib
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -387,11 +388,11 @@ func (a *SubscribersAPIService) FetchSubscribersForFidExecute(r ApiFetchSubscrib
 }
 
 type ApiFetchSubscriptionCheckRequest struct {
-	ctx context.Context
-	ApiService SubscribersAPI
-	addresses *string
+	ctx             context.Context
+	ApiService      SubscribersAPI
+	addresses       *string
 	contractAddress *string
-	chainId *string
+	chainId         *string
 }
 
 // Comma separated list of Ethereum addresses, up to 350 at a time
@@ -421,24 +422,25 @@ FetchSubscriptionCheck Hypersub subscription check
 
 Check if a wallet address is subscribed to a given STP (Hypersub) contract.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchSubscriptionCheckRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchSubscriptionCheckRequest
 */
 func (a *SubscribersAPIService) FetchSubscriptionCheck(ctx context.Context) ApiFetchSubscriptionCheckRequest {
 	return ApiFetchSubscriptionCheckRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SubscriptionCheckResponse
+//
+//	@return SubscriptionCheckResponse
 func (a *SubscribersAPIService) FetchSubscriptionCheckExecute(r ApiFetchSubscriptionCheckRequest) (*SubscriptionCheckResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionCheckResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionCheckResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.FetchSubscriptionCheck")
@@ -524,8 +526,8 @@ func (a *SubscribersAPIService) FetchSubscriptionCheckExecute(r ApiFetchSubscrip
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -543,9 +545,9 @@ func (a *SubscribersAPIService) FetchSubscriptionCheckExecute(r ApiFetchSubscrip
 }
 
 type ApiFetchSubscriptionsForFidRequest struct {
-	ctx context.Context
-	ApiService SubscribersAPI
-	fid *int32
+	ctx                  context.Context
+	ApiService           SubscribersAPI
+	fid                  *int32
 	subscriptionProvider *SubscriptionProvider
 }
 
@@ -568,24 +570,25 @@ FetchSubscriptionsForFid Subscriptions created by FID
 
 Fetch created subscriptions for a given FID's.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchSubscriptionsForFidRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchSubscriptionsForFidRequest
 */
 func (a *SubscribersAPIService) FetchSubscriptionsForFid(ctx context.Context) ApiFetchSubscriptionsForFidRequest {
 	return ApiFetchSubscriptionsForFidRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SubscriptionsResponse
+//
+//	@return SubscriptionsResponse
 func (a *SubscribersAPIService) FetchSubscriptionsForFidExecute(r ApiFetchSubscriptionsForFidRequest) (*SubscriptionsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SubscriptionsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriptionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.FetchSubscriptionsForFid")
@@ -667,8 +670,8 @@ func (a *SubscribersAPIService) FetchSubscriptionsForFidExecute(r ApiFetchSubscr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

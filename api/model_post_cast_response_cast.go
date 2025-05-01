@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,9 +23,9 @@ var _ MappedNullable = &PostCastResponseCast{}
 // PostCastResponseCast struct for PostCastResponseCast
 type PostCastResponseCast struct {
 	// Cast Hash
-	Hash string `json:"hash"`
+	Hash   string                   `json:"hash"`
 	Author CastEmbeddedParentAuthor `json:"author"`
-	Text string `json:"text"`
+	Text   string                   `json:"text"`
 }
 
 type _PostCastResponseCast PostCastResponseCast
@@ -77,7 +77,7 @@ func (o *PostCastResponseCast) SetHash(v string) {
 }
 
 // GetDefaultHash returns the default value "0xfe90f9de682273e05b201629ad2338bdcd89b6be" of the Hash field.
-func (o *PostCastResponseCast) GetDefaultHash() interface{}  {
+func (o *PostCastResponseCast) GetDefaultHash() interface{} {
 	return "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
 }
 
@@ -105,7 +105,6 @@ func (o *PostCastResponseCast) SetAuthor(v CastEmbeddedParentAuthor) {
 	o.Author = v
 }
 
-
 // GetText returns the Text field value
 func (o *PostCastResponseCast) GetText() string {
 	if o == nil {
@@ -130,9 +129,8 @@ func (o *PostCastResponseCast) SetText(v string) {
 	o.Text = v
 }
 
-
 func (o PostCastResponseCast) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -162,7 +160,7 @@ func (o *PostCastResponseCast) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
+	defaultValueFuncMap := map[string]func() interface{}{
 		"hash": o.GetDefaultHash,
 	}
 	var defaultValueApplied bool
@@ -171,24 +169,24 @@ func (o *PostCastResponseCast) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -242,5 +240,3 @@ func (v *NullablePostCastResponseCast) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

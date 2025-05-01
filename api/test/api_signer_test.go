@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_SignerAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService CreateSigner", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.CreateSigner(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService FetchAuthorizationUrl", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.FetchAuthorizationUrl(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService FetchSigners", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.FetchSigners(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_api_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService LookupDeveloperManagedSigner", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.LookupDeveloperManagedSigner(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_api_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService LookupSigner", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.LookupSigner(context.Background()).Execute()
 
@@ -84,7 +84,7 @@ func Test_api_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService PublishMessageToFarcaster", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.PublishMessageToFarcaster(context.Background()).Execute()
 
@@ -96,7 +96,7 @@ func Test_api_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService RegisterSignedKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.RegisterSignedKey(context.Background()).Execute()
 
@@ -108,7 +108,7 @@ func Test_api_SignerAPIService(t *testing.T) {
 
 	t.Run("Test SignerAPIService RegisterSignedKeyForDeveloperManagedSigner", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SignerAPI.RegisterSignedKeyForDeveloperManagedSigner(context.Background()).Execute()
 

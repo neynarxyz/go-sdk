@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -16,18 +16,17 @@ import (
 	"fmt"
 )
 
-
 // SearchedUser struct for SearchedUser
 type SearchedUser struct {
 	ProfileUrl *ProfileUrl
-	User *User
+	User       *User
 }
 
 // Unmarshal JSON data into any of the pointers in the struct
 func (dst *SearchedUser) UnmarshalJSON(data []byte) error {
 	var err error
 	// try to unmarshal JSON data into ProfileUrl
-	err = json.Unmarshal(data, &dst.ProfileUrl);
+	err = json.Unmarshal(data, &dst.ProfileUrl)
 	if err == nil {
 		jsonProfileUrl, _ := json.Marshal(dst.ProfileUrl)
 		if string(jsonProfileUrl) == "{}" { // empty struct
@@ -40,7 +39,7 @@ func (dst *SearchedUser) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal JSON data into User
-	err = json.Unmarshal(data, &dst.User);
+	err = json.Unmarshal(data, &dst.User)
 	if err == nil {
 		jsonUser, _ := json.Marshal(dst.User)
 		if string(jsonUser) == "{}" { // empty struct
@@ -67,7 +66,6 @@ func (src SearchedUser) MarshalJSON() ([]byte, error) {
 
 	return nil, nil // no data in anyOf schemas
 }
-
 
 type NullableSearchedUser struct {
 	value *SearchedUser
@@ -104,5 +102,3 @@ func (v *NullableSearchedUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

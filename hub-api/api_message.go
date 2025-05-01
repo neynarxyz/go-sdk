@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -20,16 +20,15 @@ import (
 	"os"
 )
 
-
 type MessageAPI interface {
 
 	/*
-	PublishMessage Submit signed message
+		PublishMessage Submit signed message
 
-	Submit a message to the Farcaster network.
+		Submit a message to the Farcaster network.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPublishMessageRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPublishMessageRequest
 	*/
 	PublishMessage(ctx context.Context) ApiPublishMessageRequest
 
@@ -38,12 +37,12 @@ type MessageAPI interface {
 	PublishMessageExecute(r ApiPublishMessageRequest) (*Message, *http.Response, error)
 
 	/*
-	ValidateMessage Validate signed message
+		ValidateMessage Validate signed message
 
-	Validate a message on the Farcaster network.
+		Validate a message on the Farcaster network.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiValidateMessageRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiValidateMessageRequest
 	*/
 	ValidateMessage(ctx context.Context) ApiValidateMessageRequest
 
@@ -56,12 +55,12 @@ type MessageAPI interface {
 type MessageAPIService service
 
 type ApiPublishMessageRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService MessageAPI
-	body *os.File
+	body       *os.File
 }
 
-// A Message is a delta operation on the Farcaster network. The message protobuf is an envelope that wraps a MessageData object and contains a hash and signature which can verify its authenticity. 
+// A Message is a delta operation on the Farcaster network. The message protobuf is an envelope that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
 func (r ApiPublishMessageRequest) Body(body *os.File) ApiPublishMessageRequest {
 	r.body = body
 	return r
@@ -76,24 +75,25 @@ PublishMessage Submit signed message
 
 Submit a message to the Farcaster network.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPublishMessageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPublishMessageRequest
 */
 func (a *MessageAPIService) PublishMessage(ctx context.Context) ApiPublishMessageRequest {
 	return ApiPublishMessageRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Message
+//
+//	@return Message
 func (a *MessageAPIService) PublishMessageExecute(r ApiPublishMessageRequest) (*Message, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Message
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Message
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MessageAPIService.PublishMessage")
@@ -165,14 +165,14 @@ func (a *MessageAPIService) PublishMessageExecute(r ApiPublishMessageRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -189,12 +189,12 @@ func (a *MessageAPIService) PublishMessageExecute(r ApiPublishMessageRequest) (*
 }
 
 type ApiValidateMessageRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService MessageAPI
-	body *os.File
+	body       *os.File
 }
 
-// A Message is a delta operation on the Farcaster network. The message protobuf is an envelope that wraps a MessageData object and contains a hash and signature which can verify its authenticity. 
+// A Message is a delta operation on the Farcaster network. The message protobuf is an envelope that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
 func (r ApiValidateMessageRequest) Body(body *os.File) ApiValidateMessageRequest {
 	r.body = body
 	return r
@@ -209,24 +209,25 @@ ValidateMessage Validate signed message
 
 Validate a message on the Farcaster network.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiValidateMessageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiValidateMessageRequest
 */
 func (a *MessageAPIService) ValidateMessage(ctx context.Context) ApiValidateMessageRequest {
 	return ApiValidateMessageRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ValidateMessageResponse
+//
+//	@return ValidateMessageResponse
 func (a *MessageAPIService) ValidateMessageExecute(r ApiValidateMessageRequest) (*ValidateMessageResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ValidateMessageResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidateMessageResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MessageAPIService.ValidateMessage")
@@ -298,14 +299,14 @@ func (a *MessageAPIService) ValidateMessageExecute(r ApiValidateMessageRequest) 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

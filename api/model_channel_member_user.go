@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,7 +19,7 @@ import (
 
 // ChannelMemberUser - struct for ChannelMemberUser
 type ChannelMemberUser struct {
-	User *User
+	User           *User
 	UserDehydrated *UserDehydrated
 }
 
@@ -36,7 +36,6 @@ func UserDehydratedAsChannelMemberUser(v *UserDehydrated) ChannelMemberUser {
 		UserDehydrated: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ChannelMemberUser) UnmarshalJSON(data []byte) error {
@@ -103,7 +102,7 @@ func (src ChannelMemberUser) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ChannelMemberUser) GetActualInstance() (interface{}) {
+func (obj *ChannelMemberUser) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -120,7 +119,7 @@ func (obj *ChannelMemberUser) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj ChannelMemberUser) GetActualInstanceValue() (interface{}) {
+func (obj ChannelMemberUser) GetActualInstanceValue() interface{} {
 	if obj.User != nil {
 		return *obj.User
 	}
@@ -168,5 +167,3 @@ func (v *NullableChannelMemberUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -25,7 +25,7 @@ type LinkBody struct {
 	Type LinkType `json:"type"`
 	// User-defined timestamp that preserves the original creation time when message.data.timestamp needs to be updated for compaction. Useful for maintaining chronological order in user feeds.
 	DisplayTimestamp *int64 `json:"displayTimestamp,omitempty"`
-	// Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network. 
+	// Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
 	TargetFid int32 `json:"targetFid"`
 }
 
@@ -77,7 +77,7 @@ func (o *LinkBody) SetType(v LinkType) {
 }
 
 // GetDefaultType returns the default value LINKTYPE_FOLLOW of the Type field.
-func (o *LinkBody) GetDefaultType() interface{}  {
+func (o *LinkBody) GetDefaultType() interface{} {
 	return LINKTYPE_FOLLOW
 }
 
@@ -137,9 +137,8 @@ func (o *LinkBody) SetTargetFid(v int32) {
 	o.TargetFid = v
 }
 
-
 func (o LinkBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -170,7 +169,7 @@ func (o *LinkBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
+	defaultValueFuncMap := map[string]func() interface{}{
 		"type": o.GetDefaultType,
 	}
 	var defaultValueApplied bool
@@ -179,24 +178,24 @@ func (o *LinkBody) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -250,5 +249,3 @@ func (v *NullableLinkBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

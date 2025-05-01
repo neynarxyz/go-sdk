@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_FollowsAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_FollowsAPIService(t *testing.T) {
 
 	t.Run("Test FollowsAPIService FetchFollowSuggestions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FollowsAPI.FetchFollowSuggestions(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_FollowsAPIService(t *testing.T) {
 
 	t.Run("Test FollowsAPIService FetchRelevantFollowers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FollowsAPI.FetchRelevantFollowers(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_FollowsAPIService(t *testing.T) {
 
 	t.Run("Test FollowsAPIService FetchUserFollowers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FollowsAPI.FetchUserFollowers(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_api_FollowsAPIService(t *testing.T) {
 
 	t.Run("Test FollowsAPIService FetchUserFollowing", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FollowsAPI.FetchUserFollowing(context.Background()).Execute()
 

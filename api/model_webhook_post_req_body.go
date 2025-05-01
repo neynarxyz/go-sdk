@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,8 +22,8 @@ var _ MappedNullable = &WebhookPostReqBody{}
 
 // WebhookPostReqBody struct for WebhookPostReqBody
 type WebhookPostReqBody struct {
-	Name string `json:"name"`
-	Url string `json:"url"`
+	Name         string                      `json:"name"`
+	Url          string                      `json:"url"`
 	Subscription *WebhookSubscriptionFilters `json:"subscription,omitempty"`
 }
 
@@ -72,7 +72,6 @@ func (o *WebhookPostReqBody) SetName(v string) {
 	o.Name = v
 }
 
-
 // GetUrl returns the Url field value
 func (o *WebhookPostReqBody) GetUrl() string {
 	if o == nil {
@@ -96,7 +95,6 @@ func (o *WebhookPostReqBody) GetUrlOk() (*string, bool) {
 func (o *WebhookPostReqBody) SetUrl(v string) {
 	o.Url = v
 }
-
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
 func (o *WebhookPostReqBody) GetSubscription() WebhookSubscriptionFilters {
@@ -131,7 +129,7 @@ func (o *WebhookPostReqBody) SetSubscription(v WebhookSubscriptionFilters) {
 }
 
 func (o WebhookPostReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,32 +157,31 @@ func (o *WebhookPostReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -238,5 +235,3 @@ func (v *NullableWebhookPostReqBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

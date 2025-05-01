@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_ChannelAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FetchAllChannels", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FetchAllChannels(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FetchBulkChannels", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FetchBulkChannels(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FetchChannelInvites", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FetchChannelInvites(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FetchChannelMembers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FetchChannelMembers(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FetchFollowersForAChannel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FetchFollowersForAChannel(context.Background()).Execute()
 
@@ -84,7 +84,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FetchRelevantFollowersForAChannel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FetchRelevantFollowersForAChannel(context.Background()).Execute()
 
@@ -96,7 +96,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FetchTrendingChannels", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FetchTrendingChannels(context.Background()).Execute()
 
@@ -108,7 +108,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FetchUserChannelMemberships", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FetchUserChannelMemberships(context.Background()).Execute()
 
@@ -120,7 +120,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FetchUserChannels", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FetchUserChannels(context.Background()).Execute()
 
@@ -132,7 +132,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FetchUsersActiveChannels", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FetchUsersActiveChannels(context.Background()).Execute()
 
@@ -144,7 +144,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService FollowChannel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.FollowChannel(context.Background()).Execute()
 
@@ -156,7 +156,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService InviteChannelMember", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.InviteChannelMember(context.Background()).Execute()
 
@@ -168,7 +168,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService LookupChannel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.LookupChannel(context.Background()).Execute()
 
@@ -180,7 +180,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService RemoveChannelMember", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.RemoveChannelMember(context.Background()).Execute()
 
@@ -192,7 +192,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService RespondChannelInvite", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.RespondChannelInvite(context.Background()).Execute()
 
@@ -204,7 +204,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService SearchChannels", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.SearchChannels(context.Background()).Execute()
 
@@ -216,7 +216,7 @@ func Test_api_ChannelAPIService(t *testing.T) {
 
 	t.Run("Test ChannelAPIService UnfollowChannel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ChannelAPI.UnfollowChannel(context.Background()).Execute()
 

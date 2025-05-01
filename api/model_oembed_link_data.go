@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &OembedLinkData{}
 
 // OembedLinkData struct for OembedLinkData
 type OembedLinkData struct {
-	Type string `json:"type"`
+	Type    string `json:"type"`
 	Version string `json:"version"`
 	// A text title, describing the resource.
 	Title *string `json:"title,omitempty"`
@@ -89,7 +89,6 @@ func (o *OembedLinkData) SetType(v string) {
 	o.Type = v
 }
 
-
 // GetVersion returns the Version field value
 func (o *OembedLinkData) GetVersion() string {
 	if o == nil {
@@ -113,7 +112,6 @@ func (o *OembedLinkData) GetVersionOk() (*string, bool) {
 func (o *OembedLinkData) SetVersion(v string) {
 	o.Version = v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *OembedLinkData) GetTitle() string {
@@ -404,7 +402,7 @@ func (o *OembedLinkData) SetThumbnailHeight(v float32) {
 }
 
 func (o OembedLinkData) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -456,32 +454,31 @@ func (o *OembedLinkData) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -535,5 +532,3 @@ func (v *NullableOembedLinkData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

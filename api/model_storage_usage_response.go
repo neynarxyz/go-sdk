@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -20,15 +20,15 @@ var _ MappedNullable = &StorageUsageResponse{}
 
 // StorageUsageResponse struct for StorageUsageResponse
 type StorageUsageResponse struct {
-	Object *string `json:"object,omitempty"`
-	User *UserDehydrated `json:"user,omitempty"`
-	Casts *StorageObject `json:"casts,omitempty"`
-	Reactions *StorageObject `json:"reactions,omitempty"`
-	Links *StorageObject `json:"links,omitempty"`
-	VerifiedAddresses *StorageObject `json:"verified_addresses,omitempty"`
-	UsernameProofs *StorageObject `json:"username_proofs,omitempty"`
-	Signers *StorageObject `json:"signers,omitempty"`
-	TotalActiveUnits *int32 `json:"total_active_units,omitempty"`
+	Object            *string         `json:"object,omitempty"`
+	User              *UserDehydrated `json:"user,omitempty"`
+	Casts             *StorageObject  `json:"casts,omitempty"`
+	Reactions         *StorageObject  `json:"reactions,omitempty"`
+	Links             *StorageObject  `json:"links,omitempty"`
+	VerifiedAddresses *StorageObject  `json:"verified_addresses,omitempty"`
+	UsernameProofs    *StorageObject  `json:"username_proofs,omitempty"`
+	Signers           *StorageObject  `json:"signers,omitempty"`
+	TotalActiveUnits  *int32          `json:"total_active_units,omitempty"`
 }
 
 // NewStorageUsageResponse instantiates a new StorageUsageResponse object
@@ -337,7 +337,7 @@ func (o *StorageUsageResponse) SetTotalActiveUnits(v int32) {
 }
 
 func (o StorageUsageResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -411,5 +411,3 @@ func (v *NullableStorageUsageResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

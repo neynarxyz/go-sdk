@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,12 +22,12 @@ var _ MappedNullable = &Message{}
 
 // Message A Message is a delta operation on the Farcaster network that represents a state change. Messages are the fundamental unit of data in Farcaster and can represent various actions like: - Creating or removing casts (posts) - Adding or removing reactions - Following or unfollowing users - Updating profile data - Verifying Ethereum addresses  Each message contains: - A MessageData object with the actual content - A hash of the content for integrity verification - A cryptographic signature to prove authenticity - The signer's public key for verification  Messages are immutable once created and form an append-only log of all user actions on the network.
 type Message struct {
-	Hash string `json:"hash" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
-	HashScheme HashScheme `json:"hashScheme"`
-	Signature string `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	SignatureScheme SignatureScheme `json:"signatureScheme"`
-	Signer string `json:"signer" validate:"regexp=^0x[0-9a-fA-F]+$"`
-	Data MessageAllOfData `json:"data"`
+	Hash            string           `json:"hash" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
+	HashScheme      HashScheme       `json:"hashScheme"`
+	Signature       string           `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	SignatureScheme SignatureScheme  `json:"signatureScheme"`
+	Signer          string           `json:"signer" validate:"regexp=^0x[0-9a-fA-F]+$"`
+	Data            MessageAllOfData `json:"data"`
 }
 
 type _Message Message
@@ -83,7 +83,6 @@ func (o *Message) SetHash(v string) {
 	o.Hash = v
 }
 
-
 // GetHashScheme returns the HashScheme field value
 func (o *Message) GetHashScheme() HashScheme {
 	if o == nil {
@@ -109,7 +108,7 @@ func (o *Message) SetHashScheme(v HashScheme) {
 }
 
 // GetDefaultHashScheme returns the default value HASHSCHEME_HASH_SCHEME_BLAKE3 of the HashScheme field.
-func (o *Message) GetDefaultHashScheme() interface{}  {
+func (o *Message) GetDefaultHashScheme() interface{} {
 	return HASHSCHEME_HASH_SCHEME_BLAKE3
 }
 
@@ -137,7 +136,6 @@ func (o *Message) SetSignature(v string) {
 	o.Signature = v
 }
 
-
 // GetSignatureScheme returns the SignatureScheme field value
 func (o *Message) GetSignatureScheme() SignatureScheme {
 	if o == nil {
@@ -163,7 +161,7 @@ func (o *Message) SetSignatureScheme(v SignatureScheme) {
 }
 
 // GetDefaultSignatureScheme returns the default value SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519 of the SignatureScheme field.
-func (o *Message) GetDefaultSignatureScheme() interface{}  {
+func (o *Message) GetDefaultSignatureScheme() interface{} {
 	return SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519
 }
 
@@ -191,7 +189,6 @@ func (o *Message) SetSigner(v string) {
 	o.Signer = v
 }
 
-
 // GetData returns the Data field value
 func (o *Message) GetData() MessageAllOfData {
 	if o == nil {
@@ -216,9 +213,8 @@ func (o *Message) SetData(v MessageAllOfData) {
 	o.Data = v
 }
 
-
 func (o Message) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -257,8 +253,8 @@ func (o *Message) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-		"hashScheme": o.GetDefaultHashScheme,
+	defaultValueFuncMap := map[string]func() interface{}{
+		"hashScheme":      o.GetDefaultHashScheme,
 		"signatureScheme": o.GetDefaultSignatureScheme,
 	}
 	var defaultValueApplied bool
@@ -267,24 +263,24 @@ func (o *Message) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -338,5 +334,3 @@ func (v *NullableMessage) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

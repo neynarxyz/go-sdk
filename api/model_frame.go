@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -36,7 +36,6 @@ func FrameV2AsFrame(v *FrameV2) Frame {
 		FrameV2: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Frame) UnmarshalJSON(data []byte) error {
@@ -103,7 +102,7 @@ func (src Frame) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Frame) GetActualInstance() (interface{}) {
+func (obj *Frame) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -120,7 +119,7 @@ func (obj *Frame) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj Frame) GetActualInstanceValue() (interface{}) {
+func (obj Frame) GetActualInstanceValue() interface{} {
 	if obj.FrameV1 != nil {
 		return *obj.FrameV1
 	}
@@ -168,5 +167,3 @@ func (v *NullableFrame) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

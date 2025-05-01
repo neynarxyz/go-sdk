@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -21,8 +21,8 @@ type SignerEventType string
 
 // List of SignerEventType
 const (
-	SIGNEREVENTTYPE_SIGNER_EVENT_TYPE_ADD SignerEventType = "SIGNER_EVENT_TYPE_ADD"
-	SIGNEREVENTTYPE_SIGNER_EVENT_TYPE_REMOVE SignerEventType = "SIGNER_EVENT_TYPE_REMOVE"
+	SIGNEREVENTTYPE_SIGNER_EVENT_TYPE_ADD         SignerEventType = "SIGNER_EVENT_TYPE_ADD"
+	SIGNEREVENTTYPE_SIGNER_EVENT_TYPE_REMOVE      SignerEventType = "SIGNER_EVENT_TYPE_REMOVE"
 	SIGNEREVENTTYPE_SIGNER_EVENT_TYPE_ADMIN_RESET SignerEventType = "SIGNER_EVENT_TYPE_ADMIN_RESET"
 )
 
@@ -111,4 +111,3 @@ func (v *NullableSignerEventType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

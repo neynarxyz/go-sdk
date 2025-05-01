@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_FeedAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FetchCastsForUser", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FetchCastsForUser(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FetchFeed", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FetchFeed(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FetchFeedByChannelIds", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FetchFeedByChannelIds(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_api_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FetchFeedByParentUrls", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FetchFeedByParentUrls(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_api_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FetchFeedForYou", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FetchFeedForYou(context.Background()).Execute()
 
@@ -84,7 +84,7 @@ func Test_api_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FetchFramesOnlyFeed", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FetchFramesOnlyFeed(context.Background()).Execute()
 
@@ -96,7 +96,7 @@ func Test_api_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FetchPopularCastsByUser", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FetchPopularCastsByUser(context.Background()).Execute()
 
@@ -108,7 +108,7 @@ func Test_api_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FetchRepliesAndRecastsForUser", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FetchRepliesAndRecastsForUser(context.Background()).Execute()
 
@@ -120,7 +120,7 @@ func Test_api_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FetchTrendingFeed", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FetchTrendingFeed(context.Background()).Execute()
 
@@ -132,7 +132,7 @@ func Test_api_FeedAPIService(t *testing.T) {
 
 	t.Run("Test FeedAPIService FetchUserFollowingFeed", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FeedAPI.FetchUserFollowingFeed(context.Background()).Execute()
 

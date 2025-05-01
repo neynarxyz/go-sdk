@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &ChannelMember{}
 
 // ChannelMember struct for ChannelMember
 type ChannelMember struct {
-	Object string `json:"object"`
-	Role ChannelMemberRole `json:"role"`
-	User ChannelMemberUser `json:"user"`
+	Object  string               `json:"object"`
+	Role    ChannelMemberRole    `json:"role"`
+	User    ChannelMemberUser    `json:"user"`
 	Channel ChannelMemberChannel `json:"channel"`
 }
 
@@ -75,7 +75,6 @@ func (o *ChannelMember) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetRole returns the Role field value
 func (o *ChannelMember) GetRole() ChannelMemberRole {
 	if o == nil {
@@ -99,7 +98,6 @@ func (o *ChannelMember) GetRoleOk() (*ChannelMemberRole, bool) {
 func (o *ChannelMember) SetRole(v ChannelMemberRole) {
 	o.Role = v
 }
-
 
 // GetUser returns the User field value
 func (o *ChannelMember) GetUser() ChannelMemberUser {
@@ -125,7 +123,6 @@ func (o *ChannelMember) SetUser(v ChannelMemberUser) {
 	o.User = v
 }
 
-
 // GetChannel returns the Channel field value
 func (o *ChannelMember) GetChannel() ChannelMemberChannel {
 	if o == nil {
@@ -150,9 +147,8 @@ func (o *ChannelMember) SetChannel(v ChannelMemberChannel) {
 	o.Channel = v
 }
 
-
 func (o ChannelMember) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -181,32 +177,31 @@ func (o *ChannelMember) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -260,5 +255,3 @@ func (v *NullableChannelMember) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

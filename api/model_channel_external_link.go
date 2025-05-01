@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,7 +21,7 @@ var _ MappedNullable = &ChannelExternalLink{}
 // ChannelExternalLink Channel's external link.
 type ChannelExternalLink struct {
 	Title *string `json:"title,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Url   *string `json:"url,omitempty"`
 }
 
 // NewChannelExternalLink instantiates a new ChannelExternalLink object
@@ -106,7 +106,7 @@ func (o *ChannelExternalLink) SetUrl(v string) {
 }
 
 func (o ChannelExternalLink) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableChannelExternalLink) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

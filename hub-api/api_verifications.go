@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type VerificationsAPI interface {
 
 	/*
-	FetchVerificationsByFid Provided by an FID
+		FetchVerificationsByFid Provided by an FID
 
-	Fetch verifications provided by a user.
+		Fetch verifications provided by a user.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchVerificationsByFidRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchVerificationsByFidRequest
 	*/
 	FetchVerificationsByFid(ctx context.Context) ApiFetchVerificationsByFidRequest
 
@@ -41,13 +40,13 @@ type VerificationsAPI interface {
 type VerificationsAPIService service
 
 type ApiFetchVerificationsByFidRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService VerificationsAPI
-	fid *int32
-	address *string
-	pageSize *int32
-	reverse *bool
-	pageToken *string
+	fid        *int32
+	address    *string
+	pageSize   *int32
+	reverse    *bool
+	pageToken  *string
 }
 
 // The FID being requested
@@ -89,24 +88,25 @@ FetchVerificationsByFid Provided by an FID
 
 Fetch verifications provided by a user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchVerificationsByFidRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchVerificationsByFidRequest
 */
 func (a *VerificationsAPIService) FetchVerificationsByFid(ctx context.Context) ApiFetchVerificationsByFidRequest {
 	return ApiFetchVerificationsByFidRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchVerificationsByFid200Response
+//
+//	@return FetchVerificationsByFid200Response
 func (a *VerificationsAPIService) FetchVerificationsByFidExecute(r ApiFetchVerificationsByFidRequest) (*FetchVerificationsByFid200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchVerificationsByFid200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchVerificationsByFid200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VerificationsAPIService.FetchVerificationsByFid")
@@ -189,14 +189,14 @@ func (a *VerificationsAPIService) FetchVerificationsByFidExecute(r ApiFetchVerif
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

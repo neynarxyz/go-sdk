@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,15 +22,15 @@ var _ MappedNullable = &OnChainEventSignerMigrated{}
 
 // OnChainEventSignerMigrated struct for OnChainEventSignerMigrated
 type OnChainEventSignerMigrated struct {
-	Type string `json:"type"`
-	ChainId int32 `json:"chainId"`
-	BlockNumber int32 `json:"blockNumber"`
-	BlockHash string `json:"blockHash"`
-	BlockTimestamp int32 `json:"blockTimestamp"`
-	TransactionHash string `json:"transactionHash"`
-	LogIndex int32 `json:"logIndex"`
-	TxIndex int32 `json:"txIndex"`
-	Fid int32 `json:"fid"`
+	Type                    string                  `json:"type"`
+	ChainId                 int32                   `json:"chainId"`
+	BlockNumber             int32                   `json:"blockNumber"`
+	BlockHash               string                  `json:"blockHash"`
+	BlockTimestamp          int32                   `json:"blockTimestamp"`
+	TransactionHash         string                  `json:"transactionHash"`
+	LogIndex                int32                   `json:"logIndex"`
+	TxIndex                 int32                   `json:"txIndex"`
+	Fid                     int32                   `json:"fid"`
 	SignerMigratedEventBody SignerMigratedEventBody `json:"signerMigratedEventBody"`
 }
 
@@ -87,7 +87,6 @@ func (o *OnChainEventSignerMigrated) SetType(v string) {
 	o.Type = v
 }
 
-
 // GetChainId returns the ChainId field value
 func (o *OnChainEventSignerMigrated) GetChainId() int32 {
 	if o == nil {
@@ -111,7 +110,6 @@ func (o *OnChainEventSignerMigrated) GetChainIdOk() (*int32, bool) {
 func (o *OnChainEventSignerMigrated) SetChainId(v int32) {
 	o.ChainId = v
 }
-
 
 // GetBlockNumber returns the BlockNumber field value
 func (o *OnChainEventSignerMigrated) GetBlockNumber() int32 {
@@ -137,7 +135,6 @@ func (o *OnChainEventSignerMigrated) SetBlockNumber(v int32) {
 	o.BlockNumber = v
 }
 
-
 // GetBlockHash returns the BlockHash field value
 func (o *OnChainEventSignerMigrated) GetBlockHash() string {
 	if o == nil {
@@ -161,7 +158,6 @@ func (o *OnChainEventSignerMigrated) GetBlockHashOk() (*string, bool) {
 func (o *OnChainEventSignerMigrated) SetBlockHash(v string) {
 	o.BlockHash = v
 }
-
 
 // GetBlockTimestamp returns the BlockTimestamp field value
 func (o *OnChainEventSignerMigrated) GetBlockTimestamp() int32 {
@@ -187,7 +183,6 @@ func (o *OnChainEventSignerMigrated) SetBlockTimestamp(v int32) {
 	o.BlockTimestamp = v
 }
 
-
 // GetTransactionHash returns the TransactionHash field value
 func (o *OnChainEventSignerMigrated) GetTransactionHash() string {
 	if o == nil {
@@ -211,7 +206,6 @@ func (o *OnChainEventSignerMigrated) GetTransactionHashOk() (*string, bool) {
 func (o *OnChainEventSignerMigrated) SetTransactionHash(v string) {
 	o.TransactionHash = v
 }
-
 
 // GetLogIndex returns the LogIndex field value
 func (o *OnChainEventSignerMigrated) GetLogIndex() int32 {
@@ -237,7 +231,6 @@ func (o *OnChainEventSignerMigrated) SetLogIndex(v int32) {
 	o.LogIndex = v
 }
 
-
 // GetTxIndex returns the TxIndex field value
 func (o *OnChainEventSignerMigrated) GetTxIndex() int32 {
 	if o == nil {
@@ -261,7 +254,6 @@ func (o *OnChainEventSignerMigrated) GetTxIndexOk() (*int32, bool) {
 func (o *OnChainEventSignerMigrated) SetTxIndex(v int32) {
 	o.TxIndex = v
 }
-
 
 // GetFid returns the Fid field value
 func (o *OnChainEventSignerMigrated) GetFid() int32 {
@@ -287,7 +279,6 @@ func (o *OnChainEventSignerMigrated) SetFid(v int32) {
 	o.Fid = v
 }
 
-
 // GetSignerMigratedEventBody returns the SignerMigratedEventBody field value
 func (o *OnChainEventSignerMigrated) GetSignerMigratedEventBody() SignerMigratedEventBody {
 	if o == nil {
@@ -312,9 +303,8 @@ func (o *OnChainEventSignerMigrated) SetSignerMigratedEventBody(v SignerMigrated
 	o.SignerMigratedEventBody = v
 }
 
-
 func (o OnChainEventSignerMigrated) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -355,32 +345,31 @@ func (o *OnChainEventSignerMigrated) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -434,5 +423,3 @@ func (v *NullableOnChainEventSignerMigrated) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

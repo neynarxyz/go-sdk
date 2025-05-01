@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,18 +19,17 @@ import (
 	"net/url"
 )
 
-
 type SignerAPI interface {
 
 	/*
-	CreateSigner Create signer
+		CreateSigner Create signer
 
-	Creates a signer and returns the signer status. \
-**Note**: While tesing please reuse the signer, it costs money to approve a signer.
+		Creates a signer and returns the signer status. \
+	**Note**: While tesing please reuse the signer, it costs money to approve a signer.
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateSignerRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiCreateSignerRequest
 	*/
 	CreateSigner(ctx context.Context) ApiCreateSignerRequest
 
@@ -39,12 +38,12 @@ type SignerAPI interface {
 	CreateSignerExecute(r ApiCreateSignerRequest) (*Signer, *http.Response, error)
 
 	/*
-	FetchAuthorizationUrl Fetch authorization url
+		FetchAuthorizationUrl Fetch authorization url
 
-	Fetch authorization url (Fetched authorized url useful for SIWN login operation)
+		Fetch authorization url (Fetched authorized url useful for SIWN login operation)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchAuthorizationUrlRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchAuthorizationUrlRequest
 	*/
 	FetchAuthorizationUrl(ctx context.Context) ApiFetchAuthorizationUrlRequest
 
@@ -53,12 +52,12 @@ type SignerAPI interface {
 	FetchAuthorizationUrlExecute(r ApiFetchAuthorizationUrlRequest) (*AuthorizationUrlResponse, *http.Response, error)
 
 	/*
-	FetchSigners List signers
+		FetchSigners List signers
 
-	Fetches a list of signers for a custody address
+		Fetches a list of signers for a custody address
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchSignersRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchSignersRequest
 	*/
 	FetchSigners(ctx context.Context) ApiFetchSignersRequest
 
@@ -67,12 +66,12 @@ type SignerAPI interface {
 	FetchSignersExecute(r ApiFetchSignersRequest) (*SignerListResponse, *http.Response, error)
 
 	/*
-	LookupDeveloperManagedSigner Status by public key
+		LookupDeveloperManagedSigner Status by public key
 
-	Fetches the status of a developer managed signer by public key
+		Fetches the status of a developer managed signer by public key
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupDeveloperManagedSignerRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupDeveloperManagedSignerRequest
 	*/
 	LookupDeveloperManagedSigner(ctx context.Context) ApiLookupDeveloperManagedSignerRequest
 
@@ -81,12 +80,12 @@ type SignerAPI interface {
 	LookupDeveloperManagedSignerExecute(r ApiLookupDeveloperManagedSignerRequest) (*DeveloperManagedSigner, *http.Response, error)
 
 	/*
-	LookupSigner Status
+		LookupSigner Status
 
-	Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
+		Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupSignerRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupSignerRequest
 	*/
 	LookupSigner(ctx context.Context) ApiLookupSignerRequest
 
@@ -95,12 +94,12 @@ type SignerAPI interface {
 	LookupSignerExecute(r ApiLookupSignerRequest) (*Signer, *http.Response, error)
 
 	/*
-	PublishMessageToFarcaster Publish message
+		PublishMessageToFarcaster Publish message
 
-	Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
+		Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPublishMessageToFarcasterRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPublishMessageToFarcasterRequest
 	*/
 	PublishMessageToFarcaster(ctx context.Context) ApiPublishMessageToFarcasterRequest
 
@@ -109,12 +108,12 @@ type SignerAPI interface {
 	PublishMessageToFarcasterExecute(r ApiPublishMessageToFarcasterRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	RegisterSignedKey Register Signed Key
+		RegisterSignedKey Register Signed Key
 
-	Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
+		Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiRegisterSignedKeyRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiRegisterSignedKeyRequest
 	*/
 	RegisterSignedKey(ctx context.Context) ApiRegisterSignedKeyRequest
 
@@ -123,12 +122,12 @@ type SignerAPI interface {
 	RegisterSignedKeyExecute(r ApiRegisterSignedKeyRequest) (*Signer, *http.Response, error)
 
 	/*
-	RegisterSignedKeyForDeveloperManagedSigner Register Signed Key
+		RegisterSignedKeyForDeveloperManagedSigner Register Signed Key
 
-	Registers an signed key and returns the developer managed signer status with an approval url.
+		Registers an signed key and returns the developer managed signer status with an approval url.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiRegisterSignedKeyForDeveloperManagedSignerRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiRegisterSignedKeyForDeveloperManagedSignerRequest
 	*/
 	RegisterSignedKeyForDeveloperManagedSigner(ctx context.Context) ApiRegisterSignedKeyForDeveloperManagedSignerRequest
 
@@ -141,7 +140,7 @@ type SignerAPI interface {
 type SignerAPIService service
 
 type ApiCreateSignerRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService SignerAPI
 }
 
@@ -155,25 +154,25 @@ CreateSigner Create signer
 Creates a signer and returns the signer status. \
 **Note**: While tesing please reuse the signer, it costs money to approve a signer.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateSignerRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateSignerRequest
 */
 func (a *SignerAPIService) CreateSigner(ctx context.Context) ApiCreateSignerRequest {
 	return ApiCreateSignerRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Signer
+//
+//	@return Signer
 func (a *SignerAPIService) CreateSignerExecute(r ApiCreateSignerRequest) (*Signer, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Signer
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Signer
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SignerAPIService.CreateSigner")
@@ -247,8 +246,8 @@ func (a *SignerAPIService) CreateSignerExecute(r ApiCreateSignerRequest) (*Signe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -266,9 +265,9 @@ func (a *SignerAPIService) CreateSignerExecute(r ApiCreateSignerRequest) (*Signe
 }
 
 type ApiFetchAuthorizationUrlRequest struct {
-	ctx context.Context
-	ApiService SignerAPI
-	clientId *string
+	ctx          context.Context
+	ApiService   SignerAPI
+	clientId     *string
 	responseType *AuthorizationUrlResponseType
 }
 
@@ -291,24 +290,25 @@ FetchAuthorizationUrl Fetch authorization url
 
 Fetch authorization url (Fetched authorized url useful for SIWN login operation)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchAuthorizationUrlRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchAuthorizationUrlRequest
 */
 func (a *SignerAPIService) FetchAuthorizationUrl(ctx context.Context) ApiFetchAuthorizationUrlRequest {
 	return ApiFetchAuthorizationUrlRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return AuthorizationUrlResponse
+//
+//	@return AuthorizationUrlResponse
 func (a *SignerAPIService) FetchAuthorizationUrlExecute(r ApiFetchAuthorizationUrlRequest) (*AuthorizationUrlResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *AuthorizationUrlResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AuthorizationUrlResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SignerAPIService.FetchAuthorizationUrl")
@@ -390,8 +390,8 @@ func (a *SignerAPIService) FetchAuthorizationUrlExecute(r ApiFetchAuthorizationU
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -401,8 +401,8 @@ func (a *SignerAPIService) FetchAuthorizationUrlExecute(r ApiFetchAuthorizationU
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -420,19 +420,19 @@ func (a *SignerAPIService) FetchAuthorizationUrlExecute(r ApiFetchAuthorizationU
 }
 
 type ApiFetchSignersRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService SignerAPI
-	message *string
-	signature *string
+	message    *string
+	signature  *string
 }
 
-// A Sign-In with Ethereum (SIWE) message that the user&#39;s Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded.  example:  example.com wants you to sign in with your Ethereum account:\\\\n0x23A...F232\\\\n\\\\nSign in to continue.\\\\n\\\\nURI: example.com\\\\nVersion: 1\\\\nChain ID: 1\\\\nNonce: xyz123\\\\nIssued At: 2021-09-01T14:52:07Z  Note: This is just an example message (So, message is invalid, since we don&#39;t want any signers related to NEYNAR_API_DOCS to be exposed).   [Checkout fetch-signers API documentation for more details.](https://docs.neynar.com/docs/fetch-signers-1) 
+// A Sign-In with Ethereum (SIWE) message that the user&#39;s Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded.  example:  example.com wants you to sign in with your Ethereum account:\\\\n0x23A...F232\\\\n\\\\nSign in to continue.\\\\n\\\\nURI: example.com\\\\nVersion: 1\\\\nChain ID: 1\\\\nNonce: xyz123\\\\nIssued At: 2021-09-01T14:52:07Z  Note: This is just an example message (So, message is invalid, since we don&#39;t want any signers related to NEYNAR_API_DOCS to be exposed).   [Checkout fetch-signers API documentation for more details.](https://docs.neynar.com/docs/fetch-signers-1)
 func (r ApiFetchSignersRequest) Message(message string) ApiFetchSignersRequest {
 	r.message = &message
 	return r
 }
 
-// The digital signature produced by signing the provided SIWE message with the user&#39;s Ethereum private key. This signature is used to verify the authenticity of the message and the identity of the signer. 
+// The digital signature produced by signing the provided SIWE message with the user&#39;s Ethereum private key. This signature is used to verify the authenticity of the message and the identity of the signer.
 func (r ApiFetchSignersRequest) Signature(signature string) ApiFetchSignersRequest {
 	r.signature = &signature
 	return r
@@ -447,24 +447,25 @@ FetchSigners List signers
 
 Fetches a list of signers for a custody address
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchSignersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchSignersRequest
 */
 func (a *SignerAPIService) FetchSigners(ctx context.Context) ApiFetchSignersRequest {
 	return ApiFetchSignersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SignerListResponse
+//
+//	@return SignerListResponse
 func (a *SignerAPIService) FetchSignersExecute(r ApiFetchSignersRequest) (*SignerListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SignerListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SignerListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SignerAPIService.FetchSigners")
@@ -546,8 +547,8 @@ func (a *SignerAPIService) FetchSignersExecute(r ApiFetchSignersRequest) (*Signe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
@@ -557,8 +558,8 @@ func (a *SignerAPIService) FetchSignersExecute(r ApiFetchSignersRequest) (*Signe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -568,8 +569,8 @@ func (a *SignerAPIService) FetchSignersExecute(r ApiFetchSignersRequest) (*Signe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -587,9 +588,9 @@ func (a *SignerAPIService) FetchSignersExecute(r ApiFetchSignersRequest) (*Signe
 }
 
 type ApiLookupDeveloperManagedSignerRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService SignerAPI
-	publicKey *string
+	publicKey  *string
 }
 
 func (r ApiLookupDeveloperManagedSignerRequest) PublicKey(publicKey string) ApiLookupDeveloperManagedSignerRequest {
@@ -606,24 +607,25 @@ LookupDeveloperManagedSigner Status by public key
 
 Fetches the status of a developer managed signer by public key
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupDeveloperManagedSignerRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupDeveloperManagedSignerRequest
 */
 func (a *SignerAPIService) LookupDeveloperManagedSigner(ctx context.Context) ApiLookupDeveloperManagedSignerRequest {
 	return ApiLookupDeveloperManagedSignerRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return DeveloperManagedSigner
+//
+//	@return DeveloperManagedSigner
 func (a *SignerAPIService) LookupDeveloperManagedSignerExecute(r ApiLookupDeveloperManagedSignerRequest) (*DeveloperManagedSigner, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DeveloperManagedSigner
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DeveloperManagedSigner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SignerAPIService.LookupDeveloperManagedSigner")
@@ -701,8 +703,8 @@ func (a *SignerAPIService) LookupDeveloperManagedSignerExecute(r ApiLookupDevelo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -720,7 +722,7 @@ func (a *SignerAPIService) LookupDeveloperManagedSignerExecute(r ApiLookupDevelo
 }
 
 type ApiLookupSignerRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService SignerAPI
 	signerUuid *string
 }
@@ -739,24 +741,25 @@ LookupSigner Status
 
 Gets information status of a signer by passing in a signer_uuid (Use post API to generate a signer)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupSignerRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupSignerRequest
 */
 func (a *SignerAPIService) LookupSigner(ctx context.Context) ApiLookupSignerRequest {
 	return ApiLookupSignerRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Signer
+//
+//	@return Signer
 func (a *SignerAPIService) LookupSignerExecute(r ApiLookupSignerRequest) (*Signer, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Signer
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Signer
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SignerAPIService.LookupSigner")
@@ -834,8 +837,8 @@ func (a *SignerAPIService) LookupSignerExecute(r ApiLookupSignerRequest) (*Signe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -845,8 +848,8 @@ func (a *SignerAPIService) LookupSignerExecute(r ApiLookupSignerRequest) (*Signe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -856,8 +859,8 @@ func (a *SignerAPIService) LookupSignerExecute(r ApiLookupSignerRequest) (*Signe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -867,8 +870,8 @@ func (a *SignerAPIService) LookupSignerExecute(r ApiLookupSignerRequest) (*Signe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -886,9 +889,9 @@ func (a *SignerAPIService) LookupSignerExecute(r ApiLookupSignerRequest) (*Signe
 }
 
 type ApiPublishMessageToFarcasterRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService SignerAPI
-	body *map[string]interface{}
+	body       *map[string]interface{}
 }
 
 func (r ApiPublishMessageToFarcasterRequest) Body(body map[string]interface{}) ApiPublishMessageToFarcasterRequest {
@@ -905,24 +908,25 @@ PublishMessageToFarcaster Publish message
 
 Publish a message to farcaster. The message must be signed by a signer managed by the developer. Use the @farcaster/core library to construct and sign the message. Use the Message.toJSON method on the signed message and pass the JSON in the body of this POST request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPublishMessageToFarcasterRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPublishMessageToFarcasterRequest
 */
 func (a *SignerAPIService) PublishMessageToFarcaster(ctx context.Context) ApiPublishMessageToFarcasterRequest {
 	return ApiPublishMessageToFarcasterRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
+//
+//	@return map[string]interface{}
 func (a *SignerAPIService) PublishMessageToFarcasterExecute(r ApiPublishMessageToFarcasterRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SignerAPIService.PublishMessageToFarcaster")
@@ -1001,8 +1005,8 @@ func (a *SignerAPIService) PublishMessageToFarcasterExecute(r ApiPublishMessageT
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1012,8 +1016,8 @@ func (a *SignerAPIService) PublishMessageToFarcasterExecute(r ApiPublishMessageT
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1031,8 +1035,8 @@ func (a *SignerAPIService) PublishMessageToFarcasterExecute(r ApiPublishMessageT
 }
 
 type ApiRegisterSignedKeyRequest struct {
-	ctx context.Context
-	ApiService SignerAPI
+	ctx                      context.Context
+	ApiService               SignerAPI
 	registerSignerKeyReqBody *RegisterSignerKeyReqBody
 }
 
@@ -1050,24 +1054,25 @@ RegisterSignedKey Register Signed Key
 
 Registers an app FID, deadline and a signature. Returns the signer status with an approval url.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRegisterSignedKeyRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRegisterSignedKeyRequest
 */
 func (a *SignerAPIService) RegisterSignedKey(ctx context.Context) ApiRegisterSignedKeyRequest {
 	return ApiRegisterSignedKeyRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Signer
+//
+//	@return Signer
 func (a *SignerAPIService) RegisterSignedKeyExecute(r ApiRegisterSignedKeyRequest) (*Signer, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Signer
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Signer
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SignerAPIService.RegisterSignedKey")
@@ -1146,8 +1151,8 @@ func (a *SignerAPIService) RegisterSignedKeyExecute(r ApiRegisterSignedKeyReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1157,8 +1162,8 @@ func (a *SignerAPIService) RegisterSignedKeyExecute(r ApiRegisterSignedKeyReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1168,8 +1173,8 @@ func (a *SignerAPIService) RegisterSignedKeyExecute(r ApiRegisterSignedKeyReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1179,8 +1184,8 @@ func (a *SignerAPIService) RegisterSignedKeyExecute(r ApiRegisterSignedKeyReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1198,8 +1203,8 @@ func (a *SignerAPIService) RegisterSignedKeyExecute(r ApiRegisterSignedKeyReques
 }
 
 type ApiRegisterSignedKeyForDeveloperManagedSignerRequest struct {
-	ctx context.Context
-	ApiService SignerAPI
+	ctx                                      context.Context
+	ApiService                               SignerAPI
 	registerDeveloperManagedSignedKeyReqBody *RegisterDeveloperManagedSignedKeyReqBody
 }
 
@@ -1217,24 +1222,25 @@ RegisterSignedKeyForDeveloperManagedSigner Register Signed Key
 
 Registers an signed key and returns the developer managed signer status with an approval url.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRegisterSignedKeyForDeveloperManagedSignerRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRegisterSignedKeyForDeveloperManagedSignerRequest
 */
 func (a *SignerAPIService) RegisterSignedKeyForDeveloperManagedSigner(ctx context.Context) ApiRegisterSignedKeyForDeveloperManagedSignerRequest {
 	return ApiRegisterSignedKeyForDeveloperManagedSignerRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return DeveloperManagedSigner
+//
+//	@return DeveloperManagedSigner
 func (a *SignerAPIService) RegisterSignedKeyForDeveloperManagedSignerExecute(r ApiRegisterSignedKeyForDeveloperManagedSignerRequest) (*DeveloperManagedSigner, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DeveloperManagedSigner
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DeveloperManagedSigner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SignerAPIService.RegisterSignedKeyForDeveloperManagedSigner")
@@ -1313,8 +1319,8 @@ func (a *SignerAPIService) RegisterSignedKeyForDeveloperManagedSignerExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1324,8 +1330,8 @@ func (a *SignerAPIService) RegisterSignedKeyForDeveloperManagedSignerExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

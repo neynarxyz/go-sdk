@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_ReactionAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_ReactionAPIService(t *testing.T) {
 
 	t.Run("Test ReactionAPIService DeleteReaction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionAPI.DeleteReaction(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_ReactionAPIService(t *testing.T) {
 
 	t.Run("Test ReactionAPIService FetchCastReactions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionAPI.FetchCastReactions(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_ReactionAPIService(t *testing.T) {
 
 	t.Run("Test ReactionAPIService FetchUserReactions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionAPI.FetchUserReactions(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_api_ReactionAPIService(t *testing.T) {
 
 	t.Run("Test ReactionAPIService PublishReaction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionAPI.PublishReaction(context.Background()).Execute()
 

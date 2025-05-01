@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,10 +12,10 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the ValidatedFrameAction type satisfies the MappedNullable interface at compile time
@@ -23,16 +23,16 @@ var _ MappedNullable = &ValidatedFrameAction{}
 
 // ValidatedFrameAction struct for ValidatedFrameAction
 type ValidatedFrameAction struct {
-	Object string `json:"object"`
-	Url string `json:"url"`
-	Interactor User `json:"interactor"`
+	Object       string                           `json:"object"`
+	Url          string                           `json:"url"`
+	Interactor   User                             `json:"interactor"`
 	TappedButton ValidatedFrameActionTappedButton `json:"tapped_button"`
-	Input *FrameInput `json:"input,omitempty"`
-	State FrameState `json:"state"`
-	Cast CastWithInteractions `json:"cast"`
-	Timestamp time.Time `json:"timestamp"`
-	Signer *ValidatedFrameActionSigner `json:"signer,omitempty"`
-	Transaction *FrameTransaction `json:"transaction,omitempty"`
+	Input        *FrameInput                      `json:"input,omitempty"`
+	State        FrameState                       `json:"state"`
+	Cast         CastWithInteractions             `json:"cast"`
+	Timestamp    time.Time                        `json:"timestamp"`
+	Signer       *ValidatedFrameActionSigner      `json:"signer,omitempty"`
+	Transaction  *FrameTransaction                `json:"transaction,omitempty"`
 	// The connected wallet address of the interacting user.
 	Address *string `json:"address,omitempty"`
 }
@@ -87,7 +87,6 @@ func (o *ValidatedFrameAction) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetUrl returns the Url field value
 func (o *ValidatedFrameAction) GetUrl() string {
 	if o == nil {
@@ -111,7 +110,6 @@ func (o *ValidatedFrameAction) GetUrlOk() (*string, bool) {
 func (o *ValidatedFrameAction) SetUrl(v string) {
 	o.Url = v
 }
-
 
 // GetInteractor returns the Interactor field value
 func (o *ValidatedFrameAction) GetInteractor() User {
@@ -137,7 +135,6 @@ func (o *ValidatedFrameAction) SetInteractor(v User) {
 	o.Interactor = v
 }
 
-
 // GetTappedButton returns the TappedButton field value
 func (o *ValidatedFrameAction) GetTappedButton() ValidatedFrameActionTappedButton {
 	if o == nil {
@@ -161,7 +158,6 @@ func (o *ValidatedFrameAction) GetTappedButtonOk() (*ValidatedFrameActionTappedB
 func (o *ValidatedFrameAction) SetTappedButton(v ValidatedFrameActionTappedButton) {
 	o.TappedButton = v
 }
-
 
 // GetInput returns the Input field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetInput() FrameInput {
@@ -219,7 +215,6 @@ func (o *ValidatedFrameAction) SetState(v FrameState) {
 	o.State = v
 }
 
-
 // GetCast returns the Cast field value
 func (o *ValidatedFrameAction) GetCast() CastWithInteractions {
 	if o == nil {
@@ -244,7 +239,6 @@ func (o *ValidatedFrameAction) SetCast(v CastWithInteractions) {
 	o.Cast = v
 }
 
-
 // GetTimestamp returns the Timestamp field value
 func (o *ValidatedFrameAction) GetTimestamp() time.Time {
 	if o == nil {
@@ -268,7 +262,6 @@ func (o *ValidatedFrameAction) GetTimestampOk() (*time.Time, bool) {
 func (o *ValidatedFrameAction) SetTimestamp(v time.Time) {
 	o.Timestamp = v
 }
-
 
 // GetSigner returns the Signer field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetSigner() ValidatedFrameActionSigner {
@@ -367,7 +360,7 @@ func (o *ValidatedFrameAction) SetAddress(v string) {
 }
 
 func (o ValidatedFrameAction) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -414,32 +407,31 @@ func (o *ValidatedFrameAction) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -493,5 +485,3 @@ func (v *NullableValidatedFrameAction) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -21,11 +21,11 @@ type StoreType string
 
 // List of StoreType
 const (
-	STORETYPE_STORE_TYPE_CASTS StoreType = "STORE_TYPE_CASTS"
-	STORETYPE_STORE_TYPE_LINKS StoreType = "STORE_TYPE_LINKS"
-	STORETYPE_STORE_TYPE_REACTIONS StoreType = "STORE_TYPE_REACTIONS"
-	STORETYPE_STORE_TYPE_USER_DATA StoreType = "STORE_TYPE_USER_DATA"
-	STORETYPE_STORE_TYPE_VERIFICATIONS StoreType = "STORE_TYPE_VERIFICATIONS"
+	STORETYPE_STORE_TYPE_CASTS           StoreType = "STORE_TYPE_CASTS"
+	STORETYPE_STORE_TYPE_LINKS           StoreType = "STORE_TYPE_LINKS"
+	STORETYPE_STORE_TYPE_REACTIONS       StoreType = "STORE_TYPE_REACTIONS"
+	STORETYPE_STORE_TYPE_USER_DATA       StoreType = "STORE_TYPE_USER_DATA"
+	STORETYPE_STORE_TYPE_VERIFICATIONS   StoreType = "STORE_TYPE_VERIFICATIONS"
 	STORETYPE_STORE_TYPE_USERNAME_PROOFS StoreType = "STORE_TYPE_USERNAME_PROOFS"
 )
 
@@ -117,4 +117,3 @@ func (v *NullableStoreType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

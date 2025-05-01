@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,11 +22,11 @@ var _ MappedNullable = &ChannelActivity{}
 
 // ChannelActivity struct for ChannelActivity
 type ChannelActivity struct {
-	Object string `json:"object"`
-	CastCount1d string `json:"cast_count_1d"`
-	CastCount7d string `json:"cast_count_7d"`
-	CastCount30d string `json:"cast_count_30d"`
-	Channel Channel `json:"channel"`
+	Object       string  `json:"object"`
+	CastCount1d  string  `json:"cast_count_1d"`
+	CastCount7d  string  `json:"cast_count_7d"`
+	CastCount30d string  `json:"cast_count_30d"`
+	Channel      Channel `json:"channel"`
 }
 
 type _ChannelActivity ChannelActivity
@@ -77,7 +77,6 @@ func (o *ChannelActivity) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetCastCount1d returns the CastCount1d field value
 func (o *ChannelActivity) GetCastCount1d() string {
 	if o == nil {
@@ -101,7 +100,6 @@ func (o *ChannelActivity) GetCastCount1dOk() (*string, bool) {
 func (o *ChannelActivity) SetCastCount1d(v string) {
 	o.CastCount1d = v
 }
-
 
 // GetCastCount7d returns the CastCount7d field value
 func (o *ChannelActivity) GetCastCount7d() string {
@@ -127,7 +125,6 @@ func (o *ChannelActivity) SetCastCount7d(v string) {
 	o.CastCount7d = v
 }
 
-
 // GetCastCount30d returns the CastCount30d field value
 func (o *ChannelActivity) GetCastCount30d() string {
 	if o == nil {
@@ -151,7 +148,6 @@ func (o *ChannelActivity) GetCastCount30dOk() (*string, bool) {
 func (o *ChannelActivity) SetCastCount30d(v string) {
 	o.CastCount30d = v
 }
-
 
 // GetChannel returns the Channel field value
 func (o *ChannelActivity) GetChannel() Channel {
@@ -177,9 +173,8 @@ func (o *ChannelActivity) SetChannel(v Channel) {
 	o.Channel = v
 }
 
-
 func (o ChannelActivity) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -210,32 +205,31 @@ func (o *ChannelActivity) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -289,5 +283,3 @@ func (v *NullableChannelActivity) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

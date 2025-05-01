@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -20,7 +20,7 @@ import (
 // Embed - struct for Embed
 type Embed struct {
 	EmbedCast *EmbedCast
-	EmbedUrl *EmbedUrl
+	EmbedUrl  *EmbedUrl
 }
 
 // EmbedCastAsEmbed is a convenience function that returns EmbedCast wrapped in Embed
@@ -36,7 +36,6 @@ func EmbedUrlAsEmbed(v *EmbedUrl) Embed {
 		EmbedUrl: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Embed) UnmarshalJSON(data []byte) error {
@@ -103,7 +102,7 @@ func (src Embed) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Embed) GetActualInstance() (interface{}) {
+func (obj *Embed) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -120,7 +119,7 @@ func (obj *Embed) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj Embed) GetActualInstanceValue() (interface{}) {
+func (obj Embed) GetActualInstanceValue() interface{} {
 	if obj.EmbedCast != nil {
 		return *obj.EmbedCast
 	}
@@ -168,5 +167,3 @@ func (v *NullableEmbed) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

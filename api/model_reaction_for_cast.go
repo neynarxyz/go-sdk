@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,10 +12,10 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the ReactionForCast type satisfies the MappedNullable interface at compile time
@@ -23,10 +23,10 @@ var _ MappedNullable = &ReactionForCast{}
 
 // ReactionForCast struct for ReactionForCast
 type ReactionForCast struct {
-	ReactionType string `json:"reaction_type"`
+	ReactionType      string    `json:"reaction_type"`
 	ReactionTimestamp time.Time `json:"reaction_timestamp"`
-	Object string `json:"object"`
-	User User `json:"user"`
+	Object            string    `json:"object"`
+	User              User      `json:"user"`
 }
 
 type _ReactionForCast ReactionForCast
@@ -76,7 +76,6 @@ func (o *ReactionForCast) SetReactionType(v string) {
 	o.ReactionType = v
 }
 
-
 // GetReactionTimestamp returns the ReactionTimestamp field value
 func (o *ReactionForCast) GetReactionTimestamp() time.Time {
 	if o == nil {
@@ -100,7 +99,6 @@ func (o *ReactionForCast) GetReactionTimestampOk() (*time.Time, bool) {
 func (o *ReactionForCast) SetReactionTimestamp(v time.Time) {
 	o.ReactionTimestamp = v
 }
-
 
 // GetObject returns the Object field value
 func (o *ReactionForCast) GetObject() string {
@@ -126,7 +124,6 @@ func (o *ReactionForCast) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetUser returns the User field value
 func (o *ReactionForCast) GetUser() User {
 	if o == nil {
@@ -151,9 +148,8 @@ func (o *ReactionForCast) SetUser(v User) {
 	o.User = v
 }
 
-
 func (o ReactionForCast) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -182,32 +178,31 @@ func (o *ReactionForCast) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -261,5 +256,3 @@ func (v *NullableReactionForCast) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

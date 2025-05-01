@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -20,7 +20,7 @@ import (
 // FetchUserOnChainSignersEvents200Response - struct for FetchUserOnChainSignersEvents200Response
 type FetchUserOnChainSignersEvents200Response struct {
 	FetchUserOnChainSignersEvents200ResponseOneOf *FetchUserOnChainSignersEvents200ResponseOneOf
-	OnChainEventSigner *OnChainEventSigner
+	OnChainEventSigner                            *OnChainEventSigner
 }
 
 // FetchUserOnChainSignersEvents200ResponseOneOfAsFetchUserOnChainSignersEvents200Response is a convenience function that returns FetchUserOnChainSignersEvents200ResponseOneOf wrapped in FetchUserOnChainSignersEvents200Response
@@ -36,7 +36,6 @@ func OnChainEventSignerAsFetchUserOnChainSignersEvents200Response(v *OnChainEven
 		OnChainEventSigner: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *FetchUserOnChainSignersEvents200Response) UnmarshalJSON(data []byte) error {
@@ -103,7 +102,7 @@ func (src FetchUserOnChainSignersEvents200Response) MarshalJSON() ([]byte, error
 }
 
 // Get the actual instance
-func (obj *FetchUserOnChainSignersEvents200Response) GetActualInstance() (interface{}) {
+func (obj *FetchUserOnChainSignersEvents200Response) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -120,7 +119,7 @@ func (obj *FetchUserOnChainSignersEvents200Response) GetActualInstance() (interf
 }
 
 // Get the actual instance value
-func (obj FetchUserOnChainSignersEvents200Response) GetActualInstanceValue() (interface{}) {
+func (obj FetchUserOnChainSignersEvents200Response) GetActualInstanceValue() interface{} {
 	if obj.FetchUserOnChainSignersEvents200ResponseOneOf != nil {
 		return *obj.FetchUserOnChainSignersEvents200ResponseOneOf
 	}
@@ -168,5 +167,3 @@ func (v *NullableFetchUserOnChainSignersEvents200Response) UnmarshalJSON(src []b
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

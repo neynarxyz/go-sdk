@@ -5,8 +5,8 @@
   "scripts": {
     "clean": "del-cli ./build/*",
     "build": "yarn run clean && tsc",
-    "generate:api": "del-cli api && openapi-generator-cli generate --git-user-id neynarxyz --git-repo-id go-sdk -i ./oas/src/v2/spec.yaml -g go -o ./api --config ./openapi-generator-config.api.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=false'",
-    "generate:hub-api": "del-cli hub-api && openapi-generator-cli generate --git-user-id neynarxyz --git-repo-id go-sdk -i ./oas/src/hub-rest-api/spec.yaml -g go -o ./hub-api --config ./openapi-generator-config.hub-api.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=false'",
+    "generate:api": "del-cli api && export GO_POST_PROCESS_FILE='gofmt -w' && openapi-generator-cli generate --enable-post-process-file --git-user-id neynarxyz --git-repo-id go-sdk -i ./oas/src/v2/spec.yaml -g go -o ./api --config ./openapi-generator-config.api.json",
+    "generate:hub-api": "del-cli hub-api && export GO_POST_PROCESS_FILE='gofmt -w' && openapi-generator-cli generate --enable-post-process-file --git-user-id neynarxyz --git-repo-id go-sdk -i ./oas/src/hub-rest-api/spec.yaml -g go -o ./hub-api --config ./openapi-generator-config.hub-api.json",
     "generate": "yarn generate:api && yarn generate:hub-api"
   },
   "author": "Neynar",

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &AddressBalance{}
 
 // AddressBalance The token balances associated with a wallet address
 type AddressBalance struct {
-	Object string `json:"object"`
+	Object          string                        `json:"object"`
 	VerifiedAddress AddressBalanceVerifiedAddress `json:"verified_address"`
-	TokenBalances []TokenBalance `json:"token_balances"`
+	TokenBalances   []TokenBalance                `json:"token_balances"`
 }
 
 type _AddressBalance AddressBalance
@@ -73,7 +73,6 @@ func (o *AddressBalance) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetVerifiedAddress returns the VerifiedAddress field value
 func (o *AddressBalance) GetVerifiedAddress() AddressBalanceVerifiedAddress {
 	if o == nil {
@@ -97,7 +96,6 @@ func (o *AddressBalance) GetVerifiedAddressOk() (*AddressBalanceVerifiedAddress,
 func (o *AddressBalance) SetVerifiedAddress(v AddressBalanceVerifiedAddress) {
 	o.VerifiedAddress = v
 }
-
 
 // GetTokenBalances returns the TokenBalances field value
 func (o *AddressBalance) GetTokenBalances() []TokenBalance {
@@ -123,9 +121,8 @@ func (o *AddressBalance) SetTokenBalances(v []TokenBalance) {
 	o.TokenBalances = v
 }
 
-
 func (o AddressBalance) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -152,32 +149,31 @@ func (o *AddressBalance) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -231,5 +227,3 @@ func (v *NullableAddressBalance) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,10 +12,10 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the CastWithInteractionsAndConversationsRef type satisfies the MappedNullable interface at compile time
@@ -23,31 +23,31 @@ var _ MappedNullable = &CastWithInteractionsAndConversationsRef{}
 
 // CastWithInteractionsAndConversationsRef Reference to CastWithInteractionsAndConversations to avoid circular reference
 type CastWithInteractionsAndConversationsRef struct {
-	Object string `json:"object"`
-	Hash string `json:"hash"`
-	ParentHash string `json:"parent_hash"`
-	ParentUrl string `json:"parent_url"`
-	RootParentUrl string `json:"root_parent_url"`
-	ParentAuthor CastEmbeddedParentAuthor `json:"parent_author"`
-	Author User `json:"author"`
-	App *UserDehydrated `json:"app,omitempty"`
-	Text string `json:"text"`
-	Timestamp time.Time `json:"timestamp"`
-	Embeds []Embed `json:"embeds"`
-	Type *CastNotificationType `json:"type,omitempty"`
-	Frames []Frame `json:"frames,omitempty"`
-	Reactions CastWithInteractionsReactions `json:"reactions"`
-	Replies CastWithInteractionsReplies `json:"replies"`
-	ThreadHash string `json:"thread_hash"`
-	MentionedProfiles []User `json:"mentioned_profiles"`
-	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list. 
-	MentionedProfilesRanges []TextRange `json:"mentioned_profiles_ranges"`
-	MentionedChannels []ChannelDehydrated `json:"mentioned_channels"`
-	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list. 
-	MentionedChannelsRanges []TextRange `json:"mentioned_channels_ranges"`
-	Channel ChannelOrChannelDehydrated `json:"channel"`
-	ViewerContext *CastViewerContext `json:"viewer_context,omitempty"`
-	AuthorChannelContext *ChannelUserContext `json:"author_channel_context,omitempty"`
+	Object            string                        `json:"object"`
+	Hash              string                        `json:"hash"`
+	ParentHash        string                        `json:"parent_hash"`
+	ParentUrl         string                        `json:"parent_url"`
+	RootParentUrl     string                        `json:"root_parent_url"`
+	ParentAuthor      CastEmbeddedParentAuthor      `json:"parent_author"`
+	Author            User                          `json:"author"`
+	App               *UserDehydrated               `json:"app,omitempty"`
+	Text              string                        `json:"text"`
+	Timestamp         time.Time                     `json:"timestamp"`
+	Embeds            []Embed                       `json:"embeds"`
+	Type              *CastNotificationType         `json:"type,omitempty"`
+	Frames            []Frame                       `json:"frames,omitempty"`
+	Reactions         CastWithInteractionsReactions `json:"reactions"`
+	Replies           CastWithInteractionsReplies   `json:"replies"`
+	ThreadHash        string                        `json:"thread_hash"`
+	MentionedProfiles []User                        `json:"mentioned_profiles"`
+	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.
+	MentionedProfilesRanges []TextRange         `json:"mentioned_profiles_ranges"`
+	MentionedChannels       []ChannelDehydrated `json:"mentioned_channels"`
+	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.
+	MentionedChannelsRanges []TextRange                `json:"mentioned_channels_ranges"`
+	Channel                 ChannelOrChannelDehydrated `json:"channel"`
+	ViewerContext           *CastViewerContext         `json:"viewer_context,omitempty"`
+	AuthorChannelContext    *ChannelUserContext        `json:"author_channel_context,omitempty"`
 	// note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
 	DirectReplies []map[string]interface{} `json:"direct_replies"`
 }
@@ -114,7 +114,6 @@ func (o *CastWithInteractionsAndConversationsRef) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetHash returns the Hash field value
 func (o *CastWithInteractionsAndConversationsRef) GetHash() string {
 	if o == nil {
@@ -138,7 +137,6 @@ func (o *CastWithInteractionsAndConversationsRef) GetHashOk() (*string, bool) {
 func (o *CastWithInteractionsAndConversationsRef) SetHash(v string) {
 	o.Hash = v
 }
-
 
 // GetParentHash returns the ParentHash field value
 func (o *CastWithInteractionsAndConversationsRef) GetParentHash() string {
@@ -164,7 +162,6 @@ func (o *CastWithInteractionsAndConversationsRef) SetParentHash(v string) {
 	o.ParentHash = v
 }
 
-
 // GetParentUrl returns the ParentUrl field value
 func (o *CastWithInteractionsAndConversationsRef) GetParentUrl() string {
 	if o == nil {
@@ -188,7 +185,6 @@ func (o *CastWithInteractionsAndConversationsRef) GetParentUrlOk() (*string, boo
 func (o *CastWithInteractionsAndConversationsRef) SetParentUrl(v string) {
 	o.ParentUrl = v
 }
-
 
 // GetRootParentUrl returns the RootParentUrl field value
 func (o *CastWithInteractionsAndConversationsRef) GetRootParentUrl() string {
@@ -214,7 +210,6 @@ func (o *CastWithInteractionsAndConversationsRef) SetRootParentUrl(v string) {
 	o.RootParentUrl = v
 }
 
-
 // GetParentAuthor returns the ParentAuthor field value
 func (o *CastWithInteractionsAndConversationsRef) GetParentAuthor() CastEmbeddedParentAuthor {
 	if o == nil {
@@ -239,7 +234,6 @@ func (o *CastWithInteractionsAndConversationsRef) SetParentAuthor(v CastEmbedded
 	o.ParentAuthor = v
 }
 
-
 // GetAuthor returns the Author field value
 func (o *CastWithInteractionsAndConversationsRef) GetAuthor() User {
 	if o == nil {
@@ -263,7 +257,6 @@ func (o *CastWithInteractionsAndConversationsRef) GetAuthorOk() (*User, bool) {
 func (o *CastWithInteractionsAndConversationsRef) SetAuthor(v User) {
 	o.Author = v
 }
-
 
 // GetApp returns the App field value if set, zero value otherwise.
 func (o *CastWithInteractionsAndConversationsRef) GetApp() UserDehydrated {
@@ -321,7 +314,6 @@ func (o *CastWithInteractionsAndConversationsRef) SetText(v string) {
 	o.Text = v
 }
 
-
 // GetTimestamp returns the Timestamp field value
 func (o *CastWithInteractionsAndConversationsRef) GetTimestamp() time.Time {
 	if o == nil {
@@ -346,7 +338,6 @@ func (o *CastWithInteractionsAndConversationsRef) SetTimestamp(v time.Time) {
 	o.Timestamp = v
 }
 
-
 // GetEmbeds returns the Embeds field value
 func (o *CastWithInteractionsAndConversationsRef) GetEmbeds() []Embed {
 	if o == nil {
@@ -370,7 +361,6 @@ func (o *CastWithInteractionsAndConversationsRef) GetEmbedsOk() ([]Embed, bool) 
 func (o *CastWithInteractionsAndConversationsRef) SetEmbeds(v []Embed) {
 	o.Embeds = v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CastWithInteractionsAndConversationsRef) GetType() CastNotificationType {
@@ -460,7 +450,6 @@ func (o *CastWithInteractionsAndConversationsRef) SetReactions(v CastWithInterac
 	o.Reactions = v
 }
 
-
 // GetReplies returns the Replies field value
 func (o *CastWithInteractionsAndConversationsRef) GetReplies() CastWithInteractionsReplies {
 	if o == nil {
@@ -484,7 +473,6 @@ func (o *CastWithInteractionsAndConversationsRef) GetRepliesOk() (*CastWithInter
 func (o *CastWithInteractionsAndConversationsRef) SetReplies(v CastWithInteractionsReplies) {
 	o.Replies = v
 }
-
 
 // GetThreadHash returns the ThreadHash field value
 func (o *CastWithInteractionsAndConversationsRef) GetThreadHash() string {
@@ -510,7 +498,6 @@ func (o *CastWithInteractionsAndConversationsRef) SetThreadHash(v string) {
 	o.ThreadHash = v
 }
 
-
 // GetMentionedProfiles returns the MentionedProfiles field value
 func (o *CastWithInteractionsAndConversationsRef) GetMentionedProfiles() []User {
 	if o == nil {
@@ -534,7 +521,6 @@ func (o *CastWithInteractionsAndConversationsRef) GetMentionedProfilesOk() ([]Us
 func (o *CastWithInteractionsAndConversationsRef) SetMentionedProfiles(v []User) {
 	o.MentionedProfiles = v
 }
-
 
 // GetMentionedProfilesRanges returns the MentionedProfilesRanges field value
 func (o *CastWithInteractionsAndConversationsRef) GetMentionedProfilesRanges() []TextRange {
@@ -560,7 +546,6 @@ func (o *CastWithInteractionsAndConversationsRef) SetMentionedProfilesRanges(v [
 	o.MentionedProfilesRanges = v
 }
 
-
 // GetMentionedChannels returns the MentionedChannels field value
 func (o *CastWithInteractionsAndConversationsRef) GetMentionedChannels() []ChannelDehydrated {
 	if o == nil {
@@ -584,7 +569,6 @@ func (o *CastWithInteractionsAndConversationsRef) GetMentionedChannelsOk() ([]Ch
 func (o *CastWithInteractionsAndConversationsRef) SetMentionedChannels(v []ChannelDehydrated) {
 	o.MentionedChannels = v
 }
-
 
 // GetMentionedChannelsRanges returns the MentionedChannelsRanges field value
 func (o *CastWithInteractionsAndConversationsRef) GetMentionedChannelsRanges() []TextRange {
@@ -610,7 +594,6 @@ func (o *CastWithInteractionsAndConversationsRef) SetMentionedChannelsRanges(v [
 	o.MentionedChannelsRanges = v
 }
 
-
 // GetChannel returns the Channel field value
 func (o *CastWithInteractionsAndConversationsRef) GetChannel() ChannelOrChannelDehydrated {
 	if o == nil {
@@ -634,7 +617,6 @@ func (o *CastWithInteractionsAndConversationsRef) GetChannelOk() (*ChannelOrChan
 func (o *CastWithInteractionsAndConversationsRef) SetChannel(v ChannelOrChannelDehydrated) {
 	o.Channel = v
 }
-
 
 // GetViewerContext returns the ViewerContext field value if set, zero value otherwise.
 func (o *CastWithInteractionsAndConversationsRef) GetViewerContext() CastViewerContext {
@@ -724,9 +706,8 @@ func (o *CastWithInteractionsAndConversationsRef) SetDirectReplies(v []map[strin
 	o.DirectReplies = v
 }
 
-
 func (o CastWithInteractionsAndConversationsRef) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -800,32 +781,31 @@ func (o *CastWithInteractionsAndConversationsRef) UnmarshalJSON(data []byte) (er
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -879,5 +859,3 @@ func (v *NullableCastWithInteractionsAndConversationsRef) UnmarshalJSON(src []by
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_BanAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_BanAPIService(t *testing.T) {
 
 	t.Run("Test BanAPIService DeleteBans", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.BanAPI.DeleteBans(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_BanAPIService(t *testing.T) {
 
 	t.Run("Test BanAPIService FetchBanList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.BanAPI.FetchBanList(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_BanAPIService(t *testing.T) {
 
 	t.Run("Test BanAPIService PublishBans", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.BanAPI.PublishBans(context.Background()).Execute()
 

@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,10 +19,10 @@ import (
 
 // OnChainEvent - struct for OnChainEvent
 type OnChainEvent struct {
-	OnChainEventIdRegister *OnChainEventIdRegister
-	OnChainEventSigner *OnChainEventSigner
+	OnChainEventIdRegister     *OnChainEventIdRegister
+	OnChainEventSigner         *OnChainEventSigner
 	OnChainEventSignerMigrated *OnChainEventSignerMigrated
-	OnChainEventStorageRent *OnChainEventStorageRent
+	OnChainEventStorageRent    *OnChainEventStorageRent
 }
 
 // OnChainEventIdRegisterAsOnChainEvent is a convenience function that returns OnChainEventIdRegister wrapped in OnChainEvent
@@ -52,7 +52,6 @@ func OnChainEventStorageRentAsOnChainEvent(v *OnChainEventStorageRent) OnChainEv
 		OnChainEventStorageRent: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *OnChainEvent) UnmarshalJSON(data []byte) error {
@@ -163,7 +162,7 @@ func (src OnChainEvent) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *OnChainEvent) GetActualInstance() (interface{}) {
+func (obj *OnChainEvent) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -188,7 +187,7 @@ func (obj *OnChainEvent) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj OnChainEvent) GetActualInstanceValue() (interface{}) {
+func (obj OnChainEvent) GetActualInstanceValue() interface{} {
 	if obj.OnChainEventIdRegister != nil {
 		return *obj.OnChainEventIdRegister
 	}
@@ -244,5 +243,3 @@ func (v *NullableOnChainEvent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

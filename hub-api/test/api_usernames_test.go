@@ -11,10 +11,10 @@ package hub
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/hub"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/hub"
 )
 
 func Test_hub_UsernamesAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_hub_UsernamesAPIService(t *testing.T) {
 
 	t.Run("Test UsernamesAPIService FetchUsernameProofByName", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UsernamesAPI.FetchUsernameProofByName(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_hub_UsernamesAPIService(t *testing.T) {
 
 	t.Run("Test UsernamesAPIService FetchUsernameProofsByFid", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UsernamesAPI.FetchUsernameProofsByFid(context.Background()).Execute()
 

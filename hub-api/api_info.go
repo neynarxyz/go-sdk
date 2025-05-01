@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type InfoAPI interface {
 
 	/*
-	LookupHubInfo Sync Methods
+		LookupHubInfo Sync Methods
 
-	Retrieve hub information.
+		Retrieve hub information.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupHubInfoRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupHubInfoRequest
 	*/
 	LookupHubInfo(ctx context.Context) ApiLookupHubInfoRequest
 
@@ -41,9 +40,9 @@ type InfoAPI interface {
 type InfoAPIService service
 
 type ApiLookupHubInfoRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService InfoAPI
-	dbstats *bool
+	dbstats    *bool
 }
 
 // Controls whether the response includes database statistics. When true, the response includes information about the hub&#39;s database state, storage usage, and performance metrics.
@@ -61,24 +60,25 @@ LookupHubInfo Sync Methods
 
 Retrieve hub information.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupHubInfoRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupHubInfoRequest
 */
 func (a *InfoAPIService) LookupHubInfo(ctx context.Context) ApiLookupHubInfoRequest {
 	return ApiLookupHubInfoRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return HubInfoResponse
+//
+//	@return HubInfoResponse
 func (a *InfoAPIService) LookupHubInfoExecute(r ApiLookupHubInfoRequest) (*HubInfoResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *HubInfoResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *HubInfoResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InfoAPIService.LookupHubInfo")
@@ -149,14 +149,14 @@ func (a *InfoAPIService) LookupHubInfoExecute(r ApiLookupHubInfoRequest) (*HubIn
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,18 +19,17 @@ import (
 	"net/url"
 )
 
-
 type OnchainAPI interface {
 
 	/*
-	DeployFungible Deploy fungible
+		DeployFungible Deploy fungible
 
-	Creates a new token.
-This is an allowlisted API, reach out if you want access.
+		Creates a new token.
+	This is an allowlisted API, reach out if you want access.
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeployFungibleRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiDeployFungibleRequest
 	*/
 	DeployFungible(ctx context.Context) ApiDeployFungibleRequest
 
@@ -39,12 +38,12 @@ This is an allowlisted API, reach out if you want access.
 	DeployFungibleExecute(r ApiDeployFungibleRequest) (*DeployFungibleResponse, *http.Response, error)
 
 	/*
-	FetchRelevantFungibleOwners Relevant owners
+		FetchRelevantFungibleOwners Relevant owners
 
-	Fetch a list of relevant owners for a specific FID. This usually shows on a fungible asset page as "X, Y, Z and N others you know own this asset".
+		Fetch a list of relevant owners for a specific FID. This usually shows on a fungible asset page as "X, Y, Z and N others you know own this asset".
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchRelevantFungibleOwnersRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchRelevantFungibleOwnersRequest
 	*/
 	FetchRelevantFungibleOwners(ctx context.Context) ApiFetchRelevantFungibleOwnersRequest
 
@@ -53,12 +52,12 @@ This is an allowlisted API, reach out if you want access.
 	FetchRelevantFungibleOwnersExecute(r ApiFetchRelevantFungibleOwnersRequest) (*RelevantFungibleOwnersResponse, *http.Response, error)
 
 	/*
-	FetchUserBalance Token balance
+		FetchUserBalance Token balance
 
-	Fetches the token balances of a user given their FID
+		Fetches the token balances of a user given their FID
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserBalanceRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserBalanceRequest
 	*/
 	FetchUserBalance(ctx context.Context) ApiFetchUserBalanceRequest
 
@@ -71,20 +70,20 @@ This is an allowlisted API, reach out if you want access.
 type OnchainAPIService service
 
 type ApiDeployFungibleRequest struct {
-	ctx context.Context
-	ApiService OnchainAPI
-	owner *string
-	symbol *string
-	name *string
-	metadataMedia *string
+	ctx                 context.Context
+	ApiService          OnchainAPI
+	owner               *string
+	symbol              *string
+	name                *string
+	metadataMedia       *string
 	metadataDescription *string
-	metadataNsfw *string
+	metadataNsfw        *string
 	metadataWebsiteLink *string
-	metadataTwitter *string
-	metadataDiscord *string
-	metadataTelegram *string
-	network *string
-	factory *string
+	metadataTwitter     *string
+	metadataDiscord     *string
+	metadataTelegram    *string
+	network             *string
+	factory             *string
 }
 
 // Ethereum address of the one who is creating the token
@@ -117,7 +116,7 @@ func (r ApiDeployFungibleRequest) MetadataDescription(metadataDescription string
 	return r
 }
 
-// Indicates if the token is NSFW (Not Safe For Work). 
+// Indicates if the token is NSFW (Not Safe For Work).
 func (r ApiDeployFungibleRequest) MetadataNsfw(metadataNsfw string) ApiDeployFungibleRequest {
 	r.metadataNsfw = &metadataNsfw
 	return r
@@ -153,7 +152,7 @@ func (r ApiDeployFungibleRequest) Network(network string) ApiDeployFungibleReque
 	return r
 }
 
-// Factory name - wow -&gt; [wow.xyz](https://wow.xyz) - clanker -&gt; [clanker.world](https://www.clanker.world) 
+// Factory name - wow -&gt; [wow.xyz](https://wow.xyz) - clanker -&gt; [clanker.world](https://www.clanker.world)
 func (r ApiDeployFungibleRequest) Factory(factory string) ApiDeployFungibleRequest {
 	r.factory = &factory
 	return r
@@ -169,25 +168,25 @@ DeployFungible Deploy fungible
 Creates a new token.
 This is an allowlisted API, reach out if you want access.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeployFungibleRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeployFungibleRequest
 */
 func (a *OnchainAPIService) DeployFungible(ctx context.Context) ApiDeployFungibleRequest {
 	return ApiDeployFungibleRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return DeployFungibleResponse
+//
+//	@return DeployFungibleResponse
 func (a *OnchainAPIService) DeployFungibleExecute(r ApiDeployFungibleRequest) (*DeployFungibleResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DeployFungibleResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DeployFungibleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnchainAPIService.DeployFungible")
@@ -300,8 +299,8 @@ func (a *OnchainAPIService) DeployFungibleExecute(r ApiDeployFungibleRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -311,8 +310,8 @@ func (a *OnchainAPIService) DeployFungibleExecute(r ApiDeployFungibleRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -330,11 +329,11 @@ func (a *OnchainAPIService) DeployFungibleExecute(r ApiDeployFungibleRequest) (*
 }
 
 type ApiFetchRelevantFungibleOwnersRequest struct {
-	ctx context.Context
-	ApiService OnchainAPI
+	ctx             context.Context
+	ApiService      OnchainAPI
 	contractAddress *string
-	networks *[]Networks
-	viewerFid *int32
+	networks        *[]Networks
+	viewerFid       *int32
 }
 
 // Contract address of the fungible asset
@@ -364,24 +363,25 @@ FetchRelevantFungibleOwners Relevant owners
 
 Fetch a list of relevant owners for a specific FID. This usually shows on a fungible asset page as "X, Y, Z and N others you know own this asset".
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchRelevantFungibleOwnersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchRelevantFungibleOwnersRequest
 */
 func (a *OnchainAPIService) FetchRelevantFungibleOwners(ctx context.Context) ApiFetchRelevantFungibleOwnersRequest {
 	return ApiFetchRelevantFungibleOwnersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return RelevantFungibleOwnersResponse
+//
+//	@return RelevantFungibleOwnersResponse
 func (a *OnchainAPIService) FetchRelevantFungibleOwnersExecute(r ApiFetchRelevantFungibleOwnersRequest) (*RelevantFungibleOwnersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *RelevantFungibleOwnersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *RelevantFungibleOwnersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnchainAPIService.FetchRelevantFungibleOwners")
@@ -466,8 +466,8 @@ func (a *OnchainAPIService) FetchRelevantFungibleOwnersExecute(r ApiFetchRelevan
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -485,10 +485,10 @@ func (a *OnchainAPIService) FetchRelevantFungibleOwnersExecute(r ApiFetchRelevan
 }
 
 type ApiFetchUserBalanceRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService OnchainAPI
-	fid *int32
-	networks *[]Networks
+	fid        *int32
+	networks   *[]Networks
 }
 
 // FID of the user to fetch
@@ -512,24 +512,25 @@ FetchUserBalance Token balance
 
 Fetches the token balances of a user given their FID
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserBalanceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserBalanceRequest
 */
 func (a *OnchainAPIService) FetchUserBalance(ctx context.Context) ApiFetchUserBalanceRequest {
 	return ApiFetchUserBalanceRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BalanceResponse
+//
+//	@return BalanceResponse
 func (a *OnchainAPIService) FetchUserBalanceExecute(r ApiFetchUserBalanceRequest) (*BalanceResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *BalanceResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BalanceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnchainAPIService.FetchUserBalance")
@@ -611,8 +612,8 @@ func (a *OnchainAPIService) FetchUserBalanceExecute(r ApiFetchUserBalanceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -622,8 +623,8 @@ func (a *OnchainAPIService) FetchUserBalanceExecute(r ApiFetchUserBalanceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -633,8 +634,8 @@ func (a *OnchainAPIService) FetchUserBalanceExecute(r ApiFetchUserBalanceRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

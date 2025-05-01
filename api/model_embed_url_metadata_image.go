@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,7 +21,7 @@ var _ MappedNullable = &EmbedUrlMetadataImage{}
 // EmbedUrlMetadataImage struct for EmbedUrlMetadataImage
 type EmbedUrlMetadataImage struct {
 	HeightPx *int32 `json:"height_px,omitempty"`
-	WidthPx *int32 `json:"width_px,omitempty"`
+	WidthPx  *int32 `json:"width_px,omitempty"`
 }
 
 // NewEmbedUrlMetadataImage instantiates a new EmbedUrlMetadataImage object
@@ -106,7 +106,7 @@ func (o *EmbedUrlMetadataImage) SetWidthPx(v int32) {
 }
 
 func (o EmbedUrlMetadataImage) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableEmbedUrlMetadataImage) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_MuteAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_MuteAPIService(t *testing.T) {
 
 	t.Run("Test MuteAPIService DeleteMute", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.MuteAPI.DeleteMute(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_MuteAPIService(t *testing.T) {
 
 	t.Run("Test MuteAPIService FetchMuteList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.MuteAPI.FetchMuteList(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_MuteAPIService(t *testing.T) {
 
 	t.Run("Test MuteAPIService PublishMute", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.MuteAPI.PublishMute(context.Background()).Execute()
 

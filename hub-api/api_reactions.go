@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type ReactionsAPI interface {
 
 	/*
-	FetchCastReactions On cast
+		FetchCastReactions On cast
 
-	Retrieve all reactions (likes or recasts) on a specific cast in the Farcaster network. The cast is identified by its creator's FID and unique hash. This endpoint helps track engagement metrics and user interactions with specific content.
+		Retrieve all reactions (likes or recasts) on a specific cast in the Farcaster network. The cast is identified by its creator's FID and unique hash. This endpoint helps track engagement metrics and user interactions with specific content.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchCastReactionsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchCastReactionsRequest
 	*/
 	FetchCastReactions(ctx context.Context) ApiFetchCastReactionsRequest
 
@@ -37,12 +36,12 @@ type ReactionsAPI interface {
 	FetchCastReactionsExecute(r ApiFetchCastReactionsRequest) (*FetchCastReactions200Response, *http.Response, error)
 
 	/*
-	FetchReactionsByTarget To a target URL
+		FetchReactionsByTarget To a target URL
 
-	Fetch all reactions of a specific type (like or recast) that target a given URL. This endpoint is useful for tracking engagement with content across the Farcaster network.
+		Fetch all reactions of a specific type (like or recast) that target a given URL. This endpoint is useful for tracking engagement with content across the Farcaster network.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchReactionsByTargetRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchReactionsByTargetRequest
 	*/
 	FetchReactionsByTarget(ctx context.Context) ApiFetchReactionsByTargetRequest
 
@@ -51,12 +50,12 @@ type ReactionsAPI interface {
 	FetchReactionsByTargetExecute(r ApiFetchReactionsByTargetRequest) (*FetchCastReactions200Response, *http.Response, error)
 
 	/*
-	FetchUserReactions By FID
+		FetchUserReactions By FID
 
-	Fetch reactions by a user.
+		Fetch reactions by a user.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserReactionsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserReactionsRequest
 	*/
 	FetchUserReactions(ctx context.Context) ApiFetchUserReactionsRequest
 
@@ -65,12 +64,12 @@ type ReactionsAPI interface {
 	FetchUserReactionsExecute(r ApiFetchUserReactionsRequest) (*FetchCastReactions200Response, *http.Response, error)
 
 	/*
-	LookupReactionById By FID or cast
+		LookupReactionById By FID or cast
 
-	Lookup a reaction by its FID or cast.
+		Lookup a reaction by its FID or cast.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupReactionByIdRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupReactionByIdRequest
 	*/
 	LookupReactionById(ctx context.Context) ApiLookupReactionByIdRequest
 
@@ -83,14 +82,14 @@ type ReactionsAPI interface {
 type ReactionsAPIService service
 
 type ApiFetchCastReactionsRequest struct {
-	ctx context.Context
-	ApiService ReactionsAPI
-	targetFid *int32
-	targetHash *string
+	ctx          context.Context
+	ApiService   ReactionsAPI
+	targetFid    *int32
+	targetHash   *string
 	reactionType *ReactionType
-	pageSize *int32
-	reverse *bool
-	pageToken *string
+	pageSize     *int32
+	reverse      *bool
+	pageToken    *string
 }
 
 // The FID of the cast&#39;s creator. Required to uniquely identify the cast that received the reactions. Must be used in conjunction with target_hash.
@@ -137,24 +136,25 @@ FetchCastReactions On cast
 
 Retrieve all reactions (likes or recasts) on a specific cast in the Farcaster network. The cast is identified by its creator's FID and unique hash. This endpoint helps track engagement metrics and user interactions with specific content.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchCastReactionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchCastReactionsRequest
 */
 func (a *ReactionsAPIService) FetchCastReactions(ctx context.Context) ApiFetchCastReactionsRequest {
 	return ApiFetchCastReactionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchCastReactions200Response
+//
+//	@return FetchCastReactions200Response
 func (a *ReactionsAPIService) FetchCastReactionsExecute(r ApiFetchCastReactionsRequest) (*FetchCastReactions200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchCastReactions200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchCastReactions200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactionsAPIService.FetchCastReactions")
@@ -245,14 +245,14 @@ func (a *ReactionsAPIService) FetchCastReactionsExecute(r ApiFetchCastReactionsR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -269,13 +269,13 @@ func (a *ReactionsAPIService) FetchCastReactionsExecute(r ApiFetchCastReactionsR
 }
 
 type ApiFetchReactionsByTargetRequest struct {
-	ctx context.Context
-	ApiService ReactionsAPI
-	url *string
+	ctx          context.Context
+	ApiService   ReactionsAPI
+	url          *string
 	reactionType *ReactionType
-	pageSize *int32
-	reverse *bool
-	pageToken *string
+	pageSize     *int32
+	reverse      *bool
+	pageToken    *string
 }
 
 // Target URL starting with &#39;chain://&#39;.
@@ -316,24 +316,25 @@ FetchReactionsByTarget To a target URL
 
 Fetch all reactions of a specific type (like or recast) that target a given URL. This endpoint is useful for tracking engagement with content across the Farcaster network.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchReactionsByTargetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchReactionsByTargetRequest
 */
 func (a *ReactionsAPIService) FetchReactionsByTarget(ctx context.Context) ApiFetchReactionsByTargetRequest {
 	return ApiFetchReactionsByTargetRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchCastReactions200Response
+//
+//	@return FetchCastReactions200Response
 func (a *ReactionsAPIService) FetchReactionsByTargetExecute(r ApiFetchReactionsByTargetRequest) (*FetchCastReactions200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchCastReactions200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchCastReactions200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactionsAPIService.FetchReactionsByTarget")
@@ -419,14 +420,14 @@ func (a *ReactionsAPIService) FetchReactionsByTargetExecute(r ApiFetchReactionsB
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -443,13 +444,13 @@ func (a *ReactionsAPIService) FetchReactionsByTargetExecute(r ApiFetchReactionsB
 }
 
 type ApiFetchUserReactionsRequest struct {
-	ctx context.Context
-	ApiService ReactionsAPI
-	fid *int32
+	ctx          context.Context
+	ApiService   ReactionsAPI
+	fid          *int32
 	reactionType *ReactionType
-	pageSize *int32
-	reverse *bool
-	pageToken *string
+	pageSize     *int32
+	reverse      *bool
+	pageToken    *string
 }
 
 // The FID of the reaction&#39;s creator
@@ -490,24 +491,25 @@ FetchUserReactions By FID
 
 Fetch reactions by a user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserReactionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserReactionsRequest
 */
 func (a *ReactionsAPIService) FetchUserReactions(ctx context.Context) ApiFetchUserReactionsRequest {
 	return ApiFetchUserReactionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchCastReactions200Response
+//
+//	@return FetchCastReactions200Response
 func (a *ReactionsAPIService) FetchUserReactionsExecute(r ApiFetchUserReactionsRequest) (*FetchCastReactions200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchCastReactions200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchCastReactions200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactionsAPIService.FetchUserReactions")
@@ -594,14 +596,14 @@ func (a *ReactionsAPIService) FetchUserReactionsExecute(r ApiFetchUserReactionsR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -618,11 +620,11 @@ func (a *ReactionsAPIService) FetchUserReactionsExecute(r ApiFetchUserReactionsR
 }
 
 type ApiLookupReactionByIdRequest struct {
-	ctx context.Context
-	ApiService ReactionsAPI
-	fid *int32
-	targetFid *int32
-	targetHash *string
+	ctx          context.Context
+	ApiService   ReactionsAPI
+	fid          *int32
+	targetFid    *int32
+	targetHash   *string
 	reactionType *ReactionType
 }
 
@@ -658,24 +660,25 @@ LookupReactionById By FID or cast
 
 Lookup a reaction by its FID or cast.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupReactionByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupReactionByIdRequest
 */
 func (a *ReactionsAPIService) LookupReactionById(ctx context.Context) ApiLookupReactionByIdRequest {
 	return ApiLookupReactionByIdRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Reaction
+//
+//	@return Reaction
 func (a *ReactionsAPIService) LookupReactionByIdExecute(r ApiLookupReactionByIdRequest) (*Reaction, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Reaction
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Reaction
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactionsAPIService.LookupReactionById")
@@ -758,14 +761,14 @@ func (a *ReactionsAPIService) LookupReactionByIdExecute(r ApiLookupReactionByIdR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

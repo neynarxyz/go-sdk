@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,11 +19,11 @@ import (
 
 // HubEvent - struct for HubEvent
 type HubEvent struct {
-	HubEventMergeMessage *HubEventMergeMessage
-	HubEventMergeOnChainEvent *HubEventMergeOnChainEvent
+	HubEventMergeMessage       *HubEventMergeMessage
+	HubEventMergeOnChainEvent  *HubEventMergeOnChainEvent
 	HubEventMergeUsernameProof *HubEventMergeUsernameProof
-	HubEventPruneMessage *HubEventPruneMessage
-	HubEventRevokeMessage *HubEventRevokeMessage
+	HubEventPruneMessage       *HubEventPruneMessage
+	HubEventRevokeMessage      *HubEventRevokeMessage
 }
 
 // HubEventMergeMessageAsHubEvent is a convenience function that returns HubEventMergeMessage wrapped in HubEvent
@@ -60,7 +60,6 @@ func HubEventRevokeMessageAsHubEvent(v *HubEventRevokeMessage) HubEvent {
 		HubEventRevokeMessage: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *HubEvent) UnmarshalJSON(data []byte) error {
@@ -193,7 +192,7 @@ func (src HubEvent) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *HubEvent) GetActualInstance() (interface{}) {
+func (obj *HubEvent) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -222,7 +221,7 @@ func (obj *HubEvent) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj HubEvent) GetActualInstanceValue() (interface{}) {
+func (obj HubEvent) GetActualInstanceValue() interface{} {
 	if obj.HubEventMergeMessage != nil {
 		return *obj.HubEventMergeMessage
 	}
@@ -282,5 +281,3 @@ func (v *NullableHubEvent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

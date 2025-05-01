@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,10 +22,10 @@ var _ MappedNullable = &CastWithInteractionsReactions{}
 
 // CastWithInteractionsReactions struct for CastWithInteractionsReactions
 type CastWithInteractionsReactions struct {
-	Likes []ReactionLike `json:"likes"`
-	Recasts []ReactionRecast `json:"recasts"`
-	LikesCount int32 `json:"likes_count"`
-	RecastsCount int32 `json:"recasts_count"`
+	Likes        []ReactionLike   `json:"likes"`
+	Recasts      []ReactionRecast `json:"recasts"`
+	LikesCount   int32            `json:"likes_count"`
+	RecastsCount int32            `json:"recasts_count"`
 }
 
 type _CastWithInteractionsReactions CastWithInteractionsReactions
@@ -75,7 +75,6 @@ func (o *CastWithInteractionsReactions) SetLikes(v []ReactionLike) {
 	o.Likes = v
 }
 
-
 // GetRecasts returns the Recasts field value
 func (o *CastWithInteractionsReactions) GetRecasts() []ReactionRecast {
 	if o == nil {
@@ -99,7 +98,6 @@ func (o *CastWithInteractionsReactions) GetRecastsOk() ([]ReactionRecast, bool) 
 func (o *CastWithInteractionsReactions) SetRecasts(v []ReactionRecast) {
 	o.Recasts = v
 }
-
 
 // GetLikesCount returns the LikesCount field value
 func (o *CastWithInteractionsReactions) GetLikesCount() int32 {
@@ -125,7 +123,6 @@ func (o *CastWithInteractionsReactions) SetLikesCount(v int32) {
 	o.LikesCount = v
 }
 
-
 // GetRecastsCount returns the RecastsCount field value
 func (o *CastWithInteractionsReactions) GetRecastsCount() int32 {
 	if o == nil {
@@ -150,9 +147,8 @@ func (o *CastWithInteractionsReactions) SetRecastsCount(v int32) {
 	o.RecastsCount = v
 }
 
-
 func (o CastWithInteractionsReactions) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -181,32 +177,31 @@ func (o *CastWithInteractionsReactions) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -260,5 +255,3 @@ func (v *NullableCastWithInteractionsReactions) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

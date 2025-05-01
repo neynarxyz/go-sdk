@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -16,14 +16,14 @@ import (
 	"fmt"
 )
 
-// ForYouProvider The provider of the For You feed. 
+// ForYouProvider The provider of the For You feed.
 type ForYouProvider string
 
 // List of ForYouProvider
 const (
-	FORYOUPROVIDER_NEYNAR ForYouProvider = "neynar"
+	FORYOUPROVIDER_NEYNAR   ForYouProvider = "neynar"
 	FORYOUPROVIDER_OPENRANK ForYouProvider = "openrank"
-	FORYOUPROVIDER_MBD ForYouProvider = "mbd"
+	FORYOUPROVIDER_MBD      ForYouProvider = "mbd"
 )
 
 // All allowed values of ForYouProvider enum
@@ -111,4 +111,3 @@ func (v *NullableForYouProvider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

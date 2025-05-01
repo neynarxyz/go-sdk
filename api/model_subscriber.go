@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,8 +22,8 @@ var _ MappedNullable = &Subscriber{}
 
 // Subscriber struct for Subscriber
 type Subscriber struct {
-	Object string `json:"object"`
-	User User `json:"user"`
+	Object       string             `json:"object"`
+	User         User               `json:"user"`
 	SubscribedTo SubscribedToObject `json:"subscribed_to"`
 }
 
@@ -73,7 +73,6 @@ func (o *Subscriber) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetUser returns the User field value
 func (o *Subscriber) GetUser() User {
 	if o == nil {
@@ -97,7 +96,6 @@ func (o *Subscriber) GetUserOk() (*User, bool) {
 func (o *Subscriber) SetUser(v User) {
 	o.User = v
 }
-
 
 // GetSubscribedTo returns the SubscribedTo field value
 func (o *Subscriber) GetSubscribedTo() SubscribedToObject {
@@ -123,9 +121,8 @@ func (o *Subscriber) SetSubscribedTo(v SubscribedToObject) {
 	o.SubscribedTo = v
 }
 
-
 func (o Subscriber) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -152,32 +149,31 @@ func (o *Subscriber) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -231,5 +227,3 @@ func (v *NullableSubscriber) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

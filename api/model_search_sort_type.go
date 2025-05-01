@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,7 +21,7 @@ type SearchSortType string
 
 // List of SearchSortType
 const (
-	SEARCHSORTTYPE_DESC_CHRON SearchSortType = "desc_chron"
+	SEARCHSORTTYPE_DESC_CHRON  SearchSortType = "desc_chron"
 	SEARCHSORTTYPE_ALGORITHMIC SearchSortType = "algorithmic"
 )
 
@@ -109,4 +109,3 @@ func (v *NullableSearchSortType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

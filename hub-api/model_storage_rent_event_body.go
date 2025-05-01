@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &StorageRentEventBody{}
 
 // StorageRentEventBody struct for StorageRentEventBody
 type StorageRentEventBody struct {
-	Payer string `json:"payer" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	Units int64 `json:"units"`
-	Expiry int64 `json:"expiry"`
+	Payer  string `json:"payer" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	Units  int64  `json:"units"`
+	Expiry int64  `json:"expiry"`
 }
 
 type _StorageRentEventBody StorageRentEventBody
@@ -73,7 +73,6 @@ func (o *StorageRentEventBody) SetPayer(v string) {
 	o.Payer = v
 }
 
-
 // GetUnits returns the Units field value
 func (o *StorageRentEventBody) GetUnits() int64 {
 	if o == nil {
@@ -97,7 +96,6 @@ func (o *StorageRentEventBody) GetUnitsOk() (*int64, bool) {
 func (o *StorageRentEventBody) SetUnits(v int64) {
 	o.Units = v
 }
-
 
 // GetExpiry returns the Expiry field value
 func (o *StorageRentEventBody) GetExpiry() int64 {
@@ -123,9 +121,8 @@ func (o *StorageRentEventBody) SetExpiry(v int64) {
 	o.Expiry = v
 }
 
-
 func (o StorageRentEventBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -152,32 +149,31 @@ func (o *StorageRentEventBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -231,5 +227,3 @@ func (v *NullableStorageRentEventBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

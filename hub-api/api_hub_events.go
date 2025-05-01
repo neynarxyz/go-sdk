@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type HubEventsAPI interface {
 
 	/*
-	FetchEvents Page of events
+		FetchEvents Page of events
 
-	Fetch a list of events.
+		Fetch a list of events.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchEventsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchEventsRequest
 	*/
 	FetchEvents(ctx context.Context) ApiFetchEventsRequest
 
@@ -37,12 +36,12 @@ type HubEventsAPI interface {
 	FetchEventsExecute(r ApiFetchEventsRequest) (*FetchEvents200Response, *http.Response, error)
 
 	/*
-	LookupEvent Event by ID
+		LookupEvent Event by ID
 
-	Lookup an event by its ID.
+		Lookup an event by its ID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupEventRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupEventRequest
 	*/
 	LookupEvent(ctx context.Context) ApiLookupEventRequest
 
@@ -55,12 +54,12 @@ type HubEventsAPI interface {
 type HubEventsAPIService service
 
 type ApiFetchEventsRequest struct {
-	ctx context.Context
-	ApiService HubEventsAPI
+	ctx         context.Context
+	ApiService  HubEventsAPI
 	fromEventId *int32
 }
 
-// An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event. 
+// An optional Hub Id to start getting events from. This is also returned from the API as nextPageEventId, which can be used to page through all the Hub events. Set it to 0 to start from the first event.
 func (r ApiFetchEventsRequest) FromEventId(fromEventId int32) ApiFetchEventsRequest {
 	r.fromEventId = &fromEventId
 	return r
@@ -75,24 +74,25 @@ FetchEvents Page of events
 
 Fetch a list of events.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchEventsRequest
 */
 func (a *HubEventsAPIService) FetchEvents(ctx context.Context) ApiFetchEventsRequest {
 	return ApiFetchEventsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchEvents200Response
+//
+//	@return FetchEvents200Response
 func (a *HubEventsAPIService) FetchEventsExecute(r ApiFetchEventsRequest) (*FetchEvents200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchEvents200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HubEventsAPIService.FetchEvents")
@@ -162,14 +162,14 @@ func (a *HubEventsAPIService) FetchEventsExecute(r ApiFetchEventsRequest) (*Fetc
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -186,9 +186,9 @@ func (a *HubEventsAPIService) FetchEventsExecute(r ApiFetchEventsRequest) (*Fetc
 }
 
 type ApiLookupEventRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService HubEventsAPI
-	eventId *int32
+	eventId    *int32
 }
 
 // The Hub Id of the event
@@ -206,24 +206,25 @@ LookupEvent Event by ID
 
 Lookup an event by its ID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupEventRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupEventRequest
 */
 func (a *HubEventsAPIService) LookupEvent(ctx context.Context) ApiLookupEventRequest {
 	return ApiLookupEventRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return HubEvent
+//
+//	@return HubEvent
 func (a *HubEventsAPIService) LookupEventExecute(r ApiLookupEventRequest) (*HubEvent, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *HubEvent
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *HubEvent
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HubEventsAPIService.LookupEvent")
@@ -294,14 +295,14 @@ func (a *HubEventsAPIService) LookupEventExecute(r ApiLookupEventRequest) (*HubE
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

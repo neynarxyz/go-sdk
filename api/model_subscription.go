@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,16 +22,16 @@ var _ MappedNullable = &Subscription{}
 
 // Subscription struct for Subscription
 type Subscription struct {
-	Object string `json:"object"`
-	ProviderName *string `json:"provider_name,omitempty"`
-	ContractAddress string `json:"contract_address"`
-	Chain int32 `json:"chain"`
-	Metadata SubscriptionMetadata `json:"metadata"`
-	OwnerAddress string `json:"owner_address"`
-	Price SubscriptionPrice `json:"price"`
-	Tiers []SubscriptionTier `json:"tiers,omitempty"`
-	ProtocolVersion int32 `json:"protocol_version"`
-	Token SubscriptionToken `json:"token"`
+	Object          string               `json:"object"`
+	ProviderName    *string              `json:"provider_name,omitempty"`
+	ContractAddress string               `json:"contract_address"`
+	Chain           int32                `json:"chain"`
+	Metadata        SubscriptionMetadata `json:"metadata"`
+	OwnerAddress    string               `json:"owner_address"`
+	Price           SubscriptionPrice    `json:"price"`
+	Tiers           []SubscriptionTier   `json:"tiers,omitempty"`
+	ProtocolVersion int32                `json:"protocol_version"`
+	Token           SubscriptionToken    `json:"token"`
 }
 
 type _Subscription Subscription
@@ -84,7 +84,6 @@ func (o *Subscription) GetObjectOk() (*string, bool) {
 func (o *Subscription) SetObject(v string) {
 	o.Object = v
 }
-
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *Subscription) GetProviderName() string {
@@ -142,7 +141,6 @@ func (o *Subscription) SetContractAddress(v string) {
 	o.ContractAddress = v
 }
 
-
 // GetChain returns the Chain field value
 func (o *Subscription) GetChain() int32 {
 	if o == nil {
@@ -166,7 +164,6 @@ func (o *Subscription) GetChainOk() (*int32, bool) {
 func (o *Subscription) SetChain(v int32) {
 	o.Chain = v
 }
-
 
 // GetMetadata returns the Metadata field value
 func (o *Subscription) GetMetadata() SubscriptionMetadata {
@@ -192,7 +189,6 @@ func (o *Subscription) SetMetadata(v SubscriptionMetadata) {
 	o.Metadata = v
 }
 
-
 // GetOwnerAddress returns the OwnerAddress field value
 func (o *Subscription) GetOwnerAddress() string {
 	if o == nil {
@@ -217,7 +213,6 @@ func (o *Subscription) SetOwnerAddress(v string) {
 	o.OwnerAddress = v
 }
 
-
 // GetPrice returns the Price field value
 func (o *Subscription) GetPrice() SubscriptionPrice {
 	if o == nil {
@@ -241,7 +236,6 @@ func (o *Subscription) GetPriceOk() (*SubscriptionPrice, bool) {
 func (o *Subscription) SetPrice(v SubscriptionPrice) {
 	o.Price = v
 }
-
 
 // GetTiers returns the Tiers field value if set, zero value otherwise.
 func (o *Subscription) GetTiers() []SubscriptionTier {
@@ -299,7 +293,6 @@ func (o *Subscription) SetProtocolVersion(v int32) {
 	o.ProtocolVersion = v
 }
 
-
 // GetToken returns the Token field value
 func (o *Subscription) GetToken() SubscriptionToken {
 	if o == nil {
@@ -324,9 +317,8 @@ func (o *Subscription) SetToken(v SubscriptionToken) {
 	o.Token = v
 }
 
-
 func (o Subscription) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -369,32 +361,31 @@ func (o *Subscription) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -448,5 +439,3 @@ func (v *NullableSubscription) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

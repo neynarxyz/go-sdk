@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -16,13 +16,13 @@ import (
 	"fmt"
 )
 
-// CastNotificationType The notification type of a cast. 
+// CastNotificationType The notification type of a cast.
 type CastNotificationType string
 
 // List of CastNotificationType
 const (
 	CASTNOTIFICATIONTYPE_CAST_MENTION CastNotificationType = "cast-mention"
-	CASTNOTIFICATIONTYPE_CAST_REPLY CastNotificationType = "cast-reply"
+	CASTNOTIFICATIONTYPE_CAST_REPLY   CastNotificationType = "cast-reply"
 )
 
 // All allowed values of CastNotificationType enum
@@ -109,4 +109,3 @@ func (v *NullableCastNotificationType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

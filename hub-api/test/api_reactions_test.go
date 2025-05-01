@@ -11,10 +11,10 @@ package hub
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/hub"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/hub"
 )
 
 func Test_hub_ReactionsAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_hub_ReactionsAPIService(t *testing.T) {
 
 	t.Run("Test ReactionsAPIService FetchCastReactions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionsAPI.FetchCastReactions(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_hub_ReactionsAPIService(t *testing.T) {
 
 	t.Run("Test ReactionsAPIService FetchReactionsByTarget", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionsAPI.FetchReactionsByTarget(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_hub_ReactionsAPIService(t *testing.T) {
 
 	t.Run("Test ReactionsAPIService FetchUserReactions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionsAPI.FetchUserReactions(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_hub_ReactionsAPIService(t *testing.T) {
 
 	t.Run("Test ReactionsAPIService LookupReactionById", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ReactionsAPI.LookupReactionById(context.Background()).Execute()
 

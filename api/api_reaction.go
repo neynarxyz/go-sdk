@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,18 +19,17 @@ import (
 	"net/url"
 )
 
-
 type ReactionAPI interface {
 
 	/*
-	DeleteReaction Delete reaction
+		DeleteReaction Delete reaction
 
-	Delete a reaction (like or recast) to a cast \
-(In order to delete a reaction `signer_uuid` must be approved)
+		Delete a reaction (like or recast) to a cast \
+	(In order to delete a reaction `signer_uuid` must be approved)
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeleteReactionRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiDeleteReactionRequest
 	*/
 	DeleteReaction(ctx context.Context) ApiDeleteReactionRequest
 
@@ -39,12 +38,12 @@ type ReactionAPI interface {
 	DeleteReactionExecute(r ApiDeleteReactionRequest) (*OperationResponse, *http.Response, error)
 
 	/*
-	FetchCastReactions Reactions for cast
+		FetchCastReactions Reactions for cast
 
-	Fetches reactions for a given cast
+		Fetches reactions for a given cast
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchCastReactionsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchCastReactionsRequest
 	*/
 	FetchCastReactions(ctx context.Context) ApiFetchCastReactionsRequest
 
@@ -53,12 +52,12 @@ type ReactionAPI interface {
 	FetchCastReactionsExecute(r ApiFetchCastReactionsRequest) (*ReactionsCastResponse, *http.Response, error)
 
 	/*
-	FetchUserReactions Reactions for user
+		FetchUserReactions Reactions for user
 
-	Fetches reactions for a given user
+		Fetches reactions for a given user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserReactionsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserReactionsRequest
 	*/
 	FetchUserReactions(ctx context.Context) ApiFetchUserReactionsRequest
 
@@ -67,14 +66,14 @@ type ReactionAPI interface {
 	FetchUserReactionsExecute(r ApiFetchUserReactionsRequest) (*ReactionsResponse, *http.Response, error)
 
 	/*
-	PublishReaction Post a reaction
+		PublishReaction Post a reaction
 
-	Post a reaction (like or recast) to a given cast \
-(In order to post a reaction `signer_uuid` must be approved)
+		Post a reaction (like or recast) to a given cast \
+	(In order to post a reaction `signer_uuid` must be approved)
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPublishReactionRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPublishReactionRequest
 	*/
 	PublishReaction(ctx context.Context) ApiPublishReactionRequest
 
@@ -87,8 +86,8 @@ type ReactionAPI interface {
 type ReactionAPIService service
 
 type ApiDeleteReactionRequest struct {
-	ctx context.Context
-	ApiService ReactionAPI
+	ctx             context.Context
+	ApiService      ReactionAPI
 	reactionReqBody *ReactionReqBody
 }
 
@@ -107,25 +106,25 @@ DeleteReaction Delete reaction
 Delete a reaction (like or recast) to a cast \
 (In order to delete a reaction `signer_uuid` must be approved)
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteReactionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteReactionRequest
 */
 func (a *ReactionAPIService) DeleteReaction(ctx context.Context) ApiDeleteReactionRequest {
 	return ApiDeleteReactionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactionAPIService.DeleteReaction")
@@ -204,8 +203,8 @@ func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -215,8 +214,8 @@ func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -226,8 +225,8 @@ func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -237,8 +236,8 @@ func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -256,13 +255,13 @@ func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (
 }
 
 type ApiFetchCastReactionsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ReactionAPI
-	hash *string
-	types *[]ReactionsType
-	viewerFid *int32
-	limit *int32
-	cursor *string
+	hash       *string
+	types      *[]ReactionsType
+	viewerFid  *int32
+	limit      *int32
+	cursor     *string
 }
 
 func (r ApiFetchCastReactionsRequest) Hash(hash string) ApiFetchCastReactionsRequest {
@@ -270,7 +269,7 @@ func (r ApiFetchCastReactionsRequest) Hash(hash string) ApiFetchCastReactionsReq
 	return r
 }
 
-// Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: &#39;likes&#39; and &#39;recasts&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. 
+// Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: &#39;likes&#39; and &#39;recasts&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.
 func (r ApiFetchCastReactionsRequest) Types(types []ReactionsType) ApiFetchCastReactionsRequest {
 	r.types = &types
 	return r
@@ -303,24 +302,25 @@ FetchCastReactions Reactions for cast
 
 Fetches reactions for a given cast
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchCastReactionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchCastReactionsRequest
 */
 func (a *ReactionAPIService) FetchCastReactions(ctx context.Context) ApiFetchCastReactionsRequest {
 	return ApiFetchCastReactionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ReactionsCastResponse
+//
+//	@return ReactionsCastResponse
 func (a *ReactionAPIService) FetchCastReactionsExecute(r ApiFetchCastReactionsRequest) (*ReactionsCastResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ReactionsCastResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ReactionsCastResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactionAPIService.FetchCastReactions")
@@ -414,8 +414,8 @@ func (a *ReactionAPIService) FetchCastReactionsExecute(r ApiFetchCastReactionsRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -433,13 +433,13 @@ func (a *ReactionAPIService) FetchCastReactionsExecute(r ApiFetchCastReactionsRe
 }
 
 type ApiFetchUserReactionsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ReactionAPI
-	fid *int32
-	type_ *ReactionsType
-	viewerFid *int32
-	limit *int32
-	cursor *string
+	fid        *int32
+	type_      *ReactionsType
+	viewerFid  *int32
+	limit      *int32
+	cursor     *string
 }
 
 func (r ApiFetchUserReactionsRequest) Fid(fid int32) ApiFetchUserReactionsRequest {
@@ -480,24 +480,25 @@ FetchUserReactions Reactions for user
 
 Fetches reactions for a given user
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserReactionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserReactionsRequest
 */
 func (a *ReactionAPIService) FetchUserReactions(ctx context.Context) ApiFetchUserReactionsRequest {
 	return ApiFetchUserReactionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ReactionsResponse
+//
+//	@return ReactionsResponse
 func (a *ReactionAPIService) FetchUserReactionsExecute(r ApiFetchUserReactionsRequest) (*ReactionsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ReactionsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ReactionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactionAPIService.FetchUserReactions")
@@ -591,8 +592,8 @@ func (a *ReactionAPIService) FetchUserReactionsExecute(r ApiFetchUserReactionsRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -610,8 +611,8 @@ func (a *ReactionAPIService) FetchUserReactionsExecute(r ApiFetchUserReactionsRe
 }
 
 type ApiPublishReactionRequest struct {
-	ctx context.Context
-	ApiService ReactionAPI
+	ctx             context.Context
+	ApiService      ReactionAPI
 	reactionReqBody *ReactionReqBody
 }
 
@@ -630,25 +631,25 @@ PublishReaction Post a reaction
 Post a reaction (like or recast) to a given cast \
 (In order to post a reaction `signer_uuid` must be approved)
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPublishReactionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPublishReactionRequest
 */
 func (a *ReactionAPIService) PublishReaction(ctx context.Context) ApiPublishReactionRequest {
 	return ApiPublishReactionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *ReactionAPIService) PublishReactionExecute(r ApiPublishReactionRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactionAPIService.PublishReaction")
@@ -727,8 +728,8 @@ func (a *ReactionAPIService) PublishReactionExecute(r ApiPublishReactionRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -738,8 +739,8 @@ func (a *ReactionAPIService) PublishReactionExecute(r ApiPublishReactionRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -749,8 +750,8 @@ func (a *ReactionAPIService) PublishReactionExecute(r ApiPublishReactionRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -760,8 +761,8 @@ func (a *ReactionAPIService) PublishReactionExecute(r ApiPublishReactionRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

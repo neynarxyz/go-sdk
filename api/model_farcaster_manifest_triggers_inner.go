@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,7 +19,7 @@ import (
 
 // FarcasterManifestTriggersInner - struct for FarcasterManifestTriggersInner
 type FarcasterManifestTriggersInner struct {
-	FarcasterManifestTriggersInnerOneOf *FarcasterManifestTriggersInnerOneOf
+	FarcasterManifestTriggersInnerOneOf  *FarcasterManifestTriggersInnerOneOf
 	FarcasterManifestTriggersInnerOneOf1 *FarcasterManifestTriggersInnerOneOf1
 }
 
@@ -36,7 +36,6 @@ func FarcasterManifestTriggersInnerOneOf1AsFarcasterManifestTriggersInner(v *Far
 		FarcasterManifestTriggersInnerOneOf1: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *FarcasterManifestTriggersInner) UnmarshalJSON(data []byte) error {
@@ -103,7 +102,7 @@ func (src FarcasterManifestTriggersInner) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *FarcasterManifestTriggersInner) GetActualInstance() (interface{}) {
+func (obj *FarcasterManifestTriggersInner) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -120,7 +119,7 @@ func (obj *FarcasterManifestTriggersInner) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj FarcasterManifestTriggersInner) GetActualInstanceValue() (interface{}) {
+func (obj FarcasterManifestTriggersInner) GetActualInstanceValue() interface{} {
 	if obj.FarcasterManifestTriggersInnerOneOf != nil {
 		return *obj.FarcasterManifestTriggersInnerOneOf
 	}
@@ -168,5 +167,3 @@ func (v *NullableFarcasterManifestTriggersInner) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

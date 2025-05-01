@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &FrameSignaturePacket{}
 // FrameSignaturePacket The Mini app Signature Packet (https://docs.farcaster.xyz/developers/frames/spec#frame-signature-packet)
 type FrameSignaturePacket struct {
 	UntrustedData FrameSignaturePacketUntrustedData `json:"untrustedData"`
-	TrustedData FrameSignaturePacketTrustedData `json:"trustedData"`
+	TrustedData   FrameSignaturePacketTrustedData   `json:"trustedData"`
 }
 
 type _FrameSignaturePacket FrameSignaturePacket
@@ -71,7 +71,6 @@ func (o *FrameSignaturePacket) SetUntrustedData(v FrameSignaturePacketUntrustedD
 	o.UntrustedData = v
 }
 
-
 // GetTrustedData returns the TrustedData field value
 func (o *FrameSignaturePacket) GetTrustedData() FrameSignaturePacketTrustedData {
 	if o == nil {
@@ -96,9 +95,8 @@ func (o *FrameSignaturePacket) SetTrustedData(v FrameSignaturePacketTrustedData)
 	o.TrustedData = v
 }
 
-
 func (o FrameSignaturePacket) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -123,32 +121,31 @@ func (o *FrameSignaturePacket) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -202,5 +199,3 @@ func (v *NullableFrameSignaturePacket) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

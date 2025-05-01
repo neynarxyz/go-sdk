@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_SubscribersAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_SubscribersAPIService(t *testing.T) {
 
 	t.Run("Test SubscribersAPIService FetchSubscribedToForFid", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SubscribersAPI.FetchSubscribedToForFid(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_SubscribersAPIService(t *testing.T) {
 
 	t.Run("Test SubscribersAPIService FetchSubscribersForFid", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SubscribersAPI.FetchSubscribersForFid(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_SubscribersAPIService(t *testing.T) {
 
 	t.Run("Test SubscribersAPIService FetchSubscriptionCheck", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SubscribersAPI.FetchSubscriptionCheck(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_api_SubscribersAPIService(t *testing.T) {
 
 	t.Run("Test SubscribersAPIService FetchSubscriptionsForFid", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SubscribersAPI.FetchSubscriptionsForFid(context.Background()).Execute()
 

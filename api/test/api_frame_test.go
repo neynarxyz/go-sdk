@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_FrameAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService DeleteNeynarFrame", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.DeleteNeynarFrame(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService FetchFrameCatalog", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.FetchFrameCatalog(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService FetchFrameMetaTagsFromUrl", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.FetchFrameMetaTagsFromUrl(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService FetchNeynarFrames", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.FetchNeynarFrames(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService FetchNotificationTokens", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.FetchNotificationTokens(context.Background()).Execute()
 
@@ -84,7 +84,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService FetchRelevantFrames", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.FetchRelevantFrames(context.Background()).Execute()
 
@@ -96,7 +96,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService FetchValidateFrameAnalytics", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.FetchValidateFrameAnalytics(context.Background()).Execute()
 
@@ -108,7 +108,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService FetchValidateFrameList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.FetchValidateFrameList(context.Background()).Execute()
 
@@ -120,7 +120,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService GetTransactionPayFrame", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.GetTransactionPayFrame(context.Background()).Execute()
 
@@ -132,7 +132,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService LookupNeynarFrame", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.LookupNeynarFrame(context.Background()).Execute()
 
@@ -144,7 +144,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService PostFrameAction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.PostFrameAction(context.Background()).Execute()
 
@@ -156,7 +156,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService PostFrameActionDeveloperManaged", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.PostFrameActionDeveloperManaged(context.Background()).Execute()
 
@@ -168,7 +168,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService PublishFrameNotifications", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.PublishFrameNotifications(context.Background()).Execute()
 
@@ -180,7 +180,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService PublishNeynarFrame", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.PublishNeynarFrame(context.Background()).Execute()
 
@@ -192,7 +192,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService UpdateNeynarFrame", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.UpdateNeynarFrame(context.Background()).Execute()
 
@@ -204,7 +204,7 @@ func Test_api_FrameAPIService(t *testing.T) {
 
 	t.Run("Test FrameAPIService ValidateFrameAction", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.FrameAPI.ValidateFrameAction(context.Background()).Execute()
 

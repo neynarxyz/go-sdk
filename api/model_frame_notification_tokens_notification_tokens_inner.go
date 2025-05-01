@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -22,11 +22,11 @@ var _ MappedNullable = &FrameNotificationTokensNotificationTokensInner{}
 // FrameNotificationTokensNotificationTokensInner struct for FrameNotificationTokensNotificationTokensInner
 type FrameNotificationTokensNotificationTokensInner struct {
 	Object *string `json:"object,omitempty"`
-	Url *string `json:"url,omitempty"`
-	Token *string `json:"token,omitempty"`
+	Url    *string `json:"url,omitempty"`
+	Token  *string `json:"token,omitempty"`
 	Status *string `json:"status,omitempty"`
 	// The unique identifier of a farcaster user (unsigned integer)
-	Fid *int32 `json:"fid,omitempty"`
+	Fid       *int32     `json:"fid,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
@@ -273,7 +273,7 @@ func (o *FrameNotificationTokensNotificationTokensInner) SetUpdatedAt(v time.Tim
 }
 
 func (o FrameNotificationTokensNotificationTokensInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -341,5 +341,3 @@ func (v *NullableFrameNotificationTokensNotificationTokensInner) UnmarshalJSON(s
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

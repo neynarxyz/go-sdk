@@ -11,10 +11,10 @@ package hub
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/hub"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/hub"
 )
 
 func Test_hub_LinksAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_hub_LinksAPIService(t *testing.T) {
 
 	t.Run("Test LinksAPIService FetchUserFollowers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.LinksAPI.FetchUserFollowers(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_hub_LinksAPIService(t *testing.T) {
 
 	t.Run("Test LinksAPIService FetchUserFollowing", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.LinksAPI.FetchUserFollowing(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_hub_LinksAPIService(t *testing.T) {
 
 	t.Run("Test LinksAPIService LookupUserRelation", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.LinksAPI.LookupUserRelation(context.Background()).Execute()
 

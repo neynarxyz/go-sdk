@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,10 +12,10 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the WebhookSubscription type satisfies the MappedNullable interface at compile time
@@ -23,11 +23,11 @@ var _ MappedNullable = &WebhookSubscription{}
 
 // WebhookSubscription struct for WebhookSubscription
 type WebhookSubscription struct {
-	Object string `json:"object"`
-	SubscriptionId string `json:"subscription_id"`
-	Filters WebhookSubscriptionFilters `json:"filters"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	Object         string                     `json:"object"`
+	SubscriptionId string                     `json:"subscription_id"`
+	Filters        WebhookSubscriptionFilters `json:"filters"`
+	CreatedAt      time.Time                  `json:"created_at"`
+	UpdatedAt      time.Time                  `json:"updated_at"`
 }
 
 type _WebhookSubscription WebhookSubscription
@@ -78,7 +78,6 @@ func (o *WebhookSubscription) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetSubscriptionId returns the SubscriptionId field value
 func (o *WebhookSubscription) GetSubscriptionId() string {
 	if o == nil {
@@ -102,7 +101,6 @@ func (o *WebhookSubscription) GetSubscriptionIdOk() (*string, bool) {
 func (o *WebhookSubscription) SetSubscriptionId(v string) {
 	o.SubscriptionId = v
 }
-
 
 // GetFilters returns the Filters field value
 func (o *WebhookSubscription) GetFilters() WebhookSubscriptionFilters {
@@ -128,7 +126,6 @@ func (o *WebhookSubscription) SetFilters(v WebhookSubscriptionFilters) {
 	o.Filters = v
 }
 
-
 // GetCreatedAt returns the CreatedAt field value
 func (o *WebhookSubscription) GetCreatedAt() time.Time {
 	if o == nil {
@@ -152,7 +149,6 @@ func (o *WebhookSubscription) GetCreatedAtOk() (*time.Time, bool) {
 func (o *WebhookSubscription) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
-
 
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *WebhookSubscription) GetUpdatedAt() time.Time {
@@ -178,9 +174,8 @@ func (o *WebhookSubscription) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-
 func (o WebhookSubscription) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -211,32 +206,31 @@ func (o *WebhookSubscription) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -290,5 +284,3 @@ func (v *NullableWebhookSubscription) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

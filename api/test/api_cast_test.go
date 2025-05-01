@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_CastAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService DeleteCast", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.DeleteCast(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService FetchBulkCasts", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.FetchBulkCasts(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService FetchComposerActions", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.FetchComposerActions(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_api_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService FetchEmbeddedUrlMetadata", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.FetchEmbeddedUrlMetadata(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_api_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService LookupCastByHashOrWarpcastUrl", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.LookupCastByHashOrWarpcastUrl(context.Background()).Execute()
 
@@ -84,7 +84,7 @@ func Test_api_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService LookupCastConversation", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.LookupCastConversation(context.Background()).Execute()
 
@@ -96,7 +96,7 @@ func Test_api_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService PublishCast", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.PublishCast(context.Background()).Execute()
 
@@ -108,7 +108,7 @@ func Test_api_CastAPIService(t *testing.T) {
 
 	t.Run("Test CastAPIService SearchCasts", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.CastAPI.SearchCasts(context.Background()).Execute()
 

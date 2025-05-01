@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type NotificationsAPI interface {
 
 	/*
-	FetchAllNotifications For user
+		FetchAllNotifications For user
 
-	Returns a list of notifications for a specific FID.
+		Returns a list of notifications for a specific FID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchAllNotificationsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchAllNotificationsRequest
 	*/
 	FetchAllNotifications(ctx context.Context) ApiFetchAllNotificationsRequest
 
@@ -37,12 +36,12 @@ type NotificationsAPI interface {
 	FetchAllNotificationsExecute(r ApiFetchAllNotificationsRequest) (*NotificationsResponse, *http.Response, error)
 
 	/*
-	FetchChannelNotificationsForUser For user by channel
+		FetchChannelNotificationsForUser For user by channel
 
-	Returns a list of notifications for a user in specific channels
+		Returns a list of notifications for a user in specific channels
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchChannelNotificationsForUserRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchChannelNotificationsForUserRequest
 	*/
 	FetchChannelNotificationsForUser(ctx context.Context) ApiFetchChannelNotificationsForUserRequest
 
@@ -51,12 +50,12 @@ type NotificationsAPI interface {
 	FetchChannelNotificationsForUserExecute(r ApiFetchChannelNotificationsForUserRequest) (*NotificationsResponse, *http.Response, error)
 
 	/*
-	FetchNotificationsByParentUrlForUser For user by parent_urls
+		FetchNotificationsByParentUrlForUser For user by parent_urls
 
-	Returns a list of notifications for a user in specific parent_urls
+		Returns a list of notifications for a user in specific parent_urls
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchNotificationsByParentUrlForUserRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchNotificationsByParentUrlForUserRequest
 	*/
 	FetchNotificationsByParentUrlForUser(ctx context.Context) ApiFetchNotificationsByParentUrlForUserRequest
 
@@ -65,12 +64,12 @@ type NotificationsAPI interface {
 	FetchNotificationsByParentUrlForUserExecute(r ApiFetchNotificationsByParentUrlForUserRequest) (*NotificationsResponse, *http.Response, error)
 
 	/*
-	MarkNotificationsAsSeen Mark as seen
+		MarkNotificationsAsSeen Mark as seen
 
-	Mark notifications as seen
+		Mark notifications as seen
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiMarkNotificationsAsSeenRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiMarkNotificationsAsSeenRequest
 	*/
 	MarkNotificationsAsSeen(ctx context.Context) ApiMarkNotificationsAsSeenRequest
 
@@ -83,13 +82,13 @@ type NotificationsAPI interface {
 type NotificationsAPIService service
 
 type ApiFetchAllNotificationsRequest struct {
-	ctx context.Context
-	ApiService NotificationsAPI
-	fid *int32
-	type_ *[]NotificationType
+	ctx          context.Context
+	ApiService   NotificationsAPI
+	fid          *int32
+	type_        *[]NotificationType
 	priorityMode *bool
-	limit *int32
-	cursor *string
+	limit        *int32
+	cursor       *string
 }
 
 // FID of the user you you want to fetch notifications for. The response will respect this user&#39;s mutes and blocks.
@@ -131,24 +130,25 @@ FetchAllNotifications For user
 
 Returns a list of notifications for a specific FID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchAllNotificationsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchAllNotificationsRequest
 */
 func (a *NotificationsAPIService) FetchAllNotifications(ctx context.Context) ApiFetchAllNotificationsRequest {
 	return ApiFetchAllNotificationsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return NotificationsResponse
+//
+//	@return NotificationsResponse
 func (a *NotificationsAPIService) FetchAllNotificationsExecute(r ApiFetchAllNotificationsRequest) (*NotificationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NotificationsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NotificationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.FetchAllNotifications")
@@ -244,8 +244,8 @@ func (a *NotificationsAPIService) FetchAllNotificationsExecute(r ApiFetchAllNoti
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -263,13 +263,13 @@ func (a *NotificationsAPIService) FetchAllNotificationsExecute(r ApiFetchAllNoti
 }
 
 type ApiFetchChannelNotificationsForUserRequest struct {
-	ctx context.Context
-	ApiService NotificationsAPI
-	fid *int32
-	channelIds *string
+	ctx          context.Context
+	ApiService   NotificationsAPI
+	fid          *int32
+	channelIds   *string
 	priorityMode *bool
-	limit *int32
-	cursor *string
+	limit        *int32
+	cursor       *string
 }
 
 // FID of the user you you want to fetch notifications for. The response will respect this user&#39;s mutes and blocks.
@@ -311,24 +311,25 @@ FetchChannelNotificationsForUser For user by channel
 
 Returns a list of notifications for a user in specific channels
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchChannelNotificationsForUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchChannelNotificationsForUserRequest
 */
 func (a *NotificationsAPIService) FetchChannelNotificationsForUser(ctx context.Context) ApiFetchChannelNotificationsForUserRequest {
 	return ApiFetchChannelNotificationsForUserRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return NotificationsResponse
+//
+//	@return NotificationsResponse
 func (a *NotificationsAPIService) FetchChannelNotificationsForUserExecute(r ApiFetchChannelNotificationsForUserRequest) (*NotificationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NotificationsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NotificationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.FetchChannelNotificationsForUser")
@@ -425,8 +426,8 @@ func (a *NotificationsAPIService) FetchChannelNotificationsForUserExecute(r ApiF
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -444,13 +445,13 @@ func (a *NotificationsAPIService) FetchChannelNotificationsForUserExecute(r ApiF
 }
 
 type ApiFetchNotificationsByParentUrlForUserRequest struct {
-	ctx context.Context
-	ApiService NotificationsAPI
-	fid *int32
-	parentUrls *string
+	ctx          context.Context
+	ApiService   NotificationsAPI
+	fid          *int32
+	parentUrls   *string
 	priorityMode *bool
-	limit *int32
-	cursor *string
+	limit        *int32
+	cursor       *string
 }
 
 // FID of the user you you want to fetch notifications for. The response will respect this user&#39;s mutes and blocks.
@@ -492,24 +493,25 @@ FetchNotificationsByParentUrlForUser For user by parent_urls
 
 Returns a list of notifications for a user in specific parent_urls
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchNotificationsByParentUrlForUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchNotificationsByParentUrlForUserRequest
 */
 func (a *NotificationsAPIService) FetchNotificationsByParentUrlForUser(ctx context.Context) ApiFetchNotificationsByParentUrlForUserRequest {
 	return ApiFetchNotificationsByParentUrlForUserRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return NotificationsResponse
+//
+//	@return NotificationsResponse
 func (a *NotificationsAPIService) FetchNotificationsByParentUrlForUserExecute(r ApiFetchNotificationsByParentUrlForUserRequest) (*NotificationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NotificationsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NotificationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.FetchNotificationsByParentUrlForUser")
@@ -606,8 +608,8 @@ func (a *NotificationsAPIService) FetchNotificationsByParentUrlForUserExecute(r 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -625,8 +627,8 @@ func (a *NotificationsAPIService) FetchNotificationsByParentUrlForUserExecute(r 
 }
 
 type ApiMarkNotificationsAsSeenRequest struct {
-	ctx context.Context
-	ApiService NotificationsAPI
+	ctx                            context.Context
+	ApiService                     NotificationsAPI
 	markNotificationsAsSeenReqBody *MarkNotificationsAsSeenReqBody
 }
 
@@ -644,24 +646,25 @@ MarkNotificationsAsSeen Mark as seen
 
 Mark notifications as seen
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiMarkNotificationsAsSeenRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiMarkNotificationsAsSeenRequest
 */
 func (a *NotificationsAPIService) MarkNotificationsAsSeen(ctx context.Context) ApiMarkNotificationsAsSeenRequest {
 	return ApiMarkNotificationsAsSeenRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *NotificationsAPIService) MarkNotificationsAsSeenExecute(r ApiMarkNotificationsAsSeenRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotificationsAPIService.MarkNotificationsAsSeen")
@@ -740,8 +743,8 @@ func (a *NotificationsAPIService) MarkNotificationsAsSeenExecute(r ApiMarkNotifi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -751,8 +754,8 @@ func (a *NotificationsAPIService) MarkNotificationsAsSeenExecute(r ApiMarkNotifi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

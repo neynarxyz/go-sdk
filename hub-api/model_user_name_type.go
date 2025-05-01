@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -21,7 +21,7 @@ type UserNameType string
 
 // List of UserNameType
 const (
-	USERNAMETYPE_USERNAME_TYPE_FNAME UserNameType = "USERNAME_TYPE_FNAME"
+	USERNAMETYPE_USERNAME_TYPE_FNAME  UserNameType = "USERNAME_TYPE_FNAME"
 	USERNAMETYPE_USERNAME_TYPE_ENS_L1 UserNameType = "USERNAME_TYPE_ENS_L1"
 )
 
@@ -109,4 +109,3 @@ func (v *NullableUserNameType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

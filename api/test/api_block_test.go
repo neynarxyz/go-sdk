@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_BlockAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_BlockAPIService(t *testing.T) {
 
 	t.Run("Test BlockAPIService DeleteBlock", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.BlockAPI.DeleteBlock(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_BlockAPIService(t *testing.T) {
 
 	t.Run("Test BlockAPIService FetchBlockList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.BlockAPI.FetchBlockList(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_BlockAPIService(t *testing.T) {
 
 	t.Run("Test BlockAPIService PublishBlock", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.BlockAPI.PublishBlock(context.Background()).Execute()
 

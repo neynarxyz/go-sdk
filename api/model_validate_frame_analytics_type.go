@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,10 +21,10 @@ type ValidateFrameAnalyticsType string
 
 // List of ValidateFrameAnalyticsType
 const (
-	VALIDATEFRAMEANALYTICSTYPE_TOTAL_INTERACTORS ValidateFrameAnalyticsType = "total-interactors"
-	VALIDATEFRAMEANALYTICSTYPE_INTERACTORS ValidateFrameAnalyticsType = "interactors"
+	VALIDATEFRAMEANALYTICSTYPE_TOTAL_INTERACTORS     ValidateFrameAnalyticsType = "total-interactors"
+	VALIDATEFRAMEANALYTICSTYPE_INTERACTORS           ValidateFrameAnalyticsType = "interactors"
 	VALIDATEFRAMEANALYTICSTYPE_INTERACTIONS_PER_CAST ValidateFrameAnalyticsType = "interactions-per-cast"
-	VALIDATEFRAMEANALYTICSTYPE_INPUT_TEXT ValidateFrameAnalyticsType = "input-text"
+	VALIDATEFRAMEANALYTICSTYPE_INPUT_TEXT            ValidateFrameAnalyticsType = "input-text"
 )
 
 // All allowed values of ValidateFrameAnalyticsType enum
@@ -113,4 +113,3 @@ func (v *NullableValidateFrameAnalyticsType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

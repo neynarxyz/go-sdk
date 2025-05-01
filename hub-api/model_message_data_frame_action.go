@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -25,8 +25,8 @@ type MessageDataFrameAction struct {
 	// The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed.
 	Fid int32 `json:"fid"`
 	// Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
-	Timestamp int64 `json:"timestamp"`
-	Network FarcasterNetwork `json:"network"`
+	Timestamp int64            `json:"timestamp"`
+	Network   FarcasterNetwork `json:"network"`
 	// Contains the details of the frame interaction, including which button was pressed and the associated cast and URL.
 	FrameActionBody FrameActionBody `json:"frameActionBody"`
 }
@@ -80,7 +80,6 @@ func (o *MessageDataFrameAction) SetFid(v int32) {
 	o.Fid = v
 }
 
-
 // GetTimestamp returns the Timestamp field value
 func (o *MessageDataFrameAction) GetTimestamp() int64 {
 	if o == nil {
@@ -104,7 +103,6 @@ func (o *MessageDataFrameAction) GetTimestampOk() (*int64, bool) {
 func (o *MessageDataFrameAction) SetTimestamp(v int64) {
 	o.Timestamp = v
 }
-
 
 // GetNetwork returns the Network field value
 func (o *MessageDataFrameAction) GetNetwork() FarcasterNetwork {
@@ -131,7 +129,7 @@ func (o *MessageDataFrameAction) SetNetwork(v FarcasterNetwork) {
 }
 
 // GetDefaultNetwork returns the default value FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET of the Network field.
-func (o *MessageDataFrameAction) GetDefaultNetwork() interface{}  {
+func (o *MessageDataFrameAction) GetDefaultNetwork() interface{} {
 	return FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 }
 
@@ -159,9 +157,8 @@ func (o *MessageDataFrameAction) SetFrameActionBody(v FrameActionBody) {
 	o.FrameActionBody = v
 }
 
-
 func (o MessageDataFrameAction) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -193,7 +190,7 @@ func (o *MessageDataFrameAction) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
+	defaultValueFuncMap := map[string]func() interface{}{
 		"network": o.GetDefaultNetwork,
 	}
 	var defaultValueApplied bool
@@ -202,24 +199,24 @@ func (o *MessageDataFrameAction) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -273,5 +270,3 @@ func (v *NullableMessageDataFrameAction) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

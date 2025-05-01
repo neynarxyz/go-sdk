@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_NotificationsAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_NotificationsAPIService(t *testing.T) {
 
 	t.Run("Test NotificationsAPIService FetchAllNotifications", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.NotificationsAPI.FetchAllNotifications(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_NotificationsAPIService(t *testing.T) {
 
 	t.Run("Test NotificationsAPIService FetchChannelNotificationsForUser", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.NotificationsAPI.FetchChannelNotificationsForUser(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_NotificationsAPIService(t *testing.T) {
 
 	t.Run("Test NotificationsAPIService FetchNotificationsByParentUrlForUser", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.NotificationsAPI.FetchNotificationsByParentUrlForUser(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_api_NotificationsAPIService(t *testing.T) {
 
 	t.Run("Test NotificationsAPIService MarkNotificationsAsSeen", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.NotificationsAPI.MarkNotificationsAsSeen(context.Background()).Execute()
 

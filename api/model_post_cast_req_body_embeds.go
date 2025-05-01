@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,7 +19,7 @@ import (
 
 // PostCastReqBodyEmbeds - struct for PostCastReqBodyEmbeds
 type PostCastReqBodyEmbeds struct {
-	PostCastReqBodyEmbedsOneOf *PostCastReqBodyEmbedsOneOf
+	PostCastReqBodyEmbedsOneOf  *PostCastReqBodyEmbedsOneOf
 	PostCastReqBodyEmbedsOneOf1 *PostCastReqBodyEmbedsOneOf1
 	PostCastReqBodyEmbedsOneOf2 *PostCastReqBodyEmbedsOneOf2
 }
@@ -44,7 +44,6 @@ func PostCastReqBodyEmbedsOneOf2AsPostCastReqBodyEmbeds(v *PostCastReqBodyEmbeds
 		PostCastReqBodyEmbedsOneOf2: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *PostCastReqBodyEmbeds) UnmarshalJSON(data []byte) error {
@@ -133,7 +132,7 @@ func (src PostCastReqBodyEmbeds) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *PostCastReqBodyEmbeds) GetActualInstance() (interface{}) {
+func (obj *PostCastReqBodyEmbeds) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -154,7 +153,7 @@ func (obj *PostCastReqBodyEmbeds) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj PostCastReqBodyEmbeds) GetActualInstanceValue() (interface{}) {
+func (obj PostCastReqBodyEmbeds) GetActualInstanceValue() interface{} {
 	if obj.PostCastReqBodyEmbedsOneOf != nil {
 		return *obj.PostCastReqBodyEmbedsOneOf
 	}
@@ -206,5 +205,3 @@ func (v *NullablePostCastReqBodyEmbeds) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

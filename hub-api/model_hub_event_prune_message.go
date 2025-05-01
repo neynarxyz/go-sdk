@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,8 +22,8 @@ var _ MappedNullable = &HubEventPruneMessage{}
 
 // HubEventPruneMessage struct for HubEventPruneMessage
 type HubEventPruneMessage struct {
-	Type string `json:"type"`
-	Id int32 `json:"id"`
+	Type             string           `json:"type"`
+	Id               int32            `json:"id"`
 	PruneMessageBody PruneMessageBody `json:"pruneMessageBody"`
 }
 
@@ -73,7 +73,6 @@ func (o *HubEventPruneMessage) SetType(v string) {
 	o.Type = v
 }
 
-
 // GetId returns the Id field value
 func (o *HubEventPruneMessage) GetId() int32 {
 	if o == nil {
@@ -97,7 +96,6 @@ func (o *HubEventPruneMessage) GetIdOk() (*int32, bool) {
 func (o *HubEventPruneMessage) SetId(v int32) {
 	o.Id = v
 }
-
 
 // GetPruneMessageBody returns the PruneMessageBody field value
 func (o *HubEventPruneMessage) GetPruneMessageBody() PruneMessageBody {
@@ -123,9 +121,8 @@ func (o *HubEventPruneMessage) SetPruneMessageBody(v PruneMessageBody) {
 	o.PruneMessageBody = v
 }
 
-
 func (o HubEventPruneMessage) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -152,32 +149,31 @@ func (o *HubEventPruneMessage) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -231,5 +227,3 @@ func (v *NullableHubEventPruneMessage) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

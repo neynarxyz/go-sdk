@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &DeleteCastReqBody{}
 
 // DeleteCastReqBody struct for DeleteCastReqBody
 type DeleteCastReqBody struct {
-	// UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key. 
+	// UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
 	SignerUuid string `json:"signer_uuid"`
 	// Cast Hash
 	TargetHash string `json:"target_hash"`
@@ -75,7 +75,6 @@ func (o *DeleteCastReqBody) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
 
-
 // GetTargetHash returns the TargetHash field value
 func (o *DeleteCastReqBody) GetTargetHash() string {
 	if o == nil {
@@ -101,12 +100,12 @@ func (o *DeleteCastReqBody) SetTargetHash(v string) {
 }
 
 // GetDefaultTargetHash returns the default value "0xfe90f9de682273e05b201629ad2338bdcd89b6be" of the TargetHash field.
-func (o *DeleteCastReqBody) GetDefaultTargetHash() interface{}  {
+func (o *DeleteCastReqBody) GetDefaultTargetHash() interface{} {
 	return "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
 }
 
 func (o DeleteCastReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -134,7 +133,7 @@ func (o *DeleteCastReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
+	defaultValueFuncMap := map[string]func() interface{}{
 		"target_hash": o.GetDefaultTargetHash,
 	}
 	var defaultValueApplied bool
@@ -143,24 +142,24 @@ func (o *DeleteCastReqBody) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -214,5 +213,3 @@ func (v *NullableDeleteCastReqBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

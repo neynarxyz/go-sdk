@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,8 +21,8 @@ type VerificationChainId int32
 
 // List of VerificationChainId
 const (
-	VERIFICATIONCHAINID__0 VerificationChainId = 0
-	VERIFICATIONCHAINID__1 VerificationChainId = 1
+	VERIFICATIONCHAINID__0  VerificationChainId = 0
+	VERIFICATIONCHAINID__1  VerificationChainId = 1
 	VERIFICATIONCHAINID__10 VerificationChainId = 10
 )
 
@@ -111,4 +111,3 @@ func (v *NullableVerificationChainId) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

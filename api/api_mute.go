@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type MuteAPI interface {
 
 	/*
-	DeleteMute Unmute FID
+		DeleteMute Unmute FID
 
-	Deletes a mute for a given FID. This is an allowlisted API, reach out if you want access.
+		Deletes a mute for a given FID. This is an allowlisted API, reach out if you want access.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeleteMuteRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiDeleteMuteRequest
 	*/
 	DeleteMute(ctx context.Context) ApiDeleteMuteRequest
 
@@ -37,12 +36,12 @@ type MuteAPI interface {
 	DeleteMuteExecute(r ApiDeleteMuteRequest) (*MuteResponse, *http.Response, error)
 
 	/*
-	FetchMuteList Muted FIDs of user
+		FetchMuteList Muted FIDs of user
 
-	Fetches all FIDs that a user has muted.
+		Fetches all FIDs that a user has muted.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchMuteListRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchMuteListRequest
 	*/
 	FetchMuteList(ctx context.Context) ApiFetchMuteListRequest
 
@@ -51,12 +50,12 @@ type MuteAPI interface {
 	FetchMuteListExecute(r ApiFetchMuteListRequest) (*MuteListResponse, *http.Response, error)
 
 	/*
-	PublishMute Mute FID
+		PublishMute Mute FID
 
-	Adds a mute for a given FID. This is an allowlisted API, reach out if you want access.
+		Adds a mute for a given FID. This is an allowlisted API, reach out if you want access.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPublishMuteRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPublishMuteRequest
 	*/
 	PublishMute(ctx context.Context) ApiPublishMuteRequest
 
@@ -69,8 +68,8 @@ type MuteAPI interface {
 type MuteAPIService service
 
 type ApiDeleteMuteRequest struct {
-	ctx context.Context
-	ApiService MuteAPI
+	ctx         context.Context
+	ApiService  MuteAPI
 	muteReqBody *MuteReqBody
 }
 
@@ -88,24 +87,25 @@ DeleteMute Unmute FID
 
 Deletes a mute for a given FID. This is an allowlisted API, reach out if you want access.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteMuteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteMuteRequest
 */
 func (a *MuteAPIService) DeleteMute(ctx context.Context) ApiDeleteMuteRequest {
 	return ApiDeleteMuteRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MuteResponse
+//
+//	@return MuteResponse
 func (a *MuteAPIService) DeleteMuteExecute(r ApiDeleteMuteRequest) (*MuteResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *MuteResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MuteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MuteAPIService.DeleteMute")
@@ -184,8 +184,8 @@ func (a *MuteAPIService) DeleteMuteExecute(r ApiDeleteMuteRequest) (*MuteRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -195,8 +195,8 @@ func (a *MuteAPIService) DeleteMuteExecute(r ApiDeleteMuteRequest) (*MuteRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -206,8 +206,8 @@ func (a *MuteAPIService) DeleteMuteExecute(r ApiDeleteMuteRequest) (*MuteRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -225,11 +225,11 @@ func (a *MuteAPIService) DeleteMuteExecute(r ApiDeleteMuteRequest) (*MuteRespons
 }
 
 type ApiFetchMuteListRequest struct {
-	ctx context.Context
-	ApiService MuteAPI
-	fid *int32
-	limit *int32
-	cursor *string
+	ctx                 context.Context
+	ApiService          MuteAPI
+	fid                 *int32
+	limit               *int32
+	cursor              *string
 	xNeynarExperimental *bool
 }
 
@@ -266,24 +266,25 @@ FetchMuteList Muted FIDs of user
 
 Fetches all FIDs that a user has muted.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchMuteListRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchMuteListRequest
 */
 func (a *MuteAPIService) FetchMuteList(ctx context.Context) ApiFetchMuteListRequest {
 	return ApiFetchMuteListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MuteListResponse
+//
+//	@return MuteListResponse
 func (a *MuteAPIService) FetchMuteListExecute(r ApiFetchMuteListRequest) (*MuteListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *MuteListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MuteListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MuteAPIService.FetchMuteList")
@@ -373,8 +374,8 @@ func (a *MuteAPIService) FetchMuteListExecute(r ApiFetchMuteListRequest) (*MuteL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -384,8 +385,8 @@ func (a *MuteAPIService) FetchMuteListExecute(r ApiFetchMuteListRequest) (*MuteL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -395,8 +396,8 @@ func (a *MuteAPIService) FetchMuteListExecute(r ApiFetchMuteListRequest) (*MuteL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -414,8 +415,8 @@ func (a *MuteAPIService) FetchMuteListExecute(r ApiFetchMuteListRequest) (*MuteL
 }
 
 type ApiPublishMuteRequest struct {
-	ctx context.Context
-	ApiService MuteAPI
+	ctx         context.Context
+	ApiService  MuteAPI
 	muteReqBody *MuteReqBody
 }
 
@@ -433,24 +434,25 @@ PublishMute Mute FID
 
 Adds a mute for a given FID. This is an allowlisted API, reach out if you want access.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPublishMuteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPublishMuteRequest
 */
 func (a *MuteAPIService) PublishMute(ctx context.Context) ApiPublishMuteRequest {
 	return ApiPublishMuteRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return MuteResponse
+//
+//	@return MuteResponse
 func (a *MuteAPIService) PublishMuteExecute(r ApiPublishMuteRequest) (*MuteResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *MuteResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MuteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MuteAPIService.PublishMute")
@@ -529,8 +531,8 @@ func (a *MuteAPIService) PublishMuteExecute(r ApiPublishMuteRequest) (*MuteRespo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -540,8 +542,8 @@ func (a *MuteAPIService) PublishMuteExecute(r ApiPublishMuteRequest) (*MuteRespo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -551,8 +553,8 @@ func (a *MuteAPIService) PublishMuteExecute(r ApiPublishMuteRequest) (*MuteRespo
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

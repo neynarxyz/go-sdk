@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,10 +12,10 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the CastsMetrics type satisfies the MappedNullable interface at compile time
@@ -23,9 +23,9 @@ var _ MappedNullable = &CastsMetrics{}
 
 // CastsMetrics struct for CastsMetrics
 type CastsMetrics struct {
-	Start time.Time `json:"start"`
-	ResolutionInSeconds int32 `json:"resolution_in_seconds"`
-	CastCount int32 `json:"cast_count"`
+	Start               time.Time `json:"start"`
+	ResolutionInSeconds int32     `json:"resolution_in_seconds"`
+	CastCount           int32     `json:"cast_count"`
 }
 
 type _CastsMetrics CastsMetrics
@@ -74,7 +74,6 @@ func (o *CastsMetrics) SetStart(v time.Time) {
 	o.Start = v
 }
 
-
 // GetResolutionInSeconds returns the ResolutionInSeconds field value
 func (o *CastsMetrics) GetResolutionInSeconds() int32 {
 	if o == nil {
@@ -98,7 +97,6 @@ func (o *CastsMetrics) GetResolutionInSecondsOk() (*int32, bool) {
 func (o *CastsMetrics) SetResolutionInSeconds(v int32) {
 	o.ResolutionInSeconds = v
 }
-
 
 // GetCastCount returns the CastCount field value
 func (o *CastsMetrics) GetCastCount() int32 {
@@ -124,9 +122,8 @@ func (o *CastsMetrics) SetCastCount(v int32) {
 	o.CastCount = v
 }
 
-
 func (o CastsMetrics) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -153,32 +150,31 @@ func (o *CastsMetrics) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -232,5 +228,3 @@ func (v *NullableCastsMetrics) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

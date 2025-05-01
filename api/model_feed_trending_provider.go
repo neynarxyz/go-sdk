@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -16,14 +16,14 @@ import (
 	"fmt"
 )
 
-// FeedTrendingProvider The provider of the trending casts feed. 
+// FeedTrendingProvider The provider of the trending casts feed.
 type FeedTrendingProvider string
 
 // List of FeedTrendingProvider
 const (
-	FEEDTRENDINGPROVIDER_NEYNAR FeedTrendingProvider = "neynar"
+	FEEDTRENDINGPROVIDER_NEYNAR   FeedTrendingProvider = "neynar"
 	FEEDTRENDINGPROVIDER_OPENRANK FeedTrendingProvider = "openrank"
-	FEEDTRENDINGPROVIDER_MBD FeedTrendingProvider = "mbd"
+	FEEDTRENDINGPROVIDER_MBD      FeedTrendingProvider = "mbd"
 )
 
 // All allowed values of FeedTrendingProvider enum
@@ -111,4 +111,3 @@ func (v *NullableFeedTrendingProvider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

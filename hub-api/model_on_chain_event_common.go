@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,15 +22,15 @@ var _ MappedNullable = &OnChainEventCommon{}
 
 // OnChainEventCommon struct for OnChainEventCommon
 type OnChainEventCommon struct {
-	Type string `json:"type"`
-	ChainId int32 `json:"chainId"`
-	BlockNumber int32 `json:"blockNumber"`
-	BlockHash string `json:"blockHash"`
-	BlockTimestamp int32 `json:"blockTimestamp"`
+	Type            string `json:"type"`
+	ChainId         int32  `json:"chainId"`
+	BlockNumber     int32  `json:"blockNumber"`
+	BlockHash       string `json:"blockHash"`
+	BlockTimestamp  int32  `json:"blockTimestamp"`
 	TransactionHash string `json:"transactionHash"`
-	LogIndex int32 `json:"logIndex"`
-	TxIndex int32 `json:"txIndex"`
-	Fid int32 `json:"fid"`
+	LogIndex        int32  `json:"logIndex"`
+	TxIndex         int32  `json:"txIndex"`
+	Fid             int32  `json:"fid"`
 }
 
 type _OnChainEventCommon OnChainEventCommon
@@ -85,7 +85,6 @@ func (o *OnChainEventCommon) SetType(v string) {
 	o.Type = v
 }
 
-
 // GetChainId returns the ChainId field value
 func (o *OnChainEventCommon) GetChainId() int32 {
 	if o == nil {
@@ -109,7 +108,6 @@ func (o *OnChainEventCommon) GetChainIdOk() (*int32, bool) {
 func (o *OnChainEventCommon) SetChainId(v int32) {
 	o.ChainId = v
 }
-
 
 // GetBlockNumber returns the BlockNumber field value
 func (o *OnChainEventCommon) GetBlockNumber() int32 {
@@ -135,7 +133,6 @@ func (o *OnChainEventCommon) SetBlockNumber(v int32) {
 	o.BlockNumber = v
 }
 
-
 // GetBlockHash returns the BlockHash field value
 func (o *OnChainEventCommon) GetBlockHash() string {
 	if o == nil {
@@ -159,7 +156,6 @@ func (o *OnChainEventCommon) GetBlockHashOk() (*string, bool) {
 func (o *OnChainEventCommon) SetBlockHash(v string) {
 	o.BlockHash = v
 }
-
 
 // GetBlockTimestamp returns the BlockTimestamp field value
 func (o *OnChainEventCommon) GetBlockTimestamp() int32 {
@@ -185,7 +181,6 @@ func (o *OnChainEventCommon) SetBlockTimestamp(v int32) {
 	o.BlockTimestamp = v
 }
 
-
 // GetTransactionHash returns the TransactionHash field value
 func (o *OnChainEventCommon) GetTransactionHash() string {
 	if o == nil {
@@ -209,7 +204,6 @@ func (o *OnChainEventCommon) GetTransactionHashOk() (*string, bool) {
 func (o *OnChainEventCommon) SetTransactionHash(v string) {
 	o.TransactionHash = v
 }
-
 
 // GetLogIndex returns the LogIndex field value
 func (o *OnChainEventCommon) GetLogIndex() int32 {
@@ -235,7 +229,6 @@ func (o *OnChainEventCommon) SetLogIndex(v int32) {
 	o.LogIndex = v
 }
 
-
 // GetTxIndex returns the TxIndex field value
 func (o *OnChainEventCommon) GetTxIndex() int32 {
 	if o == nil {
@@ -259,7 +252,6 @@ func (o *OnChainEventCommon) GetTxIndexOk() (*int32, bool) {
 func (o *OnChainEventCommon) SetTxIndex(v int32) {
 	o.TxIndex = v
 }
-
 
 // GetFid returns the Fid field value
 func (o *OnChainEventCommon) GetFid() int32 {
@@ -285,9 +277,8 @@ func (o *OnChainEventCommon) SetFid(v int32) {
 	o.Fid = v
 }
 
-
 func (o OnChainEventCommon) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -326,32 +317,31 @@ func (o *OnChainEventCommon) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -405,5 +395,3 @@ func (v *NullableOnChainEventCommon) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

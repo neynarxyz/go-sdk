@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,10 +12,10 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the SubscribedToObject type satisfies the MappedNullable interface at compile time
@@ -23,14 +23,14 @@ var _ MappedNullable = &SubscribedToObject{}
 
 // SubscribedToObject struct for SubscribedToObject
 type SubscribedToObject struct {
-	Object string `json:"object"`
-	ProviderName string `json:"provider_name"`
-	ContractAddress *string `json:"contract_address,omitempty"`
-	ProtocolVersion *int32 `json:"protocol_version,omitempty"`
-	Chain *int32 `json:"chain,omitempty"`
-	ExpiresAt *time.Time `json:"expires_at,omitempty"`
-	SubscribedAt *time.Time `json:"subscribed_at,omitempty"`
-	TierId *string `json:"tier_id,omitempty"`
+	Object          string     `json:"object"`
+	ProviderName    string     `json:"provider_name"`
+	ContractAddress *string    `json:"contract_address,omitempty"`
+	ProtocolVersion *int32     `json:"protocol_version,omitempty"`
+	Chain           *int32     `json:"chain,omitempty"`
+	ExpiresAt       *time.Time `json:"expires_at,omitempty"`
+	SubscribedAt    *time.Time `json:"subscribed_at,omitempty"`
+	TierId          *string    `json:"tier_id,omitempty"`
 }
 
 type _SubscribedToObject SubscribedToObject
@@ -78,7 +78,6 @@ func (o *SubscribedToObject) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetProviderName returns the ProviderName field value
 func (o *SubscribedToObject) GetProviderName() string {
 	if o == nil {
@@ -102,7 +101,6 @@ func (o *SubscribedToObject) GetProviderNameOk() (*string, bool) {
 func (o *SubscribedToObject) SetProviderName(v string) {
 	o.ProviderName = v
 }
-
 
 // GetContractAddress returns the ContractAddress field value if set, zero value otherwise.
 func (o *SubscribedToObject) GetContractAddress() string {
@@ -297,7 +295,7 @@ func (o *SubscribedToObject) SetTierId(v string) {
 }
 
 func (o SubscribedToObject) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -340,32 +338,31 @@ func (o *SubscribedToObject) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -419,5 +416,3 @@ func (v *NullableSubscribedToObject) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

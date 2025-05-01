@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &TransactionFrameDestination{}
 // TransactionFrameDestination struct for TransactionFrameDestination
 type TransactionFrameDestination struct {
 	// Ethereum address
-	Address string `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	Address string   `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	Network Networks `json:"network"`
 	// Token contract address for the payment (e.g. 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 is USDC on Base)
 	TokenContractAddress string `json:"token_contract_address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
@@ -78,7 +78,6 @@ func (o *TransactionFrameDestination) SetAddress(v string) {
 	o.Address = v
 }
 
-
 // GetNetwork returns the Network field value
 func (o *TransactionFrameDestination) GetNetwork() Networks {
 	if o == nil {
@@ -102,7 +101,6 @@ func (o *TransactionFrameDestination) GetNetworkOk() (*Networks, bool) {
 func (o *TransactionFrameDestination) SetNetwork(v Networks) {
 	o.Network = v
 }
-
 
 // GetTokenContractAddress returns the TokenContractAddress field value
 func (o *TransactionFrameDestination) GetTokenContractAddress() string {
@@ -128,7 +126,6 @@ func (o *TransactionFrameDestination) SetTokenContractAddress(v string) {
 	o.TokenContractAddress = v
 }
 
-
 // GetAmount returns the Amount field value
 func (o *TransactionFrameDestination) GetAmount() float32 {
 	if o == nil {
@@ -153,9 +150,8 @@ func (o *TransactionFrameDestination) SetAmount(v float32) {
 	o.Amount = v
 }
 
-
 func (o TransactionFrameDestination) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -184,32 +180,31 @@ func (o *TransactionFrameDestination) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -263,5 +258,3 @@ func (v *NullableTransactionFrameDestination) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

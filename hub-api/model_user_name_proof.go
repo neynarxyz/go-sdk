@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,12 +23,12 @@ var _ MappedNullable = &UserNameProof{}
 // UserNameProof struct for UserNameProof
 type UserNameProof struct {
 	// Seconds since Unix Epoch which began on Jan 1, 1970 00:00:00 UTC
-	Timestamp int32 `json:"timestamp"`
-	Name string `json:"name"`
-	Owner string `json:"owner" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
+	Timestamp int32  `json:"timestamp"`
+	Name      string `json:"name"`
+	Owner     string `json:"owner" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
 	Signature string `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	// Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network. 
-	Fid int32 `json:"fid"`
+	// Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
+	Fid  int32        `json:"fid"`
 	Type UserNameType `json:"type"`
 }
 
@@ -83,7 +83,6 @@ func (o *UserNameProof) SetTimestamp(v int32) {
 	o.Timestamp = v
 }
 
-
 // GetName returns the Name field value
 func (o *UserNameProof) GetName() string {
 	if o == nil {
@@ -107,7 +106,6 @@ func (o *UserNameProof) GetNameOk() (*string, bool) {
 func (o *UserNameProof) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetOwner returns the Owner field value
 func (o *UserNameProof) GetOwner() string {
@@ -133,7 +131,6 @@ func (o *UserNameProof) SetOwner(v string) {
 	o.Owner = v
 }
 
-
 // GetSignature returns the Signature field value
 func (o *UserNameProof) GetSignature() string {
 	if o == nil {
@@ -158,7 +155,6 @@ func (o *UserNameProof) SetSignature(v string) {
 	o.Signature = v
 }
 
-
 // GetFid returns the Fid field value
 func (o *UserNameProof) GetFid() int32 {
 	if o == nil {
@@ -182,7 +178,6 @@ func (o *UserNameProof) GetFidOk() (*int32, bool) {
 func (o *UserNameProof) SetFid(v int32) {
 	o.Fid = v
 }
-
 
 // GetType returns the Type field value
 func (o *UserNameProof) GetType() UserNameType {
@@ -209,12 +204,12 @@ func (o *UserNameProof) SetType(v UserNameType) {
 }
 
 // GetDefaultType returns the default value USERNAMETYPE_USERNAME_TYPE_FNAME of the Type field.
-func (o *UserNameProof) GetDefaultType() interface{}  {
+func (o *UserNameProof) GetDefaultType() interface{} {
 	return USERNAMETYPE_USERNAME_TYPE_FNAME
 }
 
 func (o UserNameProof) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -250,7 +245,7 @@ func (o *UserNameProof) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
+	defaultValueFuncMap := map[string]func() interface{}{
 		"type": o.GetDefaultType,
 	}
 	var defaultValueApplied bool
@@ -259,24 +254,24 @@ func (o *UserNameProof) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -330,5 +325,3 @@ func (v *NullableUserNameProof) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

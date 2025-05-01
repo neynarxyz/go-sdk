@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -36,7 +36,6 @@ func ZodErrorAsFetchFeedForYou400Response(v *ZodError) FetchFeedForYou400Respons
 		ZodError: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *FetchFeedForYou400Response) UnmarshalJSON(data []byte) error {
@@ -103,7 +102,7 @@ func (src FetchFeedForYou400Response) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *FetchFeedForYou400Response) GetActualInstance() (interface{}) {
+func (obj *FetchFeedForYou400Response) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -120,7 +119,7 @@ func (obj *FetchFeedForYou400Response) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj FetchFeedForYou400Response) GetActualInstanceValue() (interface{}) {
+func (obj FetchFeedForYou400Response) GetActualInstanceValue() interface{} {
 	if obj.ErrorRes != nil {
 		return *obj.ErrorRes
 	}
@@ -168,5 +167,3 @@ func (v *NullableFetchFeedForYou400Response) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

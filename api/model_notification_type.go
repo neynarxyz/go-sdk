@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,12 +21,12 @@ type NotificationType string
 
 // List of NotificationType
 const (
-	NOTIFICATIONTYPE_FOLLOWS NotificationType = "follows"
-	NOTIFICATIONTYPE_RECASTS NotificationType = "recasts"
-	NOTIFICATIONTYPE_LIKES NotificationType = "likes"
+	NOTIFICATIONTYPE_FOLLOWS  NotificationType = "follows"
+	NOTIFICATIONTYPE_RECASTS  NotificationType = "recasts"
+	NOTIFICATIONTYPE_LIKES    NotificationType = "likes"
 	NOTIFICATIONTYPE_MENTIONS NotificationType = "mentions"
-	NOTIFICATIONTYPE_REPLIES NotificationType = "replies"
-	NOTIFICATIONTYPE_QUOTES NotificationType = "quotes"
+	NOTIFICATIONTYPE_REPLIES  NotificationType = "replies"
+	NOTIFICATIONTYPE_QUOTES   NotificationType = "quotes"
 )
 
 // All allowed values of NotificationType enum
@@ -117,4 +117,3 @@ func (v *NullableNotificationType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

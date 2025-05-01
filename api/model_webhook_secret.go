@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,8 +22,8 @@ var _ MappedNullable = &WebhookSecret{}
 
 // WebhookSecret struct for WebhookSecret
 type WebhookSecret struct {
-	Uid string `json:"uid"`
-	Value string `json:"value"`
+	Uid       string `json:"uid"`
+	Value     string `json:"value"`
 	ExpiresAt string `json:"expires_at"`
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
@@ -79,7 +79,6 @@ func (o *WebhookSecret) SetUid(v string) {
 	o.Uid = v
 }
 
-
 // GetValue returns the Value field value
 func (o *WebhookSecret) GetValue() string {
 	if o == nil {
@@ -103,7 +102,6 @@ func (o *WebhookSecret) GetValueOk() (*string, bool) {
 func (o *WebhookSecret) SetValue(v string) {
 	o.Value = v
 }
-
 
 // GetExpiresAt returns the ExpiresAt field value
 func (o *WebhookSecret) GetExpiresAt() string {
@@ -129,7 +127,6 @@ func (o *WebhookSecret) SetExpiresAt(v string) {
 	o.ExpiresAt = v
 }
 
-
 // GetCreatedAt returns the CreatedAt field value
 func (o *WebhookSecret) GetCreatedAt() string {
 	if o == nil {
@@ -153,7 +150,6 @@ func (o *WebhookSecret) GetCreatedAtOk() (*string, bool) {
 func (o *WebhookSecret) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
-
 
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *WebhookSecret) GetUpdatedAt() string {
@@ -179,7 +175,6 @@ func (o *WebhookSecret) SetUpdatedAt(v string) {
 	o.UpdatedAt = v
 }
 
-
 // GetDeletedAt returns the DeletedAt field value
 func (o *WebhookSecret) GetDeletedAt() string {
 	if o == nil {
@@ -204,9 +199,8 @@ func (o *WebhookSecret) SetDeletedAt(v string) {
 	o.DeletedAt = v
 }
 
-
 func (o WebhookSecret) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -239,32 +233,31 @@ func (o *WebhookSecret) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -318,5 +311,3 @@ func (v *NullableWebhookSecret) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,10 +12,10 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner type satisfies the MappedNullable interface at compile time
@@ -23,11 +23,11 @@ var _ MappedNullable = &FrameValidateAnalyticsInteractionsPerCastInteractionsPer
 
 // FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner struct for FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
 type FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner struct {
-	Start time.Time `json:"start"`
-	Stop time.Time `json:"stop"`
-	Time time.Time `json:"time"`
-	InteractionCount float32 `json:"interaction_count"`
-	CastUrl string `json:"cast_url"`
+	Start            time.Time `json:"start"`
+	Stop             time.Time `json:"stop"`
+	Time             time.Time `json:"time"`
+	InteractionCount float32   `json:"interaction_count"`
+	CastUrl          string    `json:"cast_url"`
 }
 
 type _FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner
@@ -78,7 +78,6 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetS
 	o.Start = v
 }
 
-
 // GetStop returns the Stop field value
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetStop() time.Time {
 	if o == nil {
@@ -102,7 +101,6 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetS
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetStop(v time.Time) {
 	o.Stop = v
 }
-
 
 // GetTime returns the Time field value
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetTime() time.Time {
@@ -128,7 +126,6 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetT
 	o.Time = v
 }
 
-
 // GetInteractionCount returns the InteractionCount field value
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetInteractionCount() float32 {
 	if o == nil {
@@ -152,7 +149,6 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetI
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetInteractionCount(v float32) {
 	o.InteractionCount = v
 }
-
 
 // GetCastUrl returns the CastUrl field value
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetCastUrl() string {
@@ -178,9 +174,8 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetC
 	o.CastUrl = v
 }
 
-
 func (o FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -211,32 +206,31 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) Unma
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -290,5 +284,3 @@ func (v *NullableFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInn
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

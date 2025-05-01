@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type FnameAPI interface {
 
 	/*
-	IsFnameAvailable Check fname availability
+		IsFnameAvailable Check fname availability
 
-	Check if a given fname is available
+		Check if a given fname is available
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiIsFnameAvailableRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiIsFnameAvailableRequest
 	*/
 	IsFnameAvailable(ctx context.Context) ApiIsFnameAvailableRequest
 
@@ -41,9 +40,9 @@ type FnameAPI interface {
 type FnameAPIService service
 
 type ApiIsFnameAvailableRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService FnameAPI
-	fname *string
+	fname      *string
 }
 
 func (r ApiIsFnameAvailableRequest) Fname(fname string) ApiIsFnameAvailableRequest {
@@ -60,24 +59,25 @@ IsFnameAvailable Check fname availability
 
 Check if a given fname is available
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiIsFnameAvailableRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiIsFnameAvailableRequest
 */
 func (a *FnameAPIService) IsFnameAvailable(ctx context.Context) ApiIsFnameAvailableRequest {
 	return ApiIsFnameAvailableRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FnameAvailabilityResponse
+//
+//	@return FnameAvailabilityResponse
 func (a *FnameAPIService) IsFnameAvailableExecute(r ApiIsFnameAvailableRequest) (*FnameAvailabilityResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FnameAvailabilityResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FnameAvailabilityResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FnameAPIService.IsFnameAvailable")
@@ -155,8 +155,8 @@ func (a *FnameAPIService) IsFnameAvailableExecute(r ApiIsFnameAvailableRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

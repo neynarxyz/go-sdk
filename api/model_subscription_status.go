@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,11 +22,11 @@ var _ MappedNullable = &SubscriptionStatus{}
 
 // SubscriptionStatus struct for SubscriptionStatus
 type SubscriptionStatus struct {
-	Object string `json:"object"`
-	Status bool `json:"status"`
-	ExpiresAt NullableInt64 `json:"expires_at"`
-	SubscribedAt NullableInt64 `json:"subscribed_at"`
-	Tier NullableSubscriptionTier `json:"tier"`
+	Object       string                   `json:"object"`
+	Status       bool                     `json:"status"`
+	ExpiresAt    NullableInt64            `json:"expires_at"`
+	SubscribedAt NullableInt64            `json:"subscribed_at"`
+	Tier         NullableSubscriptionTier `json:"tier"`
 }
 
 type _SubscriptionStatus SubscriptionStatus
@@ -77,7 +77,6 @@ func (o *SubscriptionStatus) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetStatus returns the Status field value
 func (o *SubscriptionStatus) GetStatus() bool {
 	if o == nil {
@@ -101,7 +100,6 @@ func (o *SubscriptionStatus) GetStatusOk() (*bool, bool) {
 func (o *SubscriptionStatus) SetStatus(v bool) {
 	o.Status = v
 }
-
 
 // GetExpiresAt returns the ExpiresAt field value
 // If the value is explicit nil, the zero value for int64 will be returned
@@ -129,7 +127,6 @@ func (o *SubscriptionStatus) SetExpiresAt(v int64) {
 	o.ExpiresAt.Set(&v)
 }
 
-
 // GetSubscribedAt returns the SubscribedAt field value
 // If the value is explicit nil, the zero value for int64 will be returned
 func (o *SubscriptionStatus) GetSubscribedAt() int64 {
@@ -155,7 +152,6 @@ func (o *SubscriptionStatus) GetSubscribedAtOk() (*int64, bool) {
 func (o *SubscriptionStatus) SetSubscribedAt(v int64) {
 	o.SubscribedAt.Set(&v)
 }
-
 
 // GetTier returns the Tier field value
 // If the value is explicit nil, the zero value for SubscriptionTier will be returned
@@ -183,9 +179,8 @@ func (o *SubscriptionStatus) SetTier(v SubscriptionTier) {
 	o.Tier.Set(&v)
 }
 
-
 func (o SubscriptionStatus) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -216,32 +211,31 @@ func (o *SubscriptionStatus) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -295,5 +289,3 @@ func (v *NullableSubscriptionStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

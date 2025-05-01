@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type CastsAPI interface {
 
 	/*
-	FetchCastsByParent By parent cast
+		FetchCastsByParent By parent cast
 
-	Retrieve all reply casts (responses) to a specific parent cast in the Farcaster network. Parent casts can be identified using either a combination of FID and hash, or by their URL. This endpoint enables traversal of conversation threads and retrieval of all responses to a particular cast.
+		Retrieve all reply casts (responses) to a specific parent cast in the Farcaster network. Parent casts can be identified using either a combination of FID and hash, or by their URL. This endpoint enables traversal of conversation threads and retrieval of all responses to a particular cast.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchCastsByParentRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchCastsByParentRequest
 	*/
 	FetchCastsByParent(ctx context.Context) ApiFetchCastsByParentRequest
 
@@ -37,12 +36,12 @@ type CastsAPI interface {
 	FetchCastsByParentExecute(r ApiFetchCastsByParentRequest) (*FetchCastsByParent200Response, *http.Response, error)
 
 	/*
-	FetchCastsMentioningUser Mentioning an FID
+		FetchCastsMentioningUser Mentioning an FID
 
-	Fetch casts mentioning a user.
+		Fetch casts mentioning a user.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchCastsMentioningUserRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchCastsMentioningUserRequest
 	*/
 	FetchCastsMentioningUser(ctx context.Context) ApiFetchCastsMentioningUserRequest
 
@@ -51,12 +50,12 @@ type CastsAPI interface {
 	FetchCastsMentioningUserExecute(r ApiFetchCastsMentioningUserRequest) (*FetchUsersCasts200Response, *http.Response, error)
 
 	/*
-	FetchUsersCasts By FID
+		FetchUsersCasts By FID
 
-	Fetch user's casts.
+		Fetch user's casts.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUsersCastsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUsersCastsRequest
 	*/
 	FetchUsersCasts(ctx context.Context) ApiFetchUsersCastsRequest
 
@@ -65,12 +64,12 @@ type CastsAPI interface {
 	FetchUsersCastsExecute(r ApiFetchUsersCastsRequest) (*FetchUsersCasts200Response, *http.Response, error)
 
 	/*
-	LookupCastByHashAndFid By FID and Hash
+		LookupCastByHashAndFid By FID and Hash
 
-	Lookup a cast by its FID and hash.
+		Lookup a cast by its FID and hash.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupCastByHashAndFidRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupCastByHashAndFidRequest
 	*/
 	LookupCastByHashAndFid(ctx context.Context) ApiLookupCastByHashAndFidRequest
 
@@ -83,14 +82,14 @@ type CastsAPI interface {
 type CastsAPIService service
 
 type ApiFetchCastsByParentRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService CastsAPI
-	fid *int32
-	hash *string
-	url *string
-	pageSize *int32
-	reverse *bool
-	pageToken *string
+	fid        *int32
+	hash       *string
+	url        *string
+	pageSize   *int32
+	reverse    *bool
+	pageToken  *string
 }
 
 // The Farcaster ID (FID) of the parent cast&#39;s creator. This parameter must be used together with the &#39;hash&#39; parameter to uniquely identify a parent cast. Required only when using hash-based lookup instead of URL-based lookup. The FID is a unique identifier assigned to each Farcaster user.
@@ -138,24 +137,25 @@ FetchCastsByParent By parent cast
 
 Retrieve all reply casts (responses) to a specific parent cast in the Farcaster network. Parent casts can be identified using either a combination of FID and hash, or by their URL. This endpoint enables traversal of conversation threads and retrieval of all responses to a particular cast.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchCastsByParentRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchCastsByParentRequest
 */
 func (a *CastsAPIService) FetchCastsByParent(ctx context.Context) ApiFetchCastsByParentRequest {
 	return ApiFetchCastsByParentRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchCastsByParent200Response
+//
+//	@return FetchCastsByParent200Response
 func (a *CastsAPIService) FetchCastsByParentExecute(r ApiFetchCastsByParentRequest) (*FetchCastsByParent200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchCastsByParent200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchCastsByParent200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastsAPIService.FetchCastsByParent")
@@ -240,14 +240,14 @@ func (a *CastsAPIService) FetchCastsByParentExecute(r ApiFetchCastsByParentReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -264,12 +264,12 @@ func (a *CastsAPIService) FetchCastsByParentExecute(r ApiFetchCastsByParentReque
 }
 
 type ApiFetchCastsMentioningUserRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService CastsAPI
-	fid *int32
-	pageSize *int32
-	reverse *bool
-	pageToken *string
+	fid        *int32
+	pageSize   *int32
+	reverse    *bool
+	pageToken  *string
 }
 
 // The FID that is mentioned in a cast
@@ -305,24 +305,25 @@ FetchCastsMentioningUser Mentioning an FID
 
 Fetch casts mentioning a user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchCastsMentioningUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchCastsMentioningUserRequest
 */
 func (a *CastsAPIService) FetchCastsMentioningUser(ctx context.Context) ApiFetchCastsMentioningUserRequest {
 	return ApiFetchCastsMentioningUserRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchUsersCasts200Response
+//
+//	@return FetchUsersCasts200Response
 func (a *CastsAPIService) FetchCastsMentioningUserExecute(r ApiFetchCastsMentioningUserRequest) (*FetchUsersCasts200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchUsersCasts200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchUsersCasts200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastsAPIService.FetchCastsMentioningUser")
@@ -402,14 +403,14 @@ func (a *CastsAPIService) FetchCastsMentioningUserExecute(r ApiFetchCastsMention
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -426,12 +427,12 @@ func (a *CastsAPIService) FetchCastsMentioningUserExecute(r ApiFetchCastsMention
 }
 
 type ApiFetchUsersCastsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService CastsAPI
-	fid *int32
-	pageSize *int32
-	reverse *bool
-	pageToken *string
+	fid        *int32
+	pageSize   *int32
+	reverse    *bool
+	pageToken  *string
 }
 
 // The FID of the casts&#39; creator
@@ -467,24 +468,25 @@ FetchUsersCasts By FID
 
 Fetch user's casts.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUsersCastsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUsersCastsRequest
 */
 func (a *CastsAPIService) FetchUsersCasts(ctx context.Context) ApiFetchUsersCastsRequest {
 	return ApiFetchUsersCastsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchUsersCasts200Response
+//
+//	@return FetchUsersCasts200Response
 func (a *CastsAPIService) FetchUsersCastsExecute(r ApiFetchUsersCastsRequest) (*FetchUsersCasts200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchUsersCasts200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchUsersCasts200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastsAPIService.FetchUsersCasts")
@@ -567,14 +569,14 @@ func (a *CastsAPIService) FetchUsersCastsExecute(r ApiFetchUsersCastsRequest) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -591,10 +593,10 @@ func (a *CastsAPIService) FetchUsersCastsExecute(r ApiFetchUsersCastsRequest) (*
 }
 
 type ApiLookupCastByHashAndFidRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService CastsAPI
-	fid *int32
-	hash *string
+	fid        *int32
+	hash       *string
 }
 
 // The FID of the cast&#39;s creator
@@ -618,24 +620,25 @@ LookupCastByHashAndFid By FID and Hash
 
 Lookup a cast by its FID and hash.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupCastByHashAndFidRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupCastByHashAndFidRequest
 */
 func (a *CastsAPIService) LookupCastByHashAndFid(ctx context.Context) ApiLookupCastByHashAndFidRequest {
 	return ApiLookupCastByHashAndFidRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CastAdd
+//
+//	@return CastAdd
 func (a *CastsAPIService) LookupCastByHashAndFidExecute(r ApiLookupCastByHashAndFidRequest) (*CastAdd, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CastAdd
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CastAdd
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastsAPIService.LookupCastByHashAndFid")
@@ -713,14 +716,14 @@ func (a *CastsAPIService) LookupCastByHashAndFidExecute(r ApiLookupCastByHashAnd
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

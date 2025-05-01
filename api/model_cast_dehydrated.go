@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,10 +22,10 @@ var _ MappedNullable = &CastDehydrated{}
 
 // CastDehydrated struct for CastDehydrated
 type CastDehydrated struct {
-	Object string `json:"object"`
-	Hash string `json:"hash"`
-	Author *UserDehydrated `json:"author,omitempty"`
-	App NullableUserDehydrated `json:"app,omitempty"`
+	Object string                 `json:"object"`
+	Hash   string                 `json:"hash"`
+	Author *UserDehydrated        `json:"author,omitempty"`
+	App    NullableUserDehydrated `json:"app,omitempty"`
 }
 
 type _CastDehydrated CastDehydrated
@@ -73,7 +73,6 @@ func (o *CastDehydrated) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetHash returns the Hash field value
 func (o *CastDehydrated) GetHash() string {
 	if o == nil {
@@ -97,7 +96,6 @@ func (o *CastDehydrated) GetHashOk() (*string, bool) {
 func (o *CastDehydrated) SetHash(v string) {
 	o.Hash = v
 }
-
 
 // GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *CastDehydrated) GetAuthor() UserDehydrated {
@@ -163,6 +161,7 @@ func (o *CastDehydrated) HasApp() bool {
 func (o *CastDehydrated) SetApp(v UserDehydrated) {
 	o.App.Set(&v)
 }
+
 // SetAppNil sets the value for App to be an explicit nil
 func (o *CastDehydrated) SetAppNil() {
 	o.App.Set(nil)
@@ -174,7 +173,7 @@ func (o *CastDehydrated) UnsetApp() {
 }
 
 func (o CastDehydrated) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -205,32 +204,31 @@ func (o *CastDehydrated) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -284,5 +282,3 @@ func (v *NullableCastDehydrated) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,12 +22,12 @@ var _ MappedNullable = &UserProfileBio{}
 
 // UserProfileBio struct for UserProfileBio
 type UserProfileBio struct {
-	Text string `json:"text"`
+	Text              string           `json:"text"`
 	MentionedProfiles []UserDehydrated `json:"mentioned_profiles,omitempty"`
-	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list. 
-	MentionedProfilesRanges []TextRange `json:"mentioned_profiles_ranges,omitempty"`
-	MentionedChannels []ChannelDehydrated `json:"mentioned_channels,omitempty"`
-	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list. 
+	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.
+	MentionedProfilesRanges []TextRange         `json:"mentioned_profiles_ranges,omitempty"`
+	MentionedChannels       []ChannelDehydrated `json:"mentioned_channels,omitempty"`
+	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.
 	MentionedChannelsRanges []TextRange `json:"mentioned_channels_ranges,omitempty"`
 }
 
@@ -74,7 +74,6 @@ func (o *UserProfileBio) GetTextOk() (*string, bool) {
 func (o *UserProfileBio) SetText(v string) {
 	o.Text = v
 }
-
 
 // GetMentionedProfiles returns the MentionedProfiles field value if set, zero value otherwise.
 func (o *UserProfileBio) GetMentionedProfiles() []UserDehydrated {
@@ -205,7 +204,7 @@ func (o *UserProfileBio) SetMentionedChannelsRanges(v []TextRange) {
 }
 
 func (o UserProfileBio) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -240,32 +239,31 @@ func (o *UserProfileBio) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -319,5 +317,3 @@ func (v *NullableUserProfileBio) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

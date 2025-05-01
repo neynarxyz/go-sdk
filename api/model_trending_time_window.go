@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,11 +21,11 @@ type TrendingTimeWindow string
 
 // List of TrendingTimeWindow
 const (
-	TRENDINGTIMEWINDOW__1H TrendingTimeWindow = "1h"
-	TRENDINGTIMEWINDOW__6H TrendingTimeWindow = "6h"
+	TRENDINGTIMEWINDOW__1H  TrendingTimeWindow = "1h"
+	TRENDINGTIMEWINDOW__6H  TrendingTimeWindow = "6h"
 	TRENDINGTIMEWINDOW__12H TrendingTimeWindow = "12h"
 	TRENDINGTIMEWINDOW__24H TrendingTimeWindow = "24h"
-	TRENDINGTIMEWINDOW__7D TrendingTimeWindow = "7d"
+	TRENDINGTIMEWINDOW__7D  TrendingTimeWindow = "7d"
 )
 
 // All allowed values of TrendingTimeWindow enum
@@ -115,4 +115,3 @@ func (v *NullableTrendingTimeWindow) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

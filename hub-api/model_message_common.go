@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,11 +22,11 @@ var _ MappedNullable = &MessageCommon{}
 
 // MessageCommon struct for MessageCommon
 type MessageCommon struct {
-	Hash string `json:"hash" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
-	HashScheme HashScheme `json:"hashScheme"`
-	Signature string `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	Hash            string          `json:"hash" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
+	HashScheme      HashScheme      `json:"hashScheme"`
+	Signature       string          `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
 	SignatureScheme SignatureScheme `json:"signatureScheme"`
-	Signer string `json:"signer" validate:"regexp=^0x[0-9a-fA-F]+$"`
+	Signer          string          `json:"signer" validate:"regexp=^0x[0-9a-fA-F]+$"`
 }
 
 type _MessageCommon MessageCommon
@@ -81,7 +81,6 @@ func (o *MessageCommon) SetHash(v string) {
 	o.Hash = v
 }
 
-
 // GetHashScheme returns the HashScheme field value
 func (o *MessageCommon) GetHashScheme() HashScheme {
 	if o == nil {
@@ -107,7 +106,7 @@ func (o *MessageCommon) SetHashScheme(v HashScheme) {
 }
 
 // GetDefaultHashScheme returns the default value HASHSCHEME_HASH_SCHEME_BLAKE3 of the HashScheme field.
-func (o *MessageCommon) GetDefaultHashScheme() interface{}  {
+func (o *MessageCommon) GetDefaultHashScheme() interface{} {
 	return HASHSCHEME_HASH_SCHEME_BLAKE3
 }
 
@@ -135,7 +134,6 @@ func (o *MessageCommon) SetSignature(v string) {
 	o.Signature = v
 }
 
-
 // GetSignatureScheme returns the SignatureScheme field value
 func (o *MessageCommon) GetSignatureScheme() SignatureScheme {
 	if o == nil {
@@ -161,7 +159,7 @@ func (o *MessageCommon) SetSignatureScheme(v SignatureScheme) {
 }
 
 // GetDefaultSignatureScheme returns the default value SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519 of the SignatureScheme field.
-func (o *MessageCommon) GetDefaultSignatureScheme() interface{}  {
+func (o *MessageCommon) GetDefaultSignatureScheme() interface{} {
 	return SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519
 }
 
@@ -189,9 +187,8 @@ func (o *MessageCommon) SetSigner(v string) {
 	o.Signer = v
 }
 
-
 func (o MessageCommon) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -228,8 +225,8 @@ func (o *MessageCommon) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-		"hashScheme": o.GetDefaultHashScheme,
+	defaultValueFuncMap := map[string]func() interface{}{
+		"hashScheme":      o.GetDefaultHashScheme,
 		"signatureScheme": o.GetDefaultSignatureScheme,
 	}
 	var defaultValueApplied bool
@@ -238,24 +235,24 @@ func (o *MessageCommon) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -309,5 +306,3 @@ func (v *NullableMessageCommon) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

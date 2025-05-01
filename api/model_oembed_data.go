@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &OembedData{}
 
 // OembedData Basic data structure of every oembed response see https://oembed.com/
 type OembedData struct {
-	Type string `json:"type"`
+	Type    string         `json:"type"`
 	Version NullableString `json:"version"`
 	// A text title, describing the resource.
 	Title NullableString `json:"title,omitempty"`
@@ -89,7 +89,6 @@ func (o *OembedData) SetType(v string) {
 	o.Type = v
 }
 
-
 // GetVersion returns the Version field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *OembedData) GetVersion() string {
@@ -115,7 +114,6 @@ func (o *OembedData) GetVersionOk() (*string, bool) {
 func (o *OembedData) SetVersion(v string) {
 	o.Version.Set(&v)
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedData) GetTitle() string {
@@ -149,6 +147,7 @@ func (o *OembedData) HasTitle() bool {
 func (o *OembedData) SetTitle(v string) {
 	o.Title.Set(&v)
 }
+
 // SetTitleNil sets the value for Title to be an explicit nil
 func (o *OembedData) SetTitleNil() {
 	o.Title.Set(nil)
@@ -191,6 +190,7 @@ func (o *OembedData) HasAuthorName() bool {
 func (o *OembedData) SetAuthorName(v string) {
 	o.AuthorName.Set(&v)
 }
+
 // SetAuthorNameNil sets the value for AuthorName to be an explicit nil
 func (o *OembedData) SetAuthorNameNil() {
 	o.AuthorName.Set(nil)
@@ -233,6 +233,7 @@ func (o *OembedData) HasAuthorUrl() bool {
 func (o *OembedData) SetAuthorUrl(v string) {
 	o.AuthorUrl.Set(&v)
 }
+
 // SetAuthorUrlNil sets the value for AuthorUrl to be an explicit nil
 func (o *OembedData) SetAuthorUrlNil() {
 	o.AuthorUrl.Set(nil)
@@ -275,6 +276,7 @@ func (o *OembedData) HasProviderName() bool {
 func (o *OembedData) SetProviderName(v string) {
 	o.ProviderName.Set(&v)
 }
+
 // SetProviderNameNil sets the value for ProviderName to be an explicit nil
 func (o *OembedData) SetProviderNameNil() {
 	o.ProviderName.Set(nil)
@@ -317,6 +319,7 @@ func (o *OembedData) HasProviderUrl() bool {
 func (o *OembedData) SetProviderUrl(v string) {
 	o.ProviderUrl.Set(&v)
 }
+
 // SetProviderUrlNil sets the value for ProviderUrl to be an explicit nil
 func (o *OembedData) SetProviderUrlNil() {
 	o.ProviderUrl.Set(nil)
@@ -359,6 +362,7 @@ func (o *OembedData) HasCacheAge() bool {
 func (o *OembedData) SetCacheAge(v string) {
 	o.CacheAge.Set(&v)
 }
+
 // SetCacheAgeNil sets the value for CacheAge to be an explicit nil
 func (o *OembedData) SetCacheAgeNil() {
 	o.CacheAge.Set(nil)
@@ -401,6 +405,7 @@ func (o *OembedData) HasThumbnailUrl() bool {
 func (o *OembedData) SetThumbnailUrl(v string) {
 	o.ThumbnailUrl.Set(&v)
 }
+
 // SetThumbnailUrlNil sets the value for ThumbnailUrl to be an explicit nil
 func (o *OembedData) SetThumbnailUrlNil() {
 	o.ThumbnailUrl.Set(nil)
@@ -443,6 +448,7 @@ func (o *OembedData) HasThumbnailWidth() bool {
 func (o *OembedData) SetThumbnailWidth(v float32) {
 	o.ThumbnailWidth.Set(&v)
 }
+
 // SetThumbnailWidthNil sets the value for ThumbnailWidth to be an explicit nil
 func (o *OembedData) SetThumbnailWidthNil() {
 	o.ThumbnailWidth.Set(nil)
@@ -485,6 +491,7 @@ func (o *OembedData) HasThumbnailHeight() bool {
 func (o *OembedData) SetThumbnailHeight(v float32) {
 	o.ThumbnailHeight.Set(&v)
 }
+
 // SetThumbnailHeightNil sets the value for ThumbnailHeight to be an explicit nil
 func (o *OembedData) SetThumbnailHeightNil() {
 	o.ThumbnailHeight.Set(nil)
@@ -496,7 +503,7 @@ func (o *OembedData) UnsetThumbnailHeight() {
 }
 
 func (o OembedData) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -548,32 +555,31 @@ func (o *OembedData) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -627,5 +633,3 @@ func (v *NullableOembedData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

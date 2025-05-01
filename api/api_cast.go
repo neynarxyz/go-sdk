@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,18 +19,17 @@ import (
 	"net/url"
 )
 
-
 type CastAPI interface {
 
 	/*
-	DeleteCast Delete a cast
+		DeleteCast Delete a cast
 
-	Delete an existing cast. \
-(In order to delete a cast `signer_uuid` must be approved)
+		Delete an existing cast. \
+	(In order to delete a cast `signer_uuid` must be approved)
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeleteCastRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiDeleteCastRequest
 	*/
 	DeleteCast(ctx context.Context) ApiDeleteCastRequest
 
@@ -39,12 +38,12 @@ type CastAPI interface {
 	DeleteCastExecute(r ApiDeleteCastRequest) (*OperationResponse, *http.Response, error)
 
 	/*
-	FetchBulkCasts Bulk fetch casts
+		FetchBulkCasts Bulk fetch casts
 
-	Fetch multiple casts using their respective hashes.
+		Fetch multiple casts using their respective hashes.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchBulkCastsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchBulkCastsRequest
 	*/
 	FetchBulkCasts(ctx context.Context) ApiFetchBulkCastsRequest
 
@@ -53,12 +52,12 @@ type CastAPI interface {
 	FetchBulkCastsExecute(r ApiFetchBulkCastsRequest) (*CastsResponse, *http.Response, error)
 
 	/*
-	FetchComposerActions Fetch composer actions
+		FetchComposerActions Fetch composer actions
 
-	Fetches all composer actions on Warpcast. You can filter by top or featured.
+		Fetches all composer actions on Warpcast. You can filter by top or featured.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchComposerActionsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchComposerActionsRequest
 	*/
 	FetchComposerActions(ctx context.Context) ApiFetchComposerActionsRequest
 
@@ -67,12 +66,12 @@ type CastAPI interface {
 	FetchComposerActionsExecute(r ApiFetchComposerActionsRequest) (*CastComposerActionsListResponse, *http.Response, error)
 
 	/*
-	FetchEmbeddedUrlMetadata Embedded URL metadata
+		FetchEmbeddedUrlMetadata Embedded URL metadata
 
-	Crawls the given URL and returns metadata useful when embedding the URL in a cast.
+		Crawls the given URL and returns metadata useful when embedding the URL in a cast.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchEmbeddedUrlMetadataRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchEmbeddedUrlMetadataRequest
 	*/
 	FetchEmbeddedUrlMetadata(ctx context.Context) ApiFetchEmbeddedUrlMetadataRequest
 
@@ -81,12 +80,12 @@ type CastAPI interface {
 	FetchEmbeddedUrlMetadataExecute(r ApiFetchEmbeddedUrlMetadataRequest) (*CastEmbedCrawlResponse, *http.Response, error)
 
 	/*
-	LookupCastByHashOrWarpcastUrl By hash or URL
+		LookupCastByHashOrWarpcastUrl By hash or URL
 
-	Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+		Gets information about an individual cast by passing in a Warpcast web URL or cast hash
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupCastByHashOrWarpcastUrlRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupCastByHashOrWarpcastUrlRequest
 	*/
 	LookupCastByHashOrWarpcastUrl(ctx context.Context) ApiLookupCastByHashOrWarpcastUrlRequest
 
@@ -95,12 +94,12 @@ type CastAPI interface {
 	LookupCastByHashOrWarpcastUrlExecute(r ApiLookupCastByHashOrWarpcastUrlRequest) (*CastResponse, *http.Response, error)
 
 	/*
-	LookupCastConversation Conversation for a cast
+		LookupCastConversation Conversation for a cast
 
-	Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+		Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupCastConversationRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupCastConversationRequest
 	*/
 	LookupCastConversation(ctx context.Context) ApiLookupCastConversationRequest
 
@@ -109,14 +108,14 @@ type CastAPI interface {
 	LookupCastConversationExecute(r ApiLookupCastConversationRequest) (*Conversation, *http.Response, error)
 
 	/*
-	PublishCast Post a cast
+		PublishCast Post a cast
 
-	Posts a cast or cast reply. Works with mentions and embeds.  
-(In order to post a cast `signer_uuid` must be approved)
+		Posts a cast or cast reply. Works with mentions and embeds.
+	(In order to post a cast `signer_uuid` must be approved)
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPublishCastRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPublishCastRequest
 	*/
 	PublishCast(ctx context.Context) ApiPublishCastRequest
 
@@ -125,12 +124,12 @@ type CastAPI interface {
 	PublishCastExecute(r ApiPublishCastRequest) (*PostCastResponse, *http.Response, error)
 
 	/*
-	SearchCasts Search for casts
+		SearchCasts Search for casts
 
-	Search for casts based on a query string, with optional AND filters
+		Search for casts based on a query string, with optional AND filters
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiSearchCastsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiSearchCastsRequest
 	*/
 	SearchCasts(ctx context.Context) ApiSearchCastsRequest
 
@@ -143,8 +142,8 @@ type CastAPI interface {
 type CastAPIService service
 
 type ApiDeleteCastRequest struct {
-	ctx context.Context
-	ApiService CastAPI
+	ctx               context.Context
+	ApiService        CastAPI
 	deleteCastReqBody *DeleteCastReqBody
 }
 
@@ -163,25 +162,25 @@ DeleteCast Delete a cast
 Delete an existing cast. \
 (In order to delete a cast `signer_uuid` must be approved)
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteCastRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteCastRequest
 */
 func (a *CastAPIService) DeleteCast(ctx context.Context) ApiDeleteCastRequest {
 	return ApiDeleteCastRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.DeleteCast")
@@ -260,8 +259,8 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -271,8 +270,8 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -282,8 +281,8 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -293,8 +292,8 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -312,11 +311,11 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 }
 
 type ApiFetchBulkCastsRequest struct {
-	ctx context.Context
-	ApiService CastAPI
-	casts *string
-	viewerFid *int32
-	sortType *string
+	ctx                 context.Context
+	ApiService          CastAPI
+	casts               *string
+	viewerFid           *int32
+	sortType            *string
 	xNeynarExperimental *bool
 }
 
@@ -353,24 +352,25 @@ FetchBulkCasts Bulk fetch casts
 
 Fetch multiple casts using their respective hashes.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchBulkCastsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchBulkCastsRequest
 */
 func (a *CastAPIService) FetchBulkCasts(ctx context.Context) ApiFetchBulkCastsRequest {
 	return ApiFetchBulkCastsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CastsResponse
+//
+//	@return CastsResponse
 func (a *CastAPIService) FetchBulkCastsExecute(r ApiFetchBulkCastsRequest) (*CastsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CastsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CastsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.FetchBulkCasts")
@@ -457,8 +457,8 @@ func (a *CastAPIService) FetchBulkCastsExecute(r ApiFetchBulkCastsRequest) (*Cas
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -476,11 +476,11 @@ func (a *CastAPIService) FetchBulkCastsExecute(r ApiFetchBulkCastsRequest) (*Cas
 }
 
 type ApiFetchComposerActionsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService CastAPI
-	list *CastComposerType
-	limit *int32
-	cursor *string
+	list       *CastComposerType
+	limit      *int32
+	cursor     *string
 }
 
 // Type of list to fetch.
@@ -510,24 +510,25 @@ FetchComposerActions Fetch composer actions
 
 Fetches all composer actions on Warpcast. You can filter by top or featured.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchComposerActionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchComposerActionsRequest
 */
 func (a *CastAPIService) FetchComposerActions(ctx context.Context) ApiFetchComposerActionsRequest {
 	return ApiFetchComposerActionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CastComposerActionsListResponse
+//
+//	@return CastComposerActionsListResponse
 func (a *CastAPIService) FetchComposerActionsExecute(r ApiFetchComposerActionsRequest) (*CastComposerActionsListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CastComposerActionsListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CastComposerActionsListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.FetchComposerActions")
@@ -614,8 +615,8 @@ func (a *CastAPIService) FetchComposerActionsExecute(r ApiFetchComposerActionsRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -625,8 +626,8 @@ func (a *CastAPIService) FetchComposerActionsExecute(r ApiFetchComposerActionsRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -644,9 +645,9 @@ func (a *CastAPIService) FetchComposerActionsExecute(r ApiFetchComposerActionsRe
 }
 
 type ApiFetchEmbeddedUrlMetadataRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService CastAPI
-	url *string
+	url        *string
 }
 
 // URL to crawl metadata of
@@ -664,24 +665,25 @@ FetchEmbeddedUrlMetadata Embedded URL metadata
 
 Crawls the given URL and returns metadata useful when embedding the URL in a cast.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchEmbeddedUrlMetadataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchEmbeddedUrlMetadataRequest
 */
 func (a *CastAPIService) FetchEmbeddedUrlMetadata(ctx context.Context) ApiFetchEmbeddedUrlMetadataRequest {
 	return ApiFetchEmbeddedUrlMetadataRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CastEmbedCrawlResponse
+//
+//	@return CastEmbedCrawlResponse
 func (a *CastAPIService) FetchEmbeddedUrlMetadataExecute(r ApiFetchEmbeddedUrlMetadataRequest) (*CastEmbedCrawlResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CastEmbedCrawlResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CastEmbedCrawlResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.FetchEmbeddedUrlMetadata")
@@ -758,8 +760,8 @@ func (a *CastAPIService) FetchEmbeddedUrlMetadataExecute(r ApiFetchEmbeddedUrlMe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -777,11 +779,11 @@ func (a *CastAPIService) FetchEmbeddedUrlMetadataExecute(r ApiFetchEmbeddedUrlMe
 }
 
 type ApiLookupCastByHashOrWarpcastUrlRequest struct {
-	ctx context.Context
-	ApiService CastAPI
-	identifier *string
-	type_ *CastParamType
-	viewerFid *int32
+	ctx                 context.Context
+	ApiService          CastAPI
+	identifier          *string
+	type_               *CastParamType
+	viewerFid           *int32
 	xNeynarExperimental *bool
 }
 
@@ -817,24 +819,25 @@ LookupCastByHashOrWarpcastUrl By hash or URL
 
 Gets information about an individual cast by passing in a Warpcast web URL or cast hash
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupCastByHashOrWarpcastUrlRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupCastByHashOrWarpcastUrlRequest
 */
 func (a *CastAPIService) LookupCastByHashOrWarpcastUrl(ctx context.Context) ApiLookupCastByHashOrWarpcastUrlRequest {
 	return ApiLookupCastByHashOrWarpcastUrlRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CastResponse
+//
+//	@return CastResponse
 func (a *CastAPIService) LookupCastByHashOrWarpcastUrlExecute(r ApiLookupCastByHashOrWarpcastUrlRequest) (*CastResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CastResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CastResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.LookupCastByHashOrWarpcastUrl")
@@ -922,8 +925,8 @@ func (a *CastAPIService) LookupCastByHashOrWarpcastUrlExecute(r ApiLookupCastByH
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -941,18 +944,18 @@ func (a *CastAPIService) LookupCastByHashOrWarpcastUrlExecute(r ApiLookupCastByH
 }
 
 type ApiLookupCastConversationRequest struct {
-	ctx context.Context
-	ApiService CastAPI
-	identifier *string
-	type_ *CastParamType
-	replyDepth *int32
+	ctx                             context.Context
+	ApiService                      CastAPI
+	identifier                      *string
+	type_                           *CastParamType
+	replyDepth                      *int32
 	includeChronologicalParentCasts *bool
-	viewerFid *int32
-	sortType *CastConversationSortType
-	fold *string
-	limit *int32
-	cursor *string
-	xNeynarExperimental *bool
+	viewerFid                       *int32
+	sortType                        *CastConversationSortType
+	fold                            *string
+	limit                           *int32
+	cursor                          *string
+	xNeynarExperimental             *bool
 }
 
 // Cast identifier (Its either a url or a hash)
@@ -1023,24 +1026,25 @@ LookupCastConversation Conversation for a cast
 
 Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupCastConversationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupCastConversationRequest
 */
 func (a *CastAPIService) LookupCastConversation(ctx context.Context) ApiLookupCastConversationRequest {
 	return ApiLookupCastConversationRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Conversation
+//
+//	@return Conversation
 func (a *CastAPIService) LookupCastConversationExecute(r ApiLookupCastConversationRequest) (*Conversation, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Conversation
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Conversation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.LookupCastConversation")
@@ -1155,8 +1159,8 @@ func (a *CastAPIService) LookupCastConversationExecute(r ApiLookupCastConversati
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1174,8 +1178,8 @@ func (a *CastAPIService) LookupCastConversationExecute(r ApiLookupCastConversati
 }
 
 type ApiPublishCastRequest struct {
-	ctx context.Context
-	ApiService CastAPI
+	ctx             context.Context
+	ApiService      CastAPI
 	postCastReqBody *PostCastReqBody
 }
 
@@ -1191,28 +1195,28 @@ func (r ApiPublishCastRequest) Execute() (*PostCastResponse, *http.Response, err
 /*
 PublishCast Post a cast
 
-Posts a cast or cast reply. Works with mentions and embeds.  
+Posts a cast or cast reply. Works with mentions and embeds.
 (In order to post a cast `signer_uuid` must be approved)
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPublishCastRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPublishCastRequest
 */
 func (a *CastAPIService) PublishCast(ctx context.Context) ApiPublishCastRequest {
 	return ApiPublishCastRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return PostCastResponse
+//
+//	@return PostCastResponse
 func (a *CastAPIService) PublishCastExecute(r ApiPublishCastRequest) (*PostCastResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PostCastResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PostCastResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.PublishCast")
@@ -1291,8 +1295,8 @@ func (a *CastAPIService) PublishCastExecute(r ApiPublishCastRequest) (*PostCastR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1302,8 +1306,8 @@ func (a *CastAPIService) PublishCastExecute(r ApiPublishCastRequest) (*PostCastR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1313,8 +1317,8 @@ func (a *CastAPIService) PublishCastExecute(r ApiPublishCastRequest) (*PostCastR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1324,8 +1328,8 @@ func (a *CastAPIService) PublishCastExecute(r ApiPublishCastRequest) (*PostCastR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1343,34 +1347,34 @@ func (a *CastAPIService) PublishCastExecute(r ApiPublishCastRequest) (*PostCastR
 }
 
 type ApiSearchCastsRequest struct {
-	ctx context.Context
-	ApiService CastAPI
-	q *string
-	mode *string
-	sortType *SearchSortType
-	authorFid *int32
-	viewerFid *int32
-	parentUrl *string
-	channelId *string
-	priorityMode *bool
-	limit *int32
-	cursor *string
+	ctx                 context.Context
+	ApiService          CastAPI
+	q                   *string
+	mode                *string
+	sortType            *SearchSortType
+	authorFid           *int32
+	viewerFid           *int32
+	parentUrl           *string
+	channelId           *string
+	priorityMode        *bool
+	limit               *int32
+	cursor              *string
 	xNeynarExperimental *bool
 }
 
-// Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | &#x60;+&#x60;       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | &#x60;\\|&#x60;      | Acts as the OR operator.                                                                                 | | &#x60;*&#x60;       | When used at the end of a term, signifies a prefix query.                                                  | | &#x60;\&quot;&#x60;       | Wraps several terms into a phrase (for example, &#x60;\&quot;star wars\&quot;&#x60;).                                          | | &#x60;(&#x60;, &#x60;)&#x60;  | Wrap a clause for precedence (for example, &#x60;star + (wars \\| trek)&#x60;).                                     | | &#x60;~n&#x60;      | When used after a term (for example, &#x60;satr~3&#x60;), sets &#x60;fuzziness&#x60;. When used after a phrase, sets &#x60;slop&#x60;. | | &#x60;-&#x60;       | Negates the term.                                                                                        | | &#x60;before:&#x60; | Search for casts before a specific date. (e.g. &#x60;before:2025-04-20&#x60;)                                       | | &#x60;after:&#x60;  | Search for casts after a specific date. (e.g. &#x60;after:2025-04-20&#x60;)                                         | 
+// Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | &#x60;+&#x60;       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | &#x60;\\|&#x60;      | Acts as the OR operator.                                                                                 | | &#x60;*&#x60;       | When used at the end of a term, signifies a prefix query.                                                  | | &#x60;\&quot;&#x60;       | Wraps several terms into a phrase (for example, &#x60;\&quot;star wars\&quot;&#x60;).                                          | | &#x60;(&#x60;, &#x60;)&#x60;  | Wrap a clause for precedence (for example, &#x60;star + (wars \\| trek)&#x60;).                                     | | &#x60;~n&#x60;      | When used after a term (for example, &#x60;satr~3&#x60;), sets &#x60;fuzziness&#x60;. When used after a phrase, sets &#x60;slop&#x60;. | | &#x60;-&#x60;       | Negates the term.                                                                                        | | &#x60;before:&#x60; | Search for casts before a specific date. (e.g. &#x60;before:2025-04-20&#x60;)                                       | | &#x60;after:&#x60;  | Search for casts after a specific date. (e.g. &#x60;after:2025-04-20&#x60;)                                         |
 func (r ApiSearchCastsRequest) Q(q string) ApiSearchCastsRequest {
 	r.q = &q
 	return r
 }
 
-// Choices are: - &#x60;literal&#x60; - Searches for the words in the query string (default) - &#x60;semantic&#x60; - Searches for the meaning of the query string - &#x60;hybrid&#x60; - Combines both literal and semantic results 
+// Choices are: - &#x60;literal&#x60; - Searches for the words in the query string (default) - &#x60;semantic&#x60; - Searches for the meaning of the query string - &#x60;hybrid&#x60; - Combines both literal and semantic results
 func (r ApiSearchCastsRequest) Mode(mode string) ApiSearchCastsRequest {
 	r.mode = &mode
 	return r
 }
 
-// Choices are: - &#x60;desc_chron&#x60; - All casts sorted by time (default) - &#x60;algorithmic&#x60; - Casts sorted by engagement and time 
+// Choices are: - &#x60;desc_chron&#x60; - All casts sorted by time (default) - &#x60;algorithmic&#x60; - Casts sorted by engagement and time
 func (r ApiSearchCastsRequest) SortType(sortType SearchSortType) ApiSearchCastsRequest {
 	r.sortType = &sortType
 	return r
@@ -1433,24 +1437,25 @@ SearchCasts Search for casts
 
 Search for casts based on a query string, with optional AND filters
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchCastsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSearchCastsRequest
 */
 func (a *CastAPIService) SearchCasts(ctx context.Context) ApiSearchCastsRequest {
 	return ApiSearchCastsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CastsSearchResponse
+//
+//	@return CastsSearchResponse
 func (a *CastAPIService) SearchCastsExecute(r ApiSearchCastsRequest) (*CastsSearchResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CastsSearchResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CastsSearchResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastAPIService.SearchCasts")
@@ -1564,8 +1569,8 @@ func (a *CastAPIService) SearchCastsExecute(r ApiSearchCastsRequest) (*CastsSear
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

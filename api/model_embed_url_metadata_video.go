@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -20,8 +20,8 @@ var _ MappedNullable = &EmbedUrlMetadataVideo{}
 
 // EmbedUrlMetadataVideo struct for EmbedUrlMetadataVideo
 type EmbedUrlMetadataVideo struct {
-	DurationS *float32 `json:"duration_s,omitempty"`
-	Stream []EmbedUrlMetadataVideoStreamInner `json:"stream,omitempty"`
+	DurationS *float32                           `json:"duration_s,omitempty"`
+	Stream    []EmbedUrlMetadataVideoStreamInner `json:"stream,omitempty"`
 }
 
 // NewEmbedUrlMetadataVideo instantiates a new EmbedUrlMetadataVideo object
@@ -106,7 +106,7 @@ func (o *EmbedUrlMetadataVideo) SetStream(v []EmbedUrlMetadataVideoStreamInner) 
 }
 
 func (o EmbedUrlMetadataVideo) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableEmbedUrlMetadataVideo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

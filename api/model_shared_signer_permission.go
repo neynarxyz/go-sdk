@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,21 +21,21 @@ type SharedSignerPermission string
 
 // List of SharedSignerPermission
 const (
-	SHAREDSIGNERPERMISSION_WRITE_ALL SharedSignerPermission = "WRITE_ALL"
-	SHAREDSIGNERPERMISSION_READ_ONLY SharedSignerPermission = "READ_ONLY"
-	SHAREDSIGNERPERMISSION_NONE SharedSignerPermission = "NONE"
-	SHAREDSIGNERPERMISSION_PUBLISH_CAST SharedSignerPermission = "PUBLISH_CAST"
-	SHAREDSIGNERPERMISSION_DELETE_CAST SharedSignerPermission = "DELETE_CAST"
-	SHAREDSIGNERPERMISSION_PUBLISH_REACTION SharedSignerPermission = "PUBLISH_REACTION"
-	SHAREDSIGNERPERMISSION_DELETE_REACTION SharedSignerPermission = "DELETE_REACTION"
-	SHAREDSIGNERPERMISSION_UPDATE_PROFILE SharedSignerPermission = "UPDATE_PROFILE"
-	SHAREDSIGNERPERMISSION_FOLLOW_USER SharedSignerPermission = "FOLLOW_USER"
-	SHAREDSIGNERPERMISSION_UNFOLLOW_USER SharedSignerPermission = "UNFOLLOW_USER"
-	SHAREDSIGNERPERMISSION_FOLLOW_CHANNEL SharedSignerPermission = "FOLLOW_CHANNEL"
-	SHAREDSIGNERPERMISSION_UNFOLLOW_CHANNEL SharedSignerPermission = "UNFOLLOW_CHANNEL"
-	SHAREDSIGNERPERMISSION_ADD_VERIFICATION SharedSignerPermission = "ADD_VERIFICATION"
+	SHAREDSIGNERPERMISSION_WRITE_ALL           SharedSignerPermission = "WRITE_ALL"
+	SHAREDSIGNERPERMISSION_READ_ONLY           SharedSignerPermission = "READ_ONLY"
+	SHAREDSIGNERPERMISSION_NONE                SharedSignerPermission = "NONE"
+	SHAREDSIGNERPERMISSION_PUBLISH_CAST        SharedSignerPermission = "PUBLISH_CAST"
+	SHAREDSIGNERPERMISSION_DELETE_CAST         SharedSignerPermission = "DELETE_CAST"
+	SHAREDSIGNERPERMISSION_PUBLISH_REACTION    SharedSignerPermission = "PUBLISH_REACTION"
+	SHAREDSIGNERPERMISSION_DELETE_REACTION     SharedSignerPermission = "DELETE_REACTION"
+	SHAREDSIGNERPERMISSION_UPDATE_PROFILE      SharedSignerPermission = "UPDATE_PROFILE"
+	SHAREDSIGNERPERMISSION_FOLLOW_USER         SharedSignerPermission = "FOLLOW_USER"
+	SHAREDSIGNERPERMISSION_UNFOLLOW_USER       SharedSignerPermission = "UNFOLLOW_USER"
+	SHAREDSIGNERPERMISSION_FOLLOW_CHANNEL      SharedSignerPermission = "FOLLOW_CHANNEL"
+	SHAREDSIGNERPERMISSION_UNFOLLOW_CHANNEL    SharedSignerPermission = "UNFOLLOW_CHANNEL"
+	SHAREDSIGNERPERMISSION_ADD_VERIFICATION    SharedSignerPermission = "ADD_VERIFICATION"
 	SHAREDSIGNERPERMISSION_REMOVE_VERIFICATION SharedSignerPermission = "REMOVE_VERIFICATION"
-	SHAREDSIGNERPERMISSION_WRITE_FRAME_ACTION SharedSignerPermission = "WRITE_FRAME_ACTION"
+	SHAREDSIGNERPERMISSION_WRITE_FRAME_ACTION  SharedSignerPermission = "WRITE_FRAME_ACTION"
 )
 
 // All allowed values of SharedSignerPermission enum
@@ -135,4 +135,3 @@ func (v *NullableSharedSignerPermission) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

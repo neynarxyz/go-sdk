@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -20,9 +20,9 @@ var _ MappedNullable = &SubscriptionTierPrice{}
 
 // SubscriptionTierPrice struct for SubscriptionTierPrice
 type SubscriptionTierPrice struct {
-	PeriodDurationSeconds *int32 `json:"period_duration_seconds,omitempty"`
-	TokensPerPeriod *string `json:"tokens_per_period,omitempty"`
-	InitialMintPrice *string `json:"initial_mint_price,omitempty"`
+	PeriodDurationSeconds *int32  `json:"period_duration_seconds,omitempty"`
+	TokensPerPeriod       *string `json:"tokens_per_period,omitempty"`
+	InitialMintPrice      *string `json:"initial_mint_price,omitempty"`
 }
 
 // NewSubscriptionTierPrice instantiates a new SubscriptionTierPrice object
@@ -139,7 +139,7 @@ func (o *SubscriptionTierPrice) SetInitialMintPrice(v string) {
 }
 
 func (o SubscriptionTierPrice) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -195,5 +195,3 @@ func (v *NullableSubscriptionTierPrice) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

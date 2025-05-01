@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &OembedVideoData{}
 
 // OembedVideoData struct for OembedVideoData
 type OembedVideoData struct {
-	Type string `json:"type"`
+	Type    string `json:"type"`
 	Version string `json:"version"`
 	// A text title, describing the resource.
 	Title *string `json:"title,omitempty"`
@@ -98,7 +98,6 @@ func (o *OembedVideoData) SetType(v string) {
 	o.Type = v
 }
 
-
 // GetVersion returns the Version field value
 func (o *OembedVideoData) GetVersion() string {
 	if o == nil {
@@ -122,7 +121,6 @@ func (o *OembedVideoData) GetVersionOk() (*string, bool) {
 func (o *OembedVideoData) SetVersion(v string) {
 	o.Version = v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *OembedVideoData) GetTitle() string {
@@ -438,7 +436,6 @@ func (o *OembedVideoData) SetHtml(v string) {
 	o.Html.Set(&v)
 }
 
-
 // GetWidth returns the Width field value
 // If the value is explicit nil, the zero value for float32 will be returned
 func (o *OembedVideoData) GetWidth() float32 {
@@ -464,7 +461,6 @@ func (o *OembedVideoData) GetWidthOk() (*float32, bool) {
 func (o *OembedVideoData) SetWidth(v float32) {
 	o.Width.Set(&v)
 }
-
 
 // GetHeight returns the Height field value
 // If the value is explicit nil, the zero value for float32 will be returned
@@ -492,9 +488,8 @@ func (o *OembedVideoData) SetHeight(v float32) {
 	o.Height.Set(&v)
 }
 
-
 func (o OembedVideoData) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -552,32 +547,31 @@ func (o *OembedVideoData) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -631,5 +625,3 @@ func (v *NullableOembedVideoData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,10 +19,10 @@ import (
 
 // FrameValidateAnalyticsResponse - struct for FrameValidateAnalyticsResponse
 type FrameValidateAnalyticsResponse struct {
-	FrameValidateAnalyticsInputText *FrameValidateAnalyticsInputText
+	FrameValidateAnalyticsInputText           *FrameValidateAnalyticsInputText
 	FrameValidateAnalyticsInteractionsPerCast *FrameValidateAnalyticsInteractionsPerCast
-	FrameValidateAnalyticsInteractors *FrameValidateAnalyticsInteractors
-	FrameValidateAnalyticsTotalInteractors *FrameValidateAnalyticsTotalInteractors
+	FrameValidateAnalyticsInteractors         *FrameValidateAnalyticsInteractors
+	FrameValidateAnalyticsTotalInteractors    *FrameValidateAnalyticsTotalInteractors
 }
 
 // FrameValidateAnalyticsInputTextAsFrameValidateAnalyticsResponse is a convenience function that returns FrameValidateAnalyticsInputText wrapped in FrameValidateAnalyticsResponse
@@ -52,7 +52,6 @@ func FrameValidateAnalyticsTotalInteractorsAsFrameValidateAnalyticsResponse(v *F
 		FrameValidateAnalyticsTotalInteractors: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *FrameValidateAnalyticsResponse) UnmarshalJSON(data []byte) error {
@@ -163,7 +162,7 @@ func (src FrameValidateAnalyticsResponse) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *FrameValidateAnalyticsResponse) GetActualInstance() (interface{}) {
+func (obj *FrameValidateAnalyticsResponse) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -188,7 +187,7 @@ func (obj *FrameValidateAnalyticsResponse) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj FrameValidateAnalyticsResponse) GetActualInstanceValue() (interface{}) {
+func (obj FrameValidateAnalyticsResponse) GetActualInstanceValue() interface{} {
 	if obj.FrameValidateAnalyticsInputText != nil {
 		return *obj.FrameValidateAnalyticsInputText
 	}
@@ -244,5 +243,3 @@ func (v *NullableFrameValidateAnalyticsResponse) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

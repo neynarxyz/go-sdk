@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type WebhookAPI interface {
 
 	/*
-	DeleteWebhook Delete a webhook
+		DeleteWebhook Delete a webhook
 
-	Delete a webhook
+		Delete a webhook
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeleteWebhookRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiDeleteWebhookRequest
 	*/
 	DeleteWebhook(ctx context.Context) ApiDeleteWebhookRequest
 
@@ -37,12 +36,12 @@ type WebhookAPI interface {
 	DeleteWebhookExecute(r ApiDeleteWebhookRequest) (*WebhookResponse, *http.Response, error)
 
 	/*
-	FetchWebhooks Associated webhooks of user
+		FetchWebhooks Associated webhooks of user
 
-	Fetch a list of webhooks associated to a user
+		Fetch a list of webhooks associated to a user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchWebhooksRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchWebhooksRequest
 	*/
 	FetchWebhooks(ctx context.Context) ApiFetchWebhooksRequest
 
@@ -51,12 +50,12 @@ type WebhookAPI interface {
 	FetchWebhooksExecute(r ApiFetchWebhooksRequest) (*WebhookListResponse, *http.Response, error)
 
 	/*
-	LookupWebhook Fetch a webhook
+		LookupWebhook Fetch a webhook
 
-	Fetch a webhook
+		Fetch a webhook
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupWebhookRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupWebhookRequest
 	*/
 	LookupWebhook(ctx context.Context) ApiLookupWebhookRequest
 
@@ -65,12 +64,12 @@ type WebhookAPI interface {
 	LookupWebhookExecute(r ApiLookupWebhookRequest) (*WebhookResponse, *http.Response, error)
 
 	/*
-	PublishWebhook Create a webhook
+		PublishWebhook Create a webhook
 
-	Create a webhook
+		Create a webhook
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPublishWebhookRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPublishWebhookRequest
 	*/
 	PublishWebhook(ctx context.Context) ApiPublishWebhookRequest
 
@@ -79,12 +78,12 @@ type WebhookAPI interface {
 	PublishWebhookExecute(r ApiPublishWebhookRequest) (*WebhookResponse, *http.Response, error)
 
 	/*
-	UpdateWebhook Update a webhook
+		UpdateWebhook Update a webhook
 
-	Update a webhook
+		Update a webhook
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiUpdateWebhookRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiUpdateWebhookRequest
 	*/
 	UpdateWebhook(ctx context.Context) ApiUpdateWebhookRequest
 
@@ -93,12 +92,12 @@ type WebhookAPI interface {
 	UpdateWebhookExecute(r ApiUpdateWebhookRequest) (*WebhookResponse, *http.Response, error)
 
 	/*
-	UpdateWebhookActiveStatus Update webhook status
+		UpdateWebhookActiveStatus Update webhook status
 
-	Update webhook active status
+		Update webhook active status
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiUpdateWebhookActiveStatusRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiUpdateWebhookActiveStatusRequest
 	*/
 	UpdateWebhookActiveStatus(ctx context.Context) ApiUpdateWebhookActiveStatusRequest
 
@@ -111,8 +110,8 @@ type WebhookAPI interface {
 type WebhookAPIService service
 
 type ApiDeleteWebhookRequest struct {
-	ctx context.Context
-	ApiService WebhookAPI
+	ctx                  context.Context
+	ApiService           WebhookAPI
 	webhookDeleteReqBody *WebhookDeleteReqBody
 }
 
@@ -130,24 +129,25 @@ DeleteWebhook Delete a webhook
 
 Delete a webhook
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteWebhookRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteWebhookRequest
 */
 func (a *WebhookAPIService) DeleteWebhook(ctx context.Context) ApiDeleteWebhookRequest {
 	return ApiDeleteWebhookRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return WebhookResponse
+//
+//	@return WebhookResponse
 func (a *WebhookAPIService) DeleteWebhookExecute(r ApiDeleteWebhookRequest) (*WebhookResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *WebhookResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *WebhookResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookAPIService.DeleteWebhook")
@@ -226,8 +226,8 @@ func (a *WebhookAPIService) DeleteWebhookExecute(r ApiDeleteWebhookRequest) (*We
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -245,7 +245,7 @@ func (a *WebhookAPIService) DeleteWebhookExecute(r ApiDeleteWebhookRequest) (*We
 }
 
 type ApiFetchWebhooksRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService WebhookAPI
 }
 
@@ -258,24 +258,25 @@ FetchWebhooks Associated webhooks of user
 
 Fetch a list of webhooks associated to a user
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchWebhooksRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchWebhooksRequest
 */
 func (a *WebhookAPIService) FetchWebhooks(ctx context.Context) ApiFetchWebhooksRequest {
 	return ApiFetchWebhooksRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return WebhookListResponse
+//
+//	@return WebhookListResponse
 func (a *WebhookAPIService) FetchWebhooksExecute(r ApiFetchWebhooksRequest) (*WebhookListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *WebhookListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *WebhookListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookAPIService.FetchWebhooks")
@@ -358,9 +359,9 @@ func (a *WebhookAPIService) FetchWebhooksExecute(r ApiFetchWebhooksRequest) (*We
 }
 
 type ApiLookupWebhookRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService WebhookAPI
-	webhookId *string
+	webhookId  *string
 }
 
 func (r ApiLookupWebhookRequest) WebhookId(webhookId string) ApiLookupWebhookRequest {
@@ -377,24 +378,25 @@ LookupWebhook Fetch a webhook
 
 Fetch a webhook
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupWebhookRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupWebhookRequest
 */
 func (a *WebhookAPIService) LookupWebhook(ctx context.Context) ApiLookupWebhookRequest {
 	return ApiLookupWebhookRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return WebhookResponse
+//
+//	@return WebhookResponse
 func (a *WebhookAPIService) LookupWebhookExecute(r ApiLookupWebhookRequest) (*WebhookResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *WebhookResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *WebhookResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookAPIService.LookupWebhook")
@@ -472,8 +474,8 @@ func (a *WebhookAPIService) LookupWebhookExecute(r ApiLookupWebhookRequest) (*We
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -491,8 +493,8 @@ func (a *WebhookAPIService) LookupWebhookExecute(r ApiLookupWebhookRequest) (*We
 }
 
 type ApiPublishWebhookRequest struct {
-	ctx context.Context
-	ApiService WebhookAPI
+	ctx                context.Context
+	ApiService         WebhookAPI
 	webhookPostReqBody *WebhookPostReqBody
 }
 
@@ -510,24 +512,25 @@ PublishWebhook Create a webhook
 
 Create a webhook
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPublishWebhookRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPublishWebhookRequest
 */
 func (a *WebhookAPIService) PublishWebhook(ctx context.Context) ApiPublishWebhookRequest {
 	return ApiPublishWebhookRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return WebhookResponse
+//
+//	@return WebhookResponse
 func (a *WebhookAPIService) PublishWebhookExecute(r ApiPublishWebhookRequest) (*WebhookResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *WebhookResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *WebhookResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookAPIService.PublishWebhook")
@@ -606,8 +609,8 @@ func (a *WebhookAPIService) PublishWebhookExecute(r ApiPublishWebhookRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -617,8 +620,8 @@ func (a *WebhookAPIService) PublishWebhookExecute(r ApiPublishWebhookRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -636,8 +639,8 @@ func (a *WebhookAPIService) PublishWebhookExecute(r ApiPublishWebhookRequest) (*
 }
 
 type ApiUpdateWebhookRequest struct {
-	ctx context.Context
-	ApiService WebhookAPI
+	ctx               context.Context
+	ApiService        WebhookAPI
 	webhookPutReqBody *WebhookPutReqBody
 }
 
@@ -655,24 +658,25 @@ UpdateWebhook Update a webhook
 
 Update a webhook
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUpdateWebhookRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUpdateWebhookRequest
 */
 func (a *WebhookAPIService) UpdateWebhook(ctx context.Context) ApiUpdateWebhookRequest {
 	return ApiUpdateWebhookRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return WebhookResponse
+//
+//	@return WebhookResponse
 func (a *WebhookAPIService) UpdateWebhookExecute(r ApiUpdateWebhookRequest) (*WebhookResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *WebhookResponse
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *WebhookResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookAPIService.UpdateWebhook")
@@ -751,8 +755,8 @@ func (a *WebhookAPIService) UpdateWebhookExecute(r ApiUpdateWebhookRequest) (*We
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -770,8 +774,8 @@ func (a *WebhookAPIService) UpdateWebhookExecute(r ApiUpdateWebhookRequest) (*We
 }
 
 type ApiUpdateWebhookActiveStatusRequest struct {
-	ctx context.Context
-	ApiService WebhookAPI
+	ctx                 context.Context
+	ApiService          WebhookAPI
 	webhookPatchReqBody *WebhookPatchReqBody
 }
 
@@ -789,24 +793,25 @@ UpdateWebhookActiveStatus Update webhook status
 
 Update webhook active status
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUpdateWebhookActiveStatusRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUpdateWebhookActiveStatusRequest
 */
 func (a *WebhookAPIService) UpdateWebhookActiveStatus(ctx context.Context) ApiUpdateWebhookActiveStatusRequest {
 	return ApiUpdateWebhookActiveStatusRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return WebhookResponse
+//
+//	@return WebhookResponse
 func (a *WebhookAPIService) UpdateWebhookActiveStatusExecute(r ApiUpdateWebhookActiveStatusRequest) (*WebhookResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *WebhookResponse
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *WebhookResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookAPIService.UpdateWebhookActiveStatus")
@@ -885,8 +890,8 @@ func (a *WebhookAPIService) UpdateWebhookActiveStatusExecute(r ApiUpdateWebhookA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

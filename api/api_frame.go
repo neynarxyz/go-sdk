@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -20,16 +20,15 @@ import (
 	"time"
 )
 
-
 type FrameAPI interface {
 
 	/*
-	DeleteNeynarFrame Delete mini app
+		DeleteNeynarFrame Delete mini app
 
-	Delete an existing mini app, if it was made by the developer (identified by API key)
+		Delete an existing mini app, if it was made by the developer (identified by API key)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeleteNeynarFrameRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiDeleteNeynarFrameRequest
 	*/
 	DeleteNeynarFrame(ctx context.Context) ApiDeleteNeynarFrameRequest
 
@@ -38,12 +37,12 @@ type FrameAPI interface {
 	DeleteNeynarFrameExecute(r ApiDeleteNeynarFrameRequest) (*DeleteFrameResponse, *http.Response, error)
 
 	/*
-	FetchFrameCatalog Mini apps catalog
+		FetchFrameCatalog Mini apps catalog
 
-	A curated list of featured mini apps
+		A curated list of featured mini apps
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchFrameCatalogRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchFrameCatalogRequest
 	*/
 	FetchFrameCatalog(ctx context.Context) ApiFetchFrameCatalogRequest
 
@@ -52,12 +51,12 @@ type FrameAPI interface {
 	FetchFrameCatalogExecute(r ApiFetchFrameCatalogRequest) (*FrameCatalogResponse, *http.Response, error)
 
 	/*
-	FetchFrameMetaTagsFromUrl Meta tags from URL
+		FetchFrameMetaTagsFromUrl Meta tags from URL
 
-	Fetches the mini app meta tags from the URL
+		Fetches the mini app meta tags from the URL
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchFrameMetaTagsFromUrlRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchFrameMetaTagsFromUrlRequest
 	*/
 	FetchFrameMetaTagsFromUrl(ctx context.Context) ApiFetchFrameMetaTagsFromUrlRequest
 
@@ -66,12 +65,12 @@ type FrameAPI interface {
 	FetchFrameMetaTagsFromUrlExecute(r ApiFetchFrameMetaTagsFromUrlRequest) (*FetchFrameMetaTagsFromUrl200Response, *http.Response, error)
 
 	/*
-	FetchNeynarFrames List of mini apps
+		FetchNeynarFrames List of mini apps
 
-	Fetch a list of mini apps made by the developer (identified by API key)
+		Fetch a list of mini apps made by the developer (identified by API key)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchNeynarFramesRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchNeynarFramesRequest
 	*/
 	FetchNeynarFrames(ctx context.Context) ApiFetchNeynarFramesRequest
 
@@ -80,13 +79,13 @@ type FrameAPI interface {
 	FetchNeynarFramesExecute(r ApiFetchNeynarFramesRequest) ([]NeynarFrame, *http.Response, error)
 
 	/*
-	FetchNotificationTokens List of mini app notification tokens 
+		FetchNotificationTokens List of mini app notification tokens
 
-	Returns a list of notifications tokens related to a mini app
+		Returns a list of notifications tokens related to a mini app
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchNotificationTokensRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchNotificationTokensRequest
 	*/
 	FetchNotificationTokens(ctx context.Context) ApiFetchNotificationTokensRequest
 
@@ -95,12 +94,12 @@ type FrameAPI interface {
 	FetchNotificationTokensExecute(r ApiFetchNotificationTokensRequest) (*FrameNotificationTokens, *http.Response, error)
 
 	/*
-	FetchRelevantFrames Relevant mini apps
+		FetchRelevantFrames Relevant mini apps
 
-	Fetch a list of mini apps relevant to the user based on casts by users with strong affinity score for the user
+		Fetch a list of mini apps relevant to the user based on casts by users with strong affinity score for the user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchRelevantFramesRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchRelevantFramesRequest
 	*/
 	FetchRelevantFrames(ctx context.Context) ApiFetchRelevantFramesRequest
 
@@ -109,12 +108,12 @@ type FrameAPI interface {
 	FetchRelevantFramesExecute(r ApiFetchRelevantFramesRequest) (*FetchRelevantFrames200Response, *http.Response, error)
 
 	/*
-	FetchValidateFrameAnalytics Analytics for the mini app
+		FetchValidateFrameAnalytics Analytics for the mini app
 
-	Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
+		Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchValidateFrameAnalyticsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchValidateFrameAnalyticsRequest
 	*/
 	FetchValidateFrameAnalytics(ctx context.Context) ApiFetchValidateFrameAnalyticsRequest
 
@@ -123,12 +122,12 @@ type FrameAPI interface {
 	FetchValidateFrameAnalyticsExecute(r ApiFetchValidateFrameAnalyticsRequest) (*FrameValidateAnalyticsResponse, *http.Response, error)
 
 	/*
-	FetchValidateFrameList All mini apps validated by user
+		FetchValidateFrameList All mini apps validated by user
 
-	Fetch a list of all the mini apps validated by a user
+		Fetch a list of all the mini apps validated by a user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchValidateFrameListRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchValidateFrameListRequest
 	*/
 	FetchValidateFrameList(ctx context.Context) ApiFetchValidateFrameListRequest
 
@@ -137,12 +136,12 @@ type FrameAPI interface {
 	FetchValidateFrameListExecute(r ApiFetchValidateFrameListRequest) (*FrameValidateListResponse, *http.Response, error)
 
 	/*
-	GetTransactionPayFrame Get transaction pay mini app
+		GetTransactionPayFrame Get transaction pay mini app
 
-	Retrieves details about a transaction pay mini app by ID
+		Retrieves details about a transaction pay mini app by ID
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetTransactionPayFrameRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiGetTransactionPayFrameRequest
 	*/
 	GetTransactionPayFrame(ctx context.Context) ApiGetTransactionPayFrameRequest
 
@@ -151,12 +150,12 @@ type FrameAPI interface {
 	GetTransactionPayFrameExecute(r ApiGetTransactionPayFrameRequest) (*TransactionFrameResponse, *http.Response, error)
 
 	/*
-	LookupNeynarFrame Mini app by UUID or URL
+		LookupNeynarFrame Mini app by UUID or URL
 
-	Fetch a mini app either by UUID or Neynar URL
+		Fetch a mini app either by UUID or Neynar URL
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupNeynarFrameRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupNeynarFrameRequest
 	*/
 	LookupNeynarFrame(ctx context.Context) ApiLookupNeynarFrameRequest
 
@@ -165,16 +164,16 @@ type FrameAPI interface {
 	LookupNeynarFrameExecute(r ApiLookupNeynarFrameRequest) (*NeynarFrame, *http.Response, error)
 
 	/*
-	PostFrameAction Post a mini app action, cast action or a cast composer action
+		PostFrameAction Post a mini app action, cast action or a cast composer action
 
-	Post mini app actions, cast actions or cast composer actions to the server  \
-(In order to post any of these actions, you need to have an approved `signer_uuid`)
+		Post mini app actions, cast actions or cast composer actions to the server  \
+	(In order to post any of these actions, you need to have an approved `signer_uuid`)
 
-The POST request to the post_url has a timeout of 5 seconds for mini apps.
+	The POST request to the post_url has a timeout of 5 seconds for mini apps.
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPostFrameActionRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPostFrameActionRequest
 	*/
 	PostFrameAction(ctx context.Context) ApiPostFrameActionRequest
 
@@ -183,15 +182,15 @@ The POST request to the post_url has a timeout of 5 seconds for mini apps.
 	PostFrameActionExecute(r ApiPostFrameActionRequest) (*Frame, *http.Response, error)
 
 	/*
-	PostFrameActionDeveloperManaged Signature packet
+		PostFrameActionDeveloperManaged Signature packet
 
-	Post a mini app action that has been signed with a developer managed signer
+		Post a mini app action that has been signed with a developer managed signer
 
-The POST request to the post_url has a timeout of 5 seconds.
+	The POST request to the post_url has a timeout of 5 seconds.
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPostFrameActionDeveloperManagedRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPostFrameActionDeveloperManagedRequest
 	*/
 	PostFrameActionDeveloperManaged(ctx context.Context) ApiPostFrameActionDeveloperManagedRequest
 
@@ -200,13 +199,13 @@ The POST request to the post_url has a timeout of 5 seconds.
 	PostFrameActionDeveloperManagedExecute(r ApiPostFrameActionDeveloperManagedRequest) (*Frame, *http.Response, error)
 
 	/*
-	PublishFrameNotifications Send notifications
+		PublishFrameNotifications Send notifications
 
-	Send notifications to interactors of a mini app
+		Send notifications to interactors of a mini app
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPublishFrameNotificationsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPublishFrameNotificationsRequest
 	*/
 	PublishFrameNotifications(ctx context.Context) ApiPublishFrameNotificationsRequest
 
@@ -215,12 +214,12 @@ The POST request to the post_url has a timeout of 5 seconds.
 	PublishFrameNotificationsExecute(r ApiPublishFrameNotificationsRequest) (*SendFrameNotificationsResponse, *http.Response, error)
 
 	/*
-	PublishNeynarFrame Create mini app
+		PublishNeynarFrame Create mini app
 
-	Create a new mini app with a list of pages.
+		Create a new mini app with a list of pages.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPublishNeynarFrameRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPublishNeynarFrameRequest
 	*/
 	PublishNeynarFrame(ctx context.Context) ApiPublishNeynarFrameRequest
 
@@ -229,12 +228,12 @@ The POST request to the post_url has a timeout of 5 seconds.
 	PublishNeynarFrameExecute(r ApiPublishNeynarFrameRequest) (*NeynarFrame, *http.Response, error)
 
 	/*
-	UpdateNeynarFrame Update mini app
+		UpdateNeynarFrame Update mini app
 
-	Update an existing mini app with a list of pages, if it was made by the developer (identified by API key)
+		Update an existing mini app with a list of pages, if it was made by the developer (identified by API key)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiUpdateNeynarFrameRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiUpdateNeynarFrameRequest
 	*/
 	UpdateNeynarFrame(ctx context.Context) ApiUpdateNeynarFrameRequest
 
@@ -243,14 +242,14 @@ The POST request to the post_url has a timeout of 5 seconds.
 	UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest) (*NeynarFrame, *http.Response, error)
 
 	/*
-	ValidateFrameAction Validate mini app action
+		ValidateFrameAction Validate mini app action
 
-	Validates a mini app against by an interacting user against a Farcaster Hub \
-(In order to validate a mini app, message bytes from Frame Action must be provided in hex)
+		Validates a mini app against by an interacting user against a Farcaster Hub \
+	(In order to validate a mini app, message bytes from Frame Action must be provided in hex)
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiValidateFrameActionRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiValidateFrameActionRequest
 	*/
 	ValidateFrameAction(ctx context.Context) ApiValidateFrameActionRequest
 
@@ -263,8 +262,8 @@ The POST request to the post_url has a timeout of 5 seconds.
 type FrameAPIService service
 
 type ApiDeleteNeynarFrameRequest struct {
-	ctx context.Context
-	ApiService FrameAPI
+	ctx                context.Context
+	ApiService         FrameAPI
 	deleteFrameReqBody *DeleteFrameReqBody
 }
 
@@ -282,24 +281,25 @@ DeleteNeynarFrame Delete mini app
 
 Delete an existing mini app, if it was made by the developer (identified by API key)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteNeynarFrameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteNeynarFrameRequest
 */
 func (a *FrameAPIService) DeleteNeynarFrame(ctx context.Context) ApiDeleteNeynarFrameRequest {
 	return ApiDeleteNeynarFrameRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return DeleteFrameResponse
+//
+//	@return DeleteFrameResponse
 func (a *FrameAPIService) DeleteNeynarFrameExecute(r ApiDeleteNeynarFrameRequest) (*DeleteFrameResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DeleteFrameResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DeleteFrameResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.DeleteNeynarFrame")
@@ -378,8 +378,8 @@ func (a *FrameAPIService) DeleteNeynarFrameExecute(r ApiDeleteNeynarFrameRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -397,10 +397,10 @@ func (a *FrameAPIService) DeleteNeynarFrameExecute(r ApiDeleteNeynarFrameRequest
 }
 
 type ApiFetchFrameCatalogRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService FrameAPI
-	limit *int32
-	cursor *string
+	limit      *int32
+	cursor     *string
 	timeWindow *TrendingTimeWindow
 }
 
@@ -431,24 +431,25 @@ FetchFrameCatalog Mini apps catalog
 
 A curated list of featured mini apps
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchFrameCatalogRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchFrameCatalogRequest
 */
 func (a *FrameAPIService) FetchFrameCatalog(ctx context.Context) ApiFetchFrameCatalogRequest {
 	return ApiFetchFrameCatalogRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FrameCatalogResponse
+//
+//	@return FrameCatalogResponse
 func (a *FrameAPIService) FetchFrameCatalogExecute(r ApiFetchFrameCatalogRequest) (*FrameCatalogResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FrameCatalogResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FrameCatalogResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.FetchFrameCatalog")
@@ -543,9 +544,9 @@ func (a *FrameAPIService) FetchFrameCatalogExecute(r ApiFetchFrameCatalogRequest
 }
 
 type ApiFetchFrameMetaTagsFromUrlRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService FrameAPI
-	url *string
+	url        *string
 }
 
 // The mini app URL to crawl
@@ -563,24 +564,25 @@ FetchFrameMetaTagsFromUrl Meta tags from URL
 
 Fetches the mini app meta tags from the URL
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchFrameMetaTagsFromUrlRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchFrameMetaTagsFromUrlRequest
 */
 func (a *FrameAPIService) FetchFrameMetaTagsFromUrl(ctx context.Context) ApiFetchFrameMetaTagsFromUrlRequest {
 	return ApiFetchFrameMetaTagsFromUrlRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchFrameMetaTagsFromUrl200Response
+//
+//	@return FetchFrameMetaTagsFromUrl200Response
 func (a *FrameAPIService) FetchFrameMetaTagsFromUrlExecute(r ApiFetchFrameMetaTagsFromUrlRequest) (*FetchFrameMetaTagsFromUrl200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchFrameMetaTagsFromUrl200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchFrameMetaTagsFromUrl200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.FetchFrameMetaTagsFromUrl")
@@ -658,8 +660,8 @@ func (a *FrameAPIService) FetchFrameMetaTagsFromUrlExecute(r ApiFetchFrameMetaTa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -677,7 +679,7 @@ func (a *FrameAPIService) FetchFrameMetaTagsFromUrlExecute(r ApiFetchFrameMetaTa
 }
 
 type ApiFetchNeynarFramesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService FrameAPI
 }
 
@@ -690,24 +692,25 @@ FetchNeynarFrames List of mini apps
 
 Fetch a list of mini apps made by the developer (identified by API key)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchNeynarFramesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchNeynarFramesRequest
 */
 func (a *FrameAPIService) FetchNeynarFrames(ctx context.Context) ApiFetchNeynarFramesRequest {
 	return ApiFetchNeynarFramesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []NeynarFrame
+//
+//	@return []NeynarFrame
 func (a *FrameAPIService) FetchNeynarFramesExecute(r ApiFetchNeynarFramesRequest) ([]NeynarFrame, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []NeynarFrame
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []NeynarFrame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.FetchNeynarFrames")
@@ -781,8 +784,8 @@ func (a *FrameAPIService) FetchNeynarFramesExecute(r ApiFetchNeynarFramesRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -800,11 +803,11 @@ func (a *FrameAPIService) FetchNeynarFramesExecute(r ApiFetchNeynarFramesRequest
 }
 
 type ApiFetchNotificationTokensRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService FrameAPI
-	limit *int32
-	fids *string
-	cursor *string
+	limit      *int32
+	fids       *string
+	cursor     *string
 }
 
 // Number of results to fetch
@@ -830,29 +833,29 @@ func (r ApiFetchNotificationTokensRequest) Execute() (*FrameNotificationTokens, 
 }
 
 /*
-FetchNotificationTokens List of mini app notification tokens 
+FetchNotificationTokens List of mini app notification tokens
 
-Returns a list of notifications tokens related to a mini app
+# Returns a list of notifications tokens related to a mini app
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchNotificationTokensRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchNotificationTokensRequest
 */
 func (a *FrameAPIService) FetchNotificationTokens(ctx context.Context) ApiFetchNotificationTokensRequest {
 	return ApiFetchNotificationTokensRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FrameNotificationTokens
+//
+//	@return FrameNotificationTokens
 func (a *FrameAPIService) FetchNotificationTokensExecute(r ApiFetchNotificationTokensRequest) (*FrameNotificationTokens, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FrameNotificationTokens
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FrameNotificationTokens
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.FetchNotificationTokens")
@@ -938,8 +941,8 @@ func (a *FrameAPIService) FetchNotificationTokensExecute(r ApiFetchNotificationT
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -957,9 +960,9 @@ func (a *FrameAPIService) FetchNotificationTokensExecute(r ApiFetchNotificationT
 }
 
 type ApiFetchRelevantFramesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService FrameAPI
-	viewerFid *int32
+	viewerFid  *int32
 	timeWindow *TrendingTimeWindow
 }
 
@@ -984,24 +987,25 @@ FetchRelevantFrames Relevant mini apps
 
 Fetch a list of mini apps relevant to the user based on casts by users with strong affinity score for the user
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchRelevantFramesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchRelevantFramesRequest
 */
 func (a *FrameAPIService) FetchRelevantFrames(ctx context.Context) ApiFetchRelevantFramesRequest {
 	return ApiFetchRelevantFramesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchRelevantFrames200Response
+//
+//	@return FetchRelevantFrames200Response
 func (a *FrameAPIService) FetchRelevantFramesExecute(r ApiFetchRelevantFramesRequest) (*FetchRelevantFrames200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchRelevantFrames200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchRelevantFrames200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.FetchRelevantFrames")
@@ -1091,12 +1095,12 @@ func (a *FrameAPIService) FetchRelevantFramesExecute(r ApiFetchRelevantFramesReq
 }
 
 type ApiFetchValidateFrameAnalyticsRequest struct {
-	ctx context.Context
-	ApiService FrameAPI
-	frameUrl *string
-	analyticsType *ValidateFrameAnalyticsType
-	start *time.Time
-	stop *time.Time
+	ctx             context.Context
+	ApiService      FrameAPI
+	frameUrl        *string
+	analyticsType   *ValidateFrameAnalyticsType
+	start           *time.Time
+	stop            *time.Time
 	aggregateWindow *ValidateFrameAggregateWindow
 }
 
@@ -1135,24 +1139,25 @@ FetchValidateFrameAnalytics Analytics for the mini app
 
 Fetch analytics for total-interactors, interactors, nteractions-per-cast and input-text.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchValidateFrameAnalyticsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchValidateFrameAnalyticsRequest
 */
 func (a *FrameAPIService) FetchValidateFrameAnalytics(ctx context.Context) ApiFetchValidateFrameAnalyticsRequest {
 	return ApiFetchValidateFrameAnalyticsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FrameValidateAnalyticsResponse
+//
+//	@return FrameValidateAnalyticsResponse
 func (a *FrameAPIService) FetchValidateFrameAnalyticsExecute(r ApiFetchValidateFrameAnalyticsRequest) (*FrameValidateAnalyticsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FrameValidateAnalyticsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FrameValidateAnalyticsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.FetchValidateFrameAnalytics")
@@ -1245,8 +1250,8 @@ func (a *FrameAPIService) FetchValidateFrameAnalyticsExecute(r ApiFetchValidateF
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1256,8 +1261,8 @@ func (a *FrameAPIService) FetchValidateFrameAnalyticsExecute(r ApiFetchValidateF
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1267,8 +1272,8 @@ func (a *FrameAPIService) FetchValidateFrameAnalyticsExecute(r ApiFetchValidateF
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1278,8 +1283,8 @@ func (a *FrameAPIService) FetchValidateFrameAnalyticsExecute(r ApiFetchValidateF
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1297,7 +1302,7 @@ func (a *FrameAPIService) FetchValidateFrameAnalyticsExecute(r ApiFetchValidateF
 }
 
 type ApiFetchValidateFrameListRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService FrameAPI
 }
 
@@ -1310,24 +1315,25 @@ FetchValidateFrameList All mini apps validated by user
 
 Fetch a list of all the mini apps validated by a user
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchValidateFrameListRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchValidateFrameListRequest
 */
 func (a *FrameAPIService) FetchValidateFrameList(ctx context.Context) ApiFetchValidateFrameListRequest {
 	return ApiFetchValidateFrameListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FrameValidateListResponse
+//
+//	@return FrameValidateListResponse
 func (a *FrameAPIService) FetchValidateFrameListExecute(r ApiFetchValidateFrameListRequest) (*FrameValidateListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FrameValidateListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FrameValidateListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.FetchValidateFrameList")
@@ -1401,8 +1407,8 @@ func (a *FrameAPIService) FetchValidateFrameListExecute(r ApiFetchValidateFrameL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1412,8 +1418,8 @@ func (a *FrameAPIService) FetchValidateFrameListExecute(r ApiFetchValidateFrameL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1423,8 +1429,8 @@ func (a *FrameAPIService) FetchValidateFrameListExecute(r ApiFetchValidateFrameL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1442,9 +1448,9 @@ func (a *FrameAPIService) FetchValidateFrameListExecute(r ApiFetchValidateFrameL
 }
 
 type ApiGetTransactionPayFrameRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService FrameAPI
-	id *string
+	id         *string
 }
 
 // ID of the transaction mini app to retrieve
@@ -1462,24 +1468,25 @@ GetTransactionPayFrame Get transaction pay mini app
 
 Retrieves details about a transaction pay mini app by ID
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetTransactionPayFrameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetTransactionPayFrameRequest
 */
 func (a *FrameAPIService) GetTransactionPayFrame(ctx context.Context) ApiGetTransactionPayFrameRequest {
 	return ApiGetTransactionPayFrameRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TransactionFrameResponse
+//
+//	@return TransactionFrameResponse
 func (a *FrameAPIService) GetTransactionPayFrameExecute(r ApiGetTransactionPayFrameRequest) (*TransactionFrameResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TransactionFrameResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TransactionFrameResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.GetTransactionPayFrame")
@@ -1557,8 +1564,8 @@ func (a *FrameAPIService) GetTransactionPayFrameExecute(r ApiGetTransactionPayFr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1568,8 +1575,8 @@ func (a *FrameAPIService) GetTransactionPayFrameExecute(r ApiGetTransactionPayFr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1579,8 +1586,8 @@ func (a *FrameAPIService) GetTransactionPayFrameExecute(r ApiGetTransactionPayFr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1598,11 +1605,11 @@ func (a *FrameAPIService) GetTransactionPayFrameExecute(r ApiGetTransactionPayFr
 }
 
 type ApiLookupNeynarFrameRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService FrameAPI
-	type_ *FrameType
-	uuid *string
-	url *string
+	type_      *FrameType
+	uuid       *string
+	url        *string
 }
 
 func (r ApiLookupNeynarFrameRequest) Type_(type_ FrameType) ApiLookupNeynarFrameRequest {
@@ -1631,24 +1638,25 @@ LookupNeynarFrame Mini app by UUID or URL
 
 Fetch a mini app either by UUID or Neynar URL
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupNeynarFrameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupNeynarFrameRequest
 */
 func (a *FrameAPIService) LookupNeynarFrame(ctx context.Context) ApiLookupNeynarFrameRequest {
 	return ApiLookupNeynarFrameRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return NeynarFrame
+//
+//	@return NeynarFrame
 func (a *FrameAPIService) LookupNeynarFrameExecute(r ApiLookupNeynarFrameRequest) (*NeynarFrame, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NeynarFrame
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NeynarFrame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.LookupNeynarFrame")
@@ -1732,8 +1740,8 @@ func (a *FrameAPIService) LookupNeynarFrameExecute(r ApiLookupNeynarFrameRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1751,8 +1759,8 @@ func (a *FrameAPIService) LookupNeynarFrameExecute(r ApiLookupNeynarFrameRequest
 }
 
 type ApiPostFrameActionRequest struct {
-	ctx context.Context
-	ApiService FrameAPI
+	ctx                context.Context
+	ApiService         FrameAPI
 	frameActionReqBody *FrameActionReqBody
 }
 
@@ -1773,25 +1781,25 @@ Post mini app actions, cast actions or cast composer actions to the server  \
 
 The POST request to the post_url has a timeout of 5 seconds for mini apps.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostFrameActionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPostFrameActionRequest
 */
 func (a *FrameAPIService) PostFrameAction(ctx context.Context) ApiPostFrameActionRequest {
 	return ApiPostFrameActionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Frame
+//
+//	@return Frame
 func (a *FrameAPIService) PostFrameActionExecute(r ApiPostFrameActionRequest) (*Frame, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Frame
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Frame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.PostFrameAction")
@@ -1870,8 +1878,8 @@ func (a *FrameAPIService) PostFrameActionExecute(r ApiPostFrameActionRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1881,8 +1889,8 @@ func (a *FrameAPIService) PostFrameActionExecute(r ApiPostFrameActionRequest) (*
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1900,8 +1908,8 @@ func (a *FrameAPIService) PostFrameActionExecute(r ApiPostFrameActionRequest) (*
 }
 
 type ApiPostFrameActionDeveloperManagedRequest struct {
-	ctx context.Context
-	ApiService FrameAPI
+	ctx                                context.Context
+	ApiService                         FrameAPI
 	frameDeveloperManagedActionReqBody *FrameDeveloperManagedActionReqBody
 }
 
@@ -1917,29 +1925,29 @@ func (r ApiPostFrameActionDeveloperManagedRequest) Execute() (*Frame, *http.Resp
 /*
 PostFrameActionDeveloperManaged Signature packet
 
-Post a mini app action that has been signed with a developer managed signer
+# Post a mini app action that has been signed with a developer managed signer
 
 The POST request to the post_url has a timeout of 5 seconds.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostFrameActionDeveloperManagedRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPostFrameActionDeveloperManagedRequest
 */
 func (a *FrameAPIService) PostFrameActionDeveloperManaged(ctx context.Context) ApiPostFrameActionDeveloperManagedRequest {
 	return ApiPostFrameActionDeveloperManagedRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Frame
+//
+//	@return Frame
 func (a *FrameAPIService) PostFrameActionDeveloperManagedExecute(r ApiPostFrameActionDeveloperManagedRequest) (*Frame, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Frame
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Frame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.PostFrameActionDeveloperManaged")
@@ -2018,8 +2026,8 @@ func (a *FrameAPIService) PostFrameActionDeveloperManagedExecute(r ApiPostFrameA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2029,8 +2037,8 @@ func (a *FrameAPIService) PostFrameActionDeveloperManagedExecute(r ApiPostFrameA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2048,8 +2056,8 @@ func (a *FrameAPIService) PostFrameActionDeveloperManagedExecute(r ApiPostFrameA
 }
 
 type ApiPublishFrameNotificationsRequest struct {
-	ctx context.Context
-	ApiService FrameAPI
+	ctx                           context.Context
+	ApiService                    FrameAPI
 	sendFrameNotificationsReqBody *SendFrameNotificationsReqBody
 }
 
@@ -2065,27 +2073,27 @@ func (r ApiPublishFrameNotificationsRequest) Execute() (*SendFrameNotificationsR
 /*
 PublishFrameNotifications Send notifications
 
-Send notifications to interactors of a mini app
+# Send notifications to interactors of a mini app
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPublishFrameNotificationsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPublishFrameNotificationsRequest
 */
 func (a *FrameAPIService) PublishFrameNotifications(ctx context.Context) ApiPublishFrameNotificationsRequest {
 	return ApiPublishFrameNotificationsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SendFrameNotificationsResponse
+//
+//	@return SendFrameNotificationsResponse
 func (a *FrameAPIService) PublishFrameNotificationsExecute(r ApiPublishFrameNotificationsRequest) (*SendFrameNotificationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SendFrameNotificationsResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SendFrameNotificationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.PublishFrameNotifications")
@@ -2164,8 +2172,8 @@ func (a *FrameAPIService) PublishFrameNotificationsExecute(r ApiPublishFrameNoti
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2175,8 +2183,8 @@ func (a *FrameAPIService) PublishFrameNotificationsExecute(r ApiPublishFrameNoti
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2194,8 +2202,8 @@ func (a *FrameAPIService) PublishFrameNotificationsExecute(r ApiPublishFrameNoti
 }
 
 type ApiPublishNeynarFrameRequest struct {
-	ctx context.Context
-	ApiService FrameAPI
+	ctx                        context.Context
+	ApiService                 FrameAPI
 	neynarFrameCreationReqBody *NeynarFrameCreationReqBody
 }
 
@@ -2213,24 +2221,25 @@ PublishNeynarFrame Create mini app
 
 Create a new mini app with a list of pages.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPublishNeynarFrameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPublishNeynarFrameRequest
 */
 func (a *FrameAPIService) PublishNeynarFrame(ctx context.Context) ApiPublishNeynarFrameRequest {
 	return ApiPublishNeynarFrameRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return NeynarFrame
+//
+//	@return NeynarFrame
 func (a *FrameAPIService) PublishNeynarFrameExecute(r ApiPublishNeynarFrameRequest) (*NeynarFrame, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NeynarFrame
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NeynarFrame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.PublishNeynarFrame")
@@ -2309,8 +2318,8 @@ func (a *FrameAPIService) PublishNeynarFrameExecute(r ApiPublishNeynarFrameReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2328,8 +2337,8 @@ func (a *FrameAPIService) PublishNeynarFrameExecute(r ApiPublishNeynarFrameReque
 }
 
 type ApiUpdateNeynarFrameRequest struct {
-	ctx context.Context
-	ApiService FrameAPI
+	ctx                      context.Context
+	ApiService               FrameAPI
 	neynarFrameUpdateReqBody *NeynarFrameUpdateReqBody
 }
 
@@ -2347,24 +2356,25 @@ UpdateNeynarFrame Update mini app
 
 Update an existing mini app with a list of pages, if it was made by the developer (identified by API key)
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUpdateNeynarFrameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUpdateNeynarFrameRequest
 */
 func (a *FrameAPIService) UpdateNeynarFrame(ctx context.Context) ApiUpdateNeynarFrameRequest {
 	return ApiUpdateNeynarFrameRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return NeynarFrame
+//
+//	@return NeynarFrame
 func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest) (*NeynarFrame, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *NeynarFrame
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NeynarFrame
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.UpdateNeynarFrame")
@@ -2443,8 +2453,8 @@ func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
@@ -2454,8 +2464,8 @@ func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2473,8 +2483,8 @@ func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest
 }
 
 type ApiValidateFrameActionRequest struct {
-	ctx context.Context
-	ApiService FrameAPI
+	ctx                        context.Context
+	ApiService                 FrameAPI
 	validateFrameActionReqBody *ValidateFrameActionReqBody
 }
 
@@ -2493,25 +2503,25 @@ ValidateFrameAction Validate mini app action
 Validates a mini app against by an interacting user against a Farcaster Hub \
 (In order to validate a mini app, message bytes from Frame Action must be provided in hex)
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiValidateFrameActionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiValidateFrameActionRequest
 */
 func (a *FrameAPIService) ValidateFrameAction(ctx context.Context) ApiValidateFrameActionRequest {
 	return ApiValidateFrameActionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ValidateFrameActionResponse
+//
+//	@return ValidateFrameActionResponse
 func (a *FrameAPIService) ValidateFrameActionExecute(r ApiValidateFrameActionRequest) (*ValidateFrameActionResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ValidateFrameActionResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidateFrameActionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.ValidateFrameAction")
@@ -2590,8 +2600,8 @@ func (a *FrameAPIService) ValidateFrameActionExecute(r ApiValidateFrameActionReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2601,8 +2611,8 @@ func (a *FrameAPIService) ValidateFrameActionExecute(r ApiValidateFrameActionReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

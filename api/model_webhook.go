@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,10 +12,10 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the Webhook type satisfies the MappedNullable interface at compile time
@@ -23,21 +23,21 @@ var _ MappedNullable = &Webhook{}
 
 // Webhook struct for Webhook
 type Webhook struct {
-	Object string `json:"object"`
-	WebhookId string `json:"webhook_id"`
-	DeveloperUuid string `json:"developer_uuid"`
-	TargetUrl string `json:"target_url"`
-	Title string `json:"title"`
-	Secrets []WebhookSecret `json:"secrets"`
-	Description string `json:"description"`
-	HttpTimeout string `json:"http_timeout"`
-	RateLimit int32 `json:"rate_limit"`
-	Active bool `json:"active"`
-	RateLimitDuration string `json:"rate_limit_duration"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-	DeletedAt time.Time `json:"deleted_at"`
-	Subscription *WebhookSubscription `json:"subscription,omitempty"`
+	Object            string               `json:"object"`
+	WebhookId         string               `json:"webhook_id"`
+	DeveloperUuid     string               `json:"developer_uuid"`
+	TargetUrl         string               `json:"target_url"`
+	Title             string               `json:"title"`
+	Secrets           []WebhookSecret      `json:"secrets"`
+	Description       string               `json:"description"`
+	HttpTimeout       string               `json:"http_timeout"`
+	RateLimit         int32                `json:"rate_limit"`
+	Active            bool                 `json:"active"`
+	RateLimitDuration string               `json:"rate_limit_duration"`
+	CreatedAt         time.Time            `json:"created_at"`
+	UpdatedAt         time.Time            `json:"updated_at"`
+	DeletedAt         time.Time            `json:"deleted_at"`
+	Subscription      *WebhookSubscription `json:"subscription,omitempty"`
 }
 
 type _Webhook Webhook
@@ -97,7 +97,6 @@ func (o *Webhook) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetWebhookId returns the WebhookId field value
 func (o *Webhook) GetWebhookId() string {
 	if o == nil {
@@ -121,7 +120,6 @@ func (o *Webhook) GetWebhookIdOk() (*string, bool) {
 func (o *Webhook) SetWebhookId(v string) {
 	o.WebhookId = v
 }
-
 
 // GetDeveloperUuid returns the DeveloperUuid field value
 func (o *Webhook) GetDeveloperUuid() string {
@@ -147,7 +145,6 @@ func (o *Webhook) SetDeveloperUuid(v string) {
 	o.DeveloperUuid = v
 }
 
-
 // GetTargetUrl returns the TargetUrl field value
 func (o *Webhook) GetTargetUrl() string {
 	if o == nil {
@@ -171,7 +168,6 @@ func (o *Webhook) GetTargetUrlOk() (*string, bool) {
 func (o *Webhook) SetTargetUrl(v string) {
 	o.TargetUrl = v
 }
-
 
 // GetTitle returns the Title field value
 func (o *Webhook) GetTitle() string {
@@ -197,7 +193,6 @@ func (o *Webhook) SetTitle(v string) {
 	o.Title = v
 }
 
-
 // GetSecrets returns the Secrets field value
 func (o *Webhook) GetSecrets() []WebhookSecret {
 	if o == nil {
@@ -221,7 +216,6 @@ func (o *Webhook) GetSecretsOk() ([]WebhookSecret, bool) {
 func (o *Webhook) SetSecrets(v []WebhookSecret) {
 	o.Secrets = v
 }
-
 
 // GetDescription returns the Description field value
 func (o *Webhook) GetDescription() string {
@@ -247,7 +241,6 @@ func (o *Webhook) SetDescription(v string) {
 	o.Description = v
 }
 
-
 // GetHttpTimeout returns the HttpTimeout field value
 func (o *Webhook) GetHttpTimeout() string {
 	if o == nil {
@@ -271,7 +264,6 @@ func (o *Webhook) GetHttpTimeoutOk() (*string, bool) {
 func (o *Webhook) SetHttpTimeout(v string) {
 	o.HttpTimeout = v
 }
-
 
 // GetRateLimit returns the RateLimit field value
 func (o *Webhook) GetRateLimit() int32 {
@@ -297,7 +289,6 @@ func (o *Webhook) SetRateLimit(v int32) {
 	o.RateLimit = v
 }
 
-
 // GetActive returns the Active field value
 func (o *Webhook) GetActive() bool {
 	if o == nil {
@@ -321,7 +312,6 @@ func (o *Webhook) GetActiveOk() (*bool, bool) {
 func (o *Webhook) SetActive(v bool) {
 	o.Active = v
 }
-
 
 // GetRateLimitDuration returns the RateLimitDuration field value
 func (o *Webhook) GetRateLimitDuration() string {
@@ -347,7 +337,6 @@ func (o *Webhook) SetRateLimitDuration(v string) {
 	o.RateLimitDuration = v
 }
 
-
 // GetCreatedAt returns the CreatedAt field value
 func (o *Webhook) GetCreatedAt() time.Time {
 	if o == nil {
@@ -371,7 +360,6 @@ func (o *Webhook) GetCreatedAtOk() (*time.Time, bool) {
 func (o *Webhook) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
-
 
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *Webhook) GetUpdatedAt() time.Time {
@@ -397,7 +385,6 @@ func (o *Webhook) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-
 // GetDeletedAt returns the DeletedAt field value
 func (o *Webhook) GetDeletedAt() time.Time {
 	if o == nil {
@@ -421,7 +408,6 @@ func (o *Webhook) GetDeletedAtOk() (*time.Time, bool) {
 func (o *Webhook) SetDeletedAt(v time.Time) {
 	o.DeletedAt = v
 }
-
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
 func (o *Webhook) GetSubscription() WebhookSubscription {
@@ -456,7 +442,7 @@ func (o *Webhook) SetSubscription(v WebhookSubscription) {
 }
 
 func (o Webhook) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -508,32 +494,31 @@ func (o *Webhook) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -587,5 +572,3 @@ func (v *NullableWebhook) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

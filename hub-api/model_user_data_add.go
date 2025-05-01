@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,12 +22,12 @@ var _ MappedNullable = &UserDataAdd{}
 
 // UserDataAdd struct for UserDataAdd
 type UserDataAdd struct {
-	Hash string `json:"hash" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
-	HashScheme HashScheme `json:"hashScheme"`
-	Signature string `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	SignatureScheme SignatureScheme `json:"signatureScheme"`
-	Signer string `json:"signer" validate:"regexp=^0x[0-9a-fA-F]+$"`
-	Data UserDataAddAllOfData `json:"data"`
+	Hash            string               `json:"hash" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
+	HashScheme      HashScheme           `json:"hashScheme"`
+	Signature       string               `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
+	SignatureScheme SignatureScheme      `json:"signatureScheme"`
+	Signer          string               `json:"signer" validate:"regexp=^0x[0-9a-fA-F]+$"`
+	Data            UserDataAddAllOfData `json:"data"`
 }
 
 type _UserDataAdd UserDataAdd
@@ -83,7 +83,6 @@ func (o *UserDataAdd) SetHash(v string) {
 	o.Hash = v
 }
 
-
 // GetHashScheme returns the HashScheme field value
 func (o *UserDataAdd) GetHashScheme() HashScheme {
 	if o == nil {
@@ -109,7 +108,7 @@ func (o *UserDataAdd) SetHashScheme(v HashScheme) {
 }
 
 // GetDefaultHashScheme returns the default value HASHSCHEME_HASH_SCHEME_BLAKE3 of the HashScheme field.
-func (o *UserDataAdd) GetDefaultHashScheme() interface{}  {
+func (o *UserDataAdd) GetDefaultHashScheme() interface{} {
 	return HASHSCHEME_HASH_SCHEME_BLAKE3
 }
 
@@ -137,7 +136,6 @@ func (o *UserDataAdd) SetSignature(v string) {
 	o.Signature = v
 }
 
-
 // GetSignatureScheme returns the SignatureScheme field value
 func (o *UserDataAdd) GetSignatureScheme() SignatureScheme {
 	if o == nil {
@@ -163,7 +161,7 @@ func (o *UserDataAdd) SetSignatureScheme(v SignatureScheme) {
 }
 
 // GetDefaultSignatureScheme returns the default value SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519 of the SignatureScheme field.
-func (o *UserDataAdd) GetDefaultSignatureScheme() interface{}  {
+func (o *UserDataAdd) GetDefaultSignatureScheme() interface{} {
 	return SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519
 }
 
@@ -191,7 +189,6 @@ func (o *UserDataAdd) SetSigner(v string) {
 	o.Signer = v
 }
 
-
 // GetData returns the Data field value
 func (o *UserDataAdd) GetData() UserDataAddAllOfData {
 	if o == nil {
@@ -216,9 +213,8 @@ func (o *UserDataAdd) SetData(v UserDataAddAllOfData) {
 	o.Data = v
 }
 
-
 func (o UserDataAdd) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -257,8 +253,8 @@ func (o *UserDataAdd) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-		"hashScheme": o.GetDefaultHashScheme,
+	defaultValueFuncMap := map[string]func() interface{}{
+		"hashScheme":      o.GetDefaultHashScheme,
 		"signatureScheme": o.GetDefaultSignatureScheme,
 	}
 	var defaultValueApplied bool
@@ -267,24 +263,24 @@ func (o *UserDataAdd) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -338,5 +334,3 @@ func (v *NullableUserDataAdd) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

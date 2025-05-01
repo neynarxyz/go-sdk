@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -21,10 +21,10 @@ type OnChainEventType string
 
 // List of OnChainEventType
 const (
-	ONCHAINEVENTTYPE_EVENT_TYPE_SIGNER OnChainEventType = "EVENT_TYPE_SIGNER"
+	ONCHAINEVENTTYPE_EVENT_TYPE_SIGNER          OnChainEventType = "EVENT_TYPE_SIGNER"
 	ONCHAINEVENTTYPE_EVENT_TYPE_SIGNER_MIGRATED OnChainEventType = "EVENT_TYPE_SIGNER_MIGRATED"
-	ONCHAINEVENTTYPE_EVENT_TYPE_ID_REGISTER OnChainEventType = "EVENT_TYPE_ID_REGISTER"
-	ONCHAINEVENTTYPE_EVENT_TYPE_STORAGE_RENT OnChainEventType = "EVENT_TYPE_STORAGE_RENT"
+	ONCHAINEVENTTYPE_EVENT_TYPE_ID_REGISTER     OnChainEventType = "EVENT_TYPE_ID_REGISTER"
+	ONCHAINEVENTTYPE_EVENT_TYPE_STORAGE_RENT    OnChainEventType = "EVENT_TYPE_STORAGE_RENT"
 )
 
 // All allowed values of OnChainEventType enum
@@ -113,4 +113,3 @@ func (v *NullableOnChainEventType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

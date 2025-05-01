@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,31 +22,31 @@ var _ MappedNullable = &Channel{}
 
 // Channel struct for Channel
 type Channel struct {
-	Id string `json:"id"`
-	Url string `json:"url"`
-	Object string `json:"object"`
-	Name *string `json:"name,omitempty"`
-	Description *string `json:"description,omitempty"`
+	Id                           string           `json:"id"`
+	Url                          string           `json:"url"`
+	Object                       string           `json:"object"`
+	Name                         *string          `json:"name,omitempty"`
+	Description                  *string          `json:"description,omitempty"`
 	DescriptionMentionedProfiles []UserDehydrated `json:"description_mentioned_profiles,omitempty"`
 	// Positions within the text (inclusive start, exclusive end) where each mention occurs.
 	DescriptionMentionedProfilesRanges []TextRange `json:"description_mentioned_profiles_ranges,omitempty"`
 	// Epoch timestamp in seconds.
 	CreatedAt *float32 `json:"created_at,omitempty"`
 	// Number of followers the channel has.
-	FollowerCount *float32 `json:"follower_count,omitempty"`
-	ExternalLink *ChannelExternalLink `json:"external_link,omitempty"`
-	ImageUrl *string `json:"image_url,omitempty"`
-	ParentUrl *string `json:"parent_url,omitempty"`
-	Lead *User `json:"lead,omitempty"`
-	ModeratorFids []int32 `json:"moderator_fids,omitempty"`
-	MemberCount *int32 `json:"member_count,omitempty"`
+	FollowerCount *float32             `json:"follower_count,omitempty"`
+	ExternalLink  *ChannelExternalLink `json:"external_link,omitempty"`
+	ImageUrl      *string              `json:"image_url,omitempty"`
+	ParentUrl     *string              `json:"parent_url,omitempty"`
+	Lead          *User                `json:"lead,omitempty"`
+	ModeratorFids []int32              `json:"moderator_fids,omitempty"`
+	MemberCount   *int32               `json:"member_count,omitempty"`
 	// Use `lead` instead.
 	// Deprecated
 	Moderator *User `json:"moderator,omitempty"`
 	// Cast Hash
-	PinnedCastHash *string `json:"pinned_cast_hash,omitempty"`
-	Hosts []User `json:"hosts,omitempty"`
-	ViewerContext *ChannelUserContext `json:"viewer_context,omitempty"`
+	PinnedCastHash *string             `json:"pinned_cast_hash,omitempty"`
+	Hosts          []User              `json:"hosts,omitempty"`
+	ViewerContext  *ChannelUserContext `json:"viewer_context,omitempty"`
 }
 
 type _Channel Channel
@@ -99,7 +99,6 @@ func (o *Channel) SetId(v string) {
 	o.Id = v
 }
 
-
 // GetUrl returns the Url field value
 func (o *Channel) GetUrl() string {
 	if o == nil {
@@ -124,7 +123,6 @@ func (o *Channel) SetUrl(v string) {
 	o.Url = v
 }
 
-
 // GetObject returns the Object field value
 func (o *Channel) GetObject() string {
 	if o == nil {
@@ -148,7 +146,6 @@ func (o *Channel) GetObjectOk() (*string, bool) {
 func (o *Channel) SetObject(v string) {
 	o.Object = v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Channel) GetName() string {
@@ -666,7 +663,7 @@ func (o *Channel) SetViewerContext(v ChannelUserContext) {
 }
 
 func (o Channel) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -741,32 +738,31 @@ func (o *Channel) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -820,5 +816,3 @@ func (v *NullableChannel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

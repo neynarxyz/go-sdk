@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,10 +22,10 @@ var _ MappedNullable = &RegisterUserResponse{}
 
 // RegisterUserResponse struct for RegisterUserResponse
 type RegisterUserResponse struct {
-	Success bool `json:"success"`
+	Success bool   `json:"success"`
 	Message string `json:"message"`
-	Signer Signer `json:"signer"`
-	User *User `json:"user,omitempty"`
+	Signer  Signer `json:"signer"`
+	User    *User  `json:"user,omitempty"`
 }
 
 type _RegisterUserResponse RegisterUserResponse
@@ -74,7 +74,6 @@ func (o *RegisterUserResponse) SetSuccess(v bool) {
 	o.Success = v
 }
 
-
 // GetMessage returns the Message field value
 func (o *RegisterUserResponse) GetMessage() string {
 	if o == nil {
@@ -99,7 +98,6 @@ func (o *RegisterUserResponse) SetMessage(v string) {
 	o.Message = v
 }
 
-
 // GetSigner returns the Signer field value
 func (o *RegisterUserResponse) GetSigner() Signer {
 	if o == nil {
@@ -123,7 +121,6 @@ func (o *RegisterUserResponse) GetSignerOk() (*Signer, bool) {
 func (o *RegisterUserResponse) SetSigner(v Signer) {
 	o.Signer = v
 }
-
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *RegisterUserResponse) GetUser() User {
@@ -158,7 +155,7 @@ func (o *RegisterUserResponse) SetUser(v User) {
 }
 
 func (o RegisterUserResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -188,32 +185,31 @@ func (o *RegisterUserResponse) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -267,5 +263,3 @@ func (v *NullableRegisterUserResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

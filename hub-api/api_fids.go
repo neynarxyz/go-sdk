@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type FidsAPI interface {
 
 	/*
-	FetchFids Fetch a list of all the FIDs
+		FetchFids Fetch a list of all the FIDs
 
-	Fetch a list of all the FIDs.
+		Fetch a list of all the FIDs.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchFidsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchFidsRequest
 	*/
 	FetchFids(ctx context.Context) ApiFetchFidsRequest
 
@@ -41,11 +40,11 @@ type FidsAPI interface {
 type FidsAPIService service
 
 type ApiFetchFidsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService FidsAPI
-	pageSize *int32
-	reverse *bool
-	pageToken *string
+	pageSize   *int32
+	reverse    *bool
+	pageToken  *string
 }
 
 // Maximum number of messages to return in a single response
@@ -75,24 +74,25 @@ FetchFids Fetch a list of all the FIDs
 
 Fetch a list of all the FIDs.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchFidsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchFidsRequest
 */
 func (a *FidsAPIService) FetchFids(ctx context.Context) ApiFetchFidsRequest {
 	return ApiFetchFidsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FidsResponse
+//
+//	@return FidsResponse
 func (a *FidsAPIService) FetchFidsExecute(r ApiFetchFidsRequest) (*FidsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FidsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FidsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FidsAPIService.FetchFids")
@@ -168,14 +168,14 @@ func (a *FidsAPIService) FetchFidsExecute(r ApiFetchFidsRequest) (*FidsResponse,
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

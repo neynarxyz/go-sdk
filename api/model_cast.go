@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,10 +12,10 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
-	"time"
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // checks if the Cast type satisfies the MappedNullable interface at compile time
@@ -23,18 +23,18 @@ var _ MappedNullable = &Cast{}
 
 // Cast struct for Cast
 type Cast struct {
-	Object string `json:"object"`
-	Hash string `json:"hash"`
-	ParentHash NullableString `json:"parent_hash"`
-	ParentUrl NullableString `json:"parent_url"`
-	RootParentUrl NullableString `json:"root_parent_url"`
-	ParentAuthor CastEmbeddedParentAuthor `json:"parent_author"`
-	Author User `json:"author"`
-	App NullableUserDehydrated `json:"app,omitempty"`
-	Text string `json:"text"`
-	Timestamp time.Time `json:"timestamp"`
-	Embeds []Embed `json:"embeds"`
-	Type *CastNotificationType `json:"type,omitempty"`
+	Object        string                   `json:"object"`
+	Hash          string                   `json:"hash"`
+	ParentHash    NullableString           `json:"parent_hash"`
+	ParentUrl     NullableString           `json:"parent_url"`
+	RootParentUrl NullableString           `json:"root_parent_url"`
+	ParentAuthor  CastEmbeddedParentAuthor `json:"parent_author"`
+	Author        User                     `json:"author"`
+	App           NullableUserDehydrated   `json:"app,omitempty"`
+	Text          string                   `json:"text"`
+	Timestamp     time.Time                `json:"timestamp"`
+	Embeds        []Embed                  `json:"embeds"`
+	Type          *CastNotificationType    `json:"type,omitempty"`
 }
 
 type _Cast Cast
@@ -90,7 +90,6 @@ func (o *Cast) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetHash returns the Hash field value
 func (o *Cast) GetHash() string {
 	if o == nil {
@@ -114,7 +113,6 @@ func (o *Cast) GetHashOk() (*string, bool) {
 func (o *Cast) SetHash(v string) {
 	o.Hash = v
 }
-
 
 // GetParentHash returns the ParentHash field value
 // If the value is explicit nil, the zero value for string will be returned
@@ -142,7 +140,6 @@ func (o *Cast) SetParentHash(v string) {
 	o.ParentHash.Set(&v)
 }
 
-
 // GetParentUrl returns the ParentUrl field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *Cast) GetParentUrl() string {
@@ -168,7 +165,6 @@ func (o *Cast) GetParentUrlOk() (*string, bool) {
 func (o *Cast) SetParentUrl(v string) {
 	o.ParentUrl.Set(&v)
 }
-
 
 // GetRootParentUrl returns the RootParentUrl field value
 // If the value is explicit nil, the zero value for string will be returned
@@ -196,7 +192,6 @@ func (o *Cast) SetRootParentUrl(v string) {
 	o.RootParentUrl.Set(&v)
 }
 
-
 // GetParentAuthor returns the ParentAuthor field value
 func (o *Cast) GetParentAuthor() CastEmbeddedParentAuthor {
 	if o == nil {
@@ -221,7 +216,6 @@ func (o *Cast) SetParentAuthor(v CastEmbeddedParentAuthor) {
 	o.ParentAuthor = v
 }
 
-
 // GetAuthor returns the Author field value
 func (o *Cast) GetAuthor() User {
 	if o == nil {
@@ -245,7 +239,6 @@ func (o *Cast) GetAuthorOk() (*User, bool) {
 func (o *Cast) SetAuthor(v User) {
 	o.Author = v
 }
-
 
 // GetApp returns the App field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Cast) GetApp() UserDehydrated {
@@ -279,6 +272,7 @@ func (o *Cast) HasApp() bool {
 func (o *Cast) SetApp(v UserDehydrated) {
 	o.App.Set(&v)
 }
+
 // SetAppNil sets the value for App to be an explicit nil
 func (o *Cast) SetAppNil() {
 	o.App.Set(nil)
@@ -313,7 +307,6 @@ func (o *Cast) SetText(v string) {
 	o.Text = v
 }
 
-
 // GetTimestamp returns the Timestamp field value
 func (o *Cast) GetTimestamp() time.Time {
 	if o == nil {
@@ -338,7 +331,6 @@ func (o *Cast) SetTimestamp(v time.Time) {
 	o.Timestamp = v
 }
 
-
 // GetEmbeds returns the Embeds field value
 func (o *Cast) GetEmbeds() []Embed {
 	if o == nil {
@@ -362,7 +354,6 @@ func (o *Cast) GetEmbedsOk() ([]Embed, bool) {
 func (o *Cast) SetEmbeds(v []Embed) {
 	o.Embeds = v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Cast) GetType() CastNotificationType {
@@ -397,7 +388,7 @@ func (o *Cast) SetType(v CastNotificationType) {
 }
 
 func (o Cast) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -444,32 +435,31 @@ func (o *Cast) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -523,5 +513,3 @@ func (v *NullableCast) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

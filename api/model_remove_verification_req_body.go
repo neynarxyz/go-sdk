@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,10 +22,10 @@ var _ MappedNullable = &RemoveVerificationReqBody{}
 
 // RemoveVerificationReqBody struct for RemoveVerificationReqBody
 type RemoveVerificationReqBody struct {
-	// UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key. 
+	// UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
 	SignerUuid string `json:"signer_uuid"`
 	// Ethereum address
-	Address string `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	Address   string `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	BlockHash string `json:"block_hash"`
 }
 
@@ -75,7 +75,6 @@ func (o *RemoveVerificationReqBody) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
 
-
 // GetAddress returns the Address field value
 func (o *RemoveVerificationReqBody) GetAddress() string {
 	if o == nil {
@@ -99,7 +98,6 @@ func (o *RemoveVerificationReqBody) GetAddressOk() (*string, bool) {
 func (o *RemoveVerificationReqBody) SetAddress(v string) {
 	o.Address = v
 }
-
 
 // GetBlockHash returns the BlockHash field value
 func (o *RemoveVerificationReqBody) GetBlockHash() string {
@@ -125,9 +123,8 @@ func (o *RemoveVerificationReqBody) SetBlockHash(v string) {
 	o.BlockHash = v
 }
 
-
 func (o RemoveVerificationReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -154,32 +151,31 @@ func (o *RemoveVerificationReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -233,5 +229,3 @@ func (v *NullableRemoveVerificationReqBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

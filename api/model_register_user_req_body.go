@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,12 +22,12 @@ var _ MappedNullable = &RegisterUserReqBody{}
 
 // RegisterUserReqBody struct for RegisterUserReqBody
 type RegisterUserReqBody struct {
-	Signature string `json:"signature"`
-	Fid float32 `json:"fid"`
-	RequestedUserCustodyAddress string `json:"requested_user_custody_address"`
-	Deadline float32 `json:"deadline"`
-	Fname *string `json:"fname,omitempty"`
-	Metadata *RegisterUserReqBodyMetadata `json:"metadata,omitempty"`
+	Signature                   string                       `json:"signature"`
+	Fid                         float32                      `json:"fid"`
+	RequestedUserCustodyAddress string                       `json:"requested_user_custody_address"`
+	Deadline                    float32                      `json:"deadline"`
+	Fname                       *string                      `json:"fname,omitempty"`
+	Metadata                    *RegisterUserReqBodyMetadata `json:"metadata,omitempty"`
 }
 
 type _RegisterUserReqBody RegisterUserReqBody
@@ -77,7 +77,6 @@ func (o *RegisterUserReqBody) SetSignature(v string) {
 	o.Signature = v
 }
 
-
 // GetFid returns the Fid field value
 func (o *RegisterUserReqBody) GetFid() float32 {
 	if o == nil {
@@ -101,7 +100,6 @@ func (o *RegisterUserReqBody) GetFidOk() (*float32, bool) {
 func (o *RegisterUserReqBody) SetFid(v float32) {
 	o.Fid = v
 }
-
 
 // GetRequestedUserCustodyAddress returns the RequestedUserCustodyAddress field value
 func (o *RegisterUserReqBody) GetRequestedUserCustodyAddress() string {
@@ -127,7 +125,6 @@ func (o *RegisterUserReqBody) SetRequestedUserCustodyAddress(v string) {
 	o.RequestedUserCustodyAddress = v
 }
 
-
 // GetDeadline returns the Deadline field value
 func (o *RegisterUserReqBody) GetDeadline() float32 {
 	if o == nil {
@@ -151,7 +148,6 @@ func (o *RegisterUserReqBody) GetDeadlineOk() (*float32, bool) {
 func (o *RegisterUserReqBody) SetDeadline(v float32) {
 	o.Deadline = v
 }
-
 
 // GetFname returns the Fname field value if set, zero value otherwise.
 func (o *RegisterUserReqBody) GetFname() string {
@@ -218,7 +214,7 @@ func (o *RegisterUserReqBody) SetMetadata(v RegisterUserReqBodyMetadata) {
 }
 
 func (o RegisterUserReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -253,32 +249,31 @@ func (o *RegisterUserReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -332,5 +327,3 @@ func (v *NullableRegisterUserReqBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,11 +21,11 @@ var _ MappedNullable = &StorageAllocation{}
 
 // StorageAllocation struct for StorageAllocation
 type StorageAllocation struct {
-	Object *string `json:"object,omitempty"`
-	User *UserDehydrated `json:"user,omitempty"`
-	Units *int32 `json:"units,omitempty"`
-	Expiry *time.Time `json:"expiry,omitempty"`
-	Timestamp *time.Time `json:"timestamp,omitempty"`
+	Object    *string         `json:"object,omitempty"`
+	User      *UserDehydrated `json:"user,omitempty"`
+	Units     *int32          `json:"units,omitempty"`
+	Expiry    *time.Time      `json:"expiry,omitempty"`
+	Timestamp *time.Time      `json:"timestamp,omitempty"`
 }
 
 // NewStorageAllocation instantiates a new StorageAllocation object
@@ -206,7 +206,7 @@ func (o *StorageAllocation) SetTimestamp(v time.Time) {
 }
 
 func (o StorageAllocation) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -268,5 +268,3 @@ func (v *NullableStorageAllocation) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &SendFrameNotificationsReqBody{}
 // SendFrameNotificationsReqBody struct for SendFrameNotificationsReqBody
 type SendFrameNotificationsReqBody struct {
 	// An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer, with a maximum of 100 FIDs allowed per call.
-	TargetFids []int32 `json:"target_fids"`
+	TargetFids   []int32                                   `json:"target_fids"`
 	Notification SendFrameNotificationsReqBodyNotification `json:"notification"`
 }
 
@@ -72,7 +72,6 @@ func (o *SendFrameNotificationsReqBody) SetTargetFids(v []int32) {
 	o.TargetFids = v
 }
 
-
 // GetNotification returns the Notification field value
 func (o *SendFrameNotificationsReqBody) GetNotification() SendFrameNotificationsReqBodyNotification {
 	if o == nil {
@@ -97,9 +96,8 @@ func (o *SendFrameNotificationsReqBody) SetNotification(v SendFrameNotifications
 	o.Notification = v
 }
 
-
 func (o SendFrameNotificationsReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -124,32 +122,31 @@ func (o *SendFrameNotificationsReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -203,5 +200,3 @@ func (v *NullableSendFrameNotificationsReqBody) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

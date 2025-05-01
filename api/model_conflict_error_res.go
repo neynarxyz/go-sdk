@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,10 +22,10 @@ var _ MappedNullable = &ConflictErrorRes{}
 
 // ConflictErrorRes Details for the conflict error response
 type ConflictErrorRes struct {
-	Code *string `json:"code,omitempty"`
-	Message string `json:"message"`
+	Code     *string `json:"code,omitempty"`
+	Message  string  `json:"message"`
 	Property *string `json:"property,omitempty"`
-	Key *string `json:"key,omitempty"`
+	Key      *string `json:"key,omitempty"`
 }
 
 type _ConflictErrorRes ConflictErrorRes
@@ -104,7 +104,6 @@ func (o *ConflictErrorRes) SetMessage(v string) {
 	o.Message = v
 }
 
-
 // GetProperty returns the Property field value if set, zero value otherwise.
 func (o *ConflictErrorRes) GetProperty() string {
 	if o == nil || IsNil(o.Property) {
@@ -170,7 +169,7 @@ func (o *ConflictErrorRes) SetKey(v string) {
 }
 
 func (o ConflictErrorRes) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -202,32 +201,31 @@ func (o *ConflictErrorRes) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -281,5 +279,3 @@ func (v *NullableConflictErrorRes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

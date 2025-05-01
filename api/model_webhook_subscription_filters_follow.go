@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -20,7 +20,7 @@ var _ MappedNullable = &WebhookSubscriptionFiltersFollow{}
 
 // WebhookSubscriptionFiltersFollow struct for WebhookSubscriptionFiltersFollow
 type WebhookSubscriptionFiltersFollow struct {
-	Fids []int32 `json:"fids,omitempty"`
+	Fids       []int32 `json:"fids,omitempty"`
 	TargetFids []int32 `json:"target_fids,omitempty"`
 }
 
@@ -106,7 +106,7 @@ func (o *WebhookSubscriptionFiltersFollow) SetTargetFids(v []int32) {
 }
 
 func (o WebhookSubscriptionFiltersFollow) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableWebhookSubscriptionFiltersFollow) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

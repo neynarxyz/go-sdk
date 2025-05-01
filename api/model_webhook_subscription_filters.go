@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -20,14 +20,14 @@ var _ MappedNullable = &WebhookSubscriptionFilters{}
 
 // WebhookSubscriptionFilters struct for WebhookSubscriptionFilters
 type WebhookSubscriptionFilters struct {
-	CastCreated *WebhookSubscriptionFiltersCast `json:"cast.created,omitempty"`
-	CastDeleted *WebhookSubscriptionFiltersCast `json:"cast.deleted,omitempty"`
-	UserCreated map[string]interface{} `json:"user.created,omitempty"`
-	UserUpdated *WebhookSubscriptionFiltersUserUpdated `json:"user.updated,omitempty"`
-	FollowCreated *WebhookSubscriptionFiltersFollow `json:"follow.created,omitempty"`
-	FollowDeleted *WebhookSubscriptionFiltersFollow `json:"follow.deleted,omitempty"`
-	ReactionCreated *WebhookSubscriptionFiltersReaction `json:"reaction.created,omitempty"`
-	ReactionDeleted *WebhookSubscriptionFiltersReaction `json:"reaction.deleted,omitempty"`
+	CastCreated     *WebhookSubscriptionFiltersCast        `json:"cast.created,omitempty"`
+	CastDeleted     *WebhookSubscriptionFiltersCast        `json:"cast.deleted,omitempty"`
+	UserCreated     map[string]interface{}                 `json:"user.created,omitempty"`
+	UserUpdated     *WebhookSubscriptionFiltersUserUpdated `json:"user.updated,omitempty"`
+	FollowCreated   *WebhookSubscriptionFiltersFollow      `json:"follow.created,omitempty"`
+	FollowDeleted   *WebhookSubscriptionFiltersFollow      `json:"follow.deleted,omitempty"`
+	ReactionCreated *WebhookSubscriptionFiltersReaction    `json:"reaction.created,omitempty"`
+	ReactionDeleted *WebhookSubscriptionFiltersReaction    `json:"reaction.deleted,omitempty"`
 }
 
 // NewWebhookSubscriptionFilters instantiates a new WebhookSubscriptionFilters object
@@ -304,7 +304,7 @@ func (o *WebhookSubscriptionFilters) SetReactionDeleted(v WebhookSubscriptionFil
 }
 
 func (o WebhookSubscriptionFilters) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -375,5 +375,3 @@ func (v *NullableWebhookSubscriptionFilters) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

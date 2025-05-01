@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -20,7 +20,7 @@ import (
 // Embed - struct for Embed
 type Embed struct {
 	CastEmbed *CastEmbed
-	UrlEmbed *UrlEmbed
+	UrlEmbed  *UrlEmbed
 }
 
 // CastEmbedAsEmbed is a convenience function that returns CastEmbed wrapped in Embed
@@ -36,7 +36,6 @@ func UrlEmbedAsEmbed(v *UrlEmbed) Embed {
 		UrlEmbed: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Embed) UnmarshalJSON(data []byte) error {
@@ -103,7 +102,7 @@ func (src Embed) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Embed) GetActualInstance() (interface{}) {
+func (obj *Embed) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -120,7 +119,7 @@ func (obj *Embed) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj Embed) GetActualInstanceValue() (interface{}) {
+func (obj Embed) GetActualInstanceValue() interface{} {
 	if obj.CastEmbed != nil {
 		return *obj.CastEmbed
 	}
@@ -168,5 +167,3 @@ func (v *NullableEmbed) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

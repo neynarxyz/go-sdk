@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,7 +21,7 @@ type BulkUserAddressType string
 
 // List of BulkUserAddressType
 const (
-	BULKUSERADDRESSTYPE_CUSTODY_ADDRESS BulkUserAddressType = "custody_address"
+	BULKUSERADDRESSTYPE_CUSTODY_ADDRESS  BulkUserAddressType = "custody_address"
 	BULKUSERADDRESSTYPE_VERIFIED_ADDRESS BulkUserAddressType = "verified_address"
 )
 
@@ -109,4 +109,3 @@ func (v *NullableBulkUserAddressType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

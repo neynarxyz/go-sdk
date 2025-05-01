@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -23,7 +23,7 @@ type FarcasterNetwork string
 const (
 	FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET FarcasterNetwork = "FARCASTER_NETWORK_MAINNET"
 	FARCASTERNETWORK_FARCASTER_NETWORK_TESTNET FarcasterNetwork = "FARCASTER_NETWORK_TESTNET"
-	FARCASTERNETWORK_FARCASTER_NETWORK_DEVNET FarcasterNetwork = "FARCASTER_NETWORK_DEVNET"
+	FARCASTERNETWORK_FARCASTER_NETWORK_DEVNET  FarcasterNetwork = "FARCASTER_NETWORK_DEVNET"
 )
 
 // All allowed values of FarcasterNetwork enum
@@ -111,4 +111,3 @@ func (v *NullableFarcasterNetwork) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,18 +19,17 @@ import (
 	"net/url"
 )
 
-
 type StorageAPI interface {
 
 	/*
-	BuyStorage Buy storage
+		BuyStorage Buy storage
 
-	This api will help you rent units of storage for an year for a specific FID.
-A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
+		This api will help you rent units of storage for an year for a specific FID.
+	A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiBuyStorageRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiBuyStorageRequest
 	*/
 	BuyStorage(ctx context.Context) ApiBuyStorageRequest
 
@@ -39,12 +38,12 @@ A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
 	BuyStorageExecute(r ApiBuyStorageRequest) (*StorageAllocationsResponse, *http.Response, error)
 
 	/*
-	LookupUserStorageAllocations Allocation of user
+		LookupUserStorageAllocations Allocation of user
 
-	Fetches storage allocations for a given user
+		Fetches storage allocations for a given user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupUserStorageAllocationsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupUserStorageAllocationsRequest
 	*/
 	LookupUserStorageAllocations(ctx context.Context) ApiLookupUserStorageAllocationsRequest
 
@@ -53,12 +52,12 @@ A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
 	LookupUserStorageAllocationsExecute(r ApiLookupUserStorageAllocationsRequest) (*StorageAllocationsResponse, *http.Response, error)
 
 	/*
-	LookupUserStorageUsage Usage of user
+		LookupUserStorageUsage Usage of user
 
-	Fetches storage usage for a given user
+		Fetches storage usage for a given user
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupUserStorageUsageRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupUserStorageUsageRequest
 	*/
 	LookupUserStorageUsage(ctx context.Context) ApiLookupUserStorageUsageRequest
 
@@ -71,8 +70,8 @@ A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
 type StorageAPIService service
 
 type ApiBuyStorageRequest struct {
-	ctx context.Context
-	ApiService StorageAPI
+	ctx               context.Context
+	ApiService        StorageAPI
 	buyStorageReqBody *BuyStorageReqBody
 }
 
@@ -91,25 +90,25 @@ BuyStorage Buy storage
 This api will help you rent units of storage for an year for a specific FID.
 A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiBuyStorageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiBuyStorageRequest
 */
 func (a *StorageAPIService) BuyStorage(ctx context.Context) ApiBuyStorageRequest {
 	return ApiBuyStorageRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return StorageAllocationsResponse
+//
+//	@return StorageAllocationsResponse
 func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageAllocationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *StorageAllocationsResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *StorageAllocationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.BuyStorage")
@@ -188,8 +187,8 @@ func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -199,8 +198,8 @@ func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -210,8 +209,8 @@ func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageA
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -229,9 +228,9 @@ func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageA
 }
 
 type ApiLookupUserStorageAllocationsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService StorageAPI
-	fid *int32
+	fid        *int32
 }
 
 func (r ApiLookupUserStorageAllocationsRequest) Fid(fid int32) ApiLookupUserStorageAllocationsRequest {
@@ -248,24 +247,25 @@ LookupUserStorageAllocations Allocation of user
 
 Fetches storage allocations for a given user
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupUserStorageAllocationsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupUserStorageAllocationsRequest
 */
 func (a *StorageAPIService) LookupUserStorageAllocations(ctx context.Context) ApiLookupUserStorageAllocationsRequest {
 	return ApiLookupUserStorageAllocationsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return StorageAllocationsResponse
+//
+//	@return StorageAllocationsResponse
 func (a *StorageAPIService) LookupUserStorageAllocationsExecute(r ApiLookupUserStorageAllocationsRequest) (*StorageAllocationsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *StorageAllocationsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *StorageAllocationsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.LookupUserStorageAllocations")
@@ -343,8 +343,8 @@ func (a *StorageAPIService) LookupUserStorageAllocationsExecute(r ApiLookupUserS
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -362,9 +362,9 @@ func (a *StorageAPIService) LookupUserStorageAllocationsExecute(r ApiLookupUserS
 }
 
 type ApiLookupUserStorageUsageRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService StorageAPI
-	fid *int32
+	fid        *int32
 }
 
 func (r ApiLookupUserStorageUsageRequest) Fid(fid int32) ApiLookupUserStorageUsageRequest {
@@ -381,24 +381,25 @@ LookupUserStorageUsage Usage of user
 
 Fetches storage usage for a given user
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupUserStorageUsageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupUserStorageUsageRequest
 */
 func (a *StorageAPIService) LookupUserStorageUsage(ctx context.Context) ApiLookupUserStorageUsageRequest {
 	return ApiLookupUserStorageUsageRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return StorageUsageResponse
+//
+//	@return StorageUsageResponse
 func (a *StorageAPIService) LookupUserStorageUsageExecute(r ApiLookupUserStorageUsageRequest) (*StorageUsageResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *StorageUsageResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *StorageUsageResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageAPIService.LookupUserStorageUsage")
@@ -476,8 +477,8 @@ func (a *StorageAPIService) LookupUserStorageUsageExecute(r ApiLookupUserStorage
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

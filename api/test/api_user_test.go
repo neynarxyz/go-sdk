@@ -11,10 +11,10 @@ package api
 
 import (
 	"context"
+	openapiclient "github.com/neynarxyz/go-sdk/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/neynarxyz/go-sdk/api"
 )
 
 func Test_api_UserAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService DeleteVerification", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.DeleteVerification(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService FetchBulkUsers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.FetchBulkUsers(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService FetchBulkUsersByEthOrSolAddress", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.FetchBulkUsersByEthOrSolAddress(context.Background()).Execute()
 
@@ -60,7 +60,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService FetchPowerUsers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.FetchPowerUsers(context.Background()).Execute()
 
@@ -72,7 +72,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService FetchPowerUsersLite", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.FetchPowerUsersLite(context.Background()).Execute()
 
@@ -84,7 +84,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService FetchUsersByLocation", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.FetchUsersByLocation(context.Background()).Execute()
 
@@ -96,7 +96,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService FollowUser", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.FollowUser(context.Background()).Execute()
 
@@ -108,7 +108,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService GetFreshAccountFID", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.GetFreshAccountFID(context.Background()).Execute()
 
@@ -120,7 +120,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService LookupUserByCustodyAddress", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.LookupUserByCustodyAddress(context.Background()).Execute()
 
@@ -132,7 +132,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService LookupUserByUsername", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.LookupUserByUsername(context.Background()).Execute()
 
@@ -144,7 +144,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService LookupUsersByXUsername", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.LookupUsersByXUsername(context.Background()).Execute()
 
@@ -156,7 +156,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService PublishVerification", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.PublishVerification(context.Background()).Execute()
 
@@ -168,7 +168,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService RegisterAccount", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.RegisterAccount(context.Background()).Execute()
 
@@ -180,7 +180,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService SearchUser", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.SearchUser(context.Background()).Execute()
 
@@ -192,7 +192,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService UnfollowUser", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.UnfollowUser(context.Background()).Execute()
 
@@ -204,7 +204,7 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService UpdateUser", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.UserAPI.UpdateUser(context.Background()).Execute()
 

@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,14 +19,14 @@ import (
 
 // MessageAllOfData - struct for MessageAllOfData
 type MessageAllOfData struct {
-	MessageDataCastAdd *MessageDataCastAdd
-	MessageDataCastRemove *MessageDataCastRemove
-	MessageDataFrameAction *MessageDataFrameAction
-	MessageDataLink *MessageDataLink
-	MessageDataReaction *MessageDataReaction
-	MessageDataUserDataAdd *MessageDataUserDataAdd
-	MessageDataUsernameProof *MessageDataUsernameProof
-	MessageDataVerificationAdd *MessageDataVerificationAdd
+	MessageDataCastAdd            *MessageDataCastAdd
+	MessageDataCastRemove         *MessageDataCastRemove
+	MessageDataFrameAction        *MessageDataFrameAction
+	MessageDataLink               *MessageDataLink
+	MessageDataReaction           *MessageDataReaction
+	MessageDataUserDataAdd        *MessageDataUserDataAdd
+	MessageDataUsernameProof      *MessageDataUsernameProof
+	MessageDataVerificationAdd    *MessageDataVerificationAdd
 	MessageDataVerificationRemove *MessageDataVerificationRemove
 }
 
@@ -92,7 +92,6 @@ func MessageDataVerificationRemoveAsMessageAllOfData(v *MessageDataVerificationR
 		MessageDataVerificationRemove: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *MessageAllOfData) UnmarshalJSON(data []byte) error {
@@ -313,7 +312,7 @@ func (src MessageAllOfData) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *MessageAllOfData) GetActualInstance() (interface{}) {
+func (obj *MessageAllOfData) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -358,7 +357,7 @@ func (obj *MessageAllOfData) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj MessageAllOfData) GetActualInstanceValue() (interface{}) {
+func (obj MessageAllOfData) GetActualInstanceValue() interface{} {
 	if obj.MessageDataCastAdd != nil {
 		return *obj.MessageDataCastAdd
 	}
@@ -434,5 +433,3 @@ func (v *NullableMessageAllOfData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

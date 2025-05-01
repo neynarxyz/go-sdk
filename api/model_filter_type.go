@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,11 +21,11 @@ type FilterType string
 
 // List of FilterType
 const (
-	FILTERTYPE_FIDS FilterType = "fids"
-	FILTERTYPE_PARENT_URL FilterType = "parent_url"
-	FILTERTYPE_CHANNEL_ID FilterType = "channel_id"
-	FILTERTYPE_EMBED_URL FilterType = "embed_url"
-	FILTERTYPE_EMBED_TYPES FilterType = "embed_types"
+	FILTERTYPE_FIDS            FilterType = "fids"
+	FILTERTYPE_PARENT_URL      FilterType = "parent_url"
+	FILTERTYPE_CHANNEL_ID      FilterType = "channel_id"
+	FILTERTYPE_EMBED_URL       FilterType = "embed_url"
+	FILTERTYPE_EMBED_TYPES     FilterType = "embed_types"
 	FILTERTYPE_GLOBAL_TRENDING FilterType = "global_trending"
 )
 
@@ -117,4 +117,3 @@ func (v *NullableFilterType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

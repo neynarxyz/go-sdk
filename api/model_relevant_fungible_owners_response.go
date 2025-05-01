@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -20,7 +20,7 @@ var _ MappedNullable = &RelevantFungibleOwnersResponse{}
 
 // RelevantFungibleOwnersResponse struct for RelevantFungibleOwnersResponse
 type RelevantFungibleOwnersResponse struct {
-	TopRelevantOwnersHydrated []User `json:"top_relevant_owners_hydrated,omitempty"`
+	TopRelevantOwnersHydrated   []User `json:"top_relevant_owners_hydrated,omitempty"`
 	AllRelevantOwnersDehydrated []User `json:"all_relevant_owners_dehydrated,omitempty"`
 }
 
@@ -106,7 +106,7 @@ func (o *RelevantFungibleOwnersResponse) SetAllRelevantOwnersDehydrated(v []User
 }
 
 func (o RelevantFungibleOwnersResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableRelevantFungibleOwnersResponse) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

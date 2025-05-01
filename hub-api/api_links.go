@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type LinksAPI interface {
 
 	/*
-	FetchUserFollowers To target FID
+		FetchUserFollowers To target FID
 
-	Fetch a list of users that are following a user.
+		Fetch a list of users that are following a user.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserFollowersRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserFollowersRequest
 	*/
 	FetchUserFollowers(ctx context.Context) ApiFetchUserFollowersRequest
 
@@ -37,12 +36,12 @@ type LinksAPI interface {
 	FetchUserFollowersExecute(r ApiFetchUserFollowersRequest) (*FetchUserFollowing200Response, *http.Response, error)
 
 	/*
-	FetchUserFollowing From source FID
+		FetchUserFollowing From source FID
 
-	Fetch a list of users that a user is following.
+		Fetch a list of users that a user is following.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserFollowingRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserFollowingRequest
 	*/
 	FetchUserFollowing(ctx context.Context) ApiFetchUserFollowingRequest
 
@@ -51,12 +50,12 @@ type LinksAPI interface {
 	FetchUserFollowingExecute(r ApiFetchUserFollowingRequest) (*FetchUserFollowing200Response, *http.Response, error)
 
 	/*
-	LookupUserRelation By its FID and target FID
+		LookupUserRelation By its FID and target FID
 
-	Lookup a link by its FID and target FID.
+		Lookup a link by its FID and target FID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupUserRelationRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupUserRelationRequest
 	*/
 	LookupUserRelation(ctx context.Context) ApiLookupUserRelationRequest
 
@@ -69,13 +68,13 @@ type LinksAPI interface {
 type LinksAPIService service
 
 type ApiFetchUserFollowersRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService LinksAPI
-	targetFid *int32
-	linkType *LinkType
-	pageSize *int32
-	reverse *bool
-	pageToken *string
+	targetFid  *int32
+	linkType   *LinkType
+	pageSize   *int32
+	reverse    *bool
+	pageToken  *string
 }
 
 // The FID of the target user for this link
@@ -116,24 +115,25 @@ FetchUserFollowers To target FID
 
 Fetch a list of users that are following a user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserFollowersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserFollowersRequest
 */
 func (a *LinksAPIService) FetchUserFollowers(ctx context.Context) ApiFetchUserFollowersRequest {
 	return ApiFetchUserFollowersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchUserFollowing200Response
+//
+//	@return FetchUserFollowing200Response
 func (a *LinksAPIService) FetchUserFollowersExecute(r ApiFetchUserFollowersRequest) (*FetchUserFollowing200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchUserFollowing200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchUserFollowing200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LinksAPIService.FetchUserFollowers")
@@ -222,14 +222,14 @@ func (a *LinksAPIService) FetchUserFollowersExecute(r ApiFetchUserFollowersReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -246,13 +246,13 @@ func (a *LinksAPIService) FetchUserFollowersExecute(r ApiFetchUserFollowersReque
 }
 
 type ApiFetchUserFollowingRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService LinksAPI
-	fid *int32
-	linkType *LinkType
-	pageSize *int32
-	reverse *bool
-	pageToken *string
+	fid        *int32
+	linkType   *LinkType
+	pageSize   *int32
+	reverse    *bool
+	pageToken  *string
 }
 
 // The FID of the link&#39;s originator
@@ -293,24 +293,25 @@ FetchUserFollowing From source FID
 
 Fetch a list of users that a user is following.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserFollowingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserFollowingRequest
 */
 func (a *LinksAPIService) FetchUserFollowing(ctx context.Context) ApiFetchUserFollowingRequest {
 	return ApiFetchUserFollowingRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchUserFollowing200Response
+//
+//	@return FetchUserFollowing200Response
 func (a *LinksAPIService) FetchUserFollowingExecute(r ApiFetchUserFollowingRequest) (*FetchUserFollowing200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchUserFollowing200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchUserFollowing200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LinksAPIService.FetchUserFollowing")
@@ -399,14 +400,14 @@ func (a *LinksAPIService) FetchUserFollowingExecute(r ApiFetchUserFollowingReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -423,11 +424,11 @@ func (a *LinksAPIService) FetchUserFollowingExecute(r ApiFetchUserFollowingReque
 }
 
 type ApiLookupUserRelationRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService LinksAPI
-	fid *int32
-	targetFid *int32
-	linkType *LinkType
+	fid        *int32
+	targetFid  *int32
+	linkType   *LinkType
 }
 
 // The FID of the link&#39;s originator
@@ -456,24 +457,25 @@ LookupUserRelation By its FID and target FID
 
 Lookup a link by its FID and target FID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupUserRelationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupUserRelationRequest
 */
 func (a *LinksAPIService) LookupUserRelation(ctx context.Context) ApiLookupUserRelationRequest {
 	return ApiLookupUserRelationRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return LinkAdd
+//
+//	@return LinkAdd
 func (a *LinksAPIService) LookupUserRelationExecute(r ApiLookupUserRelationRequest) (*LinkAdd, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *LinkAdd
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *LinkAdd
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LinksAPIService.LookupUserRelation")
@@ -558,14 +560,14 @@ func (a *LinksAPIService) LookupUserRelationExecute(r ApiLookupUserRelationReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

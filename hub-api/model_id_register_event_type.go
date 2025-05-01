@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -21,8 +21,8 @@ type IdRegisterEventType string
 
 // List of IdRegisterEventType
 const (
-	IDREGISTEREVENTTYPE_ID_REGISTER_EVENT_TYPE_REGISTER IdRegisterEventType = "ID_REGISTER_EVENT_TYPE_REGISTER"
-	IDREGISTEREVENTTYPE_ID_REGISTER_EVENT_TYPE_TRANSFER IdRegisterEventType = "ID_REGISTER_EVENT_TYPE_TRANSFER"
+	IDREGISTEREVENTTYPE_ID_REGISTER_EVENT_TYPE_REGISTER        IdRegisterEventType = "ID_REGISTER_EVENT_TYPE_REGISTER"
+	IDREGISTEREVENTTYPE_ID_REGISTER_EVENT_TYPE_TRANSFER        IdRegisterEventType = "ID_REGISTER_EVENT_TYPE_TRANSFER"
 	IDREGISTEREVENTTYPE_ID_REGISTER_EVENT_TYPE_CHANGE_RECOVERY IdRegisterEventType = "ID_REGISTER_EVENT_TYPE_CHANGE_RECOVERY"
 )
 
@@ -111,4 +111,3 @@ func (v *NullableIdRegisterEventType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

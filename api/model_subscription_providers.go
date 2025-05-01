@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -16,13 +16,13 @@ import (
 	"fmt"
 )
 
-// SubscriptionProviders The provider of the subscription. 
+// SubscriptionProviders The provider of the subscription.
 type SubscriptionProviders string
 
 // List of SubscriptionProviders
 const (
 	SUBSCRIPTIONPROVIDERS_FABRIC_STP SubscriptionProviders = "fabric_stp"
-	SUBSCRIPTIONPROVIDERS_PARAGRAPH SubscriptionProviders = "paragraph"
+	SUBSCRIPTIONPROVIDERS_PARAGRAPH  SubscriptionProviders = "paragraph"
 )
 
 // All allowed values of SubscriptionProviders enum
@@ -109,4 +109,3 @@ func (v *NullableSubscriptionProviders) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

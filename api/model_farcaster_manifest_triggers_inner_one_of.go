@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &FarcasterManifestTriggersInnerOneOf{}
 
 // FarcasterManifestTriggersInnerOneOf struct for FarcasterManifestTriggersInnerOneOf
 type FarcasterManifestTriggersInnerOneOf struct {
-	Type string `json:"type"`
-	Id string `json:"id"`
-	Url string `json:"url"`
+	Type string  `json:"type"`
+	Id   string  `json:"id"`
+	Url  string  `json:"url"`
 	Name *string `json:"name,omitempty"`
 }
 
@@ -74,7 +74,6 @@ func (o *FarcasterManifestTriggersInnerOneOf) SetType(v string) {
 	o.Type = v
 }
 
-
 // GetId returns the Id field value
 func (o *FarcasterManifestTriggersInnerOneOf) GetId() string {
 	if o == nil {
@@ -99,7 +98,6 @@ func (o *FarcasterManifestTriggersInnerOneOf) SetId(v string) {
 	o.Id = v
 }
 
-
 // GetUrl returns the Url field value
 func (o *FarcasterManifestTriggersInnerOneOf) GetUrl() string {
 	if o == nil {
@@ -123,7 +121,6 @@ func (o *FarcasterManifestTriggersInnerOneOf) GetUrlOk() (*string, bool) {
 func (o *FarcasterManifestTriggersInnerOneOf) SetUrl(v string) {
 	o.Url = v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FarcasterManifestTriggersInnerOneOf) GetName() string {
@@ -158,7 +155,7 @@ func (o *FarcasterManifestTriggersInnerOneOf) SetName(v string) {
 }
 
 func (o FarcasterManifestTriggersInnerOneOf) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -188,32 +185,31 @@ func (o *FarcasterManifestTriggersInnerOneOf) UnmarshalJSON(data []byte) (err er
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -267,5 +263,3 @@ func (v *NullableFarcasterManifestTriggersInnerOneOf) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

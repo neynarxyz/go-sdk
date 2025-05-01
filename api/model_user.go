@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -24,26 +24,26 @@ var _ MappedNullable = &User{}
 type User struct {
 	Object string `json:"object"`
 	// The unique identifier of a farcaster user (unsigned integer)
-	Fid int32 `json:"fid"`
-	Username string `json:"username"`
+	Fid         int32   `json:"fid"`
+	Username    string  `json:"username"`
 	DisplayName *string `json:"display_name,omitempty"`
 	// Ethereum address
 	CustodyAddress string `json:"custody_address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	// The URL of the user's profile picture
-	PfpUrl *string `json:"pfp_url,omitempty"`
+	PfpUrl  *string     `json:"pfp_url,omitempty"`
 	Profile UserProfile `json:"profile"`
 	// The number of followers the user has.
 	FollowerCount int32 `json:"follower_count"`
 	// The number of users the user is following.
-	FollowingCount int32 `json:"following_count"`
-	Verifications []string `json:"verifications"`
+	FollowingCount    int32                 `json:"following_count"`
+	Verifications     []string              `json:"verifications"`
 	VerifiedAddresses UserVerifiedAddresses `json:"verified_addresses"`
 	// Verified accounts of the user on other platforms, currently only X is supported.
 	VerifiedAccounts []UserVerifiedAccountsInner `json:"verified_accounts"`
-	PowerBadge bool `json:"power_badge"`
-	Experimental *UserExperimental `json:"experimental,omitempty"`
+	PowerBadge       bool                        `json:"power_badge"`
+	Experimental     *UserExperimental           `json:"experimental,omitempty"`
 	// Score that represents the probability that the account is not spam.
-	Score float64 `json:"score"`
+	Score         float64            `json:"score"`
 	ViewerContext *UserViewerContext `json:"viewer_context,omitempty"`
 }
 
@@ -102,7 +102,6 @@ func (o *User) SetObject(v string) {
 	o.Object = v
 }
 
-
 // GetFid returns the Fid field value
 func (o *User) GetFid() int32 {
 	if o == nil {
@@ -127,7 +126,6 @@ func (o *User) SetFid(v int32) {
 	o.Fid = v
 }
 
-
 // GetUsername returns the Username field value
 func (o *User) GetUsername() string {
 	if o == nil {
@@ -151,7 +149,6 @@ func (o *User) GetUsernameOk() (*string, bool) {
 func (o *User) SetUsername(v string) {
 	o.Username = v
 }
-
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *User) GetDisplayName() string {
@@ -209,7 +206,6 @@ func (o *User) SetCustodyAddress(v string) {
 	o.CustodyAddress = v
 }
 
-
 // GetPfpUrl returns the PfpUrl field value if set, zero value otherwise.
 func (o *User) GetPfpUrl() string {
 	if o == nil || IsNil(o.PfpUrl) {
@@ -266,7 +262,6 @@ func (o *User) SetProfile(v UserProfile) {
 	o.Profile = v
 }
 
-
 // GetFollowerCount returns the FollowerCount field value
 func (o *User) GetFollowerCount() int32 {
 	if o == nil {
@@ -290,7 +285,6 @@ func (o *User) GetFollowerCountOk() (*int32, bool) {
 func (o *User) SetFollowerCount(v int32) {
 	o.FollowerCount = v
 }
-
 
 // GetFollowingCount returns the FollowingCount field value
 func (o *User) GetFollowingCount() int32 {
@@ -316,7 +310,6 @@ func (o *User) SetFollowingCount(v int32) {
 	o.FollowingCount = v
 }
 
-
 // GetVerifications returns the Verifications field value
 func (o *User) GetVerifications() []string {
 	if o == nil {
@@ -340,7 +333,6 @@ func (o *User) GetVerificationsOk() ([]string, bool) {
 func (o *User) SetVerifications(v []string) {
 	o.Verifications = v
 }
-
 
 // GetVerifiedAddresses returns the VerifiedAddresses field value
 func (o *User) GetVerifiedAddresses() UserVerifiedAddresses {
@@ -366,7 +358,6 @@ func (o *User) SetVerifiedAddresses(v UserVerifiedAddresses) {
 	o.VerifiedAddresses = v
 }
 
-
 // GetVerifiedAccounts returns the VerifiedAccounts field value
 func (o *User) GetVerifiedAccounts() []UserVerifiedAccountsInner {
 	if o == nil {
@@ -391,7 +382,6 @@ func (o *User) SetVerifiedAccounts(v []UserVerifiedAccountsInner) {
 	o.VerifiedAccounts = v
 }
 
-
 // GetPowerBadge returns the PowerBadge field value
 func (o *User) GetPowerBadge() bool {
 	if o == nil {
@@ -415,7 +405,6 @@ func (o *User) GetPowerBadgeOk() (*bool, bool) {
 func (o *User) SetPowerBadge(v bool) {
 	o.PowerBadge = v
 }
-
 
 // GetExperimental returns the Experimental field value if set, zero value otherwise.
 func (o *User) GetExperimental() UserExperimental {
@@ -473,7 +462,6 @@ func (o *User) SetScore(v float64) {
 	o.Score = v
 }
 
-
 // GetViewerContext returns the ViewerContext field value if set, zero value otherwise.
 func (o *User) GetViewerContext() UserViewerContext {
 	if o == nil || IsNil(o.ViewerContext) {
@@ -507,7 +495,7 @@ func (o *User) SetViewerContext(v UserViewerContext) {
 }
 
 func (o User) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -564,32 +552,31 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -643,5 +630,3 @@ func (v *NullableUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -22,7 +22,7 @@ type FeedType string
 // List of FeedType
 const (
 	FEEDTYPE_FOLLOWING FeedType = "following"
-	FEEDTYPE_FILTER FeedType = "filter"
+	FEEDTYPE_FILTER    FeedType = "filter"
 )
 
 // All allowed values of FeedType enum
@@ -109,4 +109,3 @@ func (v *NullableFeedType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

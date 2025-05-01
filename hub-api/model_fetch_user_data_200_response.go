@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -20,7 +20,7 @@ import (
 // FetchUserData200Response - struct for FetchUserData200Response
 type FetchUserData200Response struct {
 	FetchUserData200ResponseOneOf *FetchUserData200ResponseOneOf
-	UserDataAdd *UserDataAdd
+	UserDataAdd                   *UserDataAdd
 }
 
 // FetchUserData200ResponseOneOfAsFetchUserData200Response is a convenience function that returns FetchUserData200ResponseOneOf wrapped in FetchUserData200Response
@@ -36,7 +36,6 @@ func UserDataAddAsFetchUserData200Response(v *UserDataAdd) FetchUserData200Respo
 		UserDataAdd: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *FetchUserData200Response) UnmarshalJSON(data []byte) error {
@@ -103,7 +102,7 @@ func (src FetchUserData200Response) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *FetchUserData200Response) GetActualInstance() (interface{}) {
+func (obj *FetchUserData200Response) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -120,7 +119,7 @@ func (obj *FetchUserData200Response) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj FetchUserData200Response) GetActualInstanceValue() (interface{}) {
+func (obj FetchUserData200Response) GetActualInstanceValue() interface{} {
 	if obj.FetchUserData200ResponseOneOf != nil {
 		return *obj.FetchUserData200ResponseOneOf
 	}
@@ -168,5 +167,3 @@ func (v *NullableFetchUserData200Response) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

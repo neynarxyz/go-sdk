@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -20,10 +20,10 @@ var _ MappedNullable = &MergeUserNameProofBody{}
 
 // MergeUserNameProofBody struct for MergeUserNameProofBody
 type MergeUserNameProofBody struct {
-	UsernameProof *UserNameProof `json:"usernameProof,omitempty"`
-	DeletedUsernameProof *UserNameProof `json:"deletedUsernameProof,omitempty"`
-	UsernameProofMessage *Message `json:"usernameProofMessage,omitempty"`
-	DeletedUsernameProofMessage *Message `json:"deletedUsernameProofMessage,omitempty"`
+	UsernameProof               *UserNameProof `json:"usernameProof,omitempty"`
+	DeletedUsernameProof        *UserNameProof `json:"deletedUsernameProof,omitempty"`
+	UsernameProofMessage        *Message       `json:"usernameProofMessage,omitempty"`
+	DeletedUsernameProofMessage *Message       `json:"deletedUsernameProofMessage,omitempty"`
 }
 
 // NewMergeUserNameProofBody instantiates a new MergeUserNameProofBody object
@@ -172,7 +172,7 @@ func (o *MergeUserNameProofBody) SetDeletedUsernameProofMessage(v Message) {
 }
 
 func (o MergeUserNameProofBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -231,5 +231,3 @@ func (v *NullableMergeUserNameProofBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

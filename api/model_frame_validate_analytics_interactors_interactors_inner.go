@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,8 +23,8 @@ var _ MappedNullable = &FrameValidateAnalyticsInteractorsInteractorsInner{}
 // FrameValidateAnalyticsInteractorsInteractorsInner struct for FrameValidateAnalyticsInteractorsInteractorsInner
 type FrameValidateAnalyticsInteractorsInteractorsInner struct {
 	// The unique identifier of a farcaster user (unsigned integer)
-	Fid int32 `json:"fid"`
-	Username string `json:"username"`
+	Fid              int32   `json:"fid"`
+	Username         string  `json:"username"`
 	InteractionCount float32 `json:"interaction_count"`
 }
 
@@ -74,7 +74,6 @@ func (o *FrameValidateAnalyticsInteractorsInteractorsInner) SetFid(v int32) {
 	o.Fid = v
 }
 
-
 // GetUsername returns the Username field value
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetUsername() string {
 	if o == nil {
@@ -98,7 +97,6 @@ func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetUsernameOk() (*st
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) SetUsername(v string) {
 	o.Username = v
 }
-
 
 // GetInteractionCount returns the InteractionCount field value
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetInteractionCount() float32 {
@@ -124,9 +122,8 @@ func (o *FrameValidateAnalyticsInteractorsInteractorsInner) SetInteractionCount(
 	o.InteractionCount = v
 }
 
-
 func (o FrameValidateAnalyticsInteractorsInteractorsInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -153,32 +150,31 @@ func (o *FrameValidateAnalyticsInteractorsInteractorsInner) UnmarshalJSON(data [
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -232,5 +228,3 @@ func (v *NullableFrameValidateAnalyticsInteractorsInteractorsInner) UnmarshalJSO
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

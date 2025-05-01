@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,7 +21,7 @@ var _ MappedNullable = &CastComposerActionsListResponse{}
 // CastComposerActionsListResponse struct for CastComposerActionsListResponse
 type CastComposerActionsListResponse struct {
 	Actions []CastComposerActionsListResponseActionsInner `json:"actions,omitempty"`
-	Next *NextCursor `json:"next,omitempty"`
+	Next    *NextCursor                                   `json:"next,omitempty"`
 }
 
 // NewCastComposerActionsListResponse instantiates a new CastComposerActionsListResponse object
@@ -106,7 +106,7 @@ func (o *CastComposerActionsListResponse) SetNext(v NextCursor) {
 }
 
 func (o CastComposerActionsListResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableCastComposerActionsListResponse) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,11 +22,11 @@ var _ MappedNullable = &FarcasterActionReqBody{}
 
 // FarcasterActionReqBody struct for FarcasterActionReqBody
 type FarcasterActionReqBody struct {
-	// The signer_uuid of the user on behalf of whom the action is being performed. 
+	// The signer_uuid of the user on behalf of whom the action is being performed.
 	SignerUuid string `json:"signer_uuid"`
-	// The base URL of the app on which the action is being performed. 
-	BaseUrl string `json:"base_url"`
-	Action FarcasterActionReqBodyAction `json:"action"`
+	// The base URL of the app on which the action is being performed.
+	BaseUrl string                       `json:"base_url"`
+	Action  FarcasterActionReqBodyAction `json:"action"`
 }
 
 type _FarcasterActionReqBody FarcasterActionReqBody
@@ -75,7 +75,6 @@ func (o *FarcasterActionReqBody) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
 
-
 // GetBaseUrl returns the BaseUrl field value
 func (o *FarcasterActionReqBody) GetBaseUrl() string {
 	if o == nil {
@@ -99,7 +98,6 @@ func (o *FarcasterActionReqBody) GetBaseUrlOk() (*string, bool) {
 func (o *FarcasterActionReqBody) SetBaseUrl(v string) {
 	o.BaseUrl = v
 }
-
 
 // GetAction returns the Action field value
 func (o *FarcasterActionReqBody) GetAction() FarcasterActionReqBodyAction {
@@ -125,9 +123,8 @@ func (o *FarcasterActionReqBody) SetAction(v FarcasterActionReqBodyAction) {
 	o.Action = v
 }
 
-
 func (o FarcasterActionReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -154,32 +151,31 @@ func (o *FarcasterActionReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -233,5 +229,3 @@ func (v *NullableFarcasterActionReqBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

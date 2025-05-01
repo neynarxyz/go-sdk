@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type BanAPI interface {
 
 	/*
-	DeleteBans Unban FIDs from app
+		DeleteBans Unban FIDs from app
 
-	Deletes a list of FIDs from the app associated with your API key.
+		Deletes a list of FIDs from the app associated with your API key.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeleteBansRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiDeleteBansRequest
 	*/
 	DeleteBans(ctx context.Context) ApiDeleteBansRequest
 
@@ -37,12 +36,12 @@ type BanAPI interface {
 	DeleteBansExecute(r ApiDeleteBansRequest) (*BanResponse, *http.Response, error)
 
 	/*
-	FetchBanList Banned FIDs of app
+		FetchBanList Banned FIDs of app
 
-	Fetches all FIDs that your app has banned.
+		Fetches all FIDs that your app has banned.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchBanListRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchBanListRequest
 	*/
 	FetchBanList(ctx context.Context) ApiFetchBanListRequest
 
@@ -51,12 +50,12 @@ type BanAPI interface {
 	FetchBanListExecute(r ApiFetchBanListRequest) (*BanListResponse, *http.Response, error)
 
 	/*
-	PublishBans Ban FIDs from app
+		PublishBans Ban FIDs from app
 
-	Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
+		Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPublishBansRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPublishBansRequest
 	*/
 	PublishBans(ctx context.Context) ApiPublishBansRequest
 
@@ -69,7 +68,7 @@ type BanAPI interface {
 type BanAPIService service
 
 type ApiDeleteBansRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService BanAPI
 	banReqBody *BanReqBody
 }
@@ -88,24 +87,25 @@ DeleteBans Unban FIDs from app
 
 Deletes a list of FIDs from the app associated with your API key.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteBansRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteBansRequest
 */
 func (a *BanAPIService) DeleteBans(ctx context.Context) ApiDeleteBansRequest {
 	return ApiDeleteBansRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BanResponse
+//
+//	@return BanResponse
 func (a *BanAPIService) DeleteBansExecute(r ApiDeleteBansRequest) (*BanResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *BanResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BanResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanAPIService.DeleteBans")
@@ -184,8 +184,8 @@ func (a *BanAPIService) DeleteBansExecute(r ApiDeleteBansRequest) (*BanResponse,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -195,8 +195,8 @@ func (a *BanAPIService) DeleteBansExecute(r ApiDeleteBansRequest) (*BanResponse,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -206,8 +206,8 @@ func (a *BanAPIService) DeleteBansExecute(r ApiDeleteBansRequest) (*BanResponse,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -225,10 +225,10 @@ func (a *BanAPIService) DeleteBansExecute(r ApiDeleteBansRequest) (*BanResponse,
 }
 
 type ApiFetchBanListRequest struct {
-	ctx context.Context
-	ApiService BanAPI
-	limit *int32
-	cursor *string
+	ctx                 context.Context
+	ApiService          BanAPI
+	limit               *int32
+	cursor              *string
 	xNeynarExperimental *bool
 }
 
@@ -259,24 +259,25 @@ FetchBanList Banned FIDs of app
 
 Fetches all FIDs that your app has banned.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchBanListRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchBanListRequest
 */
 func (a *BanAPIService) FetchBanList(ctx context.Context) ApiFetchBanListRequest {
 	return ApiFetchBanListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BanListResponse
+//
+//	@return BanListResponse
 func (a *BanAPIService) FetchBanListExecute(r ApiFetchBanListRequest) (*BanListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *BanListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BanListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanAPIService.FetchBanList")
@@ -362,8 +363,8 @@ func (a *BanAPIService) FetchBanListExecute(r ApiFetchBanListRequest) (*BanListR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -373,8 +374,8 @@ func (a *BanAPIService) FetchBanListExecute(r ApiFetchBanListRequest) (*BanListR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -384,8 +385,8 @@ func (a *BanAPIService) FetchBanListExecute(r ApiFetchBanListRequest) (*BanListR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -403,7 +404,7 @@ func (a *BanAPIService) FetchBanListExecute(r ApiFetchBanListRequest) (*BanListR
 }
 
 type ApiPublishBansRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService BanAPI
 	banReqBody *BanReqBody
 }
@@ -422,24 +423,25 @@ PublishBans Ban FIDs from app
 
 Bans a list of FIDs from the app associated with your API key. Banned users, their casts and reactions will not appear in feeds.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPublishBansRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPublishBansRequest
 */
 func (a *BanAPIService) PublishBans(ctx context.Context) ApiPublishBansRequest {
 	return ApiPublishBansRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BanResponse
+//
+//	@return BanResponse
 func (a *BanAPIService) PublishBansExecute(r ApiPublishBansRequest) (*BanResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *BanResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BanResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BanAPIService.PublishBans")
@@ -518,8 +520,8 @@ func (a *BanAPIService) PublishBansExecute(r ApiPublishBansRequest) (*BanRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -529,8 +531,8 @@ func (a *BanAPIService) PublishBansExecute(r ApiPublishBansRequest) (*BanRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -540,8 +542,8 @@ func (a *BanAPIService) PublishBansExecute(r ApiPublishBansRequest) (*BanRespons
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

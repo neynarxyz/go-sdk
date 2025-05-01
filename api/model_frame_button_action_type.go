@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,11 +21,11 @@ type FrameButtonActionType string
 
 // List of FrameButtonActionType
 const (
-	FRAMEBUTTONACTIONTYPE_POST FrameButtonActionType = "post"
+	FRAMEBUTTONACTIONTYPE_POST          FrameButtonActionType = "post"
 	FRAMEBUTTONACTIONTYPE_POST_REDIRECT FrameButtonActionType = "post_redirect"
-	FRAMEBUTTONACTIONTYPE_TX FrameButtonActionType = "tx"
-	FRAMEBUTTONACTIONTYPE_LINK FrameButtonActionType = "link"
-	FRAMEBUTTONACTIONTYPE_MINT FrameButtonActionType = "mint"
+	FRAMEBUTTONACTIONTYPE_TX            FrameButtonActionType = "tx"
+	FRAMEBUTTONACTIONTYPE_LINK          FrameButtonActionType = "link"
+	FRAMEBUTTONACTIONTYPE_MINT          FrameButtonActionType = "mint"
 )
 
 // All allowed values of FrameButtonActionType enum
@@ -115,4 +115,3 @@ func (v *NullableFrameButtonActionType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

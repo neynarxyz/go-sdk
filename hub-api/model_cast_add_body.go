@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,13 +22,13 @@ var _ MappedNullable = &CastAddBody{}
 
 // CastAddBody Adds a new Cast
 type CastAddBody struct {
-	EmbedsDeprecated []string `json:"embedsDeprecated"`
-	Mentions []int32 `json:"mentions"`
-	ParentCastId *CastId `json:"parentCastId,omitempty"`
-	ParentUrl *string `json:"parentUrl,omitempty"`
-	Text string `json:"text"`
-	MentionsPositions []int64 `json:"mentionsPositions"`
-	Embeds []Embed `json:"embeds"`
+	EmbedsDeprecated  []string `json:"embedsDeprecated"`
+	Mentions          []int32  `json:"mentions"`
+	ParentCastId      *CastId  `json:"parentCastId,omitempty"`
+	ParentUrl         *string  `json:"parentUrl,omitempty"`
+	Text              string   `json:"text"`
+	MentionsPositions []int64  `json:"mentionsPositions"`
+	Embeds            []Embed  `json:"embeds"`
 }
 
 type _CastAddBody CastAddBody
@@ -79,7 +79,6 @@ func (o *CastAddBody) SetEmbedsDeprecated(v []string) {
 	o.EmbedsDeprecated = v
 }
 
-
 // GetMentions returns the Mentions field value
 func (o *CastAddBody) GetMentions() []int32 {
 	if o == nil {
@@ -103,7 +102,6 @@ func (o *CastAddBody) GetMentionsOk() ([]int32, bool) {
 func (o *CastAddBody) SetMentions(v []int32) {
 	o.Mentions = v
 }
-
 
 // GetParentCastId returns the ParentCastId field value if set, zero value otherwise.
 func (o *CastAddBody) GetParentCastId() CastId {
@@ -193,7 +191,6 @@ func (o *CastAddBody) SetText(v string) {
 	o.Text = v
 }
 
-
 // GetMentionsPositions returns the MentionsPositions field value
 func (o *CastAddBody) GetMentionsPositions() []int64 {
 	if o == nil {
@@ -217,7 +214,6 @@ func (o *CastAddBody) GetMentionsPositionsOk() ([]int64, bool) {
 func (o *CastAddBody) SetMentionsPositions(v []int64) {
 	o.MentionsPositions = v
 }
-
 
 // GetEmbeds returns the Embeds field value
 func (o *CastAddBody) GetEmbeds() []Embed {
@@ -243,9 +239,8 @@ func (o *CastAddBody) SetEmbeds(v []Embed) {
 	o.Embeds = v
 }
 
-
 func (o CastAddBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -282,32 +277,31 @@ func (o *CastAddBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -361,5 +355,3 @@ func (v *NullableCastAddBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

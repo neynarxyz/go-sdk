@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -21,23 +21,23 @@ type EmbedType string
 
 // List of EmbedType
 const (
-	EMBEDTYPE_TEXT EmbedType = "text"
-	EMBEDTYPE_IMAGE EmbedType = "image"
-	EMBEDTYPE_VIDEO EmbedType = "video"
-	EMBEDTYPE_AUDIO EmbedType = "audio"
-	EMBEDTYPE_TEXT_HTML EmbedType = "text/html"
-	EMBEDTYPE_TEXT_PLAIN EmbedType = "text/plain"
-	EMBEDTYPE_IMAGE_JPEG EmbedType = "image/jpeg"
-	EMBEDTYPE_IMAGE_PNG EmbedType = "image/png"
-	EMBEDTYPE_IMAGE_GIF EmbedType = "image/gif"
-	EMBEDTYPE_IMAGE_WEBP EmbedType = "image/webp"
-	EMBEDTYPE_IMAGE_SVGXML EmbedType = "image/svg+xml"
-	EMBEDTYPE_IMAGE_HEIF EmbedType = "image/heif"
-	EMBEDTYPE_VIDEO_MP4 EmbedType = "video/mp4"
-	EMBEDTYPE_VIDEO_QUICKTIME EmbedType = "video/quicktime"
-	EMBEDTYPE_AUDIO_MPEG EmbedType = "audio/mpeg"
-	EMBEDTYPE_APPLICATION_PDF EmbedType = "application/pdf"
-	EMBEDTYPE_APPLICATION_JSON EmbedType = "application/json"
+	EMBEDTYPE_TEXT                  EmbedType = "text"
+	EMBEDTYPE_IMAGE                 EmbedType = "image"
+	EMBEDTYPE_VIDEO                 EmbedType = "video"
+	EMBEDTYPE_AUDIO                 EmbedType = "audio"
+	EMBEDTYPE_TEXT_HTML             EmbedType = "text/html"
+	EMBEDTYPE_TEXT_PLAIN            EmbedType = "text/plain"
+	EMBEDTYPE_IMAGE_JPEG            EmbedType = "image/jpeg"
+	EMBEDTYPE_IMAGE_PNG             EmbedType = "image/png"
+	EMBEDTYPE_IMAGE_GIF             EmbedType = "image/gif"
+	EMBEDTYPE_IMAGE_WEBP            EmbedType = "image/webp"
+	EMBEDTYPE_IMAGE_SVGXML          EmbedType = "image/svg+xml"
+	EMBEDTYPE_IMAGE_HEIF            EmbedType = "image/heif"
+	EMBEDTYPE_VIDEO_MP4             EmbedType = "video/mp4"
+	EMBEDTYPE_VIDEO_QUICKTIME       EmbedType = "video/quicktime"
+	EMBEDTYPE_AUDIO_MPEG            EmbedType = "audio/mpeg"
+	EMBEDTYPE_APPLICATION_PDF       EmbedType = "application/pdf"
+	EMBEDTYPE_APPLICATION_JSON      EmbedType = "application/json"
 	EMBEDTYPE_APPLICATION_X_MPEGURL EmbedType = "application/x-mpegurl"
 )
 
@@ -141,4 +141,3 @@ func (v *NullableEmbedType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

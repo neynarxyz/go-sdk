@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type MetricsAPI interface {
 
 	/*
-	FetchCastMetrics Metrics for casts
+		FetchCastMetrics Metrics for casts
 
-	Fetches metrics casts matching a query
+		Fetches metrics casts matching a query
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchCastMetricsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchCastMetricsRequest
 	*/
 	FetchCastMetrics(ctx context.Context) ApiFetchCastMetricsRequest
 
@@ -41,12 +40,12 @@ type MetricsAPI interface {
 type MetricsAPIService service
 
 type ApiFetchCastMetricsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService MetricsAPI
-	q *string
-	interval *string
-	authorFid *int32
-	channelId *string
+	q          *string
+	interval   *string
+	authorFid  *int32
+	channelId  *string
 }
 
 // Query string to search for casts
@@ -82,24 +81,25 @@ FetchCastMetrics Metrics for casts
 
 Fetches metrics casts matching a query
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchCastMetricsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchCastMetricsRequest
 */
 func (a *MetricsAPIService) FetchCastMetrics(ctx context.Context) ApiFetchCastMetricsRequest {
 	return ApiFetchCastMetricsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CastsMetricsResponse
+//
+//	@return CastsMetricsResponse
 func (a *MetricsAPIService) FetchCastMetricsExecute(r ApiFetchCastMetricsRequest) (*CastsMetricsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CastsMetricsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CastsMetricsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsAPIService.FetchCastMetrics")
@@ -186,8 +186,8 @@ func (a *MetricsAPIService) FetchCastMetricsExecute(r ApiFetchCastMetricsRequest
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

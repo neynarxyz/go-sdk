@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type FollowsAPI interface {
 
 	/*
-	FetchFollowSuggestions Suggest Follows
+		FetchFollowSuggestions Suggest Follows
 
-	Fetch a list of suggested users to follow. Used to help users discover new users to follow
+		Fetch a list of suggested users to follow. Used to help users discover new users to follow
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchFollowSuggestionsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchFollowSuggestionsRequest
 	*/
 	FetchFollowSuggestions(ctx context.Context) ApiFetchFollowSuggestionsRequest
 
@@ -37,12 +36,12 @@ type FollowsAPI interface {
 	FetchFollowSuggestionsExecute(r ApiFetchFollowSuggestionsRequest) (*UsersResponse, *http.Response, error)
 
 	/*
-	FetchRelevantFollowers Relevant followers
+		FetchRelevantFollowers Relevant followers
 
-	Returns a list of relevant followers for a specific FID. This usually shows on a profile as "X, Y and Z follow this user".
+		Returns a list of relevant followers for a specific FID. This usually shows on a profile as "X, Y and Z follow this user".
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchRelevantFollowersRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchRelevantFollowersRequest
 	*/
 	FetchRelevantFollowers(ctx context.Context) ApiFetchRelevantFollowersRequest
 
@@ -51,12 +50,12 @@ type FollowsAPI interface {
 	FetchRelevantFollowersExecute(r ApiFetchRelevantFollowersRequest) (*RelevantFollowersResponse, *http.Response, error)
 
 	/*
-	FetchUserFollowers Followers
+		FetchUserFollowers Followers
 
-	Returns a list of followers for a specific FID.
+		Returns a list of followers for a specific FID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserFollowersRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserFollowersRequest
 	*/
 	FetchUserFollowers(ctx context.Context) ApiFetchUserFollowersRequest
 
@@ -65,12 +64,12 @@ type FollowsAPI interface {
 	FetchUserFollowersExecute(r ApiFetchUserFollowersRequest) (*FollowersResponse, *http.Response, error)
 
 	/*
-	FetchUserFollowing Following
+		FetchUserFollowing Following
 
-	Fetch a list of users who a given user is following. Can optionally include a viewer_fid and sort_type.
+		Fetch a list of users who a given user is following. Can optionally include a viewer_fid and sort_type.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserFollowingRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserFollowingRequest
 	*/
 	FetchUserFollowing(ctx context.Context) ApiFetchUserFollowingRequest
 
@@ -83,11 +82,11 @@ type FollowsAPI interface {
 type FollowsAPIService service
 
 type ApiFetchFollowSuggestionsRequest struct {
-	ctx context.Context
-	ApiService FollowsAPI
-	fid *int32
-	viewerFid *int32
-	limit *int32
+	ctx                 context.Context
+	ApiService          FollowsAPI
+	fid                 *int32
+	viewerFid           *int32
+	limit               *int32
 	xNeynarExperimental *bool
 }
 
@@ -124,24 +123,25 @@ FetchFollowSuggestions Suggest Follows
 
 Fetch a list of suggested users to follow. Used to help users discover new users to follow
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchFollowSuggestionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchFollowSuggestionsRequest
 */
 func (a *FollowsAPIService) FetchFollowSuggestions(ctx context.Context) ApiFetchFollowSuggestionsRequest {
 	return ApiFetchFollowSuggestionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsersResponse
+//
+//	@return UsersResponse
 func (a *FollowsAPIService) FetchFollowSuggestionsExecute(r ApiFetchFollowSuggestionsRequest) (*UsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UsersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FollowsAPIService.FetchFollowSuggestions")
@@ -231,8 +231,8 @@ func (a *FollowsAPIService) FetchFollowSuggestionsExecute(r ApiFetchFollowSugges
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -242,8 +242,8 @@ func (a *FollowsAPIService) FetchFollowSuggestionsExecute(r ApiFetchFollowSugges
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -261,10 +261,10 @@ func (a *FollowsAPIService) FetchFollowSuggestionsExecute(r ApiFetchFollowSugges
 }
 
 type ApiFetchRelevantFollowersRequest struct {
-	ctx context.Context
-	ApiService FollowsAPI
-	targetFid *int32
-	viewerFid *int32
+	ctx                 context.Context
+	ApiService          FollowsAPI
+	targetFid           *int32
+	viewerFid           *int32
 	xNeynarExperimental *bool
 }
 
@@ -295,24 +295,25 @@ FetchRelevantFollowers Relevant followers
 
 Returns a list of relevant followers for a specific FID. This usually shows on a profile as "X, Y and Z follow this user".
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchRelevantFollowersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchRelevantFollowersRequest
 */
 func (a *FollowsAPIService) FetchRelevantFollowers(ctx context.Context) ApiFetchRelevantFollowersRequest {
 	return ApiFetchRelevantFollowersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return RelevantFollowersResponse
+//
+//	@return RelevantFollowersResponse
 func (a *FollowsAPIService) FetchRelevantFollowersExecute(r ApiFetchRelevantFollowersRequest) (*RelevantFollowersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *RelevantFollowersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *RelevantFollowersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FollowsAPIService.FetchRelevantFollowers")
@@ -397,8 +398,8 @@ func (a *FollowsAPIService) FetchRelevantFollowersExecute(r ApiFetchRelevantFoll
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -416,13 +417,13 @@ func (a *FollowsAPIService) FetchRelevantFollowersExecute(r ApiFetchRelevantFoll
 }
 
 type ApiFetchUserFollowersRequest struct {
-	ctx context.Context
-	ApiService FollowsAPI
-	fid *int32
-	viewerFid *int32
-	sortType *FollowSortType
-	limit *int32
-	cursor *string
+	ctx                 context.Context
+	ApiService          FollowsAPI
+	fid                 *int32
+	viewerFid           *int32
+	sortType            *FollowSortType
+	limit               *int32
+	cursor              *string
 	xNeynarExperimental *bool
 }
 
@@ -471,24 +472,25 @@ FetchUserFollowers Followers
 
 Returns a list of followers for a specific FID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserFollowersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserFollowersRequest
 */
 func (a *FollowsAPIService) FetchUserFollowers(ctx context.Context) ApiFetchUserFollowersRequest {
 	return ApiFetchUserFollowersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FollowersResponse
+//
+//	@return FollowersResponse
 func (a *FollowsAPIService) FetchUserFollowersExecute(r ApiFetchUserFollowersRequest) (*FollowersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FollowersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FollowersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FollowsAPIService.FetchUserFollowers")
@@ -584,8 +586,8 @@ func (a *FollowsAPIService) FetchUserFollowersExecute(r ApiFetchUserFollowersReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -595,8 +597,8 @@ func (a *FollowsAPIService) FetchUserFollowersExecute(r ApiFetchUserFollowersReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -614,13 +616,13 @@ func (a *FollowsAPIService) FetchUserFollowersExecute(r ApiFetchUserFollowersReq
 }
 
 type ApiFetchUserFollowingRequest struct {
-	ctx context.Context
-	ApiService FollowsAPI
-	fid *int32
-	viewerFid *int32
-	sortType *FollowSortType
-	limit *int32
-	cursor *string
+	ctx                 context.Context
+	ApiService          FollowsAPI
+	fid                 *int32
+	viewerFid           *int32
+	sortType            *FollowSortType
+	limit               *int32
+	cursor              *string
 	xNeynarExperimental *bool
 }
 
@@ -669,24 +671,25 @@ FetchUserFollowing Following
 
 Fetch a list of users who a given user is following. Can optionally include a viewer_fid and sort_type.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserFollowingRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserFollowingRequest
 */
 func (a *FollowsAPIService) FetchUserFollowing(ctx context.Context) ApiFetchUserFollowingRequest {
 	return ApiFetchUserFollowingRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FollowersResponse
+//
+//	@return FollowersResponse
 func (a *FollowsAPIService) FetchUserFollowingExecute(r ApiFetchUserFollowingRequest) (*FollowersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FollowersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FollowersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FollowsAPIService.FetchUserFollowing")
@@ -782,8 +785,8 @@ func (a *FollowsAPIService) FetchUserFollowingExecute(r ApiFetchUserFollowingReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -793,8 +796,8 @@ func (a *FollowsAPIService) FetchUserFollowingExecute(r ApiFetchUserFollowingReq
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

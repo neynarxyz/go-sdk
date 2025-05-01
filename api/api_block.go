@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type BlockAPI interface {
 
 	/*
-	DeleteBlock Unblock FID
+		DeleteBlock Unblock FID
 
-	Deletes a block for a given FID.
+		Deletes a block for a given FID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiDeleteBlockRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiDeleteBlockRequest
 	*/
 	DeleteBlock(ctx context.Context) ApiDeleteBlockRequest
 
@@ -37,12 +36,12 @@ type BlockAPI interface {
 	DeleteBlockExecute(r ApiDeleteBlockRequest) (*OperationResponse, *http.Response, error)
 
 	/*
-	FetchBlockList Blocked / Blocked by FIDs
+		FetchBlockList Blocked / Blocked by FIDs
 
-	Fetches all FIDs that a user has blocked or has been blocked by
+		Fetches all FIDs that a user has blocked or has been blocked by
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchBlockListRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchBlockListRequest
 	*/
 	FetchBlockList(ctx context.Context) ApiFetchBlockListRequest
 
@@ -51,12 +50,12 @@ type BlockAPI interface {
 	FetchBlockListExecute(r ApiFetchBlockListRequest) (*BlockListResponse, *http.Response, error)
 
 	/*
-	PublishBlock Block FID
+		PublishBlock Block FID
 
-	Adds a block for a given FID.
+		Adds a block for a given FID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPublishBlockRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiPublishBlockRequest
 	*/
 	PublishBlock(ctx context.Context) ApiPublishBlockRequest
 
@@ -69,8 +68,8 @@ type BlockAPI interface {
 type BlockAPIService service
 
 type ApiDeleteBlockRequest struct {
-	ctx context.Context
-	ApiService BlockAPI
+	ctx          context.Context
+	ApiService   BlockAPI
 	blockReqBody *BlockReqBody
 }
 
@@ -88,24 +87,25 @@ DeleteBlock Unblock FID
 
 Deletes a block for a given FID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteBlockRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteBlockRequest
 */
 func (a *BlockAPIService) DeleteBlock(ctx context.Context) ApiDeleteBlockRequest {
 	return ApiDeleteBlockRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *BlockAPIService) DeleteBlockExecute(r ApiDeleteBlockRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockAPIService.DeleteBlock")
@@ -184,8 +184,8 @@ func (a *BlockAPIService) DeleteBlockExecute(r ApiDeleteBlockRequest) (*Operatio
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -195,8 +195,8 @@ func (a *BlockAPIService) DeleteBlockExecute(r ApiDeleteBlockRequest) (*Operatio
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -206,8 +206,8 @@ func (a *BlockAPIService) DeleteBlockExecute(r ApiDeleteBlockRequest) (*Operatio
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -225,12 +225,12 @@ func (a *BlockAPIService) DeleteBlockExecute(r ApiDeleteBlockRequest) (*Operatio
 }
 
 type ApiFetchBlockListRequest struct {
-	ctx context.Context
-	ApiService BlockAPI
-	blockerFid *int32
-	blockedFid *int32
-	limit *int32
-	cursor *string
+	ctx                 context.Context
+	ApiService          BlockAPI
+	blockerFid          *int32
+	blockedFid          *int32
+	limit               *int32
+	cursor              *string
 	xNeynarExperimental *bool
 }
 
@@ -273,24 +273,25 @@ FetchBlockList Blocked / Blocked by FIDs
 
 Fetches all FIDs that a user has blocked or has been blocked by
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchBlockListRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchBlockListRequest
 */
 func (a *BlockAPIService) FetchBlockList(ctx context.Context) ApiFetchBlockListRequest {
 	return ApiFetchBlockListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return BlockListResponse
+//
+//	@return BlockListResponse
 func (a *BlockAPIService) FetchBlockListExecute(r ApiFetchBlockListRequest) (*BlockListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *BlockListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *BlockListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockAPIService.FetchBlockList")
@@ -382,8 +383,8 @@ func (a *BlockAPIService) FetchBlockListExecute(r ApiFetchBlockListRequest) (*Bl
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -393,8 +394,8 @@ func (a *BlockAPIService) FetchBlockListExecute(r ApiFetchBlockListRequest) (*Bl
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -404,8 +405,8 @@ func (a *BlockAPIService) FetchBlockListExecute(r ApiFetchBlockListRequest) (*Bl
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -423,8 +424,8 @@ func (a *BlockAPIService) FetchBlockListExecute(r ApiFetchBlockListRequest) (*Bl
 }
 
 type ApiPublishBlockRequest struct {
-	ctx context.Context
-	ApiService BlockAPI
+	ctx          context.Context
+	ApiService   BlockAPI
 	blockReqBody *BlockReqBody
 }
 
@@ -442,24 +443,25 @@ PublishBlock Block FID
 
 Adds a block for a given FID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPublishBlockRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPublishBlockRequest
 */
 func (a *BlockAPIService) PublishBlock(ctx context.Context) ApiPublishBlockRequest {
 	return ApiPublishBlockRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *BlockAPIService) PublishBlockExecute(r ApiPublishBlockRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BlockAPIService.PublishBlock")
@@ -538,8 +540,8 @@ func (a *BlockAPIService) PublishBlockExecute(r ApiPublishBlockRequest) (*Operat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -549,8 +551,8 @@ func (a *BlockAPIService) PublishBlockExecute(r ApiPublishBlockRequest) (*Operat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -560,8 +562,8 @@ func (a *BlockAPIService) PublishBlockExecute(r ApiPublishBlockRequest) (*Operat
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

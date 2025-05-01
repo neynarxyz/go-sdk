@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type ChannelAPI interface {
 
 	/*
-	FetchAllChannels Fetch all channels with their details
+		FetchAllChannels Fetch all channels with their details
 
-	Returns a list of all channels with their details
+		Returns a list of all channels with their details
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchAllChannelsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchAllChannelsRequest
 	*/
 	FetchAllChannels(ctx context.Context) ApiFetchAllChannelsRequest
 
@@ -37,12 +36,12 @@ type ChannelAPI interface {
 	FetchAllChannelsExecute(r ApiFetchAllChannelsRequest) (*ChannelListResponse, *http.Response, error)
 
 	/*
-	FetchBulkChannels Bulk fetch
+		FetchBulkChannels Bulk fetch
 
-	Returns details of multiple channels
+		Returns details of multiple channels
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchBulkChannelsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchBulkChannelsRequest
 	*/
 	FetchBulkChannels(ctx context.Context) ApiFetchBulkChannelsRequest
 
@@ -51,12 +50,12 @@ type ChannelAPI interface {
 	FetchBulkChannelsExecute(r ApiFetchBulkChannelsRequest) (*ChannelResponseBulk, *http.Response, error)
 
 	/*
-	FetchChannelInvites Open invites
+		FetchChannelInvites Open invites
 
-	Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
+		Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchChannelInvitesRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchChannelInvitesRequest
 	*/
 	FetchChannelInvites(ctx context.Context) ApiFetchChannelInvitesRequest
 
@@ -65,12 +64,12 @@ type ChannelAPI interface {
 	FetchChannelInvitesExecute(r ApiFetchChannelInvitesRequest) (*ChannelMemberInviteListResponse, *http.Response, error)
 
 	/*
-	FetchChannelMembers Fetch members
+		FetchChannelMembers Fetch members
 
-	Fetch a list of members in a channel
+		Fetch a list of members in a channel
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchChannelMembersRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchChannelMembersRequest
 	*/
 	FetchChannelMembers(ctx context.Context) ApiFetchChannelMembersRequest
 
@@ -79,12 +78,12 @@ type ChannelAPI interface {
 	FetchChannelMembersExecute(r ApiFetchChannelMembersRequest) (*ChannelMemberListResponse, *http.Response, error)
 
 	/*
-	FetchFollowersForAChannel For channel
+		FetchFollowersForAChannel For channel
 
-	Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
+		Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchFollowersForAChannelRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchFollowersForAChannelRequest
 	*/
 	FetchFollowersForAChannel(ctx context.Context) ApiFetchFollowersForAChannelRequest
 
@@ -93,12 +92,12 @@ type ChannelAPI interface {
 	FetchFollowersForAChannelExecute(r ApiFetchFollowersForAChannelRequest) (*UsersResponse, *http.Response, error)
 
 	/*
-	FetchRelevantFollowersForAChannel Relevant followers
+		FetchRelevantFollowersForAChannel Relevant followers
 
-	Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as "X, Y, Z follow this channel".
+		Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as "X, Y, Z follow this channel".
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchRelevantFollowersForAChannelRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchRelevantFollowersForAChannelRequest
 	*/
 	FetchRelevantFollowersForAChannel(ctx context.Context) ApiFetchRelevantFollowersForAChannelRequest
 
@@ -107,12 +106,12 @@ type ChannelAPI interface {
 	FetchRelevantFollowersForAChannelExecute(r ApiFetchRelevantFollowersForAChannelRequest) (*RelevantFollowersResponse, *http.Response, error)
 
 	/*
-	FetchTrendingChannels Channels by activity
+		FetchTrendingChannels Channels by activity
 
-	Returns a list of trending channels based on activity
+		Returns a list of trending channels based on activity
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchTrendingChannelsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchTrendingChannelsRequest
 	*/
 	FetchTrendingChannels(ctx context.Context) ApiFetchTrendingChannelsRequest
 
@@ -121,12 +120,12 @@ type ChannelAPI interface {
 	FetchTrendingChannelsExecute(r ApiFetchTrendingChannelsRequest) (*TrendingChannelResponse, *http.Response, error)
 
 	/*
-	FetchUserChannelMemberships Member of
+		FetchUserChannelMemberships Member of
 
-	Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
+		Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserChannelMembershipsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserChannelMembershipsRequest
 	*/
 	FetchUserChannelMemberships(ctx context.Context) ApiFetchUserChannelMembershipsRequest
 
@@ -135,12 +134,12 @@ type ChannelAPI interface {
 	FetchUserChannelMembershipsExecute(r ApiFetchUserChannelMembershipsRequest) (*ChannelMemberListResponse, *http.Response, error)
 
 	/*
-	FetchUserChannels Following
+		FetchUserChannels Following
 
-	Returns a list of all channels with their details that a FID follows.
+		Returns a list of all channels with their details that a FID follows.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserChannelsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserChannelsRequest
 	*/
 	FetchUserChannels(ctx context.Context) ApiFetchUserChannelsRequest
 
@@ -149,12 +148,12 @@ type ChannelAPI interface {
 	FetchUserChannelsExecute(r ApiFetchUserChannelsRequest) (*ChannelListResponse, *http.Response, error)
 
 	/*
-	FetchUsersActiveChannels Fetch channels that user is active in
+		FetchUsersActiveChannels Fetch channels that user is active in
 
-	Fetches all channels that a user has casted in, in reverse chronological order.
+		Fetches all channels that a user has casted in, in reverse chronological order.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUsersActiveChannelsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUsersActiveChannelsRequest
 	*/
 	FetchUsersActiveChannels(ctx context.Context) ApiFetchUsersActiveChannelsRequest
 
@@ -163,12 +162,12 @@ type ChannelAPI interface {
 	FetchUsersActiveChannelsExecute(r ApiFetchUsersActiveChannelsRequest) (*UsersActiveChannelsResponse, *http.Response, error)
 
 	/*
-	FollowChannel Follow a channel
+		FollowChannel Follow a channel
 
-	Follow a channel
+		Follow a channel
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFollowChannelRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFollowChannelRequest
 	*/
 	FollowChannel(ctx context.Context) ApiFollowChannelRequest
 
@@ -177,12 +176,12 @@ type ChannelAPI interface {
 	FollowChannelExecute(r ApiFollowChannelRequest) (*OperationResponse, *http.Response, error)
 
 	/*
-	InviteChannelMember Invite
+		InviteChannelMember Invite
 
-	Invite a user to a channel
+		Invite a user to a channel
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiInviteChannelMemberRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiInviteChannelMemberRequest
 	*/
 	InviteChannelMember(ctx context.Context) ApiInviteChannelMemberRequest
 
@@ -191,12 +190,12 @@ type ChannelAPI interface {
 	InviteChannelMemberExecute(r ApiInviteChannelMemberRequest) (*OperationResponse, *http.Response, error)
 
 	/*
-	LookupChannel By ID or parent_url
+		LookupChannel By ID or parent_url
 
-	Returns details of a channel
+		Returns details of a channel
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupChannelRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupChannelRequest
 	*/
 	LookupChannel(ctx context.Context) ApiLookupChannelRequest
 
@@ -205,12 +204,12 @@ type ChannelAPI interface {
 	LookupChannelExecute(r ApiLookupChannelRequest) (*ChannelResponse, *http.Response, error)
 
 	/*
-	RemoveChannelMember Remove user
+		RemoveChannelMember Remove user
 
-	Remove a user from a channel or a user's invite to a channel role
+		Remove a user from a channel or a user's invite to a channel role
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiRemoveChannelMemberRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiRemoveChannelMemberRequest
 	*/
 	RemoveChannelMember(ctx context.Context) ApiRemoveChannelMemberRequest
 
@@ -219,12 +218,12 @@ type ChannelAPI interface {
 	RemoveChannelMemberExecute(r ApiRemoveChannelMemberRequest) (*OperationResponse, *http.Response, error)
 
 	/*
-	RespondChannelInvite Accept or reject an invite
+		RespondChannelInvite Accept or reject an invite
 
-	Accept or reject a channel invite
+		Accept or reject a channel invite
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiRespondChannelInviteRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiRespondChannelInviteRequest
 	*/
 	RespondChannelInvite(ctx context.Context) ApiRespondChannelInviteRequest
 
@@ -233,12 +232,12 @@ type ChannelAPI interface {
 	RespondChannelInviteExecute(r ApiRespondChannelInviteRequest) (*OperationResponse, *http.Response, error)
 
 	/*
-	SearchChannels Search by ID or name
+		SearchChannels Search by ID or name
 
-	Returns a list of channels based on ID or name
+		Returns a list of channels based on ID or name
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiSearchChannelsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiSearchChannelsRequest
 	*/
 	SearchChannels(ctx context.Context) ApiSearchChannelsRequest
 
@@ -247,12 +246,12 @@ type ChannelAPI interface {
 	SearchChannelsExecute(r ApiSearchChannelsRequest) (*ChannelSearchResponse, *http.Response, error)
 
 	/*
-	UnfollowChannel Unfollow a channel
+		UnfollowChannel Unfollow a channel
 
-	Unfollow a channel
+		Unfollow a channel
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiUnfollowChannelRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiUnfollowChannelRequest
 	*/
 	UnfollowChannel(ctx context.Context) ApiUnfollowChannelRequest
 
@@ -265,10 +264,10 @@ type ChannelAPI interface {
 type ChannelAPIService service
 
 type ApiFetchAllChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ChannelAPI
-	limit *int32
-	cursor *string
+	limit      *int32
+	cursor     *string
 }
 
 // Number of results to fetch
@@ -292,24 +291,25 @@ FetchAllChannels Fetch all channels with their details
 
 Returns a list of all channels with their details
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchAllChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchAllChannelsRequest
 */
 func (a *ChannelAPIService) FetchAllChannels(ctx context.Context) ApiFetchAllChannelsRequest {
 	return ApiFetchAllChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelListResponse
+//
+//	@return ChannelListResponse
 func (a *ChannelAPIService) FetchAllChannelsExecute(r ApiFetchAllChannelsRequest) (*ChannelListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FetchAllChannels")
@@ -401,11 +401,11 @@ func (a *ChannelAPIService) FetchAllChannelsExecute(r ApiFetchAllChannelsRequest
 }
 
 type ApiFetchBulkChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ChannelAPI
-	ids *string
-	type_ *ChannelType
-	viewerFid *int32
+	ids        *string
+	type_      *ChannelType
+	viewerFid  *int32
 }
 
 // Comma separated list of channel IDs or parent_urls, up to 100 at a time
@@ -435,24 +435,25 @@ FetchBulkChannels Bulk fetch
 
 Returns details of multiple channels
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchBulkChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchBulkChannelsRequest
 */
 func (a *ChannelAPIService) FetchBulkChannels(ctx context.Context) ApiFetchBulkChannelsRequest {
 	return ApiFetchBulkChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelResponseBulk
+//
+//	@return ChannelResponseBulk
 func (a *ChannelAPIService) FetchBulkChannelsExecute(r ApiFetchBulkChannelsRequest) (*ChannelResponseBulk, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelResponseBulk
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelResponseBulk
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FetchBulkChannels")
@@ -536,8 +537,8 @@ func (a *ChannelAPIService) FetchBulkChannelsExecute(r ApiFetchBulkChannelsReque
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -555,12 +556,12 @@ func (a *ChannelAPIService) FetchBulkChannelsExecute(r ApiFetchBulkChannelsReque
 }
 
 type ApiFetchChannelInvitesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ChannelAPI
-	channelId *string
+	channelId  *string
 	invitedFid *int32
-	limit *int32
-	cursor *string
+	limit      *int32
+	cursor     *string
 }
 
 // Channel ID for the channel being queried
@@ -596,24 +597,25 @@ FetchChannelInvites Open invites
 
 Fetch a list of invites, either in a channel or for a user. If both are provided, open channel invite for that user is returned.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchChannelInvitesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchChannelInvitesRequest
 */
 func (a *ChannelAPIService) FetchChannelInvites(ctx context.Context) ApiFetchChannelInvitesRequest {
 	return ApiFetchChannelInvitesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelMemberInviteListResponse
+//
+//	@return ChannelMemberInviteListResponse
 func (a *ChannelAPIService) FetchChannelInvitesExecute(r ApiFetchChannelInvitesRequest) (*ChannelMemberInviteListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelMemberInviteListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelMemberInviteListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FetchChannelInvites")
@@ -702,8 +704,8 @@ func (a *ChannelAPIService) FetchChannelInvitesExecute(r ApiFetchChannelInvitesR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
@@ -713,8 +715,8 @@ func (a *ChannelAPIService) FetchChannelInvitesExecute(r ApiFetchChannelInvitesR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -732,12 +734,12 @@ func (a *ChannelAPIService) FetchChannelInvitesExecute(r ApiFetchChannelInvitesR
 }
 
 type ApiFetchChannelMembersRequest struct {
-	ctx context.Context
-	ApiService ChannelAPI
-	channelId *string
-	fid *int32
-	limit *int32
-	cursor *string
+	ctx                 context.Context
+	ApiService          ChannelAPI
+	channelId           *string
+	fid                 *int32
+	limit               *int32
+	cursor              *string
 	xNeynarExperimental *bool
 }
 
@@ -780,24 +782,25 @@ FetchChannelMembers Fetch members
 
 Fetch a list of members in a channel
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchChannelMembersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchChannelMembersRequest
 */
 func (a *ChannelAPIService) FetchChannelMembers(ctx context.Context) ApiFetchChannelMembersRequest {
 	return ApiFetchChannelMembersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelMemberListResponse
+//
+//	@return ChannelMemberListResponse
 func (a *ChannelAPIService) FetchChannelMembersExecute(r ApiFetchChannelMembersRequest) (*ChannelMemberListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelMemberListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelMemberListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FetchChannelMembers")
@@ -890,8 +893,8 @@ func (a *ChannelAPIService) FetchChannelMembersExecute(r ApiFetchChannelMembersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -901,8 +904,8 @@ func (a *ChannelAPIService) FetchChannelMembersExecute(r ApiFetchChannelMembersR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -920,12 +923,12 @@ func (a *ChannelAPIService) FetchChannelMembersExecute(r ApiFetchChannelMembersR
 }
 
 type ApiFetchFollowersForAChannelRequest struct {
-	ctx context.Context
-	ApiService ChannelAPI
-	id *string
-	viewerFid *int32
-	cursor *string
-	limit *int32
+	ctx                 context.Context
+	ApiService          ChannelAPI
+	id                  *string
+	viewerFid           *int32
+	cursor              *string
+	limit               *int32
 	xNeynarExperimental *bool
 }
 
@@ -968,24 +971,25 @@ FetchFollowersForAChannel For channel
 
 Returns a list of followers for a specific channel. Max limit is 1000. Use cursor for pagination.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchFollowersForAChannelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchFollowersForAChannelRequest
 */
 func (a *ChannelAPIService) FetchFollowersForAChannel(ctx context.Context) ApiFetchFollowersForAChannelRequest {
 	return ApiFetchFollowersForAChannelRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsersResponse
+//
+//	@return UsersResponse
 func (a *ChannelAPIService) FetchFollowersForAChannelExecute(r ApiFetchFollowersForAChannelRequest) (*UsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UsersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FetchFollowersForAChannel")
@@ -1078,8 +1082,8 @@ func (a *ChannelAPIService) FetchFollowersForAChannelExecute(r ApiFetchFollowers
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1097,10 +1101,10 @@ func (a *ChannelAPIService) FetchFollowersForAChannelExecute(r ApiFetchFollowers
 }
 
 type ApiFetchRelevantFollowersForAChannelRequest struct {
-	ctx context.Context
-	ApiService ChannelAPI
-	id *string
-	viewerFid *int32
+	ctx                 context.Context
+	ApiService          ChannelAPI
+	id                  *string
+	viewerFid           *int32
 	xNeynarExperimental *bool
 }
 
@@ -1131,24 +1135,25 @@ FetchRelevantFollowersForAChannel Relevant followers
 
 Returns a list of relevant channel followers for a specific FID. This usually shows on a channel as "X, Y, Z follow this channel".
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchRelevantFollowersForAChannelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchRelevantFollowersForAChannelRequest
 */
 func (a *ChannelAPIService) FetchRelevantFollowersForAChannel(ctx context.Context) ApiFetchRelevantFollowersForAChannelRequest {
 	return ApiFetchRelevantFollowersForAChannelRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return RelevantFollowersResponse
+//
+//	@return RelevantFollowersResponse
 func (a *ChannelAPIService) FetchRelevantFollowersForAChannelExecute(r ApiFetchRelevantFollowersForAChannelRequest) (*RelevantFollowersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *RelevantFollowersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *RelevantFollowersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FetchRelevantFollowersForAChannel")
@@ -1233,8 +1238,8 @@ func (a *ChannelAPIService) FetchRelevantFollowersForAChannelExecute(r ApiFetchR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1252,11 +1257,11 @@ func (a *ChannelAPIService) FetchRelevantFollowersForAChannelExecute(r ApiFetchR
 }
 
 type ApiFetchTrendingChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ChannelAPI
 	timeWindow *string
-	limit *int32
-	cursor *string
+	limit      *int32
+	cursor     *string
 }
 
 func (r ApiFetchTrendingChannelsRequest) TimeWindow(timeWindow string) ApiFetchTrendingChannelsRequest {
@@ -1285,24 +1290,25 @@ FetchTrendingChannels Channels by activity
 
 Returns a list of trending channels based on activity
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchTrendingChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchTrendingChannelsRequest
 */
 func (a *ChannelAPIService) FetchTrendingChannels(ctx context.Context) ApiFetchTrendingChannelsRequest {
 	return ApiFetchTrendingChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TrendingChannelResponse
+//
+//	@return TrendingChannelResponse
 func (a *ChannelAPIService) FetchTrendingChannelsExecute(r ApiFetchTrendingChannelsRequest) (*TrendingChannelResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TrendingChannelResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TrendingChannelResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FetchTrendingChannels")
@@ -1388,8 +1394,8 @@ func (a *ChannelAPIService) FetchTrendingChannelsExecute(r ApiFetchTrendingChann
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
@@ -1399,8 +1405,8 @@ func (a *ChannelAPIService) FetchTrendingChannelsExecute(r ApiFetchTrendingChann
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1418,11 +1424,11 @@ func (a *ChannelAPIService) FetchTrendingChannelsExecute(r ApiFetchTrendingChann
 }
 
 type ApiFetchUserChannelMembershipsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ChannelAPI
-	fid *int32
-	limit *int32
-	cursor *string
+	fid        *int32
+	limit      *int32
+	cursor     *string
 }
 
 // The FID of the user.
@@ -1452,24 +1458,25 @@ FetchUserChannelMemberships Member of
 
 Returns a list of all channels with their details that an FID is a member of. Data may have a delay of up to 1 hour.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserChannelMembershipsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserChannelMembershipsRequest
 */
 func (a *ChannelAPIService) FetchUserChannelMemberships(ctx context.Context) ApiFetchUserChannelMembershipsRequest {
 	return ApiFetchUserChannelMembershipsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelMemberListResponse
+//
+//	@return ChannelMemberListResponse
 func (a *ChannelAPIService) FetchUserChannelMembershipsExecute(r ApiFetchUserChannelMembershipsRequest) (*ChannelMemberListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelMemberListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelMemberListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FetchUserChannelMemberships")
@@ -1556,8 +1563,8 @@ func (a *ChannelAPIService) FetchUserChannelMembershipsExecute(r ApiFetchUserCha
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1567,8 +1574,8 @@ func (a *ChannelAPIService) FetchUserChannelMembershipsExecute(r ApiFetchUserCha
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1586,11 +1593,11 @@ func (a *ChannelAPIService) FetchUserChannelMembershipsExecute(r ApiFetchUserCha
 }
 
 type ApiFetchUserChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ChannelAPI
-	fid *int32
-	limit *int32
-	cursor *string
+	fid        *int32
+	limit      *int32
+	cursor     *string
 }
 
 // The FID of the user.
@@ -1620,24 +1627,25 @@ FetchUserChannels Following
 
 Returns a list of all channels with their details that a FID follows.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserChannelsRequest
 */
 func (a *ChannelAPIService) FetchUserChannels(ctx context.Context) ApiFetchUserChannelsRequest {
 	return ApiFetchUserChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelListResponse
+//
+//	@return ChannelListResponse
 func (a *ChannelAPIService) FetchUserChannelsExecute(r ApiFetchUserChannelsRequest) (*ChannelListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FetchUserChannels")
@@ -1733,11 +1741,11 @@ func (a *ChannelAPIService) FetchUserChannelsExecute(r ApiFetchUserChannelsReque
 }
 
 type ApiFetchUsersActiveChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ChannelAPI
-	fid *int32
-	limit *int32
-	cursor *string
+	fid        *int32
+	limit      *int32
+	cursor     *string
 }
 
 // The user&#39;s FID (identifier)
@@ -1767,24 +1775,25 @@ FetchUsersActiveChannels Fetch channels that user is active in
 
 Fetches all channels that a user has casted in, in reverse chronological order.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUsersActiveChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUsersActiveChannelsRequest
 */
 func (a *ChannelAPIService) FetchUsersActiveChannels(ctx context.Context) ApiFetchUsersActiveChannelsRequest {
 	return ApiFetchUsersActiveChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UsersActiveChannelsResponse
+//
+//	@return UsersActiveChannelsResponse
 func (a *ChannelAPIService) FetchUsersActiveChannelsExecute(r ApiFetchUsersActiveChannelsRequest) (*UsersActiveChannelsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UsersActiveChannelsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UsersActiveChannelsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FetchUsersActiveChannels")
@@ -1871,8 +1880,8 @@ func (a *ChannelAPIService) FetchUsersActiveChannelsExecute(r ApiFetchUsersActiv
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1882,8 +1891,8 @@ func (a *ChannelAPIService) FetchUsersActiveChannelsExecute(r ApiFetchUsersActiv
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1901,8 +1910,8 @@ func (a *ChannelAPIService) FetchUsersActiveChannelsExecute(r ApiFetchUsersActiv
 }
 
 type ApiFollowChannelRequest struct {
-	ctx context.Context
-	ApiService ChannelAPI
+	ctx                  context.Context
+	ApiService           ChannelAPI
 	channelFollowReqBody *ChannelFollowReqBody
 }
 
@@ -1920,24 +1929,25 @@ FollowChannel Follow a channel
 
 Follow a channel
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFollowChannelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFollowChannelRequest
 */
 func (a *ChannelAPIService) FollowChannel(ctx context.Context) ApiFollowChannelRequest {
 	return ApiFollowChannelRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *ChannelAPIService) FollowChannelExecute(r ApiFollowChannelRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.FollowChannel")
@@ -2016,8 +2026,8 @@ func (a *ChannelAPIService) FollowChannelExecute(r ApiFollowChannelRequest) (*Op
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2027,8 +2037,8 @@ func (a *ChannelAPIService) FollowChannelExecute(r ApiFollowChannelRequest) (*Op
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2038,8 +2048,8 @@ func (a *ChannelAPIService) FollowChannelExecute(r ApiFollowChannelRequest) (*Op
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2049,8 +2059,8 @@ func (a *ChannelAPIService) FollowChannelExecute(r ApiFollowChannelRequest) (*Op
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2068,8 +2078,8 @@ func (a *ChannelAPIService) FollowChannelExecute(r ApiFollowChannelRequest) (*Op
 }
 
 type ApiInviteChannelMemberRequest struct {
-	ctx context.Context
-	ApiService ChannelAPI
+	ctx                        context.Context
+	ApiService                 ChannelAPI
 	inviteChannelMemberReqBody *InviteChannelMemberReqBody
 }
 
@@ -2087,24 +2097,25 @@ InviteChannelMember Invite
 
 Invite a user to a channel
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiInviteChannelMemberRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiInviteChannelMemberRequest
 */
 func (a *ChannelAPIService) InviteChannelMember(ctx context.Context) ApiInviteChannelMemberRequest {
 	return ApiInviteChannelMemberRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *ChannelAPIService) InviteChannelMemberExecute(r ApiInviteChannelMemberRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.InviteChannelMember")
@@ -2183,8 +2194,8 @@ func (a *ChannelAPIService) InviteChannelMemberExecute(r ApiInviteChannelMemberR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2194,8 +2205,8 @@ func (a *ChannelAPIService) InviteChannelMemberExecute(r ApiInviteChannelMemberR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2213,11 +2224,11 @@ func (a *ChannelAPIService) InviteChannelMemberExecute(r ApiInviteChannelMemberR
 }
 
 type ApiLookupChannelRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ChannelAPI
-	id *string
-	type_ *ChannelType
-	viewerFid *int32
+	id         *string
+	type_      *ChannelType
+	viewerFid  *int32
 }
 
 // Channel ID for the channel being queried
@@ -2247,24 +2258,25 @@ LookupChannel By ID or parent_url
 
 Returns details of a channel
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupChannelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupChannelRequest
 */
 func (a *ChannelAPIService) LookupChannel(ctx context.Context) ApiLookupChannelRequest {
 	return ApiLookupChannelRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelResponse
+//
+//	@return ChannelResponse
 func (a *ChannelAPIService) LookupChannelExecute(r ApiLookupChannelRequest) (*ChannelResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.LookupChannel")
@@ -2348,8 +2360,8 @@ func (a *ChannelAPIService) LookupChannelExecute(r ApiLookupChannelRequest) (*Ch
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2367,8 +2379,8 @@ func (a *ChannelAPIService) LookupChannelExecute(r ApiLookupChannelRequest) (*Ch
 }
 
 type ApiRemoveChannelMemberRequest struct {
-	ctx context.Context
-	ApiService ChannelAPI
+	ctx                        context.Context
+	ApiService                 ChannelAPI
 	removeChannelMemberReqBody *RemoveChannelMemberReqBody
 }
 
@@ -2386,24 +2398,25 @@ RemoveChannelMember Remove user
 
 Remove a user from a channel or a user's invite to a channel role
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRemoveChannelMemberRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRemoveChannelMemberRequest
 */
 func (a *ChannelAPIService) RemoveChannelMember(ctx context.Context) ApiRemoveChannelMemberRequest {
 	return ApiRemoveChannelMemberRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *ChannelAPIService) RemoveChannelMemberExecute(r ApiRemoveChannelMemberRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.RemoveChannelMember")
@@ -2482,8 +2495,8 @@ func (a *ChannelAPIService) RemoveChannelMemberExecute(r ApiRemoveChannelMemberR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2493,8 +2506,8 @@ func (a *ChannelAPIService) RemoveChannelMemberExecute(r ApiRemoveChannelMemberR
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2512,8 +2525,8 @@ func (a *ChannelAPIService) RemoveChannelMemberExecute(r ApiRemoveChannelMemberR
 }
 
 type ApiRespondChannelInviteRequest struct {
-	ctx context.Context
-	ApiService ChannelAPI
+	ctx                         context.Context
+	ApiService                  ChannelAPI
 	respondChannelInviteReqBody *RespondChannelInviteReqBody
 }
 
@@ -2531,24 +2544,25 @@ RespondChannelInvite Accept or reject an invite
 
 Accept or reject a channel invite
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRespondChannelInviteRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRespondChannelInviteRequest
 */
 func (a *ChannelAPIService) RespondChannelInvite(ctx context.Context) ApiRespondChannelInviteRequest {
 	return ApiRespondChannelInviteRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *ChannelAPIService) RespondChannelInviteExecute(r ApiRespondChannelInviteRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.RespondChannelInvite")
@@ -2627,8 +2641,8 @@ func (a *ChannelAPIService) RespondChannelInviteExecute(r ApiRespondChannelInvit
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2638,8 +2652,8 @@ func (a *ChannelAPIService) RespondChannelInviteExecute(r ApiRespondChannelInvit
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2657,11 +2671,11 @@ func (a *ChannelAPIService) RespondChannelInviteExecute(r ApiRespondChannelInvit
 }
 
 type ApiSearchChannelsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService ChannelAPI
-	q *string
-	limit *int32
-	cursor *string
+	q          *string
+	limit      *int32
+	cursor     *string
 }
 
 // Channel ID or name for the channel being queried
@@ -2691,24 +2705,25 @@ SearchChannels Search by ID or name
 
 Returns a list of channels based on ID or name
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSearchChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSearchChannelsRequest
 */
 func (a *ChannelAPIService) SearchChannels(ctx context.Context) ApiSearchChannelsRequest {
 	return ApiSearchChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelSearchResponse
+//
+//	@return ChannelSearchResponse
 func (a *ChannelAPIService) SearchChannelsExecute(r ApiSearchChannelsRequest) (*ChannelSearchResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelSearchResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelSearchResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.SearchChannels")
@@ -2804,8 +2819,8 @@ func (a *ChannelAPIService) SearchChannelsExecute(r ApiSearchChannelsRequest) (*
 }
 
 type ApiUnfollowChannelRequest struct {
-	ctx context.Context
-	ApiService ChannelAPI
+	ctx                  context.Context
+	ApiService           ChannelAPI
 	channelFollowReqBody *ChannelFollowReqBody
 }
 
@@ -2823,24 +2838,25 @@ UnfollowChannel Unfollow a channel
 
 Unfollow a channel
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUnfollowChannelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUnfollowChannelRequest
 */
 func (a *ChannelAPIService) UnfollowChannel(ctx context.Context) ApiUnfollowChannelRequest {
 	return ApiUnfollowChannelRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OperationResponse
+//
+//	@return OperationResponse
 func (a *ChannelAPIService) UnfollowChannelExecute(r ApiUnfollowChannelRequest) (*OperationResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OperationResponse
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OperationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelAPIService.UnfollowChannel")
@@ -2919,8 +2935,8 @@ func (a *ChannelAPIService) UnfollowChannelExecute(r ApiUnfollowChannelRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2930,8 +2946,8 @@ func (a *ChannelAPIService) UnfollowChannelExecute(r ApiUnfollowChannelRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2941,8 +2957,8 @@ func (a *ChannelAPIService) UnfollowChannelExecute(r ApiUnfollowChannelRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2952,8 +2968,8 @@ func (a *ChannelAPIService) UnfollowChannelExecute(r ApiUnfollowChannelRequest) 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -25,8 +25,8 @@ type UserVerifiedAddresses struct {
 	// List of verified Ethereum addresses of the user sorted by oldest to most recent.
 	EthAddresses []string `json:"eth_addresses"`
 	// List of verified Solana addresses of the user sorted by oldest to most recent.
-	SolAddresses []string `json:"sol_addresses"`
-	Primary UserVerifiedAddressesPrimary `json:"primary"`
+	SolAddresses []string                     `json:"sol_addresses"`
+	Primary      UserVerifiedAddressesPrimary `json:"primary"`
 }
 
 type _UserVerifiedAddresses UserVerifiedAddresses
@@ -75,7 +75,6 @@ func (o *UserVerifiedAddresses) SetEthAddresses(v []string) {
 	o.EthAddresses = v
 }
 
-
 // GetSolAddresses returns the SolAddresses field value
 func (o *UserVerifiedAddresses) GetSolAddresses() []string {
 	if o == nil {
@@ -99,7 +98,6 @@ func (o *UserVerifiedAddresses) GetSolAddressesOk() ([]string, bool) {
 func (o *UserVerifiedAddresses) SetSolAddresses(v []string) {
 	o.SolAddresses = v
 }
-
 
 // GetPrimary returns the Primary field value
 func (o *UserVerifiedAddresses) GetPrimary() UserVerifiedAddressesPrimary {
@@ -125,9 +123,8 @@ func (o *UserVerifiedAddresses) SetPrimary(v UserVerifiedAddressesPrimary) {
 	o.Primary = v
 }
 
-
 func (o UserVerifiedAddresses) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -154,32 +151,31 @@ func (o *UserVerifiedAddresses) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -233,5 +229,3 @@ func (v *NullableUserVerifiedAddresses) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

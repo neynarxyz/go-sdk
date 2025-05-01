@@ -1,7 +1,7 @@
 /*
 Farcaster API V2
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.33.1
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package api
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,14 +22,14 @@ var _ MappedNullable = &UpdateUserReqBody{}
 
 // UpdateUserReqBody struct for UpdateUserReqBody
 type UpdateUserReqBody struct {
-	// UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key. 
-	SignerUuid string `json:"signer_uuid"`
-	Bio *string `json:"bio,omitempty"`
-	PfpUrl *string `json:"pfp_url,omitempty"`
-	Url *string `json:"url,omitempty"`
-	Username *string `json:"username,omitempty"`
-	DisplayName *string `json:"display_name,omitempty"`
-	Location *UpdateUserReqBodyLocation `json:"location,omitempty"`
+	// UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
+	SignerUuid       string                             `json:"signer_uuid"`
+	Bio              *string                            `json:"bio,omitempty"`
+	PfpUrl           *string                            `json:"pfp_url,omitempty"`
+	Url              *string                            `json:"url,omitempty"`
+	Username         *string                            `json:"username,omitempty"`
+	DisplayName      *string                            `json:"display_name,omitempty"`
+	Location         *UpdateUserReqBodyLocation         `json:"location,omitempty"`
 	VerifiedAccounts *UpdateUserReqBodyVerifiedAccounts `json:"verified_accounts,omitempty"`
 }
 
@@ -76,7 +76,6 @@ func (o *UpdateUserReqBody) GetSignerUuidOk() (*string, bool) {
 func (o *UpdateUserReqBody) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
-
 
 // GetBio returns the Bio field value if set, zero value otherwise.
 func (o *UpdateUserReqBody) GetBio() string {
@@ -303,7 +302,7 @@ func (o *UpdateUserReqBody) SetVerifiedAccounts(v UpdateUserReqBodyVerifiedAccou
 }
 
 func (o UpdateUserReqBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -347,32 +346,31 @@ func (o *UpdateUserReqBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -426,5 +424,3 @@ func (v *NullableUpdateUserReqBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

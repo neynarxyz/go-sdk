@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -19,16 +19,15 @@ import (
 	"net/url"
 )
 
-
 type OnChainEventsAPI interface {
 
 	/*
-	FetchUserOnChainEvents Fetch a list of on-chain events provided by an FID
+		FetchUserOnChainEvents Fetch a list of on-chain events provided by an FID
 
-	Fetch on-chain events provided by a user.
+		Fetch on-chain events provided by a user.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserOnChainEventsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserOnChainEventsRequest
 	*/
 	FetchUserOnChainEvents(ctx context.Context) ApiFetchUserOnChainEventsRequest
 
@@ -37,12 +36,12 @@ type OnChainEventsAPI interface {
 	FetchUserOnChainEventsExecute(r ApiFetchUserOnChainEventsRequest) (*FetchUserOnChainEvents200Response, *http.Response, error)
 
 	/*
-	FetchUserOnChainSignersEvents Fetch a list of signers provided by an FID
+		FetchUserOnChainSignersEvents Fetch a list of signers provided by an FID
 
-	**Note:** one of two different response schemas is returned based on whether the caller provides the `signer` parameter. If included, a single `OnChainEventSigner` message is returned (or a `not_found` error). If omitted, a non-paginated list of `OnChainEventSigner` messages is returned instead.
+		**Note:** one of two different response schemas is returned based on whether the caller provides the `signer` parameter. If included, a single `OnChainEventSigner` message is returned (or a `not_found` error). If omitted, a non-paginated list of `OnChainEventSigner` messages is returned instead.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiFetchUserOnChainSignersEventsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiFetchUserOnChainSignersEventsRequest
 	*/
 	FetchUserOnChainSignersEvents(ctx context.Context) ApiFetchUserOnChainSignersEventsRequest
 
@@ -51,12 +50,12 @@ type OnChainEventsAPI interface {
 	FetchUserOnChainSignersEventsExecute(r ApiFetchUserOnChainSignersEventsRequest) (*FetchUserOnChainSignersEvents200Response, *http.Response, error)
 
 	/*
-	LookupOnChainIdRegistryEventByAddress Fetch an on-chain ID Registry Event for a given Address
+		LookupOnChainIdRegistryEventByAddress Fetch an on-chain ID Registry Event for a given Address
 
-	Fetch an on-chain ID Registry Event for a given Address.
+		Fetch an on-chain ID Registry Event for a given Address.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiLookupOnChainIdRegistryEventByAddressRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiLookupOnChainIdRegistryEventByAddressRequest
 	*/
 	LookupOnChainIdRegistryEventByAddress(ctx context.Context) ApiLookupOnChainIdRegistryEventByAddressRequest
 
@@ -69,10 +68,10 @@ type OnChainEventsAPI interface {
 type OnChainEventsAPIService service
 
 type ApiFetchUserOnChainEventsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService OnChainEventsAPI
-	fid *int32
-	eventType *OnChainEventType
+	fid        *int32
+	eventType  *OnChainEventType
 }
 
 // The FID being requested
@@ -96,24 +95,25 @@ FetchUserOnChainEvents Fetch a list of on-chain events provided by an FID
 
 Fetch on-chain events provided by a user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserOnChainEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserOnChainEventsRequest
 */
 func (a *OnChainEventsAPIService) FetchUserOnChainEvents(ctx context.Context) ApiFetchUserOnChainEventsRequest {
 	return ApiFetchUserOnChainEventsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchUserOnChainEvents200Response
+//
+//	@return FetchUserOnChainEvents200Response
 func (a *OnChainEventsAPIService) FetchUserOnChainEventsExecute(r ApiFetchUserOnChainEventsRequest) (*FetchUserOnChainEvents200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchUserOnChainEvents200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchUserOnChainEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnChainEventsAPIService.FetchUserOnChainEvents")
@@ -188,14 +188,14 @@ func (a *OnChainEventsAPIService) FetchUserOnChainEventsExecute(r ApiFetchUserOn
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -212,10 +212,10 @@ func (a *OnChainEventsAPIService) FetchUserOnChainEventsExecute(r ApiFetchUserOn
 }
 
 type ApiFetchUserOnChainSignersEventsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService OnChainEventsAPI
-	fid *int32
-	signer *string
+	fid        *int32
+	signer     *string
 }
 
 // The FID being requested
@@ -239,24 +239,25 @@ FetchUserOnChainSignersEvents Fetch a list of signers provided by an FID
 
 **Note:** one of two different response schemas is returned based on whether the caller provides the `signer` parameter. If included, a single `OnChainEventSigner` message is returned (or a `not_found` error). If omitted, a non-paginated list of `OnChainEventSigner` messages is returned instead.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchUserOnChainSignersEventsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchUserOnChainSignersEventsRequest
 */
 func (a *OnChainEventsAPIService) FetchUserOnChainSignersEvents(ctx context.Context) ApiFetchUserOnChainSignersEventsRequest {
 	return ApiFetchUserOnChainSignersEventsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchUserOnChainSignersEvents200Response
+//
+//	@return FetchUserOnChainSignersEvents200Response
 func (a *OnChainEventsAPIService) FetchUserOnChainSignersEventsExecute(r ApiFetchUserOnChainSignersEventsRequest) (*FetchUserOnChainSignersEvents200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchUserOnChainSignersEvents200Response
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchUserOnChainSignersEvents200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnChainEventsAPIService.FetchUserOnChainSignersEvents")
@@ -330,14 +331,14 @@ func (a *OnChainEventsAPIService) FetchUserOnChainSignersEventsExecute(r ApiFetc
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -354,9 +355,9 @@ func (a *OnChainEventsAPIService) FetchUserOnChainSignersEventsExecute(r ApiFetc
 }
 
 type ApiLookupOnChainIdRegistryEventByAddressRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService OnChainEventsAPI
-	address *string
+	address    *string
 }
 
 // The ETH address being requested
@@ -374,24 +375,25 @@ LookupOnChainIdRegistryEventByAddress Fetch an on-chain ID Registry Event for a 
 
 Fetch an on-chain ID Registry Event for a given Address.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiLookupOnChainIdRegistryEventByAddressRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiLookupOnChainIdRegistryEventByAddressRequest
 */
 func (a *OnChainEventsAPIService) LookupOnChainIdRegistryEventByAddress(ctx context.Context) ApiLookupOnChainIdRegistryEventByAddressRequest {
 	return ApiLookupOnChainIdRegistryEventByAddressRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return OnChainEventIdRegister
+//
+//	@return OnChainEventIdRegister
 func (a *OnChainEventsAPIService) LookupOnChainIdRegistryEventByAddressExecute(r ApiLookupOnChainIdRegistryEventByAddressRequest) (*OnChainEventIdRegister, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *OnChainEventIdRegister
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *OnChainEventIdRegister
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnChainEventsAPIService.LookupOnChainIdRegistryEventByAddress")
@@ -462,14 +464,14 @@ func (a *OnChainEventsAPIService) LookupOnChainIdRegistryEventByAddressExecute(r
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		var v ErrorResponse
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

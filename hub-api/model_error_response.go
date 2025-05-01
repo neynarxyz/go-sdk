@@ -1,7 +1,7 @@
 /*
 Farcaster Hub API
 
-Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details. 
+Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
 API version: 2.21.0
 Contact: team@neynar.com
@@ -12,8 +12,8 @@ Contact: team@neynar.com
 package hub
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,12 +22,12 @@ var _ MappedNullable = &ErrorResponse{}
 
 // ErrorResponse struct for ErrorResponse
 type ErrorResponse struct {
-	ErrCode string `json:"errCode"`
-	Presentable bool `json:"presentable"`
-	Name string `json:"name"`
-	Code int32 `json:"code"`
-	Details string `json:"details"`
-	Metadata ErrorResponseMetadata `json:"metadata"`
+	ErrCode     string                `json:"errCode"`
+	Presentable bool                  `json:"presentable"`
+	Name        string                `json:"name"`
+	Code        int32                 `json:"code"`
+	Details     string                `json:"details"`
+	Metadata    ErrorResponseMetadata `json:"metadata"`
 }
 
 type _ErrorResponse ErrorResponse
@@ -79,7 +79,6 @@ func (o *ErrorResponse) SetErrCode(v string) {
 	o.ErrCode = v
 }
 
-
 // GetPresentable returns the Presentable field value
 func (o *ErrorResponse) GetPresentable() bool {
 	if o == nil {
@@ -103,7 +102,6 @@ func (o *ErrorResponse) GetPresentableOk() (*bool, bool) {
 func (o *ErrorResponse) SetPresentable(v bool) {
 	o.Presentable = v
 }
-
 
 // GetName returns the Name field value
 func (o *ErrorResponse) GetName() string {
@@ -129,7 +127,6 @@ func (o *ErrorResponse) SetName(v string) {
 	o.Name = v
 }
 
-
 // GetCode returns the Code field value
 func (o *ErrorResponse) GetCode() int32 {
 	if o == nil {
@@ -153,7 +150,6 @@ func (o *ErrorResponse) GetCodeOk() (*int32, bool) {
 func (o *ErrorResponse) SetCode(v int32) {
 	o.Code = v
 }
-
 
 // GetDetails returns the Details field value
 func (o *ErrorResponse) GetDetails() string {
@@ -179,7 +175,6 @@ func (o *ErrorResponse) SetDetails(v string) {
 	o.Details = v
 }
 
-
 // GetMetadata returns the Metadata field value
 func (o *ErrorResponse) GetMetadata() ErrorResponseMetadata {
 	if o == nil {
@@ -204,9 +199,8 @@ func (o *ErrorResponse) SetMetadata(v ErrorResponseMetadata) {
 	o.Metadata = v
 }
 
-
 func (o ErrorResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -239,32 +233,31 @@ func (o *ErrorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{} {
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
 				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
 				defaultValueApplied = true
 			}
 		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
 	if defaultValueApplied {
 		data, err = json.Marshal(allProperties)
-		if err != nil{
+		if err != nil {
 			return err
 		}
 	}
@@ -318,5 +311,3 @@ func (v *NullableErrorResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
