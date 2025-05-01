@@ -1,0 +1,31 @@
+# MessageType
+
+## Enum
+
+
+* `CAST_ADD` (value: `"MESSAGE_TYPE_CAST_ADD"`)
+
+* `CAST_REMOVE` (value: `"MESSAGE_TYPE_CAST_REMOVE"`)
+
+* `REACTION_ADD` (value: `"MESSAGE_TYPE_REACTION_ADD"`)
+
+* `REACTION_REMOVE` (value: `"MESSAGE_TYPE_REACTION_REMOVE"`)
+
+* `LINK_ADD` (value: `"MESSAGE_TYPE_LINK_ADD"`)
+
+* `LINK_REMOVE` (value: `"MESSAGE_TYPE_LINK_REMOVE"`)
+
+* `VERIFICATION_ADD_ETH_ADDRESS` (value: `"MESSAGE_TYPE_VERIFICATION_ADD_ETH_ADDRESS"`)
+
+* `VERIFICATION_REMOVE` (value: `"MESSAGE_TYPE_VERIFICATION_REMOVE"`)
+
+* `USER_DATA_ADD` (value: `"MESSAGE_TYPE_USER_DATA_ADD"`)
+
+* `USERNAME_PROOF` (value: `"MESSAGE_TYPE_USERNAME_PROOF"`)
+
+* `FRAME_ACTION` (value: `"MESSAGE_TYPE_FRAME_ACTION"`)
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
