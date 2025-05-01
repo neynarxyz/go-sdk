@@ -22,10 +22,10 @@ var _ MappedNullable = &CastDehydrated{}
 
 // CastDehydrated struct for CastDehydrated
 type CastDehydrated struct {
-	Object string                 `json:"object"`
-	Hash   string                 `json:"hash"`
-	Author *UserDehydrated        `json:"author,omitempty"`
-	App    NullableUserDehydrated `json:"app,omitempty"`
+	Object string           `json:"object"`
+	Hash   string           `json:"hash"`
+	Author *UserDehydrated  `json:"author,omitempty"`
+	App    *CastEmbeddedApp `json:"app,omitempty"`
 }
 
 type _CastDehydrated CastDehydrated
@@ -129,47 +129,36 @@ func (o *CastDehydrated) SetAuthor(v UserDehydrated) {
 	o.Author = &v
 }
 
-// GetApp returns the App field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CastDehydrated) GetApp() UserDehydrated {
-	if o == nil || IsNil(o.App.Get()) {
-		var ret UserDehydrated
+// GetApp returns the App field value if set, zero value otherwise.
+func (o *CastDehydrated) GetApp() CastEmbeddedApp {
+	if o == nil || IsNil(o.App) {
+		var ret CastEmbeddedApp
 		return ret
 	}
-	return *o.App.Get()
+	return *o.App
 }
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CastDehydrated) GetAppOk() (*UserDehydrated, bool) {
-	if o == nil {
+func (o *CastDehydrated) GetAppOk() (*CastEmbeddedApp, bool) {
+	if o == nil || IsNil(o.App) {
 		return nil, false
 	}
-	return o.App.Get(), o.App.IsSet()
+	return o.App, true
 }
 
 // HasApp returns a boolean if a field has been set.
 func (o *CastDehydrated) HasApp() bool {
-	if o != nil && o.App.IsSet() {
+	if o != nil && !IsNil(o.App) {
 		return true
 	}
 
 	return false
 }
 
-// SetApp gets a reference to the given NullableUserDehydrated and assigns it to the App field.
-func (o *CastDehydrated) SetApp(v UserDehydrated) {
-	o.App.Set(&v)
-}
-
-// SetAppNil sets the value for App to be an explicit nil
-func (o *CastDehydrated) SetAppNil() {
-	o.App.Set(nil)
-}
-
-// UnsetApp ensures that no value is present for App, not even an explicit nil
-func (o *CastDehydrated) UnsetApp() {
-	o.App.Unset()
+// SetApp gets a reference to the given CastEmbeddedApp and assigns it to the App field.
+func (o *CastDehydrated) SetApp(v CastEmbeddedApp) {
+	o.App = &v
 }
 
 func (o CastDehydrated) MarshalJSON() ([]byte, error) {
@@ -187,8 +176,8 @@ func (o CastDehydrated) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Author) {
 		toSerialize["author"] = o.Author
 	}
-	if o.App.IsSet() {
-		toSerialize["app"] = o.App.Get()
+	if !IsNil(o.App) {
+		toSerialize["app"] = o.App
 	}
 	return toSerialize, nil
 }

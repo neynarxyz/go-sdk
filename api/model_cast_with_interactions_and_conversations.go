@@ -30,7 +30,7 @@ type CastWithInteractionsAndConversations struct {
 	RootParentUrl     string                        `json:"root_parent_url"`
 	ParentAuthor      CastEmbeddedParentAuthor      `json:"parent_author"`
 	Author            User                          `json:"author"`
-	App               *UserDehydrated               `json:"app,omitempty"`
+	App               *CastEmbeddedApp              `json:"app,omitempty"`
 	Text              string                        `json:"text"`
 	Timestamp         time.Time                     `json:"timestamp"`
 	Embeds            []Embed                       `json:"embeds"`
@@ -44,10 +44,10 @@ type CastWithInteractionsAndConversations struct {
 	MentionedProfilesRanges []TextRange         `json:"mentioned_profiles_ranges"`
 	MentionedChannels       []ChannelDehydrated `json:"mentioned_channels"`
 	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.
-	MentionedChannelsRanges []TextRange                `json:"mentioned_channels_ranges"`
-	Channel                 ChannelOrChannelDehydrated `json:"channel"`
-	ViewerContext           *CastViewerContext         `json:"viewer_context,omitempty"`
-	AuthorChannelContext    *ChannelUserContext        `json:"author_channel_context,omitempty"`
+	MentionedChannelsRanges []TextRange                      `json:"mentioned_channels_ranges"`
+	Channel                 CastWithInteractionsAllOfChannel `json:"channel"`
+	ViewerContext           *CastViewerContext               `json:"viewer_context,omitempty"`
+	AuthorChannelContext    *ChannelUserContext              `json:"author_channel_context,omitempty"`
 	// note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
 	DirectReplies []CastWithInteractionsAndConversationsRef `json:"direct_replies"`
 }
@@ -58,7 +58,7 @@ type _CastWithInteractionsAndConversations CastWithInteractionsAndConversations
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastWithInteractionsAndConversations(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastEmbeddedParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash string, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel ChannelOrChannelDehydrated, directReplies []CastWithInteractionsAndConversationsRef) *CastWithInteractionsAndConversations {
+func NewCastWithInteractionsAndConversations(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastEmbeddedParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash string, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel CastWithInteractionsAllOfChannel, directReplies []CastWithInteractionsAndConversationsRef) *CastWithInteractionsAndConversations {
 	this := CastWithInteractionsAndConversations{}
 	this.Object = object
 	this.Hash = hash
@@ -259,9 +259,9 @@ func (o *CastWithInteractionsAndConversations) SetAuthor(v User) {
 }
 
 // GetApp returns the App field value if set, zero value otherwise.
-func (o *CastWithInteractionsAndConversations) GetApp() UserDehydrated {
+func (o *CastWithInteractionsAndConversations) GetApp() CastEmbeddedApp {
 	if o == nil || IsNil(o.App) {
-		var ret UserDehydrated
+		var ret CastEmbeddedApp
 		return ret
 	}
 	return *o.App
@@ -269,7 +269,7 @@ func (o *CastWithInteractionsAndConversations) GetApp() UserDehydrated {
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CastWithInteractionsAndConversations) GetAppOk() (*UserDehydrated, bool) {
+func (o *CastWithInteractionsAndConversations) GetAppOk() (*CastEmbeddedApp, bool) {
 	if o == nil || IsNil(o.App) {
 		return nil, false
 	}
@@ -285,8 +285,8 @@ func (o *CastWithInteractionsAndConversations) HasApp() bool {
 	return false
 }
 
-// SetApp gets a reference to the given UserDehydrated and assigns it to the App field.
-func (o *CastWithInteractionsAndConversations) SetApp(v UserDehydrated) {
+// SetApp gets a reference to the given CastEmbeddedApp and assigns it to the App field.
+func (o *CastWithInteractionsAndConversations) SetApp(v CastEmbeddedApp) {
 	o.App = &v
 }
 
@@ -595,9 +595,9 @@ func (o *CastWithInteractionsAndConversations) SetMentionedChannelsRanges(v []Te
 }
 
 // GetChannel returns the Channel field value
-func (o *CastWithInteractionsAndConversations) GetChannel() ChannelOrChannelDehydrated {
+func (o *CastWithInteractionsAndConversations) GetChannel() CastWithInteractionsAllOfChannel {
 	if o == nil {
-		var ret ChannelOrChannelDehydrated
+		var ret CastWithInteractionsAllOfChannel
 		return ret
 	}
 
@@ -606,7 +606,7 @@ func (o *CastWithInteractionsAndConversations) GetChannel() ChannelOrChannelDehy
 
 // GetChannelOk returns a tuple with the Channel field value
 // and a boolean to check if the value has been set.
-func (o *CastWithInteractionsAndConversations) GetChannelOk() (*ChannelOrChannelDehydrated, bool) {
+func (o *CastWithInteractionsAndConversations) GetChannelOk() (*CastWithInteractionsAllOfChannel, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -614,7 +614,7 @@ func (o *CastWithInteractionsAndConversations) GetChannelOk() (*ChannelOrChannel
 }
 
 // SetChannel sets field value
-func (o *CastWithInteractionsAndConversations) SetChannel(v ChannelOrChannelDehydrated) {
+func (o *CastWithInteractionsAndConversations) SetChannel(v CastWithInteractionsAllOfChannel) {
 	o.Channel = v
 }
 

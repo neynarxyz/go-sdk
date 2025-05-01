@@ -17,59 +17,60 @@ import (
 	"fmt"
 )
 
-// checks if the TransactionFrameResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &TransactionFrameResponse{}
+// checks if the PostCastResponseCastAuthor type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostCastResponseCastAuthor{}
 
-// TransactionFrameResponse struct for TransactionFrameResponse
-type TransactionFrameResponse struct {
-	TransactionFrame TransactionFrame `json:"transaction_frame"`
+// PostCastResponseCastAuthor struct for PostCastResponseCastAuthor
+type PostCastResponseCastAuthor struct {
+	// The unique identifier of a farcaster user (unsigned integer)
+	Fid int32 `json:"fid"`
 }
 
-type _TransactionFrameResponse TransactionFrameResponse
+type _PostCastResponseCastAuthor PostCastResponseCastAuthor
 
-// NewTransactionFrameResponse instantiates a new TransactionFrameResponse object
+// NewPostCastResponseCastAuthor instantiates a new PostCastResponseCastAuthor object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransactionFrameResponse(transactionFrame TransactionFrame) *TransactionFrameResponse {
-	this := TransactionFrameResponse{}
-	this.TransactionFrame = transactionFrame
+func NewPostCastResponseCastAuthor(fid int32) *PostCastResponseCastAuthor {
+	this := PostCastResponseCastAuthor{}
+	this.Fid = fid
 	return &this
 }
 
-// NewTransactionFrameResponseWithDefaults instantiates a new TransactionFrameResponse object
+// NewPostCastResponseCastAuthorWithDefaults instantiates a new PostCastResponseCastAuthor object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTransactionFrameResponseWithDefaults() *TransactionFrameResponse {
-	this := TransactionFrameResponse{}
+func NewPostCastResponseCastAuthorWithDefaults() *PostCastResponseCastAuthor {
+	this := PostCastResponseCastAuthor{}
 	return &this
 }
 
-// GetTransactionFrame returns the TransactionFrame field value
-func (o *TransactionFrameResponse) GetTransactionFrame() TransactionFrame {
+// GetFid returns the Fid field value
+func (o *PostCastResponseCastAuthor) GetFid() int32 {
 	if o == nil {
-		var ret TransactionFrame
+		var ret int32
 		return ret
 	}
 
-	return o.TransactionFrame
+	return o.Fid
 }
 
-// GetTransactionFrameOk returns a tuple with the TransactionFrame field value
+// GetFidOk returns a tuple with the Fid field value
 // and a boolean to check if the value has been set.
-func (o *TransactionFrameResponse) GetTransactionFrameOk() (*TransactionFrame, bool) {
+func (o *PostCastResponseCastAuthor) GetFidOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TransactionFrame, true
+	return &o.Fid, true
 }
 
-// SetTransactionFrame sets field value
-func (o *TransactionFrameResponse) SetTransactionFrame(v TransactionFrame) {
-	o.TransactionFrame = v
+// SetFid sets field value
+func (o *PostCastResponseCastAuthor) SetFid(v int32) {
+	o.Fid = v
 }
 
-func (o TransactionFrameResponse) MarshalJSON() ([]byte, error) {
+func (o PostCastResponseCastAuthor) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -77,18 +78,18 @@ func (o TransactionFrameResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o TransactionFrameResponse) ToMap() (map[string]interface{}, error) {
+func (o PostCastResponseCastAuthor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["transaction_frame"] = o.TransactionFrame
+	toSerialize["fid"] = o.Fid
 	return toSerialize, nil
 }
 
-func (o *TransactionFrameResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *PostCastResponseCastAuthor) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"transaction_frame",
+		"fid",
 	}
 
 	// defaultValueFuncMap captures the default values for required properties.
@@ -121,53 +122,53 @@ func (o *TransactionFrameResponse) UnmarshalJSON(data []byte) (err error) {
 			return err
 		}
 	}
-	varTransactionFrameResponse := _TransactionFrameResponse{}
+	varPostCastResponseCastAuthor := _PostCastResponseCastAuthor{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTransactionFrameResponse)
+	err = decoder.Decode(&varPostCastResponseCastAuthor)
 
 	if err != nil {
 		return err
 	}
 
-	*o = TransactionFrameResponse(varTransactionFrameResponse)
+	*o = PostCastResponseCastAuthor(varPostCastResponseCastAuthor)
 
 	return err
 }
 
-type NullableTransactionFrameResponse struct {
-	value *TransactionFrameResponse
+type NullablePostCastResponseCastAuthor struct {
+	value *PostCastResponseCastAuthor
 	isSet bool
 }
 
-func (v NullableTransactionFrameResponse) Get() *TransactionFrameResponse {
+func (v NullablePostCastResponseCastAuthor) Get() *PostCastResponseCastAuthor {
 	return v.value
 }
 
-func (v *NullableTransactionFrameResponse) Set(val *TransactionFrameResponse) {
+func (v *NullablePostCastResponseCastAuthor) Set(val *PostCastResponseCastAuthor) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTransactionFrameResponse) IsSet() bool {
+func (v NullablePostCastResponseCastAuthor) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTransactionFrameResponse) Unset() {
+func (v *NullablePostCastResponseCastAuthor) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTransactionFrameResponse(val *TransactionFrameResponse) *NullableTransactionFrameResponse {
-	return &NullableTransactionFrameResponse{value: val, isSet: true}
+func NewNullablePostCastResponseCastAuthor(val *PostCastResponseCastAuthor) *NullablePostCastResponseCastAuthor {
+	return &NullablePostCastResponseCastAuthor{value: val, isSet: true}
 }
 
-func (v NullableTransactionFrameResponse) MarshalJSON() ([]byte, error) {
+func (v NullablePostCastResponseCastAuthor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTransactionFrameResponse) UnmarshalJSON(src []byte) error {
+func (v *NullablePostCastResponseCastAuthor) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

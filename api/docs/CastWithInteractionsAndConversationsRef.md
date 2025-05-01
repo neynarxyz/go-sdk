@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **RootParentUrl** | **string** |  | 
 **ParentAuthor** | [**CastEmbeddedParentAuthor**](CastEmbeddedParentAuthor.md) |  | 
 **Author** | [**User**](User.md) |  | 
-**App** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
+**App** | Pointer to [**CastEmbeddedApp**](CastEmbeddedApp.md) |  | [optional] 
 **Text** | **string** |  | 
 **Timestamp** | **time.Time** |  | 
 **Embeds** | [**[]Embed**](Embed.md) |  | 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **MentionedProfilesRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.  | 
 **MentionedChannels** | [**[]ChannelDehydrated**](ChannelDehydrated.md) |  | 
 **MentionedChannelsRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.  | 
-**Channel** | [**ChannelOrChannelDehydrated**](ChannelOrChannelDehydrated.md) |  | 
+**Channel** | [**CastWithInteractionsAllOfChannel**](CastWithInteractionsAllOfChannel.md) |  | 
 **ViewerContext** | Pointer to [**CastViewerContext**](CastViewerContext.md) |  | [optional] 
 **AuthorChannelContext** | Pointer to [**ChannelUserContext**](ChannelUserContext.md) |  | [optional] 
 **DirectReplies** | **[]map[string]interface{}** | note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth. | 
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewCastWithInteractionsAndConversationsRef
 
-`func NewCastWithInteractionsAndConversationsRef(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastEmbeddedParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash string, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel ChannelOrChannelDehydrated, directReplies []map[string]interface{}, ) *CastWithInteractionsAndConversationsRef`
+`func NewCastWithInteractionsAndConversationsRef(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastEmbeddedParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash string, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel CastWithInteractionsAllOfChannel, directReplies []map[string]interface{}, ) *CastWithInteractionsAndConversationsRef`
 
 NewCastWithInteractionsAndConversationsRef instantiates a new CastWithInteractionsAndConversationsRef object
 This constructor will assign default values to properties that have it defined,
@@ -190,20 +190,20 @@ SetAuthor sets Author field to given value.
 
 ### GetApp
 
-`func (o *CastWithInteractionsAndConversationsRef) GetApp() UserDehydrated`
+`func (o *CastWithInteractionsAndConversationsRef) GetApp() CastEmbeddedApp`
 
 GetApp returns the App field if non-nil, zero value otherwise.
 
 ### GetAppOk
 
-`func (o *CastWithInteractionsAndConversationsRef) GetAppOk() (*UserDehydrated, bool)`
+`func (o *CastWithInteractionsAndConversationsRef) GetAppOk() (*CastEmbeddedApp, bool)`
 
 GetAppOk returns a tuple with the App field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApp
 
-`func (o *CastWithInteractionsAndConversationsRef) SetApp(v UserDehydrated)`
+`func (o *CastWithInteractionsAndConversationsRef) SetApp(v CastEmbeddedApp)`
 
 SetApp sets App field to given value.
 
@@ -465,20 +465,20 @@ SetMentionedChannelsRanges sets MentionedChannelsRanges field to given value.
 
 ### GetChannel
 
-`func (o *CastWithInteractionsAndConversationsRef) GetChannel() ChannelOrChannelDehydrated`
+`func (o *CastWithInteractionsAndConversationsRef) GetChannel() CastWithInteractionsAllOfChannel`
 
 GetChannel returns the Channel field if non-nil, zero value otherwise.
 
 ### GetChannelOk
 
-`func (o *CastWithInteractionsAndConversationsRef) GetChannelOk() (*ChannelOrChannelDehydrated, bool)`
+`func (o *CastWithInteractionsAndConversationsRef) GetChannelOk() (*CastWithInteractionsAllOfChannel, bool)`
 
 GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChannel
 
-`func (o *CastWithInteractionsAndConversationsRef) SetChannel(v ChannelOrChannelDehydrated)`
+`func (o *CastWithInteractionsAndConversationsRef) SetChannel(v CastWithInteractionsAllOfChannel)`
 
 SetChannel sets Channel field to given value.
 

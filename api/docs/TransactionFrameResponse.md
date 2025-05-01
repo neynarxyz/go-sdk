@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TransactionFrame** | [**TransactionFramePay**](TransactionFramePay.md) |  | 
+**TransactionFrame** | [**TransactionFrame**](TransactionFrame.md) |  | 
 
 ## Methods
 
 ### NewTransactionFrameResponse
 
-`func NewTransactionFrameResponse(transactionFrame TransactionFramePay, ) *TransactionFrameResponse`
+`func NewTransactionFrameResponse(transactionFrame TransactionFrame, ) *TransactionFrameResponse`
 
 NewTransactionFrameResponse instantiates a new TransactionFrameResponse object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTransactionFrame
 
-`func (o *TransactionFrameResponse) GetTransactionFrame() TransactionFramePay`
+`func (o *TransactionFrameResponse) GetTransactionFrame() TransactionFrame`
 
 GetTransactionFrame returns the TransactionFrame field if non-nil, zero value otherwise.
 
 ### GetTransactionFrameOk
 
-`func (o *TransactionFrameResponse) GetTransactionFrameOk() (*TransactionFramePay, bool)`
+`func (o *TransactionFrameResponse) GetTransactionFrameOk() (*TransactionFrame, bool)`
 
 GetTransactionFrameOk returns a tuple with the TransactionFrame field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransactionFrame
 
-`func (o *TransactionFrameResponse) SetTransactionFrame(v TransactionFramePay)`
+`func (o *TransactionFrameResponse) SetTransactionFrame(v TransactionFrame)`
 
 SetTransactionFrame sets TransactionFrame field to given value.
 

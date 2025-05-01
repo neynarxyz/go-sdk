@@ -60,13 +60,17 @@ docs/CastConversationSortType.md
 docs/CastDehydrated.md
 docs/CastEmbedCrawlResponse.md
 docs/CastEmbedded.md
+docs/CastEmbeddedApp.md
+docs/CastEmbeddedChannel.md
 docs/CastEmbeddedParentAuthor.md
+docs/CastEmbeddedParentAuthorFid.md
 docs/CastId.md
 docs/CastNotificationType.md
 docs/CastParamType.md
 docs/CastResponse.md
 docs/CastViewerContext.md
 docs/CastWithInteractions.md
+docs/CastWithInteractionsAllOfChannel.md
 docs/CastWithInteractionsAndConversations.md
 docs/CastWithInteractionsAndConversationsRef.md
 docs/CastWithInteractionsReactions.md
@@ -232,6 +236,7 @@ docs/PostCastReqBodyEmbedsOneOf1.md
 docs/PostCastReqBodyEmbedsOneOf2.md
 docs/PostCastResponse.md
 docs/PostCastResponseCast.md
+docs/PostCastResponseCastAuthor.md
 docs/ProfileUrl.md
 docs/ProfileUrlPfp.md
 docs/ReactionAPI.md
@@ -283,6 +288,7 @@ docs/SubscriptionPrice.md
 docs/SubscriptionProvider.md
 docs/SubscriptionProviders.md
 docs/SubscriptionStatus.md
+docs/SubscriptionStatusTier.md
 docs/SubscriptionTier.md
 docs/SubscriptionTierPrice.md
 docs/SubscriptionToken.md
@@ -292,6 +298,7 @@ docs/TextRange.md
 docs/TokenBalance.md
 docs/TokenBalanceBalance.md
 docs/TokenBalanceToken.md
+docs/TransactionFrame.md
 docs/TransactionFrameAction.md
 docs/TransactionFrameBase.md
 docs/TransactionFrameConfig.md
@@ -322,6 +329,8 @@ docs/UserSearchResponseResult.md
 docs/UserVerifiedAccountsInner.md
 docs/UserVerifiedAddresses.md
 docs/UserVerifiedAddressesPrimary.md
+docs/UserVerifiedAddressesPrimaryEthAddress.md
+docs/UserVerifiedAddressesPrimarySolAddress.md
 docs/UserViewerContext.md
 docs/UsersActiveChannelsResponse.md
 docs/UsersResponse.md
@@ -384,13 +393,17 @@ model_cast_conversation_sort_type.go
 model_cast_dehydrated.go
 model_cast_embed_crawl_response.go
 model_cast_embedded.go
+model_cast_embedded_app.go
+model_cast_embedded_channel.go
 model_cast_embedded_parent_author.go
+model_cast_embedded_parent_author_fid.go
 model_cast_id.go
 model_cast_notification_type.go
 model_cast_param_type.go
 model_cast_response.go
 model_cast_viewer_context.go
 model_cast_with_interactions.go
+model_cast_with_interactions_all_of_channel.go
 model_cast_with_interactions_and_conversations.go
 model_cast_with_interactions_and_conversations_ref.go
 model_cast_with_interactions_reactions.go
@@ -546,6 +559,7 @@ model_post_cast_req_body_embeds_one_of_1.go
 model_post_cast_req_body_embeds_one_of_2.go
 model_post_cast_response.go
 model_post_cast_response_cast.go
+model_post_cast_response_cast_author.go
 model_profile_url.go
 model_profile_url_pfp.go
 model_reaction_for_cast.go
@@ -593,6 +607,7 @@ model_subscription_price.go
 model_subscription_provider.go
 model_subscription_providers.go
 model_subscription_status.go
+model_subscription_status_tier.go
 model_subscription_tier.go
 model_subscription_tier_price.go
 model_subscription_token.go
@@ -602,6 +617,7 @@ model_text_range.go
 model_token_balance.go
 model_token_balance_balance.go
 model_token_balance_token.go
+model_transaction_frame.go
 model_transaction_frame_action.go
 model_transaction_frame_base.go
 model_transaction_frame_config.go
@@ -631,6 +647,8 @@ model_user_search_response_result.go
 model_user_verified_accounts_inner.go
 model_user_verified_addresses.go
 model_user_verified_addresses_primary.go
+model_user_verified_addresses_primary_eth_address.go
+model_user_verified_addresses_primary_sol_address.go
 model_user_viewer_context.go
 model_users_active_channels_response.go
 model_users_response.go

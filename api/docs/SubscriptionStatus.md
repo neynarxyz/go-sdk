@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **Status** | **bool** |  | 
 **ExpiresAt** | **NullableInt64** |  | 
 **SubscribedAt** | **NullableInt64** |  | 
-**Tier** | [**NullableSubscriptionTier**](SubscriptionTier.md) |  | 
+**Tier** | [**SubscriptionStatusTier**](SubscriptionStatusTier.md) |  | 
 
 ## Methods
 
 ### NewSubscriptionStatus
 
-`func NewSubscriptionStatus(object string, status bool, expiresAt NullableInt64, subscribedAt NullableInt64, tier NullableSubscriptionTier, ) *SubscriptionStatus`
+`func NewSubscriptionStatus(object string, status bool, expiresAt NullableInt64, subscribedAt NullableInt64, tier SubscriptionStatusTier, ) *SubscriptionStatus`
 
 NewSubscriptionStatus instantiates a new SubscriptionStatus object
 This constructor will assign default values to properties that have it defined,
@@ -131,34 +131,24 @@ SetSubscribedAt sets SubscribedAt field to given value.
 UnsetSubscribedAt ensures that no value is present for SubscribedAt, not even an explicit nil
 ### GetTier
 
-`func (o *SubscriptionStatus) GetTier() SubscriptionTier`
+`func (o *SubscriptionStatus) GetTier() SubscriptionStatusTier`
 
 GetTier returns the Tier field if non-nil, zero value otherwise.
 
 ### GetTierOk
 
-`func (o *SubscriptionStatus) GetTierOk() (*SubscriptionTier, bool)`
+`func (o *SubscriptionStatus) GetTierOk() (*SubscriptionStatusTier, bool)`
 
 GetTierOk returns a tuple with the Tier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTier
 
-`func (o *SubscriptionStatus) SetTier(v SubscriptionTier)`
+`func (o *SubscriptionStatus) SetTier(v SubscriptionStatusTier)`
 
 SetTier sets Tier field to given value.
 
 
-### SetTierNil
-
-`func (o *SubscriptionStatus) SetTierNil(b bool)`
-
- SetTierNil sets the value for Tier to be an explicit nil
-
-### UnsetTier
-`func (o *SubscriptionStatus) UnsetTier()`
-
-UnsetTier ensures that no value is present for Tier, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

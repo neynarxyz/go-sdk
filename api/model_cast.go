@@ -30,7 +30,7 @@ type Cast struct {
 	RootParentUrl NullableString           `json:"root_parent_url"`
 	ParentAuthor  CastEmbeddedParentAuthor `json:"parent_author"`
 	Author        User                     `json:"author"`
-	App           NullableUserDehydrated   `json:"app,omitempty"`
+	App           *CastEmbeddedApp         `json:"app,omitempty"`
 	Text          string                   `json:"text"`
 	Timestamp     time.Time                `json:"timestamp"`
 	Embeds        []Embed                  `json:"embeds"`
@@ -240,47 +240,36 @@ func (o *Cast) SetAuthor(v User) {
 	o.Author = v
 }
 
-// GetApp returns the App field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Cast) GetApp() UserDehydrated {
-	if o == nil || IsNil(o.App.Get()) {
-		var ret UserDehydrated
+// GetApp returns the App field value if set, zero value otherwise.
+func (o *Cast) GetApp() CastEmbeddedApp {
+	if o == nil || IsNil(o.App) {
+		var ret CastEmbeddedApp
 		return ret
 	}
-	return *o.App.Get()
+	return *o.App
 }
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Cast) GetAppOk() (*UserDehydrated, bool) {
-	if o == nil {
+func (o *Cast) GetAppOk() (*CastEmbeddedApp, bool) {
+	if o == nil || IsNil(o.App) {
 		return nil, false
 	}
-	return o.App.Get(), o.App.IsSet()
+	return o.App, true
 }
 
 // HasApp returns a boolean if a field has been set.
 func (o *Cast) HasApp() bool {
-	if o != nil && o.App.IsSet() {
+	if o != nil && !IsNil(o.App) {
 		return true
 	}
 
 	return false
 }
 
-// SetApp gets a reference to the given NullableUserDehydrated and assigns it to the App field.
-func (o *Cast) SetApp(v UserDehydrated) {
-	o.App.Set(&v)
-}
-
-// SetAppNil sets the value for App to be an explicit nil
-func (o *Cast) SetAppNil() {
-	o.App.Set(nil)
-}
-
-// UnsetApp ensures that no value is present for App, not even an explicit nil
-func (o *Cast) UnsetApp() {
-	o.App.Unset()
+// SetApp gets a reference to the given CastEmbeddedApp and assigns it to the App field.
+func (o *Cast) SetApp(v CastEmbeddedApp) {
+	o.App = &v
 }
 
 // GetText returns the Text field value
@@ -404,8 +393,8 @@ func (o Cast) ToMap() (map[string]interface{}, error) {
 	toSerialize["root_parent_url"] = o.RootParentUrl.Get()
 	toSerialize["parent_author"] = o.ParentAuthor
 	toSerialize["author"] = o.Author
-	if o.App.IsSet() {
-		toSerialize["app"] = o.App.Get()
+	if !IsNil(o.App) {
+		toSerialize["app"] = o.App
 	}
 	toSerialize["text"] = o.Text
 	toSerialize["timestamp"] = o.Timestamp

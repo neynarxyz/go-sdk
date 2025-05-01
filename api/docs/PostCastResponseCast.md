@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Hash** | **string** | Cast Hash | [default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be"]
-**Author** | [**CastEmbeddedParentAuthor**](CastEmbeddedParentAuthor.md) |  | 
+**Author** | [**PostCastResponseCastAuthor**](PostCastResponseCastAuthor.md) |  | 
 **Text** | **string** |  | 
 
 ## Methods
 
 ### NewPostCastResponseCast
 
-`func NewPostCastResponseCast(hash string, author CastEmbeddedParentAuthor, text string, ) *PostCastResponseCast`
+`func NewPostCastResponseCast(hash string, author PostCastResponseCastAuthor, text string, ) *PostCastResponseCast`
 
 NewPostCastResponseCast instantiates a new PostCastResponseCast object
 This constructor will assign default values to properties that have it defined,
@@ -49,20 +49,20 @@ SetHash sets Hash field to given value.
 
 ### GetAuthor
 
-`func (o *PostCastResponseCast) GetAuthor() CastEmbeddedParentAuthor`
+`func (o *PostCastResponseCast) GetAuthor() PostCastResponseCastAuthor`
 
 GetAuthor returns the Author field if non-nil, zero value otherwise.
 
 ### GetAuthorOk
 
-`func (o *PostCastResponseCast) GetAuthorOk() (*CastEmbeddedParentAuthor, bool)`
+`func (o *PostCastResponseCast) GetAuthorOk() (*PostCastResponseCastAuthor, bool)`
 
 GetAuthorOk returns a tuple with the Author field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAuthor
 
-`func (o *PostCastResponseCast) SetAuthor(v CastEmbeddedParentAuthor)`
+`func (o *PostCastResponseCast) SetAuthor(v PostCastResponseCastAuthor)`
 
 SetAuthor sets Author field to given value.
 

@@ -10,18 +10,18 @@ Name | Type | Description | Notes
 **RootParentUrl** | **NullableString** |  | 
 **ParentAuthor** | [**CastEmbeddedParentAuthor**](CastEmbeddedParentAuthor.md) |  | 
 **Author** | [**UserDehydrated**](UserDehydrated.md) |  | 
-**App** | Pointer to [**NullableUserDehydrated**](UserDehydrated.md) |  | [optional] 
+**App** | Pointer to [**CastEmbeddedApp**](CastEmbeddedApp.md) |  | [optional] 
 **Text** | **string** |  | 
 **Timestamp** | **time.Time** |  | 
 **Type** | [**CastNotificationType**](CastNotificationType.md) |  | 
 **Embeds** | [**[]EmbedDeep**](EmbedDeep.md) |  | 
-**Channel** | [**NullableChannelDehydrated**](ChannelDehydrated.md) |  | 
+**Channel** | [**CastEmbeddedChannel**](CastEmbeddedChannel.md) |  | 
 
 ## Methods
 
 ### NewCastEmbedded
 
-`func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author UserDehydrated, text string, timestamp time.Time, type_ CastNotificationType, embeds []EmbedDeep, channel NullableChannelDehydrated, ) *CastEmbedded`
+`func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author UserDehydrated, text string, timestamp time.Time, type_ CastNotificationType, embeds []EmbedDeep, channel CastEmbeddedChannel, ) *CastEmbedded`
 
 NewCastEmbedded instantiates a new CastEmbedded object
 This constructor will assign default values to properties that have it defined,
@@ -188,20 +188,20 @@ SetAuthor sets Author field to given value.
 
 ### GetApp
 
-`func (o *CastEmbedded) GetApp() UserDehydrated`
+`func (o *CastEmbedded) GetApp() CastEmbeddedApp`
 
 GetApp returns the App field if non-nil, zero value otherwise.
 
 ### GetAppOk
 
-`func (o *CastEmbedded) GetAppOk() (*UserDehydrated, bool)`
+`func (o *CastEmbedded) GetAppOk() (*CastEmbeddedApp, bool)`
 
 GetAppOk returns a tuple with the App field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApp
 
-`func (o *CastEmbedded) SetApp(v UserDehydrated)`
+`func (o *CastEmbedded) SetApp(v CastEmbeddedApp)`
 
 SetApp sets App field to given value.
 
@@ -211,16 +211,6 @@ SetApp sets App field to given value.
 
 HasApp returns a boolean if a field has been set.
 
-### SetAppNil
-
-`func (o *CastEmbedded) SetAppNil(b bool)`
-
- SetAppNil sets the value for App to be an explicit nil
-
-### UnsetApp
-`func (o *CastEmbedded) UnsetApp()`
-
-UnsetApp ensures that no value is present for App, not even an explicit nil
 ### GetText
 
 `func (o *CastEmbedded) GetText() string`
@@ -303,34 +293,24 @@ SetEmbeds sets Embeds field to given value.
 
 ### GetChannel
 
-`func (o *CastEmbedded) GetChannel() ChannelDehydrated`
+`func (o *CastEmbedded) GetChannel() CastEmbeddedChannel`
 
 GetChannel returns the Channel field if non-nil, zero value otherwise.
 
 ### GetChannelOk
 
-`func (o *CastEmbedded) GetChannelOk() (*ChannelDehydrated, bool)`
+`func (o *CastEmbedded) GetChannelOk() (*CastEmbeddedChannel, bool)`
 
 GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChannel
 
-`func (o *CastEmbedded) SetChannel(v ChannelDehydrated)`
+`func (o *CastEmbedded) SetChannel(v CastEmbeddedChannel)`
 
 SetChannel sets Channel field to given value.
 
 
-### SetChannelNil
-
-`func (o *CastEmbedded) SetChannelNil(b bool)`
-
- SetChannelNil sets the value for Channel to be an explicit nil
-
-### UnsetChannel
-`func (o *CastEmbedded) UnsetChannel()`
-
-UnsetChannel ensures that no value is present for Channel, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

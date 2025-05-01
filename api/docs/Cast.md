@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **RootParentUrl** | **NullableString** |  | 
 **ParentAuthor** | [**CastEmbeddedParentAuthor**](CastEmbeddedParentAuthor.md) |  | 
 **Author** | [**User**](User.md) |  | 
-**App** | Pointer to [**NullableUserDehydrated**](UserDehydrated.md) |  | [optional] 
+**App** | Pointer to [**CastEmbeddedApp**](CastEmbeddedApp.md) |  | [optional] 
 **Text** | **string** |  | 
 **Timestamp** | **time.Time** |  | 
 **Embeds** | [**[]Embed**](Embed.md) |  | 
@@ -208,20 +208,20 @@ SetAuthor sets Author field to given value.
 
 ### GetApp
 
-`func (o *Cast) GetApp() UserDehydrated`
+`func (o *Cast) GetApp() CastEmbeddedApp`
 
 GetApp returns the App field if non-nil, zero value otherwise.
 
 ### GetAppOk
 
-`func (o *Cast) GetAppOk() (*UserDehydrated, bool)`
+`func (o *Cast) GetAppOk() (*CastEmbeddedApp, bool)`
 
 GetAppOk returns a tuple with the App field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApp
 
-`func (o *Cast) SetApp(v UserDehydrated)`
+`func (o *Cast) SetApp(v CastEmbeddedApp)`
 
 SetApp sets App field to given value.
 
@@ -231,16 +231,6 @@ SetApp sets App field to given value.
 
 HasApp returns a boolean if a field has been set.
 
-### SetAppNil
-
-`func (o *Cast) SetAppNil(b bool)`
-
- SetAppNil sets the value for App to be an explicit nil
-
-### UnsetApp
-`func (o *Cast) UnsetApp()`
-
-UnsetApp ensures that no value is present for App, not even an explicit nil
 ### GetText
 
 `func (o *Cast) GetText() string`

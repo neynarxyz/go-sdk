@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EthAddress** | **string** | Ethereum address | 
-**SolAddress** | **string** | Solana address | 
+**EthAddress** | [**UserVerifiedAddressesPrimaryEthAddress**](UserVerifiedAddressesPrimaryEthAddress.md) |  | 
+**SolAddress** | [**UserVerifiedAddressesPrimarySolAddress**](UserVerifiedAddressesPrimarySolAddress.md) |  | 
 
 ## Methods
 
 ### NewUserVerifiedAddressesPrimary
 
-`func NewUserVerifiedAddressesPrimary(ethAddress string, solAddress string, ) *UserVerifiedAddressesPrimary`
+`func NewUserVerifiedAddressesPrimary(ethAddress UserVerifiedAddressesPrimaryEthAddress, solAddress UserVerifiedAddressesPrimarySolAddress, ) *UserVerifiedAddressesPrimary`
 
 NewUserVerifiedAddressesPrimary instantiates a new UserVerifiedAddressesPrimary object
 This constructor will assign default values to properties that have it defined,
@@ -28,40 +28,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetEthAddress
 
-`func (o *UserVerifiedAddressesPrimary) GetEthAddress() string`
+`func (o *UserVerifiedAddressesPrimary) GetEthAddress() UserVerifiedAddressesPrimaryEthAddress`
 
 GetEthAddress returns the EthAddress field if non-nil, zero value otherwise.
 
 ### GetEthAddressOk
 
-`func (o *UserVerifiedAddressesPrimary) GetEthAddressOk() (*string, bool)`
+`func (o *UserVerifiedAddressesPrimary) GetEthAddressOk() (*UserVerifiedAddressesPrimaryEthAddress, bool)`
 
 GetEthAddressOk returns a tuple with the EthAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEthAddress
 
-`func (o *UserVerifiedAddressesPrimary) SetEthAddress(v string)`
+`func (o *UserVerifiedAddressesPrimary) SetEthAddress(v UserVerifiedAddressesPrimaryEthAddress)`
 
 SetEthAddress sets EthAddress field to given value.
 
 
 ### GetSolAddress
 
-`func (o *UserVerifiedAddressesPrimary) GetSolAddress() string`
+`func (o *UserVerifiedAddressesPrimary) GetSolAddress() UserVerifiedAddressesPrimarySolAddress`
 
 GetSolAddress returns the SolAddress field if non-nil, zero value otherwise.
 
 ### GetSolAddressOk
 
-`func (o *UserVerifiedAddressesPrimary) GetSolAddressOk() (*string, bool)`
+`func (o *UserVerifiedAddressesPrimary) GetSolAddressOk() (*UserVerifiedAddressesPrimarySolAddress, bool)`
 
 GetSolAddressOk returns a tuple with the SolAddress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSolAddress
 
-`func (o *UserVerifiedAddressesPrimary) SetSolAddress(v string)`
+`func (o *UserVerifiedAddressesPrimary) SetSolAddress(v UserVerifiedAddressesPrimarySolAddress)`
 
 SetSolAddress sets SolAddress field to given value.
 

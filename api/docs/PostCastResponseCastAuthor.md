@@ -1,46 +1,46 @@
-# CastEmbeddedParentAuthor
+# PostCastResponseCastAuthor
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | [**CastEmbeddedParentAuthorFid**](CastEmbeddedParentAuthorFid.md) |  | 
+**Fid** | **int32** | The unique identifier of a farcaster user (unsigned integer) | 
 
 ## Methods
 
-### NewCastEmbeddedParentAuthor
+### NewPostCastResponseCastAuthor
 
-`func NewCastEmbeddedParentAuthor(fid CastEmbeddedParentAuthorFid, ) *CastEmbeddedParentAuthor`
+`func NewPostCastResponseCastAuthor(fid int32, ) *PostCastResponseCastAuthor`
 
-NewCastEmbeddedParentAuthor instantiates a new CastEmbeddedParentAuthor object
+NewPostCastResponseCastAuthor instantiates a new PostCastResponseCastAuthor object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCastEmbeddedParentAuthorWithDefaults
+### NewPostCastResponseCastAuthorWithDefaults
 
-`func NewCastEmbeddedParentAuthorWithDefaults() *CastEmbeddedParentAuthor`
+`func NewPostCastResponseCastAuthorWithDefaults() *PostCastResponseCastAuthor`
 
-NewCastEmbeddedParentAuthorWithDefaults instantiates a new CastEmbeddedParentAuthor object
+NewPostCastResponseCastAuthorWithDefaults instantiates a new PostCastResponseCastAuthor object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetFid
 
-`func (o *CastEmbeddedParentAuthor) GetFid() CastEmbeddedParentAuthorFid`
+`func (o *PostCastResponseCastAuthor) GetFid() int32`
 
 GetFid returns the Fid field if non-nil, zero value otherwise.
 
 ### GetFidOk
 
-`func (o *CastEmbeddedParentAuthor) GetFidOk() (*CastEmbeddedParentAuthorFid, bool)`
+`func (o *PostCastResponseCastAuthor) GetFidOk() (*int32, bool)`
 
 GetFidOk returns a tuple with the Fid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFid
 
-`func (o *CastEmbeddedParentAuthor) SetFid(v CastEmbeddedParentAuthorFid)`
+`func (o *PostCastResponseCastAuthor) SetFid(v int32)`
 
 SetFid sets Fid field to given value.
 

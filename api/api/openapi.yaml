@@ -6684,7 +6684,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -6820,7 +6820,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -6939,7 +6939,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -7131,7 +7131,12 @@ components:
             network: base
         status: created
     TransactionFrame:
-      $ref: '#/components/schemas/TransactionFramePay'
+      discriminator:
+        mapping:
+          pay: '#/components/schemas/TransactionFramePay'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/TransactionFramePay'
     TransactionFrameStatus:
       enum:
       - created
@@ -7206,7 +7211,7 @@ components:
           status: created
       properties:
         transaction_frame:
-          $ref: '#/components/schemas/TransactionFramePay'
+          $ref: '#/components/schemas/TransactionFrame'
       required:
       - transaction_frame
     ValidateFrameActionReqBody:
@@ -7549,7 +7554,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -7645,7 +7650,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -7756,7 +7761,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -7880,7 +7885,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -8194,7 +8199,7 @@ components:
       - index
     ReactionLike:
       example:
-        fid: 6
+        fid: 0
         fname: fname
       properties:
         fid:
@@ -8208,7 +8213,7 @@ components:
       - fname
     ReactionRecast:
       example:
-        fid: 6
+        fid: 0
         fname: fname
       properties:
         fid:
@@ -8340,7 +8345,7 @@ components:
           - null
           primary:
             eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            sol_address: sol_address
+            sol_address: null
         pfp_url: pfp_url
         following_count: 9
         viewer_context:
@@ -8587,7 +8592,7 @@ components:
         author:
           $ref: '#/components/schemas/UserDehydrated'
         app:
-          $ref: '#/components/schemas/UserDehydrated'
+          $ref: '#/components/schemas/CastEmbedded_app'
         text:
           type: string
         timestamp:
@@ -8600,7 +8605,7 @@ components:
             $ref: '#/components/schemas/EmbedDeep'
           type: array
         channel:
-          $ref: '#/components/schemas/ChannelDehydrated'
+          $ref: '#/components/schemas/CastEmbedded_channel'
       required:
       - author
       - channel
@@ -8635,7 +8640,7 @@ components:
         author:
           $ref: '#/components/schemas/User'
         app:
-          $ref: '#/components/schemas/UserDehydrated'
+          $ref: '#/components/schemas/CastEmbedded_app'
         text:
           type: string
         timestamp:
@@ -9317,17 +9322,17 @@ components:
       - following
     CastWithInteractionsReactions:
       example:
-        likes_count: 1
+        likes_count: 6
         recasts:
-        - fid: 6
+        - fid: 0
           fname: fname
-        - fid: 6
+        - fid: 0
           fname: fname
-        recasts_count: 5
+        recasts_count: 1
         likes:
-        - fid: 6
+        - fid: 0
           fname: fname
-        - fid: 6
+        - fid: 0
           fname: fname
       properties:
         likes:
@@ -9405,7 +9410,7 @@ components:
               $ref: '#/components/schemas/TextRange'
             type: array
           channel:
-            $ref: '#/components/schemas/ChannelOrChannelDehydrated'
+            $ref: '#/components/schemas/CastWithInteractions_allOf_channel'
           viewer_context:
             $ref: '#/components/schemas/CastViewerContext'
           author_channel_context:
@@ -9421,14 +9426,8 @@ components:
         - thread_hash
       example:
         parent_author:
-          fid: 0
-        app:
-          fid: 6
-          pfp_url: pfp_url
-          display_name: display_name
-          custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-          object: user_dehydrated
-          username: username
+          fid: ""
+        app: ""
         frames:
         - image: image
           input:
@@ -9546,7 +9545,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -9637,7 +9636,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -9722,7 +9721,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -9808,7 +9807,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -9898,7 +9897,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -10014,7 +10013,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -10099,7 +10098,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -10144,17 +10143,17 @@ components:
         - start: 0.14658129805029452
           end: 0.5962133916683182
         reactions:
-          likes_count: 1
+          likes_count: 6
           recasts:
-          - fid: 6
+          - fid: 0
             fname: fname
-          - fid: 6
+          - fid: 0
             fname: fname
-          recasts_count: 5
+          recasts_count: 1
           likes:
-          - fid: 6
+          - fid: 0
             fname: fname
-          - fid: 6
+          - fid: 0
             fname: fname
         mentioned_channels_ranges:
         - start: 0.14658129805029452
@@ -10425,14 +10424,8 @@ components:
         - direct_replies
       example:
         parent_author:
-          fid: 0
-        app:
-          fid: 6
-          pfp_url: pfp_url
-          display_name: display_name
-          custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-          object: user_dehydrated
-          username: username
+          fid: ""
+        app: ""
         frames:
         - image: image
           input:
@@ -10550,7 +10543,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -10641,7 +10634,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -10726,7 +10719,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -10812,7 +10805,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -10902,7 +10895,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -11018,7 +11011,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -11103,7 +11096,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -11148,17 +11141,17 @@ components:
         - start: 0.14658129805029452
           end: 0.5962133916683182
         reactions:
-          likes_count: 1
+          likes_count: 6
           recasts:
-          - fid: 6
+          - fid: 0
             fname: fname
-          - fid: 6
+          - fid: 0
             fname: fname
-          recasts_count: 5
+          recasts_count: 1
           likes:
-          - fid: 6
+          - fid: 0
             fname: fname
-          - fid: 6
+          - fid: 0
             fname: fname
         mentioned_channels_ranges:
         - start: 0.14658129805029452
@@ -11415,14 +11408,8 @@ components:
         parent_hash: parent_hash
         direct_replies:
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: null
           frames:
           - null
           - null
@@ -11500,7 +11487,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -11587,7 +11574,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -11672,7 +11659,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -11717,17 +11704,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -11746,14 +11733,8 @@ components:
           object: cast
           timestamp: 2000-01-23T04:56:07.000+00:00
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: null
           frames:
           - null
           - null
@@ -11831,7 +11812,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -11918,7 +11899,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -12003,7 +11984,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -12048,17 +12029,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -12094,14 +12075,8 @@ components:
         reference
       example:
         parent_author:
-          fid: 0
-        app:
-          fid: 6
-          pfp_url: pfp_url
-          display_name: display_name
-          custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-          object: user_dehydrated
-          username: username
+          fid: ""
+        app: null
         frames:
         - null
         - null
@@ -12179,7 +12154,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -12266,7 +12241,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -12351,7 +12326,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -12396,17 +12371,17 @@ components:
         - start: 0.14658129805029452
           end: 0.5962133916683182
         reactions:
-          likes_count: 1
+          likes_count: 6
           recasts:
-          - fid: 6
+          - fid: 0
             fname: fname
-          - fid: 6
+          - fid: 0
             fname: fname
-          recasts_count: 5
+          recasts_count: 1
           likes:
-          - fid: 6
+          - fid: 0
             fname: fname
-          - fid: 6
+          - fid: 0
             fname: fname
         mentioned_channels_ranges:
         - start: 0.14658129805029452
@@ -12431,14 +12406,8 @@ components:
         conversation:
           cast:
             parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -12556,7 +12525,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -12647,7 +12616,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -12732,7 +12701,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -12818,7 +12787,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -12908,7 +12877,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -13024,7 +12993,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -13109,7 +13078,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -13154,17 +13123,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -13421,14 +13390,8 @@ components:
             parent_hash: parent_hash
             direct_replies:
             - parent_author:
-                fid: 0
-              app:
-                fid: 6
-                pfp_url: pfp_url
-                display_name: display_name
-                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                object: user_dehydrated
-                username: username
+                fid: ""
+              app: null
               frames:
               - null
               - null
@@ -13506,7 +13469,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -13593,7 +13556,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -13678,7 +13641,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -13723,17 +13686,17 @@ components:
               - start: 0.14658129805029452
                 end: 0.5962133916683182
               reactions:
-                likes_count: 1
+                likes_count: 6
                 recasts:
-                - fid: 6
+                - fid: 0
                   fname: fname
-                - fid: 6
+                - fid: 0
                   fname: fname
-                recasts_count: 5
+                recasts_count: 1
                 likes:
-                - fid: 6
+                - fid: 0
                   fname: fname
-                - fid: 6
+                - fid: 0
                   fname: fname
               mentioned_channels_ranges:
               - start: 0.14658129805029452
@@ -13752,14 +13715,8 @@ components:
               object: cast
               timestamp: 2000-01-23T04:56:07.000+00:00
             - parent_author:
-                fid: 0
-              app:
-                fid: 6
-                pfp_url: pfp_url
-                display_name: display_name
-                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                object: user_dehydrated
-                username: username
+                fid: ""
+              app: null
               frames:
               - null
               - null
@@ -13837,7 +13794,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -13924,7 +13881,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -14009,7 +13966,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -14054,17 +14011,17 @@ components:
               - start: 0.14658129805029452
                 end: 0.5962133916683182
               reactions:
-                likes_count: 1
+                likes_count: 6
                 recasts:
-                - fid: 6
+                - fid: 0
                   fname: fname
-                - fid: 6
+                - fid: 0
                   fname: fname
-                recasts_count: 5
+                recasts_count: 1
                 likes:
-                - fid: 6
+                - fid: 0
                   fname: fname
-                - fid: 6
+                - fid: 0
                   fname: fname
               mentioned_channels_ranges:
               - start: 0.14658129805029452
@@ -14086,14 +14043,8 @@ components:
             timestamp: 2000-01-23T04:56:07.000+00:00
           chronological_parent_casts:
           - parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -14211,7 +14162,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -14302,7 +14253,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -14387,7 +14338,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -14473,7 +14424,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -14563,7 +14514,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -14679,7 +14630,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -14764,7 +14715,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -14809,17 +14760,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -15077,14 +15028,8 @@ components:
             object: cast
             timestamp: 2000-01-23T04:56:07.000+00:00
           - parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -15202,7 +15147,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -15293,7 +15238,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -15378,7 +15323,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -15464,7 +15409,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -15554,7 +15499,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -15670,7 +15615,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -15755,7 +15700,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -15800,17 +15745,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -16177,7 +16122,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -16262,7 +16207,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -16349,7 +16294,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -16434,7 +16379,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -16548,14 +16493,8 @@ components:
       example:
         cast:
           parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -16673,7 +16612,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -16764,7 +16703,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -16849,7 +16788,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -16935,7 +16874,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -17025,7 +16964,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -17141,7 +17080,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -17226,7 +17165,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -17271,17 +17210,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -17662,7 +17601,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -17747,7 +17686,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -17833,7 +17772,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -17923,7 +17862,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -18122,7 +18061,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -18207,7 +18146,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -18293,7 +18232,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -18383,7 +18322,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -18503,7 +18442,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -18588,7 +18527,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -18674,7 +18613,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -18764,7 +18703,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -18892,7 +18831,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -18978,7 +18917,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -19114,7 +19053,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -19199,7 +19138,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -19285,7 +19224,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -19375,7 +19314,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -19491,7 +19430,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -19605,7 +19544,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -19690,7 +19629,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -19776,7 +19715,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -19866,7 +19805,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -19982,7 +19921,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -20075,7 +20014,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -20160,7 +20099,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -20246,7 +20185,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -20336,7 +20275,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -20452,7 +20391,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -20555,7 +20494,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -20641,7 +20580,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -20729,7 +20668,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -20815,7 +20754,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -20920,7 +20859,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21005,7 +20944,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21091,7 +21030,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21181,7 +21120,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21301,7 +21240,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21386,7 +21325,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21472,7 +21411,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21562,7 +21501,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21695,7 +21634,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21780,7 +21719,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21866,7 +21805,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -21956,7 +21895,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -22084,7 +22023,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -22169,7 +22108,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -22255,7 +22194,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -22345,7 +22284,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -22465,7 +22404,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -22550,7 +22489,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -22636,7 +22575,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -22726,7 +22665,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -22854,7 +22793,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -22939,7 +22878,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -23039,7 +22978,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -23124,7 +23063,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -23210,7 +23149,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -23300,7 +23239,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -23449,7 +23388,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -23534,7 +23473,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -23620,7 +23559,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -23710,7 +23649,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -23835,7 +23774,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -23920,7 +23859,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -24006,7 +23945,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -24096,7 +24035,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -24157,14 +24096,8 @@ components:
       example:
         casts:
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -24282,7 +24215,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -24373,7 +24306,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -24458,7 +24391,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -24544,7 +24477,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -24634,7 +24567,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -24750,7 +24683,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -24835,7 +24768,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -24880,17 +24813,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -25148,14 +25081,8 @@ components:
           object: cast
           timestamp: 2000-01-23T04:56:07.000+00:00
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -25273,7 +25200,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -25364,7 +25291,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -25449,7 +25376,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -25535,7 +25462,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -25625,7 +25552,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -25741,7 +25668,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -25826,7 +25753,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -25871,17 +25798,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -26150,14 +26077,8 @@ components:
         result:
           casts:
           - parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -26275,7 +26196,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -26366,7 +26287,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -26451,7 +26372,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -26537,7 +26458,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -26627,7 +26548,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -26743,7 +26664,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -26828,7 +26749,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -26873,17 +26794,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -27141,14 +27062,8 @@ components:
             object: cast
             timestamp: 2000-01-23T04:56:07.000+00:00
           - parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -27266,7 +27181,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -27357,7 +27272,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -27442,7 +27357,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -27528,7 +27443,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -27618,7 +27533,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -27734,7 +27649,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -27819,7 +27734,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -27864,17 +27779,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -28143,14 +28058,8 @@ components:
             cursor: cursor
           casts:
           - parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -28268,7 +28177,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -28359,7 +28268,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -28444,7 +28353,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -28530,7 +28439,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -28620,7 +28529,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -28736,7 +28645,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -28821,7 +28730,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -28866,17 +28775,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -29134,14 +29043,8 @@ components:
             object: cast
             timestamp: 2000-01-23T04:56:07.000+00:00
           - parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -29259,7 +29162,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -29350,7 +29253,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -29435,7 +29338,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -29521,7 +29424,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -29611,7 +29514,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -29727,7 +29630,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -29812,7 +29715,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -29857,17 +29760,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -30170,14 +30073,8 @@ components:
           cursor: cursor
         casts:
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -30295,7 +30192,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -30386,7 +30283,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -30471,7 +30368,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -30557,7 +30454,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -30647,7 +30544,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -30763,7 +30660,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -30848,7 +30745,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -30893,17 +30790,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -31161,14 +31058,8 @@ components:
           object: cast
           timestamp: 2000-01-23T04:56:07.000+00:00
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -31286,7 +31177,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -31377,7 +31268,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -31462,7 +31353,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -31548,7 +31439,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -31638,7 +31529,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -31754,7 +31645,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -31839,7 +31730,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -31884,17 +31775,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -32232,14 +32123,8 @@ components:
         notifications:
         - cast:
             parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -32357,7 +32242,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -32448,7 +32333,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -32533,7 +32418,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -32619,7 +32504,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -32709,7 +32594,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -32825,7 +32710,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -32910,7 +32795,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -32955,17 +32840,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -33295,7 +33180,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -33382,7 +33267,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -33401,13 +33286,7 @@ components:
           count: 0
           reactions:
           - cast:
-              app:
-                fid: 6
-                pfp_url: pfp_url
-                display_name: display_name
-                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                object: user_dehydrated
-                username: username
+              app: ""
               author:
                 fid: 6
                 pfp_url: pfp_url
@@ -33488,7 +33367,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -33505,13 +33384,7 @@ components:
               username: username
             object: likes
           - cast:
-              app:
-                fid: 6
-                pfp_url: pfp_url
-                display_name: display_name
-                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                object: user_dehydrated
-                username: username
+              app: ""
               author:
                 fid: 6
                 pfp_url: pfp_url
@@ -33592,7 +33465,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -33613,14 +33486,8 @@ components:
           object: notification
         - cast:
             parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -33738,7 +33605,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -33829,7 +33696,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -33914,7 +33781,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -34000,7 +33867,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -34090,7 +33957,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -34206,7 +34073,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -34291,7 +34158,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -34336,17 +34203,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -34676,7 +34543,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -34763,7 +34630,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -34782,13 +34649,7 @@ components:
           count: 0
           reactions:
           - cast:
-              app:
-                fid: 6
-                pfp_url: pfp_url
-                display_name: display_name
-                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                object: user_dehydrated
-                username: username
+              app: ""
               author:
                 fid: 6
                 pfp_url: pfp_url
@@ -34869,7 +34730,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -34886,13 +34747,7 @@ components:
               username: username
             object: likes
           - cast:
-              app:
-                fid: 6
-                pfp_url: pfp_url
-                display_name: display_name
-                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                object: user_dehydrated
-                username: username
+              app: ""
               author:
                 fid: 6
                 pfp_url: pfp_url
@@ -34973,7 +34828,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -35010,14 +34865,8 @@ components:
       example:
         cast:
           parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -35135,7 +34984,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -35226,7 +35075,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -35311,7 +35160,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -35397,7 +35246,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -35487,7 +35336,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -35603,7 +35452,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -35688,7 +35537,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -35733,17 +35582,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -36073,7 +35922,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -36160,7 +36009,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -36179,13 +36028,7 @@ components:
         count: 0
         reactions:
         - cast:
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+            app: ""
             author:
               fid: 6
               pfp_url: pfp_url
@@ -36266,7 +36109,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -36283,13 +36126,7 @@ components:
             username: username
           object: likes
         - cast:
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+            app: ""
             author:
               fid: 6
               pfp_url: pfp_url
@@ -36370,7 +36207,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -36430,13 +36267,7 @@ components:
       - type
     CastDehydrated:
       example:
-        app:
-          fid: 6
-          pfp_url: pfp_url
-          display_name: display_name
-          custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-          object: user_dehydrated
-          username: username
+        app: ""
         author:
           fid: 6
           pfp_url: pfp_url
@@ -36456,20 +36287,14 @@ components:
         author:
           $ref: '#/components/schemas/UserDehydrated'
         app:
-          $ref: '#/components/schemas/UserDehydrated'
+          $ref: '#/components/schemas/CastEmbedded_app'
       required:
       - hash
       - object
     ReactionWithUserInfo:
       example:
         cast:
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+          app: ""
           author:
             fid: 6
             pfp_url: pfp_url
@@ -36550,7 +36375,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -36655,7 +36480,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -36696,14 +36521,8 @@ components:
       example:
         cast:
           parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -36821,7 +36640,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -36912,7 +36731,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -36997,7 +36816,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -37083,7 +36902,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -37173,7 +36992,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -37289,7 +37108,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -37374,7 +37193,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -37419,17 +37238,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -37794,7 +37613,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -37881,7 +37700,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -37999,7 +37818,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -38149,7 +37968,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -38176,14 +37995,8 @@ components:
         reactions:
         - cast:
             parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -38301,7 +38114,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -38392,7 +38205,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -38477,7 +38290,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -38563,7 +38376,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -38653,7 +38466,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -38769,7 +38582,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -38854,7 +38667,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -38899,17 +38712,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -39178,14 +38991,8 @@ components:
           object: likes
         - cast:
             parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -39303,7 +39110,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -39394,7 +39201,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -39479,7 +39286,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -39565,7 +39372,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -39655,7 +39462,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -39771,7 +39578,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -39856,7 +39663,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -39901,17 +39708,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -40266,7 +40073,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -40355,7 +40162,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -40454,7 +40261,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -40539,7 +40346,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -40625,7 +40432,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -40710,7 +40517,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -40932,7 +40739,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -41017,7 +40824,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -41114,7 +40921,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -41199,7 +41006,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -41300,7 +41107,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -41387,7 +41194,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -41414,9 +41221,10 @@ components:
       - next
       - users
     BulkUsersByAddressResponse:
-      additionalProperties:
-        items:
-          $ref: '#/components/schemas/User'
+      anyOf:
+      - additionalProperties:
+          items:
+            $ref: '#/components/schemas/User'
     FeedType:
       default: following
       enum:
@@ -41791,14 +41599,8 @@ components:
           text: text
         cast:
           parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -41916,7 +41718,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -42007,7 +41809,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -42092,7 +41894,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -42178,7 +41980,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -42268,7 +42070,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -42384,7 +42186,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -42469,7 +42271,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -42514,17 +42316,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -42853,7 +42655,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -42947,7 +42749,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -43184,7 +42986,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -43382,7 +43184,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -43460,14 +43262,8 @@ components:
             text: text
           cast:
             parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -43585,7 +43381,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -43676,7 +43472,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -43761,7 +43557,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -43847,7 +43643,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -43937,7 +43733,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -44053,7 +43849,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -44138,7 +43934,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -44183,17 +43979,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -44522,7 +44318,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -44616,7 +44412,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -44766,7 +44562,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -44879,7 +44675,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -44986,7 +44782,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -45074,7 +44870,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -45185,7 +44981,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -45271,7 +45067,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -45379,7 +45175,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -45465,7 +45261,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -45553,7 +45349,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -45639,7 +45435,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -45740,7 +45536,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -45846,7 +45642,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -45934,7 +45730,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -46052,7 +45848,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -46137,7 +45933,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -46223,7 +46019,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -46313,7 +46109,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -46433,7 +46229,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -46518,7 +46314,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -46604,7 +46400,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -46694,7 +46490,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -48090,6 +47886,12 @@ components:
         next:
           $ref: '#/components/schemas/NextCursor'
     SubscriptionStatus:
+      example:
+        expires_at: 0
+        subscribed_at: 6
+        tier: ""
+        object: subscribed_to_dehydrated
+        status: true
       properties:
         object:
           enum:
@@ -48106,7 +47908,7 @@ components:
           nullable: true
           type: integer
         tier:
-          $ref: '#/components/schemas/SubscriptionTier'
+          $ref: '#/components/schemas/SubscriptionStatus_tier'
       required:
       - expires_at
       - object
@@ -48185,8 +47987,9 @@ components:
       - 7d
       type: string
     SubscriptionCheckResponse:
-      additionalProperties:
-        $ref: '#/components/schemas/SubscriptionStatus'
+      anyOf:
+      - additionalProperties:
+          $ref: '#/components/schemas/SubscriptionStatus'
     DeployFungibleReqBody:
       properties:
         owner:
@@ -48372,7 +48175,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -48457,7 +48260,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -48654,7 +48457,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -48852,7 +48655,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -48976,7 +48779,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -49061,7 +48864,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -49258,7 +49061,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -49456,7 +49259,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -49557,7 +49360,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -49642,7 +49445,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -49839,7 +49642,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -50037,7 +49840,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -50109,14 +49912,8 @@ components:
         interactions:
         - cast:
             parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -50234,7 +50031,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -50325,7 +50122,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -50410,7 +50207,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -50496,7 +50293,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -50586,7 +50383,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -50702,7 +50499,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -50787,7 +50584,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -50832,17 +50629,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -51172,7 +50969,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -51259,7 +51056,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -51278,13 +51075,7 @@ components:
           count: 0
           reactions:
           - cast:
-              app:
-                fid: 6
-                pfp_url: pfp_url
-                display_name: display_name
-                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                object: user_dehydrated
-                username: username
+              app: ""
               author:
                 fid: 6
                 pfp_url: pfp_url
@@ -51365,7 +51156,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -51382,13 +51173,7 @@ components:
               username: username
             object: likes
           - cast:
-              app:
-                fid: 6
-                pfp_url: pfp_url
-                display_name: display_name
-                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                object: user_dehydrated
-                username: username
+              app: ""
               author:
                 fid: 6
                 pfp_url: pfp_url
@@ -51469,7 +51254,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -51490,14 +51275,8 @@ components:
           object: notification
         - cast:
             parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: ""
             frames:
             - image: image
               input:
@@ -51615,7 +51394,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -51706,7 +51485,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -51791,7 +51570,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -51877,7 +51656,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -51967,7 +51746,7 @@ components:
                   - null
                   primary:
                     eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                    sol_address: sol_address
+                    sol_address: null
                 pfp_url: pfp_url
                 following_count: 9
                 viewer_context:
@@ -52083,7 +51862,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -52168,7 +51947,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -52213,17 +51992,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -52553,7 +52332,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -52640,7 +52419,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -52659,13 +52438,7 @@ components:
           count: 0
           reactions:
           - cast:
-              app:
-                fid: 6
-                pfp_url: pfp_url
-                display_name: display_name
-                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                object: user_dehydrated
-                username: username
+              app: ""
               author:
                 fid: 6
                 pfp_url: pfp_url
@@ -52746,7 +52519,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -52763,13 +52536,7 @@ components:
               username: username
             object: likes
           - cast:
-              app:
-                fid: 6
-                pfp_url: pfp_url
-                display_name: display_name
-                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                object: user_dehydrated
-                username: username
+              app: ""
               author:
                 fid: 6
                 pfp_url: pfp_url
@@ -52850,7 +52617,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -53438,20 +53205,23 @@ components:
           $ref: '#/components/schemas/Location'
       required:
       - bio
+    User_verified_addresses_primary_eth_address:
+      oneOf:
+      - $ref: '#/components/schemas/EthAddress'
+      - nullable: true
+    User_verified_addresses_primary_sol_address:
+      oneOf:
+      - $ref: '#/components/schemas/SolAddress'
+      - nullable: true
     User_verified_addresses_primary:
       example:
         eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-        sol_address: sol_address
+        sol_address: null
       properties:
         eth_address:
-          description: Ethereum address
-          example: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-          pattern: "^0x[a-fA-F0-9]{40}$"
-          type: string
+          $ref: '#/components/schemas/User_verified_addresses_primary_eth_address'
         sol_address:
-          description: Solana address
-          pattern: "^[1-9A-HJ-NP-Za-km-z]{32,44}$"
-          type: string
+          $ref: '#/components/schemas/User_verified_addresses_primary_sol_address'
       required:
       - eth_address
       - sol_address
@@ -53465,7 +53235,7 @@ components:
         - null
         primary:
           eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-          sol_address: sol_address
+          sol_address: null
       properties:
         eth_addresses:
           description: List of verified Ethereum addresses of the user sorted by oldest
@@ -53639,16 +53409,26 @@ components:
       - address_balances
       - object
       - user
+    CastEmbedded_parent_author_fid:
+      oneOf:
+      - nullable: true
+      - $ref: '#/components/schemas/Fid'
     CastEmbedded_parent_author:
       example:
-        fid: 0
+        fid: ""
       properties:
         fid:
-          description: The unique identifier of a farcaster user (unsigned integer)
-          format: int32
-          type: integer
+          $ref: '#/components/schemas/CastEmbedded_parent_author_fid'
       required:
       - fid
+    CastEmbedded_app:
+      oneOf:
+      - nullable: true
+      - $ref: '#/components/schemas/UserDehydrated'
+    CastEmbedded_channel:
+      oneOf:
+      - nullable: true
+      - $ref: '#/components/schemas/ChannelDehydrated'
     ProfileUrl_pfp:
       properties:
         url:
@@ -53707,18 +53487,16 @@ components:
           type: string
         github:
           type: string
+    CastWithInteractions_allOf_channel:
+      oneOf:
+      - $ref: '#/components/schemas/ChannelOrChannelDehydrated'
+      - nullable: true
     Conversation_conversation:
       example:
         cast:
           parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -53836,7 +53614,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -53927,7 +53705,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -54012,7 +53790,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -54098,7 +53876,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -54188,7 +53966,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -54304,7 +54082,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -54389,7 +54167,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -54434,17 +54212,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -54701,14 +54479,8 @@ components:
           parent_hash: parent_hash
           direct_replies:
           - parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: null
             frames:
             - null
             - null
@@ -54786,7 +54558,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -54873,7 +54645,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -54958,7 +54730,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -55003,17 +54775,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -55032,14 +54804,8 @@ components:
             object: cast
             timestamp: 2000-01-23T04:56:07.000+00:00
           - parent_author:
-              fid: 0
-            app:
-              fid: 6
-              pfp_url: pfp_url
-              display_name: display_name
-              custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              object: user_dehydrated
-              username: username
+              fid: ""
+            app: null
             frames:
             - null
             - null
@@ -55117,7 +54883,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -55204,7 +54970,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -55289,7 +55055,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -55334,17 +55100,17 @@ components:
             - start: 0.14658129805029452
               end: 0.5962133916683182
             reactions:
-              likes_count: 1
+              likes_count: 6
               recasts:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
-              recasts_count: 5
+              recasts_count: 1
               likes:
-              - fid: 6
+              - fid: 0
                 fname: fname
-              - fid: 6
+              - fid: 0
                 fname: fname
             mentioned_channels_ranges:
             - start: 0.14658129805029452
@@ -55366,14 +55132,8 @@ components:
           timestamp: 2000-01-23T04:56:07.000+00:00
         chronological_parent_casts:
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -55491,7 +55251,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -55582,7 +55342,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -55667,7 +55427,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -55753,7 +55513,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -55843,7 +55603,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -55959,7 +55719,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -56044,7 +55804,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -56089,17 +55849,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -56357,14 +56117,8 @@ components:
           object: cast
           timestamp: 2000-01-23T04:56:07.000+00:00
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -56482,7 +56236,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -56573,7 +56327,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -56658,7 +56412,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -56744,7 +56498,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -56834,7 +56588,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -56950,7 +56704,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -57035,7 +56789,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -57080,17 +56834,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -57462,7 +57216,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -57547,7 +57301,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -57634,7 +57388,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -57719,7 +57473,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -57845,7 +57599,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -57930,7 +57684,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -57958,14 +57712,8 @@ components:
       example:
         casts:
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -58083,7 +57831,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -58174,7 +57922,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -58259,7 +58007,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -58345,7 +58093,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -58435,7 +58183,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -58551,7 +58299,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -58636,7 +58384,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -58681,17 +58429,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -58949,14 +58697,8 @@ components:
           object: cast
           timestamp: 2000-01-23T04:56:07.000+00:00
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -59074,7 +58816,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -59165,7 +58907,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -59250,7 +58992,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -59336,7 +59078,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -59426,7 +59168,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -59542,7 +59284,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -59627,7 +59369,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -59672,17 +59414,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -59952,14 +59694,8 @@ components:
           cursor: cursor
         casts:
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -60077,7 +59813,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -60168,7 +59904,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -60253,7 +59989,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -60339,7 +60075,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -60429,7 +60165,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -60545,7 +60281,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -60630,7 +60366,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -60675,17 +60411,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -60943,14 +60679,8 @@ components:
           object: cast
           timestamp: 2000-01-23T04:56:07.000+00:00
         - parent_author:
-            fid: 0
-          app:
-            fid: 6
-            pfp_url: pfp_url
-            display_name: display_name
-            custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-            object: user_dehydrated
-            username: username
+            fid: ""
+          app: ""
           frames:
           - image: image
             input:
@@ -61068,7 +60798,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -61159,7 +60889,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -61244,7 +60974,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -61330,7 +61060,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -61420,7 +61150,7 @@ components:
                 - null
                 primary:
                   eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                  sol_address: sol_address
+                  sol_address: null
               pfp_url: pfp_url
               following_count: 9
               viewer_context:
@@ -61536,7 +61266,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -61621,7 +61351,7 @@ components:
               - null
               primary:
                 eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-                sol_address: sol_address
+                sol_address: null
             pfp_url: pfp_url
             following_count: 9
             viewer_context:
@@ -61666,17 +61396,17 @@ components:
           - start: 0.14658129805029452
             end: 0.5962133916683182
           reactions:
-            likes_count: 1
+            likes_count: 6
             recasts:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
-            recasts_count: 5
+            recasts_count: 1
             likes:
-            - fid: 6
+            - fid: 0
               fname: fname
-            - fid: 6
+            - fid: 0
               fname: fname
           mentioned_channels_ranges:
           - start: 0.14658129805029452
@@ -61943,6 +61673,16 @@ components:
       required:
       - casts
       - next
+    PostCastResponse_cast_author:
+      example:
+        fid: 0
+      properties:
+        fid:
+          description: The unique identifier of a farcaster user (unsigned integer)
+          format: int32
+          type: integer
+      required:
+      - fid
     PostCastResponse_cast:
       example:
         author:
@@ -61955,7 +61695,7 @@ components:
           description: Cast Hash
           type: string
         author:
-          $ref: '#/components/schemas/CastEmbedded_parent_author'
+          $ref: '#/components/schemas/PostCastResponse_cast_author'
         text:
           type: string
       required:
@@ -62062,7 +61802,7 @@ components:
             - null
             primary:
               eth_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-              sol_address: sol_address
+              sol_address: null
           pfp_url: pfp_url
           following_count: 9
           viewer_context:
@@ -62271,6 +62011,10 @@ components:
         object:
           description: "Object type, which is \"composer_action\"."
           type: string
+    SubscriptionStatus_tier:
+      oneOf:
+      - nullable: true
+      - $ref: '#/components/schemas/SubscriptionTier'
     UserPowerLiteResponse_result:
       example:
         fids:

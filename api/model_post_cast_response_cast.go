@@ -23,9 +23,9 @@ var _ MappedNullable = &PostCastResponseCast{}
 // PostCastResponseCast struct for PostCastResponseCast
 type PostCastResponseCast struct {
 	// Cast Hash
-	Hash   string                   `json:"hash"`
-	Author CastEmbeddedParentAuthor `json:"author"`
-	Text   string                   `json:"text"`
+	Hash   string                     `json:"hash"`
+	Author PostCastResponseCastAuthor `json:"author"`
+	Text   string                     `json:"text"`
 }
 
 type _PostCastResponseCast PostCastResponseCast
@@ -34,7 +34,7 @@ type _PostCastResponseCast PostCastResponseCast
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostCastResponseCast(hash string, author CastEmbeddedParentAuthor, text string) *PostCastResponseCast {
+func NewPostCastResponseCast(hash string, author PostCastResponseCastAuthor, text string) *PostCastResponseCast {
 	this := PostCastResponseCast{}
 	this.Hash = hash
 	this.Author = author
@@ -82,9 +82,9 @@ func (o *PostCastResponseCast) GetDefaultHash() interface{} {
 }
 
 // GetAuthor returns the Author field value
-func (o *PostCastResponseCast) GetAuthor() CastEmbeddedParentAuthor {
+func (o *PostCastResponseCast) GetAuthor() PostCastResponseCastAuthor {
 	if o == nil {
-		var ret CastEmbeddedParentAuthor
+		var ret PostCastResponseCastAuthor
 		return ret
 	}
 
@@ -93,7 +93,7 @@ func (o *PostCastResponseCast) GetAuthor() CastEmbeddedParentAuthor {
 
 // GetAuthorOk returns a tuple with the Author field value
 // and a boolean to check if the value has been set.
-func (o *PostCastResponseCast) GetAuthorOk() (*CastEmbeddedParentAuthor, bool) {
+func (o *PostCastResponseCast) GetAuthorOk() (*PostCastResponseCastAuthor, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *PostCastResponseCast) GetAuthorOk() (*CastEmbeddedParentAuthor, bool) {
 }
 
 // SetAuthor sets field value
-func (o *PostCastResponseCast) SetAuthor(v CastEmbeddedParentAuthor) {
+func (o *PostCastResponseCast) SetAuthor(v PostCastResponseCastAuthor) {
 	o.Author = v
 }
 

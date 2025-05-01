@@ -22,10 +22,8 @@ var _ MappedNullable = &UserVerifiedAddressesPrimary{}
 
 // UserVerifiedAddressesPrimary struct for UserVerifiedAddressesPrimary
 type UserVerifiedAddressesPrimary struct {
-	// Ethereum address
-	EthAddress string `json:"eth_address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
-	// Solana address
-	SolAddress string `json:"sol_address" validate:"regexp=^[1-9A-HJ-NP-Za-km-z]{32,44}$"`
+	EthAddress UserVerifiedAddressesPrimaryEthAddress `json:"eth_address"`
+	SolAddress UserVerifiedAddressesPrimarySolAddress `json:"sol_address"`
 }
 
 type _UserVerifiedAddressesPrimary UserVerifiedAddressesPrimary
@@ -34,7 +32,7 @@ type _UserVerifiedAddressesPrimary UserVerifiedAddressesPrimary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserVerifiedAddressesPrimary(ethAddress string, solAddress string) *UserVerifiedAddressesPrimary {
+func NewUserVerifiedAddressesPrimary(ethAddress UserVerifiedAddressesPrimaryEthAddress, solAddress UserVerifiedAddressesPrimarySolAddress) *UserVerifiedAddressesPrimary {
 	this := UserVerifiedAddressesPrimary{}
 	this.EthAddress = ethAddress
 	this.SolAddress = solAddress
@@ -50,9 +48,9 @@ func NewUserVerifiedAddressesPrimaryWithDefaults() *UserVerifiedAddressesPrimary
 }
 
 // GetEthAddress returns the EthAddress field value
-func (o *UserVerifiedAddressesPrimary) GetEthAddress() string {
+func (o *UserVerifiedAddressesPrimary) GetEthAddress() UserVerifiedAddressesPrimaryEthAddress {
 	if o == nil {
-		var ret string
+		var ret UserVerifiedAddressesPrimaryEthAddress
 		return ret
 	}
 
@@ -61,7 +59,7 @@ func (o *UserVerifiedAddressesPrimary) GetEthAddress() string {
 
 // GetEthAddressOk returns a tuple with the EthAddress field value
 // and a boolean to check if the value has been set.
-func (o *UserVerifiedAddressesPrimary) GetEthAddressOk() (*string, bool) {
+func (o *UserVerifiedAddressesPrimary) GetEthAddressOk() (*UserVerifiedAddressesPrimaryEthAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -69,14 +67,14 @@ func (o *UserVerifiedAddressesPrimary) GetEthAddressOk() (*string, bool) {
 }
 
 // SetEthAddress sets field value
-func (o *UserVerifiedAddressesPrimary) SetEthAddress(v string) {
+func (o *UserVerifiedAddressesPrimary) SetEthAddress(v UserVerifiedAddressesPrimaryEthAddress) {
 	o.EthAddress = v
 }
 
 // GetSolAddress returns the SolAddress field value
-func (o *UserVerifiedAddressesPrimary) GetSolAddress() string {
+func (o *UserVerifiedAddressesPrimary) GetSolAddress() UserVerifiedAddressesPrimarySolAddress {
 	if o == nil {
-		var ret string
+		var ret UserVerifiedAddressesPrimarySolAddress
 		return ret
 	}
 
@@ -85,7 +83,7 @@ func (o *UserVerifiedAddressesPrimary) GetSolAddress() string {
 
 // GetSolAddressOk returns a tuple with the SolAddress field value
 // and a boolean to check if the value has been set.
-func (o *UserVerifiedAddressesPrimary) GetSolAddressOk() (*string, bool) {
+func (o *UserVerifiedAddressesPrimary) GetSolAddressOk() (*UserVerifiedAddressesPrimarySolAddress, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,7 +91,7 @@ func (o *UserVerifiedAddressesPrimary) GetSolAddressOk() (*string, bool) {
 }
 
 // SetSolAddress sets field value
-func (o *UserVerifiedAddressesPrimary) SetSolAddress(v string) {
+func (o *UserVerifiedAddressesPrimary) SetSolAddress(v UserVerifiedAddressesPrimarySolAddress) {
 	o.SolAddress = v
 }
 

@@ -30,7 +30,7 @@ type CastWithInteractions struct {
 	RootParentUrl     string                        `json:"root_parent_url"`
 	ParentAuthor      CastEmbeddedParentAuthor      `json:"parent_author"`
 	Author            User                          `json:"author"`
-	App               *UserDehydrated               `json:"app,omitempty"`
+	App               *CastEmbeddedApp              `json:"app,omitempty"`
 	Text              string                        `json:"text"`
 	Timestamp         time.Time                     `json:"timestamp"`
 	Embeds            []Embed                       `json:"embeds"`
@@ -44,10 +44,10 @@ type CastWithInteractions struct {
 	MentionedProfilesRanges []TextRange         `json:"mentioned_profiles_ranges"`
 	MentionedChannels       []ChannelDehydrated `json:"mentioned_channels"`
 	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.
-	MentionedChannelsRanges []TextRange                        `json:"mentioned_channels_ranges"`
-	Channel                 NullableChannelOrChannelDehydrated `json:"channel"`
-	ViewerContext           *CastViewerContext                 `json:"viewer_context,omitempty"`
-	AuthorChannelContext    *ChannelUserContext                `json:"author_channel_context,omitempty"`
+	MentionedChannelsRanges []TextRange                      `json:"mentioned_channels_ranges"`
+	Channel                 CastWithInteractionsAllOfChannel `json:"channel"`
+	ViewerContext           *CastViewerContext               `json:"viewer_context,omitempty"`
+	AuthorChannelContext    *ChannelUserContext              `json:"author_channel_context,omitempty"`
 }
 
 type _CastWithInteractions CastWithInteractions
@@ -56,7 +56,7 @@ type _CastWithInteractions CastWithInteractions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastWithInteractions(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastEmbeddedParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel NullableChannelOrChannelDehydrated) *CastWithInteractions {
+func NewCastWithInteractions(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastEmbeddedParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel CastWithInteractionsAllOfChannel) *CastWithInteractions {
 	this := CastWithInteractions{}
 	this.Object = object
 	this.Hash = hash
@@ -256,9 +256,9 @@ func (o *CastWithInteractions) SetAuthor(v User) {
 }
 
 // GetApp returns the App field value if set, zero value otherwise.
-func (o *CastWithInteractions) GetApp() UserDehydrated {
+func (o *CastWithInteractions) GetApp() CastEmbeddedApp {
 	if o == nil || IsNil(o.App) {
-		var ret UserDehydrated
+		var ret CastEmbeddedApp
 		return ret
 	}
 	return *o.App
@@ -266,7 +266,7 @@ func (o *CastWithInteractions) GetApp() UserDehydrated {
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CastWithInteractions) GetAppOk() (*UserDehydrated, bool) {
+func (o *CastWithInteractions) GetAppOk() (*CastEmbeddedApp, bool) {
 	if o == nil || IsNil(o.App) {
 		return nil, false
 	}
@@ -282,8 +282,8 @@ func (o *CastWithInteractions) HasApp() bool {
 	return false
 }
 
-// SetApp gets a reference to the given UserDehydrated and assigns it to the App field.
-func (o *CastWithInteractions) SetApp(v UserDehydrated) {
+// SetApp gets a reference to the given CastEmbeddedApp and assigns it to the App field.
+func (o *CastWithInteractions) SetApp(v CastEmbeddedApp) {
 	o.App = &v
 }
 
@@ -594,29 +594,27 @@ func (o *CastWithInteractions) SetMentionedChannelsRanges(v []TextRange) {
 }
 
 // GetChannel returns the Channel field value
-// If the value is explicit nil, the zero value for ChannelOrChannelDehydrated will be returned
-func (o *CastWithInteractions) GetChannel() ChannelOrChannelDehydrated {
-	if o == nil || o.Channel.Get() == nil {
-		var ret ChannelOrChannelDehydrated
+func (o *CastWithInteractions) GetChannel() CastWithInteractionsAllOfChannel {
+	if o == nil {
+		var ret CastWithInteractionsAllOfChannel
 		return ret
 	}
 
-	return *o.Channel.Get()
+	return o.Channel
 }
 
 // GetChannelOk returns a tuple with the Channel field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CastWithInteractions) GetChannelOk() (*ChannelOrChannelDehydrated, bool) {
+func (o *CastWithInteractions) GetChannelOk() (*CastWithInteractionsAllOfChannel, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Channel.Get(), o.Channel.IsSet()
+	return &o.Channel, true
 }
 
 // SetChannel sets field value
-func (o *CastWithInteractions) SetChannel(v ChannelOrChannelDehydrated) {
-	o.Channel.Set(&v)
+func (o *CastWithInteractions) SetChannel(v CastWithInteractionsAllOfChannel) {
+	o.Channel = v
 }
 
 // GetViewerContext returns the ViewerContext field value if set, zero value otherwise.
@@ -719,7 +717,7 @@ func (o CastWithInteractions) ToMap() (map[string]interface{}, error) {
 	toSerialize["mentioned_profiles_ranges"] = o.MentionedProfilesRanges
 	toSerialize["mentioned_channels"] = o.MentionedChannels
 	toSerialize["mentioned_channels_ranges"] = o.MentionedChannelsRanges
-	toSerialize["channel"] = o.Channel.Get()
+	toSerialize["channel"] = o.Channel
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewer_context"] = o.ViewerContext
 	}

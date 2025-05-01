@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Object** | **string** |  | 
 **Hash** | **string** |  | 
 **Author** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
-**App** | Pointer to [**NullableUserDehydrated**](UserDehydrated.md) |  | [optional] 
+**App** | Pointer to [**CastEmbeddedApp**](CastEmbeddedApp.md) |  | [optional] 
 
 ## Methods
 
@@ -95,20 +95,20 @@ HasAuthor returns a boolean if a field has been set.
 
 ### GetApp
 
-`func (o *CastDehydrated) GetApp() UserDehydrated`
+`func (o *CastDehydrated) GetApp() CastEmbeddedApp`
 
 GetApp returns the App field if non-nil, zero value otherwise.
 
 ### GetAppOk
 
-`func (o *CastDehydrated) GetAppOk() (*UserDehydrated, bool)`
+`func (o *CastDehydrated) GetAppOk() (*CastEmbeddedApp, bool)`
 
 GetAppOk returns a tuple with the App field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApp
 
-`func (o *CastDehydrated) SetApp(v UserDehydrated)`
+`func (o *CastDehydrated) SetApp(v CastEmbeddedApp)`
 
 SetApp sets App field to given value.
 
@@ -118,16 +118,6 @@ SetApp sets App field to given value.
 
 HasApp returns a boolean if a field has been set.
 
-### SetAppNil
-
-`func (o *CastDehydrated) SetAppNil(b bool)`
-
- SetAppNil sets the value for App to be an explicit nil
-
-### UnsetApp
-`func (o *CastDehydrated) UnsetApp()`
-
-UnsetApp ensures that no value is present for App, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

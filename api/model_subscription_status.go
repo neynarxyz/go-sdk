@@ -22,11 +22,11 @@ var _ MappedNullable = &SubscriptionStatus{}
 
 // SubscriptionStatus struct for SubscriptionStatus
 type SubscriptionStatus struct {
-	Object       string                   `json:"object"`
-	Status       bool                     `json:"status"`
-	ExpiresAt    NullableInt64            `json:"expires_at"`
-	SubscribedAt NullableInt64            `json:"subscribed_at"`
-	Tier         NullableSubscriptionTier `json:"tier"`
+	Object       string                 `json:"object"`
+	Status       bool                   `json:"status"`
+	ExpiresAt    NullableInt64          `json:"expires_at"`
+	SubscribedAt NullableInt64          `json:"subscribed_at"`
+	Tier         SubscriptionStatusTier `json:"tier"`
 }
 
 type _SubscriptionStatus SubscriptionStatus
@@ -35,7 +35,7 @@ type _SubscriptionStatus SubscriptionStatus
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionStatus(object string, status bool, expiresAt NullableInt64, subscribedAt NullableInt64, tier NullableSubscriptionTier) *SubscriptionStatus {
+func NewSubscriptionStatus(object string, status bool, expiresAt NullableInt64, subscribedAt NullableInt64, tier SubscriptionStatusTier) *SubscriptionStatus {
 	this := SubscriptionStatus{}
 	this.Object = object
 	this.Status = status
@@ -154,29 +154,27 @@ func (o *SubscriptionStatus) SetSubscribedAt(v int64) {
 }
 
 // GetTier returns the Tier field value
-// If the value is explicit nil, the zero value for SubscriptionTier will be returned
-func (o *SubscriptionStatus) GetTier() SubscriptionTier {
-	if o == nil || o.Tier.Get() == nil {
-		var ret SubscriptionTier
+func (o *SubscriptionStatus) GetTier() SubscriptionStatusTier {
+	if o == nil {
+		var ret SubscriptionStatusTier
 		return ret
 	}
 
-	return *o.Tier.Get()
+	return o.Tier
 }
 
 // GetTierOk returns a tuple with the Tier field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SubscriptionStatus) GetTierOk() (*SubscriptionTier, bool) {
+func (o *SubscriptionStatus) GetTierOk() (*SubscriptionStatusTier, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Tier.Get(), o.Tier.IsSet()
+	return &o.Tier, true
 }
 
 // SetTier sets field value
-func (o *SubscriptionStatus) SetTier(v SubscriptionTier) {
-	o.Tier.Set(&v)
+func (o *SubscriptionStatus) SetTier(v SubscriptionStatusTier) {
+	o.Tier = v
 }
 
 func (o SubscriptionStatus) MarshalJSON() ([]byte, error) {
@@ -193,7 +191,7 @@ func (o SubscriptionStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize["status"] = o.Status
 	toSerialize["expires_at"] = o.ExpiresAt.Get()
 	toSerialize["subscribed_at"] = o.SubscribedAt.Get()
-	toSerialize["tier"] = o.Tier.Get()
+	toSerialize["tier"] = o.Tier
 	return toSerialize, nil
 }
 
