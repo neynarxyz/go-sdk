@@ -5,13 +5,9 @@
   "scripts": {
     "clean": "del-cli ./build/*",
     "build": "yarn run clean && tsc",
-    "generate:api": "del-cli src/api && openapi-generator-cli generate -i ./oas/src/v2/spec.yaml -g go -o ./src/api --config ./openapi-generator-config.api.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=false'",
-    "generate:hub-api": "del-cli src/hub-api && openapi-generator-cli generate -i ./oas/src/hub-rest-api/spec.yaml -g go -o ./src/hub-api --config ./openapi-generator-config.hub-api.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=false'",
-    "generate": "yarn generate:api && yarn generate:hub-api",
-    "generate:api:wrapper": "cross-env CLIENT_TYPE=api ts-node -P tsconfig.scripts.json scripts/generate-wrapper.ts",
-    "generate:hub-api:wrapper": "cross-env CLIENT_TYPE=hub-api ts-node -P tsconfig.scripts.json scripts/generate-wrapper.ts",
-    "generate:wrapper": "yarn generate:api:wrapper && yarn generate:hub-api:wrapper",
-    "generate:all": "yarn generate && yarn generate:wrapper"
+    "generate:api": "del-cli api && openapi-generator-cli generate --git-user-id neynarxyz --git-repo-id go-sdk -i ./oas/src/v2/spec.yaml -g go -o ./api --config ./openapi-generator-config.api.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=false'",
+    "generate:hub-api": "del-cli hub-api && openapi-generator-cli generate --git-user-id neynarxyz --git-repo-id go-sdk -i ./oas/src/hub-rest-api/spec.yaml -g go -o ./hub-api --config ./openapi-generator-config.hub-api.json --inline-schema-options 'REFACTOR_ALLOF_INLINE_SCHEMAS=false'",
+    "generate": "yarn generate:api && yarn generate:hub-api"
   },
   "author": "Neynar",
   "license": "MIT",

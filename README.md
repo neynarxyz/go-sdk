@@ -1,14 +1,12 @@
-# @neynar/nodejs-sdk
+# go-sdk
 
-@neynar/nodejs-sdk typescript-based, easy-to-use SDK built to interact with [Neynar API's](https://docs.neynar.com/).
+go-sdk is an easy-to-use SDK built to interact with [Neynar APIs](https://docs.neynar.com/) via the Go programming language.
 
 ## Usage
 
-Please refer to our [Getting Started Guide](https://docs.neynar.com/reference/getting-started-with-sdk)
-
-<!-- TODO: Add migration guide link here-->
-
-Checkout [examples](https://github.com/neynarxyz/farcaster-examples) using this SDK
+Please refer to the READMEs of the individual Go modules for detailed instructions on how to use the SDK:
+- [api](api/README.md): The main module for interacting with the Neynar API.
+- [hub-api](hub-api/README.md): The module for interacting with Neynar's Farcaster hub API.
 
 ## Contribution Guidelines
 
@@ -17,4 +15,4 @@ To make contributions to this SDK please update the [OAS](https://github.com/ney
 
 ## License
 
-This project is licensed under the MIT License. This license permits free use, modification, and distribution of the software, with the requirement that the original copyright and license notice are included in any substantial portion of the work. - see the [LICENSE](https://github.com/neynarxyz/nodejs-sdk/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. This license permits free use, modification, and distribution of the software, with the requirement that the original copyright and license notice are included in any substantial portion of the work. - see the [LICENSE](https://github.com/neynarxyz/go-sdk/blob/main/LICENSE) file for details.
