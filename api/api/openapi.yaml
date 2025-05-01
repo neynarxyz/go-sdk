@@ -48199,7 +48199,9 @@ components:
           description: Name of the token
           type: string
         metadata[media]:
-          description: URI of the media file
+          description: "Media file associated with the token. \nSupported formats\
+            \ are image/jpeg, image/gif and image/png\n"
+          format: binary
           type: string
         metadata[description]:
           description: Description of the token

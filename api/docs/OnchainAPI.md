@@ -34,7 +34,7 @@ func main() {
 	owner := "owner_example" // string | Ethereum address of the one who is creating the token
 	symbol := "symbol_example" // string | Symbol/Ticker for the token
 	name := "name_example" // string | Name of the token
-	metadataMedia := "metadataMedia_example" // string | URI of the media file (optional)
+	metadataMedia := os.NewFile(1234, "some_file") // *os.File | Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png  (optional)
 	metadataDescription := "metadataDescription_example" // string | Description of the token (optional)
 	metadataNsfw := "metadataNsfw_example" // string | Indicates if the token is NSFW (Not Safe For Work).  (optional)
 	metadataWebsiteLink := "metadataWebsiteLink_example" // string | Website link related to the token (optional)
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
  **owner** | **string** | Ethereum address of the one who is creating the token | 
  **symbol** | **string** | Symbol/Ticker for the token | 
  **name** | **string** | Name of the token | 
- **metadataMedia** | **string** | URI of the media file | 
+ **metadataMedia** | ***os.File** | Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png  | 
  **metadataDescription** | **string** | Description of the token | 
  **metadataNsfw** | **string** | Indicates if the token is NSFW (Not Safe For Work).  | 
  **metadataWebsiteLink** | **string** | Website link related to the token | 

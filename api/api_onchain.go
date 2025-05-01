@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"os"
 )
 
 type OnchainAPI interface {
@@ -75,7 +76,7 @@ type ApiDeployFungibleRequest struct {
 	owner               *string
 	symbol              *string
 	name                *string
-	metadataMedia       *string
+	metadataMedia       *os.File
 	metadataDescription *string
 	metadataNsfw        *string
 	metadataWebsiteLink *string
@@ -104,9 +105,9 @@ func (r ApiDeployFungibleRequest) Name(name string) ApiDeployFungibleRequest {
 	return r
 }
 
-// URI of the media file
-func (r ApiDeployFungibleRequest) MetadataMedia(metadataMedia string) ApiDeployFungibleRequest {
-	r.metadataMedia = &metadataMedia
+// Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png
+func (r ApiDeployFungibleRequest) MetadataMedia(metadataMedia *os.File) ApiDeployFungibleRequest {
+	r.metadataMedia = metadataMedia
 	return r
 }
 
@@ -229,8 +230,20 @@ func (a *OnchainAPIService) DeployFungibleExecute(r ApiDeployFungibleRequest) (*
 	parameterAddToHeaderOrQuery(localVarFormParams, "owner", r.owner, "", "")
 	parameterAddToHeaderOrQuery(localVarFormParams, "symbol", r.symbol, "", "")
 	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
-	if r.metadataMedia != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "metadata[media]", r.metadataMedia, "", "")
+	var metadataMediaLocalVarFormFileName string
+	var metadataMediaLocalVarFileName string
+	var metadataMediaLocalVarFileBytes []byte
+
+	metadataMediaLocalVarFormFileName = "metadata[media]"
+	metadataMediaLocalVarFile := r.metadataMedia
+
+	if metadataMediaLocalVarFile != nil {
+		fbs, _ := io.ReadAll(metadataMediaLocalVarFile)
+
+		metadataMediaLocalVarFileBytes = fbs
+		metadataMediaLocalVarFileName = metadataMediaLocalVarFile.Name()
+		metadataMediaLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: metadataMediaLocalVarFileBytes, fileName: metadataMediaLocalVarFileName, formFileName: metadataMediaLocalVarFormFileName})
 	}
 	if r.metadataDescription != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "metadata[description]", r.metadataDescription, "", "")
