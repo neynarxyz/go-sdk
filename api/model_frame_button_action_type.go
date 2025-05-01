@@ -21,11 +21,11 @@ type FrameButtonActionType string
 
 // List of FrameButtonActionType
 const (
-	POST FrameButtonActionType = "post"
-	POST_REDIRECT FrameButtonActionType = "post_redirect"
-	TX FrameButtonActionType = "tx"
-	LINK FrameButtonActionType = "link"
-	MINT FrameButtonActionType = "mint"
+	FRAMEBUTTONACTIONTYPE_POST FrameButtonActionType = "post"
+	FRAMEBUTTONACTIONTYPE_POST_REDIRECT FrameButtonActionType = "post_redirect"
+	FRAMEBUTTONACTIONTYPE_TX FrameButtonActionType = "tx"
+	FRAMEBUTTONACTIONTYPE_LINK FrameButtonActionType = "link"
+	FRAMEBUTTONACTIONTYPE_MINT FrameButtonActionType = "mint"
 )
 
 // All allowed values of FrameButtonActionType enum

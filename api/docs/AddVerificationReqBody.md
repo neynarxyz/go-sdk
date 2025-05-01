@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Address** | **string** | Ethereum address | 
 **BlockHash** | **string** |  | 
 **EthSignature** | **string** |  | 
-**VerificationType** | Pointer to [**VerificationType**](VerificationType.md) |  | [optional] [default to _0]
-**ChainId** | Pointer to [**VerificationChainId**](VerificationChainId.md) |  | [optional] [default to _0]
+**VerificationType** | Pointer to [**VerificationType**](VerificationType.md) |  | [optional] [default to VERIFICATIONTYPE__0]
+**ChainId** | Pointer to [**VerificationChainId**](VerificationChainId.md) |  | [optional] [default to VERIFICATIONCHAINID__0]
 
 ## Methods
 

@@ -21,7 +21,7 @@ type HashScheme string
 
 // List of HashScheme
 const (
-	HASH_SCHEME_BLAKE3 HashScheme = "HASH_SCHEME_BLAKE3"
+	HASHSCHEME_HASH_SCHEME_BLAKE3 HashScheme = "HASH_SCHEME_BLAKE3"
 )
 
 // All allowed values of HashScheme enum

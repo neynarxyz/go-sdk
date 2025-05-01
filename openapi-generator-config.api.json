@@ -4,7 +4,8 @@
   "additionalProperties": {
     "packageName": "api",
     "packageVersion": "2.0.0",
+    "isGoSubmodule": true,
     "generateInterfaces": true,
-    "isGoSubmodule": true
+    "enumClassPrefix": true
   }
 }

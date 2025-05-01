@@ -21,7 +21,7 @@ type SubscriptionProvider string
 
 // List of SubscriptionProvider
 const (
-	FABRIC_STP SubscriptionProvider = "fabric_stp"
+	SUBSCRIPTIONPROVIDER_FABRIC_STP SubscriptionProvider = "fabric_stp"
 )
 
 // All allowed values of SubscriptionProvider enum

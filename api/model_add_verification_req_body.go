@@ -44,9 +44,9 @@ func NewAddVerificationReqBody(signerUuid string, address string, blockHash stri
 	this.Address = address
 	this.BlockHash = blockHash
 	this.EthSignature = ethSignature
-	var verificationType VerificationType = _0
+	var verificationType VerificationType = VERIFICATIONTYPE__0
 	this.VerificationType = &verificationType
-	var chainId VerificationChainId = _0
+	var chainId VerificationChainId = VERIFICATIONCHAINID__0
 	this.ChainId = &chainId
 	return &this
 }
@@ -56,9 +56,9 @@ func NewAddVerificationReqBody(signerUuid string, address string, blockHash stri
 // but it doesn't guarantee that properties required by API are set
 func NewAddVerificationReqBodyWithDefaults() *AddVerificationReqBody {
 	this := AddVerificationReqBody{}
-	var verificationType VerificationType = _0
+	var verificationType VerificationType = VERIFICATIONTYPE__0
 	this.VerificationType = &verificationType
-	var chainId VerificationChainId = _0
+	var chainId VerificationChainId = VERIFICATIONCHAINID__0
 	this.ChainId = &chainId
 	return &this
 }

@@ -50,7 +50,7 @@ func NewMessageDataUsernameProof(fid int32, timestamp int64, network FarcasterNe
 // but it doesn't guarantee that properties required by API are set
 func NewMessageDataUsernameProofWithDefaults() *MessageDataUsernameProof {
 	this := MessageDataUsernameProof{}
-	var network FarcasterNetwork = FARCASTER_NETWORK_MAINNET
+	var network FarcasterNetwork = FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 	this.Network = network
 	return &this
 }

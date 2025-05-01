@@ -4,7 +4,8 @@
   "additionalProperties": {
     "packageName": "hub",
     "packageVersion": "1.0.0",
+    "isGoSubmodule": true,
     "generateInterfaces": true,
-    "isGoSubmodule": true
+    "enumClassPrefix": true
   }
 }

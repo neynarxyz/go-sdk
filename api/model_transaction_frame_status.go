@@ -21,8 +21,8 @@ type TransactionFrameStatus string
 
 // List of TransactionFrameStatus
 const (
-	CREATED TransactionFrameStatus = "created"
-	COMPLETED TransactionFrameStatus = "completed"
+	TRANSACTIONFRAMESTATUS_CREATED TransactionFrameStatus = "created"
+	TRANSACTIONFRAMESTATUS_COMPLETED TransactionFrameStatus = "completed"
 )
 
 // All allowed values of TransactionFrameStatus enum

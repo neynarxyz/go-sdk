@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Hash** | **string** |  | 
-**HashScheme** | [**HashScheme**](HashScheme.md) |  | [default to HASH_SCHEME_BLAKE3]
+**HashScheme** | [**HashScheme**](HashScheme.md) |  | [default to HASHSCHEME_HASH_SCHEME_BLAKE3]
 **Signature** | **string** |  | 
-**SignatureScheme** | [**SignatureScheme**](SignatureScheme.md) |  | [default to SIGNATURE_SCHEME_ED25519]
+**SignatureScheme** | [**SignatureScheme**](SignatureScheme.md) |  | [default to SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519]
 **Signer** | **string** |  | 
 **Data** | [**CastAddAllOfData**](CastAddAllOfData.md) |  | 
 

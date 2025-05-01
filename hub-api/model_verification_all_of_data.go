@@ -53,9 +53,9 @@ func NewVerificationAllOfData(fid int32, timestamp int64, network FarcasterNetwo
 // but it doesn't guarantee that properties required by API are set
 func NewVerificationAllOfDataWithDefaults() *VerificationAllOfData {
 	this := VerificationAllOfData{}
-	var network FarcasterNetwork = FARCASTER_NETWORK_MAINNET
+	var network FarcasterNetwork = FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 	this.Network = network
-	var type_ MessageType = MESSAGE_TYPE_CAST_ADD
+	var type_ MessageType = MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
 	this.Type = type_
 	return &this
 }

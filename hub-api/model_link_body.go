@@ -47,7 +47,7 @@ func NewLinkBody(type_ LinkType, targetFid int32) *LinkBody {
 // but it doesn't guarantee that properties required by API are set
 func NewLinkBodyWithDefaults() *LinkBody {
 	this := LinkBody{}
-	var type_ LinkType = FOLLOW
+	var type_ LinkType = LINKTYPE_FOLLOW
 	this.Type = type_
 	return &this
 }

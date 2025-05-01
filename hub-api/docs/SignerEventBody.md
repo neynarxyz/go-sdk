@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Key** | **string** |  | 
 **KeyType** | **int64** |  | 
-**EventType** | [**SignerEventType**](SignerEventType.md) |  | [default to SIGNER_EVENT_TYPE_ADD]
+**EventType** | [**SignerEventType**](SignerEventType.md) |  | [default to SIGNEREVENTTYPE_SIGNER_EVENT_TYPE_ADD]
 **Metadata** | **string** |  | 
 **MetadataType** | **int64** |  | 
 

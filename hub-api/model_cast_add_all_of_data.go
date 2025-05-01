@@ -53,9 +53,9 @@ func NewCastAddAllOfData(fid int32, timestamp int64, network FarcasterNetwork, c
 // but it doesn't guarantee that properties required by API are set
 func NewCastAddAllOfDataWithDefaults() *CastAddAllOfData {
 	this := CastAddAllOfData{}
-	var network FarcasterNetwork = FARCASTER_NETWORK_MAINNET
+	var network FarcasterNetwork = FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 	this.Network = network
-	var type_ MessageType = MESSAGE_TYPE_CAST_ADD
+	var type_ MessageType = MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
 	this.Type = type_
 	return &this
 }

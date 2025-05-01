@@ -21,8 +21,8 @@ type ReactionType string
 
 // List of ReactionType
 const (
-	LIKE ReactionType = "Like"
-	RECAST ReactionType = "Recast"
+	REACTIONTYPE_LIKE ReactionType = "Like"
+	REACTIONTYPE_RECAST ReactionType = "Recast"
 )
 
 // All allowed values of ReactionType enum

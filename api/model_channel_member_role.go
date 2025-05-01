@@ -21,8 +21,8 @@ type ChannelMemberRole string
 
 // List of ChannelMemberRole
 const (
-	MEMBER ChannelMemberRole = "member"
-	MODERATOR ChannelMemberRole = "moderator"
+	CHANNELMEMBERROLE_MEMBER ChannelMemberRole = "member"
+	CHANNELMEMBERROLE_MODERATOR ChannelMemberRole = "moderator"
 )
 
 // All allowed values of ChannelMemberRole enum

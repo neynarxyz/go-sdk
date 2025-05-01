@@ -53,9 +53,9 @@ func NewLinkAddAllOfData(fid int32, timestamp int64, network FarcasterNetwork, l
 // but it doesn't guarantee that properties required by API are set
 func NewLinkAddAllOfDataWithDefaults() *LinkAddAllOfData {
 	this := LinkAddAllOfData{}
-	var network FarcasterNetwork = FARCASTER_NETWORK_MAINNET
+	var network FarcasterNetwork = FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 	this.Network = network
-	var type_ MessageType = MESSAGE_TYPE_CAST_ADD
+	var type_ MessageType = MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
 	this.Type = type_
 	return &this
 }

@@ -21,7 +21,7 @@ type Networks string
 
 // List of Networks
 const (
-	BASE Networks = "base"
+	NETWORKS_BASE Networks = "base"
 )
 
 // All allowed values of Networks enum

@@ -21,9 +21,9 @@ type ForYouProvider string
 
 // List of ForYouProvider
 const (
-	NEYNAR ForYouProvider = "neynar"
-	OPENRANK ForYouProvider = "openrank"
-	MBD ForYouProvider = "mbd"
+	FORYOUPROVIDER_NEYNAR ForYouProvider = "neynar"
+	FORYOUPROVIDER_OPENRANK ForYouProvider = "openrank"
+	FORYOUPROVIDER_MBD ForYouProvider = "mbd"
 )
 
 // All allowed values of ForYouProvider enum

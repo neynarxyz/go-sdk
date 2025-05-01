@@ -44,7 +44,7 @@ func NewStorageLimit(storeType StoreType, limit int32) *StorageLimit {
 // but it doesn't guarantee that properties required by API are set
 func NewStorageLimitWithDefaults() *StorageLimit {
 	this := StorageLimit{}
-	var storeType StoreType = STORE_TYPE_CASTS
+	var storeType StoreType = STORETYPE_STORE_TYPE_CASTS
 	this.StoreType = storeType
 	return &this
 }

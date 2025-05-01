@@ -21,7 +21,7 @@ type LinkType string
 
 // List of LinkType
 const (
-	FOLLOW LinkType = "follow"
+	LINKTYPE_FOLLOW LinkType = "follow"
 )
 
 // All allowed values of LinkType enum

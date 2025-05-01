@@ -21,12 +21,12 @@ type NotificationType string
 
 // List of NotificationType
 const (
-	FOLLOWS NotificationType = "follows"
-	RECASTS NotificationType = "recasts"
-	LIKES NotificationType = "likes"
-	MENTIONS NotificationType = "mentions"
-	REPLIES NotificationType = "replies"
-	QUOTES NotificationType = "quotes"
+	NOTIFICATIONTYPE_FOLLOWS NotificationType = "follows"
+	NOTIFICATIONTYPE_RECASTS NotificationType = "recasts"
+	NOTIFICATIONTYPE_LIKES NotificationType = "likes"
+	NOTIFICATIONTYPE_MENTIONS NotificationType = "mentions"
+	NOTIFICATIONTYPE_REPLIES NotificationType = "replies"
+	NOTIFICATIONTYPE_QUOTES NotificationType = "quotes"
 )
 
 // All allowed values of NotificationType enum

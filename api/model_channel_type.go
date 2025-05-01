@@ -21,8 +21,8 @@ type ChannelType string
 
 // List of ChannelType
 const (
-	ID ChannelType = "id"
-	PARENT_URL ChannelType = "parent_url"
+	CHANNELTYPE_ID ChannelType = "id"
+	CHANNELTYPE_PARENT_URL ChannelType = "parent_url"
 )
 
 // All allowed values of ChannelType enum

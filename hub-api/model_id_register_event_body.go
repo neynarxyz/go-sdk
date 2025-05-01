@@ -48,7 +48,7 @@ func NewIdRegisterEventBody(to string, eventType IdRegisterEventType, from strin
 // but it doesn't guarantee that properties required by API are set
 func NewIdRegisterEventBodyWithDefaults() *IdRegisterEventBody {
 	this := IdRegisterEventBody{}
-	var eventType IdRegisterEventType = ID_REGISTER_EVENT_TYPE_REGISTER
+	var eventType IdRegisterEventType = IDREGISTEREVENTTYPE_ID_REGISTER_EVENT_TYPE_REGISTER
 	this.EventType = eventType
 	return &this
 }

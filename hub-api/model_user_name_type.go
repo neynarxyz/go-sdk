@@ -21,8 +21,8 @@ type UserNameType string
 
 // List of UserNameType
 const (
-	USERNAME_TYPE_FNAME UserNameType = "USERNAME_TYPE_FNAME"
-	USERNAME_TYPE_ENS_L1 UserNameType = "USERNAME_TYPE_ENS_L1"
+	USERNAMETYPE_USERNAME_TYPE_FNAME UserNameType = "USERNAME_TYPE_FNAME"
+	USERNAMETYPE_USERNAME_TYPE_ENS_L1 UserNameType = "USERNAME_TYPE_ENS_L1"
 )
 
 // All allowed values of UserNameType enum

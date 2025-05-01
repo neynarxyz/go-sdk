@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **To** | **string** |  | 
-**EventType** | [**IdRegisterEventType**](IdRegisterEventType.md) |  | [default to ID_REGISTER_EVENT_TYPE_REGISTER]
+**EventType** | [**IdRegisterEventType**](IdRegisterEventType.md) |  | [default to IDREGISTEREVENTTYPE_ID_REGISTER_EVENT_TYPE_REGISTER]
 **From** | **string** |  | 
 **RecoveryAddress** | **string** |  | 
 

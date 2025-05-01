@@ -54,7 +54,7 @@ func NewUserNameProof(timestamp int32, name string, owner string, signature stri
 // but it doesn't guarantee that properties required by API are set
 func NewUserNameProofWithDefaults() *UserNameProof {
 	this := UserNameProof{}
-	var type_ UserNameType = USERNAME_TYPE_FNAME
+	var type_ UserNameType = USERNAMETYPE_USERNAME_TYPE_FNAME
 	this.Type = type_
 	return &this
 }

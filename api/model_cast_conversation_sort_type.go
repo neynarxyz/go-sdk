@@ -21,9 +21,9 @@ type CastConversationSortType string
 
 // List of CastConversationSortType
 const (
-	CHRON CastConversationSortType = "chron"
-	DESC_CHRON CastConversationSortType = "desc_chron"
-	ALGORITHMIC CastConversationSortType = "algorithmic"
+	CASTCONVERSATIONSORTTYPE_CHRON CastConversationSortType = "chron"
+	CASTCONVERSATIONSORTTYPE_DESC_CHRON CastConversationSortType = "desc_chron"
+	CASTCONVERSATIONSORTTYPE_ALGORITHMIC CastConversationSortType = "algorithmic"
 )
 
 // All allowed values of CastConversationSortType enum

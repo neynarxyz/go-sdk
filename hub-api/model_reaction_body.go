@@ -46,7 +46,7 @@ func NewReactionBody(type_ ReactionType) *ReactionBody {
 // but it doesn't guarantee that properties required by API are set
 func NewReactionBodyWithDefaults() *ReactionBody {
 	this := ReactionBody{}
-	var type_ ReactionType = LIKE
+	var type_ ReactionType = REACTIONTYPE_LIKE
 	this.Type = type_
 	return &this
 }

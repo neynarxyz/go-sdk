@@ -21,17 +21,17 @@ type ValidateFrameAggregateWindow string
 
 // List of ValidateFrameAggregateWindow
 const (
-	_10S ValidateFrameAggregateWindow = "10s"
-	_1M ValidateFrameAggregateWindow = "1m"
-	_2M ValidateFrameAggregateWindow = "2m"
-	_5M ValidateFrameAggregateWindow = "5m"
-	_10M ValidateFrameAggregateWindow = "10m"
-	_20M ValidateFrameAggregateWindow = "20m"
-	_30M ValidateFrameAggregateWindow = "30m"
-	_2H ValidateFrameAggregateWindow = "2h"
-	_12H ValidateFrameAggregateWindow = "12h"
-	_1D ValidateFrameAggregateWindow = "1d"
-	_7D ValidateFrameAggregateWindow = "7d"
+	VALIDATEFRAMEAGGREGATEWINDOW__10S ValidateFrameAggregateWindow = "10s"
+	VALIDATEFRAMEAGGREGATEWINDOW__1M ValidateFrameAggregateWindow = "1m"
+	VALIDATEFRAMEAGGREGATEWINDOW__2M ValidateFrameAggregateWindow = "2m"
+	VALIDATEFRAMEAGGREGATEWINDOW__5M ValidateFrameAggregateWindow = "5m"
+	VALIDATEFRAMEAGGREGATEWINDOW__10M ValidateFrameAggregateWindow = "10m"
+	VALIDATEFRAMEAGGREGATEWINDOW__20M ValidateFrameAggregateWindow = "20m"
+	VALIDATEFRAMEAGGREGATEWINDOW__30M ValidateFrameAggregateWindow = "30m"
+	VALIDATEFRAMEAGGREGATEWINDOW__2H ValidateFrameAggregateWindow = "2h"
+	VALIDATEFRAMEAGGREGATEWINDOW__12H ValidateFrameAggregateWindow = "12h"
+	VALIDATEFRAMEAGGREGATEWINDOW__1D ValidateFrameAggregateWindow = "1d"
+	VALIDATEFRAMEAGGREGATEWINDOW__7D ValidateFrameAggregateWindow = "7d"
 )
 
 // All allowed values of ValidateFrameAggregateWindow enum

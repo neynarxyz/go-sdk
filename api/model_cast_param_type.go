@@ -21,8 +21,8 @@ type CastParamType string
 
 // List of CastParamType
 const (
-	URL CastParamType = "url"
-	HASH CastParamType = "hash"
+	CASTPARAMTYPE_URL CastParamType = "url"
+	CASTPARAMTYPE_HASH CastParamType = "hash"
 )
 
 // All allowed values of CastParamType enum

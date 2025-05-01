@@ -21,8 +21,8 @@ type SignatureScheme string
 
 // List of SignatureScheme
 const (
-	SIGNATURE_SCHEME_ED25519 SignatureScheme = "SIGNATURE_SCHEME_ED25519"
-	SIGNATURE_SCHEME_EIP712 SignatureScheme = "SIGNATURE_SCHEME_EIP712"
+	SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519 SignatureScheme = "SIGNATURE_SCHEME_ED25519"
+	SIGNATURESCHEME_SIGNATURE_SCHEME_EIP712 SignatureScheme = "SIGNATURE_SCHEME_EIP712"
 )
 
 // All allowed values of SignatureScheme enum

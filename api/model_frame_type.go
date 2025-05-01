@@ -21,8 +21,8 @@ type FrameType string
 
 // List of FrameType
 const (
-	UUID FrameType = "uuid"
-	URL FrameType = "url"
+	FRAMETYPE_UUID FrameType = "uuid"
+	FRAMETYPE_URL FrameType = "url"
 )
 
 // All allowed values of FrameType enum

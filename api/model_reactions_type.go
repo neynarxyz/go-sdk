@@ -21,9 +21,9 @@ type ReactionsType string
 
 // List of ReactionsType
 const (
-	ALL ReactionsType = "all"
-	LIKES ReactionsType = "likes"
-	RECASTS ReactionsType = "recasts"
+	REACTIONSTYPE_ALL ReactionsType = "all"
+	REACTIONSTYPE_LIKES ReactionsType = "likes"
+	REACTIONSTYPE_RECASTS ReactionsType = "recasts"
 )
 
 // All allowed values of ReactionsType enum

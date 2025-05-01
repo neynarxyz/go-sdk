@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Owner** | **string** |  | 
 **Signature** | **string** |  | 
 **Fid** | **int32** | Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.  | 
-**Type** | [**UserNameType**](UserNameType.md) |  | [default to USERNAME_TYPE_FNAME]
+**Type** | [**UserNameType**](UserNameType.md) |  | [default to USERNAMETYPE_USERNAME_TYPE_FNAME]
 
 ## Methods
 

@@ -21,8 +21,8 @@ type BulkUserAddressType string
 
 // List of BulkUserAddressType
 const (
-	CUSTODY_ADDRESS BulkUserAddressType = "custody_address"
-	VERIFIED_ADDRESS BulkUserAddressType = "verified_address"
+	BULKUSERADDRESSTYPE_CUSTODY_ADDRESS BulkUserAddressType = "custody_address"
+	BULKUSERADDRESSTYPE_VERIFIED_ADDRESS BulkUserAddressType = "verified_address"
 )
 
 // All allowed values of BulkUserAddressType enum

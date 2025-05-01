@@ -21,9 +21,9 @@ type FeedTrendingProvider string
 
 // List of FeedTrendingProvider
 const (
-	NEYNAR FeedTrendingProvider = "neynar"
-	OPENRANK FeedTrendingProvider = "openrank"
-	MBD FeedTrendingProvider = "mbd"
+	FEEDTRENDINGPROVIDER_NEYNAR FeedTrendingProvider = "neynar"
+	FEEDTRENDINGPROVIDER_OPENRANK FeedTrendingProvider = "openrank"
+	FEEDTRENDINGPROVIDER_MBD FeedTrendingProvider = "mbd"
 )
 
 // All allowed values of FeedTrendingProvider enum

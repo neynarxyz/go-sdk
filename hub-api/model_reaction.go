@@ -52,9 +52,9 @@ func NewReaction(hash string, hashScheme HashScheme, signature string, signature
 // but it doesn't guarantee that properties required by API are set
 func NewReactionWithDefaults() *Reaction {
 	this := Reaction{}
-	var hashScheme HashScheme = HASH_SCHEME_BLAKE3
+	var hashScheme HashScheme = HASHSCHEME_HASH_SCHEME_BLAKE3
 	this.HashScheme = hashScheme
-	var signatureScheme SignatureScheme = SIGNATURE_SCHEME_ED25519
+	var signatureScheme SignatureScheme = SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519
 	this.SignatureScheme = signatureScheme
 	return &this
 }

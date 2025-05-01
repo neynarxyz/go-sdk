@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StoreType** | [**StoreType**](StoreType.md) |  | [default to STORE_TYPE_CASTS]
+**StoreType** | [**StoreType**](StoreType.md) |  | [default to STORETYPE_STORE_TYPE_CASTS]
 **Limit** | **int32** |  | 
 
 ## Methods

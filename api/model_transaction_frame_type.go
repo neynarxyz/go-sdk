@@ -21,7 +21,7 @@ type TransactionFrameType string
 
 // List of TransactionFrameType
 const (
-	PAY TransactionFrameType = "pay"
+	TRANSACTIONFRAMETYPE_PAY TransactionFrameType = "pay"
 )
 
 // All allowed values of TransactionFrameType enum

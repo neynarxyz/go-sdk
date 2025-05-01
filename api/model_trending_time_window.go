@@ -21,11 +21,11 @@ type TrendingTimeWindow string
 
 // List of TrendingTimeWindow
 const (
-	_1H TrendingTimeWindow = "1h"
-	_6H TrendingTimeWindow = "6h"
-	_12H TrendingTimeWindow = "12h"
-	_24H TrendingTimeWindow = "24h"
-	_7D TrendingTimeWindow = "7d"
+	TRENDINGTIMEWINDOW__1H TrendingTimeWindow = "1h"
+	TRENDINGTIMEWINDOW__6H TrendingTimeWindow = "6h"
+	TRENDINGTIMEWINDOW__12H TrendingTimeWindow = "12h"
+	TRENDINGTIMEWINDOW__24H TrendingTimeWindow = "24h"
+	TRENDINGTIMEWINDOW__7D TrendingTimeWindow = "7d"
 )
 
 // All allowed values of TrendingTimeWindow enum

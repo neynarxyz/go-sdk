@@ -21,8 +21,8 @@ type CastComposerType string
 
 // List of CastComposerType
 const (
-	TOP CastComposerType = "top"
-	FEATURED CastComposerType = "featured"
+	CASTCOMPOSERTYPE_TOP CastComposerType = "top"
+	CASTCOMPOSERTYPE_FEATURED CastComposerType = "featured"
 )
 
 // All allowed values of CastComposerType enum

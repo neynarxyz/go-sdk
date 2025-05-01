@@ -46,7 +46,7 @@ func NewUserDataBody(type_ UserDataType, value string) *UserDataBody {
 // but it doesn't guarantee that properties required by API are set
 func NewUserDataBodyWithDefaults() *UserDataBody {
 	this := UserDataBody{}
-	var type_ UserDataType = USER_DATA_TYPE_PFP
+	var type_ UserDataType = USERDATATYPE_USER_DATA_TYPE_PFP
 	this.Type = type_
 	return &this
 }

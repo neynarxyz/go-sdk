@@ -51,7 +51,7 @@ func NewMessageDataVerificationAdd(fid int32, timestamp int64, network Farcaster
 // but it doesn't guarantee that properties required by API are set
 func NewMessageDataVerificationAddWithDefaults() *MessageDataVerificationAdd {
 	this := MessageDataVerificationAdd{}
-	var network FarcasterNetwork = FARCASTER_NETWORK_MAINNET
+	var network FarcasterNetwork = FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 	this.Network = network
 	return &this
 }

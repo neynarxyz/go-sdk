@@ -21,8 +21,8 @@ type FollowSortType string
 
 // List of FollowSortType
 const (
-	DESC_CHRON FollowSortType = "desc_chron"
-	AFFINITY_SCORE FollowSortType = "affinity_score"
+	FOLLOWSORTTYPE_DESC_CHRON FollowSortType = "desc_chron"
+	FOLLOWSORTTYPE_AFFINITY_SCORE FollowSortType = "affinity_score"
 )
 
 // All allowed values of FollowSortType enum

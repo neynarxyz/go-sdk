@@ -50,7 +50,7 @@ func NewSignerEventBody(key string, keyType int64, eventType SignerEventType, me
 // but it doesn't guarantee that properties required by API are set
 func NewSignerEventBodyWithDefaults() *SignerEventBody {
 	this := SignerEventBody{}
-	var eventType SignerEventType = SIGNER_EVENT_TYPE_ADD
+	var eventType SignerEventType = SIGNEREVENTTYPE_SIGNER_EVENT_TYPE_ADD
 	this.EventType = eventType
 	return &this
 }

@@ -21,8 +21,8 @@ type CastNotificationType string
 
 // List of CastNotificationType
 const (
-	CAST_MENTION CastNotificationType = "cast-mention"
-	CAST_REPLY CastNotificationType = "cast-reply"
+	CASTNOTIFICATIONTYPE_CAST_MENTION CastNotificationType = "cast-mention"
+	CASTNOTIFICATIONTYPE_CAST_REPLY CastNotificationType = "cast-reply"
 )
 
 // All allowed values of CastNotificationType enum

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**LinkType**](LinkType.md) |  | [default to FOLLOW]
+**Type** | [**LinkType**](LinkType.md) |  | [default to LINKTYPE_FOLLOW]
 **DisplayTimestamp** | Pointer to **int64** | User-defined timestamp that preserves the original creation time when message.data.timestamp needs to be updated for compaction. Useful for maintaining chronological order in user feeds. | [optional] 
 **TargetFid** | **int32** | Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.  | 
 

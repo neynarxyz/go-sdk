@@ -21,7 +21,7 @@ type AuthorizationUrlResponseType string
 
 // List of AuthorizationUrlResponseType
 const (
-	CODE AuthorizationUrlResponseType = "code"
+	AUTHORIZATIONURLRESPONSETYPE_CODE AuthorizationUrlResponseType = "code"
 )
 
 // All allowed values of AuthorizationUrlResponseType enum

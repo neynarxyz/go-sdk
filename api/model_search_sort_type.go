@@ -21,8 +21,8 @@ type SearchSortType string
 
 // List of SearchSortType
 const (
-	DESC_CHRON SearchSortType = "desc_chron"
-	ALGORITHMIC SearchSortType = "algorithmic"
+	SEARCHSORTTYPE_DESC_CHRON SearchSortType = "desc_chron"
+	SEARCHSORTTYPE_ALGORITHMIC SearchSortType = "algorithmic"
 )
 
 // All allowed values of SearchSortType enum
