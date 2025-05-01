@@ -34,7 +34,7 @@ func main() {
 	owner := "owner_example" // string | Ethereum address of the one who is creating the token
 	symbol := "symbol_example" // string | Symbol/Ticker for the token
 	name := "name_example" // string | Name of the token
-	metadataMedia := openapiclient.DeployFungibleReqBody_metadata_media_{*OsFile: new(*os.File)} // DeployFungibleReqBodyMetadataMedia |  (optional)
+	metadataMedia := "metadataMedia_example" // string | URI of the media file (optional)
 	metadataDescription := "metadataDescription_example" // string | Description of the token (optional)
 	metadataNsfw := "metadataNsfw_example" // string | Indicates if the token is NSFW (Not Safe For Work).  (optional)
 	metadataWebsiteLink := "metadataWebsiteLink_example" // string | Website link related to the token (optional)
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
  **owner** | **string** | Ethereum address of the one who is creating the token | 
  **symbol** | **string** | Symbol/Ticker for the token | 
  **name** | **string** | Name of the token | 
- **metadataMedia** | [**DeployFungibleReqBodyMetadataMedia**](DeployFungibleReqBodyMetadataMedia.md) |  | 
+ **metadataMedia** | **string** | URI of the media file | 
  **metadataDescription** | **string** | Description of the token | 
  **metadataNsfw** | **string** | Indicates if the token is NSFW (Not Safe For Work).  | 
  **metadataWebsiteLink** | **string** | Website link related to the token | 

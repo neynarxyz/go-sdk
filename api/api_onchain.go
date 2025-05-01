@@ -76,7 +76,7 @@ type ApiDeployFungibleRequest struct {
 	owner *string
 	symbol *string
 	name *string
-	metadataMedia *DeployFungibleReqBodyMetadataMedia
+	metadataMedia *string
 	metadataDescription *string
 	metadataNsfw *string
 	metadataWebsiteLink *string
@@ -105,7 +105,8 @@ func (r ApiDeployFungibleRequest) Name(name string) ApiDeployFungibleRequest {
 	return r
 }
 
-func (r ApiDeployFungibleRequest) MetadataMedia(metadataMedia DeployFungibleReqBodyMetadataMedia) ApiDeployFungibleRequest {
+// URI of the media file
+func (r ApiDeployFungibleRequest) MetadataMedia(metadataMedia string) ApiDeployFungibleRequest {
 	r.metadataMedia = &metadataMedia
 	return r
 }
@@ -230,11 +231,7 @@ func (a *OnchainAPIService) DeployFungibleExecute(r ApiDeployFungibleRequest) (*
 	parameterAddToHeaderOrQuery(localVarFormParams, "symbol", r.symbol, "", "")
 	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
 	if r.metadataMedia != nil {
-		paramJson, err := parameterToJson(*r.metadataMedia)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-		localVarFormParams.Add("metadata[media]", paramJson)
+		parameterAddToHeaderOrQuery(localVarFormParams, "metadata[media]", r.metadataMedia, "", "")
 	}
 	if r.metadataDescription != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "metadata[description]", r.metadataDescription, "", "")

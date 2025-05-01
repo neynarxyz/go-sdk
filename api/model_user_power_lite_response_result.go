@@ -22,7 +22,8 @@ var _ MappedNullable = &UserPowerLiteResponseResult{}
 
 // UserPowerLiteResponseResult struct for UserPowerLiteResponseResult
 type UserPowerLiteResponseResult struct {
-	Fids Fids `json:"fids"`
+	// List of FIDs
+	Fids []int32 `json:"fids"`
 }
 
 type _UserPowerLiteResponseResult UserPowerLiteResponseResult
@@ -31,7 +32,7 @@ type _UserPowerLiteResponseResult UserPowerLiteResponseResult
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserPowerLiteResponseResult(fids Fids) *UserPowerLiteResponseResult {
+func NewUserPowerLiteResponseResult(fids []int32) *UserPowerLiteResponseResult {
 	this := UserPowerLiteResponseResult{}
 	this.Fids = fids
 	return &this
@@ -46,9 +47,9 @@ func NewUserPowerLiteResponseResultWithDefaults() *UserPowerLiteResponseResult {
 }
 
 // GetFids returns the Fids field value
-func (o *UserPowerLiteResponseResult) GetFids() Fids {
+func (o *UserPowerLiteResponseResult) GetFids() []int32 {
 	if o == nil {
-		var ret Fids
+		var ret []int32
 		return ret
 	}
 
@@ -57,15 +58,15 @@ func (o *UserPowerLiteResponseResult) GetFids() Fids {
 
 // GetFidsOk returns a tuple with the Fids field value
 // and a boolean to check if the value has been set.
-func (o *UserPowerLiteResponseResult) GetFidsOk() (*Fids, bool) {
+func (o *UserPowerLiteResponseResult) GetFidsOk() ([]int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Fids, true
+	return o.Fids, true
 }
 
 // SetFids sets field value
-func (o *UserPowerLiteResponseResult) SetFids(v Fids) {
+func (o *UserPowerLiteResponseResult) SetFids(v []int32) {
 	o.Fids = v
 }
 

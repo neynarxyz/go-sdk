@@ -48113,11 +48113,6 @@ components:
       - status
       - subscribed_at
       - tier
-    Fids:
-      description: List of FIDs
-      items:
-        $ref: '#/components/schemas/Fid'
-      type: array
     UserPowerLiteResponse:
       example:
         result:
@@ -48204,7 +48199,8 @@ components:
           description: Name of the token
           type: string
         metadata[media]:
-          $ref: '#/components/schemas/DeployFungibleReqBody_metadata_media_'
+          description: URI of the media file
+          type: string
         metadata[description]:
           description: Description of the token
           type: string
@@ -62280,7 +62276,10 @@ components:
         - null
       properties:
         fids:
-          $ref: '#/components/schemas/Fids'
+          description: List of FIDs
+          items:
+            $ref: '#/components/schemas/Fid'
+          type: array
       required:
       - fids
     FarcasterActionReqBody_action:
@@ -62298,14 +62297,6 @@ components:
           type: object
       required:
       - type
-    DeployFungibleReqBody_metadata_media_:
-      oneOf:
-      - description: "Media file associated with the token. \nSupported formats are\
-          \ image/jpeg, image/gif and image/png\n"
-        format: binary
-        type: string
-      - description: URI of the media file
-        type: string
     DeployFungibleResponse_contract_fungible:
       example:
         symbol: symbol

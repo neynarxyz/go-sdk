@@ -105,7 +105,6 @@ docs/ConversationSummarySummary.md
 docs/DeleteCastReqBody.md
 docs/DeleteFrameReqBody.md
 docs/DeleteFrameResponse.md
-docs/DeployFungibleReqBodyMetadataMedia.md
 docs/DeployFungibleResponse.md
 docs/DeployFungibleResponseContract.md
 docs/DeployFungibleResponseContractFungible.md
@@ -138,7 +137,6 @@ docs/FetchFrameMetaTagsFromUrl200Response.md
 docs/FetchRelevantFrames200Response.md
 docs/FetchRelevantFrames200ResponseRelevantFramesInner.md
 docs/FetchUserInteractions200Response.md
-docs/Fids.md
 docs/FilterType.md
 docs/FnameAPI.md
 docs/FnameAvailabilityResponse.md
@@ -430,7 +428,6 @@ model_conversation_summary_summary.go
 model_delete_cast_req_body.go
 model_delete_frame_req_body.go
 model_delete_frame_response.go
-model_deploy_fungible_req_body_metadata_media_.go
 model_deploy_fungible_response.go
 model_deploy_fungible_response_contract.go
 model_deploy_fungible_response_contract_fungible.go
@@ -462,7 +459,6 @@ model_fetch_frame_meta_tags_from_url_200_response.go
 model_fetch_relevant_frames_200_response.go
 model_fetch_relevant_frames_200_response_relevant_frames_inner.go
 model_fetch_user_interactions_200_response.go
-model_fids.go
 model_filter_type.go
 model_fname_availability_response.go
 model_follow_req_body.go
