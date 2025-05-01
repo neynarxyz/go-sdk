@@ -73,6 +73,7 @@ func (o *FarcasterManifestAccountAssociation) SetHeader(v string) {
 	o.Header = v
 }
 
+
 // GetPayload returns the Payload field value
 func (o *FarcasterManifestAccountAssociation) GetPayload() string {
 	if o == nil {
@@ -97,6 +98,7 @@ func (o *FarcasterManifestAccountAssociation) SetPayload(v string) {
 	o.Payload = v
 }
 
+
 // GetSignature returns the Signature field value
 func (o *FarcasterManifestAccountAssociation) GetSignature() string {
 	if o == nil {
@@ -120,6 +122,7 @@ func (o *FarcasterManifestAccountAssociation) GetSignatureOk() (*string, bool) {
 func (o *FarcasterManifestAccountAssociation) SetSignature(v string) {
 	o.Signature = v
 }
+
 
 func (o FarcasterManifestAccountAssociation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -147,6 +150,11 @@ func (o *FarcasterManifestAccountAssociation) UnmarshalJSON(data []byte) (err er
 		"signature",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -156,11 +164,23 @@ func (o *FarcasterManifestAccountAssociation) UnmarshalJSON(data []byte) (err er
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFarcasterManifestAccountAssociation := _FarcasterManifestAccountAssociation{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -82,6 +82,7 @@ func (o *RegisterDeveloperManagedSignedKeyReqBody) SetPublicKey(v string) {
 	o.PublicKey = v
 }
 
+
 // GetSignature returns the Signature field value
 func (o *RegisterDeveloperManagedSignedKeyReqBody) GetSignature() string {
 	if o == nil {
@@ -105,6 +106,7 @@ func (o *RegisterDeveloperManagedSignedKeyReqBody) GetSignatureOk() (*string, bo
 func (o *RegisterDeveloperManagedSignedKeyReqBody) SetSignature(v string) {
 	o.Signature = v
 }
+
 
 // GetAppFid returns the AppFid field value
 func (o *RegisterDeveloperManagedSignedKeyReqBody) GetAppFid() int32 {
@@ -130,6 +132,7 @@ func (o *RegisterDeveloperManagedSignedKeyReqBody) SetAppFid(v int32) {
 	o.AppFid = v
 }
 
+
 // GetDeadline returns the Deadline field value
 func (o *RegisterDeveloperManagedSignedKeyReqBody) GetDeadline() int32 {
 	if o == nil {
@@ -153,6 +156,7 @@ func (o *RegisterDeveloperManagedSignedKeyReqBody) GetDeadlineOk() (*int32, bool
 func (o *RegisterDeveloperManagedSignedKeyReqBody) SetDeadline(v int32) {
 	o.Deadline = v
 }
+
 
 // GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise.
 func (o *RegisterDeveloperManagedSignedKeyReqBody) GetRedirectUrl() string {
@@ -252,6 +256,11 @@ func (o *RegisterDeveloperManagedSignedKeyReqBody) UnmarshalJSON(data []byte) (e
 		"deadline",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -261,11 +270,23 @@ func (o *RegisterDeveloperManagedSignedKeyReqBody) UnmarshalJSON(data []byte) (e
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varRegisterDeveloperManagedSignedKeyReqBody := _RegisterDeveloperManagedSignedKeyReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

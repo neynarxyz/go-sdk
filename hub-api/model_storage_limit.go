@@ -73,6 +73,11 @@ func (o *StorageLimit) SetStoreType(v StoreType) {
 	o.StoreType = v
 }
 
+// GetDefaultStoreType returns the default value STORETYPE_STORE_TYPE_CASTS of the StoreType field.
+func (o *StorageLimit) GetDefaultStoreType() interface{}  {
+	return STORETYPE_STORE_TYPE_CASTS
+}
+
 // GetLimit returns the Limit field value
 func (o *StorageLimit) GetLimit() int32 {
 	if o == nil {
@@ -97,6 +102,7 @@ func (o *StorageLimit) SetLimit(v int32) {
 	o.Limit = v
 }
 
+
 func (o StorageLimit) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -107,6 +113,9 @@ func (o StorageLimit) MarshalJSON() ([]byte, error) {
 
 func (o StorageLimit) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if _, exists := toSerialize["storeType"]; !exists {
+		toSerialize["storeType"] = o.GetDefaultStoreType()
+	}
 	toSerialize["storeType"] = o.StoreType
 	toSerialize["limit"] = o.Limit
 	return toSerialize, nil
@@ -121,6 +130,12 @@ func (o *StorageLimit) UnmarshalJSON(data []byte) (err error) {
 		"limit",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"storeType": o.GetDefaultStoreType,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -130,11 +145,23 @@ func (o *StorageLimit) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varStorageLimit := _StorageLimit{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

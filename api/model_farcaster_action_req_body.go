@@ -75,6 +75,7 @@ func (o *FarcasterActionReqBody) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
 
+
 // GetBaseUrl returns the BaseUrl field value
 func (o *FarcasterActionReqBody) GetBaseUrl() string {
 	if o == nil {
@@ -99,6 +100,7 @@ func (o *FarcasterActionReqBody) SetBaseUrl(v string) {
 	o.BaseUrl = v
 }
 
+
 // GetAction returns the Action field value
 func (o *FarcasterActionReqBody) GetAction() FarcasterActionReqBodyAction {
 	if o == nil {
@@ -122,6 +124,7 @@ func (o *FarcasterActionReqBody) GetActionOk() (*FarcasterActionReqBodyAction, b
 func (o *FarcasterActionReqBody) SetAction(v FarcasterActionReqBodyAction) {
 	o.Action = v
 }
+
 
 func (o FarcasterActionReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -149,6 +152,11 @@ func (o *FarcasterActionReqBody) UnmarshalJSON(data []byte) (err error) {
 		"action",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -158,11 +166,23 @@ func (o *FarcasterActionReqBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFarcasterActionReqBody := _FarcasterActionReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

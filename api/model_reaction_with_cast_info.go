@@ -78,6 +78,7 @@ func (o *ReactionWithCastInfo) SetReactionType(v string) {
 	o.ReactionType = v
 }
 
+
 // GetCast returns the Cast field value
 func (o *ReactionWithCastInfo) GetCast() CastWithInteractions {
 	if o == nil {
@@ -101,6 +102,7 @@ func (o *ReactionWithCastInfo) GetCastOk() (*CastWithInteractions, bool) {
 func (o *ReactionWithCastInfo) SetCast(v CastWithInteractions) {
 	o.Cast = v
 }
+
 
 // GetReactionTimestamp returns the ReactionTimestamp field value
 func (o *ReactionWithCastInfo) GetReactionTimestamp() time.Time {
@@ -126,6 +128,7 @@ func (o *ReactionWithCastInfo) SetReactionTimestamp(v time.Time) {
 	o.ReactionTimestamp = v
 }
 
+
 // GetObject returns the Object field value
 func (o *ReactionWithCastInfo) GetObject() string {
 	if o == nil {
@@ -150,6 +153,7 @@ func (o *ReactionWithCastInfo) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetUser returns the User field value
 func (o *ReactionWithCastInfo) GetUser() UserDehydrated {
 	if o == nil {
@@ -173,6 +177,7 @@ func (o *ReactionWithCastInfo) GetUserOk() (*UserDehydrated, bool) {
 func (o *ReactionWithCastInfo) SetUser(v UserDehydrated) {
 	o.User = v
 }
+
 
 func (o ReactionWithCastInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -204,6 +209,11 @@ func (o *ReactionWithCastInfo) UnmarshalJSON(data []byte) (err error) {
 		"user",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -213,11 +223,23 @@ func (o *ReactionWithCastInfo) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varReactionWithCastInfo := _ReactionWithCastInfo{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

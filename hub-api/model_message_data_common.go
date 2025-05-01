@@ -77,6 +77,7 @@ func (o *MessageDataCommon) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetTimestamp returns the Timestamp field value
 func (o *MessageDataCommon) GetTimestamp() int64 {
 	if o == nil {
@@ -100,6 +101,7 @@ func (o *MessageDataCommon) GetTimestampOk() (*int64, bool) {
 func (o *MessageDataCommon) SetTimestamp(v int64) {
 	o.Timestamp = v
 }
+
 
 // GetNetwork returns the Network field value
 func (o *MessageDataCommon) GetNetwork() FarcasterNetwork {
@@ -125,6 +127,11 @@ func (o *MessageDataCommon) SetNetwork(v FarcasterNetwork) {
 	o.Network = v
 }
 
+// GetDefaultNetwork returns the default value FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET of the Network field.
+func (o *MessageDataCommon) GetDefaultNetwork() interface{}  {
+	return FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
+}
+
 func (o MessageDataCommon) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -137,6 +144,9 @@ func (o MessageDataCommon) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fid"] = o.Fid
 	toSerialize["timestamp"] = o.Timestamp
+	if _, exists := toSerialize["network"]; !exists {
+		toSerialize["network"] = o.GetDefaultNetwork()
+	}
 	toSerialize["network"] = o.Network
 	return toSerialize, nil
 }
@@ -151,6 +161,12 @@ func (o *MessageDataCommon) UnmarshalJSON(data []byte) (err error) {
 		"network",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"network": o.GetDefaultNetwork,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -160,11 +176,23 @@ func (o *MessageDataCommon) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varMessageDataCommon := _MessageDataCommon{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

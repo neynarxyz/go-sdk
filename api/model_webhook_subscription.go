@@ -78,6 +78,7 @@ func (o *WebhookSubscription) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetSubscriptionId returns the SubscriptionId field value
 func (o *WebhookSubscription) GetSubscriptionId() string {
 	if o == nil {
@@ -101,6 +102,7 @@ func (o *WebhookSubscription) GetSubscriptionIdOk() (*string, bool) {
 func (o *WebhookSubscription) SetSubscriptionId(v string) {
 	o.SubscriptionId = v
 }
+
 
 // GetFilters returns the Filters field value
 func (o *WebhookSubscription) GetFilters() WebhookSubscriptionFilters {
@@ -126,6 +128,7 @@ func (o *WebhookSubscription) SetFilters(v WebhookSubscriptionFilters) {
 	o.Filters = v
 }
 
+
 // GetCreatedAt returns the CreatedAt field value
 func (o *WebhookSubscription) GetCreatedAt() time.Time {
 	if o == nil {
@@ -150,6 +153,7 @@ func (o *WebhookSubscription) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
+
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *WebhookSubscription) GetUpdatedAt() time.Time {
 	if o == nil {
@@ -173,6 +177,7 @@ func (o *WebhookSubscription) GetUpdatedAtOk() (*time.Time, bool) {
 func (o *WebhookSubscription) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
+
 
 func (o WebhookSubscription) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -204,6 +209,11 @@ func (o *WebhookSubscription) UnmarshalJSON(data []byte) (err error) {
 		"updated_at",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -213,11 +223,23 @@ func (o *WebhookSubscription) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varWebhookSubscription := _WebhookSubscription{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

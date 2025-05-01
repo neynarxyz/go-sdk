@@ -71,6 +71,7 @@ func (o *RelevantFollowersResponse) SetTopRelevantFollowersHydrated(v []Follower
 	o.TopRelevantFollowersHydrated = v
 }
 
+
 // GetAllRelevantFollowersDehydrated returns the AllRelevantFollowersDehydrated field value
 func (o *RelevantFollowersResponse) GetAllRelevantFollowersDehydrated() []FollowerDehydrated {
 	if o == nil {
@@ -94,6 +95,7 @@ func (o *RelevantFollowersResponse) GetAllRelevantFollowersDehydratedOk() ([]Fol
 func (o *RelevantFollowersResponse) SetAllRelevantFollowersDehydrated(v []FollowerDehydrated) {
 	o.AllRelevantFollowersDehydrated = v
 }
+
 
 func (o RelevantFollowersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -119,6 +121,11 @@ func (o *RelevantFollowersResponse) UnmarshalJSON(data []byte) (err error) {
 		"all_relevant_followers_dehydrated",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -128,11 +135,23 @@ func (o *RelevantFollowersResponse) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varRelevantFollowersResponse := _RelevantFollowersResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

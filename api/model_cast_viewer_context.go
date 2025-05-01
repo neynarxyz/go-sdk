@@ -73,6 +73,7 @@ func (o *CastViewerContext) SetLiked(v bool) {
 	o.Liked = v
 }
 
+
 // GetRecasted returns the Recasted field value
 func (o *CastViewerContext) GetRecasted() bool {
 	if o == nil {
@@ -96,6 +97,7 @@ func (o *CastViewerContext) GetRecastedOk() (*bool, bool) {
 func (o *CastViewerContext) SetRecasted(v bool) {
 	o.Recasted = v
 }
+
 
 func (o CastViewerContext) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -121,6 +123,11 @@ func (o *CastViewerContext) UnmarshalJSON(data []byte) (err error) {
 		"recasted",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -130,11 +137,23 @@ func (o *CastViewerContext) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varCastViewerContext := _CastViewerContext{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

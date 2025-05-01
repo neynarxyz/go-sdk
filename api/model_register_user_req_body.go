@@ -77,6 +77,7 @@ func (o *RegisterUserReqBody) SetSignature(v string) {
 	o.Signature = v
 }
 
+
 // GetFid returns the Fid field value
 func (o *RegisterUserReqBody) GetFid() float32 {
 	if o == nil {
@@ -100,6 +101,7 @@ func (o *RegisterUserReqBody) GetFidOk() (*float32, bool) {
 func (o *RegisterUserReqBody) SetFid(v float32) {
 	o.Fid = v
 }
+
 
 // GetRequestedUserCustodyAddress returns the RequestedUserCustodyAddress field value
 func (o *RegisterUserReqBody) GetRequestedUserCustodyAddress() string {
@@ -125,6 +127,7 @@ func (o *RegisterUserReqBody) SetRequestedUserCustodyAddress(v string) {
 	o.RequestedUserCustodyAddress = v
 }
 
+
 // GetDeadline returns the Deadline field value
 func (o *RegisterUserReqBody) GetDeadline() float32 {
 	if o == nil {
@@ -148,6 +151,7 @@ func (o *RegisterUserReqBody) GetDeadlineOk() (*float32, bool) {
 func (o *RegisterUserReqBody) SetDeadline(v float32) {
 	o.Deadline = v
 }
+
 
 // GetFname returns the Fname field value if set, zero value otherwise.
 func (o *RegisterUserReqBody) GetFname() string {
@@ -247,6 +251,11 @@ func (o *RegisterUserReqBody) UnmarshalJSON(data []byte) (err error) {
 		"deadline",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -256,11 +265,23 @@ func (o *RegisterUserReqBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varRegisterUserReqBody := _RegisterUserReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

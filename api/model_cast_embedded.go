@@ -91,6 +91,7 @@ func (o *CastEmbedded) SetHash(v string) {
 	o.Hash = v
 }
 
+
 // GetParentHash returns the ParentHash field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *CastEmbedded) GetParentHash() string {
@@ -116,6 +117,7 @@ func (o *CastEmbedded) GetParentHashOk() (*string, bool) {
 func (o *CastEmbedded) SetParentHash(v string) {
 	o.ParentHash.Set(&v)
 }
+
 
 // GetParentUrl returns the ParentUrl field value
 // If the value is explicit nil, the zero value for string will be returned
@@ -143,6 +145,7 @@ func (o *CastEmbedded) SetParentUrl(v string) {
 	o.ParentUrl.Set(&v)
 }
 
+
 // GetRootParentUrl returns the RootParentUrl field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *CastEmbedded) GetRootParentUrl() string {
@@ -169,6 +172,7 @@ func (o *CastEmbedded) SetRootParentUrl(v string) {
 	o.RootParentUrl.Set(&v)
 }
 
+
 // GetParentAuthor returns the ParentAuthor field value
 func (o *CastEmbedded) GetParentAuthor() CastEmbeddedParentAuthor {
 	if o == nil {
@@ -193,6 +197,7 @@ func (o *CastEmbedded) SetParentAuthor(v CastEmbeddedParentAuthor) {
 	o.ParentAuthor = v
 }
 
+
 // GetAuthor returns the Author field value
 func (o *CastEmbedded) GetAuthor() UserDehydrated {
 	if o == nil {
@@ -216,6 +221,7 @@ func (o *CastEmbedded) GetAuthorOk() (*UserDehydrated, bool) {
 func (o *CastEmbedded) SetAuthor(v UserDehydrated) {
 	o.Author = v
 }
+
 
 // GetApp returns the App field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CastEmbedded) GetApp() UserDehydrated {
@@ -283,6 +289,7 @@ func (o *CastEmbedded) SetText(v string) {
 	o.Text = v
 }
 
+
 // GetTimestamp returns the Timestamp field value
 func (o *CastEmbedded) GetTimestamp() time.Time {
 	if o == nil {
@@ -306,6 +313,7 @@ func (o *CastEmbedded) GetTimestampOk() (*time.Time, bool) {
 func (o *CastEmbedded) SetTimestamp(v time.Time) {
 	o.Timestamp = v
 }
+
 
 // GetType returns the Type field value
 func (o *CastEmbedded) GetType() CastNotificationType {
@@ -331,6 +339,7 @@ func (o *CastEmbedded) SetType(v CastNotificationType) {
 	o.Type = v
 }
 
+
 // GetEmbeds returns the Embeds field value
 func (o *CastEmbedded) GetEmbeds() []EmbedDeep {
 	if o == nil {
@@ -354,6 +363,7 @@ func (o *CastEmbedded) GetEmbedsOk() ([]EmbedDeep, bool) {
 func (o *CastEmbedded) SetEmbeds(v []EmbedDeep) {
 	o.Embeds = v
 }
+
 
 // GetChannel returns the Channel field value
 // If the value is explicit nil, the zero value for ChannelDehydrated will be returned
@@ -380,6 +390,7 @@ func (o *CastEmbedded) GetChannelOk() (*ChannelDehydrated, bool) {
 func (o *CastEmbedded) SetChannel(v ChannelDehydrated) {
 	o.Channel.Set(&v)
 }
+
 
 func (o CastEmbedded) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -426,6 +437,11 @@ func (o *CastEmbedded) UnmarshalJSON(data []byte) (err error) {
 		"channel",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -435,11 +451,23 @@ func (o *CastEmbedded) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varCastEmbedded := _CastEmbedded{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

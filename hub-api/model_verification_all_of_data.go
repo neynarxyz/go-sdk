@@ -84,6 +84,7 @@ func (o *VerificationAllOfData) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetTimestamp returns the Timestamp field value
 func (o *VerificationAllOfData) GetTimestamp() int64 {
 	if o == nil {
@@ -108,6 +109,7 @@ func (o *VerificationAllOfData) SetTimestamp(v int64) {
 	o.Timestamp = v
 }
 
+
 // GetNetwork returns the Network field value
 func (o *VerificationAllOfData) GetNetwork() FarcasterNetwork {
 	if o == nil {
@@ -130,6 +132,11 @@ func (o *VerificationAllOfData) GetNetworkOk() (*FarcasterNetwork, bool) {
 // SetNetwork sets field value
 func (o *VerificationAllOfData) SetNetwork(v FarcasterNetwork) {
 	o.Network = v
+}
+
+// GetDefaultNetwork returns the default value FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET of the Network field.
+func (o *VerificationAllOfData) GetDefaultNetwork() interface{}  {
+	return FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 }
 
 // GetVerificationAddEthAddressBody returns the VerificationAddEthAddressBody field value
@@ -156,6 +163,7 @@ func (o *VerificationAllOfData) SetVerificationAddEthAddressBody(v VerificationA
 	o.VerificationAddEthAddressBody = v
 }
 
+
 // GetType returns the Type field value
 func (o *VerificationAllOfData) GetType() MessageType {
 	if o == nil {
@@ -180,6 +188,11 @@ func (o *VerificationAllOfData) SetType(v MessageType) {
 	o.Type = v
 }
 
+// GetDefaultType returns the default value MESSAGETYPE_MESSAGE_TYPE_CAST_ADD of the Type field.
+func (o *VerificationAllOfData) GetDefaultType() interface{}  {
+	return MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
+}
+
 func (o VerificationAllOfData) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -192,8 +205,14 @@ func (o VerificationAllOfData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fid"] = o.Fid
 	toSerialize["timestamp"] = o.Timestamp
+	if _, exists := toSerialize["network"]; !exists {
+		toSerialize["network"] = o.GetDefaultNetwork()
+	}
 	toSerialize["network"] = o.Network
 	toSerialize["verificationAddEthAddressBody"] = o.VerificationAddEthAddressBody
+	if _, exists := toSerialize["type"]; !exists {
+		toSerialize["type"] = o.GetDefaultType()
+	}
 	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
@@ -210,6 +229,13 @@ func (o *VerificationAllOfData) UnmarshalJSON(data []byte) (err error) {
 		"type",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"network": o.GetDefaultNetwork,
+		"type": o.GetDefaultType,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -219,11 +245,23 @@ func (o *VerificationAllOfData) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varVerificationAllOfData := _VerificationAllOfData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

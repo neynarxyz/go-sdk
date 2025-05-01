@@ -74,6 +74,7 @@ func (o *FrameValidateAnalyticsInteractorsInteractorsInner) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetUsername returns the Username field value
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetUsername() string {
 	if o == nil {
@@ -98,6 +99,7 @@ func (o *FrameValidateAnalyticsInteractorsInteractorsInner) SetUsername(v string
 	o.Username = v
 }
 
+
 // GetInteractionCount returns the InteractionCount field value
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetInteractionCount() float32 {
 	if o == nil {
@@ -121,6 +123,7 @@ func (o *FrameValidateAnalyticsInteractorsInteractorsInner) GetInteractionCountO
 func (o *FrameValidateAnalyticsInteractorsInteractorsInner) SetInteractionCount(v float32) {
 	o.InteractionCount = v
 }
+
 
 func (o FrameValidateAnalyticsInteractorsInteractorsInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -148,6 +151,11 @@ func (o *FrameValidateAnalyticsInteractorsInteractorsInner) UnmarshalJSON(data [
 		"interaction_count",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -157,11 +165,23 @@ func (o *FrameValidateAnalyticsInteractorsInteractorsInner) UnmarshalJSON(data [
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFrameValidateAnalyticsInteractorsInteractorsInner := _FrameValidateAnalyticsInteractorsInteractorsInner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

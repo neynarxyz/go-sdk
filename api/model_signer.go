@@ -112,6 +112,7 @@ func (o *Signer) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
 
+
 // GetPublicKey returns the PublicKey field value
 func (o *Signer) GetPublicKey() string {
 	if o == nil {
@@ -136,6 +137,7 @@ func (o *Signer) SetPublicKey(v string) {
 	o.PublicKey = v
 }
 
+
 // GetStatus returns the Status field value
 func (o *Signer) GetStatus() string {
 	if o == nil {
@@ -159,6 +161,7 @@ func (o *Signer) GetStatusOk() (*string, bool) {
 func (o *Signer) SetStatus(v string) {
 	o.Status = v
 }
+
 
 // GetSignerApprovalUrl returns the SignerApprovalUrl field value if set, zero value otherwise.
 func (o *Signer) GetSignerApprovalUrl() string {
@@ -294,6 +297,11 @@ func (o *Signer) UnmarshalJSON(data []byte) (err error) {
 		"status",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -303,11 +311,23 @@ func (o *Signer) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varSigner := _Signer{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

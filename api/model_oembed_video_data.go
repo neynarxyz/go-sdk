@@ -98,6 +98,7 @@ func (o *OembedVideoData) SetType(v string) {
 	o.Type = v
 }
 
+
 // GetVersion returns the Version field value
 func (o *OembedVideoData) GetVersion() string {
 	if o == nil {
@@ -121,6 +122,7 @@ func (o *OembedVideoData) GetVersionOk() (*string, bool) {
 func (o *OembedVideoData) SetVersion(v string) {
 	o.Version = v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *OembedVideoData) GetTitle() string {
@@ -436,6 +438,7 @@ func (o *OembedVideoData) SetHtml(v string) {
 	o.Html.Set(&v)
 }
 
+
 // GetWidth returns the Width field value
 // If the value is explicit nil, the zero value for float32 will be returned
 func (o *OembedVideoData) GetWidth() float32 {
@@ -462,6 +465,7 @@ func (o *OembedVideoData) SetWidth(v float32) {
 	o.Width.Set(&v)
 }
 
+
 // GetHeight returns the Height field value
 // If the value is explicit nil, the zero value for float32 will be returned
 func (o *OembedVideoData) GetHeight() float32 {
@@ -487,6 +491,7 @@ func (o *OembedVideoData) GetHeightOk() (*float32, bool) {
 func (o *OembedVideoData) SetHeight(v float32) {
 	o.Height.Set(&v)
 }
+
 
 func (o OembedVideoData) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -545,6 +550,11 @@ func (o *OembedVideoData) UnmarshalJSON(data []byte) (err error) {
 		"height",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -554,11 +564,23 @@ func (o *OembedVideoData) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varOembedVideoData := _OembedVideoData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

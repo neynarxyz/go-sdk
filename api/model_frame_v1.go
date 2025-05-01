@@ -83,6 +83,7 @@ func (o *FrameV1) SetVersion(v string) {
 	o.Version = v
 }
 
+
 // GetImage returns the Image field value
 func (o *FrameV1) GetImage() string {
 	if o == nil {
@@ -107,6 +108,7 @@ func (o *FrameV1) SetImage(v string) {
 	o.Image = v
 }
 
+
 // GetFramesUrl returns the FramesUrl field value
 func (o *FrameV1) GetFramesUrl() string {
 	if o == nil {
@@ -130,6 +132,7 @@ func (o *FrameV1) GetFramesUrlOk() (*string, bool) {
 func (o *FrameV1) SetFramesUrl(v string) {
 	o.FramesUrl = v
 }
+
 
 // GetButtons returns the Buttons field value if set, zero value otherwise.
 func (o *FrameV1) GetButtons() []FrameActionButton {
@@ -367,6 +370,11 @@ func (o *FrameV1) UnmarshalJSON(data []byte) (err error) {
 		"frames_url",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -376,11 +384,23 @@ func (o *FrameV1) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFrameV1 := _FrameV1{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

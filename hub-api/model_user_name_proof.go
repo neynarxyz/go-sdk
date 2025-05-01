@@ -83,6 +83,7 @@ func (o *UserNameProof) SetTimestamp(v int32) {
 	o.Timestamp = v
 }
 
+
 // GetName returns the Name field value
 func (o *UserNameProof) GetName() string {
 	if o == nil {
@@ -106,6 +107,7 @@ func (o *UserNameProof) GetNameOk() (*string, bool) {
 func (o *UserNameProof) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetOwner returns the Owner field value
 func (o *UserNameProof) GetOwner() string {
@@ -131,6 +133,7 @@ func (o *UserNameProof) SetOwner(v string) {
 	o.Owner = v
 }
 
+
 // GetSignature returns the Signature field value
 func (o *UserNameProof) GetSignature() string {
 	if o == nil {
@@ -154,6 +157,7 @@ func (o *UserNameProof) GetSignatureOk() (*string, bool) {
 func (o *UserNameProof) SetSignature(v string) {
 	o.Signature = v
 }
+
 
 // GetFid returns the Fid field value
 func (o *UserNameProof) GetFid() int32 {
@@ -179,6 +183,7 @@ func (o *UserNameProof) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetType returns the Type field value
 func (o *UserNameProof) GetType() UserNameType {
 	if o == nil {
@@ -203,6 +208,11 @@ func (o *UserNameProof) SetType(v UserNameType) {
 	o.Type = v
 }
 
+// GetDefaultType returns the default value USERNAMETYPE_USERNAME_TYPE_FNAME of the Type field.
+func (o *UserNameProof) GetDefaultType() interface{}  {
+	return USERNAMETYPE_USERNAME_TYPE_FNAME
+}
+
 func (o UserNameProof) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -218,6 +228,9 @@ func (o UserNameProof) ToMap() (map[string]interface{}, error) {
 	toSerialize["owner"] = o.Owner
 	toSerialize["signature"] = o.Signature
 	toSerialize["fid"] = o.Fid
+	if _, exists := toSerialize["type"]; !exists {
+		toSerialize["type"] = o.GetDefaultType()
+	}
 	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
@@ -235,6 +248,12 @@ func (o *UserNameProof) UnmarshalJSON(data []byte) (err error) {
 		"type",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"type": o.GetDefaultType,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -244,11 +263,23 @@ func (o *UserNameProof) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varUserNameProof := _UserNameProof{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -79,6 +79,7 @@ func (o *UserViewerContext) SetFollowing(v bool) {
 	o.Following = v
 }
 
+
 // GetFollowedBy returns the FollowedBy field value
 func (o *UserViewerContext) GetFollowedBy() bool {
 	if o == nil {
@@ -102,6 +103,7 @@ func (o *UserViewerContext) GetFollowedByOk() (*bool, bool) {
 func (o *UserViewerContext) SetFollowedBy(v bool) {
 	o.FollowedBy = v
 }
+
 
 // GetBlocking returns the Blocking field value
 func (o *UserViewerContext) GetBlocking() bool {
@@ -127,6 +129,7 @@ func (o *UserViewerContext) SetBlocking(v bool) {
 	o.Blocking = v
 }
 
+
 // GetBlockedBy returns the BlockedBy field value
 func (o *UserViewerContext) GetBlockedBy() bool {
 	if o == nil {
@@ -150,6 +153,7 @@ func (o *UserViewerContext) GetBlockedByOk() (*bool, bool) {
 func (o *UserViewerContext) SetBlockedBy(v bool) {
 	o.BlockedBy = v
 }
+
 
 func (o UserViewerContext) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -179,6 +183,11 @@ func (o *UserViewerContext) UnmarshalJSON(data []byte) (err error) {
 		"blocked_by",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -188,11 +197,23 @@ func (o *UserViewerContext) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varUserViewerContext := _UserViewerContext{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

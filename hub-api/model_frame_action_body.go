@@ -76,6 +76,7 @@ func (o *FrameActionBody) SetUrl(v string) {
 	o.Url = v
 }
 
+
 // GetButtonIndex returns the ButtonIndex field value
 func (o *FrameActionBody) GetButtonIndex() int32 {
 	if o == nil {
@@ -100,6 +101,7 @@ func (o *FrameActionBody) SetButtonIndex(v int32) {
 	o.ButtonIndex = v
 }
 
+
 // GetCastId returns the CastId field value
 func (o *FrameActionBody) GetCastId() CastId {
 	if o == nil {
@@ -123,6 +125,7 @@ func (o *FrameActionBody) GetCastIdOk() (*CastId, bool) {
 func (o *FrameActionBody) SetCastId(v CastId) {
 	o.CastId = v
 }
+
 
 func (o FrameActionBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -150,6 +153,11 @@ func (o *FrameActionBody) UnmarshalJSON(data []byte) (err error) {
 		"castId",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -159,11 +167,23 @@ func (o *FrameActionBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFrameActionBody := _FrameActionBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

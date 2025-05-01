@@ -79,6 +79,7 @@ func (o *WebhookSecret) SetUid(v string) {
 	o.Uid = v
 }
 
+
 // GetValue returns the Value field value
 func (o *WebhookSecret) GetValue() string {
 	if o == nil {
@@ -102,6 +103,7 @@ func (o *WebhookSecret) GetValueOk() (*string, bool) {
 func (o *WebhookSecret) SetValue(v string) {
 	o.Value = v
 }
+
 
 // GetExpiresAt returns the ExpiresAt field value
 func (o *WebhookSecret) GetExpiresAt() string {
@@ -127,6 +129,7 @@ func (o *WebhookSecret) SetExpiresAt(v string) {
 	o.ExpiresAt = v
 }
 
+
 // GetCreatedAt returns the CreatedAt field value
 func (o *WebhookSecret) GetCreatedAt() string {
 	if o == nil {
@@ -150,6 +153,7 @@ func (o *WebhookSecret) GetCreatedAtOk() (*string, bool) {
 func (o *WebhookSecret) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
+
 
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *WebhookSecret) GetUpdatedAt() string {
@@ -175,6 +179,7 @@ func (o *WebhookSecret) SetUpdatedAt(v string) {
 	o.UpdatedAt = v
 }
 
+
 // GetDeletedAt returns the DeletedAt field value
 func (o *WebhookSecret) GetDeletedAt() string {
 	if o == nil {
@@ -198,6 +203,7 @@ func (o *WebhookSecret) GetDeletedAtOk() (*string, bool) {
 func (o *WebhookSecret) SetDeletedAt(v string) {
 	o.DeletedAt = v
 }
+
 
 func (o WebhookSecret) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -231,6 +237,11 @@ func (o *WebhookSecret) UnmarshalJSON(data []byte) (err error) {
 		"deleted_at",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -240,11 +251,23 @@ func (o *WebhookSecret) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varWebhookSecret := _WebhookSecret{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

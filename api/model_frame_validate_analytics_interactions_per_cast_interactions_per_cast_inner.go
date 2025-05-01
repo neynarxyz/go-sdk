@@ -78,6 +78,7 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetS
 	o.Start = v
 }
 
+
 // GetStop returns the Stop field value
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetStop() time.Time {
 	if o == nil {
@@ -101,6 +102,7 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetS
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetStop(v time.Time) {
 	o.Stop = v
 }
+
 
 // GetTime returns the Time field value
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetTime() time.Time {
@@ -126,6 +128,7 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetT
 	o.Time = v
 }
 
+
 // GetInteractionCount returns the InteractionCount field value
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetInteractionCount() float32 {
 	if o == nil {
@@ -150,6 +153,7 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetI
 	o.InteractionCount = v
 }
 
+
 // GetCastUrl returns the CastUrl field value
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetCastUrl() string {
 	if o == nil {
@@ -173,6 +177,7 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) GetC
 func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) SetCastUrl(v string) {
 	o.CastUrl = v
 }
+
 
 func (o FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -204,6 +209,11 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) Unma
 		"cast_url",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -213,11 +223,23 @@ func (o *FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner) Unma
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner := _FrameValidateAnalyticsInteractionsPerCastInteractionsPerCastInner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -75,6 +75,11 @@ func (o *ReactionBody) SetType(v ReactionType) {
 	o.Type = v
 }
 
+// GetDefaultType returns the default value REACTIONTYPE_LIKE of the Type field.
+func (o *ReactionBody) GetDefaultType() interface{}  {
+	return REACTIONTYPE_LIKE
+}
+
 // GetTargetCastId returns the TargetCastId field value if set, zero value otherwise.
 func (o *ReactionBody) GetTargetCastId() CastId {
 	if o == nil || IsNil(o.TargetCastId) {
@@ -149,6 +154,9 @@ func (o ReactionBody) MarshalJSON() ([]byte, error) {
 
 func (o ReactionBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if _, exists := toSerialize["type"]; !exists {
+		toSerialize["type"] = o.GetDefaultType()
+	}
 	toSerialize["type"] = o.Type
 	if !IsNil(o.TargetCastId) {
 		toSerialize["targetCastId"] = o.TargetCastId
@@ -167,6 +175,12 @@ func (o *ReactionBody) UnmarshalJSON(data []byte) (err error) {
 		"type",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"type": o.GetDefaultType,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -176,11 +190,23 @@ func (o *ReactionBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varReactionBody := _ReactionBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

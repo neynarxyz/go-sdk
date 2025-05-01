@@ -87,6 +87,7 @@ func (o *OnChainEventSignerMigrated) SetType(v string) {
 	o.Type = v
 }
 
+
 // GetChainId returns the ChainId field value
 func (o *OnChainEventSignerMigrated) GetChainId() int32 {
 	if o == nil {
@@ -110,6 +111,7 @@ func (o *OnChainEventSignerMigrated) GetChainIdOk() (*int32, bool) {
 func (o *OnChainEventSignerMigrated) SetChainId(v int32) {
 	o.ChainId = v
 }
+
 
 // GetBlockNumber returns the BlockNumber field value
 func (o *OnChainEventSignerMigrated) GetBlockNumber() int32 {
@@ -135,6 +137,7 @@ func (o *OnChainEventSignerMigrated) SetBlockNumber(v int32) {
 	o.BlockNumber = v
 }
 
+
 // GetBlockHash returns the BlockHash field value
 func (o *OnChainEventSignerMigrated) GetBlockHash() string {
 	if o == nil {
@@ -158,6 +161,7 @@ func (o *OnChainEventSignerMigrated) GetBlockHashOk() (*string, bool) {
 func (o *OnChainEventSignerMigrated) SetBlockHash(v string) {
 	o.BlockHash = v
 }
+
 
 // GetBlockTimestamp returns the BlockTimestamp field value
 func (o *OnChainEventSignerMigrated) GetBlockTimestamp() int32 {
@@ -183,6 +187,7 @@ func (o *OnChainEventSignerMigrated) SetBlockTimestamp(v int32) {
 	o.BlockTimestamp = v
 }
 
+
 // GetTransactionHash returns the TransactionHash field value
 func (o *OnChainEventSignerMigrated) GetTransactionHash() string {
 	if o == nil {
@@ -206,6 +211,7 @@ func (o *OnChainEventSignerMigrated) GetTransactionHashOk() (*string, bool) {
 func (o *OnChainEventSignerMigrated) SetTransactionHash(v string) {
 	o.TransactionHash = v
 }
+
 
 // GetLogIndex returns the LogIndex field value
 func (o *OnChainEventSignerMigrated) GetLogIndex() int32 {
@@ -231,6 +237,7 @@ func (o *OnChainEventSignerMigrated) SetLogIndex(v int32) {
 	o.LogIndex = v
 }
 
+
 // GetTxIndex returns the TxIndex field value
 func (o *OnChainEventSignerMigrated) GetTxIndex() int32 {
 	if o == nil {
@@ -254,6 +261,7 @@ func (o *OnChainEventSignerMigrated) GetTxIndexOk() (*int32, bool) {
 func (o *OnChainEventSignerMigrated) SetTxIndex(v int32) {
 	o.TxIndex = v
 }
+
 
 // GetFid returns the Fid field value
 func (o *OnChainEventSignerMigrated) GetFid() int32 {
@@ -279,6 +287,7 @@ func (o *OnChainEventSignerMigrated) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetSignerMigratedEventBody returns the SignerMigratedEventBody field value
 func (o *OnChainEventSignerMigrated) GetSignerMigratedEventBody() SignerMigratedEventBody {
 	if o == nil {
@@ -302,6 +311,7 @@ func (o *OnChainEventSignerMigrated) GetSignerMigratedEventBodyOk() (*SignerMigr
 func (o *OnChainEventSignerMigrated) SetSignerMigratedEventBody(v SignerMigratedEventBody) {
 	o.SignerMigratedEventBody = v
 }
+
 
 func (o OnChainEventSignerMigrated) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -343,6 +353,11 @@ func (o *OnChainEventSignerMigrated) UnmarshalJSON(data []byte) (err error) {
 		"signerMigratedEventBody",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -352,11 +367,23 @@ func (o *OnChainEventSignerMigrated) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varOnChainEventSignerMigrated := _OnChainEventSignerMigrated{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

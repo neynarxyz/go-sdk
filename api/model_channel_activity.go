@@ -77,6 +77,7 @@ func (o *ChannelActivity) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetCastCount1d returns the CastCount1d field value
 func (o *ChannelActivity) GetCastCount1d() string {
 	if o == nil {
@@ -100,6 +101,7 @@ func (o *ChannelActivity) GetCastCount1dOk() (*string, bool) {
 func (o *ChannelActivity) SetCastCount1d(v string) {
 	o.CastCount1d = v
 }
+
 
 // GetCastCount7d returns the CastCount7d field value
 func (o *ChannelActivity) GetCastCount7d() string {
@@ -125,6 +127,7 @@ func (o *ChannelActivity) SetCastCount7d(v string) {
 	o.CastCount7d = v
 }
 
+
 // GetCastCount30d returns the CastCount30d field value
 func (o *ChannelActivity) GetCastCount30d() string {
 	if o == nil {
@@ -149,6 +152,7 @@ func (o *ChannelActivity) SetCastCount30d(v string) {
 	o.CastCount30d = v
 }
 
+
 // GetChannel returns the Channel field value
 func (o *ChannelActivity) GetChannel() Channel {
 	if o == nil {
@@ -172,6 +176,7 @@ func (o *ChannelActivity) GetChannelOk() (*Channel, bool) {
 func (o *ChannelActivity) SetChannel(v Channel) {
 	o.Channel = v
 }
+
 
 func (o ChannelActivity) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -203,6 +208,11 @@ func (o *ChannelActivity) UnmarshalJSON(data []byte) (err error) {
 		"channel",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -212,11 +222,23 @@ func (o *ChannelActivity) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varChannelActivity := _ChannelActivity{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

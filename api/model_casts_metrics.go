@@ -74,6 +74,7 @@ func (o *CastsMetrics) SetStart(v time.Time) {
 	o.Start = v
 }
 
+
 // GetResolutionInSeconds returns the ResolutionInSeconds field value
 func (o *CastsMetrics) GetResolutionInSeconds() int32 {
 	if o == nil {
@@ -98,6 +99,7 @@ func (o *CastsMetrics) SetResolutionInSeconds(v int32) {
 	o.ResolutionInSeconds = v
 }
 
+
 // GetCastCount returns the CastCount field value
 func (o *CastsMetrics) GetCastCount() int32 {
 	if o == nil {
@@ -121,6 +123,7 @@ func (o *CastsMetrics) GetCastCountOk() (*int32, bool) {
 func (o *CastsMetrics) SetCastCount(v int32) {
 	o.CastCount = v
 }
+
 
 func (o CastsMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -148,6 +151,11 @@ func (o *CastsMetrics) UnmarshalJSON(data []byte) (err error) {
 		"cast_count",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -157,11 +165,23 @@ func (o *CastsMetrics) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varCastsMetrics := _CastsMetrics{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -79,6 +79,7 @@ func (o *MessageDataUsernameProof) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetTimestamp returns the Timestamp field value
 func (o *MessageDataUsernameProof) GetTimestamp() int64 {
 	if o == nil {
@@ -103,6 +104,7 @@ func (o *MessageDataUsernameProof) SetTimestamp(v int64) {
 	o.Timestamp = v
 }
 
+
 // GetNetwork returns the Network field value
 func (o *MessageDataUsernameProof) GetNetwork() FarcasterNetwork {
 	if o == nil {
@@ -125,6 +127,11 @@ func (o *MessageDataUsernameProof) GetNetworkOk() (*FarcasterNetwork, bool) {
 // SetNetwork sets field value
 func (o *MessageDataUsernameProof) SetNetwork(v FarcasterNetwork) {
 	o.Network = v
+}
+
+// GetDefaultNetwork returns the default value FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET of the Network field.
+func (o *MessageDataUsernameProof) GetDefaultNetwork() interface{}  {
+	return FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 }
 
 // GetUsernameProofBody returns the UsernameProofBody field value
@@ -151,6 +158,7 @@ func (o *MessageDataUsernameProof) SetUsernameProofBody(v UserNameProof) {
 	o.UsernameProofBody = v
 }
 
+
 func (o MessageDataUsernameProof) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -163,6 +171,9 @@ func (o MessageDataUsernameProof) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fid"] = o.Fid
 	toSerialize["timestamp"] = o.Timestamp
+	if _, exists := toSerialize["network"]; !exists {
+		toSerialize["network"] = o.GetDefaultNetwork()
+	}
 	toSerialize["network"] = o.Network
 	toSerialize["usernameProofBody"] = o.UsernameProofBody
 	return toSerialize, nil
@@ -179,6 +190,12 @@ func (o *MessageDataUsernameProof) UnmarshalJSON(data []byte) (err error) {
 		"usernameProofBody",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"network": o.GetDefaultNetwork,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -188,11 +205,23 @@ func (o *MessageDataUsernameProof) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varMessageDataUsernameProof := _MessageDataUsernameProof{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

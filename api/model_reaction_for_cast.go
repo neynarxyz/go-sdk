@@ -76,6 +76,7 @@ func (o *ReactionForCast) SetReactionType(v string) {
 	o.ReactionType = v
 }
 
+
 // GetReactionTimestamp returns the ReactionTimestamp field value
 func (o *ReactionForCast) GetReactionTimestamp() time.Time {
 	if o == nil {
@@ -99,6 +100,7 @@ func (o *ReactionForCast) GetReactionTimestampOk() (*time.Time, bool) {
 func (o *ReactionForCast) SetReactionTimestamp(v time.Time) {
 	o.ReactionTimestamp = v
 }
+
 
 // GetObject returns the Object field value
 func (o *ReactionForCast) GetObject() string {
@@ -124,6 +126,7 @@ func (o *ReactionForCast) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetUser returns the User field value
 func (o *ReactionForCast) GetUser() User {
 	if o == nil {
@@ -147,6 +150,7 @@ func (o *ReactionForCast) GetUserOk() (*User, bool) {
 func (o *ReactionForCast) SetUser(v User) {
 	o.User = v
 }
+
 
 func (o ReactionForCast) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -176,6 +180,11 @@ func (o *ReactionForCast) UnmarshalJSON(data []byte) (err error) {
 		"user",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -185,11 +194,23 @@ func (o *ReactionForCast) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varReactionForCast := _ReactionForCast{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

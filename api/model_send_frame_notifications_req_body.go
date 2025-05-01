@@ -72,6 +72,7 @@ func (o *SendFrameNotificationsReqBody) SetTargetFids(v []int32) {
 	o.TargetFids = v
 }
 
+
 // GetNotification returns the Notification field value
 func (o *SendFrameNotificationsReqBody) GetNotification() SendFrameNotificationsReqBodyNotification {
 	if o == nil {
@@ -95,6 +96,7 @@ func (o *SendFrameNotificationsReqBody) GetNotificationOk() (*SendFrameNotificat
 func (o *SendFrameNotificationsReqBody) SetNotification(v SendFrameNotificationsReqBodyNotification) {
 	o.Notification = v
 }
+
 
 func (o SendFrameNotificationsReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -120,6 +122,11 @@ func (o *SendFrameNotificationsReqBody) UnmarshalJSON(data []byte) (err error) {
 		"notification",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -129,11 +136,23 @@ func (o *SendFrameNotificationsReqBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varSendFrameNotificationsReqBody := _SendFrameNotificationsReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

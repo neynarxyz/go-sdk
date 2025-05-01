@@ -73,6 +73,7 @@ func (o *StorageRentEventBody) SetPayer(v string) {
 	o.Payer = v
 }
 
+
 // GetUnits returns the Units field value
 func (o *StorageRentEventBody) GetUnits() int64 {
 	if o == nil {
@@ -97,6 +98,7 @@ func (o *StorageRentEventBody) SetUnits(v int64) {
 	o.Units = v
 }
 
+
 // GetExpiry returns the Expiry field value
 func (o *StorageRentEventBody) GetExpiry() int64 {
 	if o == nil {
@@ -120,6 +122,7 @@ func (o *StorageRentEventBody) GetExpiryOk() (*int64, bool) {
 func (o *StorageRentEventBody) SetExpiry(v int64) {
 	o.Expiry = v
 }
+
 
 func (o StorageRentEventBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -147,6 +150,11 @@ func (o *StorageRentEventBody) UnmarshalJSON(data []byte) (err error) {
 		"expiry",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -156,11 +164,23 @@ func (o *StorageRentEventBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varStorageRentEventBody := _StorageRentEventBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -71,6 +71,7 @@ func (o *UpdateUserReqBodyLocation) SetLatitude(v float64) {
 	o.Latitude = v
 }
 
+
 // GetLongitude returns the Longitude field value
 func (o *UpdateUserReqBodyLocation) GetLongitude() float64 {
 	if o == nil {
@@ -94,6 +95,7 @@ func (o *UpdateUserReqBodyLocation) GetLongitudeOk() (*float64, bool) {
 func (o *UpdateUserReqBodyLocation) SetLongitude(v float64) {
 	o.Longitude = v
 }
+
 
 func (o UpdateUserReqBodyLocation) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -119,6 +121,11 @@ func (o *UpdateUserReqBodyLocation) UnmarshalJSON(data []byte) (err error) {
 		"longitude",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -128,11 +135,23 @@ func (o *UpdateUserReqBodyLocation) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varUpdateUserReqBodyLocation := _UpdateUserReqBodyLocation{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

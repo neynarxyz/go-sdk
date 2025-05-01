@@ -73,6 +73,7 @@ func (o *ZodError) SetMessage(v string) {
 	o.Message = v
 }
 
+
 // GetCode returns the Code field value
 func (o *ZodError) GetCode() string {
 	if o == nil {
@@ -97,6 +98,7 @@ func (o *ZodError) SetCode(v string) {
 	o.Code = v
 }
 
+
 // GetErrors returns the Errors field value
 func (o *ZodError) GetErrors() []ZodErrorErrorsInner {
 	if o == nil {
@@ -120,6 +122,7 @@ func (o *ZodError) GetErrorsOk() ([]ZodErrorErrorsInner, bool) {
 func (o *ZodError) SetErrors(v []ZodErrorErrorsInner) {
 	o.Errors = v
 }
+
 
 func (o ZodError) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -147,6 +150,11 @@ func (o *ZodError) UnmarshalJSON(data []byte) (err error) {
 		"errors",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -156,11 +164,23 @@ func (o *ZodError) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varZodError := _ZodError{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

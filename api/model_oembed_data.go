@@ -89,6 +89,7 @@ func (o *OembedData) SetType(v string) {
 	o.Type = v
 }
 
+
 // GetVersion returns the Version field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *OembedData) GetVersion() string {
@@ -114,6 +115,7 @@ func (o *OembedData) GetVersionOk() (*string, bool) {
 func (o *OembedData) SetVersion(v string) {
 	o.Version.Set(&v)
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedData) GetTitle() string {
@@ -544,6 +546,11 @@ func (o *OembedData) UnmarshalJSON(data []byte) (err error) {
 		"version",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -553,11 +560,23 @@ func (o *OembedData) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varOembedData := _OembedData{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

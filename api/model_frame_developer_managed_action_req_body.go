@@ -109,6 +109,7 @@ func (o *FrameDeveloperManagedActionReqBody) SetAction(v FrameAction) {
 	o.Action = v
 }
 
+
 // GetSignaturePacket returns the SignaturePacket field value
 func (o *FrameDeveloperManagedActionReqBody) GetSignaturePacket() FrameSignaturePacket {
 	if o == nil {
@@ -132,6 +133,7 @@ func (o *FrameDeveloperManagedActionReqBody) GetSignaturePacketOk() (*FrameSigna
 func (o *FrameDeveloperManagedActionReqBody) SetSignaturePacket(v FrameSignaturePacket) {
 	o.SignaturePacket = v
 }
+
 
 func (o FrameDeveloperManagedActionReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -160,6 +162,11 @@ func (o *FrameDeveloperManagedActionReqBody) UnmarshalJSON(data []byte) (err err
 		"signature_packet",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -169,11 +176,23 @@ func (o *FrameDeveloperManagedActionReqBody) UnmarshalJSON(data []byte) (err err
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFrameDeveloperManagedActionReqBody := _FrameDeveloperManagedActionReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

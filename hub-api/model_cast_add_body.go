@@ -79,6 +79,7 @@ func (o *CastAddBody) SetEmbedsDeprecated(v []string) {
 	o.EmbedsDeprecated = v
 }
 
+
 // GetMentions returns the Mentions field value
 func (o *CastAddBody) GetMentions() []int32 {
 	if o == nil {
@@ -102,6 +103,7 @@ func (o *CastAddBody) GetMentionsOk() ([]int32, bool) {
 func (o *CastAddBody) SetMentions(v []int32) {
 	o.Mentions = v
 }
+
 
 // GetParentCastId returns the ParentCastId field value if set, zero value otherwise.
 func (o *CastAddBody) GetParentCastId() CastId {
@@ -191,6 +193,7 @@ func (o *CastAddBody) SetText(v string) {
 	o.Text = v
 }
 
+
 // GetMentionsPositions returns the MentionsPositions field value
 func (o *CastAddBody) GetMentionsPositions() []int64 {
 	if o == nil {
@@ -215,6 +218,7 @@ func (o *CastAddBody) SetMentionsPositions(v []int64) {
 	o.MentionsPositions = v
 }
 
+
 // GetEmbeds returns the Embeds field value
 func (o *CastAddBody) GetEmbeds() []Embed {
 	if o == nil {
@@ -238,6 +242,7 @@ func (o *CastAddBody) GetEmbedsOk() ([]Embed, bool) {
 func (o *CastAddBody) SetEmbeds(v []Embed) {
 	o.Embeds = v
 }
+
 
 func (o CastAddBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -275,6 +280,11 @@ func (o *CastAddBody) UnmarshalJSON(data []byte) (err error) {
 		"embeds",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -284,11 +294,23 @@ func (o *CastAddBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varCastAddBody := _CastAddBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

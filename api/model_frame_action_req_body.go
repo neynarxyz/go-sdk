@@ -78,6 +78,7 @@ func (o *FrameActionReqBody) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
 
+
 // GetCastHash returns the CastHash field value if set, zero value otherwise.
 func (o *FrameActionReqBody) GetCastHash() string {
 	if o == nil || IsNil(o.CastHash) {
@@ -134,6 +135,7 @@ func (o *FrameActionReqBody) SetAction(v FrameAction) {
 	o.Action = v
 }
 
+
 func (o FrameActionReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -161,6 +163,11 @@ func (o *FrameActionReqBody) UnmarshalJSON(data []byte) (err error) {
 		"action",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -170,11 +177,23 @@ func (o *FrameActionReqBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFrameActionReqBody := _FrameActionReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

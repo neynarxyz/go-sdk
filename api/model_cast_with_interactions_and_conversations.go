@@ -114,6 +114,7 @@ func (o *CastWithInteractionsAndConversations) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetHash returns the Hash field value
 func (o *CastWithInteractionsAndConversations) GetHash() string {
 	if o == nil {
@@ -137,6 +138,7 @@ func (o *CastWithInteractionsAndConversations) GetHashOk() (*string, bool) {
 func (o *CastWithInteractionsAndConversations) SetHash(v string) {
 	o.Hash = v
 }
+
 
 // GetParentHash returns the ParentHash field value
 func (o *CastWithInteractionsAndConversations) GetParentHash() string {
@@ -162,6 +164,7 @@ func (o *CastWithInteractionsAndConversations) SetParentHash(v string) {
 	o.ParentHash = v
 }
 
+
 // GetParentUrl returns the ParentUrl field value
 func (o *CastWithInteractionsAndConversations) GetParentUrl() string {
 	if o == nil {
@@ -185,6 +188,7 @@ func (o *CastWithInteractionsAndConversations) GetParentUrlOk() (*string, bool) 
 func (o *CastWithInteractionsAndConversations) SetParentUrl(v string) {
 	o.ParentUrl = v
 }
+
 
 // GetRootParentUrl returns the RootParentUrl field value
 func (o *CastWithInteractionsAndConversations) GetRootParentUrl() string {
@@ -210,6 +214,7 @@ func (o *CastWithInteractionsAndConversations) SetRootParentUrl(v string) {
 	o.RootParentUrl = v
 }
 
+
 // GetParentAuthor returns the ParentAuthor field value
 func (o *CastWithInteractionsAndConversations) GetParentAuthor() CastEmbeddedParentAuthor {
 	if o == nil {
@@ -234,6 +239,7 @@ func (o *CastWithInteractionsAndConversations) SetParentAuthor(v CastEmbeddedPar
 	o.ParentAuthor = v
 }
 
+
 // GetAuthor returns the Author field value
 func (o *CastWithInteractionsAndConversations) GetAuthor() User {
 	if o == nil {
@@ -257,6 +263,7 @@ func (o *CastWithInteractionsAndConversations) GetAuthorOk() (*User, bool) {
 func (o *CastWithInteractionsAndConversations) SetAuthor(v User) {
 	o.Author = v
 }
+
 
 // GetApp returns the App field value if set, zero value otherwise.
 func (o *CastWithInteractionsAndConversations) GetApp() UserDehydrated {
@@ -314,6 +321,7 @@ func (o *CastWithInteractionsAndConversations) SetText(v string) {
 	o.Text = v
 }
 
+
 // GetTimestamp returns the Timestamp field value
 func (o *CastWithInteractionsAndConversations) GetTimestamp() time.Time {
 	if o == nil {
@@ -338,6 +346,7 @@ func (o *CastWithInteractionsAndConversations) SetTimestamp(v time.Time) {
 	o.Timestamp = v
 }
 
+
 // GetEmbeds returns the Embeds field value
 func (o *CastWithInteractionsAndConversations) GetEmbeds() []Embed {
 	if o == nil {
@@ -361,6 +370,7 @@ func (o *CastWithInteractionsAndConversations) GetEmbedsOk() ([]Embed, bool) {
 func (o *CastWithInteractionsAndConversations) SetEmbeds(v []Embed) {
 	o.Embeds = v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CastWithInteractionsAndConversations) GetType() CastNotificationType {
@@ -450,6 +460,7 @@ func (o *CastWithInteractionsAndConversations) SetReactions(v CastWithInteractio
 	o.Reactions = v
 }
 
+
 // GetReplies returns the Replies field value
 func (o *CastWithInteractionsAndConversations) GetReplies() CastWithInteractionsReplies {
 	if o == nil {
@@ -473,6 +484,7 @@ func (o *CastWithInteractionsAndConversations) GetRepliesOk() (*CastWithInteract
 func (o *CastWithInteractionsAndConversations) SetReplies(v CastWithInteractionsReplies) {
 	o.Replies = v
 }
+
 
 // GetThreadHash returns the ThreadHash field value
 func (o *CastWithInteractionsAndConversations) GetThreadHash() string {
@@ -498,6 +510,7 @@ func (o *CastWithInteractionsAndConversations) SetThreadHash(v string) {
 	o.ThreadHash = v
 }
 
+
 // GetMentionedProfiles returns the MentionedProfiles field value
 func (o *CastWithInteractionsAndConversations) GetMentionedProfiles() []User {
 	if o == nil {
@@ -521,6 +534,7 @@ func (o *CastWithInteractionsAndConversations) GetMentionedProfilesOk() ([]User,
 func (o *CastWithInteractionsAndConversations) SetMentionedProfiles(v []User) {
 	o.MentionedProfiles = v
 }
+
 
 // GetMentionedProfilesRanges returns the MentionedProfilesRanges field value
 func (o *CastWithInteractionsAndConversations) GetMentionedProfilesRanges() []TextRange {
@@ -546,6 +560,7 @@ func (o *CastWithInteractionsAndConversations) SetMentionedProfilesRanges(v []Te
 	o.MentionedProfilesRanges = v
 }
 
+
 // GetMentionedChannels returns the MentionedChannels field value
 func (o *CastWithInteractionsAndConversations) GetMentionedChannels() []ChannelDehydrated {
 	if o == nil {
@@ -569,6 +584,7 @@ func (o *CastWithInteractionsAndConversations) GetMentionedChannelsOk() ([]Chann
 func (o *CastWithInteractionsAndConversations) SetMentionedChannels(v []ChannelDehydrated) {
 	o.MentionedChannels = v
 }
+
 
 // GetMentionedChannelsRanges returns the MentionedChannelsRanges field value
 func (o *CastWithInteractionsAndConversations) GetMentionedChannelsRanges() []TextRange {
@@ -594,6 +610,7 @@ func (o *CastWithInteractionsAndConversations) SetMentionedChannelsRanges(v []Te
 	o.MentionedChannelsRanges = v
 }
 
+
 // GetChannel returns the Channel field value
 func (o *CastWithInteractionsAndConversations) GetChannel() ChannelOrChannelDehydrated {
 	if o == nil {
@@ -617,6 +634,7 @@ func (o *CastWithInteractionsAndConversations) GetChannelOk() (*ChannelOrChannel
 func (o *CastWithInteractionsAndConversations) SetChannel(v ChannelOrChannelDehydrated) {
 	o.Channel = v
 }
+
 
 // GetViewerContext returns the ViewerContext field value if set, zero value otherwise.
 func (o *CastWithInteractionsAndConversations) GetViewerContext() CastViewerContext {
@@ -706,6 +724,7 @@ func (o *CastWithInteractionsAndConversations) SetDirectReplies(v []CastWithInte
 	o.DirectReplies = v
 }
 
+
 func (o CastWithInteractionsAndConversations) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -779,6 +798,11 @@ func (o *CastWithInteractionsAndConversations) UnmarshalJSON(data []byte) (err e
 		"direct_replies",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -788,11 +812,23 @@ func (o *CastWithInteractionsAndConversations) UnmarshalJSON(data []byte) (err e
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varCastWithInteractionsAndConversations := _CastWithInteractionsAndConversations{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

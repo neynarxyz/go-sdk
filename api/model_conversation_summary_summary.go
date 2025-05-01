@@ -76,6 +76,7 @@ func (o *ConversationSummarySummary) SetText(v string) {
 	o.Text = v
 }
 
+
 // GetParticipants returns the Participants field value
 func (o *ConversationSummarySummary) GetParticipants() []User {
 	if o == nil {
@@ -100,6 +101,7 @@ func (o *ConversationSummarySummary) SetParticipants(v []User) {
 	o.Participants = v
 }
 
+
 // GetMentionedProfiles returns the MentionedProfiles field value
 func (o *ConversationSummarySummary) GetMentionedProfiles() []User {
 	if o == nil {
@@ -123,6 +125,7 @@ func (o *ConversationSummarySummary) GetMentionedProfilesOk() ([]User, bool) {
 func (o *ConversationSummarySummary) SetMentionedProfiles(v []User) {
 	o.MentionedProfiles = v
 }
+
 
 func (o ConversationSummarySummary) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -150,6 +153,11 @@ func (o *ConversationSummarySummary) UnmarshalJSON(data []byte) (err error) {
 		"mentioned_profiles",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -159,11 +167,23 @@ func (o *ConversationSummarySummary) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varConversationSummarySummary := _ConversationSummarySummary{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

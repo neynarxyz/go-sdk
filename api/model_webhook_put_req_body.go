@@ -74,6 +74,7 @@ func (o *WebhookPutReqBody) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetUrl returns the Url field value
 func (o *WebhookPutReqBody) GetUrl() string {
 	if o == nil {
@@ -97,6 +98,7 @@ func (o *WebhookPutReqBody) GetUrlOk() (*string, bool) {
 func (o *WebhookPutReqBody) SetUrl(v string) {
 	o.Url = v
 }
+
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
 func (o *WebhookPutReqBody) GetSubscription() WebhookSubscriptionFilters {
@@ -154,6 +156,7 @@ func (o *WebhookPutReqBody) SetWebhookId(v string) {
 	o.WebhookId = v
 }
 
+
 func (o WebhookPutReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -183,6 +186,11 @@ func (o *WebhookPutReqBody) UnmarshalJSON(data []byte) (err error) {
 		"webhook_id",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -192,11 +200,23 @@ func (o *WebhookPutReqBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varWebhookPutReqBody := _WebhookPutReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

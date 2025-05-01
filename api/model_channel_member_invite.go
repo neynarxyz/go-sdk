@@ -76,6 +76,7 @@ func (o *ChannelMemberInvite) SetChannelId(v string) {
 	o.ChannelId = v
 }
 
+
 // GetRole returns the Role field value
 func (o *ChannelMemberInvite) GetRole() ChannelMemberRole {
 	if o == nil {
@@ -99,6 +100,7 @@ func (o *ChannelMemberInvite) GetRoleOk() (*ChannelMemberRole, bool) {
 func (o *ChannelMemberInvite) SetRole(v ChannelMemberRole) {
 	o.Role = v
 }
+
 
 // GetInviter returns the Inviter field value
 func (o *ChannelMemberInvite) GetInviter() User {
@@ -124,6 +126,7 @@ func (o *ChannelMemberInvite) SetInviter(v User) {
 	o.Inviter = v
 }
 
+
 // GetInvited returns the Invited field value
 func (o *ChannelMemberInvite) GetInvited() User {
 	if o == nil {
@@ -147,6 +150,7 @@ func (o *ChannelMemberInvite) GetInvitedOk() (*User, bool) {
 func (o *ChannelMemberInvite) SetInvited(v User) {
 	o.Invited = v
 }
+
 
 func (o ChannelMemberInvite) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -176,6 +180,11 @@ func (o *ChannelMemberInvite) UnmarshalJSON(data []byte) (err error) {
 		"invited",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -185,11 +194,23 @@ func (o *ChannelMemberInvite) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varChannelMemberInvite := _ChannelMemberInvite{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

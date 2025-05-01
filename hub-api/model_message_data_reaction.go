@@ -80,6 +80,7 @@ func (o *MessageDataReaction) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetTimestamp returns the Timestamp field value
 func (o *MessageDataReaction) GetTimestamp() int64 {
 	if o == nil {
@@ -104,6 +105,7 @@ func (o *MessageDataReaction) SetTimestamp(v int64) {
 	o.Timestamp = v
 }
 
+
 // GetNetwork returns the Network field value
 func (o *MessageDataReaction) GetNetwork() FarcasterNetwork {
 	if o == nil {
@@ -126,6 +128,11 @@ func (o *MessageDataReaction) GetNetworkOk() (*FarcasterNetwork, bool) {
 // SetNetwork sets field value
 func (o *MessageDataReaction) SetNetwork(v FarcasterNetwork) {
 	o.Network = v
+}
+
+// GetDefaultNetwork returns the default value FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET of the Network field.
+func (o *MessageDataReaction) GetDefaultNetwork() interface{}  {
+	return FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 }
 
 // GetReactionBody returns the ReactionBody field value
@@ -152,6 +159,7 @@ func (o *MessageDataReaction) SetReactionBody(v ReactionBody) {
 	o.ReactionBody = v
 }
 
+
 func (o MessageDataReaction) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -164,6 +172,9 @@ func (o MessageDataReaction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fid"] = o.Fid
 	toSerialize["timestamp"] = o.Timestamp
+	if _, exists := toSerialize["network"]; !exists {
+		toSerialize["network"] = o.GetDefaultNetwork()
+	}
 	toSerialize["network"] = o.Network
 	toSerialize["reactionBody"] = o.ReactionBody
 	return toSerialize, nil
@@ -180,6 +191,12 @@ func (o *MessageDataReaction) UnmarshalJSON(data []byte) (err error) {
 		"reactionBody",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"network": o.GetDefaultNetwork,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -189,11 +206,23 @@ func (o *MessageDataReaction) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varMessageDataReaction := _MessageDataReaction{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

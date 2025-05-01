@@ -73,6 +73,7 @@ func (o *CastDehydrated) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetHash returns the Hash field value
 func (o *CastDehydrated) GetHash() string {
 	if o == nil {
@@ -96,6 +97,7 @@ func (o *CastDehydrated) GetHashOk() (*string, bool) {
 func (o *CastDehydrated) SetHash(v string) {
 	o.Hash = v
 }
+
 
 // GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *CastDehydrated) GetAuthor() UserDehydrated {
@@ -201,6 +203,11 @@ func (o *CastDehydrated) UnmarshalJSON(data []byte) (err error) {
 		"hash",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -210,11 +217,23 @@ func (o *CastDehydrated) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varCastDehydrated := _CastDehydrated{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -74,6 +74,7 @@ func (o *MuteRecord) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetMuted returns the Muted field value
 func (o *MuteRecord) GetMuted() User {
 	if o == nil {
@@ -98,6 +99,7 @@ func (o *MuteRecord) SetMuted(v User) {
 	o.Muted = v
 }
 
+
 // GetMutedAt returns the MutedAt field value
 func (o *MuteRecord) GetMutedAt() time.Time {
 	if o == nil {
@@ -121,6 +123,7 @@ func (o *MuteRecord) GetMutedAtOk() (*time.Time, bool) {
 func (o *MuteRecord) SetMutedAt(v time.Time) {
 	o.MutedAt = v
 }
+
 
 func (o MuteRecord) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -148,6 +151,11 @@ func (o *MuteRecord) UnmarshalJSON(data []byte) (err error) {
 		"muted_at",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -157,11 +165,23 @@ func (o *MuteRecord) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varMuteRecord := _MuteRecord{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

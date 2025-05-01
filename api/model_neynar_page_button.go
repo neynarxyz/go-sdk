@@ -77,6 +77,7 @@ func (o *NeynarPageButton) SetTitle(v string) {
 	o.Title = v
 }
 
+
 // GetIndex returns the Index field value
 func (o *NeynarPageButton) GetIndex() int32 {
 	if o == nil {
@@ -101,6 +102,7 @@ func (o *NeynarPageButton) SetIndex(v int32) {
 	o.Index = v
 }
 
+
 // GetActionType returns the ActionType field value
 func (o *NeynarPageButton) GetActionType() string {
 	if o == nil {
@@ -124,6 +126,7 @@ func (o *NeynarPageButton) GetActionTypeOk() (*string, bool) {
 func (o *NeynarPageButton) SetActionType(v string) {
 	o.ActionType = v
 }
+
 
 // GetNextPage returns the NextPage field value if set, zero value otherwise.
 func (o *NeynarPageButton) GetNextPage() NeynarPageButtonNextPage {
@@ -186,6 +189,11 @@ func (o *NeynarPageButton) UnmarshalJSON(data []byte) (err error) {
 		"action_type",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -195,11 +203,23 @@ func (o *NeynarPageButton) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varNeynarPageButton := _NeynarPageButton{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

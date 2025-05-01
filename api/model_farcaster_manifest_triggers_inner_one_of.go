@@ -74,6 +74,7 @@ func (o *FarcasterManifestTriggersInnerOneOf) SetType(v string) {
 	o.Type = v
 }
 
+
 // GetId returns the Id field value
 func (o *FarcasterManifestTriggersInnerOneOf) GetId() string {
 	if o == nil {
@@ -98,6 +99,7 @@ func (o *FarcasterManifestTriggersInnerOneOf) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetUrl returns the Url field value
 func (o *FarcasterManifestTriggersInnerOneOf) GetUrl() string {
 	if o == nil {
@@ -121,6 +123,7 @@ func (o *FarcasterManifestTriggersInnerOneOf) GetUrlOk() (*string, bool) {
 func (o *FarcasterManifestTriggersInnerOneOf) SetUrl(v string) {
 	o.Url = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FarcasterManifestTriggersInnerOneOf) GetName() string {
@@ -183,6 +186,11 @@ func (o *FarcasterManifestTriggersInnerOneOf) UnmarshalJSON(data []byte) (err er
 		"url",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -192,11 +200,23 @@ func (o *FarcasterManifestTriggersInnerOneOf) UnmarshalJSON(data []byte) (err er
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFarcasterManifestTriggersInnerOneOf := _FarcasterManifestTriggersInnerOneOf{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

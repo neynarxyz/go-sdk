@@ -75,6 +75,7 @@ func (o *SubscriptionToken) SetSymbol(v string) {
 	o.Symbol = v
 }
 
+
 // GetAddress returns the Address field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *SubscriptionToken) GetAddress() string {
@@ -101,6 +102,7 @@ func (o *SubscriptionToken) SetAddress(v string) {
 	o.Address.Set(&v)
 }
 
+
 // GetDecimals returns the Decimals field value
 func (o *SubscriptionToken) GetDecimals() int32 {
 	if o == nil {
@@ -125,6 +127,7 @@ func (o *SubscriptionToken) SetDecimals(v int32) {
 	o.Decimals = v
 }
 
+
 // GetErc20 returns the Erc20 field value
 func (o *SubscriptionToken) GetErc20() bool {
 	if o == nil {
@@ -148,6 +151,7 @@ func (o *SubscriptionToken) GetErc20Ok() (*bool, bool) {
 func (o *SubscriptionToken) SetErc20(v bool) {
 	o.Erc20 = v
 }
+
 
 func (o SubscriptionToken) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -177,6 +181,11 @@ func (o *SubscriptionToken) UnmarshalJSON(data []byte) (err error) {
 		"erc20",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -186,11 +195,23 @@ func (o *SubscriptionToken) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varSubscriptionToken := _SubscriptionToken{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

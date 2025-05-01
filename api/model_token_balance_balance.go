@@ -73,6 +73,7 @@ func (o *TokenBalanceBalance) SetInToken(v string) {
 	o.InToken = v
 }
 
+
 // GetInUsdc returns the InUsdc field value
 func (o *TokenBalanceBalance) GetInUsdc() string {
 	if o == nil {
@@ -96,6 +97,7 @@ func (o *TokenBalanceBalance) GetInUsdcOk() (*string, bool) {
 func (o *TokenBalanceBalance) SetInUsdc(v string) {
 	o.InUsdc = v
 }
+
 
 func (o TokenBalanceBalance) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -121,6 +123,11 @@ func (o *TokenBalanceBalance) UnmarshalJSON(data []byte) (err error) {
 		"in_usdc",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -130,11 +137,23 @@ func (o *TokenBalanceBalance) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varTokenBalanceBalance := _TokenBalanceBalance{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

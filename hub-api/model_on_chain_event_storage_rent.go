@@ -87,6 +87,7 @@ func (o *OnChainEventStorageRent) SetType(v string) {
 	o.Type = v
 }
 
+
 // GetChainId returns the ChainId field value
 func (o *OnChainEventStorageRent) GetChainId() int32 {
 	if o == nil {
@@ -110,6 +111,7 @@ func (o *OnChainEventStorageRent) GetChainIdOk() (*int32, bool) {
 func (o *OnChainEventStorageRent) SetChainId(v int32) {
 	o.ChainId = v
 }
+
 
 // GetBlockNumber returns the BlockNumber field value
 func (o *OnChainEventStorageRent) GetBlockNumber() int32 {
@@ -135,6 +137,7 @@ func (o *OnChainEventStorageRent) SetBlockNumber(v int32) {
 	o.BlockNumber = v
 }
 
+
 // GetBlockHash returns the BlockHash field value
 func (o *OnChainEventStorageRent) GetBlockHash() string {
 	if o == nil {
@@ -158,6 +161,7 @@ func (o *OnChainEventStorageRent) GetBlockHashOk() (*string, bool) {
 func (o *OnChainEventStorageRent) SetBlockHash(v string) {
 	o.BlockHash = v
 }
+
 
 // GetBlockTimestamp returns the BlockTimestamp field value
 func (o *OnChainEventStorageRent) GetBlockTimestamp() int32 {
@@ -183,6 +187,7 @@ func (o *OnChainEventStorageRent) SetBlockTimestamp(v int32) {
 	o.BlockTimestamp = v
 }
 
+
 // GetTransactionHash returns the TransactionHash field value
 func (o *OnChainEventStorageRent) GetTransactionHash() string {
 	if o == nil {
@@ -206,6 +211,7 @@ func (o *OnChainEventStorageRent) GetTransactionHashOk() (*string, bool) {
 func (o *OnChainEventStorageRent) SetTransactionHash(v string) {
 	o.TransactionHash = v
 }
+
 
 // GetLogIndex returns the LogIndex field value
 func (o *OnChainEventStorageRent) GetLogIndex() int32 {
@@ -231,6 +237,7 @@ func (o *OnChainEventStorageRent) SetLogIndex(v int32) {
 	o.LogIndex = v
 }
 
+
 // GetTxIndex returns the TxIndex field value
 func (o *OnChainEventStorageRent) GetTxIndex() int32 {
 	if o == nil {
@@ -254,6 +261,7 @@ func (o *OnChainEventStorageRent) GetTxIndexOk() (*int32, bool) {
 func (o *OnChainEventStorageRent) SetTxIndex(v int32) {
 	o.TxIndex = v
 }
+
 
 // GetFid returns the Fid field value
 func (o *OnChainEventStorageRent) GetFid() int32 {
@@ -279,6 +287,7 @@ func (o *OnChainEventStorageRent) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetStorageRentEventBody returns the StorageRentEventBody field value
 func (o *OnChainEventStorageRent) GetStorageRentEventBody() StorageRentEventBody {
 	if o == nil {
@@ -302,6 +311,7 @@ func (o *OnChainEventStorageRent) GetStorageRentEventBodyOk() (*StorageRentEvent
 func (o *OnChainEventStorageRent) SetStorageRentEventBody(v StorageRentEventBody) {
 	o.StorageRentEventBody = v
 }
+
 
 func (o OnChainEventStorageRent) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -343,6 +353,11 @@ func (o *OnChainEventStorageRent) UnmarshalJSON(data []byte) (err error) {
 		"storageRentEventBody",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -352,11 +367,23 @@ func (o *OnChainEventStorageRent) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varOnChainEventStorageRent := _OnChainEventStorageRent{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

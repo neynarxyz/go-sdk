@@ -75,6 +75,7 @@ func (o *CastWithInteractionsReactions) SetLikes(v []ReactionLike) {
 	o.Likes = v
 }
 
+
 // GetRecasts returns the Recasts field value
 func (o *CastWithInteractionsReactions) GetRecasts() []ReactionRecast {
 	if o == nil {
@@ -98,6 +99,7 @@ func (o *CastWithInteractionsReactions) GetRecastsOk() ([]ReactionRecast, bool) 
 func (o *CastWithInteractionsReactions) SetRecasts(v []ReactionRecast) {
 	o.Recasts = v
 }
+
 
 // GetLikesCount returns the LikesCount field value
 func (o *CastWithInteractionsReactions) GetLikesCount() int32 {
@@ -123,6 +125,7 @@ func (o *CastWithInteractionsReactions) SetLikesCount(v int32) {
 	o.LikesCount = v
 }
 
+
 // GetRecastsCount returns the RecastsCount field value
 func (o *CastWithInteractionsReactions) GetRecastsCount() int32 {
 	if o == nil {
@@ -146,6 +149,7 @@ func (o *CastWithInteractionsReactions) GetRecastsCountOk() (*int32, bool) {
 func (o *CastWithInteractionsReactions) SetRecastsCount(v int32) {
 	o.RecastsCount = v
 }
+
 
 func (o CastWithInteractionsReactions) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -175,6 +179,11 @@ func (o *CastWithInteractionsReactions) UnmarshalJSON(data []byte) (err error) {
 		"recasts_count",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -184,11 +193,23 @@ func (o *CastWithInteractionsReactions) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varCastWithInteractionsReactions := _CastWithInteractionsReactions{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

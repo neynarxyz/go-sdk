@@ -73,6 +73,7 @@ func (o *BuyStorageReqBody) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetUnits returns the Units field value if set, zero value otherwise.
 func (o *BuyStorageReqBody) GetUnits() int32 {
 	if o == nil || IsNil(o.Units) {
@@ -165,6 +166,11 @@ func (o *BuyStorageReqBody) UnmarshalJSON(data []byte) (err error) {
 		"fid",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -174,11 +180,23 @@ func (o *BuyStorageReqBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varBuyStorageReqBody := _BuyStorageReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

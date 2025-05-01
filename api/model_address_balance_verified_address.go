@@ -72,6 +72,7 @@ func (o *AddressBalanceVerifiedAddress) SetAddress(v string) {
 	o.Address = v
 }
 
+
 // GetNetwork returns the Network field value
 func (o *AddressBalanceVerifiedAddress) GetNetwork() Networks {
 	if o == nil {
@@ -95,6 +96,7 @@ func (o *AddressBalanceVerifiedAddress) GetNetworkOk() (*Networks, bool) {
 func (o *AddressBalanceVerifiedAddress) SetNetwork(v Networks) {
 	o.Network = v
 }
+
 
 func (o AddressBalanceVerifiedAddress) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -120,6 +122,11 @@ func (o *AddressBalanceVerifiedAddress) UnmarshalJSON(data []byte) (err error) {
 		"network",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -129,11 +136,23 @@ func (o *AddressBalanceVerifiedAddress) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varAddressBalanceVerifiedAddress := _AddressBalanceVerifiedAddress{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

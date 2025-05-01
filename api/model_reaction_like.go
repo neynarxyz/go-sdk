@@ -72,6 +72,7 @@ func (o *ReactionLike) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetFname returns the Fname field value
 func (o *ReactionLike) GetFname() string {
 	if o == nil {
@@ -95,6 +96,7 @@ func (o *ReactionLike) GetFnameOk() (*string, bool) {
 func (o *ReactionLike) SetFname(v string) {
 	o.Fname = v
 }
+
 
 func (o ReactionLike) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -120,6 +122,11 @@ func (o *ReactionLike) UnmarshalJSON(data []byte) (err error) {
 		"fname",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -129,11 +136,23 @@ func (o *ReactionLike) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varReactionLike := _ReactionLike{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

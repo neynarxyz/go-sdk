@@ -77,6 +77,7 @@ func (o *IdRegisterEventBody) SetTo(v string) {
 	o.To = v
 }
 
+
 // GetEventType returns the EventType field value
 func (o *IdRegisterEventBody) GetEventType() IdRegisterEventType {
 	if o == nil {
@@ -99,6 +100,11 @@ func (o *IdRegisterEventBody) GetEventTypeOk() (*IdRegisterEventType, bool) {
 // SetEventType sets field value
 func (o *IdRegisterEventBody) SetEventType(v IdRegisterEventType) {
 	o.EventType = v
+}
+
+// GetDefaultEventType returns the default value IDREGISTEREVENTTYPE_ID_REGISTER_EVENT_TYPE_REGISTER of the EventType field.
+func (o *IdRegisterEventBody) GetDefaultEventType() interface{}  {
+	return IDREGISTEREVENTTYPE_ID_REGISTER_EVENT_TYPE_REGISTER
 }
 
 // GetFrom returns the From field value
@@ -125,6 +131,7 @@ func (o *IdRegisterEventBody) SetFrom(v string) {
 	o.From = v
 }
 
+
 // GetRecoveryAddress returns the RecoveryAddress field value
 func (o *IdRegisterEventBody) GetRecoveryAddress() string {
 	if o == nil {
@@ -149,6 +156,7 @@ func (o *IdRegisterEventBody) SetRecoveryAddress(v string) {
 	o.RecoveryAddress = v
 }
 
+
 func (o IdRegisterEventBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -160,6 +168,9 @@ func (o IdRegisterEventBody) MarshalJSON() ([]byte, error) {
 func (o IdRegisterEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["to"] = o.To
+	if _, exists := toSerialize["eventType"]; !exists {
+		toSerialize["eventType"] = o.GetDefaultEventType()
+	}
 	toSerialize["eventType"] = o.EventType
 	toSerialize["from"] = o.From
 	toSerialize["recoveryAddress"] = o.RecoveryAddress
@@ -177,6 +188,12 @@ func (o *IdRegisterEventBody) UnmarshalJSON(data []byte) (err error) {
 		"recoveryAddress",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"eventType": o.GetDefaultEventType,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -186,11 +203,23 @@ func (o *IdRegisterEventBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varIdRegisterEventBody := _IdRegisterEventBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -75,6 +75,7 @@ func (o *ChannelMember) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetRole returns the Role field value
 func (o *ChannelMember) GetRole() ChannelMemberRole {
 	if o == nil {
@@ -98,6 +99,7 @@ func (o *ChannelMember) GetRoleOk() (*ChannelMemberRole, bool) {
 func (o *ChannelMember) SetRole(v ChannelMemberRole) {
 	o.Role = v
 }
+
 
 // GetUser returns the User field value
 func (o *ChannelMember) GetUser() ChannelMemberUser {
@@ -123,6 +125,7 @@ func (o *ChannelMember) SetUser(v ChannelMemberUser) {
 	o.User = v
 }
 
+
 // GetChannel returns the Channel field value
 func (o *ChannelMember) GetChannel() ChannelMemberChannel {
 	if o == nil {
@@ -146,6 +149,7 @@ func (o *ChannelMember) GetChannelOk() (*ChannelMemberChannel, bool) {
 func (o *ChannelMember) SetChannel(v ChannelMemberChannel) {
 	o.Channel = v
 }
+
 
 func (o ChannelMember) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -175,6 +179,11 @@ func (o *ChannelMember) UnmarshalJSON(data []byte) (err error) {
 		"channel",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -184,11 +193,23 @@ func (o *ChannelMember) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varChannelMember := _ChannelMember{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

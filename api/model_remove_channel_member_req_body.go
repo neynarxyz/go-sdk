@@ -78,6 +78,7 @@ func (o *RemoveChannelMemberReqBody) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
 
+
 // GetChannelId returns the ChannelId field value
 func (o *RemoveChannelMemberReqBody) GetChannelId() string {
 	if o == nil {
@@ -101,6 +102,7 @@ func (o *RemoveChannelMemberReqBody) GetChannelIdOk() (*string, bool) {
 func (o *RemoveChannelMemberReqBody) SetChannelId(v string) {
 	o.ChannelId = v
 }
+
 
 // GetFid returns the Fid field value
 func (o *RemoveChannelMemberReqBody) GetFid() int32 {
@@ -126,6 +128,7 @@ func (o *RemoveChannelMemberReqBody) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetRole returns the Role field value
 func (o *RemoveChannelMemberReqBody) GetRole() ChannelMemberRole {
 	if o == nil {
@@ -149,6 +152,7 @@ func (o *RemoveChannelMemberReqBody) GetRoleOk() (*ChannelMemberRole, bool) {
 func (o *RemoveChannelMemberReqBody) SetRole(v ChannelMemberRole) {
 	o.Role = v
 }
+
 
 func (o RemoveChannelMemberReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -178,6 +182,11 @@ func (o *RemoveChannelMemberReqBody) UnmarshalJSON(data []byte) (err error) {
 		"role",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -187,11 +196,23 @@ func (o *RemoveChannelMemberReqBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varRemoveChannelMemberReqBody := _RemoveChannelMemberReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

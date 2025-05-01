@@ -73,6 +73,7 @@ func (o *AddressBalance) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetVerifiedAddress returns the VerifiedAddress field value
 func (o *AddressBalance) GetVerifiedAddress() AddressBalanceVerifiedAddress {
 	if o == nil {
@@ -97,6 +98,7 @@ func (o *AddressBalance) SetVerifiedAddress(v AddressBalanceVerifiedAddress) {
 	o.VerifiedAddress = v
 }
 
+
 // GetTokenBalances returns the TokenBalances field value
 func (o *AddressBalance) GetTokenBalances() []TokenBalance {
 	if o == nil {
@@ -120,6 +122,7 @@ func (o *AddressBalance) GetTokenBalancesOk() ([]TokenBalance, bool) {
 func (o *AddressBalance) SetTokenBalances(v []TokenBalance) {
 	o.TokenBalances = v
 }
+
 
 func (o AddressBalance) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -147,6 +150,11 @@ func (o *AddressBalance) UnmarshalJSON(data []byte) (err error) {
 		"token_balances",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -156,11 +164,23 @@ func (o *AddressBalance) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varAddressBalance := _AddressBalance{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

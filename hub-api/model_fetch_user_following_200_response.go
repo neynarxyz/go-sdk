@@ -72,6 +72,7 @@ func (o *FetchUserFollowing200Response) SetNextPageToken(v string) {
 	o.NextPageToken = v
 }
 
+
 // GetMessages returns the Messages field value
 func (o *FetchUserFollowing200Response) GetMessages() []LinkAdd {
 	if o == nil {
@@ -95,6 +96,7 @@ func (o *FetchUserFollowing200Response) GetMessagesOk() ([]LinkAdd, bool) {
 func (o *FetchUserFollowing200Response) SetMessages(v []LinkAdd) {
 	o.Messages = v
 }
+
 
 func (o FetchUserFollowing200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -120,6 +122,11 @@ func (o *FetchUserFollowing200Response) UnmarshalJSON(data []byte) (err error) {
 		"messages",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -129,11 +136,23 @@ func (o *FetchUserFollowing200Response) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFetchUserFollowing200Response := _FetchUserFollowing200Response{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

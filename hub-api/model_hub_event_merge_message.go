@@ -73,6 +73,7 @@ func (o *HubEventMergeMessage) SetType(v string) {
 	o.Type = v
 }
 
+
 // GetId returns the Id field value
 func (o *HubEventMergeMessage) GetId() int32 {
 	if o == nil {
@@ -97,6 +98,7 @@ func (o *HubEventMergeMessage) SetId(v int32) {
 	o.Id = v
 }
 
+
 // GetMergeMessageBody returns the MergeMessageBody field value
 func (o *HubEventMergeMessage) GetMergeMessageBody() MergeMessageBody {
 	if o == nil {
@@ -120,6 +122,7 @@ func (o *HubEventMergeMessage) GetMergeMessageBodyOk() (*MergeMessageBody, bool)
 func (o *HubEventMergeMessage) SetMergeMessageBody(v MergeMessageBody) {
 	o.MergeMessageBody = v
 }
+
 
 func (o HubEventMergeMessage) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -147,6 +150,11 @@ func (o *HubEventMergeMessage) UnmarshalJSON(data []byte) (err error) {
 		"mergeMessageBody",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -156,11 +164,23 @@ func (o *HubEventMergeMessage) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varHubEventMergeMessage := _HubEventMergeMessage{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -77,6 +77,7 @@ func (o *SubscriptionStatus) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetStatus returns the Status field value
 func (o *SubscriptionStatus) GetStatus() bool {
 	if o == nil {
@@ -100,6 +101,7 @@ func (o *SubscriptionStatus) GetStatusOk() (*bool, bool) {
 func (o *SubscriptionStatus) SetStatus(v bool) {
 	o.Status = v
 }
+
 
 // GetExpiresAt returns the ExpiresAt field value
 // If the value is explicit nil, the zero value for int64 will be returned
@@ -127,6 +129,7 @@ func (o *SubscriptionStatus) SetExpiresAt(v int64) {
 	o.ExpiresAt.Set(&v)
 }
 
+
 // GetSubscribedAt returns the SubscribedAt field value
 // If the value is explicit nil, the zero value for int64 will be returned
 func (o *SubscriptionStatus) GetSubscribedAt() int64 {
@@ -153,6 +156,7 @@ func (o *SubscriptionStatus) SetSubscribedAt(v int64) {
 	o.SubscribedAt.Set(&v)
 }
 
+
 // GetTier returns the Tier field value
 // If the value is explicit nil, the zero value for SubscriptionTier will be returned
 func (o *SubscriptionStatus) GetTier() SubscriptionTier {
@@ -178,6 +182,7 @@ func (o *SubscriptionStatus) GetTierOk() (*SubscriptionTier, bool) {
 func (o *SubscriptionStatus) SetTier(v SubscriptionTier) {
 	o.Tier.Set(&v)
 }
+
 
 func (o SubscriptionStatus) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -209,6 +214,11 @@ func (o *SubscriptionStatus) UnmarshalJSON(data []byte) (err error) {
 		"tier",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -218,11 +228,23 @@ func (o *SubscriptionStatus) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varSubscriptionStatus := _SubscriptionStatus{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

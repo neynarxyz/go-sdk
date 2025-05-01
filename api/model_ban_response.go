@@ -70,6 +70,7 @@ func (o *BanResponse) SetSuccess(v bool) {
 	o.Success = v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BanResponse) GetMessage() string {
 	if o == nil || IsNil(o.Message.Get()) {
@@ -137,6 +138,11 @@ func (o *BanResponse) UnmarshalJSON(data []byte) (err error) {
 		"success",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -146,11 +152,23 @@ func (o *BanResponse) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varBanResponse := _BanResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

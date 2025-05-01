@@ -74,6 +74,7 @@ func (o *FrameValidateAnalyticsInputTextInputTextsInner) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetUsername returns the Username field value
 func (o *FrameValidateAnalyticsInputTextInputTextsInner) GetUsername() string {
 	if o == nil {
@@ -98,6 +99,7 @@ func (o *FrameValidateAnalyticsInputTextInputTextsInner) SetUsername(v string) {
 	o.Username = v
 }
 
+
 // GetInputText returns the InputText field value
 func (o *FrameValidateAnalyticsInputTextInputTextsInner) GetInputText() string {
 	if o == nil {
@@ -121,6 +123,7 @@ func (o *FrameValidateAnalyticsInputTextInputTextsInner) GetInputTextOk() (*stri
 func (o *FrameValidateAnalyticsInputTextInputTextsInner) SetInputText(v string) {
 	o.InputText = v
 }
+
 
 func (o FrameValidateAnalyticsInputTextInputTextsInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -148,6 +151,11 @@ func (o *FrameValidateAnalyticsInputTextInputTextsInner) UnmarshalJSON(data []by
 		"input_text",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -157,11 +165,23 @@ func (o *FrameValidateAnalyticsInputTextInputTextsInner) UnmarshalJSON(data []by
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFrameValidateAnalyticsInputTextInputTextsInner := _FrameValidateAnalyticsInputTextInputTextsInner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

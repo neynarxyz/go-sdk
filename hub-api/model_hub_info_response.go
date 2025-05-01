@@ -80,6 +80,7 @@ func (o *HubInfoResponse) SetVersion(v string) {
 	o.Version = v
 }
 
+
 // GetIsSyncing returns the IsSyncing field value
 func (o *HubInfoResponse) GetIsSyncing() bool {
 	if o == nil {
@@ -103,6 +104,7 @@ func (o *HubInfoResponse) GetIsSyncingOk() (*bool, bool) {
 func (o *HubInfoResponse) SetIsSyncing(v bool) {
 	o.IsSyncing = v
 }
+
 
 // GetNickname returns the Nickname field value
 func (o *HubInfoResponse) GetNickname() string {
@@ -128,6 +130,7 @@ func (o *HubInfoResponse) SetNickname(v string) {
 	o.Nickname = v
 }
 
+
 // GetRootHash returns the RootHash field value
 func (o *HubInfoResponse) GetRootHash() string {
 	if o == nil {
@@ -151,6 +154,7 @@ func (o *HubInfoResponse) GetRootHashOk() (*string, bool) {
 func (o *HubInfoResponse) SetRootHash(v string) {
 	o.RootHash = v
 }
+
 
 // GetDbStats returns the DbStats field value if set, zero value otherwise.
 func (o *HubInfoResponse) GetDbStats() DbStats {
@@ -208,6 +212,7 @@ func (o *HubInfoResponse) SetPeerId(v string) {
 	o.PeerId = v
 }
 
+
 // GetHubOperatorFid returns the HubOperatorFid field value
 func (o *HubInfoResponse) GetHubOperatorFid() int32 {
 	if o == nil {
@@ -231,6 +236,7 @@ func (o *HubInfoResponse) GetHubOperatorFidOk() (*int32, bool) {
 func (o *HubInfoResponse) SetHubOperatorFid(v int32) {
 	o.HubOperatorFid = v
 }
+
 
 func (o HubInfoResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -267,6 +273,11 @@ func (o *HubInfoResponse) UnmarshalJSON(data []byte) (err error) {
 		"hubOperatorFid",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -276,11 +287,23 @@ func (o *HubInfoResponse) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varHubInfoResponse := _HubInfoResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

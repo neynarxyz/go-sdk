@@ -85,6 +85,7 @@ func (o *OnChainEventCommon) SetType(v string) {
 	o.Type = v
 }
 
+
 // GetChainId returns the ChainId field value
 func (o *OnChainEventCommon) GetChainId() int32 {
 	if o == nil {
@@ -108,6 +109,7 @@ func (o *OnChainEventCommon) GetChainIdOk() (*int32, bool) {
 func (o *OnChainEventCommon) SetChainId(v int32) {
 	o.ChainId = v
 }
+
 
 // GetBlockNumber returns the BlockNumber field value
 func (o *OnChainEventCommon) GetBlockNumber() int32 {
@@ -133,6 +135,7 @@ func (o *OnChainEventCommon) SetBlockNumber(v int32) {
 	o.BlockNumber = v
 }
 
+
 // GetBlockHash returns the BlockHash field value
 func (o *OnChainEventCommon) GetBlockHash() string {
 	if o == nil {
@@ -156,6 +159,7 @@ func (o *OnChainEventCommon) GetBlockHashOk() (*string, bool) {
 func (o *OnChainEventCommon) SetBlockHash(v string) {
 	o.BlockHash = v
 }
+
 
 // GetBlockTimestamp returns the BlockTimestamp field value
 func (o *OnChainEventCommon) GetBlockTimestamp() int32 {
@@ -181,6 +185,7 @@ func (o *OnChainEventCommon) SetBlockTimestamp(v int32) {
 	o.BlockTimestamp = v
 }
 
+
 // GetTransactionHash returns the TransactionHash field value
 func (o *OnChainEventCommon) GetTransactionHash() string {
 	if o == nil {
@@ -204,6 +209,7 @@ func (o *OnChainEventCommon) GetTransactionHashOk() (*string, bool) {
 func (o *OnChainEventCommon) SetTransactionHash(v string) {
 	o.TransactionHash = v
 }
+
 
 // GetLogIndex returns the LogIndex field value
 func (o *OnChainEventCommon) GetLogIndex() int32 {
@@ -229,6 +235,7 @@ func (o *OnChainEventCommon) SetLogIndex(v int32) {
 	o.LogIndex = v
 }
 
+
 // GetTxIndex returns the TxIndex field value
 func (o *OnChainEventCommon) GetTxIndex() int32 {
 	if o == nil {
@@ -253,6 +260,7 @@ func (o *OnChainEventCommon) SetTxIndex(v int32) {
 	o.TxIndex = v
 }
 
+
 // GetFid returns the Fid field value
 func (o *OnChainEventCommon) GetFid() int32 {
 	if o == nil {
@@ -276,6 +284,7 @@ func (o *OnChainEventCommon) GetFidOk() (*int32, bool) {
 func (o *OnChainEventCommon) SetFid(v int32) {
 	o.Fid = v
 }
+
 
 func (o OnChainEventCommon) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -315,6 +324,11 @@ func (o *OnChainEventCommon) UnmarshalJSON(data []byte) (err error) {
 		"fid",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -324,11 +338,23 @@ func (o *OnChainEventCommon) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varOnChainEventCommon := _OnChainEventCommon{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -74,6 +74,11 @@ func (o *NeynarPageInputText) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
+// GetDefaultEnabled returns the default value false of the Enabled field.
+func (o *NeynarPageInputText) GetDefaultEnabled() interface{}  {
+	return false
+}
+
 // GetPlaceholder returns the Placeholder field value if set, zero value otherwise.
 func (o *NeynarPageInputText) GetPlaceholder() string {
 	if o == nil || IsNil(o.Placeholder) {
@@ -116,6 +121,9 @@ func (o NeynarPageInputText) MarshalJSON() ([]byte, error) {
 
 func (o NeynarPageInputText) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if _, exists := toSerialize["enabled"]; !exists {
+		toSerialize["enabled"] = o.GetDefaultEnabled()
+	}
 	toSerialize["enabled"] = o.Enabled
 	if !IsNil(o.Placeholder) {
 		toSerialize["placeholder"] = o.Placeholder
@@ -131,6 +139,12 @@ func (o *NeynarPageInputText) UnmarshalJSON(data []byte) (err error) {
 		"enabled",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"enabled": o.GetDefaultEnabled,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -140,11 +154,23 @@ func (o *NeynarPageInputText) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varNeynarPageInputText := _NeynarPageInputText{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

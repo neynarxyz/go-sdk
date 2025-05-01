@@ -83,6 +83,7 @@ func (o *UserDataAdd) SetHash(v string) {
 	o.Hash = v
 }
 
+
 // GetHashScheme returns the HashScheme field value
 func (o *UserDataAdd) GetHashScheme() HashScheme {
 	if o == nil {
@@ -105,6 +106,11 @@ func (o *UserDataAdd) GetHashSchemeOk() (*HashScheme, bool) {
 // SetHashScheme sets field value
 func (o *UserDataAdd) SetHashScheme(v HashScheme) {
 	o.HashScheme = v
+}
+
+// GetDefaultHashScheme returns the default value HASHSCHEME_HASH_SCHEME_BLAKE3 of the HashScheme field.
+func (o *UserDataAdd) GetDefaultHashScheme() interface{}  {
+	return HASHSCHEME_HASH_SCHEME_BLAKE3
 }
 
 // GetSignature returns the Signature field value
@@ -131,6 +137,7 @@ func (o *UserDataAdd) SetSignature(v string) {
 	o.Signature = v
 }
 
+
 // GetSignatureScheme returns the SignatureScheme field value
 func (o *UserDataAdd) GetSignatureScheme() SignatureScheme {
 	if o == nil {
@@ -153,6 +160,11 @@ func (o *UserDataAdd) GetSignatureSchemeOk() (*SignatureScheme, bool) {
 // SetSignatureScheme sets field value
 func (o *UserDataAdd) SetSignatureScheme(v SignatureScheme) {
 	o.SignatureScheme = v
+}
+
+// GetDefaultSignatureScheme returns the default value SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519 of the SignatureScheme field.
+func (o *UserDataAdd) GetDefaultSignatureScheme() interface{}  {
+	return SIGNATURESCHEME_SIGNATURE_SCHEME_ED25519
 }
 
 // GetSigner returns the Signer field value
@@ -179,6 +191,7 @@ func (o *UserDataAdd) SetSigner(v string) {
 	o.Signer = v
 }
 
+
 // GetData returns the Data field value
 func (o *UserDataAdd) GetData() UserDataAddAllOfData {
 	if o == nil {
@@ -203,6 +216,7 @@ func (o *UserDataAdd) SetData(v UserDataAddAllOfData) {
 	o.Data = v
 }
 
+
 func (o UserDataAdd) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -214,8 +228,14 @@ func (o UserDataAdd) MarshalJSON() ([]byte, error) {
 func (o UserDataAdd) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["hash"] = o.Hash
+	if _, exists := toSerialize["hashScheme"]; !exists {
+		toSerialize["hashScheme"] = o.GetDefaultHashScheme()
+	}
 	toSerialize["hashScheme"] = o.HashScheme
 	toSerialize["signature"] = o.Signature
+	if _, exists := toSerialize["signatureScheme"]; !exists {
+		toSerialize["signatureScheme"] = o.GetDefaultSignatureScheme()
+	}
 	toSerialize["signatureScheme"] = o.SignatureScheme
 	toSerialize["signer"] = o.Signer
 	toSerialize["data"] = o.Data
@@ -235,6 +255,13 @@ func (o *UserDataAdd) UnmarshalJSON(data []byte) (err error) {
 		"data",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"hashScheme": o.GetDefaultHashScheme,
+		"signatureScheme": o.GetDefaultSignatureScheme,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -244,11 +271,23 @@ func (o *UserDataAdd) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varUserDataAdd := _UserDataAdd{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

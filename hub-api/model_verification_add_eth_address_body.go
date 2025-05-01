@@ -76,6 +76,7 @@ func (o *VerificationAddEthAddressBody) SetAddress(v string) {
 	o.Address = v
 }
 
+
 // GetEthSignature returns the EthSignature field value
 func (o *VerificationAddEthAddressBody) GetEthSignature() string {
 	if o == nil {
@@ -100,6 +101,7 @@ func (o *VerificationAddEthAddressBody) SetEthSignature(v string) {
 	o.EthSignature = v
 }
 
+
 // GetBlockHash returns the BlockHash field value
 func (o *VerificationAddEthAddressBody) GetBlockHash() string {
 	if o == nil {
@@ -123,6 +125,7 @@ func (o *VerificationAddEthAddressBody) GetBlockHashOk() (*string, bool) {
 func (o *VerificationAddEthAddressBody) SetBlockHash(v string) {
 	o.BlockHash = v
 }
+
 
 func (o VerificationAddEthAddressBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -150,6 +153,11 @@ func (o *VerificationAddEthAddressBody) UnmarshalJSON(data []byte) (err error) {
 		"blockHash",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -159,11 +167,23 @@ func (o *VerificationAddEthAddressBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varVerificationAddEthAddressBody := _VerificationAddEthAddressBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

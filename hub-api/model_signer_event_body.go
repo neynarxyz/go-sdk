@@ -79,6 +79,7 @@ func (o *SignerEventBody) SetKey(v string) {
 	o.Key = v
 }
 
+
 // GetKeyType returns the KeyType field value
 func (o *SignerEventBody) GetKeyType() int64 {
 	if o == nil {
@@ -103,6 +104,7 @@ func (o *SignerEventBody) SetKeyType(v int64) {
 	o.KeyType = v
 }
 
+
 // GetEventType returns the EventType field value
 func (o *SignerEventBody) GetEventType() SignerEventType {
 	if o == nil {
@@ -125,6 +127,11 @@ func (o *SignerEventBody) GetEventTypeOk() (*SignerEventType, bool) {
 // SetEventType sets field value
 func (o *SignerEventBody) SetEventType(v SignerEventType) {
 	o.EventType = v
+}
+
+// GetDefaultEventType returns the default value SIGNEREVENTTYPE_SIGNER_EVENT_TYPE_ADD of the EventType field.
+func (o *SignerEventBody) GetDefaultEventType() interface{}  {
+	return SIGNEREVENTTYPE_SIGNER_EVENT_TYPE_ADD
 }
 
 // GetMetadata returns the Metadata field value
@@ -151,6 +158,7 @@ func (o *SignerEventBody) SetMetadata(v string) {
 	o.Metadata = v
 }
 
+
 // GetMetadataType returns the MetadataType field value
 func (o *SignerEventBody) GetMetadataType() int64 {
 	if o == nil {
@@ -175,6 +183,7 @@ func (o *SignerEventBody) SetMetadataType(v int64) {
 	o.MetadataType = v
 }
 
+
 func (o SignerEventBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -187,6 +196,9 @@ func (o SignerEventBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["key"] = o.Key
 	toSerialize["keyType"] = o.KeyType
+	if _, exists := toSerialize["eventType"]; !exists {
+		toSerialize["eventType"] = o.GetDefaultEventType()
+	}
 	toSerialize["eventType"] = o.EventType
 	toSerialize["metadata"] = o.Metadata
 	toSerialize["metadataType"] = o.MetadataType
@@ -205,6 +217,12 @@ func (o *SignerEventBody) UnmarshalJSON(data []byte) (err error) {
 		"metadataType",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"eventType": o.GetDefaultEventType,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -214,11 +232,23 @@ func (o *SignerEventBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varSignerEventBody := _SignerEventBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

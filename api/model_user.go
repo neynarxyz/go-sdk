@@ -102,6 +102,7 @@ func (o *User) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetFid returns the Fid field value
 func (o *User) GetFid() int32 {
 	if o == nil {
@@ -126,6 +127,7 @@ func (o *User) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetUsername returns the Username field value
 func (o *User) GetUsername() string {
 	if o == nil {
@@ -149,6 +151,7 @@ func (o *User) GetUsernameOk() (*string, bool) {
 func (o *User) SetUsername(v string) {
 	o.Username = v
 }
+
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *User) GetDisplayName() string {
@@ -206,6 +209,7 @@ func (o *User) SetCustodyAddress(v string) {
 	o.CustodyAddress = v
 }
 
+
 // GetPfpUrl returns the PfpUrl field value if set, zero value otherwise.
 func (o *User) GetPfpUrl() string {
 	if o == nil || IsNil(o.PfpUrl) {
@@ -262,6 +266,7 @@ func (o *User) SetProfile(v UserProfile) {
 	o.Profile = v
 }
 
+
 // GetFollowerCount returns the FollowerCount field value
 func (o *User) GetFollowerCount() int32 {
 	if o == nil {
@@ -285,6 +290,7 @@ func (o *User) GetFollowerCountOk() (*int32, bool) {
 func (o *User) SetFollowerCount(v int32) {
 	o.FollowerCount = v
 }
+
 
 // GetFollowingCount returns the FollowingCount field value
 func (o *User) GetFollowingCount() int32 {
@@ -310,6 +316,7 @@ func (o *User) SetFollowingCount(v int32) {
 	o.FollowingCount = v
 }
 
+
 // GetVerifications returns the Verifications field value
 func (o *User) GetVerifications() []string {
 	if o == nil {
@@ -333,6 +340,7 @@ func (o *User) GetVerificationsOk() ([]string, bool) {
 func (o *User) SetVerifications(v []string) {
 	o.Verifications = v
 }
+
 
 // GetVerifiedAddresses returns the VerifiedAddresses field value
 func (o *User) GetVerifiedAddresses() UserVerifiedAddresses {
@@ -358,6 +366,7 @@ func (o *User) SetVerifiedAddresses(v UserVerifiedAddresses) {
 	o.VerifiedAddresses = v
 }
 
+
 // GetVerifiedAccounts returns the VerifiedAccounts field value
 func (o *User) GetVerifiedAccounts() []UserVerifiedAccountsInner {
 	if o == nil {
@@ -382,6 +391,7 @@ func (o *User) SetVerifiedAccounts(v []UserVerifiedAccountsInner) {
 	o.VerifiedAccounts = v
 }
 
+
 // GetPowerBadge returns the PowerBadge field value
 func (o *User) GetPowerBadge() bool {
 	if o == nil {
@@ -405,6 +415,7 @@ func (o *User) GetPowerBadgeOk() (*bool, bool) {
 func (o *User) SetPowerBadge(v bool) {
 	o.PowerBadge = v
 }
+
 
 // GetExperimental returns the Experimental field value if set, zero value otherwise.
 func (o *User) GetExperimental() UserExperimental {
@@ -461,6 +472,7 @@ func (o *User) GetScoreOk() (*float64, bool) {
 func (o *User) SetScore(v float64) {
 	o.Score = v
 }
+
 
 // GetViewerContext returns the ViewerContext field value if set, zero value otherwise.
 func (o *User) GetViewerContext() UserViewerContext {
@@ -550,6 +562,11 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 		"score",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -559,11 +576,23 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varUser := _User{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

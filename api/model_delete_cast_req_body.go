@@ -75,6 +75,7 @@ func (o *DeleteCastReqBody) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
 
+
 // GetTargetHash returns the TargetHash field value
 func (o *DeleteCastReqBody) GetTargetHash() string {
 	if o == nil {
@@ -99,6 +100,11 @@ func (o *DeleteCastReqBody) SetTargetHash(v string) {
 	o.TargetHash = v
 }
 
+// GetDefaultTargetHash returns the default value "0xfe90f9de682273e05b201629ad2338bdcd89b6be" of the TargetHash field.
+func (o *DeleteCastReqBody) GetDefaultTargetHash() interface{}  {
+	return "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
+}
+
 func (o DeleteCastReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -110,6 +116,9 @@ func (o DeleteCastReqBody) MarshalJSON() ([]byte, error) {
 func (o DeleteCastReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["signer_uuid"] = o.SignerUuid
+	if _, exists := toSerialize["target_hash"]; !exists {
+		toSerialize["target_hash"] = o.GetDefaultTargetHash()
+	}
 	toSerialize["target_hash"] = o.TargetHash
 	return toSerialize, nil
 }
@@ -123,6 +132,12 @@ func (o *DeleteCastReqBody) UnmarshalJSON(data []byte) (err error) {
 		"target_hash",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"target_hash": o.GetDefaultTargetHash,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -132,11 +147,23 @@ func (o *DeleteCastReqBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varDeleteCastReqBody := _DeleteCastReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

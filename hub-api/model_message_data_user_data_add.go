@@ -80,6 +80,7 @@ func (o *MessageDataUserDataAdd) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetTimestamp returns the Timestamp field value
 func (o *MessageDataUserDataAdd) GetTimestamp() int64 {
 	if o == nil {
@@ -104,6 +105,7 @@ func (o *MessageDataUserDataAdd) SetTimestamp(v int64) {
 	o.Timestamp = v
 }
 
+
 // GetNetwork returns the Network field value
 func (o *MessageDataUserDataAdd) GetNetwork() FarcasterNetwork {
 	if o == nil {
@@ -126,6 +128,11 @@ func (o *MessageDataUserDataAdd) GetNetworkOk() (*FarcasterNetwork, bool) {
 // SetNetwork sets field value
 func (o *MessageDataUserDataAdd) SetNetwork(v FarcasterNetwork) {
 	o.Network = v
+}
+
+// GetDefaultNetwork returns the default value FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET of the Network field.
+func (o *MessageDataUserDataAdd) GetDefaultNetwork() interface{}  {
+	return FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 }
 
 // GetUserDataBody returns the UserDataBody field value
@@ -152,6 +159,7 @@ func (o *MessageDataUserDataAdd) SetUserDataBody(v UserDataBody) {
 	o.UserDataBody = v
 }
 
+
 func (o MessageDataUserDataAdd) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -164,6 +172,9 @@ func (o MessageDataUserDataAdd) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["fid"] = o.Fid
 	toSerialize["timestamp"] = o.Timestamp
+	if _, exists := toSerialize["network"]; !exists {
+		toSerialize["network"] = o.GetDefaultNetwork()
+	}
 	toSerialize["network"] = o.Network
 	toSerialize["userDataBody"] = o.UserDataBody
 	return toSerialize, nil
@@ -180,6 +191,12 @@ func (o *MessageDataUserDataAdd) UnmarshalJSON(data []byte) (err error) {
 		"userDataBody",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"network": o.GetDefaultNetwork,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -189,11 +206,23 @@ func (o *MessageDataUserDataAdd) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varMessageDataUserDataAdd := _MessageDataUserDataAdd{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

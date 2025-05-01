@@ -80,6 +80,7 @@ func (o *NeynarFrame) SetUuid(v string) {
 	o.Uuid = v
 }
 
+
 // GetName returns the Name field value
 func (o *NeynarFrame) GetName() string {
 	if o == nil {
@@ -103,6 +104,7 @@ func (o *NeynarFrame) GetNameOk() (*string, bool) {
 func (o *NeynarFrame) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetLink returns the Link field value
 func (o *NeynarFrame) GetLink() string {
@@ -128,6 +130,7 @@ func (o *NeynarFrame) SetLink(v string) {
 	o.Link = v
 }
 
+
 // GetPages returns the Pages field value
 func (o *NeynarFrame) GetPages() []NeynarFramePage {
 	if o == nil {
@@ -151,6 +154,7 @@ func (o *NeynarFrame) GetPagesOk() ([]NeynarFramePage, bool) {
 func (o *NeynarFrame) SetPages(v []NeynarFramePage) {
 	o.Pages = v
 }
+
 
 // GetValid returns the Valid field value if set, zero value otherwise.
 func (o *NeynarFrame) GetValid() bool {
@@ -215,6 +219,11 @@ func (o *NeynarFrame) UnmarshalJSON(data []byte) (err error) {
 		"pages",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -224,11 +233,23 @@ func (o *NeynarFrame) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varNeynarFrame := _NeynarFrame{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

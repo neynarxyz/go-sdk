@@ -87,6 +87,7 @@ func (o *OnChainEventIdRegister) SetType(v string) {
 	o.Type = v
 }
 
+
 // GetChainId returns the ChainId field value
 func (o *OnChainEventIdRegister) GetChainId() int32 {
 	if o == nil {
@@ -110,6 +111,7 @@ func (o *OnChainEventIdRegister) GetChainIdOk() (*int32, bool) {
 func (o *OnChainEventIdRegister) SetChainId(v int32) {
 	o.ChainId = v
 }
+
 
 // GetBlockNumber returns the BlockNumber field value
 func (o *OnChainEventIdRegister) GetBlockNumber() int32 {
@@ -135,6 +137,7 @@ func (o *OnChainEventIdRegister) SetBlockNumber(v int32) {
 	o.BlockNumber = v
 }
 
+
 // GetBlockHash returns the BlockHash field value
 func (o *OnChainEventIdRegister) GetBlockHash() string {
 	if o == nil {
@@ -158,6 +161,7 @@ func (o *OnChainEventIdRegister) GetBlockHashOk() (*string, bool) {
 func (o *OnChainEventIdRegister) SetBlockHash(v string) {
 	o.BlockHash = v
 }
+
 
 // GetBlockTimestamp returns the BlockTimestamp field value
 func (o *OnChainEventIdRegister) GetBlockTimestamp() int32 {
@@ -183,6 +187,7 @@ func (o *OnChainEventIdRegister) SetBlockTimestamp(v int32) {
 	o.BlockTimestamp = v
 }
 
+
 // GetTransactionHash returns the TransactionHash field value
 func (o *OnChainEventIdRegister) GetTransactionHash() string {
 	if o == nil {
@@ -206,6 +211,7 @@ func (o *OnChainEventIdRegister) GetTransactionHashOk() (*string, bool) {
 func (o *OnChainEventIdRegister) SetTransactionHash(v string) {
 	o.TransactionHash = v
 }
+
 
 // GetLogIndex returns the LogIndex field value
 func (o *OnChainEventIdRegister) GetLogIndex() int32 {
@@ -231,6 +237,7 @@ func (o *OnChainEventIdRegister) SetLogIndex(v int32) {
 	o.LogIndex = v
 }
 
+
 // GetTxIndex returns the TxIndex field value
 func (o *OnChainEventIdRegister) GetTxIndex() int32 {
 	if o == nil {
@@ -254,6 +261,7 @@ func (o *OnChainEventIdRegister) GetTxIndexOk() (*int32, bool) {
 func (o *OnChainEventIdRegister) SetTxIndex(v int32) {
 	o.TxIndex = v
 }
+
 
 // GetFid returns the Fid field value
 func (o *OnChainEventIdRegister) GetFid() int32 {
@@ -279,6 +287,7 @@ func (o *OnChainEventIdRegister) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetIdRegisterEventBody returns the IdRegisterEventBody field value
 func (o *OnChainEventIdRegister) GetIdRegisterEventBody() IdRegisterEventBody {
 	if o == nil {
@@ -302,6 +311,7 @@ func (o *OnChainEventIdRegister) GetIdRegisterEventBodyOk() (*IdRegisterEventBod
 func (o *OnChainEventIdRegister) SetIdRegisterEventBody(v IdRegisterEventBody) {
 	o.IdRegisterEventBody = v
 }
+
 
 func (o OnChainEventIdRegister) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -343,6 +353,11 @@ func (o *OnChainEventIdRegister) UnmarshalJSON(data []byte) (err error) {
 		"idRegisterEventBody",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -352,11 +367,23 @@ func (o *OnChainEventIdRegister) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varOnChainEventIdRegister := _OnChainEventIdRegister{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

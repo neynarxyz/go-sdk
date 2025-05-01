@@ -76,6 +76,11 @@ func (o *PostCastResponseCast) SetHash(v string) {
 	o.Hash = v
 }
 
+// GetDefaultHash returns the default value "0xfe90f9de682273e05b201629ad2338bdcd89b6be" of the Hash field.
+func (o *PostCastResponseCast) GetDefaultHash() interface{}  {
+	return "0xfe90f9de682273e05b201629ad2338bdcd89b6be"
+}
+
 // GetAuthor returns the Author field value
 func (o *PostCastResponseCast) GetAuthor() CastEmbeddedParentAuthor {
 	if o == nil {
@@ -99,6 +104,7 @@ func (o *PostCastResponseCast) GetAuthorOk() (*CastEmbeddedParentAuthor, bool) {
 func (o *PostCastResponseCast) SetAuthor(v CastEmbeddedParentAuthor) {
 	o.Author = v
 }
+
 
 // GetText returns the Text field value
 func (o *PostCastResponseCast) GetText() string {
@@ -124,6 +130,7 @@ func (o *PostCastResponseCast) SetText(v string) {
 	o.Text = v
 }
 
+
 func (o PostCastResponseCast) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -134,6 +141,9 @@ func (o PostCastResponseCast) MarshalJSON() ([]byte, error) {
 
 func (o PostCastResponseCast) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if _, exists := toSerialize["hash"]; !exists {
+		toSerialize["hash"] = o.GetDefaultHash()
+	}
 	toSerialize["hash"] = o.Hash
 	toSerialize["author"] = o.Author
 	toSerialize["text"] = o.Text
@@ -150,6 +160,12 @@ func (o *PostCastResponseCast) UnmarshalJSON(data []byte) (err error) {
 		"text",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"hash": o.GetDefaultHash,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -159,11 +175,23 @@ func (o *PostCastResponseCast) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varPostCastResponseCast := _PostCastResponseCast{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

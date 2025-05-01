@@ -71,6 +71,7 @@ func (o *TextRange) SetStart(v float32) {
 	o.Start = v
 }
 
+
 // GetEnd returns the End field value
 func (o *TextRange) GetEnd() float32 {
 	if o == nil {
@@ -94,6 +95,7 @@ func (o *TextRange) GetEndOk() (*float32, bool) {
 func (o *TextRange) SetEnd(v float32) {
 	o.End = v
 }
+
 
 func (o TextRange) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -119,6 +121,11 @@ func (o *TextRange) UnmarshalJSON(data []byte) (err error) {
 		"end",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -128,11 +135,23 @@ func (o *TextRange) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varTextRange := _TextRange{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

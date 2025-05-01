@@ -71,6 +71,7 @@ func (o *FollowersResponse) SetUsers(v []Follower) {
 	o.Users = v
 }
 
+
 // GetNext returns the Next field value
 func (o *FollowersResponse) GetNext() NextCursor {
 	if o == nil {
@@ -94,6 +95,7 @@ func (o *FollowersResponse) GetNextOk() (*NextCursor, bool) {
 func (o *FollowersResponse) SetNext(v NextCursor) {
 	o.Next = v
 }
+
 
 func (o FollowersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -119,6 +121,11 @@ func (o *FollowersResponse) UnmarshalJSON(data []byte) (err error) {
 		"next",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -128,11 +135,23 @@ func (o *FollowersResponse) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFollowersResponse := _FollowersResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

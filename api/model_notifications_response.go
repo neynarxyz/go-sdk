@@ -73,6 +73,7 @@ func (o *NotificationsResponse) SetUnseenNotificationsCount(v int32) {
 	o.UnseenNotificationsCount = v
 }
 
+
 // GetNotifications returns the Notifications field value
 func (o *NotificationsResponse) GetNotifications() []Notification {
 	if o == nil {
@@ -97,6 +98,7 @@ func (o *NotificationsResponse) SetNotifications(v []Notification) {
 	o.Notifications = v
 }
 
+
 // GetNext returns the Next field value
 func (o *NotificationsResponse) GetNext() NextCursor {
 	if o == nil {
@@ -120,6 +122,7 @@ func (o *NotificationsResponse) GetNextOk() (*NextCursor, bool) {
 func (o *NotificationsResponse) SetNext(v NextCursor) {
 	o.Next = v
 }
+
 
 func (o NotificationsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -147,6 +150,11 @@ func (o *NotificationsResponse) UnmarshalJSON(data []byte) (err error) {
 		"next",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -156,11 +164,23 @@ func (o *NotificationsResponse) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varNotificationsResponse := _NotificationsResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

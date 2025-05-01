@@ -73,6 +73,7 @@ func (o *UserVerifiedAddressesPrimary) SetEthAddress(v string) {
 	o.EthAddress = v
 }
 
+
 // GetSolAddress returns the SolAddress field value
 func (o *UserVerifiedAddressesPrimary) GetSolAddress() string {
 	if o == nil {
@@ -96,6 +97,7 @@ func (o *UserVerifiedAddressesPrimary) GetSolAddressOk() (*string, bool) {
 func (o *UserVerifiedAddressesPrimary) SetSolAddress(v string) {
 	o.SolAddress = v
 }
+
 
 func (o UserVerifiedAddressesPrimary) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -121,6 +123,11 @@ func (o *UserVerifiedAddressesPrimary) UnmarshalJSON(data []byte) (err error) {
 		"sol_address",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -130,11 +137,23 @@ func (o *UserVerifiedAddressesPrimary) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varUserVerifiedAddressesPrimary := _UserVerifiedAddressesPrimary{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

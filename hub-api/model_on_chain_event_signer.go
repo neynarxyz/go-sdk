@@ -87,6 +87,7 @@ func (o *OnChainEventSigner) SetType(v string) {
 	o.Type = v
 }
 
+
 // GetChainId returns the ChainId field value
 func (o *OnChainEventSigner) GetChainId() int32 {
 	if o == nil {
@@ -110,6 +111,7 @@ func (o *OnChainEventSigner) GetChainIdOk() (*int32, bool) {
 func (o *OnChainEventSigner) SetChainId(v int32) {
 	o.ChainId = v
 }
+
 
 // GetBlockNumber returns the BlockNumber field value
 func (o *OnChainEventSigner) GetBlockNumber() int32 {
@@ -135,6 +137,7 @@ func (o *OnChainEventSigner) SetBlockNumber(v int32) {
 	o.BlockNumber = v
 }
 
+
 // GetBlockHash returns the BlockHash field value
 func (o *OnChainEventSigner) GetBlockHash() string {
 	if o == nil {
@@ -158,6 +161,7 @@ func (o *OnChainEventSigner) GetBlockHashOk() (*string, bool) {
 func (o *OnChainEventSigner) SetBlockHash(v string) {
 	o.BlockHash = v
 }
+
 
 // GetBlockTimestamp returns the BlockTimestamp field value
 func (o *OnChainEventSigner) GetBlockTimestamp() int32 {
@@ -183,6 +187,7 @@ func (o *OnChainEventSigner) SetBlockTimestamp(v int32) {
 	o.BlockTimestamp = v
 }
 
+
 // GetTransactionHash returns the TransactionHash field value
 func (o *OnChainEventSigner) GetTransactionHash() string {
 	if o == nil {
@@ -206,6 +211,7 @@ func (o *OnChainEventSigner) GetTransactionHashOk() (*string, bool) {
 func (o *OnChainEventSigner) SetTransactionHash(v string) {
 	o.TransactionHash = v
 }
+
 
 // GetLogIndex returns the LogIndex field value
 func (o *OnChainEventSigner) GetLogIndex() int32 {
@@ -231,6 +237,7 @@ func (o *OnChainEventSigner) SetLogIndex(v int32) {
 	o.LogIndex = v
 }
 
+
 // GetTxIndex returns the TxIndex field value
 func (o *OnChainEventSigner) GetTxIndex() int32 {
 	if o == nil {
@@ -254,6 +261,7 @@ func (o *OnChainEventSigner) GetTxIndexOk() (*int32, bool) {
 func (o *OnChainEventSigner) SetTxIndex(v int32) {
 	o.TxIndex = v
 }
+
 
 // GetFid returns the Fid field value
 func (o *OnChainEventSigner) GetFid() int32 {
@@ -279,6 +287,7 @@ func (o *OnChainEventSigner) SetFid(v int32) {
 	o.Fid = v
 }
 
+
 // GetSignerEventBody returns the SignerEventBody field value
 func (o *OnChainEventSigner) GetSignerEventBody() SignerEventBody {
 	if o == nil {
@@ -302,6 +311,7 @@ func (o *OnChainEventSigner) GetSignerEventBodyOk() (*SignerEventBody, bool) {
 func (o *OnChainEventSigner) SetSignerEventBody(v SignerEventBody) {
 	o.SignerEventBody = v
 }
+
 
 func (o OnChainEventSigner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -343,6 +353,11 @@ func (o *OnChainEventSigner) UnmarshalJSON(data []byte) (err error) {
 		"signerEventBody",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -352,11 +367,23 @@ func (o *OnChainEventSigner) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varOnChainEventSigner := _OnChainEventSigner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -73,6 +73,7 @@ func (o *DbStats) SetNumMessages(v int32) {
 	o.NumMessages = v
 }
 
+
 // GetNumFidEvents returns the NumFidEvents field value
 func (o *DbStats) GetNumFidEvents() int32 {
 	if o == nil {
@@ -97,6 +98,7 @@ func (o *DbStats) SetNumFidEvents(v int32) {
 	o.NumFidEvents = v
 }
 
+
 // GetNumFnameEvents returns the NumFnameEvents field value
 func (o *DbStats) GetNumFnameEvents() int32 {
 	if o == nil {
@@ -120,6 +122,7 @@ func (o *DbStats) GetNumFnameEventsOk() (*int32, bool) {
 func (o *DbStats) SetNumFnameEvents(v int32) {
 	o.NumFnameEvents = v
 }
+
 
 func (o DbStats) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -147,6 +150,11 @@ func (o *DbStats) UnmarshalJSON(data []byte) (err error) {
 		"numFnameEvents",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -156,11 +164,23 @@ func (o *DbStats) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varDbStats := _DbStats{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

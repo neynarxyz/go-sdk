@@ -82,6 +82,7 @@ func (o *RegisterSignerKeyReqBody) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
 
+
 // GetSignature returns the Signature field value
 func (o *RegisterSignerKeyReqBody) GetSignature() string {
 	if o == nil {
@@ -105,6 +106,7 @@ func (o *RegisterSignerKeyReqBody) GetSignatureOk() (*string, bool) {
 func (o *RegisterSignerKeyReqBody) SetSignature(v string) {
 	o.Signature = v
 }
+
 
 // GetAppFid returns the AppFid field value
 func (o *RegisterSignerKeyReqBody) GetAppFid() int32 {
@@ -130,6 +132,7 @@ func (o *RegisterSignerKeyReqBody) SetAppFid(v int32) {
 	o.AppFid = v
 }
 
+
 // GetDeadline returns the Deadline field value
 func (o *RegisterSignerKeyReqBody) GetDeadline() int32 {
 	if o == nil {
@@ -153,6 +156,7 @@ func (o *RegisterSignerKeyReqBody) GetDeadlineOk() (*int32, bool) {
 func (o *RegisterSignerKeyReqBody) SetDeadline(v int32) {
 	o.Deadline = v
 }
+
 
 // GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise.
 func (o *RegisterSignerKeyReqBody) GetRedirectUrl() string {
@@ -252,6 +256,11 @@ func (o *RegisterSignerKeyReqBody) UnmarshalJSON(data []byte) (err error) {
 		"deadline",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -261,11 +270,23 @@ func (o *RegisterSignerKeyReqBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varRegisterSignerKeyReqBody := _RegisterSignerKeyReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

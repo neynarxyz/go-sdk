@@ -73,6 +73,7 @@ func (o *SubscriptionMetadata) SetTitle(v string) {
 	o.Title = v
 }
 
+
 // GetSymbol returns the Symbol field value
 func (o *SubscriptionMetadata) GetSymbol() string {
 	if o == nil {
@@ -97,6 +98,7 @@ func (o *SubscriptionMetadata) SetSymbol(v string) {
 	o.Symbol = v
 }
 
+
 // GetArtUrl returns the ArtUrl field value
 func (o *SubscriptionMetadata) GetArtUrl() string {
 	if o == nil {
@@ -120,6 +122,7 @@ func (o *SubscriptionMetadata) GetArtUrlOk() (*string, bool) {
 func (o *SubscriptionMetadata) SetArtUrl(v string) {
 	o.ArtUrl = v
 }
+
 
 func (o SubscriptionMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -147,6 +150,11 @@ func (o *SubscriptionMetadata) UnmarshalJSON(data []byte) (err error) {
 		"art_url",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -156,11 +164,23 @@ func (o *SubscriptionMetadata) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varSubscriptionMetadata := _SubscriptionMetadata{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

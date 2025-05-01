@@ -87,6 +87,7 @@ func (o *ValidatedFrameAction) SetObject(v string) {
 	o.Object = v
 }
 
+
 // GetUrl returns the Url field value
 func (o *ValidatedFrameAction) GetUrl() string {
 	if o == nil {
@@ -110,6 +111,7 @@ func (o *ValidatedFrameAction) GetUrlOk() (*string, bool) {
 func (o *ValidatedFrameAction) SetUrl(v string) {
 	o.Url = v
 }
+
 
 // GetInteractor returns the Interactor field value
 func (o *ValidatedFrameAction) GetInteractor() User {
@@ -135,6 +137,7 @@ func (o *ValidatedFrameAction) SetInteractor(v User) {
 	o.Interactor = v
 }
 
+
 // GetTappedButton returns the TappedButton field value
 func (o *ValidatedFrameAction) GetTappedButton() ValidatedFrameActionTappedButton {
 	if o == nil {
@@ -158,6 +161,7 @@ func (o *ValidatedFrameAction) GetTappedButtonOk() (*ValidatedFrameActionTappedB
 func (o *ValidatedFrameAction) SetTappedButton(v ValidatedFrameActionTappedButton) {
 	o.TappedButton = v
 }
+
 
 // GetInput returns the Input field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetInput() FrameInput {
@@ -215,6 +219,7 @@ func (o *ValidatedFrameAction) SetState(v FrameState) {
 	o.State = v
 }
 
+
 // GetCast returns the Cast field value
 func (o *ValidatedFrameAction) GetCast() CastWithInteractions {
 	if o == nil {
@@ -239,6 +244,7 @@ func (o *ValidatedFrameAction) SetCast(v CastWithInteractions) {
 	o.Cast = v
 }
 
+
 // GetTimestamp returns the Timestamp field value
 func (o *ValidatedFrameAction) GetTimestamp() time.Time {
 	if o == nil {
@@ -262,6 +268,7 @@ func (o *ValidatedFrameAction) GetTimestampOk() (*time.Time, bool) {
 func (o *ValidatedFrameAction) SetTimestamp(v time.Time) {
 	o.Timestamp = v
 }
+
 
 // GetSigner returns the Signer field value if set, zero value otherwise.
 func (o *ValidatedFrameAction) GetSigner() ValidatedFrameActionSigner {
@@ -405,6 +412,11 @@ func (o *ValidatedFrameAction) UnmarshalJSON(data []byte) (err error) {
 		"timestamp",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -414,11 +426,23 @@ func (o *ValidatedFrameAction) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varValidatedFrameAction := _ValidatedFrameAction{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

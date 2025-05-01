@@ -77,6 +77,7 @@ func (o *ZodErrorErrorsInner) SetCode(v string) {
 	o.Code = v
 }
 
+
 // GetExpected returns the Expected field value
 func (o *ZodErrorErrorsInner) GetExpected() string {
 	if o == nil {
@@ -100,6 +101,7 @@ func (o *ZodErrorErrorsInner) GetExpectedOk() (*string, bool) {
 func (o *ZodErrorErrorsInner) SetExpected(v string) {
 	o.Expected = v
 }
+
 
 // GetReceived returns the Received field value
 func (o *ZodErrorErrorsInner) GetReceived() string {
@@ -125,6 +127,7 @@ func (o *ZodErrorErrorsInner) SetReceived(v string) {
 	o.Received = v
 }
 
+
 // GetPath returns the Path field value
 func (o *ZodErrorErrorsInner) GetPath() []string {
 	if o == nil {
@@ -149,6 +152,7 @@ func (o *ZodErrorErrorsInner) SetPath(v []string) {
 	o.Path = v
 }
 
+
 // GetMessage returns the Message field value
 func (o *ZodErrorErrorsInner) GetMessage() string {
 	if o == nil {
@@ -172,6 +176,7 @@ func (o *ZodErrorErrorsInner) GetMessageOk() (*string, bool) {
 func (o *ZodErrorErrorsInner) SetMessage(v string) {
 	o.Message = v
 }
+
 
 func (o ZodErrorErrorsInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -203,6 +208,11 @@ func (o *ZodErrorErrorsInner) UnmarshalJSON(data []byte) (err error) {
 		"message",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -212,11 +222,23 @@ func (o *ZodErrorErrorsInner) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varZodErrorErrorsInner := _ZodErrorErrorsInner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

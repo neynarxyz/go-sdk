@@ -74,6 +74,7 @@ func (o *RegisterUserResponse) SetSuccess(v bool) {
 	o.Success = v
 }
 
+
 // GetMessage returns the Message field value
 func (o *RegisterUserResponse) GetMessage() string {
 	if o == nil {
@@ -98,6 +99,7 @@ func (o *RegisterUserResponse) SetMessage(v string) {
 	o.Message = v
 }
 
+
 // GetSigner returns the Signer field value
 func (o *RegisterUserResponse) GetSigner() Signer {
 	if o == nil {
@@ -121,6 +123,7 @@ func (o *RegisterUserResponse) GetSignerOk() (*Signer, bool) {
 func (o *RegisterUserResponse) SetSigner(v Signer) {
 	o.Signer = v
 }
+
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *RegisterUserResponse) GetUser() User {
@@ -183,6 +186,11 @@ func (o *RegisterUserResponse) UnmarshalJSON(data []byte) (err error) {
 		"signer",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -192,11 +200,23 @@ func (o *RegisterUserResponse) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varRegisterUserResponse := _RegisterUserResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

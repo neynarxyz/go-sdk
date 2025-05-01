@@ -87,6 +87,7 @@ func (o *AddVerificationReqBody) SetSignerUuid(v string) {
 	o.SignerUuid = v
 }
 
+
 // GetAddress returns the Address field value
 func (o *AddVerificationReqBody) GetAddress() string {
 	if o == nil {
@@ -110,6 +111,7 @@ func (o *AddVerificationReqBody) GetAddressOk() (*string, bool) {
 func (o *AddVerificationReqBody) SetAddress(v string) {
 	o.Address = v
 }
+
 
 // GetBlockHash returns the BlockHash field value
 func (o *AddVerificationReqBody) GetBlockHash() string {
@@ -135,6 +137,7 @@ func (o *AddVerificationReqBody) SetBlockHash(v string) {
 	o.BlockHash = v
 }
 
+
 // GetEthSignature returns the EthSignature field value
 func (o *AddVerificationReqBody) GetEthSignature() string {
 	if o == nil {
@@ -158,6 +161,7 @@ func (o *AddVerificationReqBody) GetEthSignatureOk() (*string, bool) {
 func (o *AddVerificationReqBody) SetEthSignature(v string) {
 	o.EthSignature = v
 }
+
 
 // GetVerificationType returns the VerificationType field value if set, zero value otherwise.
 func (o *AddVerificationReqBody) GetVerificationType() VerificationType {
@@ -257,6 +261,11 @@ func (o *AddVerificationReqBody) UnmarshalJSON(data []byte) (err error) {
 		"eth_signature",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -266,11 +275,23 @@ func (o *AddVerificationReqBody) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varAddVerificationReqBody := _AddVerificationReqBody{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

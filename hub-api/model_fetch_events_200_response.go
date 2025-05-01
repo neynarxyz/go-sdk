@@ -71,6 +71,7 @@ func (o *FetchEvents200Response) SetNextPageEventId(v int32) {
 	o.NextPageEventId = v
 }
 
+
 // GetEvents returns the Events field value
 func (o *FetchEvents200Response) GetEvents() []HubEvent {
 	if o == nil {
@@ -94,6 +95,7 @@ func (o *FetchEvents200Response) GetEventsOk() ([]HubEvent, bool) {
 func (o *FetchEvents200Response) SetEvents(v []HubEvent) {
 	o.Events = v
 }
+
 
 func (o FetchEvents200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -119,6 +121,11 @@ func (o *FetchEvents200Response) UnmarshalJSON(data []byte) (err error) {
 		"events",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -128,11 +135,23 @@ func (o *FetchEvents200Response) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFetchEvents200Response := _FetchEvents200Response{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

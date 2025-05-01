@@ -99,6 +99,7 @@ func (o *Channel) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetUrl returns the Url field value
 func (o *Channel) GetUrl() string {
 	if o == nil {
@@ -123,6 +124,7 @@ func (o *Channel) SetUrl(v string) {
 	o.Url = v
 }
 
+
 // GetObject returns the Object field value
 func (o *Channel) GetObject() string {
 	if o == nil {
@@ -146,6 +148,7 @@ func (o *Channel) GetObjectOk() (*string, bool) {
 func (o *Channel) SetObject(v string) {
 	o.Object = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Channel) GetName() string {
@@ -736,6 +739,11 @@ func (o *Channel) UnmarshalJSON(data []byte) (err error) {
 		"object",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -745,11 +753,23 @@ func (o *Channel) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varChannel := _Channel{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

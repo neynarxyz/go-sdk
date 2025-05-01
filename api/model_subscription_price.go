@@ -73,6 +73,7 @@ func (o *SubscriptionPrice) SetPeriodDurationSeconds(v int32) {
 	o.PeriodDurationSeconds = v
 }
 
+
 // GetTokensPerPeriod returns the TokensPerPeriod field value
 func (o *SubscriptionPrice) GetTokensPerPeriod() string {
 	if o == nil {
@@ -97,6 +98,7 @@ func (o *SubscriptionPrice) SetTokensPerPeriod(v string) {
 	o.TokensPerPeriod = v
 }
 
+
 // GetInitialMintPrice returns the InitialMintPrice field value
 func (o *SubscriptionPrice) GetInitialMintPrice() string {
 	if o == nil {
@@ -120,6 +122,7 @@ func (o *SubscriptionPrice) GetInitialMintPriceOk() (*string, bool) {
 func (o *SubscriptionPrice) SetInitialMintPrice(v string) {
 	o.InitialMintPrice = v
 }
+
 
 func (o SubscriptionPrice) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -147,6 +150,11 @@ func (o *SubscriptionPrice) UnmarshalJSON(data []byte) (err error) {
 		"initial_mint_price",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -156,11 +164,23 @@ func (o *SubscriptionPrice) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varSubscriptionPrice := _SubscriptionPrice{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

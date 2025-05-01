@@ -71,6 +71,7 @@ func (o *FetchVerificationsByFid200Response) SetMessages(v []Verification) {
 	o.Messages = v
 }
 
+
 // GetNextPageToken returns the NextPageToken field value
 func (o *FetchVerificationsByFid200Response) GetNextPageToken() string {
 	if o == nil {
@@ -94,6 +95,7 @@ func (o *FetchVerificationsByFid200Response) GetNextPageTokenOk() (*string, bool
 func (o *FetchVerificationsByFid200Response) SetNextPageToken(v string) {
 	o.NextPageToken = v
 }
+
 
 func (o FetchVerificationsByFid200Response) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
@@ -119,6 +121,11 @@ func (o *FetchVerificationsByFid200Response) UnmarshalJSON(data []byte) (err err
 		"nextPageToken",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -128,11 +135,23 @@ func (o *FetchVerificationsByFid200Response) UnmarshalJSON(data []byte) (err err
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFetchVerificationsByFid200Response := _FetchVerificationsByFid200Response{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

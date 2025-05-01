@@ -80,6 +80,7 @@ func (o *FarcasterManifestFrame) SetVersion(v string) {
 	o.Version = v
 }
 
+
 // GetName returns the Name field value
 func (o *FarcasterManifestFrame) GetName() string {
 	if o == nil {
@@ -103,6 +104,7 @@ func (o *FarcasterManifestFrame) GetNameOk() (*string, bool) {
 func (o *FarcasterManifestFrame) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetHomeUrl returns the HomeUrl field value
 func (o *FarcasterManifestFrame) GetHomeUrl() string {
@@ -128,6 +130,7 @@ func (o *FarcasterManifestFrame) SetHomeUrl(v string) {
 	o.HomeUrl = v
 }
 
+
 // GetIconUrl returns the IconUrl field value
 func (o *FarcasterManifestFrame) GetIconUrl() string {
 	if o == nil {
@@ -151,6 +154,7 @@ func (o *FarcasterManifestFrame) GetIconUrlOk() (*string, bool) {
 func (o *FarcasterManifestFrame) SetIconUrl(v string) {
 	o.IconUrl = v
 }
+
 
 // GetImageUrl returns the ImageUrl field value if set, zero value otherwise.
 func (o *FarcasterManifestFrame) GetImageUrl() string {
@@ -355,6 +359,11 @@ func (o *FarcasterManifestFrame) UnmarshalJSON(data []byte) (err error) {
 		"icon_url",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -364,11 +373,23 @@ func (o *FarcasterManifestFrame) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varFarcasterManifestFrame := _FarcasterManifestFrame{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))

@@ -82,6 +82,7 @@ func (o *NeynarFramePage) SetUuid(v string) {
 	o.Uuid = v
 }
 
+
 // GetVersion returns the Version field value
 func (o *NeynarFramePage) GetVersion() string {
 	if o == nil {
@@ -104,6 +105,11 @@ func (o *NeynarFramePage) GetVersionOk() (*string, bool) {
 // SetVersion sets field value
 func (o *NeynarFramePage) SetVersion(v string) {
 	o.Version = v
+}
+
+// GetDefaultVersion returns the default value "vNext" of the Version field.
+func (o *NeynarFramePage) GetDefaultVersion() interface{}  {
+	return "vNext"
 }
 
 // GetTitle returns the Title field value
@@ -130,6 +136,7 @@ func (o *NeynarFramePage) SetTitle(v string) {
 	o.Title = v
 }
 
+
 // GetImage returns the Image field value
 func (o *NeynarFramePage) GetImage() NeynarPageImage {
 	if o == nil {
@@ -153,6 +160,7 @@ func (o *NeynarFramePage) GetImageOk() (*NeynarPageImage, bool) {
 func (o *NeynarFramePage) SetImage(v NeynarPageImage) {
 	o.Image = v
 }
+
 
 // GetButtons returns the Buttons field value if set, zero value otherwise.
 func (o *NeynarFramePage) GetButtons() []NeynarPageButton {
@@ -229,6 +237,9 @@ func (o NeynarFramePage) MarshalJSON() ([]byte, error) {
 func (o NeynarFramePage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["uuid"] = o.Uuid
+	if _, exists := toSerialize["version"]; !exists {
+		toSerialize["version"] = o.GetDefaultVersion()
+	}
 	toSerialize["version"] = o.Version
 	toSerialize["title"] = o.Title
 	toSerialize["image"] = o.Image
@@ -252,6 +263,12 @@ func (o *NeynarFramePage) UnmarshalJSON(data []byte) (err error) {
 		"image",
 	}
 
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{} {
+		"version": o.GetDefaultVersion,
+	}
+	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
 	err = json.Unmarshal(data, &allProperties)
@@ -261,11 +278,23 @@ func (o *NeynarFramePage) UnmarshalJSON(data []byte) (err error) {
 	}
 
 	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == ""{
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
 	}
 
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil{
+			return err
+		}
+	}
 	varNeynarFramePage := _NeynarFramePage{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
