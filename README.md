@@ -1,14 +1,14 @@
-# Go SDK for Neynar (beta)
+# Go SDK for Neynar
 
 `go-sdk` is an easy-to-use SDK built to interact with [Neynar APIs](https://docs.neynar.com/) via the Go programming language.
 
-**It is currently in beta/preview status.** Please flag any problems you encounter as issues here on the Github repository.
+**This SDK is currently in beta/preview status.** Please flag any problems you encounter as issues here on the Github repository.
 
 ## Usage
 
 Please refer to the READMEs of the individual Go modules for detailed instructions on how to use the SDK:
 - [api](api/README.md): The main module for interacting with the Neynar API.
-- [hub-api](hub-api/README.md): The module for interacting with Neynar's Farcaster hub API.
+- [hub-api](hub-api/README.md): The module for interacting with Neynar's Farcaster hub (Hubble/Snapchain) API.
 
 ## Contribution Guidelines
 
