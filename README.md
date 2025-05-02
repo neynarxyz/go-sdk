@@ -1,6 +1,8 @@
-# go-sdk
+# Go SDK for Neynar (beta)
 
-go-sdk is an easy-to-use SDK built to interact with [Neynar APIs](https://docs.neynar.com/) via the Go programming language.
+`go-sdk` is an easy-to-use SDK built to interact with [Neynar APIs](https://docs.neynar.com/) via the Go programming language.
+
+**It is currently in beta/preview status.** Please flag any problems you encounter as issues here on the Github repository.
 
 ## Usage
 
