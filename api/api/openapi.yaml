@@ -41221,9 +41221,10 @@ components:
       - next
       - users
     BulkUsersByAddressResponse:
-      additionalProperties:
-        items:
-          $ref: '#/components/schemas/User'
+      anyOf:
+      - additionalProperties:
+          items:
+            $ref: '#/components/schemas/User'
     FeedType:
       default: following
       enum:
@@ -47885,6 +47886,12 @@ components:
         next:
           $ref: '#/components/schemas/NextCursor'
     SubscriptionStatus:
+      example:
+        expires_at: 0
+        subscribed_at: 6
+        tier: ""
+        object: subscribed_to_dehydrated
+        status: true
       properties:
         object:
           enum:
@@ -47980,8 +47987,9 @@ components:
       - 7d
       type: string
     SubscriptionCheckResponse:
-      additionalProperties:
-        $ref: '#/components/schemas/SubscriptionStatus'
+      anyOf:
+      - additionalProperties:
+          $ref: '#/components/schemas/SubscriptionStatus'
     DeployFungibleReqBody:
       properties:
         owner:

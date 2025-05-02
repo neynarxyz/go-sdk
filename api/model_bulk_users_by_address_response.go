@@ -13,83 +13,52 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 )
-
-// checks if the BulkUsersByAddressResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &BulkUsersByAddressResponse{}
 
 // BulkUsersByAddressResponse struct for BulkUsersByAddressResponse
 type BulkUsersByAddressResponse struct {
-	AdditionalProperties map[string]interface{}
+	MapmapOfStringarrayOfUser *map[string][]User
 }
 
-type _BulkUsersByAddressResponse BulkUsersByAddressResponse
-
-// NewBulkUsersByAddressResponse instantiates a new BulkUsersByAddressResponse object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewBulkUsersByAddressResponse() *BulkUsersByAddressResponse {
-	this := BulkUsersByAddressResponse{}
-	return &this
-}
-
-// NewBulkUsersByAddressResponseWithDefaults instantiates a new BulkUsersByAddressResponse object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewBulkUsersByAddressResponseWithDefaults() *BulkUsersByAddressResponse {
-	this := BulkUsersByAddressResponse{}
-	return &this
-}
-
-func (o BulkUsersByAddressResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o BulkUsersByAddressResponse) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+// Unmarshal JSON data into any of the pointers in the struct
+func (dst *BulkUsersByAddressResponse) UnmarshalJSON(data []byte) error {
+	var err error
+	// try to unmarshal JSON data into MapmapOfStringarrayOfUser
+	err = json.Unmarshal(data, &dst.MapmapOfStringarrayOfUser)
+	if err == nil {
+		jsonMapmapOfStringarrayOfUser, _ := json.Marshal(dst.MapmapOfStringarrayOfUser)
+		if string(jsonMapmapOfStringarrayOfUser) == "{}" { // empty struct
+			dst.MapmapOfStringarrayOfUser = nil
+		} else {
+			return nil // data stored in dst.MapmapOfStringarrayOfUser, return on the first match
+		}
+	} else {
+		dst.MapmapOfStringarrayOfUser = nil
 	}
 
-	return toSerialize, nil
+	return fmt.Errorf("data failed to match schemas in anyOf(BulkUsersByAddressResponse)")
 }
 
-func (o *BulkUsersByAddressResponse) UnmarshalJSON(data []byte) (err error) {
-	varBulkUsersByAddressResponse := _BulkUsersByAddressResponse{}
-
-	err = json.Unmarshal(data, &varBulkUsersByAddressResponse)
-
-	if err != nil {
-		return err
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src BulkUsersByAddressResponse) MarshalJSON() ([]byte, error) {
+	if src.MapmapOfStringarrayOfUser != nil {
+		return json.Marshal(&src.MapmapOfStringarrayOfUser)
 	}
 
-	*o = BulkUsersByAddressResponse(varBulkUsersByAddressResponse)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
+	return nil, nil // no data in anyOf schemas
 }
 
 type NullableBulkUsersByAddressResponse struct {
-	value BulkUsersByAddressResponse
+	value *BulkUsersByAddressResponse
 	isSet bool
 }
 
-func (v NullableBulkUsersByAddressResponse) Get() BulkUsersByAddressResponse {
+func (v NullableBulkUsersByAddressResponse) Get() *BulkUsersByAddressResponse {
 	return v.value
 }
 
-func (v *NullableBulkUsersByAddressResponse) Set(val BulkUsersByAddressResponse) {
+func (v *NullableBulkUsersByAddressResponse) Set(val *BulkUsersByAddressResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -103,7 +72,7 @@ func (v *NullableBulkUsersByAddressResponse) Unset() {
 	v.isSet = false
 }
 
-func NewNullableBulkUsersByAddressResponse(val BulkUsersByAddressResponse) *NullableBulkUsersByAddressResponse {
+func NewNullableBulkUsersByAddressResponse(val *BulkUsersByAddressResponse) *NullableBulkUsersByAddressResponse {
 	return &NullableBulkUsersByAddressResponse{value: val, isSet: true}
 }
 
