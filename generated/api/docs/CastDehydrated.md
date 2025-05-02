@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Object** | **string** |  | 
 **Hash** | **string** |  | 
 **Author** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
-**App** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
+**App** | Pointer to [**NullableUserDehydrated**](UserDehydrated.md) |  | [optional] 
 
 ## Methods
 
@@ -118,6 +118,16 @@ SetApp sets App field to given value.
 
 HasApp returns a boolean if a field has been set.
 
+### SetAppNil
+
+`func (o *CastDehydrated) SetAppNil(b bool)`
+
+ SetAppNil sets the value for App to be an explicit nil
+
+### UnsetApp
+`func (o *CastDehydrated) UnsetApp()`
+
+UnsetApp ensures that no value is present for App, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **RootParentUrl** | **NullableString** |  | 
 **ParentAuthor** | [**CastParentAuthor**](CastParentAuthor.md) |  | 
 **Author** | [**User**](User.md) |  | 
-**App** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
+**App** | Pointer to [**NullableUserDehydrated**](UserDehydrated.md) |  | [optional] 
 **Text** | **string** |  | 
 **Timestamp** | **time.Time** |  | 
 **Embeds** | [**[]Embed**](Embed.md) |  | 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **MentionedProfilesRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.  | 
 **MentionedChannels** | [**[]ChannelDehydrated**](ChannelDehydrated.md) |  | 
 **MentionedChannelsRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.  | 
-**Channel** | [**ChannelOrChannelDehydrated**](ChannelOrChannelDehydrated.md) |  | 
+**Channel** | [**NullableChannelOrChannelDehydrated**](ChannelOrChannelDehydrated.md) |  | 
 **ViewerContext** | Pointer to [**CastViewerContext**](CastViewerContext.md) |  | [optional] 
 **AuthorChannelContext** | Pointer to [**ChannelUserContext**](ChannelUserContext.md) |  | [optional] 
 **DirectReplies** | **[]map[string]interface{}** | note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth. | 
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewCastWithInteractionsAndConversationsRef
 
-`func NewCastWithInteractionsAndConversationsRef(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel ChannelOrChannelDehydrated, directReplies []map[string]interface{}, ) *CastWithInteractionsAndConversationsRef`
+`func NewCastWithInteractionsAndConversationsRef(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel NullableChannelOrChannelDehydrated, directReplies []map[string]interface{}, ) *CastWithInteractionsAndConversationsRef`
 
 NewCastWithInteractionsAndConversationsRef instantiates a new CastWithInteractionsAndConversationsRef object
 This constructor will assign default values to properties that have it defined,
@@ -243,6 +243,16 @@ SetApp sets App field to given value.
 
 HasApp returns a boolean if a field has been set.
 
+### SetAppNil
+
+`func (o *CastWithInteractionsAndConversationsRef) SetAppNil(b bool)`
+
+ SetAppNil sets the value for App to be an explicit nil
+
+### UnsetApp
+`func (o *CastWithInteractionsAndConversationsRef) UnsetApp()`
+
+UnsetApp ensures that no value is present for App, not even an explicit nil
 ### GetText
 
 `func (o *CastWithInteractionsAndConversationsRef) GetText() string`
@@ -523,6 +533,16 @@ and a boolean to check if the value has been set.
 SetChannel sets Channel field to given value.
 
 
+### SetChannelNil
+
+`func (o *CastWithInteractionsAndConversationsRef) SetChannelNil(b bool)`
+
+ SetChannelNil sets the value for Channel to be an explicit nil
+
+### UnsetChannel
+`func (o *CastWithInteractionsAndConversationsRef) UnsetChannel()`
+
+UnsetChannel ensures that no value is present for Channel, not even an explicit nil
 ### GetViewerContext
 
 `func (o *CastWithInteractionsAndConversationsRef) GetViewerContext() CastViewerContext`

@@ -23,18 +23,18 @@ var _ MappedNullable = &Cast{}
 
 // Cast struct for Cast
 type Cast struct {
-	Object        string                `json:"object"`
-	Hash          string                `json:"hash"`
-	ParentHash    NullableString        `json:"parent_hash"`
-	ParentUrl     NullableString        `json:"parent_url"`
-	RootParentUrl NullableString        `json:"root_parent_url"`
-	ParentAuthor  CastParentAuthor      `json:"parent_author"`
-	Author        User                  `json:"author"`
-	App           *UserDehydrated       `json:"app,omitempty"`
-	Text          string                `json:"text"`
-	Timestamp     time.Time             `json:"timestamp"`
-	Embeds        []Embed               `json:"embeds"`
-	Type          *CastNotificationType `json:"type,omitempty"`
+	Object        string                 `json:"object"`
+	Hash          string                 `json:"hash"`
+	ParentHash    NullableString         `json:"parent_hash"`
+	ParentUrl     NullableString         `json:"parent_url"`
+	RootParentUrl NullableString         `json:"root_parent_url"`
+	ParentAuthor  CastParentAuthor       `json:"parent_author"`
+	Author        User                   `json:"author"`
+	App           NullableUserDehydrated `json:"app,omitempty"`
+	Text          string                 `json:"text"`
+	Timestamp     time.Time              `json:"timestamp"`
+	Embeds        []Embed                `json:"embeds"`
+	Type          *CastNotificationType  `json:"type,omitempty"`
 }
 
 type _Cast Cast
@@ -240,36 +240,47 @@ func (o *Cast) SetAuthor(v User) {
 	o.Author = v
 }
 
-// GetApp returns the App field value if set, zero value otherwise.
+// GetApp returns the App field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Cast) GetApp() UserDehydrated {
-	if o == nil || IsNil(o.App) {
+	if o == nil || IsNil(o.App.Get()) {
 		var ret UserDehydrated
 		return ret
 	}
-	return *o.App
+	return *o.App.Get()
 }
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Cast) GetAppOk() (*UserDehydrated, bool) {
-	if o == nil || IsNil(o.App) {
+	if o == nil {
 		return nil, false
 	}
-	return o.App, true
+	return o.App.Get(), o.App.IsSet()
 }
 
 // HasApp returns a boolean if a field has been set.
 func (o *Cast) HasApp() bool {
-	if o != nil && !IsNil(o.App) {
+	if o != nil && o.App.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetApp gets a reference to the given UserDehydrated and assigns it to the App field.
+// SetApp gets a reference to the given NullableUserDehydrated and assigns it to the App field.
 func (o *Cast) SetApp(v UserDehydrated) {
-	o.App = &v
+	o.App.Set(&v)
+}
+
+// SetAppNil sets the value for App to be an explicit nil
+func (o *Cast) SetAppNil() {
+	o.App.Set(nil)
+}
+
+// UnsetApp ensures that no value is present for App, not even an explicit nil
+func (o *Cast) UnsetApp() {
+	o.App.Unset()
 }
 
 // GetText returns the Text field value
@@ -393,8 +404,8 @@ func (o Cast) ToMap() (map[string]interface{}, error) {
 	toSerialize["root_parent_url"] = o.RootParentUrl.Get()
 	toSerialize["parent_author"] = o.ParentAuthor
 	toSerialize["author"] = o.Author
-	if !IsNil(o.App) {
-		toSerialize["app"] = o.App
+	if o.App.IsSet() {
+		toSerialize["app"] = o.App.Get()
 	}
 	toSerialize["text"] = o.Text
 	toSerialize["timestamp"] = o.Timestamp

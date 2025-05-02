@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EthAddress** | **string** | Ethereum address | 
-**SolAddress** | **string** | Solana address | 
+**EthAddress** | **NullableString** | Ethereum address | 
+**SolAddress** | **NullableString** | Solana address | 
 
 ## Methods
 
 ### NewUserVerifiedAddressesPrimary
 
-`func NewUserVerifiedAddressesPrimary(ethAddress string, solAddress string, ) *UserVerifiedAddressesPrimary`
+`func NewUserVerifiedAddressesPrimary(ethAddress NullableString, solAddress NullableString, ) *UserVerifiedAddressesPrimary`
 
 NewUserVerifiedAddressesPrimary instantiates a new UserVerifiedAddressesPrimary object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,16 @@ and a boolean to check if the value has been set.
 SetEthAddress sets EthAddress field to given value.
 
 
+### SetEthAddressNil
+
+`func (o *UserVerifiedAddressesPrimary) SetEthAddressNil(b bool)`
+
+ SetEthAddressNil sets the value for EthAddress to be an explicit nil
+
+### UnsetEthAddress
+`func (o *UserVerifiedAddressesPrimary) UnsetEthAddress()`
+
+UnsetEthAddress ensures that no value is present for EthAddress, not even an explicit nil
 ### GetSolAddress
 
 `func (o *UserVerifiedAddressesPrimary) GetSolAddress() string`
@@ -66,6 +76,16 @@ and a boolean to check if the value has been set.
 SetSolAddress sets SolAddress field to given value.
 
 
+### SetSolAddressNil
+
+`func (o *UserVerifiedAddressesPrimary) SetSolAddressNil(b bool)`
+
+ SetSolAddressNil sets the value for SolAddress to be an explicit nil
+
+### UnsetSolAddress
+`func (o *UserVerifiedAddressesPrimary) UnsetSolAddress()`
+
+UnsetSolAddress ensures that no value is present for SolAddress, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

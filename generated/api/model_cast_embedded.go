@@ -23,18 +23,18 @@ var _ MappedNullable = &CastEmbedded{}
 
 // CastEmbedded struct for CastEmbedded
 type CastEmbedded struct {
-	Hash          string                   `json:"hash"`
-	ParentHash    NullableString           `json:"parent_hash"`
-	ParentUrl     NullableString           `json:"parent_url"`
-	RootParentUrl NullableString           `json:"root_parent_url"`
-	ParentAuthor  CastEmbeddedParentAuthor `json:"parent_author"`
-	Author        UserDehydrated           `json:"author"`
-	App           *UserDehydrated          `json:"app,omitempty"`
-	Text          string                   `json:"text"`
-	Timestamp     time.Time                `json:"timestamp"`
-	Type          CastNotificationType     `json:"type"`
-	Embeds        []EmbedDeep              `json:"embeds"`
-	Channel       ChannelDehydrated        `json:"channel"`
+	Hash          string                    `json:"hash"`
+	ParentHash    NullableString            `json:"parent_hash"`
+	ParentUrl     NullableString            `json:"parent_url"`
+	RootParentUrl NullableString            `json:"root_parent_url"`
+	ParentAuthor  CastEmbeddedParentAuthor  `json:"parent_author"`
+	Author        UserDehydrated            `json:"author"`
+	App           NullableUserDehydrated    `json:"app,omitempty"`
+	Text          string                    `json:"text"`
+	Timestamp     time.Time                 `json:"timestamp"`
+	Type          CastNotificationType      `json:"type"`
+	Embeds        []EmbedDeep               `json:"embeds"`
+	Channel       NullableChannelDehydrated `json:"channel"`
 }
 
 type _CastEmbedded CastEmbedded
@@ -43,7 +43,7 @@ type _CastEmbedded CastEmbedded
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author UserDehydrated, text string, timestamp time.Time, type_ CastNotificationType, embeds []EmbedDeep, channel ChannelDehydrated) *CastEmbedded {
+func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author UserDehydrated, text string, timestamp time.Time, type_ CastNotificationType, embeds []EmbedDeep, channel NullableChannelDehydrated) *CastEmbedded {
 	this := CastEmbedded{}
 	this.Hash = hash
 	this.ParentHash = parentHash
@@ -217,36 +217,47 @@ func (o *CastEmbedded) SetAuthor(v UserDehydrated) {
 	o.Author = v
 }
 
-// GetApp returns the App field value if set, zero value otherwise.
+// GetApp returns the App field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CastEmbedded) GetApp() UserDehydrated {
-	if o == nil || IsNil(o.App) {
+	if o == nil || IsNil(o.App.Get()) {
 		var ret UserDehydrated
 		return ret
 	}
-	return *o.App
+	return *o.App.Get()
 }
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CastEmbedded) GetAppOk() (*UserDehydrated, bool) {
-	if o == nil || IsNil(o.App) {
+	if o == nil {
 		return nil, false
 	}
-	return o.App, true
+	return o.App.Get(), o.App.IsSet()
 }
 
 // HasApp returns a boolean if a field has been set.
 func (o *CastEmbedded) HasApp() bool {
-	if o != nil && !IsNil(o.App) {
+	if o != nil && o.App.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetApp gets a reference to the given UserDehydrated and assigns it to the App field.
+// SetApp gets a reference to the given NullableUserDehydrated and assigns it to the App field.
 func (o *CastEmbedded) SetApp(v UserDehydrated) {
-	o.App = &v
+	o.App.Set(&v)
+}
+
+// SetAppNil sets the value for App to be an explicit nil
+func (o *CastEmbedded) SetAppNil() {
+	o.App.Set(nil)
+}
+
+// UnsetApp ensures that no value is present for App, not even an explicit nil
+func (o *CastEmbedded) UnsetApp() {
+	o.App.Unset()
 }
 
 // GetText returns the Text field value
@@ -346,27 +357,29 @@ func (o *CastEmbedded) SetEmbeds(v []EmbedDeep) {
 }
 
 // GetChannel returns the Channel field value
+// If the value is explicit nil, the zero value for ChannelDehydrated will be returned
 func (o *CastEmbedded) GetChannel() ChannelDehydrated {
-	if o == nil {
+	if o == nil || o.Channel.Get() == nil {
 		var ret ChannelDehydrated
 		return ret
 	}
 
-	return o.Channel
+	return *o.Channel.Get()
 }
 
 // GetChannelOk returns a tuple with the Channel field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CastEmbedded) GetChannelOk() (*ChannelDehydrated, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Channel, true
+	return o.Channel.Get(), o.Channel.IsSet()
 }
 
 // SetChannel sets field value
 func (o *CastEmbedded) SetChannel(v ChannelDehydrated) {
-	o.Channel = v
+	o.Channel.Set(&v)
 }
 
 func (o CastEmbedded) MarshalJSON() ([]byte, error) {
@@ -385,14 +398,14 @@ func (o CastEmbedded) ToMap() (map[string]interface{}, error) {
 	toSerialize["root_parent_url"] = o.RootParentUrl.Get()
 	toSerialize["parent_author"] = o.ParentAuthor
 	toSerialize["author"] = o.Author
-	if !IsNil(o.App) {
-		toSerialize["app"] = o.App
+	if o.App.IsSet() {
+		toSerialize["app"] = o.App.Get()
 	}
 	toSerialize["text"] = o.Text
 	toSerialize["timestamp"] = o.Timestamp
 	toSerialize["type"] = o.Type
 	toSerialize["embeds"] = o.Embeds
-	toSerialize["channel"] = o.Channel
+	toSerialize["channel"] = o.Channel.Get()
 	return toSerialize, nil
 }
 

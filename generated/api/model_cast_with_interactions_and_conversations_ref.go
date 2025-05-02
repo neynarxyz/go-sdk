@@ -30,7 +30,7 @@ type CastWithInteractionsAndConversationsRef struct {
 	RootParentUrl     NullableString                `json:"root_parent_url"`
 	ParentAuthor      CastParentAuthor              `json:"parent_author"`
 	Author            User                          `json:"author"`
-	App               *UserDehydrated               `json:"app,omitempty"`
+	App               NullableUserDehydrated        `json:"app,omitempty"`
 	Text              string                        `json:"text"`
 	Timestamp         time.Time                     `json:"timestamp"`
 	Embeds            []Embed                       `json:"embeds"`
@@ -44,10 +44,10 @@ type CastWithInteractionsAndConversationsRef struct {
 	MentionedProfilesRanges []TextRange         `json:"mentioned_profiles_ranges"`
 	MentionedChannels       []ChannelDehydrated `json:"mentioned_channels"`
 	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.
-	MentionedChannelsRanges []TextRange                `json:"mentioned_channels_ranges"`
-	Channel                 ChannelOrChannelDehydrated `json:"channel"`
-	ViewerContext           *CastViewerContext         `json:"viewer_context,omitempty"`
-	AuthorChannelContext    *ChannelUserContext        `json:"author_channel_context,omitempty"`
+	MentionedChannelsRanges []TextRange                        `json:"mentioned_channels_ranges"`
+	Channel                 NullableChannelOrChannelDehydrated `json:"channel"`
+	ViewerContext           *CastViewerContext                 `json:"viewer_context,omitempty"`
+	AuthorChannelContext    *ChannelUserContext                `json:"author_channel_context,omitempty"`
 	// note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
 	DirectReplies []map[string]interface{} `json:"direct_replies"`
 }
@@ -58,7 +58,7 @@ type _CastWithInteractionsAndConversationsRef CastWithInteractionsAndConversatio
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastWithInteractionsAndConversationsRef(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel ChannelOrChannelDehydrated, directReplies []map[string]interface{}) *CastWithInteractionsAndConversationsRef {
+func NewCastWithInteractionsAndConversationsRef(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel NullableChannelOrChannelDehydrated, directReplies []map[string]interface{}) *CastWithInteractionsAndConversationsRef {
 	this := CastWithInteractionsAndConversationsRef{}
 	this.Object = object
 	this.Hash = hash
@@ -264,36 +264,47 @@ func (o *CastWithInteractionsAndConversationsRef) SetAuthor(v User) {
 	o.Author = v
 }
 
-// GetApp returns the App field value if set, zero value otherwise.
+// GetApp returns the App field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CastWithInteractionsAndConversationsRef) GetApp() UserDehydrated {
-	if o == nil || IsNil(o.App) {
+	if o == nil || IsNil(o.App.Get()) {
 		var ret UserDehydrated
 		return ret
 	}
-	return *o.App
+	return *o.App.Get()
 }
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetAppOk() (*UserDehydrated, bool) {
-	if o == nil || IsNil(o.App) {
+	if o == nil {
 		return nil, false
 	}
-	return o.App, true
+	return o.App.Get(), o.App.IsSet()
 }
 
 // HasApp returns a boolean if a field has been set.
 func (o *CastWithInteractionsAndConversationsRef) HasApp() bool {
-	if o != nil && !IsNil(o.App) {
+	if o != nil && o.App.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetApp gets a reference to the given UserDehydrated and assigns it to the App field.
+// SetApp gets a reference to the given NullableUserDehydrated and assigns it to the App field.
 func (o *CastWithInteractionsAndConversationsRef) SetApp(v UserDehydrated) {
-	o.App = &v
+	o.App.Set(&v)
+}
+
+// SetAppNil sets the value for App to be an explicit nil
+func (o *CastWithInteractionsAndConversationsRef) SetAppNil() {
+	o.App.Set(nil)
+}
+
+// UnsetApp ensures that no value is present for App, not even an explicit nil
+func (o *CastWithInteractionsAndConversationsRef) UnsetApp() {
+	o.App.Unset()
 }
 
 // GetText returns the Text field value
@@ -603,27 +614,29 @@ func (o *CastWithInteractionsAndConversationsRef) SetMentionedChannelsRanges(v [
 }
 
 // GetChannel returns the Channel field value
+// If the value is explicit nil, the zero value for ChannelOrChannelDehydrated will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetChannel() ChannelOrChannelDehydrated {
-	if o == nil {
+	if o == nil || o.Channel.Get() == nil {
 		var ret ChannelOrChannelDehydrated
 		return ret
 	}
 
-	return o.Channel
+	return *o.Channel.Get()
 }
 
 // GetChannelOk returns a tuple with the Channel field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetChannelOk() (*ChannelOrChannelDehydrated, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Channel, true
+	return o.Channel.Get(), o.Channel.IsSet()
 }
 
 // SetChannel sets field value
 func (o *CastWithInteractionsAndConversationsRef) SetChannel(v ChannelOrChannelDehydrated) {
-	o.Channel = v
+	o.Channel.Set(&v)
 }
 
 // GetViewerContext returns the ViewerContext field value if set, zero value otherwise.
@@ -731,8 +744,8 @@ func (o CastWithInteractionsAndConversationsRef) ToMap() (map[string]interface{}
 	toSerialize["root_parent_url"] = o.RootParentUrl.Get()
 	toSerialize["parent_author"] = o.ParentAuthor
 	toSerialize["author"] = o.Author
-	if !IsNil(o.App) {
-		toSerialize["app"] = o.App
+	if o.App.IsSet() {
+		toSerialize["app"] = o.App.Get()
 	}
 	toSerialize["text"] = o.Text
 	toSerialize["timestamp"] = o.Timestamp
@@ -750,7 +763,7 @@ func (o CastWithInteractionsAndConversationsRef) ToMap() (map[string]interface{}
 	toSerialize["mentioned_profiles_ranges"] = o.MentionedProfilesRanges
 	toSerialize["mentioned_channels"] = o.MentionedChannels
 	toSerialize["mentioned_channels_ranges"] = o.MentionedChannelsRanges
-	toSerialize["channel"] = o.Channel
+	toSerialize["channel"] = o.Channel.Get()
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewer_context"] = o.ViewerContext
 	}

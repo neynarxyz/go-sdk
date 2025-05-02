@@ -23,9 +23,9 @@ var _ MappedNullable = &UserVerifiedAddressesPrimary{}
 // UserVerifiedAddressesPrimary struct for UserVerifiedAddressesPrimary
 type UserVerifiedAddressesPrimary struct {
 	// Ethereum address
-	EthAddress string `json:"eth_address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	EthAddress NullableString `json:"eth_address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	// Solana address
-	SolAddress string `json:"sol_address" validate:"regexp=^[1-9A-HJ-NP-Za-km-z]{32,44}$"`
+	SolAddress NullableString `json:"sol_address" validate:"regexp=^[1-9A-HJ-NP-Za-km-z]{32,44}$"`
 }
 
 type _UserVerifiedAddressesPrimary UserVerifiedAddressesPrimary
@@ -34,7 +34,7 @@ type _UserVerifiedAddressesPrimary UserVerifiedAddressesPrimary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserVerifiedAddressesPrimary(ethAddress string, solAddress string) *UserVerifiedAddressesPrimary {
+func NewUserVerifiedAddressesPrimary(ethAddress NullableString, solAddress NullableString) *UserVerifiedAddressesPrimary {
 	this := UserVerifiedAddressesPrimary{}
 	this.EthAddress = ethAddress
 	this.SolAddress = solAddress
@@ -50,51 +50,55 @@ func NewUserVerifiedAddressesPrimaryWithDefaults() *UserVerifiedAddressesPrimary
 }
 
 // GetEthAddress returns the EthAddress field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *UserVerifiedAddressesPrimary) GetEthAddress() string {
-	if o == nil {
+	if o == nil || o.EthAddress.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.EthAddress
+	return *o.EthAddress.Get()
 }
 
 // GetEthAddressOk returns a tuple with the EthAddress field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserVerifiedAddressesPrimary) GetEthAddressOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.EthAddress, true
+	return o.EthAddress.Get(), o.EthAddress.IsSet()
 }
 
 // SetEthAddress sets field value
 func (o *UserVerifiedAddressesPrimary) SetEthAddress(v string) {
-	o.EthAddress = v
+	o.EthAddress.Set(&v)
 }
 
 // GetSolAddress returns the SolAddress field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *UserVerifiedAddressesPrimary) GetSolAddress() string {
-	if o == nil {
+	if o == nil || o.SolAddress.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.SolAddress
+	return *o.SolAddress.Get()
 }
 
 // GetSolAddressOk returns a tuple with the SolAddress field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserVerifiedAddressesPrimary) GetSolAddressOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SolAddress, true
+	return o.SolAddress.Get(), o.SolAddress.IsSet()
 }
 
 // SetSolAddress sets field value
 func (o *UserVerifiedAddressesPrimary) SetSolAddress(v string) {
-	o.SolAddress = v
+	o.SolAddress.Set(&v)
 }
 
 func (o UserVerifiedAddressesPrimary) MarshalJSON() ([]byte, error) {
@@ -107,8 +111,8 @@ func (o UserVerifiedAddressesPrimary) MarshalJSON() ([]byte, error) {
 
 func (o UserVerifiedAddressesPrimary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["eth_address"] = o.EthAddress
-	toSerialize["sol_address"] = o.SolAddress
+	toSerialize["eth_address"] = o.EthAddress.Get()
+	toSerialize["sol_address"] = o.SolAddress.Get()
 	return toSerialize, nil
 }
 

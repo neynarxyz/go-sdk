@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** | The unique identifier of a farcaster user (unsigned integer) | 
+**Fid** | **NullableInt32** | The unique identifier of a farcaster user (unsigned integer) | 
 
 ## Methods
 
 ### NewCastParentAuthor
 
-`func NewCastParentAuthor(fid int32, ) *CastParentAuthor`
+`func NewCastParentAuthor(fid NullableInt32, ) *CastParentAuthor`
 
 NewCastParentAuthor instantiates a new CastParentAuthor object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,16 @@ and a boolean to check if the value has been set.
 SetFid sets Fid field to given value.
 
 
+### SetFidNil
+
+`func (o *CastParentAuthor) SetFidNil(b bool)`
+
+ SetFidNil sets the value for Fid to be an explicit nil
+
+### UnsetFid
+`func (o *CastParentAuthor) UnsetFid()`
+
+UnsetFid ensures that no value is present for Fid, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
