@@ -1,0 +1,12 @@
+{
+  "templateDir": "./src/api/templates",
+  "generateAliasAsModel": true,
+  "additionalProperties": {
+    "packageName": "api",
+    "packageVersion": "2.0.0",
+    "isGoSubmodule": true,
+    "generateInterfaces": true,
+    "enumClassPrefix": true,
+    "useDefaultValuesForRequiredVars": true
+  }
+}

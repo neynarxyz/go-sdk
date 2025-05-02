@@ -3,41 +3,40 @@ set -eux -o pipefail
 
 export GO_POST_PROCESS_FILE='gofmt -w'
 
-rm -rf ./api
+rm -rf ./generated/api/*
 npx --yes @openapitools/openapi-generator-cli \
     generate \
-    --enable-post-process-file \
     --git-user-id neynarxyz \
-    --git-repo-id go-sdk \
+    --git-repo-id go-sdk/generated \
     -g go \
-    -i ./oas/src/v2/spec.yaml \
-    -o ./api \
-    --config ./openapi-generator-config.api.json \
+    --config ./src/api/openapi-generator-config.json \
+    -i ./src/OAS/src/v2/spec.yaml \
+    -o ./generated/api \
     --openapi-normalizer 'SIMPLIFY_ONEOF_ANYOF=false' \
-    --inline-schema-options 'SKIP_SCHEMA_REUSE=true'
+    --inline-schema-options 'SKIP_SCHEMA_REUSE=true' \
+    --enable-post-process-file
 (
-    cd ./api
+    cd ./generated/api
     go get github.com/stretchr/testify/assert
     go get golang.org/x/net/context
     go build
     go test ./...
 )
 
-rm -rf ./hub-api
+rm -rf ./generated/hub-api/*
 npx --yes @openapitools/openapi-generator-cli \
     generate \
-    --enable-post-process-file \
     --git-user-id neynarxyz \
-    --git-repo-id go-sdk \
+    --git-repo-id go-sdk/generated \
     -g go \
-    -i ./oas/src/hub-rest-api/spec.yaml \
-    -o ./hub-api \
-    --config ./openapi-generator-config.hub-api.json \
+    --config ./src/hub-api/openapi-generator-config.json \
+    -i ./src/OAS/src/hub-rest-api/spec.yaml \
+    -o ./generated/hub-api \
     --openapi-normalizer 'SIMPLIFY_ONEOF_ANYOF=false' \
-    --inline-schema-options 'SKIP_SCHEMA_REUSE=true'
-
+    --inline-schema-options 'SKIP_SCHEMA_REUSE=true' \
+    --enable-post-process-file
 (
-    cd ./hub-api
+    cd ./generated/hub-api
     go get github.com/stretchr/testify/assert
     go get golang.org/x/net/context
     go build
