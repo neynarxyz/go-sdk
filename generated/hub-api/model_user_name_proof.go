@@ -27,7 +27,7 @@ type UserNameProof struct {
 	Name      string `json:"name"`
 	Owner     string `json:"owner" validate:"regexp=^0x[0-9a-fA-F]{40}$"`
 	Signature string `json:"signature" validate:"regexp=^(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}==|[A-Za-z0-9+\\/]{3}=)?$"`
-	// Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
+	// The FID of the user who owns this username proof
 	Fid  int32        `json:"fid"`
 	Type UserNameType `json:"type"`
 }

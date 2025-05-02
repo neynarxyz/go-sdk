@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** |  | 
 **Metadata** | Pointer to [**EmbedUrlMetadata**](EmbedUrlMetadata.md) |  | [optional] 
-**CastId** | Pointer to [**CastId**](CastId.md) |  | [optional] 
+**CastId** | Pointer to [**CastId**](CastId.md) | [DEPRECATED: Use \&quot;cast\&quot; key instead] | [optional] 
 **Cast** | [**CastEmbedded**](CastEmbedded.md) |  | 
 
 ## Methods

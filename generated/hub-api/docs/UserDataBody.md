@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**UserDataType**](UserDataType.md) |  | [default to USERDATATYPE_USER_DATA_TYPE_PFP]
+**Type** | [**UserDataType**](UserDataType.md) | Specifies which profile field is being updated (e.g., profile picture, display name, bio). | 
 **Value** | **string** | The new value for the specified profile field. The format depends on the type: URLs for profile pictures, plain text for display names and bios, etc. | 
 
 ## Methods

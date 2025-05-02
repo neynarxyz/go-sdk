@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** | The URL associated with the frame action. This typically points to the frame&#39;s content or the destination that handles the interaction. | 
 **ButtonIndex** | **int32** | Identifies which button the user clicked in the frame. Frames can have up to 4 buttons, numbered from 1 to 4. | 
-**CastId** | [**CastId**](CastId.md) |  | 
+**CastId** | [**CastId**](CastId.md) | The unique identifier of the cast containing the frame that was interacted with. | 
 
 ## Methods
 

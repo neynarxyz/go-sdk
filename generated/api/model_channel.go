@@ -40,7 +40,9 @@ type Channel struct {
 	Lead          *User                `json:"lead,omitempty"`
 	ModeratorFids []int32              `json:"moderator_fids,omitempty"`
 	MemberCount   *int32               `json:"member_count,omitempty"`
-	Moderator     *User                `json:"moderator,omitempty"`
+	// Use `lead` instead.
+	// Deprecated
+	Moderator *User `json:"moderator,omitempty"`
 	// Cast Hash
 	PinnedCastHash *string `json:"pinned_cast_hash,omitempty"`
 	// Deprecated
@@ -531,6 +533,7 @@ func (o *Channel) SetMemberCount(v int32) {
 }
 
 // GetModerator returns the Moderator field value if set, zero value otherwise.
+// Deprecated
 func (o *Channel) GetModerator() User {
 	if o == nil || IsNil(o.Moderator) {
 		var ret User
@@ -541,6 +544,7 @@ func (o *Channel) GetModerator() User {
 
 // GetModeratorOk returns a tuple with the Moderator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *Channel) GetModeratorOk() (*User, bool) {
 	if o == nil || IsNil(o.Moderator) {
 		return nil, false
@@ -558,6 +562,7 @@ func (o *Channel) HasModerator() bool {
 }
 
 // SetModerator gets a reference to the given User and assigns it to the Moderator field.
+// Deprecated
 func (o *Channel) SetModerator(v User) {
 	o.Moderator = &v
 }

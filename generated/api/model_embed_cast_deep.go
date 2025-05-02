@@ -22,6 +22,8 @@ var _ MappedNullable = &EmbedCastDeep{}
 
 // EmbedCastDeep struct for EmbedCastDeep
 type EmbedCastDeep struct {
+	// [DEPRECATED: Use \"cast\" key instead]
+	// Deprecated
 	CastId *CastId        `json:"cast_id,omitempty"`
 	Cast   CastDehydrated `json:"cast"`
 }
@@ -47,6 +49,7 @@ func NewEmbedCastDeepWithDefaults() *EmbedCastDeep {
 }
 
 // GetCastId returns the CastId field value if set, zero value otherwise.
+// Deprecated
 func (o *EmbedCastDeep) GetCastId() CastId {
 	if o == nil || IsNil(o.CastId) {
 		var ret CastId
@@ -57,6 +60,7 @@ func (o *EmbedCastDeep) GetCastId() CastId {
 
 // GetCastIdOk returns a tuple with the CastId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *EmbedCastDeep) GetCastIdOk() (*CastId, bool) {
 	if o == nil || IsNil(o.CastId) {
 		return nil, false
@@ -74,6 +78,7 @@ func (o *EmbedCastDeep) HasCastId() bool {
 }
 
 // SetCastId gets a reference to the given CastId and assigns it to the CastId field.
+// Deprecated
 func (o *EmbedCastDeep) SetCastId(v CastId) {
 	o.CastId = &v
 }

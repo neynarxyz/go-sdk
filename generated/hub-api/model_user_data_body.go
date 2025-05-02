@@ -22,6 +22,7 @@ var _ MappedNullable = &UserDataBody{}
 
 // UserDataBody Contains the data for updating a specific field of a user's profile metadata. Each update operation modifies one profile field at a time, allowing granular control over profile information.
 type UserDataBody struct {
+	// Specifies which profile field is being updated (e.g., profile picture, display name, bio).
 	Type UserDataType `json:"type"`
 	// The new value for the specified profile field. The format depends on the type: URLs for profile pictures, plain text for display names and bios, etc.
 	Value string `json:"value"`
@@ -45,8 +46,6 @@ func NewUserDataBody(type_ UserDataType, value string) *UserDataBody {
 // but it doesn't guarantee that properties required by API are set
 func NewUserDataBodyWithDefaults() *UserDataBody {
 	this := UserDataBody{}
-	var type_ UserDataType = USERDATATYPE_USER_DATA_TYPE_PFP
-	this.Type = type_
 	return &this
 }
 
@@ -72,11 +71,6 @@ func (o *UserDataBody) GetTypeOk() (*UserDataType, bool) {
 // SetType sets field value
 func (o *UserDataBody) SetType(v UserDataType) {
 	o.Type = v
-}
-
-// GetDefaultType returns the default value USERDATATYPE_USER_DATA_TYPE_PFP of the Type field.
-func (o *UserDataBody) GetDefaultType() interface{} {
-	return USERDATATYPE_USER_DATA_TYPE_PFP
 }
 
 // GetValue returns the Value field value
@@ -113,9 +107,6 @@ func (o UserDataBody) MarshalJSON() ([]byte, error) {
 
 func (o UserDataBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if _, exists := toSerialize["type"]; !exists {
-		toSerialize["type"] = o.GetDefaultType()
-	}
 	toSerialize["type"] = o.Type
 	toSerialize["value"] = o.Value
 	return toSerialize, nil
@@ -132,9 +123,7 @@ func (o *UserDataBody) UnmarshalJSON(data []byte) (err error) {
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{}{
-		"type": o.GetDefaultType,
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 
