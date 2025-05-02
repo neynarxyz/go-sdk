@@ -27,8 +27,7 @@ type MessageDataLink struct {
 	// Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
 	Timestamp int64            `json:"timestamp"`
 	Network   FarcasterNetwork `json:"network"`
-	// Contains the details of the social connection, including the type of relationship and the target user.
-	LinkBody LinkBody `json:"linkBody"`
+	LinkBody  LinkBody         `json:"linkBody"`
 }
 
 type _MessageDataLink MessageDataLink

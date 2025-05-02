@@ -40,13 +40,12 @@ type Channel struct {
 	Lead          *User                `json:"lead,omitempty"`
 	ModeratorFids []int32              `json:"moderator_fids,omitempty"`
 	MemberCount   *int32               `json:"member_count,omitempty"`
-	// Use `lead` instead.
-	// Deprecated
-	Moderator *User `json:"moderator,omitempty"`
+	Moderator     *User                `json:"moderator,omitempty"`
 	// Cast Hash
-	PinnedCastHash *string             `json:"pinned_cast_hash,omitempty"`
-	Hosts          []User              `json:"hosts,omitempty"`
-	ViewerContext  *ChannelUserContext `json:"viewer_context,omitempty"`
+	PinnedCastHash *string `json:"pinned_cast_hash,omitempty"`
+	// Deprecated
+	Hosts         []User              `json:"hosts,omitempty"`
+	ViewerContext *ChannelUserContext `json:"viewer_context,omitempty"`
 }
 
 type _Channel Channel
@@ -532,7 +531,6 @@ func (o *Channel) SetMemberCount(v int32) {
 }
 
 // GetModerator returns the Moderator field value if set, zero value otherwise.
-// Deprecated
 func (o *Channel) GetModerator() User {
 	if o == nil || IsNil(o.Moderator) {
 		var ret User
@@ -543,7 +541,6 @@ func (o *Channel) GetModerator() User {
 
 // GetModeratorOk returns a tuple with the Moderator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// Deprecated
 func (o *Channel) GetModeratorOk() (*User, bool) {
 	if o == nil || IsNil(o.Moderator) {
 		return nil, false
@@ -561,7 +558,6 @@ func (o *Channel) HasModerator() bool {
 }
 
 // SetModerator gets a reference to the given User and assigns it to the Moderator field.
-// Deprecated
 func (o *Channel) SetModerator(v User) {
 	o.Moderator = &v
 }
@@ -599,6 +595,7 @@ func (o *Channel) SetPinnedCastHash(v string) {
 }
 
 // GetHosts returns the Hosts field value if set, zero value otherwise.
+// Deprecated
 func (o *Channel) GetHosts() []User {
 	if o == nil || IsNil(o.Hosts) {
 		var ret []User
@@ -609,6 +606,7 @@ func (o *Channel) GetHosts() []User {
 
 // GetHostsOk returns a tuple with the Hosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *Channel) GetHostsOk() ([]User, bool) {
 	if o == nil || IsNil(o.Hosts) {
 		return nil, false
@@ -626,6 +624,7 @@ func (o *Channel) HasHosts() bool {
 }
 
 // SetHosts gets a reference to the given []User and assigns it to the Hosts field.
+// Deprecated
 func (o *Channel) SetHosts(v []User) {
 	o.Hosts = v
 }

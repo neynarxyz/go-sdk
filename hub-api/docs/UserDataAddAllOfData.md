@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Fid** | **int32** | The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed. | 
 **Timestamp** | **int64** | Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created. | 
 **Network** | [**FarcasterNetwork**](FarcasterNetwork.md) |  | [default to FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET]
-**UserDataBody** | [**UserDataBody**](UserDataBody.md) | Contains the type of profile metadata being updated and its new value. | 
+**UserDataBody** | [**UserDataBody**](UserDataBody.md) |  | 
 **Type** | [**MessageType**](MessageType.md) |  | [default to MESSAGETYPE_MESSAGE_TYPE_CAST_ADD]
 
 ## Methods

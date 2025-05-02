@@ -1,5 +1,6 @@
 #!/bin/bash
 set -eux -o pipefail
+
 export GO_POST_PROCESS_FILE='gofmt -w'
 
 rm -rf ./api

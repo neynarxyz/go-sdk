@@ -29,12 +29,12 @@ type CastEmbedded struct {
 	RootParentUrl NullableString           `json:"root_parent_url"`
 	ParentAuthor  CastEmbeddedParentAuthor `json:"parent_author"`
 	Author        UserDehydrated           `json:"author"`
-	App           *CastEmbeddedApp         `json:"app,omitempty"`
+	App           *UserDehydrated          `json:"app,omitempty"`
 	Text          string                   `json:"text"`
 	Timestamp     time.Time                `json:"timestamp"`
 	Type          CastNotificationType     `json:"type"`
 	Embeds        []EmbedDeep              `json:"embeds"`
-	Channel       CastEmbeddedChannel      `json:"channel"`
+	Channel       ChannelDehydrated        `json:"channel"`
 }
 
 type _CastEmbedded CastEmbedded
@@ -43,7 +43,7 @@ type _CastEmbedded CastEmbedded
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author UserDehydrated, text string, timestamp time.Time, type_ CastNotificationType, embeds []EmbedDeep, channel CastEmbeddedChannel) *CastEmbedded {
+func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author UserDehydrated, text string, timestamp time.Time, type_ CastNotificationType, embeds []EmbedDeep, channel ChannelDehydrated) *CastEmbedded {
 	this := CastEmbedded{}
 	this.Hash = hash
 	this.ParentHash = parentHash
@@ -218,9 +218,9 @@ func (o *CastEmbedded) SetAuthor(v UserDehydrated) {
 }
 
 // GetApp returns the App field value if set, zero value otherwise.
-func (o *CastEmbedded) GetApp() CastEmbeddedApp {
+func (o *CastEmbedded) GetApp() UserDehydrated {
 	if o == nil || IsNil(o.App) {
-		var ret CastEmbeddedApp
+		var ret UserDehydrated
 		return ret
 	}
 	return *o.App
@@ -228,7 +228,7 @@ func (o *CastEmbedded) GetApp() CastEmbeddedApp {
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CastEmbedded) GetAppOk() (*CastEmbeddedApp, bool) {
+func (o *CastEmbedded) GetAppOk() (*UserDehydrated, bool) {
 	if o == nil || IsNil(o.App) {
 		return nil, false
 	}
@@ -244,8 +244,8 @@ func (o *CastEmbedded) HasApp() bool {
 	return false
 }
 
-// SetApp gets a reference to the given CastEmbeddedApp and assigns it to the App field.
-func (o *CastEmbedded) SetApp(v CastEmbeddedApp) {
+// SetApp gets a reference to the given UserDehydrated and assigns it to the App field.
+func (o *CastEmbedded) SetApp(v UserDehydrated) {
 	o.App = &v
 }
 
@@ -346,9 +346,9 @@ func (o *CastEmbedded) SetEmbeds(v []EmbedDeep) {
 }
 
 // GetChannel returns the Channel field value
-func (o *CastEmbedded) GetChannel() CastEmbeddedChannel {
+func (o *CastEmbedded) GetChannel() ChannelDehydrated {
 	if o == nil {
-		var ret CastEmbeddedChannel
+		var ret ChannelDehydrated
 		return ret
 	}
 
@@ -357,7 +357,7 @@ func (o *CastEmbedded) GetChannel() CastEmbeddedChannel {
 
 // GetChannelOk returns a tuple with the Channel field value
 // and a boolean to check if the value has been set.
-func (o *CastEmbedded) GetChannelOk() (*CastEmbeddedChannel, bool) {
+func (o *CastEmbedded) GetChannelOk() (*ChannelDehydrated, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -365,7 +365,7 @@ func (o *CastEmbedded) GetChannelOk() (*CastEmbeddedChannel, bool) {
 }
 
 // SetChannel sets field value
-func (o *CastEmbedded) SetChannel(v CastEmbeddedChannel) {
+func (o *CastEmbedded) SetChannel(v ChannelDehydrated) {
 	o.Channel = v
 }
 

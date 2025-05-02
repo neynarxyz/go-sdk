@@ -36,7 +36,7 @@ import (
 )
 
 func main() {
-	deleteCastReqBody := *openapiclient.NewDeleteCastReqBody("SignerUuid_example", "TargetHash_example") // DeleteCastReqBody | 
+	deleteCastReqBody := *openapiclient.NewDeleteCastReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "TargetHash_example") // DeleteCastReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -466,7 +466,7 @@ import (
 )
 
 func main() {
-	postCastReqBody := *openapiclient.NewPostCastReqBody("SignerUuid_example") // PostCastReqBody | 
+	postCastReqBody := *openapiclient.NewPostCastReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec") // PostCastReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

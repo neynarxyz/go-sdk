@@ -697,7 +697,7 @@ func (a *ChannelAPIService) FetchChannelInvitesExecute(r ApiFetchChannelInvitesR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -708,7 +708,7 @@ func (a *ChannelAPIService) FetchChannelInvitesExecute(r ApiFetchChannelInvitesR
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1387,7 +1387,7 @@ func (a *ChannelAPIService) FetchTrendingChannelsExecute(r ApiFetchTrendingChann
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1398,7 +1398,7 @@ func (a *ChannelAPIService) FetchTrendingChannelsExecute(r ApiFetchTrendingChann
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2030,7 +2030,7 @@ func (a *ChannelAPIService) FollowChannelExecute(r ApiFollowChannelRequest) (*Op
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2041,7 +2041,7 @@ func (a *ChannelAPIService) FollowChannelExecute(r ApiFollowChannelRequest) (*Op
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2939,7 +2939,7 @@ func (a *ChannelAPIService) UnfollowChannelExecute(r ApiUnfollowChannelRequest) 
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2950,7 +2950,7 @@ func (a *ChannelAPIService) UnfollowChannelExecute(r ApiUnfollowChannelRequest) 
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

@@ -32,9 +32,9 @@ import (
 )
 
 func main() {
-	fid := int32(56) // int32 | The Farcaster ID (FID) of the parent cast's creator. This parameter must be used together with the 'hash' parameter to uniquely identify a parent cast. Required only when using hash-based lookup instead of URL-based lookup. The FID is a unique identifier assigned to each Farcaster user. (optional)
-	hash := "hash_example" // string | The unique hash identifier of the parent cast. Must be used together with the 'fid' parameter when doing hash-based lookup. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Not required if using URL-based lookup. (optional)
-	url := "url_example" // string | Cast URL starting with 'chain://' (optional)
+	fid := int32(194) // int32 | The Farcaster ID (FID) of the parent cast's creator. This parameter must be used together with the 'hash' parameter to uniquely identify a parent cast. Required only when using hash-based lookup instead of URL-based lookup. The FID is a unique identifier assigned to each Farcaster user. (optional)
+	hash := "0x776593353e47dc4e7f4df3199a9b04cc8efa30d9" // string | The unique hash identifier of the parent cast. Must be used together with the 'fid' parameter when doing hash-based lookup. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Not required if using URL-based lookup. (optional)
+	url := "chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2" // string | Cast URL starting with 'chain://' (optional)
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
 	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)
@@ -253,7 +253,7 @@ import (
 
 func main() {
 	fid := int32(56) // int32 | The FID of the cast's creator
-	hash := "hash_example" // string | The unique hash identifier of the cast. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies a specific cast in the Farcaster network.
+	hash := "0x03aff391a6eb1772b20b4ead9a89f732be75fe27" // string | The unique hash identifier of the cast. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies a specific cast in the Farcaster network.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

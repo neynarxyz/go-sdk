@@ -33,7 +33,7 @@ import (
 
 func main() {
 	targetFid := int32(56) // int32 | The FID of the cast's creator. Required to uniquely identify the cast that received the reactions. Must be used in conjunction with target_hash.
-	targetHash := "targetHash_example" // string | The unique hash identifier of the cast that received the reactions. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Must be used with target_fid.
+	targetHash := "0xfec8fd3546e1f46cf5ad10a4ff9f5d53a3bbe9be" // string | The unique hash identifier of the cast that received the reactions. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Must be used with target_fid.
 	reactionType := openapiclient.ReactionType("Like") // ReactionType |  (default to "Like")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
@@ -108,7 +108,7 @@ import (
 )
 
 func main() {
-	url := "url_example" // string | Target URL starting with 'chain://'.
+	url := "chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2" // string | Target URL starting with 'chain://'.
 	reactionType := openapiclient.ReactionType("Like") // ReactionType |  (optional) (default to "Like")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)

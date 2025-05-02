@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Object** | **string** |  | 
 **Hash** | **string** |  | 
-**ParentHash** | **string** |  | 
-**ParentUrl** | **string** |  | 
-**RootParentUrl** | **string** |  | 
+**ParentHash** | **NullableString** |  | 
+**ParentUrl** | **NullableString** |  | 
+**RootParentUrl** | **NullableString** |  | 
 **ParentAuthor** | [**CastParentAuthor**](CastParentAuthor.md) |  | 
 **Author** | [**User**](User.md) |  | 
-**App** | Pointer to [**CastApp**](CastApp.md) |  | [optional] 
+**App** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
 **Text** | **string** |  | 
 **Timestamp** | **time.Time** |  | 
 **Embeds** | [**[]Embed**](Embed.md) |  | 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **MentionedProfilesRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.  | 
 **MentionedChannels** | [**[]ChannelDehydrated**](ChannelDehydrated.md) |  | 
 **MentionedChannelsRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.  | 
-**Channel** | [**CastWithInteractionsAllOfChannel**](CastWithInteractionsAllOfChannel.md) |  | 
+**Channel** | [**ChannelOrChannelDehydrated**](ChannelOrChannelDehydrated.md) |  | 
 **ViewerContext** | Pointer to [**CastViewerContext**](CastViewerContext.md) |  | [optional] 
 **AuthorChannelContext** | Pointer to [**ChannelUserContext**](ChannelUserContext.md) |  | [optional] 
 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewCastWithInteractions
 
-`func NewCastWithInteractions(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel CastWithInteractionsAllOfChannel, ) *CastWithInteractions`
+`func NewCastWithInteractions(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel ChannelOrChannelDehydrated, ) *CastWithInteractions`
 
 NewCastWithInteractions instantiates a new CastWithInteractions object
 This constructor will assign default values to properties that have it defined,
@@ -107,6 +107,16 @@ and a boolean to check if the value has been set.
 SetParentHash sets ParentHash field to given value.
 
 
+### SetParentHashNil
+
+`func (o *CastWithInteractions) SetParentHashNil(b bool)`
+
+ SetParentHashNil sets the value for ParentHash to be an explicit nil
+
+### UnsetParentHash
+`func (o *CastWithInteractions) UnsetParentHash()`
+
+UnsetParentHash ensures that no value is present for ParentHash, not even an explicit nil
 ### GetParentUrl
 
 `func (o *CastWithInteractions) GetParentUrl() string`
@@ -127,6 +137,16 @@ and a boolean to check if the value has been set.
 SetParentUrl sets ParentUrl field to given value.
 
 
+### SetParentUrlNil
+
+`func (o *CastWithInteractions) SetParentUrlNil(b bool)`
+
+ SetParentUrlNil sets the value for ParentUrl to be an explicit nil
+
+### UnsetParentUrl
+`func (o *CastWithInteractions) UnsetParentUrl()`
+
+UnsetParentUrl ensures that no value is present for ParentUrl, not even an explicit nil
 ### GetRootParentUrl
 
 `func (o *CastWithInteractions) GetRootParentUrl() string`
@@ -147,6 +167,16 @@ and a boolean to check if the value has been set.
 SetRootParentUrl sets RootParentUrl field to given value.
 
 
+### SetRootParentUrlNil
+
+`func (o *CastWithInteractions) SetRootParentUrlNil(b bool)`
+
+ SetRootParentUrlNil sets the value for RootParentUrl to be an explicit nil
+
+### UnsetRootParentUrl
+`func (o *CastWithInteractions) UnsetRootParentUrl()`
+
+UnsetRootParentUrl ensures that no value is present for RootParentUrl, not even an explicit nil
 ### GetParentAuthor
 
 `func (o *CastWithInteractions) GetParentAuthor() CastParentAuthor`
@@ -189,20 +219,20 @@ SetAuthor sets Author field to given value.
 
 ### GetApp
 
-`func (o *CastWithInteractions) GetApp() CastApp`
+`func (o *CastWithInteractions) GetApp() UserDehydrated`
 
 GetApp returns the App field if non-nil, zero value otherwise.
 
 ### GetAppOk
 
-`func (o *CastWithInteractions) GetAppOk() (*CastApp, bool)`
+`func (o *CastWithInteractions) GetAppOk() (*UserDehydrated, bool)`
 
 GetAppOk returns a tuple with the App field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApp
 
-`func (o *CastWithInteractions) SetApp(v CastApp)`
+`func (o *CastWithInteractions) SetApp(v UserDehydrated)`
 
 SetApp sets App field to given value.
 
@@ -474,20 +504,20 @@ SetMentionedChannelsRanges sets MentionedChannelsRanges field to given value.
 
 ### GetChannel
 
-`func (o *CastWithInteractions) GetChannel() CastWithInteractionsAllOfChannel`
+`func (o *CastWithInteractions) GetChannel() ChannelOrChannelDehydrated`
 
 GetChannel returns the Channel field if non-nil, zero value otherwise.
 
 ### GetChannelOk
 
-`func (o *CastWithInteractions) GetChannelOk() (*CastWithInteractionsAllOfChannel, bool)`
+`func (o *CastWithInteractions) GetChannelOk() (*ChannelOrChannelDehydrated, bool)`
 
 GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChannel
 
-`func (o *CastWithInteractions) SetChannel(v CastWithInteractionsAllOfChannel)`
+`func (o *CastWithInteractions) SetChannel(v ChannelOrChannelDehydrated)`
 
 SetChannel sets Channel field to given value.
 

@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	banReqBody := *openapiclient.NewBanReqBody([]int32{int32(123)}) // BanReqBody | 
+	banReqBody := *openapiclient.NewBanReqBody([]int32{int32(3)}) // BanReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-	banReqBody := *openapiclient.NewBanReqBody([]int32{int32(123)}) // BanReqBody | 
+	banReqBody := *openapiclient.NewBanReqBody([]int32{int32(3)}) // BanReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

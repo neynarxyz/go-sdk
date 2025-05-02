@@ -5,16 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** |  | 
-**Version** | **string** |  | 
-**Title** | Pointer to **string** | A text title, describing the resource. | [optional] 
-**AuthorName** | Pointer to **string** | The name of the author/owner of the resource. | [optional] 
-**AuthorUrl** | Pointer to **string** | A URL for the author/owner of the resource. | [optional] 
-**ProviderName** | Pointer to **string** | The name of the resource provider. | [optional] 
-**ProviderUrl** | Pointer to **string** | The url of the resource provider. | [optional] 
-**CacheAge** | Pointer to **string** | The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not. | [optional] 
-**ThumbnailUrl** | Pointer to **string** | A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present. | [optional] 
-**ThumbnailWidth** | Pointer to **float32** | The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present. | [optional] 
-**ThumbnailHeight** | Pointer to **float32** | The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present. | [optional] 
+**Version** | **NullableString** |  | 
+**Title** | Pointer to **NullableString** | A text title, describing the resource. | [optional] 
+**AuthorName** | Pointer to **NullableString** | The name of the author/owner of the resource. | [optional] 
+**AuthorUrl** | Pointer to **NullableString** | A URL for the author/owner of the resource. | [optional] 
+**ProviderName** | Pointer to **NullableString** | The name of the resource provider. | [optional] 
+**ProviderUrl** | Pointer to **NullableString** | The url of the resource provider. | [optional] 
+**CacheAge** | Pointer to **NullableString** | The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not. | [optional] 
+**ThumbnailUrl** | Pointer to **NullableString** | A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present. | [optional] 
+**ThumbnailWidth** | Pointer to **NullableFloat32** | The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present. | [optional] 
+**ThumbnailHeight** | Pointer to **NullableFloat32** | The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present. | [optional] 
 **Url** | **NullableString** | The source URL of the image. Consumers should be able to insert this URL into an &lt;img&gt; element. Only HTTP and HTTPS URLs are valid. | 
 **Width** | **NullableFloat32** | The width in pixels of the image specified in the url parameter. | 
 **Height** | **NullableFloat32** | The height in pixels of the image specified in the url parameter. | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewOembedPhotoData
 
-`func NewOembedPhotoData(type_ string, version string, url NullableString, width NullableFloat32, height NullableFloat32, ) *OembedPhotoData`
+`func NewOembedPhotoData(type_ string, version NullableString, url NullableString, width NullableFloat32, height NullableFloat32, ) *OembedPhotoData`
 
 NewOembedPhotoData instantiates a new OembedPhotoData object
 This constructor will assign default values to properties that have it defined,
@@ -78,6 +78,16 @@ and a boolean to check if the value has been set.
 SetVersion sets Version field to given value.
 
 
+### SetVersionNil
+
+`func (o *OembedPhotoData) SetVersionNil(b bool)`
+
+ SetVersionNil sets the value for Version to be an explicit nil
+
+### UnsetVersion
+`func (o *OembedPhotoData) UnsetVersion()`
+
+UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetTitle
 
 `func (o *OembedPhotoData) GetTitle() string`
@@ -103,6 +113,16 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
+### SetTitleNil
+
+`func (o *OembedPhotoData) SetTitleNil(b bool)`
+
+ SetTitleNil sets the value for Title to be an explicit nil
+
+### UnsetTitle
+`func (o *OembedPhotoData) UnsetTitle()`
+
+UnsetTitle ensures that no value is present for Title, not even an explicit nil
 ### GetAuthorName
 
 `func (o *OembedPhotoData) GetAuthorName() string`
@@ -128,6 +148,16 @@ SetAuthorName sets AuthorName field to given value.
 
 HasAuthorName returns a boolean if a field has been set.
 
+### SetAuthorNameNil
+
+`func (o *OembedPhotoData) SetAuthorNameNil(b bool)`
+
+ SetAuthorNameNil sets the value for AuthorName to be an explicit nil
+
+### UnsetAuthorName
+`func (o *OembedPhotoData) UnsetAuthorName()`
+
+UnsetAuthorName ensures that no value is present for AuthorName, not even an explicit nil
 ### GetAuthorUrl
 
 `func (o *OembedPhotoData) GetAuthorUrl() string`
@@ -153,6 +183,16 @@ SetAuthorUrl sets AuthorUrl field to given value.
 
 HasAuthorUrl returns a boolean if a field has been set.
 
+### SetAuthorUrlNil
+
+`func (o *OembedPhotoData) SetAuthorUrlNil(b bool)`
+
+ SetAuthorUrlNil sets the value for AuthorUrl to be an explicit nil
+
+### UnsetAuthorUrl
+`func (o *OembedPhotoData) UnsetAuthorUrl()`
+
+UnsetAuthorUrl ensures that no value is present for AuthorUrl, not even an explicit nil
 ### GetProviderName
 
 `func (o *OembedPhotoData) GetProviderName() string`
@@ -178,6 +218,16 @@ SetProviderName sets ProviderName field to given value.
 
 HasProviderName returns a boolean if a field has been set.
 
+### SetProviderNameNil
+
+`func (o *OembedPhotoData) SetProviderNameNil(b bool)`
+
+ SetProviderNameNil sets the value for ProviderName to be an explicit nil
+
+### UnsetProviderName
+`func (o *OembedPhotoData) UnsetProviderName()`
+
+UnsetProviderName ensures that no value is present for ProviderName, not even an explicit nil
 ### GetProviderUrl
 
 `func (o *OembedPhotoData) GetProviderUrl() string`
@@ -203,6 +253,16 @@ SetProviderUrl sets ProviderUrl field to given value.
 
 HasProviderUrl returns a boolean if a field has been set.
 
+### SetProviderUrlNil
+
+`func (o *OembedPhotoData) SetProviderUrlNil(b bool)`
+
+ SetProviderUrlNil sets the value for ProviderUrl to be an explicit nil
+
+### UnsetProviderUrl
+`func (o *OembedPhotoData) UnsetProviderUrl()`
+
+UnsetProviderUrl ensures that no value is present for ProviderUrl, not even an explicit nil
 ### GetCacheAge
 
 `func (o *OembedPhotoData) GetCacheAge() string`
@@ -228,6 +288,16 @@ SetCacheAge sets CacheAge field to given value.
 
 HasCacheAge returns a boolean if a field has been set.
 
+### SetCacheAgeNil
+
+`func (o *OembedPhotoData) SetCacheAgeNil(b bool)`
+
+ SetCacheAgeNil sets the value for CacheAge to be an explicit nil
+
+### UnsetCacheAge
+`func (o *OembedPhotoData) UnsetCacheAge()`
+
+UnsetCacheAge ensures that no value is present for CacheAge, not even an explicit nil
 ### GetThumbnailUrl
 
 `func (o *OembedPhotoData) GetThumbnailUrl() string`
@@ -253,6 +323,16 @@ SetThumbnailUrl sets ThumbnailUrl field to given value.
 
 HasThumbnailUrl returns a boolean if a field has been set.
 
+### SetThumbnailUrlNil
+
+`func (o *OembedPhotoData) SetThumbnailUrlNil(b bool)`
+
+ SetThumbnailUrlNil sets the value for ThumbnailUrl to be an explicit nil
+
+### UnsetThumbnailUrl
+`func (o *OembedPhotoData) UnsetThumbnailUrl()`
+
+UnsetThumbnailUrl ensures that no value is present for ThumbnailUrl, not even an explicit nil
 ### GetThumbnailWidth
 
 `func (o *OembedPhotoData) GetThumbnailWidth() float32`
@@ -278,6 +358,16 @@ SetThumbnailWidth sets ThumbnailWidth field to given value.
 
 HasThumbnailWidth returns a boolean if a field has been set.
 
+### SetThumbnailWidthNil
+
+`func (o *OembedPhotoData) SetThumbnailWidthNil(b bool)`
+
+ SetThumbnailWidthNil sets the value for ThumbnailWidth to be an explicit nil
+
+### UnsetThumbnailWidth
+`func (o *OembedPhotoData) UnsetThumbnailWidth()`
+
+UnsetThumbnailWidth ensures that no value is present for ThumbnailWidth, not even an explicit nil
 ### GetThumbnailHeight
 
 `func (o *OembedPhotoData) GetThumbnailHeight() float32`
@@ -303,6 +393,16 @@ SetThumbnailHeight sets ThumbnailHeight field to given value.
 
 HasThumbnailHeight returns a boolean if a field has been set.
 
+### SetThumbnailHeightNil
+
+`func (o *OembedPhotoData) SetThumbnailHeightNil(b bool)`
+
+ SetThumbnailHeightNil sets the value for ThumbnailHeight to be an explicit nil
+
+### UnsetThumbnailHeight
+`func (o *OembedPhotoData) UnsetThumbnailHeight()`
+
+UnsetThumbnailHeight ensures that no value is present for ThumbnailHeight, not even an explicit nil
 ### GetUrl
 
 `func (o *OembedPhotoData) GetUrl() string`

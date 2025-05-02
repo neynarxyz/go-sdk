@@ -26,8 +26,7 @@ type TransactionFrameConfig struct {
 	AllowlistFids []int32 `json:"allowlist_fids,omitempty"`
 	// List of items included in the transaction
 	LineItems []TransactionFrameLineItem `json:"line_items"`
-	// Action button for primary CTA on the transaction mini app
-	Action *TransactionFrameAction `json:"action,omitempty"`
+	Action    *TransactionFrameAction    `json:"action,omitempty"`
 }
 
 type _TransactionFrameConfig TransactionFrameConfig

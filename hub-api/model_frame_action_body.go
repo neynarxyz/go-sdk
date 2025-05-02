@@ -25,9 +25,8 @@ type FrameActionBody struct {
 	// The URL associated with the frame action. This typically points to the frame's content or the destination that handles the interaction.
 	Url string `json:"url"`
 	// Identifies which button the user clicked in the frame. Frames can have up to 4 buttons, numbered from 1 to 4.
-	ButtonIndex int32 `json:"buttonIndex"`
-	// The unique identifier of the cast containing the frame that was interacted with.
-	CastId CastId `json:"castId"`
+	ButtonIndex int32  `json:"buttonIndex"`
+	CastId      CastId `json:"castId"`
 }
 
 type _FrameActionBody FrameActionBody

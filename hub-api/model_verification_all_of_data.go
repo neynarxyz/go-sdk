@@ -25,9 +25,8 @@ type VerificationAllOfData struct {
 	// The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed.
 	Fid int32 `json:"fid"`
 	// Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
-	Timestamp int64            `json:"timestamp"`
-	Network   FarcasterNetwork `json:"network"`
-	// Contains the blockchain address being verified, along with cryptographic proof of ownership through a signature.
+	Timestamp                     int64                         `json:"timestamp"`
+	Network                       FarcasterNetwork              `json:"network"`
 	VerificationAddEthAddressBody VerificationAddEthAddressBody `json:"verificationAddEthAddressBody"`
 	Type                          MessageType                   `json:"type"`
 }

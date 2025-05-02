@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	blockReqBody := *openapiclient.NewBlockReqBody("SignerUuid_example", int32(123)) // BlockReqBody | 
+	blockReqBody := *openapiclient.NewBlockReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", int32(3)) // BlockReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -171,7 +171,7 @@ import (
 )
 
 func main() {
-	blockReqBody := *openapiclient.NewBlockReqBody("SignerUuid_example", int32(123)) // BlockReqBody | 
+	blockReqBody := *openapiclient.NewBlockReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", int32(3)) // BlockReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -44,7 +44,7 @@ import (
 )
 
 func main() {
-	removeVerificationReqBody := *openapiclient.NewRemoveVerificationReqBody("SignerUuid_example", "0x5a927ac639636e534b678e81768ca19e2c6280b7", "BlockHash_example") // RemoveVerificationReqBody | 
+	removeVerificationReqBody := *openapiclient.NewRemoveVerificationReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "0x5a927ac639636e534b678e81768ca19e2c6280b7", "BlockHash_example") // RemoveVerificationReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -466,7 +466,7 @@ import (
 )
 
 func main() {
-	followReqBody := *openapiclient.NewFollowReqBody("SignerUuid_example", []int32{int32(123)}) // FollowReqBody | 
+	followReqBody := *openapiclient.NewFollowReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", []int32{int32(3)}) // FollowReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -804,7 +804,7 @@ import (
 )
 
 func main() {
-	addVerificationReqBody := *openapiclient.NewAddVerificationReqBody("SignerUuid_example", "0x5a927ac639636e534b678e81768ca19e2c6280b7", "BlockHash_example", "EthSignature_example") // AddVerificationReqBody | 
+	addVerificationReqBody := *openapiclient.NewAddVerificationReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "0x5a927ac639636e534b678e81768ca19e2c6280b7", "BlockHash_example", "EthSignature_example") // AddVerificationReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1010,7 +1010,7 @@ import (
 )
 
 func main() {
-	followReqBody := *openapiclient.NewFollowReqBody("SignerUuid_example", []int32{int32(123)}) // FollowReqBody | 
+	followReqBody := *openapiclient.NewFollowReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", []int32{int32(3)}) // FollowReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1076,7 +1076,7 @@ import (
 )
 
 func main() {
-	updateUserReqBody := *openapiclient.NewUpdateUserReqBody("SignerUuid_example") // UpdateUserReqBody | 
+	updateUserReqBody := *openapiclient.NewUpdateUserReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec") // UpdateUserReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

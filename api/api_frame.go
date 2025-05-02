@@ -2166,7 +2166,7 @@ func (a *FrameAPIService) PublishFrameNotificationsExecute(r ApiPublishFrameNoti
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v FetchTrendingFeed400Response
+			var v PublishFrameNotifications400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2446,7 +2446,7 @@ func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2457,7 +2457,7 @@ func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorRes
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

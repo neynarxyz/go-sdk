@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **Status** | **bool** |  | 
 **ExpiresAt** | **NullableInt64** |  | 
 **SubscribedAt** | **NullableInt64** |  | 
-**Tier** | [**SubscriptionStatusTier**](SubscriptionStatusTier.md) |  | 
+**Tier** | [**SubscriptionTier**](SubscriptionTier.md) |  | 
 
 ## Methods
 
 ### NewSubscriptionStatus
 
-`func NewSubscriptionStatus(object string, status bool, expiresAt NullableInt64, subscribedAt NullableInt64, tier SubscriptionStatusTier, ) *SubscriptionStatus`
+`func NewSubscriptionStatus(object string, status bool, expiresAt NullableInt64, subscribedAt NullableInt64, tier SubscriptionTier, ) *SubscriptionStatus`
 
 NewSubscriptionStatus instantiates a new SubscriptionStatus object
 This constructor will assign default values to properties that have it defined,
@@ -131,20 +131,20 @@ SetSubscribedAt sets SubscribedAt field to given value.
 UnsetSubscribedAt ensures that no value is present for SubscribedAt, not even an explicit nil
 ### GetTier
 
-`func (o *SubscriptionStatus) GetTier() SubscriptionStatusTier`
+`func (o *SubscriptionStatus) GetTier() SubscriptionTier`
 
 GetTier returns the Tier field if non-nil, zero value otherwise.
 
 ### GetTierOk
 
-`func (o *SubscriptionStatus) GetTierOk() (*SubscriptionStatusTier, bool)`
+`func (o *SubscriptionStatus) GetTierOk() (*SubscriptionTier, bool)`
 
 GetTierOk returns a tuple with the Tier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTier
 
-`func (o *SubscriptionStatus) SetTier(v SubscriptionStatusTier)`
+`func (o *SubscriptionStatus) SetTier(v SubscriptionTier)`
 
 SetTier sets Tier field to given value.
 

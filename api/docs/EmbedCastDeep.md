@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CastId** | Pointer to [**CastId**](CastId.md) | [DEPRECATED: Use \&quot;cast\&quot; key instead] | [optional] 
+**CastId** | Pointer to [**CastId**](CastId.md) |  | [optional] 
 **Cast** | [**CastDehydrated**](CastDehydrated.md) |  | 
 
 ## Methods

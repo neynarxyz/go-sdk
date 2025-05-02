@@ -22,26 +22,26 @@ var _ MappedNullable = &OembedVideoData{}
 
 // OembedVideoData struct for OembedVideoData
 type OembedVideoData struct {
-	Type    string `json:"type"`
-	Version string `json:"version"`
+	Type    string         `json:"type"`
+	Version NullableString `json:"version"`
 	// A text title, describing the resource.
-	Title *string `json:"title,omitempty"`
+	Title NullableString `json:"title,omitempty"`
 	// The name of the author/owner of the resource.
-	AuthorName *string `json:"author_name,omitempty"`
+	AuthorName NullableString `json:"author_name,omitempty"`
 	// A URL for the author/owner of the resource.
-	AuthorUrl *string `json:"author_url,omitempty"`
+	AuthorUrl NullableString `json:"author_url,omitempty"`
 	// The name of the resource provider.
-	ProviderName *string `json:"provider_name,omitempty"`
+	ProviderName NullableString `json:"provider_name,omitempty"`
 	// The url of the resource provider.
-	ProviderUrl *string `json:"provider_url,omitempty"`
+	ProviderUrl NullableString `json:"provider_url,omitempty"`
 	// The suggested cache lifetime for this resource, in seconds. Consumers may choose to use this value or not.
-	CacheAge *string `json:"cache_age,omitempty"`
+	CacheAge NullableString `json:"cache_age,omitempty"`
 	// A URL to a thumbnail image representing the resource. The thumbnail must respect any maxwidth and maxheight parameters. If this parameter is present, thumbnail_width and thumbnail_height must also be present.
-	ThumbnailUrl *string `json:"thumbnail_url,omitempty"`
+	ThumbnailUrl NullableString `json:"thumbnail_url,omitempty"`
 	// The width of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_height must also be present.
-	ThumbnailWidth *float32 `json:"thumbnail_width,omitempty"`
+	ThumbnailWidth NullableFloat32 `json:"thumbnail_width,omitempty"`
 	// The height of the optional thumbnail. If this parameter is present, thumbnail_url and thumbnail_width must also be present.
-	ThumbnailHeight *float32 `json:"thumbnail_height,omitempty"`
+	ThumbnailHeight NullableFloat32 `json:"thumbnail_height,omitempty"`
 	// The HTML required to embed a video player. The HTML should have no padding or margins. Consumers may wish to load the HTML in an off-domain iframe to avoid XSS vulnerabilities.
 	Html NullableString `json:"html"`
 	// The width in pixels required to display the HTML.
@@ -56,7 +56,7 @@ type _OembedVideoData OembedVideoData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOembedVideoData(type_ string, version string, html NullableString, width NullableFloat32, height NullableFloat32) *OembedVideoData {
+func NewOembedVideoData(type_ string, version NullableString, html NullableString, width NullableFloat32, height NullableFloat32) *OembedVideoData {
 	this := OembedVideoData{}
 	this.Type = type_
 	this.Version = version
@@ -99,315 +99,416 @@ func (o *OembedVideoData) SetType(v string) {
 }
 
 // GetVersion returns the Version field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *OembedVideoData) GetVersion() string {
-	if o == nil {
+	if o == nil || o.Version.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Version
+	return *o.Version.Get()
 }
 
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OembedVideoData) GetVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Version, true
+	return o.Version.Get(), o.Version.IsSet()
 }
 
 // SetVersion sets field value
 func (o *OembedVideoData) SetVersion(v string) {
-	o.Version = v
+	o.Version.Set(&v)
 }
 
-// GetTitle returns the Title field value if set, zero value otherwise.
+// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedVideoData) GetTitle() string {
-	if o == nil || IsNil(o.Title) {
+	if o == nil || IsNil(o.Title.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Title
+	return *o.Title.Get()
 }
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OembedVideoData) GetTitleOk() (*string, bool) {
-	if o == nil || IsNil(o.Title) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Title, true
+	return o.Title.Get(), o.Title.IsSet()
 }
 
 // HasTitle returns a boolean if a field has been set.
 func (o *OembedVideoData) HasTitle() bool {
-	if o != nil && !IsNil(o.Title) {
+	if o != nil && o.Title.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTitle gets a reference to the given string and assigns it to the Title field.
+// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
 func (o *OembedVideoData) SetTitle(v string) {
-	o.Title = &v
+	o.Title.Set(&v)
 }
 
-// GetAuthorName returns the AuthorName field value if set, zero value otherwise.
+// SetTitleNil sets the value for Title to be an explicit nil
+func (o *OembedVideoData) SetTitleNil() {
+	o.Title.Set(nil)
+}
+
+// UnsetTitle ensures that no value is present for Title, not even an explicit nil
+func (o *OembedVideoData) UnsetTitle() {
+	o.Title.Unset()
+}
+
+// GetAuthorName returns the AuthorName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedVideoData) GetAuthorName() string {
-	if o == nil || IsNil(o.AuthorName) {
+	if o == nil || IsNil(o.AuthorName.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.AuthorName
+	return *o.AuthorName.Get()
 }
 
 // GetAuthorNameOk returns a tuple with the AuthorName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OembedVideoData) GetAuthorNameOk() (*string, bool) {
-	if o == nil || IsNil(o.AuthorName) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AuthorName, true
+	return o.AuthorName.Get(), o.AuthorName.IsSet()
 }
 
 // HasAuthorName returns a boolean if a field has been set.
 func (o *OembedVideoData) HasAuthorName() bool {
-	if o != nil && !IsNil(o.AuthorName) {
+	if o != nil && o.AuthorName.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAuthorName gets a reference to the given string and assigns it to the AuthorName field.
+// SetAuthorName gets a reference to the given NullableString and assigns it to the AuthorName field.
 func (o *OembedVideoData) SetAuthorName(v string) {
-	o.AuthorName = &v
+	o.AuthorName.Set(&v)
 }
 
-// GetAuthorUrl returns the AuthorUrl field value if set, zero value otherwise.
+// SetAuthorNameNil sets the value for AuthorName to be an explicit nil
+func (o *OembedVideoData) SetAuthorNameNil() {
+	o.AuthorName.Set(nil)
+}
+
+// UnsetAuthorName ensures that no value is present for AuthorName, not even an explicit nil
+func (o *OembedVideoData) UnsetAuthorName() {
+	o.AuthorName.Unset()
+}
+
+// GetAuthorUrl returns the AuthorUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedVideoData) GetAuthorUrl() string {
-	if o == nil || IsNil(o.AuthorUrl) {
+	if o == nil || IsNil(o.AuthorUrl.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.AuthorUrl
+	return *o.AuthorUrl.Get()
 }
 
 // GetAuthorUrlOk returns a tuple with the AuthorUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OembedVideoData) GetAuthorUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.AuthorUrl) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AuthorUrl, true
+	return o.AuthorUrl.Get(), o.AuthorUrl.IsSet()
 }
 
 // HasAuthorUrl returns a boolean if a field has been set.
 func (o *OembedVideoData) HasAuthorUrl() bool {
-	if o != nil && !IsNil(o.AuthorUrl) {
+	if o != nil && o.AuthorUrl.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAuthorUrl gets a reference to the given string and assigns it to the AuthorUrl field.
+// SetAuthorUrl gets a reference to the given NullableString and assigns it to the AuthorUrl field.
 func (o *OembedVideoData) SetAuthorUrl(v string) {
-	o.AuthorUrl = &v
+	o.AuthorUrl.Set(&v)
 }
 
-// GetProviderName returns the ProviderName field value if set, zero value otherwise.
+// SetAuthorUrlNil sets the value for AuthorUrl to be an explicit nil
+func (o *OembedVideoData) SetAuthorUrlNil() {
+	o.AuthorUrl.Set(nil)
+}
+
+// UnsetAuthorUrl ensures that no value is present for AuthorUrl, not even an explicit nil
+func (o *OembedVideoData) UnsetAuthorUrl() {
+	o.AuthorUrl.Unset()
+}
+
+// GetProviderName returns the ProviderName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedVideoData) GetProviderName() string {
-	if o == nil || IsNil(o.ProviderName) {
+	if o == nil || IsNil(o.ProviderName.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ProviderName
+	return *o.ProviderName.Get()
 }
 
 // GetProviderNameOk returns a tuple with the ProviderName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OembedVideoData) GetProviderNameOk() (*string, bool) {
-	if o == nil || IsNil(o.ProviderName) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ProviderName, true
+	return o.ProviderName.Get(), o.ProviderName.IsSet()
 }
 
 // HasProviderName returns a boolean if a field has been set.
 func (o *OembedVideoData) HasProviderName() bool {
-	if o != nil && !IsNil(o.ProviderName) {
+	if o != nil && o.ProviderName.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetProviderName gets a reference to the given string and assigns it to the ProviderName field.
+// SetProviderName gets a reference to the given NullableString and assigns it to the ProviderName field.
 func (o *OembedVideoData) SetProviderName(v string) {
-	o.ProviderName = &v
+	o.ProviderName.Set(&v)
 }
 
-// GetProviderUrl returns the ProviderUrl field value if set, zero value otherwise.
+// SetProviderNameNil sets the value for ProviderName to be an explicit nil
+func (o *OembedVideoData) SetProviderNameNil() {
+	o.ProviderName.Set(nil)
+}
+
+// UnsetProviderName ensures that no value is present for ProviderName, not even an explicit nil
+func (o *OembedVideoData) UnsetProviderName() {
+	o.ProviderName.Unset()
+}
+
+// GetProviderUrl returns the ProviderUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedVideoData) GetProviderUrl() string {
-	if o == nil || IsNil(o.ProviderUrl) {
+	if o == nil || IsNil(o.ProviderUrl.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ProviderUrl
+	return *o.ProviderUrl.Get()
 }
 
 // GetProviderUrlOk returns a tuple with the ProviderUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OembedVideoData) GetProviderUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.ProviderUrl) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ProviderUrl, true
+	return o.ProviderUrl.Get(), o.ProviderUrl.IsSet()
 }
 
 // HasProviderUrl returns a boolean if a field has been set.
 func (o *OembedVideoData) HasProviderUrl() bool {
-	if o != nil && !IsNil(o.ProviderUrl) {
+	if o != nil && o.ProviderUrl.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetProviderUrl gets a reference to the given string and assigns it to the ProviderUrl field.
+// SetProviderUrl gets a reference to the given NullableString and assigns it to the ProviderUrl field.
 func (o *OembedVideoData) SetProviderUrl(v string) {
-	o.ProviderUrl = &v
+	o.ProviderUrl.Set(&v)
 }
 
-// GetCacheAge returns the CacheAge field value if set, zero value otherwise.
+// SetProviderUrlNil sets the value for ProviderUrl to be an explicit nil
+func (o *OembedVideoData) SetProviderUrlNil() {
+	o.ProviderUrl.Set(nil)
+}
+
+// UnsetProviderUrl ensures that no value is present for ProviderUrl, not even an explicit nil
+func (o *OembedVideoData) UnsetProviderUrl() {
+	o.ProviderUrl.Unset()
+}
+
+// GetCacheAge returns the CacheAge field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedVideoData) GetCacheAge() string {
-	if o == nil || IsNil(o.CacheAge) {
+	if o == nil || IsNil(o.CacheAge.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.CacheAge
+	return *o.CacheAge.Get()
 }
 
 // GetCacheAgeOk returns a tuple with the CacheAge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OembedVideoData) GetCacheAgeOk() (*string, bool) {
-	if o == nil || IsNil(o.CacheAge) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CacheAge, true
+	return o.CacheAge.Get(), o.CacheAge.IsSet()
 }
 
 // HasCacheAge returns a boolean if a field has been set.
 func (o *OembedVideoData) HasCacheAge() bool {
-	if o != nil && !IsNil(o.CacheAge) {
+	if o != nil && o.CacheAge.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetCacheAge gets a reference to the given string and assigns it to the CacheAge field.
+// SetCacheAge gets a reference to the given NullableString and assigns it to the CacheAge field.
 func (o *OembedVideoData) SetCacheAge(v string) {
-	o.CacheAge = &v
+	o.CacheAge.Set(&v)
 }
 
-// GetThumbnailUrl returns the ThumbnailUrl field value if set, zero value otherwise.
+// SetCacheAgeNil sets the value for CacheAge to be an explicit nil
+func (o *OembedVideoData) SetCacheAgeNil() {
+	o.CacheAge.Set(nil)
+}
+
+// UnsetCacheAge ensures that no value is present for CacheAge, not even an explicit nil
+func (o *OembedVideoData) UnsetCacheAge() {
+	o.CacheAge.Unset()
+}
+
+// GetThumbnailUrl returns the ThumbnailUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedVideoData) GetThumbnailUrl() string {
-	if o == nil || IsNil(o.ThumbnailUrl) {
+	if o == nil || IsNil(o.ThumbnailUrl.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.ThumbnailUrl
+	return *o.ThumbnailUrl.Get()
 }
 
 // GetThumbnailUrlOk returns a tuple with the ThumbnailUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OembedVideoData) GetThumbnailUrlOk() (*string, bool) {
-	if o == nil || IsNil(o.ThumbnailUrl) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ThumbnailUrl, true
+	return o.ThumbnailUrl.Get(), o.ThumbnailUrl.IsSet()
 }
 
 // HasThumbnailUrl returns a boolean if a field has been set.
 func (o *OembedVideoData) HasThumbnailUrl() bool {
-	if o != nil && !IsNil(o.ThumbnailUrl) {
+	if o != nil && o.ThumbnailUrl.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetThumbnailUrl gets a reference to the given string and assigns it to the ThumbnailUrl field.
+// SetThumbnailUrl gets a reference to the given NullableString and assigns it to the ThumbnailUrl field.
 func (o *OembedVideoData) SetThumbnailUrl(v string) {
-	o.ThumbnailUrl = &v
+	o.ThumbnailUrl.Set(&v)
 }
 
-// GetThumbnailWidth returns the ThumbnailWidth field value if set, zero value otherwise.
+// SetThumbnailUrlNil sets the value for ThumbnailUrl to be an explicit nil
+func (o *OembedVideoData) SetThumbnailUrlNil() {
+	o.ThumbnailUrl.Set(nil)
+}
+
+// UnsetThumbnailUrl ensures that no value is present for ThumbnailUrl, not even an explicit nil
+func (o *OembedVideoData) UnsetThumbnailUrl() {
+	o.ThumbnailUrl.Unset()
+}
+
+// GetThumbnailWidth returns the ThumbnailWidth field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedVideoData) GetThumbnailWidth() float32 {
-	if o == nil || IsNil(o.ThumbnailWidth) {
+	if o == nil || IsNil(o.ThumbnailWidth.Get()) {
 		var ret float32
 		return ret
 	}
-	return *o.ThumbnailWidth
+	return *o.ThumbnailWidth.Get()
 }
 
 // GetThumbnailWidthOk returns a tuple with the ThumbnailWidth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OembedVideoData) GetThumbnailWidthOk() (*float32, bool) {
-	if o == nil || IsNil(o.ThumbnailWidth) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ThumbnailWidth, true
+	return o.ThumbnailWidth.Get(), o.ThumbnailWidth.IsSet()
 }
 
 // HasThumbnailWidth returns a boolean if a field has been set.
 func (o *OembedVideoData) HasThumbnailWidth() bool {
-	if o != nil && !IsNil(o.ThumbnailWidth) {
+	if o != nil && o.ThumbnailWidth.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetThumbnailWidth gets a reference to the given float32 and assigns it to the ThumbnailWidth field.
+// SetThumbnailWidth gets a reference to the given NullableFloat32 and assigns it to the ThumbnailWidth field.
 func (o *OembedVideoData) SetThumbnailWidth(v float32) {
-	o.ThumbnailWidth = &v
+	o.ThumbnailWidth.Set(&v)
 }
 
-// GetThumbnailHeight returns the ThumbnailHeight field value if set, zero value otherwise.
+// SetThumbnailWidthNil sets the value for ThumbnailWidth to be an explicit nil
+func (o *OembedVideoData) SetThumbnailWidthNil() {
+	o.ThumbnailWidth.Set(nil)
+}
+
+// UnsetThumbnailWidth ensures that no value is present for ThumbnailWidth, not even an explicit nil
+func (o *OembedVideoData) UnsetThumbnailWidth() {
+	o.ThumbnailWidth.Unset()
+}
+
+// GetThumbnailHeight returns the ThumbnailHeight field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OembedVideoData) GetThumbnailHeight() float32 {
-	if o == nil || IsNil(o.ThumbnailHeight) {
+	if o == nil || IsNil(o.ThumbnailHeight.Get()) {
 		var ret float32
 		return ret
 	}
-	return *o.ThumbnailHeight
+	return *o.ThumbnailHeight.Get()
 }
 
 // GetThumbnailHeightOk returns a tuple with the ThumbnailHeight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OembedVideoData) GetThumbnailHeightOk() (*float32, bool) {
-	if o == nil || IsNil(o.ThumbnailHeight) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ThumbnailHeight, true
+	return o.ThumbnailHeight.Get(), o.ThumbnailHeight.IsSet()
 }
 
 // HasThumbnailHeight returns a boolean if a field has been set.
 func (o *OembedVideoData) HasThumbnailHeight() bool {
-	if o != nil && !IsNil(o.ThumbnailHeight) {
+	if o != nil && o.ThumbnailHeight.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetThumbnailHeight gets a reference to the given float32 and assigns it to the ThumbnailHeight field.
+// SetThumbnailHeight gets a reference to the given NullableFloat32 and assigns it to the ThumbnailHeight field.
 func (o *OembedVideoData) SetThumbnailHeight(v float32) {
-	o.ThumbnailHeight = &v
+	o.ThumbnailHeight.Set(&v)
+}
+
+// SetThumbnailHeightNil sets the value for ThumbnailHeight to be an explicit nil
+func (o *OembedVideoData) SetThumbnailHeightNil() {
+	o.ThumbnailHeight.Set(nil)
+}
+
+// UnsetThumbnailHeight ensures that no value is present for ThumbnailHeight, not even an explicit nil
+func (o *OembedVideoData) UnsetThumbnailHeight() {
+	o.ThumbnailHeight.Unset()
 }
 
 // GetHtml returns the Html field value
@@ -499,33 +600,33 @@ func (o OembedVideoData) MarshalJSON() ([]byte, error) {
 func (o OembedVideoData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
-	toSerialize["version"] = o.Version
-	if !IsNil(o.Title) {
-		toSerialize["title"] = o.Title
+	toSerialize["version"] = o.Version.Get()
+	if o.Title.IsSet() {
+		toSerialize["title"] = o.Title.Get()
 	}
-	if !IsNil(o.AuthorName) {
-		toSerialize["author_name"] = o.AuthorName
+	if o.AuthorName.IsSet() {
+		toSerialize["author_name"] = o.AuthorName.Get()
 	}
-	if !IsNil(o.AuthorUrl) {
-		toSerialize["author_url"] = o.AuthorUrl
+	if o.AuthorUrl.IsSet() {
+		toSerialize["author_url"] = o.AuthorUrl.Get()
 	}
-	if !IsNil(o.ProviderName) {
-		toSerialize["provider_name"] = o.ProviderName
+	if o.ProviderName.IsSet() {
+		toSerialize["provider_name"] = o.ProviderName.Get()
 	}
-	if !IsNil(o.ProviderUrl) {
-		toSerialize["provider_url"] = o.ProviderUrl
+	if o.ProviderUrl.IsSet() {
+		toSerialize["provider_url"] = o.ProviderUrl.Get()
 	}
-	if !IsNil(o.CacheAge) {
-		toSerialize["cache_age"] = o.CacheAge
+	if o.CacheAge.IsSet() {
+		toSerialize["cache_age"] = o.CacheAge.Get()
 	}
-	if !IsNil(o.ThumbnailUrl) {
-		toSerialize["thumbnail_url"] = o.ThumbnailUrl
+	if o.ThumbnailUrl.IsSet() {
+		toSerialize["thumbnail_url"] = o.ThumbnailUrl.Get()
 	}
-	if !IsNil(o.ThumbnailWidth) {
-		toSerialize["thumbnail_width"] = o.ThumbnailWidth
+	if o.ThumbnailWidth.IsSet() {
+		toSerialize["thumbnail_width"] = o.ThumbnailWidth.Get()
 	}
-	if !IsNil(o.ThumbnailHeight) {
-		toSerialize["thumbnail_height"] = o.ThumbnailHeight
+	if o.ThumbnailHeight.IsSet() {
+		toSerialize["thumbnail_height"] = o.ThumbnailHeight.Get()
 	}
 	toSerialize["html"] = o.Html.Get()
 	toSerialize["width"] = o.Width.Get()

@@ -22,11 +22,11 @@ var _ MappedNullable = &SubscriptionStatus{}
 
 // SubscriptionStatus struct for SubscriptionStatus
 type SubscriptionStatus struct {
-	Object       string                 `json:"object"`
-	Status       bool                   `json:"status"`
-	ExpiresAt    NullableInt64          `json:"expires_at"`
-	SubscribedAt NullableInt64          `json:"subscribed_at"`
-	Tier         SubscriptionStatusTier `json:"tier"`
+	Object       string           `json:"object"`
+	Status       bool             `json:"status"`
+	ExpiresAt    NullableInt64    `json:"expires_at"`
+	SubscribedAt NullableInt64    `json:"subscribed_at"`
+	Tier         SubscriptionTier `json:"tier"`
 }
 
 type _SubscriptionStatus SubscriptionStatus
@@ -35,7 +35,7 @@ type _SubscriptionStatus SubscriptionStatus
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionStatus(object string, status bool, expiresAt NullableInt64, subscribedAt NullableInt64, tier SubscriptionStatusTier) *SubscriptionStatus {
+func NewSubscriptionStatus(object string, status bool, expiresAt NullableInt64, subscribedAt NullableInt64, tier SubscriptionTier) *SubscriptionStatus {
 	this := SubscriptionStatus{}
 	this.Object = object
 	this.Status = status
@@ -154,9 +154,9 @@ func (o *SubscriptionStatus) SetSubscribedAt(v int64) {
 }
 
 // GetTier returns the Tier field value
-func (o *SubscriptionStatus) GetTier() SubscriptionStatusTier {
+func (o *SubscriptionStatus) GetTier() SubscriptionTier {
 	if o == nil {
-		var ret SubscriptionStatusTier
+		var ret SubscriptionTier
 		return ret
 	}
 
@@ -165,7 +165,7 @@ func (o *SubscriptionStatus) GetTier() SubscriptionStatusTier {
 
 // GetTierOk returns a tuple with the Tier field value
 // and a boolean to check if the value has been set.
-func (o *SubscriptionStatus) GetTierOk() (*SubscriptionStatusTier, bool) {
+func (o *SubscriptionStatus) GetTierOk() (*SubscriptionTier, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -173,7 +173,7 @@ func (o *SubscriptionStatus) GetTierOk() (*SubscriptionStatusTier, bool) {
 }
 
 // SetTier sets field value
-func (o *SubscriptionStatus) SetTier(v SubscriptionStatusTier) {
+func (o *SubscriptionStatus) SetTier(v SubscriptionTier) {
 	o.Tier = v
 }
 

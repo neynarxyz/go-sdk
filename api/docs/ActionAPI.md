@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	farcasterActionReqBody := *openapiclient.NewFarcasterActionReqBody("SignerUuid_example", "BaseUrl_example", *openapiclient.NewFarcasterActionReqBodyAction("Type_example")) // FarcasterActionReqBody | 
+	farcasterActionReqBody := *openapiclient.NewFarcasterActionReqBody("123e4567-e89b-12d3-a456-426614174000", "https://example.com", *openapiclient.NewFarcasterActionReqBodyAction("create.user")) // FarcasterActionReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

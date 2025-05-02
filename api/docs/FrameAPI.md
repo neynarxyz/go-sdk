@@ -717,7 +717,7 @@ import (
 )
 
 func main() {
-	frameActionReqBody := *openapiclient.NewFrameActionReqBody("SignerUuid_example", *openapiclient.NewFrameAction(*openapiclient.NewFrameActionButton(int32(123), openapiclient.FrameButtonActionType("post")), "FramesUrl_example", "PostUrl_example")) // FrameActionReqBody | 
+	frameActionReqBody := *openapiclient.NewFrameActionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", *openapiclient.NewFrameAction(*openapiclient.NewFrameActionButton(int32(123), openapiclient.FrameButtonActionType("post")), "FramesUrl_example", "PostUrl_example")) // FrameActionReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -849,7 +849,7 @@ import (
 )
 
 func main() {
-	sendFrameNotificationsReqBody := *openapiclient.NewSendFrameNotificationsReqBody([]int32{int32(123)}, *openapiclient.NewSendFrameNotificationsReqBodyNotification("New Message", "You have received a new message in your inbox.", "https://example.com/notifications")) // SendFrameNotificationsReqBody | 
+	sendFrameNotificationsReqBody := *openapiclient.NewSendFrameNotificationsReqBody([]int32{int32(3)}, *openapiclient.NewSendFrameNotificationsReqBodyNotification("New Message", "You have received a new message in your inbox.", "https://example.com/notifications")) // SendFrameNotificationsReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -915,7 +915,7 @@ import (
 )
 
 func main() {
-	neynarFrameCreationReqBody := *openapiclient.NewNeynarFrameCreationReqBody("Name_example", []openapiclient.NeynarFramePage{*openapiclient.NewNeynarFramePage("Uuid_example", "Version_example", "Title_example", *openapiclient.NewNeynarPageImage("Url_example", "AspectRatio_example"))}) // NeynarFrameCreationReqBody | 
+	neynarFrameCreationReqBody := *openapiclient.NewNeynarFrameCreationReqBody("Name_example", []openapiclient.NeynarFramePage{*openapiclient.NewNeynarFramePage("Uuid_example", "vNext", "Welcome to Neynar", *openapiclient.NewNeynarPageImage("https://i.imgur.com/qo2AzBf.jpeg", "AspectRatio_example"))}) // NeynarFrameCreationReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -981,7 +981,7 @@ import (
 )
 
 func main() {
-	neynarFrameUpdateReqBody := *openapiclient.NewNeynarFrameUpdateReqBody("Uuid_example", []openapiclient.NeynarFramePage{*openapiclient.NewNeynarFramePage("Uuid_example", "Version_example", "Title_example", *openapiclient.NewNeynarPageImage("Url_example", "AspectRatio_example"))}) // NeynarFrameUpdateReqBody | 
+	neynarFrameUpdateReqBody := *openapiclient.NewNeynarFrameUpdateReqBody("Uuid_example", []openapiclient.NeynarFramePage{*openapiclient.NewNeynarFramePage("Uuid_example", "vNext", "Welcome to Neynar", *openapiclient.NewNeynarPageImage("https://i.imgur.com/qo2AzBf.jpeg", "AspectRatio_example"))}) // NeynarFrameUpdateReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

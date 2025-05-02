@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **RootParentUrl** | **NullableString** |  | 
 **ParentAuthor** | [**CastParentAuthor**](CastParentAuthor.md) |  | 
 **Author** | [**User**](User.md) |  | 
-**App** | Pointer to [**CastApp**](CastApp.md) |  | [optional] 
+**App** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
 **Text** | **string** |  | 
 **Timestamp** | **time.Time** |  | 
 **Embeds** | [**[]Embed**](Embed.md) |  | 
@@ -208,20 +208,20 @@ SetAuthor sets Author field to given value.
 
 ### GetApp
 
-`func (o *Cast) GetApp() CastApp`
+`func (o *Cast) GetApp() UserDehydrated`
 
 GetApp returns the App field if non-nil, zero value otherwise.
 
 ### GetAppOk
 
-`func (o *Cast) GetAppOk() (*CastApp, bool)`
+`func (o *Cast) GetAppOk() (*UserDehydrated, bool)`
 
 GetAppOk returns a tuple with the App field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApp
 
-`func (o *Cast) SetApp(v CastApp)`
+`func (o *Cast) SetApp(v UserDehydrated)`
 
 SetApp sets App field to given value.
 

@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Object** | **string** |  | 
 **Hash** | **string** |  | 
-**ParentHash** | **string** |  | 
-**ParentUrl** | **string** |  | 
-**RootParentUrl** | **string** |  | 
+**ParentHash** | **NullableString** |  | 
+**ParentUrl** | **NullableString** |  | 
+**RootParentUrl** | **NullableString** |  | 
 **ParentAuthor** | [**CastParentAuthor**](CastParentAuthor.md) |  | 
 **Author** | [**User**](User.md) |  | 
-**App** | Pointer to [**CastApp**](CastApp.md) |  | [optional] 
+**App** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
 **Text** | **string** |  | 
 **Timestamp** | **time.Time** |  | 
 **Embeds** | [**[]Embed**](Embed.md) |  | 
@@ -19,12 +19,12 @@ Name | Type | Description | Notes
 **Frames** | Pointer to [**[]Frame**](Frame.md) |  | [optional] 
 **Reactions** | [**CastWithInteractionsReactions**](CastWithInteractionsReactions.md) |  | 
 **Replies** | [**CastWithInteractionsReplies**](CastWithInteractionsReplies.md) |  | 
-**ThreadHash** | **string** |  | 
+**ThreadHash** | **NullableString** |  | 
 **MentionedProfiles** | [**[]User**](User.md) |  | 
 **MentionedProfilesRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.  | 
 **MentionedChannels** | [**[]ChannelDehydrated**](ChannelDehydrated.md) |  | 
 **MentionedChannelsRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.  | 
-**Channel** | [**CastWithInteractionsAllOfChannel**](CastWithInteractionsAllOfChannel.md) |  | 
+**Channel** | [**ChannelOrChannelDehydrated**](ChannelOrChannelDehydrated.md) |  | 
 **ViewerContext** | Pointer to [**CastViewerContext**](CastViewerContext.md) |  | [optional] 
 **AuthorChannelContext** | Pointer to [**ChannelUserContext**](ChannelUserContext.md) |  | [optional] 
 **DirectReplies** | [**[]CastWithInteractionsAndConversationsRef**](CastWithInteractionsAndConversationsRef.md) | note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth. | 
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewCastWithInteractionsAndConversations
 
-`func NewCastWithInteractionsAndConversations(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash string, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel CastWithInteractionsAllOfChannel, directReplies []CastWithInteractionsAndConversationsRef, ) *CastWithInteractionsAndConversations`
+`func NewCastWithInteractionsAndConversations(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel ChannelOrChannelDehydrated, directReplies []CastWithInteractionsAndConversationsRef, ) *CastWithInteractionsAndConversations`
 
 NewCastWithInteractionsAndConversations instantiates a new CastWithInteractionsAndConversations object
 This constructor will assign default values to properties that have it defined,
@@ -108,6 +108,16 @@ and a boolean to check if the value has been set.
 SetParentHash sets ParentHash field to given value.
 
 
+### SetParentHashNil
+
+`func (o *CastWithInteractionsAndConversations) SetParentHashNil(b bool)`
+
+ SetParentHashNil sets the value for ParentHash to be an explicit nil
+
+### UnsetParentHash
+`func (o *CastWithInteractionsAndConversations) UnsetParentHash()`
+
+UnsetParentHash ensures that no value is present for ParentHash, not even an explicit nil
 ### GetParentUrl
 
 `func (o *CastWithInteractionsAndConversations) GetParentUrl() string`
@@ -128,6 +138,16 @@ and a boolean to check if the value has been set.
 SetParentUrl sets ParentUrl field to given value.
 
 
+### SetParentUrlNil
+
+`func (o *CastWithInteractionsAndConversations) SetParentUrlNil(b bool)`
+
+ SetParentUrlNil sets the value for ParentUrl to be an explicit nil
+
+### UnsetParentUrl
+`func (o *CastWithInteractionsAndConversations) UnsetParentUrl()`
+
+UnsetParentUrl ensures that no value is present for ParentUrl, not even an explicit nil
 ### GetRootParentUrl
 
 `func (o *CastWithInteractionsAndConversations) GetRootParentUrl() string`
@@ -148,6 +168,16 @@ and a boolean to check if the value has been set.
 SetRootParentUrl sets RootParentUrl field to given value.
 
 
+### SetRootParentUrlNil
+
+`func (o *CastWithInteractionsAndConversations) SetRootParentUrlNil(b bool)`
+
+ SetRootParentUrlNil sets the value for RootParentUrl to be an explicit nil
+
+### UnsetRootParentUrl
+`func (o *CastWithInteractionsAndConversations) UnsetRootParentUrl()`
+
+UnsetRootParentUrl ensures that no value is present for RootParentUrl, not even an explicit nil
 ### GetParentAuthor
 
 `func (o *CastWithInteractionsAndConversations) GetParentAuthor() CastParentAuthor`
@@ -190,20 +220,20 @@ SetAuthor sets Author field to given value.
 
 ### GetApp
 
-`func (o *CastWithInteractionsAndConversations) GetApp() CastApp`
+`func (o *CastWithInteractionsAndConversations) GetApp() UserDehydrated`
 
 GetApp returns the App field if non-nil, zero value otherwise.
 
 ### GetAppOk
 
-`func (o *CastWithInteractionsAndConversations) GetAppOk() (*CastApp, bool)`
+`func (o *CastWithInteractionsAndConversations) GetAppOk() (*UserDehydrated, bool)`
 
 GetAppOk returns a tuple with the App field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApp
 
-`func (o *CastWithInteractionsAndConversations) SetApp(v CastApp)`
+`func (o *CastWithInteractionsAndConversations) SetApp(v UserDehydrated)`
 
 SetApp sets App field to given value.
 
@@ -383,6 +413,16 @@ and a boolean to check if the value has been set.
 SetThreadHash sets ThreadHash field to given value.
 
 
+### SetThreadHashNil
+
+`func (o *CastWithInteractionsAndConversations) SetThreadHashNil(b bool)`
+
+ SetThreadHashNil sets the value for ThreadHash to be an explicit nil
+
+### UnsetThreadHash
+`func (o *CastWithInteractionsAndConversations) UnsetThreadHash()`
+
+UnsetThreadHash ensures that no value is present for ThreadHash, not even an explicit nil
 ### GetMentionedProfiles
 
 `func (o *CastWithInteractionsAndConversations) GetMentionedProfiles() []User`
@@ -465,20 +505,20 @@ SetMentionedChannelsRanges sets MentionedChannelsRanges field to given value.
 
 ### GetChannel
 
-`func (o *CastWithInteractionsAndConversations) GetChannel() CastWithInteractionsAllOfChannel`
+`func (o *CastWithInteractionsAndConversations) GetChannel() ChannelOrChannelDehydrated`
 
 GetChannel returns the Channel field if non-nil, zero value otherwise.
 
 ### GetChannelOk
 
-`func (o *CastWithInteractionsAndConversations) GetChannelOk() (*CastWithInteractionsAllOfChannel, bool)`
+`func (o *CastWithInteractionsAndConversations) GetChannelOk() (*ChannelOrChannelDehydrated, bool)`
 
 GetChannelOk returns a tuple with the Channel field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChannel
 
-`func (o *CastWithInteractionsAndConversations) SetChannel(v CastWithInteractionsAllOfChannel)`
+`func (o *CastWithInteractionsAndConversations) SetChannel(v ChannelOrChannelDehydrated)`
 
 SetChannel sets Channel field to given value.
 

@@ -25,12 +25,12 @@ var _ MappedNullable = &CastWithInteractionsAndConversationsRef{}
 type CastWithInteractionsAndConversationsRef struct {
 	Object            string                        `json:"object"`
 	Hash              string                        `json:"hash"`
-	ParentHash        string                        `json:"parent_hash"`
-	ParentUrl         string                        `json:"parent_url"`
-	RootParentUrl     string                        `json:"root_parent_url"`
+	ParentHash        NullableString                `json:"parent_hash"`
+	ParentUrl         NullableString                `json:"parent_url"`
+	RootParentUrl     NullableString                `json:"root_parent_url"`
 	ParentAuthor      CastParentAuthor              `json:"parent_author"`
 	Author            User                          `json:"author"`
-	App               *CastApp                      `json:"app,omitempty"`
+	App               *UserDehydrated               `json:"app,omitempty"`
 	Text              string                        `json:"text"`
 	Timestamp         time.Time                     `json:"timestamp"`
 	Embeds            []Embed                       `json:"embeds"`
@@ -38,16 +38,16 @@ type CastWithInteractionsAndConversationsRef struct {
 	Frames            []Frame                       `json:"frames,omitempty"`
 	Reactions         CastWithInteractionsReactions `json:"reactions"`
 	Replies           CastWithInteractionsReplies   `json:"replies"`
-	ThreadHash        string                        `json:"thread_hash"`
+	ThreadHash        NullableString                `json:"thread_hash"`
 	MentionedProfiles []User                        `json:"mentioned_profiles"`
 	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.
 	MentionedProfilesRanges []TextRange         `json:"mentioned_profiles_ranges"`
 	MentionedChannels       []ChannelDehydrated `json:"mentioned_channels"`
 	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.
-	MentionedChannelsRanges []TextRange                      `json:"mentioned_channels_ranges"`
-	Channel                 CastWithInteractionsAllOfChannel `json:"channel"`
-	ViewerContext           *CastViewerContext               `json:"viewer_context,omitempty"`
-	AuthorChannelContext    *ChannelUserContext              `json:"author_channel_context,omitempty"`
+	MentionedChannelsRanges []TextRange                `json:"mentioned_channels_ranges"`
+	Channel                 ChannelOrChannelDehydrated `json:"channel"`
+	ViewerContext           *CastViewerContext         `json:"viewer_context,omitempty"`
+	AuthorChannelContext    *ChannelUserContext        `json:"author_channel_context,omitempty"`
 	// note: This is recursive. It contains the direct replies to the cast and their direct replies up to n reply_depth.
 	DirectReplies []map[string]interface{} `json:"direct_replies"`
 }
@@ -58,7 +58,7 @@ type _CastWithInteractionsAndConversationsRef CastWithInteractionsAndConversatio
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastWithInteractionsAndConversationsRef(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash string, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel CastWithInteractionsAllOfChannel, directReplies []map[string]interface{}) *CastWithInteractionsAndConversationsRef {
+func NewCastWithInteractionsAndConversationsRef(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel ChannelOrChannelDehydrated, directReplies []map[string]interface{}) *CastWithInteractionsAndConversationsRef {
 	this := CastWithInteractionsAndConversationsRef{}
 	this.Object = object
 	this.Hash = hash
@@ -139,75 +139,81 @@ func (o *CastWithInteractionsAndConversationsRef) SetHash(v string) {
 }
 
 // GetParentHash returns the ParentHash field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetParentHash() string {
-	if o == nil {
+	if o == nil || o.ParentHash.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ParentHash
+	return *o.ParentHash.Get()
 }
 
 // GetParentHashOk returns a tuple with the ParentHash field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetParentHashOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ParentHash, true
+	return o.ParentHash.Get(), o.ParentHash.IsSet()
 }
 
 // SetParentHash sets field value
 func (o *CastWithInteractionsAndConversationsRef) SetParentHash(v string) {
-	o.ParentHash = v
+	o.ParentHash.Set(&v)
 }
 
 // GetParentUrl returns the ParentUrl field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetParentUrl() string {
-	if o == nil {
+	if o == nil || o.ParentUrl.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ParentUrl
+	return *o.ParentUrl.Get()
 }
 
 // GetParentUrlOk returns a tuple with the ParentUrl field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetParentUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ParentUrl, true
+	return o.ParentUrl.Get(), o.ParentUrl.IsSet()
 }
 
 // SetParentUrl sets field value
 func (o *CastWithInteractionsAndConversationsRef) SetParentUrl(v string) {
-	o.ParentUrl = v
+	o.ParentUrl.Set(&v)
 }
 
 // GetRootParentUrl returns the RootParentUrl field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetRootParentUrl() string {
-	if o == nil {
+	if o == nil || o.RootParentUrl.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.RootParentUrl
+	return *o.RootParentUrl.Get()
 }
 
 // GetRootParentUrlOk returns a tuple with the RootParentUrl field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetRootParentUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RootParentUrl, true
+	return o.RootParentUrl.Get(), o.RootParentUrl.IsSet()
 }
 
 // SetRootParentUrl sets field value
 func (o *CastWithInteractionsAndConversationsRef) SetRootParentUrl(v string) {
-	o.RootParentUrl = v
+	o.RootParentUrl.Set(&v)
 }
 
 // GetParentAuthor returns the ParentAuthor field value
@@ -259,9 +265,9 @@ func (o *CastWithInteractionsAndConversationsRef) SetAuthor(v User) {
 }
 
 // GetApp returns the App field value if set, zero value otherwise.
-func (o *CastWithInteractionsAndConversationsRef) GetApp() CastApp {
+func (o *CastWithInteractionsAndConversationsRef) GetApp() UserDehydrated {
 	if o == nil || IsNil(o.App) {
-		var ret CastApp
+		var ret UserDehydrated
 		return ret
 	}
 	return *o.App
@@ -269,7 +275,7 @@ func (o *CastWithInteractionsAndConversationsRef) GetApp() CastApp {
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CastWithInteractionsAndConversationsRef) GetAppOk() (*CastApp, bool) {
+func (o *CastWithInteractionsAndConversationsRef) GetAppOk() (*UserDehydrated, bool) {
 	if o == nil || IsNil(o.App) {
 		return nil, false
 	}
@@ -285,8 +291,8 @@ func (o *CastWithInteractionsAndConversationsRef) HasApp() bool {
 	return false
 }
 
-// SetApp gets a reference to the given CastApp and assigns it to the App field.
-func (o *CastWithInteractionsAndConversationsRef) SetApp(v CastApp) {
+// SetApp gets a reference to the given UserDehydrated and assigns it to the App field.
+func (o *CastWithInteractionsAndConversationsRef) SetApp(v UserDehydrated) {
 	o.App = &v
 }
 
@@ -475,27 +481,29 @@ func (o *CastWithInteractionsAndConversationsRef) SetReplies(v CastWithInteracti
 }
 
 // GetThreadHash returns the ThreadHash field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetThreadHash() string {
-	if o == nil {
+	if o == nil || o.ThreadHash.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ThreadHash
+	return *o.ThreadHash.Get()
 }
 
 // GetThreadHashOk returns a tuple with the ThreadHash field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CastWithInteractionsAndConversationsRef) GetThreadHashOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ThreadHash, true
+	return o.ThreadHash.Get(), o.ThreadHash.IsSet()
 }
 
 // SetThreadHash sets field value
 func (o *CastWithInteractionsAndConversationsRef) SetThreadHash(v string) {
-	o.ThreadHash = v
+	o.ThreadHash.Set(&v)
 }
 
 // GetMentionedProfiles returns the MentionedProfiles field value
@@ -595,9 +603,9 @@ func (o *CastWithInteractionsAndConversationsRef) SetMentionedChannelsRanges(v [
 }
 
 // GetChannel returns the Channel field value
-func (o *CastWithInteractionsAndConversationsRef) GetChannel() CastWithInteractionsAllOfChannel {
+func (o *CastWithInteractionsAndConversationsRef) GetChannel() ChannelOrChannelDehydrated {
 	if o == nil {
-		var ret CastWithInteractionsAllOfChannel
+		var ret ChannelOrChannelDehydrated
 		return ret
 	}
 
@@ -606,7 +614,7 @@ func (o *CastWithInteractionsAndConversationsRef) GetChannel() CastWithInteracti
 
 // GetChannelOk returns a tuple with the Channel field value
 // and a boolean to check if the value has been set.
-func (o *CastWithInteractionsAndConversationsRef) GetChannelOk() (*CastWithInteractionsAllOfChannel, bool) {
+func (o *CastWithInteractionsAndConversationsRef) GetChannelOk() (*ChannelOrChannelDehydrated, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -614,7 +622,7 @@ func (o *CastWithInteractionsAndConversationsRef) GetChannelOk() (*CastWithInter
 }
 
 // SetChannel sets field value
-func (o *CastWithInteractionsAndConversationsRef) SetChannel(v CastWithInteractionsAllOfChannel) {
+func (o *CastWithInteractionsAndConversationsRef) SetChannel(v ChannelOrChannelDehydrated) {
 	o.Channel = v
 }
 
@@ -718,9 +726,9 @@ func (o CastWithInteractionsAndConversationsRef) ToMap() (map[string]interface{}
 	toSerialize := map[string]interface{}{}
 	toSerialize["object"] = o.Object
 	toSerialize["hash"] = o.Hash
-	toSerialize["parent_hash"] = o.ParentHash
-	toSerialize["parent_url"] = o.ParentUrl
-	toSerialize["root_parent_url"] = o.RootParentUrl
+	toSerialize["parent_hash"] = o.ParentHash.Get()
+	toSerialize["parent_url"] = o.ParentUrl.Get()
+	toSerialize["root_parent_url"] = o.RootParentUrl.Get()
 	toSerialize["parent_author"] = o.ParentAuthor
 	toSerialize["author"] = o.Author
 	if !IsNil(o.App) {
@@ -737,7 +745,7 @@ func (o CastWithInteractionsAndConversationsRef) ToMap() (map[string]interface{}
 	}
 	toSerialize["reactions"] = o.Reactions
 	toSerialize["replies"] = o.Replies
-	toSerialize["thread_hash"] = o.ThreadHash
+	toSerialize["thread_hash"] = o.ThreadHash.Get()
 	toSerialize["mentioned_profiles"] = o.MentionedProfiles
 	toSerialize["mentioned_profiles_ranges"] = o.MentionedProfilesRanges
 	toSerialize["mentioned_channels"] = o.MentionedChannels

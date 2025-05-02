@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **Lead** | Pointer to [**User**](User.md) |  | [optional] 
 **ModeratorFids** | Pointer to **[]int32** |  | [optional] 
 **MemberCount** | Pointer to **int32** |  | [optional] 
-**Moderator** | Pointer to [**User**](User.md) | Use &#x60;lead&#x60; instead. | [optional] 
+**Moderator** | Pointer to [**User**](User.md) |  | [optional] 
 **PinnedCastHash** | Pointer to **string** | Cast Hash | [optional] [default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be"]
 **Hosts** | Pointer to [**[]User**](User.md) |  | [optional] 
 **ViewerContext** | Pointer to [**ChannelUserContext**](ChannelUserContext.md) |  | [optional] 

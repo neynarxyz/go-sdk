@@ -753,7 +753,7 @@ import (
 )
 
 func main() {
-	channelFollowReqBody := *openapiclient.NewChannelFollowReqBody("SignerUuid_example", "ChannelId_example") // ChannelFollowReqBody | 
+	channelFollowReqBody := *openapiclient.NewChannelFollowReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "neynar") // ChannelFollowReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -819,7 +819,7 @@ import (
 )
 
 func main() {
-	inviteChannelMemberReqBody := *openapiclient.NewInviteChannelMemberReqBody("SignerUuid_example", "ChannelId_example", int32(123), openapiclient.ChannelMemberRole("member")) // InviteChannelMemberReqBody | 
+	inviteChannelMemberReqBody := *openapiclient.NewInviteChannelMemberReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "neynar", int32(3), openapiclient.ChannelMemberRole("member")) // InviteChannelMemberReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -955,7 +955,7 @@ import (
 )
 
 func main() {
-	removeChannelMemberReqBody := *openapiclient.NewRemoveChannelMemberReqBody("SignerUuid_example", "ChannelId_example", int32(123), openapiclient.ChannelMemberRole("member")) // RemoveChannelMemberReqBody | 
+	removeChannelMemberReqBody := *openapiclient.NewRemoveChannelMemberReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "neynar", int32(3), openapiclient.ChannelMemberRole("member")) // RemoveChannelMemberReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1021,7 +1021,7 @@ import (
 )
 
 func main() {
-	respondChannelInviteReqBody := *openapiclient.NewRespondChannelInviteReqBody("SignerUuid_example", "ChannelId_example", openapiclient.ChannelMemberRole("member"), false) // RespondChannelInviteReqBody | 
+	respondChannelInviteReqBody := *openapiclient.NewRespondChannelInviteReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "neynar", openapiclient.ChannelMemberRole("member"), false) // RespondChannelInviteReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1157,7 +1157,7 @@ import (
 )
 
 func main() {
-	channelFollowReqBody := *openapiclient.NewChannelFollowReqBody("SignerUuid_example", "ChannelId_example") // ChannelFollowReqBody | 
+	channelFollowReqBody := *openapiclient.NewChannelFollowReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "neynar") // ChannelFollowReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

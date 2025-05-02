@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	muteReqBody := *openapiclient.NewMuteReqBody(int32(123), int32(123)) // MuteReqBody | 
+	muteReqBody := *openapiclient.NewMuteReqBody(int32(3), int32(3)) // MuteReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -169,7 +169,7 @@ import (
 )
 
 func main() {
-	muteReqBody := *openapiclient.NewMuteReqBody(int32(123), int32(123)) // MuteReqBody | 
+	muteReqBody := *openapiclient.NewMuteReqBody(int32(3), int32(3)) // MuteReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	buyStorageReqBody := *openapiclient.NewBuyStorageReqBody(int32(123)) // BuyStorageReqBody | 
+	buyStorageReqBody := *openapiclient.NewBuyStorageReqBody(int32(1)) // BuyStorageReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

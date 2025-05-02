@@ -22,9 +22,8 @@ var _ MappedNullable = &ReactionBody{}
 
 // ReactionBody Specifies the details of a reaction to content on Farcaster. A reaction must specify its type (like/recast) and either a target cast ID or URL to react to. Only one target (either castId or URL) should be specified per reaction.
 type ReactionBody struct {
-	Type ReactionType `json:"type"`
-	// The unique identifier of the cast being reacted to. Must be a valid CastId containing the creator's FID and the cast's hash.
-	TargetCastId *CastId `json:"targetCastId,omitempty"`
+	Type         ReactionType `json:"type"`
+	TargetCastId *CastId      `json:"targetCastId,omitempty"`
 	// The URL being reacted to. Used when reacting to external content or when the cast ID is not available.
 	TargetUrl *string `json:"targetUrl,omitempty"`
 }

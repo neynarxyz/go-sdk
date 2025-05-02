@@ -431,7 +431,7 @@ import (
 )
 
 func main() {
-	registerSignerKeyReqBody := *openapiclient.NewRegisterSignerKeyReqBody("SignerUuid_example", "Signature_example", int32(123), int32(123)) // RegisterSignerKeyReqBody | 
+	registerSignerKeyReqBody := *openapiclient.NewRegisterSignerKeyReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "Signature_example", int32(3), int32(123)) // RegisterSignerKeyReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -497,7 +497,7 @@ import (
 )
 
 func main() {
-	registerDeveloperManagedSignedKeyReqBody := *openapiclient.NewRegisterDeveloperManagedSignedKeyReqBody("PublicKey_example", "Signature_example", int32(123), int32(123)) // RegisterDeveloperManagedSignedKeyReqBody | 
+	registerDeveloperManagedSignedKeyReqBody := *openapiclient.NewRegisterDeveloperManagedSignedKeyReqBody("0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef", "0x7867e84cb6a64bf6e1954e52884133f1114eb3fd97f63ff55fa76c77c80beb6434eea9d3736b59caa3130d63121177acc752dc8a2561e9edf700642f390f92d11b", int32(3), int32(123)) // RegisterDeveloperManagedSignedKeyReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -30,7 +30,7 @@ type Cast struct {
 	RootParentUrl NullableString        `json:"root_parent_url"`
 	ParentAuthor  CastParentAuthor      `json:"parent_author"`
 	Author        User                  `json:"author"`
-	App           *CastApp              `json:"app,omitempty"`
+	App           *UserDehydrated       `json:"app,omitempty"`
 	Text          string                `json:"text"`
 	Timestamp     time.Time             `json:"timestamp"`
 	Embeds        []Embed               `json:"embeds"`
@@ -241,9 +241,9 @@ func (o *Cast) SetAuthor(v User) {
 }
 
 // GetApp returns the App field value if set, zero value otherwise.
-func (o *Cast) GetApp() CastApp {
+func (o *Cast) GetApp() UserDehydrated {
 	if o == nil || IsNil(o.App) {
-		var ret CastApp
+		var ret UserDehydrated
 		return ret
 	}
 	return *o.App
@@ -251,7 +251,7 @@ func (o *Cast) GetApp() CastApp {
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Cast) GetAppOk() (*CastApp, bool) {
+func (o *Cast) GetAppOk() (*UserDehydrated, bool) {
 	if o == nil || IsNil(o.App) {
 		return nil, false
 	}
@@ -267,8 +267,8 @@ func (o *Cast) HasApp() bool {
 	return false
 }
 
-// SetApp gets a reference to the given CastApp and assigns it to the App field.
-func (o *Cast) SetApp(v CastApp) {
+// SetApp gets a reference to the given UserDehydrated and assigns it to the App field.
+func (o *Cast) SetApp(v UserDehydrated) {
 	o.App = &v
 }
 

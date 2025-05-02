@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.3
 info:
   contact:
     email: team@neynar.com
@@ -54,6 +54,7 @@ paths:
         name: dbstats
         required: true
         schema:
+          example: true
           type: boolean
         style: form
       responses:
@@ -64,7 +65,11 @@ paths:
                 $ref: '#/components/schemas/HubInfoResponse'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Sync Methods
       tags:
       - Info
@@ -92,6 +97,7 @@ paths:
         name: hash
         required: true
         schema:
+          example: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
           pattern: "^0x[0-9a-fA-F]{40}$"
           type: string
         style: form
@@ -103,7 +109,11 @@ paths:
                 $ref: '#/components/schemas/CastAdd'
           description: The requested Cast.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: By FID and Hash
       tags:
       - Casts
@@ -123,9 +133,31 @@ paths:
         schema:
           $ref: '#/components/schemas/FidSchema'
         style: form
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -134,7 +166,11 @@ paths:
                 $ref: '#/components/schemas/fetch_users_casts_200_response'
           description: The requested Casts.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: By FID
       tags:
       - Casts
@@ -155,9 +191,31 @@ paths:
         schema:
           type: integer
         style: form
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -166,7 +224,11 @@ paths:
                 $ref: '#/components/schemas/fetch_users_casts_200_response'
           description: The requested Casts.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Mentioning an FID
       tags:
       - Casts
@@ -190,6 +252,7 @@ paths:
         name: fid
         required: false
         schema:
+          example: 194
           format: uint64
           minimum: 1
           type: integer
@@ -203,6 +266,7 @@ paths:
         name: hash
         required: false
         schema:
+          example: 0x776593353e47dc4e7f4df3199a9b04cc8efa30d9
           pattern: "^0x[0-9a-fA-F]{40}$"
           type: string
         style: form
@@ -212,12 +276,35 @@ paths:
         name: url
         required: false
         schema:
+          example: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
           format: uri
           type: string
         style: form
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -228,7 +315,11 @@ paths:
             \ parent cast, along with pagination information for traversing large\
             \ result sets."
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: By parent cast
       tags:
       - Casts
@@ -282,7 +373,11 @@ paths:
                 $ref: '#/components/schemas/Reaction'
           description: The requested Reaction.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: By FID or cast
       tags:
       - Reactions
@@ -314,6 +409,7 @@ paths:
         name: target_hash
         required: true
         schema:
+          example: 0xfec8fd3546e1f46cf5ad10a4ff9f5d53a3bbe9be
           pattern: "^0x[0-9a-fA-F]{40}$"
           type: string
         style: form
@@ -324,9 +420,31 @@ paths:
         schema:
           $ref: '#/components/schemas/ReactionType'
         style: form
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -335,7 +453,11 @@ paths:
                 $ref: '#/components/schemas/fetch_cast_reactions_200_response'
           description: The requested Reactions.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: On cast
       tags:
       - Reactions
@@ -362,9 +484,31 @@ paths:
         schema:
           $ref: '#/components/schemas/ReactionType'
         style: form
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -373,7 +517,11 @@ paths:
                 $ref: '#/components/schemas/fetch_cast_reactions_200_response'
           description: The requested Reactions.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: By FID
       tags:
       - Reactions
@@ -393,6 +541,7 @@ paths:
         name: url
         required: true
         schema:
+          example: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
           type: string
         style: form
       - explode: true
@@ -402,9 +551,31 @@ paths:
         schema:
           $ref: '#/components/schemas/ReactionType'
         style: form
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -413,7 +584,11 @@ paths:
                 $ref: '#/components/schemas/fetch_cast_reactions_200_response'
           description: The requested Reactions.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: To a target URL
       tags:
       - Reactions
@@ -456,7 +631,11 @@ paths:
                 $ref: '#/components/schemas/LinkAdd'
           description: The requested Link.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: By its FID and target FID
       tags:
       - Links
@@ -483,9 +662,31 @@ paths:
         schema:
           $ref: '#/components/schemas/LinkType'
         style: form
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -494,7 +695,11 @@ paths:
                 $ref: '#/components/schemas/fetch_user_following_200_response'
           description: The requested Links.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: From source FID
       tags:
       - Links
@@ -521,9 +726,31 @@ paths:
         schema:
           $ref: '#/components/schemas/LinkType'
         style: form
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -532,7 +759,11 @@ paths:
                 $ref: '#/components/schemas/fetch_user_following_200_response'
           description: The requested Links.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: To target FID
       tags:
       - Links
@@ -565,9 +796,31 @@ paths:
         schema:
           $ref: '#/components/schemas/UserDataType'
         style: form
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -576,7 +829,11 @@ paths:
                 $ref: '#/components/schemas/fetch_user_data_200_response'
           description: The requested UserData.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Fetch UserData for a FID
       tags:
       - UserData
@@ -588,9 +845,31 @@ paths:
         url: https://docs.neynar.com/reference/fetch-fids
       operationId: fetch-fids
       parameters:
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -599,7 +878,11 @@ paths:
                 $ref: '#/components/schemas/FidsResponse'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Fetch a list of all the FIDs
       tags:
       - Fids
@@ -627,7 +910,11 @@ paths:
                 $ref: '#/components/schemas/StorageLimitsResponse'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: FID's limits
       tags:
       - Storage
@@ -657,7 +944,11 @@ paths:
                 $ref: '#/components/schemas/UsernameProofsResponse'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Proofs provided by an FID
       tags:
       - Usernames
@@ -690,7 +981,11 @@ paths:
                 $ref: '#/components/schemas/UserNameProof'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Proof for a username
       tags:
       - Usernames
@@ -719,9 +1014,31 @@ paths:
         schema:
           type: string
         style: form
-      - $ref: '#/components/parameters/pageSize'
-      - $ref: '#/components/parameters/paginationReverse'
-      - $ref: '#/components/parameters/pageToken'
+      - description: Maximum number of messages to return in a single response
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Reverse the sort order, returning latest messages first"
+        explode: true
+        in: query
+        name: reverse
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "The page token returned by the previous query, to fetch the\
+          \ next page. If this parameter is empty, fetch the first page"
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -730,7 +1047,11 @@ paths:
                 $ref: '#/components/schemas/fetch_verifications_by_fid_200_response'
           description: The requested Verifications.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Provided by an FID
       tags:
       - Verifications
@@ -761,7 +1082,11 @@ paths:
                 $ref: '#/components/schemas/OnChainEventIdRegister'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Fetch an on-chain ID Registry Event for a given Address
       tags:
       - OnChainEvents
@@ -798,7 +1123,11 @@ paths:
                 $ref: '#/components/schemas/fetch_user_on_chain_events_200_response'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Fetch a list of on-chain events provided by an FID
       tags:
       - OnChainEvents
@@ -839,7 +1168,11 @@ paths:
                 $ref: '#/components/schemas/fetch_user_on_chain_signers_events_200_response'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Fetch a list of signers provided by an FID
       tags:
       - OnChainEvents
@@ -867,7 +1200,11 @@ paths:
                 $ref: '#/components/schemas/Message'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Submit signed message
       tags:
       - Message
@@ -896,7 +1233,11 @@ paths:
                 $ref: '#/components/schemas/ValidateMessageResponse'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Validate signed message
       tags:
       - Message
@@ -930,7 +1271,11 @@ paths:
                 $ref: '#/components/schemas/fetch_events_200_response'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Page of events
       tags:
       - HubEvents
@@ -958,7 +1303,11 @@ paths:
                 $ref: '#/components/schemas/HubEvent'
           description: A successful response.
         default:
-          $ref: '#/components/responses/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: An unexpected error response.
       summary: Event by ID
       tags:
       - HubEvents
@@ -1007,11 +1356,14 @@ components:
             of results. An empty value indicates there are no more pages to return.
             Used in conjunction with the pageSize parameter to implement pagination
             across large result sets.
+          example: !!binary |-
+            QXV6TzFWMER0YUl0Q3d3YTEwWDZZc2ZTdGx5bnNHV1Q=
           format: byte
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       required:
       - nextPageToken
+      type: object
     CastAdd:
       allOf:
       - $ref: '#/components/schemas/MessageCommon'
@@ -1020,76 +1372,81 @@ components:
             $ref: '#/components/schemas/CastAdd_allOf_data'
         required:
         - data
+        type: object
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
         data:
-          fid: 0
+          fid: 2
           castAddBody:
             mentionsPositions:
-            - 5
-            - 5
-            parentUrl: parentUrl
+            - 0
+            - 0
+            parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
             embedsDeprecated:
             - embedsDeprecated
             - embedsDeprecated
             mentions:
-            - 1
-            - 1
+            - 2
+            - 2
             text: text
             parentCastId:
-              fid: 5
-              hash: hash
+              fid: 2
+              hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
             embeds:
             - castId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
             - castId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
           type: MESSAGE_TYPE_CAST_ADD
-          timestamp: 6
+          timestamp: 48994466
           network: FARCASTER_NETWORK_MAINNET
         signature: signature
         hashScheme: HASH_SCHEME_BLAKE3
-        hash: hash
+        hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
         signer: signer
     CastAddBody:
       description: Adds a new Cast
       example:
         mentionsPositions:
-        - 5
-        - 5
-        parentUrl: parentUrl
+        - 0
+        - 0
+        parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
         embedsDeprecated:
         - embedsDeprecated
         - embedsDeprecated
         mentions:
-        - 1
-        - 1
+        - 2
+        - 2
         text: text
         parentCastId:
-          fid: 5
-          hash: hash
+          fid: 2
+          hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
         embeds:
         - castId:
-            fid: 5
-            hash: hash
+            fid: 2
+            hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
         - castId:
-            fid: 5
-            hash: hash
+            fid: 2
+            hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
       properties:
         embedsDeprecated:
           items:
             type: string
+          title: URLs to be embedded in the cast
           type: array
         mentions:
           items:
+            example: 2
             format: uint64
             type: integer
+          title: Fids mentioned in the cast
           type: array
         parentCastId:
           $ref: '#/components/schemas/CastId'
         parentUrl:
+          example: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
           title: Parent URL
           type: string
         text:
@@ -1099,10 +1456,12 @@ components:
           items:
             format: int64
             type: integer
+          title: Positions of the mentions in the text
           type: array
         embeds:
           items:
             $ref: '#/components/schemas/Embed'
+          title: URLs or cast IDs to be embedded in the cast
           type: array
       required:
       - embeds
@@ -1110,41 +1469,47 @@ components:
       - mentions
       - mentionsPositions
       - text
+      type: object
     CastEmbed:
       example:
         castId:
-          fid: 5
-          hash: hash
+          fid: 2
+          hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
       properties:
         castId:
           $ref: '#/components/schemas/CastId'
       required:
       - castId
+      type: object
     CastId:
       description: "A unique identifier for a cast (post) in the Farcaster network,\
         \ consisting of the creator's FID and a hash of the cast's content. This combination\
         \ ensures global uniqueness across all casts."
       example:
-        fid: 5
-        hash: hash
+        fid: 2
+        hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
       properties:
         fid:
           description: The Farcaster ID (FID) of the user who created the cast. Required
             to uniquely identify the cast's author in the network.
+          example: 2
           format: uint64
           title: Fid of the user who created the cast
           type: integer
         hash:
           description: A unique hash that identifies a specific cast within the creator's
             posts. Generated using HASH_SCHEME_BLAKE3 of the cast's content.
+          example: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
           pattern: "^0x[0-9a-fA-F]{40}$"
           type: string
       required:
       - fid
       - hash
+      type: object
     CastHash:
       description: A unique hash that identifies a specific cast within the creator's
         posts. Generated using HASH_SCHEME_BLAKE3 of the cast's content.
+      example: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
       pattern: "^0x[0-9a-fA-F]{40}$"
       type: string
     DbStats:
@@ -1166,6 +1531,7 @@ components:
       - numFidEvents
       - numFnameEvents
       - numMessages
+      type: object
     Embed:
       oneOf:
       - $ref: '#/components/schemas/CastEmbed'
@@ -1201,6 +1567,7 @@ components:
       - metadata
       - name
       - presentable
+      type: object
     FarcasterNetwork:
       default: FARCASTER_NETWORK_MAINNET
       description: |-
@@ -1216,6 +1583,7 @@ components:
     FidSchema:
       description: |
         Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
+      example: 1
       format: uint64
       minimum: 1
       type: integer
@@ -1228,12 +1596,14 @@ components:
             type: array
         required:
         - fids
+        type: object
       - $ref: '#/components/schemas/PaginationResponse'
       example:
-        nextPageToken: nextPageToken
+        nextPageToken: !!binary |-
+          QXV6TzFWMER0YUl0Q3d3YTEwWDZZc2ZTdGx5bnNHV1Q=
         fids:
-        - null
-        - null
+        - 1
+        - 1
     FrameActionBody:
       description: "Contains the data for a user's interaction with a Farcaster Frame.\
         \ Frames are interactive elements within casts that can have up to 4 clickable\
@@ -1242,11 +1612,13 @@ components:
         url:
           description: The URL associated with the frame action. This typically points
             to the frame's content or the destination that handles the interaction.
+          example: https://frames.farcaster.xyz/frame/123
           format: uri
           type: string
         buttonIndex:
           description: "Identifies which button the user clicked in the frame. Frames\
             \ can have up to 4 buttons, numbered from 1 to 4."
+          example: 1
           format: int32
           maximum: 4
           minimum: 1
@@ -1258,6 +1630,7 @@ components:
       - buttonIndex
       - castId
       - url
+      type: object
     HashScheme:
       default: HASH_SCHEME_BLAKE3
       description: |
@@ -1286,102 +1659,103 @@ components:
           message:
             signatureScheme: SIGNATURE_SCHEME_ED25519
             data:
-              fid: 0
+              fid: 2
               castAddBody:
                 mentionsPositions:
-                - 5
-                - 5
-                parentUrl: parentUrl
+                - 0
+                - 0
+                parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
                 embedsDeprecated:
                 - embedsDeprecated
                 - embedsDeprecated
                 mentions:
-                - 1
-                - 1
+                - 2
+                - 2
                 text: text
                 parentCastId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                 embeds:
                 - castId:
-                    fid: 5
-                    hash: hash
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                 - castId:
-                    fid: 5
-                    hash: hash
-              timestamp: 6
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              timestamp: 48994466
               network: FARCASTER_NETWORK_MAINNET
             signature: signature
             hashScheme: HASH_SCHEME_BLAKE3
-            hash: hash
+            hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
             signer: signer
           deletedMessages:
           - signatureScheme: SIGNATURE_SCHEME_ED25519
             data:
-              fid: 0
+              fid: 2
               castAddBody:
                 mentionsPositions:
-                - 5
-                - 5
-                parentUrl: parentUrl
+                - 0
+                - 0
+                parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
                 embedsDeprecated:
                 - embedsDeprecated
                 - embedsDeprecated
                 mentions:
-                - 1
-                - 1
+                - 2
+                - 2
                 text: text
                 parentCastId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                 embeds:
                 - castId:
-                    fid: 5
-                    hash: hash
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                 - castId:
-                    fid: 5
-                    hash: hash
-              timestamp: 6
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              timestamp: 48994466
               network: FARCASTER_NETWORK_MAINNET
             signature: signature
             hashScheme: HASH_SCHEME_BLAKE3
-            hash: hash
+            hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
             signer: signer
           - signatureScheme: SIGNATURE_SCHEME_ED25519
             data:
-              fid: 0
+              fid: 2
               castAddBody:
                 mentionsPositions:
-                - 5
-                - 5
-                parentUrl: parentUrl
+                - 0
+                - 0
+                parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
                 embedsDeprecated:
                 - embedsDeprecated
                 - embedsDeprecated
                 mentions:
-                - 1
-                - 1
+                - 2
+                - 2
                 text: text
                 parentCastId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                 embeds:
                 - castId:
-                    fid: 5
-                    hash: hash
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                 - castId:
-                    fid: 5
-                    hash: hash
-              timestamp: 6
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              timestamp: 48994466
               network: FARCASTER_NETWORK_MAINNET
             signature: signature
             hashScheme: HASH_SCHEME_BLAKE3
-            hash: hash
+            hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
             signer: signer
         id: 6
-        type: type
+        type: HUB_EVENT_TYPE_MERGE_MESSAGE
       properties:
         type:
+          example: HUB_EVENT_TYPE_MERGE_MESSAGE
           type: string
         id:
           format: uint64
@@ -1392,9 +1766,11 @@ components:
       - id
       - mergeMessageBody
       - type
+      type: object
     HubEventMergeOnChainEvent:
       properties:
         type:
+          example: HUB_EVENT_TYPE_MERGE_ON_CHAIN_EVENT
           type: string
         id:
           format: uint64
@@ -1405,9 +1781,11 @@ components:
       - id
       - mergeOnChainEventBody
       - type
+      type: object
     HubEventMergeUsernameProof:
       properties:
         type:
+          example: HUB_EVENT_TYPE_MERGE_USERNAME_PROOF
           type: string
         id:
           format: uint64
@@ -1418,9 +1796,11 @@ components:
       - id
       - mergeUsernameProofBody
       - type
+      type: object
     HubEventPruneMessage:
       properties:
         type:
+          example: HUB_EVENT_TYPE_PRUNE_MESSAGE
           type: string
         id:
           format: uint64
@@ -1431,9 +1811,11 @@ components:
       - id
       - pruneMessageBody
       - type
+      type: object
     HubEventRevokeMessage:
       properties:
         type:
+          example: HUB_EVENT_TYPE_REVOKE_MESSAGE
           type: string
         id:
           format: uint64
@@ -1444,6 +1826,7 @@ components:
       - id
       - revokeMessageBody
       - type
+      type: object
     HubInfoResponse:
       example:
         dbStats:
@@ -1480,22 +1863,26 @@ components:
       - rootHash
       - version
       title: Response Types for the Sync RPC Methods
+      type: object
     IdRegisterEventBody:
       example:
-        from: from
-        to: to
+        from: 0x00000000fcd5a8e45785c8a4b9a718c9348e4f18
+        to: 0x00000000fcd5a8e45785c8a4b9a718c9348e4f18
         eventType: ID_REGISTER_EVENT_TYPE_REGISTER
-        recoveryAddress: recoveryAddress
+        recoveryAddress: 0x00000000fcd5a8e45785c8a4b9a718c9348e4f18
       properties:
         to:
+          example: 0x00000000fcd5a8e45785c8a4b9a718c9348e4f18
           pattern: "^0x[a-fA-F0-9]*$"
           type: string
         eventType:
           $ref: '#/components/schemas/IdRegisterEventType'
         from:
+          example: 0x00000000fcd5a8e45785c8a4b9a718c9348e4f18
           pattern: "^0x[a-fA-F0-9]*$|^$"
           type: string
         recoveryAddress:
+          example: 0x00000000fcd5a8e45785c8a4b9a718c9348e4f18
           pattern: "^0x[a-fA-F0-9]*$"
           type: string
       required:
@@ -1503,6 +1890,7 @@ components:
       - from
       - recoveryAddress
       - to
+      type: object
     IdRegisterEventType:
       default: ID_REGISTER_EVENT_TYPE_REGISTER
       enum:
@@ -1518,20 +1906,21 @@ components:
             $ref: '#/components/schemas/LinkAdd_allOf_data'
         required:
         - data
+        type: object
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
         data:
-          fid: 0
+          fid: 2
           linkBody:
             targetFid: 1
             type: follow
-            displayTimestamp: 1
+            displayTimestamp: 48994466
           type: MESSAGE_TYPE_CAST_ADD
-          timestamp: 6
+          timestamp: 48994466
           network: FARCASTER_NETWORK_MAINNET
         signature: signature
         hashScheme: HASH_SCHEME_BLAKE3
-        hash: hash
+        hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
         signer: signer
     LinkBody:
       description: "Defines a social connection between users in the Farcaster network.\
@@ -1540,7 +1929,7 @@ components:
       example:
         targetFid: 1
         type: follow
-        displayTimestamp: 1
+        displayTimestamp: 48994466
       properties:
         type:
           $ref: '#/components/schemas/LinkType'
@@ -1548,18 +1937,21 @@ components:
           description: User-defined timestamp that preserves the original creation
             time when message.data.timestamp needs to be updated for compaction. Useful
             for maintaining chronological order in user feeds.
+          example: 48994466
           format: int64
           title: Original Timestamp
           type: integer
         targetFid:
           description: |
             Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
+          example: 1
           format: uint64
           minimum: 1
           type: integer
       required:
       - targetFid
       - type
+      type: object
     LinkType:
       default: follow
       description: |-
@@ -1567,103 +1959,104 @@ components:
         - follow: Establishes a following relationship where the user will receive updates from the target user in their feed
       enum:
       - follow
+      example: follow
       type: string
     MergeMessageBody:
       example:
         message:
           signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             castAddBody:
               mentionsPositions:
-              - 5
-              - 5
-              parentUrl: parentUrl
+              - 0
+              - 0
+              parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
               embedsDeprecated:
               - embedsDeprecated
               - embedsDeprecated
               mentions:
-              - 1
-              - 1
+              - 2
+              - 2
               text: text
               parentCastId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               embeds:
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               - castId:
-                  fid: 5
-                  hash: hash
-            timestamp: 6
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
         deletedMessages:
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             castAddBody:
               mentionsPositions:
-              - 5
-              - 5
-              parentUrl: parentUrl
+              - 0
+              - 0
+              parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
               embedsDeprecated:
               - embedsDeprecated
               - embedsDeprecated
               mentions:
-              - 1
-              - 1
+              - 2
+              - 2
               text: text
               parentCastId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               embeds:
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               - castId:
-                  fid: 5
-                  hash: hash
-            timestamp: 6
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             castAddBody:
               mentionsPositions:
-              - 5
-              - 5
-              parentUrl: parentUrl
+              - 0
+              - 0
+              parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
               embedsDeprecated:
               - embedsDeprecated
               - embedsDeprecated
               mentions:
-              - 1
-              - 1
+              - 2
+              - 2
               text: text
               parentCastId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               embeds:
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               - castId:
-                  fid: 5
-                  hash: hash
-            timestamp: 6
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
       properties:
         message:
@@ -1675,12 +2068,14 @@ components:
       required:
       - deletedMessages
       - message
+      type: object
     MergeOnChainEventBody:
       properties:
         onChainEvent:
           $ref: '#/components/schemas/OnChainEvent'
       required:
       - onChainEvent
+      type: object
     MergeUserNameProofBody:
       properties:
         usernameProof:
@@ -1691,6 +2086,7 @@ components:
           $ref: '#/components/schemas/Message'
         deletedUsernameProofMessage:
           $ref: '#/components/schemas/Message'
+      type: object
     Message:
       allOf:
       - properties:
@@ -1698,6 +2094,7 @@ components:
             $ref: '#/components/schemas/Message_allOf_data'
         required:
         - data
+        type: object
       - $ref: '#/components/schemas/MessageCommon'
       description: |-
         A Message is a delta operation on the Farcaster network that represents a state change. Messages are the fundamental unit of data in Farcaster and can represent various actions like:
@@ -1717,38 +2114,39 @@ components:
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
         data:
-          fid: 0
+          fid: 2
           castAddBody:
             mentionsPositions:
-            - 5
-            - 5
-            parentUrl: parentUrl
+            - 0
+            - 0
+            parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
             embedsDeprecated:
             - embedsDeprecated
             - embedsDeprecated
             mentions:
-            - 1
-            - 1
+            - 2
+            - 2
             text: text
             parentCastId:
-              fid: 5
-              hash: hash
+              fid: 2
+              hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
             embeds:
             - castId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
             - castId:
-                fid: 5
-                hash: hash
-          timestamp: 6
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+          timestamp: 48994466
           network: FARCASTER_NETWORK_MAINNET
         signature: signature
         hashScheme: HASH_SCHEME_BLAKE3
-        hash: hash
+        hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
         signer: signer
     MessageCommon:
       properties:
         hash:
+          example: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           pattern: "^0x[0-9a-fA-F]{40}$"
           title: Hash digest of data
           type: string
@@ -1771,6 +2169,7 @@ components:
       - signature
       - signatureScheme
       - signer
+      type: object
     MessageDataCastAdd:
       allOf:
       - $ref: '#/components/schemas/MessageDataCommon'
@@ -1779,34 +2178,35 @@ components:
             $ref: '#/components/schemas/CastAddBody'
         required:
         - castAddBody
+        type: object
       description: "Represents a new cast (post) being created in the Farcaster network.\
         \ A cast can include text content, mentions of other users, embedded URLs,\
         \ and references to parent posts for replies."
       example:
-        fid: 0
+        fid: 2
         castAddBody:
           mentionsPositions:
-          - 5
-          - 5
-          parentUrl: parentUrl
+          - 0
+          - 0
+          parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
           embedsDeprecated:
           - embedsDeprecated
           - embedsDeprecated
           mentions:
-          - 1
-          - 1
+          - 2
+          - 2
           text: text
           parentCastId:
-            fid: 5
-            hash: hash
+            fid: 2
+            hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
           embeds:
           - castId:
-              fid: 5
-              hash: hash
+              fid: 2
+              hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
           - castId:
-              fid: 5
-              hash: hash
-        timestamp: 6
+              fid: 2
+              hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+        timestamp: 48994466
         network: FARCASTER_NETWORK_MAINNET
     MessageDataCastRemove:
       allOf:
@@ -1816,11 +2216,13 @@ components:
             description: The unique hash identifier of the cast to be removed. Must
               be a cast that was previously created by the same FID specified in the
               message.
+            example: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
             pattern: "^0x[0-9a-fA-F]{40}$"
             title: Hash of the cast to remove
             type: string
         required:
         - targetHash
+        type: object
       description: Represents a request to remove (delete) a previously created cast.
         Only the original creator of a cast can remove it.
     MessageDataCommon:
@@ -1832,6 +2234,7 @@ components:
           description: The unique identifier (FID) of the user who created this message.
             FIDs are assigned sequentially when users register on the network and
             cannot be changed.
+          example: 2
           format: uint64
           title: Farcaster ID of the user producing the message
           type: integer
@@ -1839,6 +2242,7 @@ components:
           description: Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used
             to order messages chronologically and determine the most recent state.
             Must be within 10 minutes of the current time when the message is created.
+          example: 48994466
           format: int64
           type: integer
         network:
@@ -1847,6 +2251,7 @@ components:
       - fid
       - network
       - timestamp
+      type: object
     MessageDataFrameAction:
       allOf:
       - $ref: '#/components/schemas/MessageDataCommon'
@@ -1855,6 +2260,7 @@ components:
             $ref: '#/components/schemas/FrameActionBody'
         required:
         - frameActionBody
+        type: object
       description: "Represents a user's interaction with a Farcaster Frame, which\
         \ is an interactive element embedded within a cast. Frames allow users to\
         \ engage with content through clickable buttons, creating interactive experiences\
@@ -1867,6 +2273,7 @@ components:
             $ref: '#/components/schemas/LinkBody'
         required:
         - linkBody
+        type: object
       description: Represents a social graph connection between users in the Farcaster
         network. Currently supports following relationships between users.
     MessageDataReaction:
@@ -1877,6 +2284,7 @@ components:
             $ref: '#/components/schemas/ReactionBody'
         required:
         - reactionBody
+        type: object
       description: "Represents a user's reaction to content on the Farcaster network.\
         \ Reactions can be likes or recasts of casts, allowing users to express appreciation\
         \ or share content with their followers."
@@ -1888,6 +2296,7 @@ components:
             $ref: '#/components/schemas/UserDataBody'
         required:
         - userDataBody
+        type: object
       description: "Represents a message that updates a user's profile metadata. This\
         \ can include changes to profile picture, display name, bio, URL, or preferred\
         \ username. Each update modifies a single profile field."
@@ -1899,6 +2308,7 @@ components:
             $ref: '#/components/schemas/UserNameProof'
         required:
         - usernameProofBody
+        type: object
     MessageDataVerificationAdd:
       allOf:
       - $ref: '#/components/schemas/MessageDataCommon'
@@ -1907,6 +2317,7 @@ components:
             $ref: '#/components/schemas/VerificationAddEthAddressBody'
         required:
         - verificationAddEthAddressBody
+        type: object
       description: Represents a message that adds verification of ownership for an
         Ethereum or Solana address to a user's profile. This verification proves that
         the user controls the specified blockchain address.
@@ -1918,6 +2329,7 @@ components:
             $ref: '#/components/schemas/VerificationRemoveBody'
         required:
         - verificationRemoveBody
+        type: object
       description: Represents a message that removes an existing blockchain address
         verification from a user's profile. This allows users to disassociate previously
         verified addresses from their account.
@@ -1965,16 +2377,19 @@ components:
     OnChainEventCommon:
       properties:
         type:
+          example: EVENT_TYPE_SIGNER
           type: string
         chainId:
           type: integer
         blockNumber:
           type: integer
         blockHash:
+          example: 0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28
           type: string
         blockTimestamp:
           type: integer
         transactionHash:
+          example: 0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952
           type: string
         logIndex:
           type: integer
@@ -1992,6 +2407,7 @@ components:
       - transactionHash
       - txIndex
       - type
+      type: object
     OnChainEventIdRegister:
       allOf:
       - $ref: '#/components/schemas/OnChainEventCommon'
@@ -2000,20 +2416,21 @@ components:
             $ref: '#/components/schemas/IdRegisterEventBody'
         required:
         - idRegisterEventBody
+        type: object
       example:
         fid: 2
-        blockHash: blockHash
+        blockHash: 0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28
         logIndex: 5
         chainId: 0
         blockNumber: 6
         idRegisterEventBody:
-          from: from
-          to: to
+          from: 0x00000000fcd5a8e45785c8a4b9a718c9348e4f18
+          to: 0x00000000fcd5a8e45785c8a4b9a718c9348e4f18
           eventType: ID_REGISTER_EVENT_TYPE_REGISTER
-          recoveryAddress: recoveryAddress
+          recoveryAddress: 0x00000000fcd5a8e45785c8a4b9a718c9348e4f18
         blockTimestamp: 1
-        type: type
-        transactionHash: transactionHash
+        type: EVENT_TYPE_SIGNER
+        transactionHash: 0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952
         txIndex: 5
     OnChainEventSigner:
       allOf:
@@ -2023,15 +2440,16 @@ components:
             $ref: '#/components/schemas/SignerEventBody'
         required:
         - signerEventBody
+        type: object
       example:
         fid: 2
-        blockHash: blockHash
+        blockHash: 0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28
         logIndex: 5
         chainId: 0
         blockNumber: 6
         blockTimestamp: 1
-        type: type
-        transactionHash: transactionHash
+        type: EVENT_TYPE_SIGNER
+        transactionHash: 0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952
         txIndex: 5
         signerEventBody:
           metadata: metadata
@@ -2047,6 +2465,7 @@ components:
             $ref: '#/components/schemas/SignerMigratedEventBody'
         required:
         - signerMigratedEventBody
+        type: object
     OnChainEventStorageRent:
       allOf:
       - $ref: '#/components/schemas/OnChainEventCommon'
@@ -2055,6 +2474,7 @@ components:
             $ref: '#/components/schemas/StorageRentEventBody'
         required:
         - storageRentEventBody
+        type: object
     OnChainEventType:
       default: EVENT_TYPE_SIGNER
       enum:
@@ -2069,6 +2489,7 @@ components:
           $ref: '#/components/schemas/Message'
       required:
       - message
+      type: object
     Reaction:
       allOf:
       - $ref: '#/components/schemas/MessageCommon'
@@ -2077,22 +2498,23 @@ components:
             $ref: '#/components/schemas/Reaction_allOf_data'
         required:
         - data
+        type: object
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
         data:
-          fid: 0
+          fid: 2
           reactionBody:
             targetCastId:
-              fid: 5
-              hash: hash
+              fid: 2
+              hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
             type: Like
-            targetUrl: targetUrl
+            targetUrl: https://www.example.com/article
           type: MESSAGE_TYPE_CAST_ADD
-          timestamp: 6
+          timestamp: 48994466
           network: FARCASTER_NETWORK_MAINNET
         signature: signature
         hashScheme: HASH_SCHEME_BLAKE3
-        hash: hash
+        hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
         signer: signer
     ReactionBody:
       description: Specifies the details of a reaction to content on Farcaster. A
@@ -2101,10 +2523,10 @@ components:
         per reaction.
       example:
         targetCastId:
-          fid: 5
-          hash: hash
+          fid: 2
+          hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
         type: Like
-        targetUrl: targetUrl
+        targetUrl: https://www.example.com/article
       properties:
         type:
           $ref: '#/components/schemas/ReactionType'
@@ -2113,10 +2535,12 @@ components:
         targetUrl:
           description: The URL being reacted to. Used when reacting to external content
             or when the cast ID is not available.
+          example: https://www.example.com/article
           title: URL to react to
           type: string
       required:
       - type
+      type: object
     ReactionType:
       default: Like
       description: |-
@@ -2126,6 +2550,7 @@ components:
       enum:
       - Like
       - Recast
+      example: Like
       type: string
     RevokeMessageBody:
       properties:
@@ -2133,6 +2558,7 @@ components:
           $ref: '#/components/schemas/Message'
       required:
       - message
+      type: object
     SignatureScheme:
       default: SIGNATURE_SCHEME_ED25519
       description: |-
@@ -2172,6 +2598,7 @@ components:
       - keyType
       - metadata
       - metadataType
+      type: object
     SignerEventType:
       default: SIGNER_EVENT_TYPE_ADD
       enum:
@@ -2186,6 +2613,7 @@ components:
           type: integer
       required:
       - migratedAt
+      type: object
     StorageLimit:
       example:
         storeType: STORE_TYPE_CASTS
@@ -2199,6 +2627,7 @@ components:
       required:
       - limit
       - storeType
+      type: object
     StorageLimitsResponse:
       example:
         limits:
@@ -2213,6 +2642,7 @@ components:
           type: array
       required:
       - limits
+      type: object
     StorageRentEventBody:
       properties:
         payer:
@@ -2229,6 +2659,7 @@ components:
       - expiry
       - payer
       - units
+      type: object
     StoreType:
       default: STORE_TYPE_CASTS
       enum:
@@ -2246,6 +2677,7 @@ components:
           type: string
       required:
       - url
+      type: object
     UserDataAdd:
       allOf:
       - $ref: '#/components/schemas/MessageCommon'
@@ -2254,19 +2686,20 @@ components:
             $ref: '#/components/schemas/UserDataAdd_allOf_data'
         required:
         - data
+        type: object
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
         data:
-          fid: 0
+          fid: 2
           userDataBody:
             type: USER_DATA_TYPE_PFP
-            value: value
+            value: https://i.imgur.com/123abc.jpg
           type: MESSAGE_TYPE_CAST_ADD
-          timestamp: 6
+          timestamp: 48994466
           network: FARCASTER_NETWORK_MAINNET
         signature: signature
         hashScheme: HASH_SCHEME_BLAKE3
-        hash: hash
+        hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
         signer: signer
     UserDataBody:
       description: "Contains the data for updating a specific field of a user's profile\
@@ -2274,7 +2707,7 @@ components:
         \ granular control over profile information."
       example:
         type: USER_DATA_TYPE_PFP
-        value: value
+        value: https://i.imgur.com/123abc.jpg
       properties:
         type:
           $ref: '#/components/schemas/UserDataType'
@@ -2282,11 +2715,13 @@ components:
           description: "The new value for the specified profile field. The format\
             \ depends on the type: URLs for profile pictures, plain text for display\
             \ names and bios, etc."
+          example: https://i.imgur.com/123abc.jpg
           title: Profile Field Value
           type: string
       required:
       - type
       - value
+      type: object
     UserDataType:
       default: USER_DATA_TYPE_PFP
       description: |-
@@ -2308,7 +2743,7 @@ components:
         owner: owner
         fid: 1
         signature: signature
-        name: name
+        name: neynar
         type: USERNAME_TYPE_FNAME
         timestamp: 0
       properties:
@@ -2318,6 +2753,7 @@ components:
           format: uint64
           type: integer
         name:
+          example: neynar
           type: string
         owner:
           pattern: "^0x[0-9a-fA-F]{40}$"
@@ -2329,6 +2765,7 @@ components:
         fid:
           description: |
             Farcaster ID (FID). A unique identifier assigned to each user in the Farcaster network. This number is permanent and cannot be changed. FIDs are assigned sequentially when users register on the network.
+          example: 1
           format: uint64
           minimum: 1
           type: integer
@@ -2341,19 +2778,20 @@ components:
       - signature
       - timestamp
       - type
+      type: object
     UsernameProofsResponse:
       example:
         proofs:
         - owner: owner
           fid: 1
           signature: signature
-          name: name
+          name: neynar
           type: USERNAME_TYPE_FNAME
           timestamp: 0
         - owner: owner
           fid: 1
           signature: signature
-          name: name
+          name: neynar
           type: USERNAME_TYPE_FNAME
           timestamp: 0
       properties:
@@ -2363,6 +2801,7 @@ components:
           type: array
       required:
       - proofs
+      type: object
     UserNameType:
       default: USERNAME_TYPE_FNAME
       enum:
@@ -2375,34 +2814,34 @@ components:
         message:
           signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             castAddBody:
               mentionsPositions:
-              - 5
-              - 5
-              parentUrl: parentUrl
+              - 0
+              - 0
+              parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
               embedsDeprecated:
               - embedsDeprecated
               - embedsDeprecated
               mentions:
-              - 1
-              - 1
+              - 2
+              - 2
               text: text
               parentCastId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               embeds:
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               - castId:
-                  fid: 5
-                  hash: hash
-            timestamp: 6
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
       properties:
         valid:
@@ -2412,6 +2851,7 @@ components:
       required:
       - message
       - valid
+      type: object
     Verification:
       allOf:
       - $ref: '#/components/schemas/MessageCommon'
@@ -2420,20 +2860,23 @@ components:
             $ref: '#/components/schemas/Verification_allOf_data'
         required:
         - data
+        type: object
       example:
         signatureScheme: SIGNATURE_SCHEME_ED25519
         data:
-          fid: 0
+          fid: 2
           verificationAddEthAddressBody:
-            blockHash: blockHash
-            address: address
-            ethSignature: ethSignature
+            blockHash: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+            address: 0x1234567890123456789012345678901234567890
+            ethSignature: !!binary |-
+              NG1HTjZUQUNGcVhVVlU5UnB3TERHQ3FncWlWMUdpZEVGazllS0YwTDBoNkpOcW1OM2tSTTlOTVBu
+              alVua2g4b0w2K2pGZVFKOVlWdUtYNEY5RXFHaUFFPQ==
           type: MESSAGE_TYPE_CAST_ADD
-          timestamp: 6
+          timestamp: 48994466
           network: FARCASTER_NETWORK_MAINNET
         signature: signature
         hashScheme: HASH_SCHEME_BLAKE3
-        hash: hash
+        hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
         signer: signer
     VerificationAddEthAddressBody:
       description: Contains the data required to verify ownership of an Ethereum or
@@ -2441,13 +2884,16 @@ components:
         from the blockchain address and includes the block hash at the time of signing
         for timestamp verification.
       example:
-        blockHash: blockHash
-        address: address
-        ethSignature: ethSignature
+        blockHash: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+        address: 0x1234567890123456789012345678901234567890
+        ethSignature: !!binary |-
+          NG1HTjZUQUNGcVhVVlU5UnB3TERHQ3FncWlWMUdpZEVGazllS0YwTDBoNkpOcW1OM2tSTTlOTVBu
+          alVua2g4b0w2K2pGZVFKOVlWdUtYNEY5RXFHaUFFPQ==
       properties:
         address:
           description: The Ethereum (0x-prefixed) or Solana address that the user
             is claiming ownership of. Must match the address that produced the signature.
+          example: 0x1234567890123456789012345678901234567890
           pattern: "^(?:0x[a-fA-F0-9]{40}|[1-9A-HJ-NP-Za-km-z]{32,44})$"
           title: Blockchain Address
           type: string
@@ -2455,6 +2901,9 @@ components:
           description: "Base64-encoded signature produced by the blockchain address,\
             \ proving ownership. For Ethereum, this is an ECDSA signature of a specific\
             \ message format."
+          example: !!binary |-
+            NG1HTjZUQUNGcVhVVlU5UnB3TERHQ3FncWlWMUdpZEVGazllS0YwTDBoNkpOcW1OM2tSTTlOTVBu
+            alVua2g4b0w2K2pGZVFKOVlWdUtYNEY5RXFHaUFFPQ==
           format: byte
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           title: Cryptographic Signature
@@ -2462,6 +2911,7 @@ components:
         blockHash:
           description: The hash of the most recent block when the signature was created.
             Used to verify the approximate time of signature creation.
+          example: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
           pattern: "^(0x[a-fA-F0-9]{64}|[1-9A-HJ-NP-Za-km-z]{44})$"
           title: Block Hash
           type: string
@@ -2469,6 +2919,7 @@ components:
       - address
       - blockHash
       - ethSignature
+      type: object
     VerificationRemoveBody:
       description: Contains the data required to remove a previously added blockchain
         address verification from a user's profile. This operation permanently removes
@@ -2478,11 +2929,13 @@ components:
           description: The Ethereum address (0x-prefixed) for which the verification
             should be removed. Must match a previously verified address in the user's
             profile.
+          example: 0x1234567890123456789012345678901234567890
           pattern: "^0x[A-Za-z0-9]{40}$"
           title: Blockchain Address
           type: string
       required:
       - address
+      type: object
     fetch_users_casts_200_response:
       allOf:
       - properties:
@@ -2492,73 +2945,75 @@ components:
             type: array
         required:
         - messages
+        type: object
       - $ref: '#/components/schemas/PaginationResponse'
       example:
-        nextPageToken: nextPageToken
+        nextPageToken: !!binary |-
+          QXV6TzFWMER0YUl0Q3d3YTEwWDZZc2ZTdGx5bnNHV1Q=
         messages:
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             castAddBody:
               mentionsPositions:
-              - 5
-              - 5
-              parentUrl: parentUrl
+              - 0
+              - 0
+              parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
               embedsDeprecated:
               - embedsDeprecated
               - embedsDeprecated
               mentions:
-              - 1
-              - 1
+              - 2
+              - 2
               text: text
               parentCastId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               embeds:
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
             type: MESSAGE_TYPE_CAST_ADD
-            timestamp: 6
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             castAddBody:
               mentionsPositions:
-              - 5
-              - 5
-              parentUrl: parentUrl
+              - 0
+              - 0
+              parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
               embedsDeprecated:
               - embedsDeprecated
               - embedsDeprecated
               mentions:
-              - 1
-              - 1
+              - 2
+              - 2
               text: text
               parentCastId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               embeds:
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
             type: MESSAGE_TYPE_CAST_ADD
-            timestamp: 6
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
     fetch_casts_by_parent_200_response:
       allOf:
@@ -2572,73 +3027,75 @@ components:
             type: array
         required:
         - messages
+        type: object
       - $ref: '#/components/schemas/PaginationResponse'
       example:
-        nextPageToken: nextPageToken
+        nextPageToken: !!binary |-
+          QXV6TzFWMER0YUl0Q3d3YTEwWDZZc2ZTdGx5bnNHV1Q=
         messages:
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             castAddBody:
               mentionsPositions:
-              - 5
-              - 5
-              parentUrl: parentUrl
+              - 0
+              - 0
+              parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
               embedsDeprecated:
               - embedsDeprecated
               - embedsDeprecated
               mentions:
-              - 1
-              - 1
+              - 2
+              - 2
               text: text
               parentCastId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               embeds:
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
             type: MESSAGE_TYPE_CAST_ADD
-            timestamp: 6
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             castAddBody:
               mentionsPositions:
-              - 5
-              - 5
-              parentUrl: parentUrl
+              - 0
+              - 0
+              parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
               embedsDeprecated:
               - embedsDeprecated
               - embedsDeprecated
               mentions:
-              - 1
-              - 1
+              - 2
+              - 2
               text: text
               parentCastId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               embeds:
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               - castId:
-                  fid: 5
-                  hash: hash
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
             type: MESSAGE_TYPE_CAST_ADD
-            timestamp: 6
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
     fetch_cast_reactions_200_response:
       allOf:
@@ -2649,41 +3106,43 @@ components:
             type: array
         required:
         - messages
+        type: object
       - $ref: '#/components/schemas/PaginationResponse'
       example:
-        nextPageToken: nextPageToken
+        nextPageToken: !!binary |-
+          QXV6TzFWMER0YUl0Q3d3YTEwWDZZc2ZTdGx5bnNHV1Q=
         messages:
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             reactionBody:
               targetCastId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               type: Like
-              targetUrl: targetUrl
+              targetUrl: https://www.example.com/article
             type: MESSAGE_TYPE_CAST_ADD
-            timestamp: 6
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             reactionBody:
               targetCastId:
-                fid: 5
-                hash: hash
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
               type: Like
-              targetUrl: targetUrl
+              targetUrl: https://www.example.com/article
             type: MESSAGE_TYPE_CAST_ADD
-            timestamp: 6
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
     fetch_user_following_200_response:
       allOf:
@@ -2694,37 +3153,39 @@ components:
             type: array
         required:
         - messages
+        type: object
       - $ref: '#/components/schemas/PaginationResponse'
       example:
-        nextPageToken: nextPageToken
+        nextPageToken: !!binary |-
+          QXV6TzFWMER0YUl0Q3d3YTEwWDZZc2ZTdGx5bnNHV1Q=
         messages:
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             linkBody:
               targetFid: 1
               type: follow
-              displayTimestamp: 1
+              displayTimestamp: 48994466
             type: MESSAGE_TYPE_CAST_ADD
-            timestamp: 6
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             linkBody:
               targetFid: 1
               type: follow
-              displayTimestamp: 1
+              displayTimestamp: 48994466
             type: MESSAGE_TYPE_CAST_ADD
-            timestamp: 6
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
     fetch_user_data_200_response_oneOf:
       allOf:
@@ -2735,6 +3196,7 @@ components:
             type: array
         required:
         - messages
+        type: object
       - $ref: '#/components/schemas/PaginationResponse'
     fetch_user_data_200_response:
       oneOf:
@@ -2746,31 +3208,35 @@ components:
         messages:
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             verificationAddEthAddressBody:
-              blockHash: blockHash
-              address: address
-              ethSignature: ethSignature
+              blockHash: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+              address: 0x1234567890123456789012345678901234567890
+              ethSignature: !!binary |-
+                NG1HTjZUQUNGcVhVVlU5UnB3TERHQ3FncWlWMUdpZEVGazllS0YwTDBoNkpOcW1OM2tSTTlOTVBu
+                alVua2g4b0w2K2pGZVFKOVlWdUtYNEY5RXFHaUFFPQ==
             type: MESSAGE_TYPE_CAST_ADD
-            timestamp: 6
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
         - signatureScheme: SIGNATURE_SCHEME_ED25519
           data:
-            fid: 0
+            fid: 2
             verificationAddEthAddressBody:
-              blockHash: blockHash
-              address: address
-              ethSignature: ethSignature
+              blockHash: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+              address: 0x1234567890123456789012345678901234567890
+              ethSignature: !!binary |-
+                NG1HTjZUQUNGcVhVVlU5UnB3TERHQ3FncWlWMUdpZEVGazllS0YwTDBoNkpOcW1OM2tSTTlOTVBu
+                alVua2g4b0w2K2pGZVFKOVlWdUtYNEY5RXFHaUFFPQ==
             type: MESSAGE_TYPE_CAST_ADD
-            timestamp: 6
+            timestamp: 48994466
             network: FARCASTER_NETWORK_MAINNET
           signature: signature
           hashScheme: HASH_SCHEME_BLAKE3
-          hash: hash
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
       properties:
         messages:
@@ -2784,17 +3250,18 @@ components:
       required:
       - messages
       - nextPageToken
+      type: object
     fetch_user_on_chain_events_200_response:
       example:
         events:
         - fid: 2
-          blockHash: blockHash
+          blockHash: 0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28
           logIndex: 5
           chainId: 0
           blockNumber: 6
           blockTimestamp: 1
-          type: type
-          transactionHash: transactionHash
+          type: EVENT_TYPE_SIGNER
+          transactionHash: 0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952
           txIndex: 5
           signerEventBody:
             metadata: metadata
@@ -2803,13 +3270,13 @@ components:
             key: key
             metadataType: 9
         - fid: 2
-          blockHash: blockHash
+          blockHash: 0x75fbbb8b2a4ede67ac350e1b0503c6a152c0091bd8e3ef4a6927d58e088eae28
           logIndex: 5
           chainId: 0
           blockNumber: 6
           blockTimestamp: 1
-          type: type
-          transactionHash: transactionHash
+          type: EVENT_TYPE_SIGNER
+          transactionHash: 0x36ef79e6c460e6ae251908be13116ff0065960adb1ae032b4cc65a8352f28952
           txIndex: 5
           signerEventBody:
             metadata: metadata
@@ -2824,6 +3291,7 @@ components:
           type: array
       required:
       - events
+      type: object
     fetch_user_on_chain_signers_events_200_response_oneOf:
       properties:
         events:
@@ -2832,6 +3300,7 @@ components:
           type: array
       required:
       - events
+      type: object
     fetch_user_on_chain_signers_events_200_response:
       oneOf:
       - $ref: '#/components/schemas/OnChainEventSigner'
@@ -2844,198 +3313,198 @@ components:
             message:
               signatureScheme: SIGNATURE_SCHEME_ED25519
               data:
-                fid: 0
+                fid: 2
                 castAddBody:
                   mentionsPositions:
-                  - 5
-                  - 5
-                  parentUrl: parentUrl
+                  - 0
+                  - 0
+                  parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
                   embedsDeprecated:
                   - embedsDeprecated
                   - embedsDeprecated
                   mentions:
-                  - 1
-                  - 1
+                  - 2
+                  - 2
                   text: text
                   parentCastId:
-                    fid: 5
-                    hash: hash
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   embeds:
                   - castId:
-                      fid: 5
-                      hash: hash
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   - castId:
-                      fid: 5
-                      hash: hash
-                timestamp: 6
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+                timestamp: 48994466
                 network: FARCASTER_NETWORK_MAINNET
               signature: signature
               hashScheme: HASH_SCHEME_BLAKE3
-              hash: hash
+              hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
               signer: signer
             deletedMessages:
             - signatureScheme: SIGNATURE_SCHEME_ED25519
               data:
-                fid: 0
+                fid: 2
                 castAddBody:
                   mentionsPositions:
-                  - 5
-                  - 5
-                  parentUrl: parentUrl
+                  - 0
+                  - 0
+                  parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
                   embedsDeprecated:
                   - embedsDeprecated
                   - embedsDeprecated
                   mentions:
-                  - 1
-                  - 1
+                  - 2
+                  - 2
                   text: text
                   parentCastId:
-                    fid: 5
-                    hash: hash
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   embeds:
                   - castId:
-                      fid: 5
-                      hash: hash
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   - castId:
-                      fid: 5
-                      hash: hash
-                timestamp: 6
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+                timestamp: 48994466
                 network: FARCASTER_NETWORK_MAINNET
               signature: signature
               hashScheme: HASH_SCHEME_BLAKE3
-              hash: hash
+              hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
               signer: signer
             - signatureScheme: SIGNATURE_SCHEME_ED25519
               data:
-                fid: 0
+                fid: 2
                 castAddBody:
                   mentionsPositions:
-                  - 5
-                  - 5
-                  parentUrl: parentUrl
+                  - 0
+                  - 0
+                  parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
                   embedsDeprecated:
                   - embedsDeprecated
                   - embedsDeprecated
                   mentions:
-                  - 1
-                  - 1
+                  - 2
+                  - 2
                   text: text
                   parentCastId:
-                    fid: 5
-                    hash: hash
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   embeds:
                   - castId:
-                      fid: 5
-                      hash: hash
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   - castId:
-                      fid: 5
-                      hash: hash
-                timestamp: 6
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+                timestamp: 48994466
                 network: FARCASTER_NETWORK_MAINNET
               signature: signature
               hashScheme: HASH_SCHEME_BLAKE3
-              hash: hash
+              hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
               signer: signer
           id: 6
-          type: type
+          type: HUB_EVENT_TYPE_MERGE_MESSAGE
         - mergeMessageBody:
             message:
               signatureScheme: SIGNATURE_SCHEME_ED25519
               data:
-                fid: 0
+                fid: 2
                 castAddBody:
                   mentionsPositions:
-                  - 5
-                  - 5
-                  parentUrl: parentUrl
+                  - 0
+                  - 0
+                  parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
                   embedsDeprecated:
                   - embedsDeprecated
                   - embedsDeprecated
                   mentions:
-                  - 1
-                  - 1
+                  - 2
+                  - 2
                   text: text
                   parentCastId:
-                    fid: 5
-                    hash: hash
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   embeds:
                   - castId:
-                      fid: 5
-                      hash: hash
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   - castId:
-                      fid: 5
-                      hash: hash
-                timestamp: 6
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+                timestamp: 48994466
                 network: FARCASTER_NETWORK_MAINNET
               signature: signature
               hashScheme: HASH_SCHEME_BLAKE3
-              hash: hash
+              hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
               signer: signer
             deletedMessages:
             - signatureScheme: SIGNATURE_SCHEME_ED25519
               data:
-                fid: 0
+                fid: 2
                 castAddBody:
                   mentionsPositions:
-                  - 5
-                  - 5
-                  parentUrl: parentUrl
+                  - 0
+                  - 0
+                  parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
                   embedsDeprecated:
                   - embedsDeprecated
                   - embedsDeprecated
                   mentions:
-                  - 1
-                  - 1
+                  - 2
+                  - 2
                   text: text
                   parentCastId:
-                    fid: 5
-                    hash: hash
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   embeds:
                   - castId:
-                      fid: 5
-                      hash: hash
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   - castId:
-                      fid: 5
-                      hash: hash
-                timestamp: 6
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+                timestamp: 48994466
                 network: FARCASTER_NETWORK_MAINNET
               signature: signature
               hashScheme: HASH_SCHEME_BLAKE3
-              hash: hash
+              hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
               signer: signer
             - signatureScheme: SIGNATURE_SCHEME_ED25519
               data:
-                fid: 0
+                fid: 2
                 castAddBody:
                   mentionsPositions:
-                  - 5
-                  - 5
-                  parentUrl: parentUrl
+                  - 0
+                  - 0
+                  parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
                   embedsDeprecated:
                   - embedsDeprecated
                   - embedsDeprecated
                   mentions:
-                  - 1
-                  - 1
+                  - 2
+                  - 2
                   text: text
                   parentCastId:
-                    fid: 5
-                    hash: hash
+                    fid: 2
+                    hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   embeds:
                   - castId:
-                      fid: 5
-                      hash: hash
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
                   - castId:
-                      fid: 5
-                      hash: hash
-                timestamp: 6
+                      fid: 2
+                      hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+                timestamp: 48994466
                 network: FARCASTER_NETWORK_MAINNET
               signature: signature
               hashScheme: HASH_SCHEME_BLAKE3
-              hash: hash
+              hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
               signer: signer
           id: 6
-          type: type
+          type: HUB_EVENT_TYPE_MERGE_MESSAGE
       properties:
         nextPageEventId:
           type: integer
@@ -3046,6 +3515,7 @@ components:
       required:
       - events
       - nextPageEventId
+      type: object
     CastAdd_allOf_data:
       allOf:
       - $ref: '#/components/schemas/MessageDataCastAdd'
@@ -3054,32 +3524,33 @@ components:
             $ref: '#/components/schemas/MessageType'
         required:
         - type
+        type: object
       example:
-        fid: 0
+        fid: 2
         castAddBody:
           mentionsPositions:
-          - 5
-          - 5
-          parentUrl: parentUrl
+          - 0
+          - 0
+          parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
           embedsDeprecated:
           - embedsDeprecated
           - embedsDeprecated
           mentions:
-          - 1
-          - 1
+          - 2
+          - 2
           text: text
           parentCastId:
-            fid: 5
-            hash: hash
+            fid: 2
+            hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
           embeds:
           - castId:
-              fid: 5
-              hash: hash
+              fid: 2
+              hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
           - castId:
-              fid: 5
-              hash: hash
+              fid: 2
+              hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
         type: MESSAGE_TYPE_CAST_ADD
-        timestamp: 6
+        timestamp: 48994466
         network: FARCASTER_NETWORK_MAINNET
     ErrorResponse_metadata:
       example:
@@ -3093,6 +3564,7 @@ components:
           type: array
       required:
       - errcode
+      type: object
     LinkAdd_allOf_data:
       allOf:
       - $ref: '#/components/schemas/MessageDataLink'
@@ -3101,14 +3573,15 @@ components:
             $ref: '#/components/schemas/MessageType'
         required:
         - type
+        type: object
       example:
-        fid: 0
+        fid: 2
         linkBody:
           targetFid: 1
           type: follow
-          displayTimestamp: 1
+          displayTimestamp: 48994466
         type: MESSAGE_TYPE_CAST_ADD
-        timestamp: 6
+        timestamp: 48994466
         network: FARCASTER_NETWORK_MAINNET
     Message_allOf_data:
       discriminator:
@@ -3143,16 +3616,17 @@ components:
             $ref: '#/components/schemas/MessageType'
         required:
         - type
+        type: object
       example:
-        fid: 0
+        fid: 2
         reactionBody:
           targetCastId:
-            fid: 5
-            hash: hash
+            fid: 2
+            hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
           type: Like
-          targetUrl: targetUrl
+          targetUrl: https://www.example.com/article
         type: MESSAGE_TYPE_CAST_ADD
-        timestamp: 6
+        timestamp: 48994466
         network: FARCASTER_NETWORK_MAINNET
     UserDataAdd_allOf_data:
       allOf:
@@ -3162,13 +3636,14 @@ components:
             $ref: '#/components/schemas/MessageType'
         required:
         - type
+        type: object
       example:
-        fid: 0
+        fid: 2
         userDataBody:
           type: USER_DATA_TYPE_PFP
-          value: value
+          value: https://i.imgur.com/123abc.jpg
         type: MESSAGE_TYPE_CAST_ADD
-        timestamp: 6
+        timestamp: 48994466
         network: FARCASTER_NETWORK_MAINNET
     Verification_allOf_data:
       allOf:
@@ -3178,14 +3653,17 @@ components:
             $ref: '#/components/schemas/MessageType'
         required:
         - type
+        type: object
       example:
-        fid: 0
+        fid: 2
         verificationAddEthAddressBody:
-          blockHash: blockHash
-          address: address
-          ethSignature: ethSignature
+          blockHash: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+          address: 0x1234567890123456789012345678901234567890
+          ethSignature: !!binary |-
+            NG1HTjZUQUNGcVhVVlU5UnB3TERHQ3FncWlWMUdpZEVGazllS0YwTDBoNkpOcW1OM2tSTTlOTVBu
+            alVua2g4b0w2K2pGZVFKOVlWdUtYNEY5RXFHaUFFPQ==
         type: MESSAGE_TYPE_CAST_ADD
-        timestamp: 6
+        timestamp: 48994466
         network: FARCASTER_NETWORK_MAINNET
   securitySchemes:
     ApiKeyAuth:

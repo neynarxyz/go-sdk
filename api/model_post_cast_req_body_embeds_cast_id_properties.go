@@ -22,9 +22,9 @@ var _ MappedNullable = &PostCastReqBodyEmbedsCastIdProperties{}
 
 // PostCastReqBodyEmbedsCastIdProperties struct for PostCastReqBodyEmbedsCastIdProperties
 type PostCastReqBodyEmbedsCastIdProperties struct {
-	// The unique identifier of a farcaster user (unsigned integer)
-	Fid  int32  `json:"fid"`
 	Hash string `json:"hash"`
+	// The unique identifier of a farcaster user (unsigned integer)
+	Fid int32 `json:"fid"`
 }
 
 type _PostCastReqBodyEmbedsCastIdProperties PostCastReqBodyEmbedsCastIdProperties
@@ -33,10 +33,10 @@ type _PostCastReqBodyEmbedsCastIdProperties PostCastReqBodyEmbedsCastIdPropertie
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostCastReqBodyEmbedsCastIdProperties(fid int32, hash string) *PostCastReqBodyEmbedsCastIdProperties {
+func NewPostCastReqBodyEmbedsCastIdProperties(hash string, fid int32) *PostCastReqBodyEmbedsCastIdProperties {
 	this := PostCastReqBodyEmbedsCastIdProperties{}
-	this.Fid = fid
 	this.Hash = hash
+	this.Fid = fid
 	return &this
 }
 
@@ -46,30 +46,6 @@ func NewPostCastReqBodyEmbedsCastIdProperties(fid int32, hash string) *PostCastR
 func NewPostCastReqBodyEmbedsCastIdPropertiesWithDefaults() *PostCastReqBodyEmbedsCastIdProperties {
 	this := PostCastReqBodyEmbedsCastIdProperties{}
 	return &this
-}
-
-// GetFid returns the Fid field value
-func (o *PostCastReqBodyEmbedsCastIdProperties) GetFid() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Fid
-}
-
-// GetFidOk returns a tuple with the Fid field value
-// and a boolean to check if the value has been set.
-func (o *PostCastReqBodyEmbedsCastIdProperties) GetFidOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Fid, true
-}
-
-// SetFid sets field value
-func (o *PostCastReqBodyEmbedsCastIdProperties) SetFid(v int32) {
-	o.Fid = v
 }
 
 // GetHash returns the Hash field value
@@ -96,6 +72,30 @@ func (o *PostCastReqBodyEmbedsCastIdProperties) SetHash(v string) {
 	o.Hash = v
 }
 
+// GetFid returns the Fid field value
+func (o *PostCastReqBodyEmbedsCastIdProperties) GetFid() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Fid
+}
+
+// GetFidOk returns a tuple with the Fid field value
+// and a boolean to check if the value has been set.
+func (o *PostCastReqBodyEmbedsCastIdProperties) GetFidOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Fid, true
+}
+
+// SetFid sets field value
+func (o *PostCastReqBodyEmbedsCastIdProperties) SetFid(v int32) {
+	o.Fid = v
+}
+
 func (o PostCastReqBodyEmbedsCastIdProperties) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -106,8 +106,8 @@ func (o PostCastReqBodyEmbedsCastIdProperties) MarshalJSON() ([]byte, error) {
 
 func (o PostCastReqBodyEmbedsCastIdProperties) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["fid"] = o.Fid
 	toSerialize["hash"] = o.Hash
+	toSerialize["fid"] = o.Fid
 	return toSerialize, nil
 }
 
@@ -116,8 +116,8 @@ func (o *PostCastReqBodyEmbedsCastIdProperties) UnmarshalJSON(data []byte) (err 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"fid",
 		"hash",
+		"fid",
 	}
 
 	// defaultValueFuncMap captures the default values for required properties.

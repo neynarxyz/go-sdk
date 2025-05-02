@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | [**CastParentAuthorFid**](CastParentAuthorFid.md) |  | 
+**Fid** | **int32** | The unique identifier of a farcaster user (unsigned integer) | 
 
 ## Methods
 
 ### NewCastParentAuthor
 
-`func NewCastParentAuthor(fid CastParentAuthorFid, ) *CastParentAuthor`
+`func NewCastParentAuthor(fid int32, ) *CastParentAuthor`
 
 NewCastParentAuthor instantiates a new CastParentAuthor object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFid
 
-`func (o *CastParentAuthor) GetFid() CastParentAuthorFid`
+`func (o *CastParentAuthor) GetFid() int32`
 
 GetFid returns the Fid field if non-nil, zero value otherwise.
 
 ### GetFidOk
 
-`func (o *CastParentAuthor) GetFidOk() (*CastParentAuthorFid, bool)`
+`func (o *CastParentAuthor) GetFidOk() (*int32, bool)`
 
 GetFidOk returns a tuple with the Fid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFid
 
-`func (o *CastParentAuthor) SetFid(v CastParentAuthorFid)`
+`func (o *CastParentAuthor) SetFid(v int32)`
 
 SetFid sets Fid field to given value.
 

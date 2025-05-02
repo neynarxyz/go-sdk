@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AllowlistFids** | Pointer to **[]int32** | Optional list of FIDs that are allowed to use this transaction mini app | [optional] 
 **LineItems** | [**[]TransactionFrameLineItem**](TransactionFrameLineItem.md) | List of items included in the transaction | 
-**Action** | Pointer to [**TransactionFrameAction**](TransactionFrameAction.md) | Action button for primary CTA on the transaction mini app | [optional] 
+**Action** | Pointer to [**TransactionFrameAction**](TransactionFrameAction.md) |  | [optional] 
 
 ## Methods
 

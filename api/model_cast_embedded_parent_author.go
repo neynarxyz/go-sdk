@@ -22,7 +22,8 @@ var _ MappedNullable = &CastEmbeddedParentAuthor{}
 
 // CastEmbeddedParentAuthor struct for CastEmbeddedParentAuthor
 type CastEmbeddedParentAuthor struct {
-	Fid CastEmbeddedParentAuthorFid `json:"fid"`
+	// The unique identifier of a farcaster user (unsigned integer)
+	Fid int32 `json:"fid"`
 }
 
 type _CastEmbeddedParentAuthor CastEmbeddedParentAuthor
@@ -31,7 +32,7 @@ type _CastEmbeddedParentAuthor CastEmbeddedParentAuthor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastEmbeddedParentAuthor(fid CastEmbeddedParentAuthorFid) *CastEmbeddedParentAuthor {
+func NewCastEmbeddedParentAuthor(fid int32) *CastEmbeddedParentAuthor {
 	this := CastEmbeddedParentAuthor{}
 	this.Fid = fid
 	return &this
@@ -46,9 +47,9 @@ func NewCastEmbeddedParentAuthorWithDefaults() *CastEmbeddedParentAuthor {
 }
 
 // GetFid returns the Fid field value
-func (o *CastEmbeddedParentAuthor) GetFid() CastEmbeddedParentAuthorFid {
+func (o *CastEmbeddedParentAuthor) GetFid() int32 {
 	if o == nil {
-		var ret CastEmbeddedParentAuthorFid
+		var ret int32
 		return ret
 	}
 
@@ -57,7 +58,7 @@ func (o *CastEmbeddedParentAuthor) GetFid() CastEmbeddedParentAuthorFid {
 
 // GetFidOk returns a tuple with the Fid field value
 // and a boolean to check if the value has been set.
-func (o *CastEmbeddedParentAuthor) GetFidOk() (*CastEmbeddedParentAuthorFid, bool) {
+func (o *CastEmbeddedParentAuthor) GetFidOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +66,7 @@ func (o *CastEmbeddedParentAuthor) GetFidOk() (*CastEmbeddedParentAuthorFid, boo
 }
 
 // SetFid sets field value
-func (o *CastEmbeddedParentAuthor) SetFid(v CastEmbeddedParentAuthorFid) {
+func (o *CastEmbeddedParentAuthor) SetFid(v int32) {
 	o.Fid = v
 }
 

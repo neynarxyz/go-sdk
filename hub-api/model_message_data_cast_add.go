@@ -25,10 +25,9 @@ type MessageDataCastAdd struct {
 	// The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed.
 	Fid int32 `json:"fid"`
 	// Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
-	Timestamp int64            `json:"timestamp"`
-	Network   FarcasterNetwork `json:"network"`
-	// The content and metadata of the new cast, including the text, mentions, embeds, and any parent references for replies.
-	CastAddBody CastAddBody `json:"castAddBody"`
+	Timestamp   int64            `json:"timestamp"`
+	Network     FarcasterNetwork `json:"network"`
+	CastAddBody CastAddBody      `json:"castAddBody"`
 }
 
 type _MessageDataCastAdd MessageDataCastAdd
