@@ -474,6 +474,9 @@ func (a *FrameAPIService) FetchFrameCatalogExecute(r ApiFetchFrameCatalogRequest
 	}
 	if r.timeWindow != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "time_window", r.timeWindow, "form", "")
+	} else {
+		var defaultValue TrendingTimeWindow = "24h"
+		r.timeWindow = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1025,6 +1028,9 @@ func (a *FrameAPIService) FetchRelevantFramesExecute(r ApiFetchRelevantFramesReq
 	parameterAddToHeaderOrQuery(localVarQueryParams, "viewer_fid", r.viewerFid, "form", "")
 	if r.timeWindow != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "time_window", r.timeWindow, "form", "")
+	} else {
+		var defaultValue TrendingTimeWindow = "24h"
+		r.timeWindow = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

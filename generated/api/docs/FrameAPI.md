@@ -112,7 +112,7 @@ import (
 func main() {
 	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 100)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
-	timeWindow := openapiclient.TrendingTimeWindow("1h") // TrendingTimeWindow | Time window used to calculate the change in trending score for each mini app, used to sort mini app results (optional)
+	timeWindow := openapiclient.TrendingTimeWindow("1h") // TrendingTimeWindow | Time window used to calculate the change in trending score for each mini app, used to sort mini app results (optional) (default to "24h")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int32** | Number of results to fetch | [default to 100]
  **cursor** | **string** | Pagination cursor | 
- **timeWindow** | [**TrendingTimeWindow**](TrendingTimeWindow.md) | Time window used to calculate the change in trending score for each mini app, used to sort mini app results | 
+ **timeWindow** | [**TrendingTimeWindow**](TrendingTimeWindow.md) | Time window used to calculate the change in trending score for each mini app, used to sort mini app results | [default to &quot;24h&quot;]
 
 ### Return type
 
@@ -378,7 +378,7 @@ import (
 
 func main() {
 	viewerFid := int32(56) // int32 | FID of the user to fetch relevant mini apps for
-	timeWindow := openapiclient.TrendingTimeWindow("1h") // TrendingTimeWindow | Time window used to limit statistics used to calculate mini app relevance (optional)
+	timeWindow := openapiclient.TrendingTimeWindow("1h") // TrendingTimeWindow | Time window used to limit statistics used to calculate mini app relevance (optional) (default to "24h")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -404,7 +404,7 @@ Other parameters are passed through a pointer to a apiFetchRelevantFramesRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **viewerFid** | **int32** | FID of the user to fetch relevant mini apps for | 
- **timeWindow** | [**TrendingTimeWindow**](TrendingTimeWindow.md) | Time window used to limit statistics used to calculate mini app relevance | 
+ **timeWindow** | [**TrendingTimeWindow**](TrendingTimeWindow.md) | Time window used to limit statistics used to calculate mini app relevance | [default to &quot;24h&quot;]
 
 ### Return type
 

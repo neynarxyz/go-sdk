@@ -2416,8 +2416,7 @@ paths:
         name: time_window
         required: false
         schema:
-          allOf:
-          - $ref: '#/components/schemas/TrendingTimeWindow'
+          $ref: '#/components/schemas/TrendingTimeWindow'
         style: form
       - description: "Channel ID to filter trending casts. Less active channels might\
           \ have no casts in the time window selected. Provide either `channel_id`\
@@ -6697,6 +6696,7 @@ components:
       format: int32
       type: integer
     TrendingTimeWindow:
+      default: 24h
       description: Time window for trending content
       enum:
       - 1h

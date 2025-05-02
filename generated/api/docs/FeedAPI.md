@@ -669,7 +669,7 @@ func main() {
 	limit := int32(10) // int32 | Number of results to fetch (optional) (default to 10)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
 	viewerFid := int32(3) // int32 | Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`. (optional)
-	timeWindow := openapiclient.TrendingTimeWindow("1h") // TrendingTimeWindow | Time window for trending casts (7d window for channel feeds only) (optional)
+	timeWindow := openapiclient.TrendingTimeWindow("1h") // TrendingTimeWindow | Time window for trending casts (7d window for channel feeds only) (optional) (default to "24h")
 	channelId := "neynar" // string | Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both. (optional)
 	parentUrl := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both. (optional)
 	provider := openapiclient.FeedTrendingProvider("neynar") // FeedTrendingProvider | The provider of the trending casts feed. (optional) (default to "neynar")
@@ -702,7 +702,7 @@ Name | Type | Description  | Notes
  **limit** | **int32** | Number of results to fetch | [default to 10]
  **cursor** | **string** | Pagination cursor | 
  **viewerFid** | **int32** | Providing this will return a feed that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
- **timeWindow** | [**TrendingTimeWindow**](TrendingTimeWindow.md) | Time window for trending casts (7d window for channel feeds only) | 
+ **timeWindow** | [**TrendingTimeWindow**](TrendingTimeWindow.md) | Time window for trending casts (7d window for channel feeds only) | [default to &quot;24h&quot;]
  **channelId** | **string** | Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either &#x60;channel_id&#x60; or &#x60;parent_url&#x60;, not both. | 
  **parentUrl** | **string** | Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either &#x60;channel_id&#x60; or &#x60;parent_url&#x60;, not both. | 
  **provider** | [**FeedTrendingProvider**](FeedTrendingProvider.md) | The provider of the trending casts feed. | [default to &quot;neynar&quot;]
