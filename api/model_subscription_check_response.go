@@ -13,52 +13,83 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 )
+
+// checks if the SubscriptionCheckResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubscriptionCheckResponse{}
 
 // SubscriptionCheckResponse struct for SubscriptionCheckResponse
 type SubscriptionCheckResponse struct {
-	MapmapOfStringSubscriptionStatus *map[string]SubscriptionStatus
+	AdditionalProperties map[string]interface{}
 }
 
-// Unmarshal JSON data into any of the pointers in the struct
-func (dst *SubscriptionCheckResponse) UnmarshalJSON(data []byte) error {
-	var err error
-	// try to unmarshal JSON data into MapmapOfStringSubscriptionStatus
-	err = json.Unmarshal(data, &dst.MapmapOfStringSubscriptionStatus)
-	if err == nil {
-		jsonMapmapOfStringSubscriptionStatus, _ := json.Marshal(dst.MapmapOfStringSubscriptionStatus)
-		if string(jsonMapmapOfStringSubscriptionStatus) == "{}" { // empty struct
-			dst.MapmapOfStringSubscriptionStatus = nil
-		} else {
-			return nil // data stored in dst.MapmapOfStringSubscriptionStatus, return on the first match
-		}
-	} else {
-		dst.MapmapOfStringSubscriptionStatus = nil
-	}
+type _SubscriptionCheckResponse SubscriptionCheckResponse
 
-	return fmt.Errorf("data failed to match schemas in anyOf(SubscriptionCheckResponse)")
+// NewSubscriptionCheckResponse instantiates a new SubscriptionCheckResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSubscriptionCheckResponse() *SubscriptionCheckResponse {
+	this := SubscriptionCheckResponse{}
+	return &this
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src SubscriptionCheckResponse) MarshalJSON() ([]byte, error) {
-	if src.MapmapOfStringSubscriptionStatus != nil {
-		return json.Marshal(&src.MapmapOfStringSubscriptionStatus)
+// NewSubscriptionCheckResponseWithDefaults instantiates a new SubscriptionCheckResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSubscriptionCheckResponseWithDefaults() *SubscriptionCheckResponse {
+	this := SubscriptionCheckResponse{}
+	return &this
+}
+
+func (o SubscriptionCheckResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o SubscriptionCheckResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 
-	return nil, nil // no data in anyOf schemas
+	return toSerialize, nil
+}
+
+func (o *SubscriptionCheckResponse) UnmarshalJSON(data []byte) (err error) {
+	varSubscriptionCheckResponse := _SubscriptionCheckResponse{}
+
+	err = json.Unmarshal(data, &varSubscriptionCheckResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionCheckResponse(varSubscriptionCheckResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSubscriptionCheckResponse struct {
-	value *SubscriptionCheckResponse
+	value SubscriptionCheckResponse
 	isSet bool
 }
 
-func (v NullableSubscriptionCheckResponse) Get() *SubscriptionCheckResponse {
+func (v NullableSubscriptionCheckResponse) Get() SubscriptionCheckResponse {
 	return v.value
 }
 
-func (v *NullableSubscriptionCheckResponse) Set(val *SubscriptionCheckResponse) {
+func (v *NullableSubscriptionCheckResponse) Set(val SubscriptionCheckResponse) {
 	v.value = val
 	v.isSet = true
 }
@@ -72,7 +103,7 @@ func (v *NullableSubscriptionCheckResponse) Unset() {
 	v.isSet = false
 }
 
-func NewNullableSubscriptionCheckResponse(val *SubscriptionCheckResponse) *NullableSubscriptionCheckResponse {
+func NewNullableSubscriptionCheckResponse(val SubscriptionCheckResponse) *NullableSubscriptionCheckResponse {
 	return &NullableSubscriptionCheckResponse{value: val, isSet: true}
 }
 

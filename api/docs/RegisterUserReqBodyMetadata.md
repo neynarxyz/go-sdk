@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **Url** | Pointer to **string** |  | [optional] 
 **Username** | Pointer to **string** |  | [optional] 
 **DisplayName** | Pointer to **string** |  | [optional] 
-**VerifiedAccounts** | Pointer to [**UpdateUserReqBodyVerifiedAccounts**](UpdateUserReqBodyVerifiedAccounts.md) |  | [optional] 
-**Location** | Pointer to [**UpdateUserReqBodyLocation**](UpdateUserReqBodyLocation.md) |  | [optional] 
+**VerifiedAccounts** | Pointer to [**RegisterUserReqBodyMetadataVerifiedAccounts**](RegisterUserReqBodyMetadataVerifiedAccounts.md) |  | [optional] 
+**Location** | Pointer to [**RegisterUserReqBodyMetadataLocation**](RegisterUserReqBodyMetadataLocation.md) |  | [optional] 
 
 ## Methods
 
@@ -158,20 +158,20 @@ HasDisplayName returns a boolean if a field has been set.
 
 ### GetVerifiedAccounts
 
-`func (o *RegisterUserReqBodyMetadata) GetVerifiedAccounts() UpdateUserReqBodyVerifiedAccounts`
+`func (o *RegisterUserReqBodyMetadata) GetVerifiedAccounts() RegisterUserReqBodyMetadataVerifiedAccounts`
 
 GetVerifiedAccounts returns the VerifiedAccounts field if non-nil, zero value otherwise.
 
 ### GetVerifiedAccountsOk
 
-`func (o *RegisterUserReqBodyMetadata) GetVerifiedAccountsOk() (*UpdateUserReqBodyVerifiedAccounts, bool)`
+`func (o *RegisterUserReqBodyMetadata) GetVerifiedAccountsOk() (*RegisterUserReqBodyMetadataVerifiedAccounts, bool)`
 
 GetVerifiedAccountsOk returns a tuple with the VerifiedAccounts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVerifiedAccounts
 
-`func (o *RegisterUserReqBodyMetadata) SetVerifiedAccounts(v UpdateUserReqBodyVerifiedAccounts)`
+`func (o *RegisterUserReqBodyMetadata) SetVerifiedAccounts(v RegisterUserReqBodyMetadataVerifiedAccounts)`
 
 SetVerifiedAccounts sets VerifiedAccounts field to given value.
 
@@ -183,20 +183,20 @@ HasVerifiedAccounts returns a boolean if a field has been set.
 
 ### GetLocation
 
-`func (o *RegisterUserReqBodyMetadata) GetLocation() UpdateUserReqBodyLocation`
+`func (o *RegisterUserReqBodyMetadata) GetLocation() RegisterUserReqBodyMetadataLocation`
 
 GetLocation returns the Location field if non-nil, zero value otherwise.
 
 ### GetLocationOk
 
-`func (o *RegisterUserReqBodyMetadata) GetLocationOk() (*UpdateUserReqBodyLocation, bool)`
+`func (o *RegisterUserReqBodyMetadata) GetLocationOk() (*RegisterUserReqBodyMetadataLocation, bool)`
 
 GetLocationOk returns a tuple with the Location field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLocation
 
-`func (o *RegisterUserReqBodyMetadata) SetLocation(v UpdateUserReqBodyLocation)`
+`func (o *RegisterUserReqBodyMetadata) SetLocation(v RegisterUserReqBodyMetadataLocation)`
 
 SetLocation sets Location field to given value.
 

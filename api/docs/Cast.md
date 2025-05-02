@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **ParentHash** | **NullableString** |  | 
 **ParentUrl** | **NullableString** |  | 
 **RootParentUrl** | **NullableString** |  | 
-**ParentAuthor** | [**CastEmbeddedParentAuthor**](CastEmbeddedParentAuthor.md) |  | 
+**ParentAuthor** | [**CastParentAuthor**](CastParentAuthor.md) |  | 
 **Author** | [**User**](User.md) |  | 
-**App** | Pointer to [**CastEmbeddedApp**](CastEmbeddedApp.md) |  | [optional] 
+**App** | Pointer to [**CastApp**](CastApp.md) |  | [optional] 
 **Text** | **string** |  | 
 **Timestamp** | **time.Time** |  | 
 **Embeds** | [**[]Embed**](Embed.md) |  | 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewCast
 
-`func NewCast(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, ) *Cast`
+`func NewCast(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, ) *Cast`
 
 NewCast instantiates a new Cast object
 This constructor will assign default values to properties that have it defined,
@@ -168,20 +168,20 @@ SetRootParentUrl sets RootParentUrl field to given value.
 UnsetRootParentUrl ensures that no value is present for RootParentUrl, not even an explicit nil
 ### GetParentAuthor
 
-`func (o *Cast) GetParentAuthor() CastEmbeddedParentAuthor`
+`func (o *Cast) GetParentAuthor() CastParentAuthor`
 
 GetParentAuthor returns the ParentAuthor field if non-nil, zero value otherwise.
 
 ### GetParentAuthorOk
 
-`func (o *Cast) GetParentAuthorOk() (*CastEmbeddedParentAuthor, bool)`
+`func (o *Cast) GetParentAuthorOk() (*CastParentAuthor, bool)`
 
 GetParentAuthorOk returns a tuple with the ParentAuthor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentAuthor
 
-`func (o *Cast) SetParentAuthor(v CastEmbeddedParentAuthor)`
+`func (o *Cast) SetParentAuthor(v CastParentAuthor)`
 
 SetParentAuthor sets ParentAuthor field to given value.
 
@@ -208,20 +208,20 @@ SetAuthor sets Author field to given value.
 
 ### GetApp
 
-`func (o *Cast) GetApp() CastEmbeddedApp`
+`func (o *Cast) GetApp() CastApp`
 
 GetApp returns the App field if non-nil, zero value otherwise.
 
 ### GetAppOk
 
-`func (o *Cast) GetAppOk() (*CastEmbeddedApp, bool)`
+`func (o *Cast) GetAppOk() (*CastApp, bool)`
 
 GetAppOk returns a tuple with the App field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApp
 
-`func (o *Cast) SetApp(v CastEmbeddedApp)`
+`func (o *Cast) SetApp(v CastApp)`
 
 SetApp sets App field to given value.
 

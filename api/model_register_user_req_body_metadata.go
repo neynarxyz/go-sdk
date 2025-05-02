@@ -20,13 +20,13 @@ var _ MappedNullable = &RegisterUserReqBodyMetadata{}
 
 // RegisterUserReqBodyMetadata struct for RegisterUserReqBodyMetadata
 type RegisterUserReqBodyMetadata struct {
-	Bio              *string                            `json:"bio,omitempty"`
-	PfpUrl           *string                            `json:"pfp_url,omitempty"`
-	Url              *string                            `json:"url,omitempty"`
-	Username         *string                            `json:"username,omitempty"`
-	DisplayName      *string                            `json:"display_name,omitempty"`
-	VerifiedAccounts *UpdateUserReqBodyVerifiedAccounts `json:"verified_accounts,omitempty"`
-	Location         *UpdateUserReqBodyLocation         `json:"location,omitempty"`
+	Bio              *string                                      `json:"bio,omitempty"`
+	PfpUrl           *string                                      `json:"pfp_url,omitempty"`
+	Url              *string                                      `json:"url,omitempty"`
+	Username         *string                                      `json:"username,omitempty"`
+	DisplayName      *string                                      `json:"display_name,omitempty"`
+	VerifiedAccounts *RegisterUserReqBodyMetadataVerifiedAccounts `json:"verified_accounts,omitempty"`
+	Location         *RegisterUserReqBodyMetadataLocation         `json:"location,omitempty"`
 }
 
 // NewRegisterUserReqBodyMetadata instantiates a new RegisterUserReqBodyMetadata object
@@ -207,9 +207,9 @@ func (o *RegisterUserReqBodyMetadata) SetDisplayName(v string) {
 }
 
 // GetVerifiedAccounts returns the VerifiedAccounts field value if set, zero value otherwise.
-func (o *RegisterUserReqBodyMetadata) GetVerifiedAccounts() UpdateUserReqBodyVerifiedAccounts {
+func (o *RegisterUserReqBodyMetadata) GetVerifiedAccounts() RegisterUserReqBodyMetadataVerifiedAccounts {
 	if o == nil || IsNil(o.VerifiedAccounts) {
-		var ret UpdateUserReqBodyVerifiedAccounts
+		var ret RegisterUserReqBodyMetadataVerifiedAccounts
 		return ret
 	}
 	return *o.VerifiedAccounts
@@ -217,7 +217,7 @@ func (o *RegisterUserReqBodyMetadata) GetVerifiedAccounts() UpdateUserReqBodyVer
 
 // GetVerifiedAccountsOk returns a tuple with the VerifiedAccounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegisterUserReqBodyMetadata) GetVerifiedAccountsOk() (*UpdateUserReqBodyVerifiedAccounts, bool) {
+func (o *RegisterUserReqBodyMetadata) GetVerifiedAccountsOk() (*RegisterUserReqBodyMetadataVerifiedAccounts, bool) {
 	if o == nil || IsNil(o.VerifiedAccounts) {
 		return nil, false
 	}
@@ -233,15 +233,15 @@ func (o *RegisterUserReqBodyMetadata) HasVerifiedAccounts() bool {
 	return false
 }
 
-// SetVerifiedAccounts gets a reference to the given UpdateUserReqBodyVerifiedAccounts and assigns it to the VerifiedAccounts field.
-func (o *RegisterUserReqBodyMetadata) SetVerifiedAccounts(v UpdateUserReqBodyVerifiedAccounts) {
+// SetVerifiedAccounts gets a reference to the given RegisterUserReqBodyMetadataVerifiedAccounts and assigns it to the VerifiedAccounts field.
+func (o *RegisterUserReqBodyMetadata) SetVerifiedAccounts(v RegisterUserReqBodyMetadataVerifiedAccounts) {
 	o.VerifiedAccounts = &v
 }
 
 // GetLocation returns the Location field value if set, zero value otherwise.
-func (o *RegisterUserReqBodyMetadata) GetLocation() UpdateUserReqBodyLocation {
+func (o *RegisterUserReqBodyMetadata) GetLocation() RegisterUserReqBodyMetadataLocation {
 	if o == nil || IsNil(o.Location) {
-		var ret UpdateUserReqBodyLocation
+		var ret RegisterUserReqBodyMetadataLocation
 		return ret
 	}
 	return *o.Location
@@ -249,7 +249,7 @@ func (o *RegisterUserReqBodyMetadata) GetLocation() UpdateUserReqBodyLocation {
 
 // GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegisterUserReqBodyMetadata) GetLocationOk() (*UpdateUserReqBodyLocation, bool) {
+func (o *RegisterUserReqBodyMetadata) GetLocationOk() (*RegisterUserReqBodyMetadataLocation, bool) {
 	if o == nil || IsNil(o.Location) {
 		return nil, false
 	}
@@ -265,8 +265,8 @@ func (o *RegisterUserReqBodyMetadata) HasLocation() bool {
 	return false
 }
 
-// SetLocation gets a reference to the given UpdateUserReqBodyLocation and assigns it to the Location field.
-func (o *RegisterUserReqBodyMetadata) SetLocation(v UpdateUserReqBodyLocation) {
+// SetLocation gets a reference to the given RegisterUserReqBodyMetadataLocation and assigns it to the Location field.
+func (o *RegisterUserReqBodyMetadata) SetLocation(v RegisterUserReqBodyMetadataLocation) {
 	o.Location = &v
 }
 

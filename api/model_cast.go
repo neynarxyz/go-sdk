@@ -23,18 +23,18 @@ var _ MappedNullable = &Cast{}
 
 // Cast struct for Cast
 type Cast struct {
-	Object        string                   `json:"object"`
-	Hash          string                   `json:"hash"`
-	ParentHash    NullableString           `json:"parent_hash"`
-	ParentUrl     NullableString           `json:"parent_url"`
-	RootParentUrl NullableString           `json:"root_parent_url"`
-	ParentAuthor  CastEmbeddedParentAuthor `json:"parent_author"`
-	Author        User                     `json:"author"`
-	App           *CastEmbeddedApp         `json:"app,omitempty"`
-	Text          string                   `json:"text"`
-	Timestamp     time.Time                `json:"timestamp"`
-	Embeds        []Embed                  `json:"embeds"`
-	Type          *CastNotificationType    `json:"type,omitempty"`
+	Object        string                `json:"object"`
+	Hash          string                `json:"hash"`
+	ParentHash    NullableString        `json:"parent_hash"`
+	ParentUrl     NullableString        `json:"parent_url"`
+	RootParentUrl NullableString        `json:"root_parent_url"`
+	ParentAuthor  CastParentAuthor      `json:"parent_author"`
+	Author        User                  `json:"author"`
+	App           *CastApp              `json:"app,omitempty"`
+	Text          string                `json:"text"`
+	Timestamp     time.Time             `json:"timestamp"`
+	Embeds        []Embed               `json:"embeds"`
+	Type          *CastNotificationType `json:"type,omitempty"`
 }
 
 type _Cast Cast
@@ -43,7 +43,7 @@ type _Cast Cast
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCast(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author User, text string, timestamp time.Time, embeds []Embed) *Cast {
+func NewCast(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed) *Cast {
 	this := Cast{}
 	this.Object = object
 	this.Hash = hash
@@ -193,9 +193,9 @@ func (o *Cast) SetRootParentUrl(v string) {
 }
 
 // GetParentAuthor returns the ParentAuthor field value
-func (o *Cast) GetParentAuthor() CastEmbeddedParentAuthor {
+func (o *Cast) GetParentAuthor() CastParentAuthor {
 	if o == nil {
-		var ret CastEmbeddedParentAuthor
+		var ret CastParentAuthor
 		return ret
 	}
 
@@ -204,7 +204,7 @@ func (o *Cast) GetParentAuthor() CastEmbeddedParentAuthor {
 
 // GetParentAuthorOk returns a tuple with the ParentAuthor field value
 // and a boolean to check if the value has been set.
-func (o *Cast) GetParentAuthorOk() (*CastEmbeddedParentAuthor, bool) {
+func (o *Cast) GetParentAuthorOk() (*CastParentAuthor, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -212,7 +212,7 @@ func (o *Cast) GetParentAuthorOk() (*CastEmbeddedParentAuthor, bool) {
 }
 
 // SetParentAuthor sets field value
-func (o *Cast) SetParentAuthor(v CastEmbeddedParentAuthor) {
+func (o *Cast) SetParentAuthor(v CastParentAuthor) {
 	o.ParentAuthor = v
 }
 
@@ -241,9 +241,9 @@ func (o *Cast) SetAuthor(v User) {
 }
 
 // GetApp returns the App field value if set, zero value otherwise.
-func (o *Cast) GetApp() CastEmbeddedApp {
+func (o *Cast) GetApp() CastApp {
 	if o == nil || IsNil(o.App) {
-		var ret CastEmbeddedApp
+		var ret CastApp
 		return ret
 	}
 	return *o.App
@@ -251,7 +251,7 @@ func (o *Cast) GetApp() CastEmbeddedApp {
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Cast) GetAppOk() (*CastEmbeddedApp, bool) {
+func (o *Cast) GetAppOk() (*CastApp, bool) {
 	if o == nil || IsNil(o.App) {
 		return nil, false
 	}
@@ -267,8 +267,8 @@ func (o *Cast) HasApp() bool {
 	return false
 }
 
-// SetApp gets a reference to the given CastEmbeddedApp and assigns it to the App field.
-func (o *Cast) SetApp(v CastEmbeddedApp) {
+// SetApp gets a reference to the given CastApp and assigns it to the App field.
+func (o *Cast) SetApp(v CastApp) {
 	o.App = &v
 }
 

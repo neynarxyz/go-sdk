@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Object** | **string** |  | 
 **Hash** | **string** |  | 
 **Author** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
-**App** | Pointer to [**CastEmbeddedApp**](CastEmbeddedApp.md) |  | [optional] 
+**App** | Pointer to [**CastDehydratedApp**](CastDehydratedApp.md) |  | [optional] 
 
 ## Methods
 
@@ -95,20 +95,20 @@ HasAuthor returns a boolean if a field has been set.
 
 ### GetApp
 
-`func (o *CastDehydrated) GetApp() CastEmbeddedApp`
+`func (o *CastDehydrated) GetApp() CastDehydratedApp`
 
 GetApp returns the App field if non-nil, zero value otherwise.
 
 ### GetAppOk
 
-`func (o *CastDehydrated) GetAppOk() (*CastEmbeddedApp, bool)`
+`func (o *CastDehydrated) GetAppOk() (*CastDehydratedApp, bool)`
 
 GetAppOk returns a tuple with the App field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApp
 
-`func (o *CastDehydrated) SetApp(v CastEmbeddedApp)`
+`func (o *CastDehydrated) SetApp(v CastDehydratedApp)`
 
 SetApp sets App field to given value.
 

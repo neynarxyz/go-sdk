@@ -52,12 +52,14 @@ docs/BulkUsersResponse.md
 docs/BuyStorageReqBody.md
 docs/Cast.md
 docs/CastAPI.md
+docs/CastApp.md
 docs/CastComposerActionsListResponse.md
 docs/CastComposerActionsListResponseActionsInner.md
 docs/CastComposerActionsListResponseActionsInnerAction.md
 docs/CastComposerType.md
 docs/CastConversationSortType.md
 docs/CastDehydrated.md
+docs/CastDehydratedApp.md
 docs/CastEmbedCrawlResponse.md
 docs/CastEmbedded.md
 docs/CastEmbeddedApp.md
@@ -67,6 +69,8 @@ docs/CastEmbeddedParentAuthorFid.md
 docs/CastId.md
 docs/CastNotificationType.md
 docs/CastParamType.md
+docs/CastParentAuthor.md
+docs/CastParentAuthorFid.md
 docs/CastResponse.md
 docs/CastViewerContext.md
 docs/CastWithInteractions.md
@@ -140,6 +144,7 @@ docs/FetchFeedForYou400Response.md
 docs/FetchFrameMetaTagsFromUrl200Response.md
 docs/FetchRelevantFrames200Response.md
 docs/FetchRelevantFrames200ResponseRelevantFramesInner.md
+docs/FetchTrendingFeed400Response.md
 docs/FetchUserInteractions200Response.md
 docs/FilterType.md
 docs/FnameAPI.md
@@ -165,6 +170,7 @@ docs/FrameInput.md
 docs/FrameNotificationTokens.md
 docs/FrameNotificationTokensNotificationTokensInner.md
 docs/FramePayTransactionRequestBody.md
+docs/FramePayTransactionRequestBodyTransaction.md
 docs/FrameSignaturePacket.md
 docs/FrameSignaturePacketTrustedData.md
 docs/FrameSignaturePacketUntrustedData.md
@@ -177,6 +183,7 @@ docs/FrameV1AllOfState.md
 docs/FrameV2.md
 docs/FrameV2AllOfMetadata.md
 docs/FrameV2WithFullAuthor.md
+docs/FrameV2WithFullAuthorAllOfMetadata.md
 docs/FrameValidateAnalyticsInputText.md
 docs/FrameValidateAnalyticsInputTextInputTextsInner.md
 docs/FrameValidateAnalyticsInteractionsPerCast.md
@@ -254,6 +261,8 @@ docs/RegisterDeveloperManagedSignedKeyReqBody.md
 docs/RegisterSignerKeyReqBody.md
 docs/RegisterUserReqBody.md
 docs/RegisterUserReqBodyMetadata.md
+docs/RegisterUserReqBodyMetadataLocation.md
+docs/RegisterUserReqBodyMetadataVerifiedAccounts.md
 docs/RegisterUserResponse.md
 docs/RelevantFollowersResponse.md
 docs/RelevantFungibleOwnersResponse.md
@@ -385,12 +394,14 @@ model_bulk_users_by_address_response.go
 model_bulk_users_response.go
 model_buy_storage_req_body.go
 model_cast.go
+model_cast_app.go
 model_cast_composer_actions_list_response.go
 model_cast_composer_actions_list_response_actions_inner.go
 model_cast_composer_actions_list_response_actions_inner_action.go
 model_cast_composer_type.go
 model_cast_conversation_sort_type.go
 model_cast_dehydrated.go
+model_cast_dehydrated_app.go
 model_cast_embed_crawl_response.go
 model_cast_embedded.go
 model_cast_embedded_app.go
@@ -400,6 +411,8 @@ model_cast_embedded_parent_author_fid.go
 model_cast_id.go
 model_cast_notification_type.go
 model_cast_param_type.go
+model_cast_parent_author.go
+model_cast_parent_author_fid.go
 model_cast_response.go
 model_cast_viewer_context.go
 model_cast_with_interactions.go
@@ -471,6 +484,7 @@ model_fetch_feed_for_you_400_response.go
 model_fetch_frame_meta_tags_from_url_200_response.go
 model_fetch_relevant_frames_200_response.go
 model_fetch_relevant_frames_200_response_relevant_frames_inner.go
+model_fetch_trending_feed_400_response.go
 model_fetch_user_interactions_200_response.go
 model_filter_type.go
 model_fname_availability_response.go
@@ -493,6 +507,7 @@ model_frame_input.go
 model_frame_notification_tokens.go
 model_frame_notification_tokens_notification_tokens_inner.go
 model_frame_pay_transaction_request_body.go
+model_frame_pay_transaction_request_body_transaction.go
 model_frame_signature_packet.go
 model_frame_signature_packet_trusted_data.go
 model_frame_signature_packet_untrusted_data.go
@@ -505,6 +520,7 @@ model_frame_v1_all_of_state.go
 model_frame_v2.go
 model_frame_v2_all_of_metadata.go
 model_frame_v2_with_full_author.go
+model_frame_v2_with_full_author_all_of_metadata.go
 model_frame_validate_analytics_input_text.go
 model_frame_validate_analytics_input_text_input_texts_inner.go
 model_frame_validate_analytics_interactions_per_cast.go
@@ -576,6 +592,8 @@ model_register_developer_managed_signed_key_req_body.go
 model_register_signer_key_req_body.go
 model_register_user_req_body.go
 model_register_user_req_body_metadata.go
+model_register_user_req_body_metadata_location.go
+model_register_user_req_body_metadata_verified_accounts.go
 model_register_user_response.go
 model_relevant_followers_response.go
 model_relevant_fungible_owners_response.go

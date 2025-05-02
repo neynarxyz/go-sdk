@@ -2166,7 +2166,7 @@ func (a *FrameAPIService) PublishFrameNotificationsExecute(r ApiPublishFrameNoti
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v FetchFeedForYou400Response
+			var v FetchTrendingFeed400Response
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

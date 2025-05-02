@@ -2059,7 +2059,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/fetch_feed_for_you_400_response'
+                $ref: '#/components/schemas/fetch_trending_feed_400_response'
           description: Bad Request
         "404":
           $ref: '#/components/responses/404Response'
@@ -3191,7 +3191,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/fetch_feed_for_you_400_response'
+                $ref: '#/components/schemas/fetch_trending_feed_400_response'
           description: Bad Request
         "500":
           $ref: '#/components/responses/500Response'
@@ -6500,7 +6500,7 @@ components:
           author:
             $ref: '#/components/schemas/User'
           metadata:
-            $ref: '#/components/schemas/FrameV2_allOf_metadata'
+            $ref: '#/components/schemas/FrameV2WithFullAuthor_allOf_metadata'
       description: Mini app v2 object with full user object
       example:
         image: image
@@ -7168,7 +7168,7 @@ components:
             network: base
       properties:
         transaction:
-          $ref: '#/components/schemas/TransactionFramePay_allOf_transaction'
+          $ref: '#/components/schemas/FramePayTransactionRequestBody_transaction'
         config:
           $ref: '#/components/schemas/TransactionFrameConfig'
         idem:
@@ -8636,11 +8636,11 @@ components:
           nullable: true
           type: string
         parent_author:
-          $ref: '#/components/schemas/CastEmbedded_parent_author'
+          $ref: '#/components/schemas/Cast_parent_author'
         author:
           $ref: '#/components/schemas/User'
         app:
-          $ref: '#/components/schemas/CastEmbedded_app'
+          $ref: '#/components/schemas/Cast_app'
         text:
           type: string
         timestamp:
@@ -9253,8 +9253,8 @@ components:
           github: github
           x: x
         location:
-          latitude: -63.615366350946985
-          longitude: 34.63682100059455
+          latitude: -75.5850925717018
+          longitude: 36.988422590534526
         display_name: display_name
         url: url
         username: username
@@ -36287,7 +36287,7 @@ components:
         author:
           $ref: '#/components/schemas/UserDehydrated'
         app:
-          $ref: '#/components/schemas/CastEmbedded_app'
+          $ref: '#/components/schemas/CastDehydrated_app'
       required:
       - hash
       - object
@@ -41221,10 +41221,9 @@ components:
       - next
       - users
     BulkUsersByAddressResponse:
-      anyOf:
-      - additionalProperties:
-          items:
-            $ref: '#/components/schemas/User'
+      additionalProperties:
+        items:
+          $ref: '#/components/schemas/User'
     FeedType:
       default: following
       enum:
@@ -47886,12 +47885,6 @@ components:
         next:
           $ref: '#/components/schemas/NextCursor'
     SubscriptionStatus:
-      example:
-        expires_at: 0
-        subscribed_at: 6
-        tier: ""
-        object: subscribed_to_dehydrated
-        status: true
       properties:
         object:
           enum:
@@ -47987,9 +47980,8 @@ components:
       - 7d
       type: string
     SubscriptionCheckResponse:
-      anyOf:
-      - additionalProperties:
-          $ref: '#/components/schemas/SubscriptionStatus'
+      additionalProperties:
+        $ref: '#/components/schemas/SubscriptionStatus'
     DeployFungibleReqBody:
       properties:
         owner:
@@ -48099,6 +48091,10 @@ components:
       required:
       - signers
     fetch_feed_for_you_400_response:
+      oneOf:
+      - $ref: '#/components/schemas/ZodError'
+      - $ref: '#/components/schemas/ErrorRes'
+    fetch_trending_feed_400_response:
       oneOf:
       - $ref: '#/components/schemas/ZodError'
       - $ref: '#/components/schemas/ErrorRes'
@@ -52817,6 +52813,12 @@ components:
           description: State for the mini app in a serialized format
           type: string
     FrameV2_allOf_metadata:
+      properties:
+        html:
+          $ref: '#/components/schemas/HtmlMetadata'
+      required:
+      - html
+    FrameV2WithFullAuthor_allOf_metadata:
       example:
         html:
           ogVideo:
@@ -52919,6 +52921,18 @@ components:
         initial_mint_price:
           type: string
     TransactionFramePay_allOf_transaction:
+      example:
+        to:
+          amount: 0.01
+          address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          token_contract_address: 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913
+          network: base
+      properties:
+        to:
+          $ref: '#/components/schemas/TransactionFrameDestination'
+      required:
+      - to
+    FramePayTransactionRequestBody_transaction:
       example:
         to:
           amount: 0.01
@@ -53414,8 +53428,6 @@ components:
       - nullable: true
       - $ref: '#/components/schemas/Fid'
     CastEmbedded_parent_author:
-      example:
-        fid: ""
       properties:
         fid:
           $ref: '#/components/schemas/CastEmbedded_parent_author_fid'
@@ -53429,6 +53441,22 @@ components:
       oneOf:
       - nullable: true
       - $ref: '#/components/schemas/ChannelDehydrated'
+    Cast_parent_author_fid:
+      oneOf:
+      - nullable: true
+      - $ref: '#/components/schemas/Fid'
+    Cast_parent_author:
+      example:
+        fid: ""
+      properties:
+        fid:
+          $ref: '#/components/schemas/Cast_parent_author_fid'
+      required:
+      - fid
+    Cast_app:
+      oneOf:
+      - nullable: true
+      - $ref: '#/components/schemas/UserDehydrated'
     ProfileUrl_pfp:
       properties:
         url:
@@ -53462,8 +53490,8 @@ components:
       - url
     UpdateUserReqBody_location:
       example:
-        latitude: -63.615366350946985
-        longitude: 34.63682100059455
+        latitude: -75.5850925717018
+        longitude: 36.988422590534526
       properties:
         latitude:
           format: double
@@ -61702,6 +61730,10 @@ components:
       - author
       - hash
       - text
+    CastDehydrated_app:
+      oneOf:
+      - nullable: true
+      - $ref: '#/components/schemas/UserDehydrated'
     NeynarPageButton_next_page:
       oneOf:
       - $ref: '#/components/schemas/NeynarNextFramePage'
@@ -61820,6 +61852,33 @@ components:
       properties:
         client:
           $ref: '#/components/schemas/User'
+    RegisterUserReqBody_metadata_verified_accounts:
+      example:
+        github: github
+        x: x
+      properties:
+        x:
+          type: string
+        github:
+          type: string
+    RegisterUserReqBody_metadata_location:
+      example:
+        latitude: -63.615366350946985
+        longitude: 34.63682100059455
+      properties:
+        latitude:
+          format: double
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          format: double
+          maximum: 180
+          minimum: -180
+          type: number
+      required:
+      - latitude
+      - longitude
     RegisterUserReqBody_metadata:
       example:
         pfp_url: pfp_url
@@ -61845,9 +61904,9 @@ components:
         display_name:
           type: string
         verified_accounts:
-          $ref: '#/components/schemas/UpdateUserReqBody_verified_accounts'
+          $ref: '#/components/schemas/RegisterUserReqBody_metadata_verified_accounts'
         location:
-          $ref: '#/components/schemas/UpdateUserReqBody_location'
+          $ref: '#/components/schemas/RegisterUserReqBody_metadata_location'
     WebhookSubscriptionFilters_user_updated:
       example:
         fids:

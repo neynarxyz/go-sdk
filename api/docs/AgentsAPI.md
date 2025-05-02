@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	framePayTransactionRequestBody := *openapiclient.NewFramePayTransactionRequestBody(*openapiclient.NewTransactionFramePayAllOfTransaction(*openapiclient.NewTransactionFrameDestination("0x5a927ac639636e534b678e81768ca19e2c6280b7", openapiclient.Networks("base"), "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913", float32(0.01))), *openapiclient.NewTransactionFrameConfig([]openapiclient.TransactionFrameLineItem{*openapiclient.NewTransactionFrameLineItem("Payment", "Payment for goods")})) // FramePayTransactionRequestBody | 
+	framePayTransactionRequestBody := *openapiclient.NewFramePayTransactionRequestBody(*openapiclient.NewFramePayTransactionRequestBodyTransaction(*openapiclient.NewTransactionFrameDestination("0x5a927ac639636e534b678e81768ca19e2c6280b7", openapiclient.Networks("base"), "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913", float32(0.01))), *openapiclient.NewTransactionFrameConfig([]openapiclient.TransactionFrameLineItem{*openapiclient.NewTransactionFrameLineItem("Payment", "Payment for goods")})) // FramePayTransactionRequestBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

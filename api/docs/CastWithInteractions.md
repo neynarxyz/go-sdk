@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **ParentHash** | **string** |  | 
 **ParentUrl** | **string** |  | 
 **RootParentUrl** | **string** |  | 
-**ParentAuthor** | [**CastEmbeddedParentAuthor**](CastEmbeddedParentAuthor.md) |  | 
+**ParentAuthor** | [**CastParentAuthor**](CastParentAuthor.md) |  | 
 **Author** | [**User**](User.md) |  | 
-**App** | Pointer to [**CastEmbeddedApp**](CastEmbeddedApp.md) |  | [optional] 
+**App** | Pointer to [**CastApp**](CastApp.md) |  | [optional] 
 **Text** | **string** |  | 
 **Timestamp** | **time.Time** |  | 
 **Embeds** | [**[]Embed**](Embed.md) |  | 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewCastWithInteractions
 
-`func NewCastWithInteractions(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastEmbeddedParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel CastWithInteractionsAllOfChannel, ) *CastWithInteractions`
+`func NewCastWithInteractions(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel CastWithInteractionsAllOfChannel, ) *CastWithInteractions`
 
 NewCastWithInteractions instantiates a new CastWithInteractions object
 This constructor will assign default values to properties that have it defined,
@@ -149,20 +149,20 @@ SetRootParentUrl sets RootParentUrl field to given value.
 
 ### GetParentAuthor
 
-`func (o *CastWithInteractions) GetParentAuthor() CastEmbeddedParentAuthor`
+`func (o *CastWithInteractions) GetParentAuthor() CastParentAuthor`
 
 GetParentAuthor returns the ParentAuthor field if non-nil, zero value otherwise.
 
 ### GetParentAuthorOk
 
-`func (o *CastWithInteractions) GetParentAuthorOk() (*CastEmbeddedParentAuthor, bool)`
+`func (o *CastWithInteractions) GetParentAuthorOk() (*CastParentAuthor, bool)`
 
 GetParentAuthorOk returns a tuple with the ParentAuthor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentAuthor
 
-`func (o *CastWithInteractions) SetParentAuthor(v CastEmbeddedParentAuthor)`
+`func (o *CastWithInteractions) SetParentAuthor(v CastParentAuthor)`
 
 SetParentAuthor sets ParentAuthor field to given value.
 
@@ -189,20 +189,20 @@ SetAuthor sets Author field to given value.
 
 ### GetApp
 
-`func (o *CastWithInteractions) GetApp() CastEmbeddedApp`
+`func (o *CastWithInteractions) GetApp() CastApp`
 
 GetApp returns the App field if non-nil, zero value otherwise.
 
 ### GetAppOk
 
-`func (o *CastWithInteractions) GetAppOk() (*CastEmbeddedApp, bool)`
+`func (o *CastWithInteractions) GetAppOk() (*CastApp, bool)`
 
 GetAppOk returns a tuple with the App field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApp
 
-`func (o *CastWithInteractions) SetApp(v CastEmbeddedApp)`
+`func (o *CastWithInteractions) SetApp(v CastApp)`
 
 SetApp sets App field to given value.
 

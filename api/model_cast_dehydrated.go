@@ -22,10 +22,10 @@ var _ MappedNullable = &CastDehydrated{}
 
 // CastDehydrated struct for CastDehydrated
 type CastDehydrated struct {
-	Object string           `json:"object"`
-	Hash   string           `json:"hash"`
-	Author *UserDehydrated  `json:"author,omitempty"`
-	App    *CastEmbeddedApp `json:"app,omitempty"`
+	Object string             `json:"object"`
+	Hash   string             `json:"hash"`
+	Author *UserDehydrated    `json:"author,omitempty"`
+	App    *CastDehydratedApp `json:"app,omitempty"`
 }
 
 type _CastDehydrated CastDehydrated
@@ -130,9 +130,9 @@ func (o *CastDehydrated) SetAuthor(v UserDehydrated) {
 }
 
 // GetApp returns the App field value if set, zero value otherwise.
-func (o *CastDehydrated) GetApp() CastEmbeddedApp {
+func (o *CastDehydrated) GetApp() CastDehydratedApp {
 	if o == nil || IsNil(o.App) {
-		var ret CastEmbeddedApp
+		var ret CastDehydratedApp
 		return ret
 	}
 	return *o.App
@@ -140,7 +140,7 @@ func (o *CastDehydrated) GetApp() CastEmbeddedApp {
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CastDehydrated) GetAppOk() (*CastEmbeddedApp, bool) {
+func (o *CastDehydrated) GetAppOk() (*CastDehydratedApp, bool) {
 	if o == nil || IsNil(o.App) {
 		return nil, false
 	}
@@ -156,8 +156,8 @@ func (o *CastDehydrated) HasApp() bool {
 	return false
 }
 
-// SetApp gets a reference to the given CastEmbeddedApp and assigns it to the App field.
-func (o *CastDehydrated) SetApp(v CastEmbeddedApp) {
+// SetApp gets a reference to the given CastDehydratedApp and assigns it to the App field.
+func (o *CastDehydrated) SetApp(v CastDehydratedApp) {
 	o.App = &v
 }
 

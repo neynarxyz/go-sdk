@@ -29,10 +29,10 @@ type FrameV2WithFullAuthor struct {
 	// Launch URL of the mini app
 	FramesUrl string `json:"frames_url"`
 	// Button title of a mini app
-	Title    *string               `json:"title,omitempty"`
-	Manifest *FarcasterManifest    `json:"manifest,omitempty"`
-	Author   *User                 `json:"author,omitempty"`
-	Metadata *FrameV2AllOfMetadata `json:"metadata,omitempty"`
+	Title    *string                             `json:"title,omitempty"`
+	Manifest *FarcasterManifest                  `json:"manifest,omitempty"`
+	Author   *User                               `json:"author,omitempty"`
+	Metadata *FrameV2WithFullAuthorAllOfMetadata `json:"metadata,omitempty"`
 }
 
 type _FrameV2WithFullAuthor FrameV2WithFullAuthor
@@ -226,9 +226,9 @@ func (o *FrameV2WithFullAuthor) SetAuthor(v User) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *FrameV2WithFullAuthor) GetMetadata() FrameV2AllOfMetadata {
+func (o *FrameV2WithFullAuthor) GetMetadata() FrameV2WithFullAuthorAllOfMetadata {
 	if o == nil || IsNil(o.Metadata) {
-		var ret FrameV2AllOfMetadata
+		var ret FrameV2WithFullAuthorAllOfMetadata
 		return ret
 	}
 	return *o.Metadata
@@ -236,7 +236,7 @@ func (o *FrameV2WithFullAuthor) GetMetadata() FrameV2AllOfMetadata {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FrameV2WithFullAuthor) GetMetadataOk() (*FrameV2AllOfMetadata, bool) {
+func (o *FrameV2WithFullAuthor) GetMetadataOk() (*FrameV2WithFullAuthorAllOfMetadata, bool) {
 	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
@@ -252,8 +252,8 @@ func (o *FrameV2WithFullAuthor) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given FrameV2AllOfMetadata and assigns it to the Metadata field.
-func (o *FrameV2WithFullAuthor) SetMetadata(v FrameV2AllOfMetadata) {
+// SetMetadata gets a reference to the given FrameV2WithFullAuthorAllOfMetadata and assigns it to the Metadata field.
+func (o *FrameV2WithFullAuthor) SetMetadata(v FrameV2WithFullAuthorAllOfMetadata) {
 	o.Metadata = &v
 }
 

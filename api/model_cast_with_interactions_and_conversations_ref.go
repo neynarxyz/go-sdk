@@ -28,9 +28,9 @@ type CastWithInteractionsAndConversationsRef struct {
 	ParentHash        string                        `json:"parent_hash"`
 	ParentUrl         string                        `json:"parent_url"`
 	RootParentUrl     string                        `json:"root_parent_url"`
-	ParentAuthor      CastEmbeddedParentAuthor      `json:"parent_author"`
+	ParentAuthor      CastParentAuthor              `json:"parent_author"`
 	Author            User                          `json:"author"`
-	App               *CastEmbeddedApp              `json:"app,omitempty"`
+	App               *CastApp                      `json:"app,omitempty"`
 	Text              string                        `json:"text"`
 	Timestamp         time.Time                     `json:"timestamp"`
 	Embeds            []Embed                       `json:"embeds"`
@@ -58,7 +58,7 @@ type _CastWithInteractionsAndConversationsRef CastWithInteractionsAndConversatio
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastWithInteractionsAndConversationsRef(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastEmbeddedParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash string, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel CastWithInteractionsAllOfChannel, directReplies []map[string]interface{}) *CastWithInteractionsAndConversationsRef {
+func NewCastWithInteractionsAndConversationsRef(object string, hash string, parentHash string, parentUrl string, rootParentUrl string, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash string, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel CastWithInteractionsAllOfChannel, directReplies []map[string]interface{}) *CastWithInteractionsAndConversationsRef {
 	this := CastWithInteractionsAndConversationsRef{}
 	this.Object = object
 	this.Hash = hash
@@ -211,9 +211,9 @@ func (o *CastWithInteractionsAndConversationsRef) SetRootParentUrl(v string) {
 }
 
 // GetParentAuthor returns the ParentAuthor field value
-func (o *CastWithInteractionsAndConversationsRef) GetParentAuthor() CastEmbeddedParentAuthor {
+func (o *CastWithInteractionsAndConversationsRef) GetParentAuthor() CastParentAuthor {
 	if o == nil {
-		var ret CastEmbeddedParentAuthor
+		var ret CastParentAuthor
 		return ret
 	}
 
@@ -222,7 +222,7 @@ func (o *CastWithInteractionsAndConversationsRef) GetParentAuthor() CastEmbedded
 
 // GetParentAuthorOk returns a tuple with the ParentAuthor field value
 // and a boolean to check if the value has been set.
-func (o *CastWithInteractionsAndConversationsRef) GetParentAuthorOk() (*CastEmbeddedParentAuthor, bool) {
+func (o *CastWithInteractionsAndConversationsRef) GetParentAuthorOk() (*CastParentAuthor, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -230,7 +230,7 @@ func (o *CastWithInteractionsAndConversationsRef) GetParentAuthorOk() (*CastEmbe
 }
 
 // SetParentAuthor sets field value
-func (o *CastWithInteractionsAndConversationsRef) SetParentAuthor(v CastEmbeddedParentAuthor) {
+func (o *CastWithInteractionsAndConversationsRef) SetParentAuthor(v CastParentAuthor) {
 	o.ParentAuthor = v
 }
 
@@ -259,9 +259,9 @@ func (o *CastWithInteractionsAndConversationsRef) SetAuthor(v User) {
 }
 
 // GetApp returns the App field value if set, zero value otherwise.
-func (o *CastWithInteractionsAndConversationsRef) GetApp() CastEmbeddedApp {
+func (o *CastWithInteractionsAndConversationsRef) GetApp() CastApp {
 	if o == nil || IsNil(o.App) {
-		var ret CastEmbeddedApp
+		var ret CastApp
 		return ret
 	}
 	return *o.App
@@ -269,7 +269,7 @@ func (o *CastWithInteractionsAndConversationsRef) GetApp() CastEmbeddedApp {
 
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CastWithInteractionsAndConversationsRef) GetAppOk() (*CastEmbeddedApp, bool) {
+func (o *CastWithInteractionsAndConversationsRef) GetAppOk() (*CastApp, bool) {
 	if o == nil || IsNil(o.App) {
 		return nil, false
 	}
@@ -285,8 +285,8 @@ func (o *CastWithInteractionsAndConversationsRef) HasApp() bool {
 	return false
 }
 
-// SetApp gets a reference to the given CastEmbeddedApp and assigns it to the App field.
-func (o *CastWithInteractionsAndConversationsRef) SetApp(v CastEmbeddedApp) {
+// SetApp gets a reference to the given CastApp and assigns it to the App field.
+func (o *CastWithInteractionsAndConversationsRef) SetApp(v CastApp) {
 	o.App = &v
 }
 
