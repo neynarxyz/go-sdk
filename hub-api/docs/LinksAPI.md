@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## FetchUserFollowers
 
-> FetchUserFollowing200Response FetchUserFollowers(ctx).TargetFid(targetFid).LinkType(linkType).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
+> FetchUserFollowers200Response FetchUserFollowers(ctx).TargetFid(targetFid).LinkType(linkType).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
 
 To target FID
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `LinksAPI.FetchUserFollowers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `FetchUserFollowers`: FetchUserFollowing200Response
+	// response from `FetchUserFollowers`: FetchUserFollowers200Response
 	fmt.Fprintf(os.Stdout, "Response from `LinksAPI.FetchUserFollowers`: %v\n", resp)
 }
 ```
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FetchUserFollowing200Response**](FetchUserFollowing200Response.md)
+[**FetchUserFollowers200Response**](FetchUserFollowers200Response.md)
 
 ### Authorization
 

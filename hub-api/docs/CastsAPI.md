@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## FetchCastsMentioningUser
 
-> FetchUsersCasts200Response FetchCastsMentioningUser(ctx).Fid(fid).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
+> FetchCastsMentioningUser200Response FetchCastsMentioningUser(ctx).Fid(fid).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
 
 Mentioning an FID
 
@@ -120,7 +120,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CastsAPI.FetchCastsMentioningUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `FetchCastsMentioningUser`: FetchUsersCasts200Response
+	// response from `FetchCastsMentioningUser`: FetchCastsMentioningUser200Response
 	fmt.Fprintf(os.Stdout, "Response from `CastsAPI.FetchCastsMentioningUser`: %v\n", resp)
 }
 ```
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FetchUsersCasts200Response**](FetchUsersCasts200Response.md)
+[**FetchCastsMentioningUser200Response**](FetchCastsMentioningUser200Response.md)
 
 ### Authorization
 

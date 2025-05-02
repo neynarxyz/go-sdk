@@ -32,7 +32,10 @@ npx --yes @openapitools/openapi-generator-cli \
     -g go \
     -i ./oas/src/hub-rest-api/spec.yaml \
     -o ./hub-api \
-    --config ./openapi-generator-config.hub-api.json
+    --config ./openapi-generator-config.hub-api.json \
+    --openapi-normalizer 'SIMPLIFY_ONEOF_ANYOF=false' \
+    --inline-schema-options 'SKIP_SCHEMA_REUSE=true'
+
 (
     cd ./hub-api
     go get github.com/stretchr/testify/assert

@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## FetchReactionsByTarget
 
-> FetchCastReactions200Response FetchReactionsByTarget(ctx).Url(url).ReactionType(reactionType).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
+> FetchReactionsByTarget200Response FetchReactionsByTarget(ctx).Url(url).ReactionType(reactionType).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
 
 To a target URL
 
@@ -121,7 +121,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReactionsAPI.FetchReactionsByTarget``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `FetchReactionsByTarget`: FetchCastReactions200Response
+	// response from `FetchReactionsByTarget`: FetchReactionsByTarget200Response
 	fmt.Fprintf(os.Stdout, "Response from `ReactionsAPI.FetchReactionsByTarget`: %v\n", resp)
 }
 ```
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FetchCastReactions200Response**](FetchCastReactions200Response.md)
+[**FetchReactionsByTarget200Response**](FetchReactionsByTarget200Response.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ## FetchUserReactions
 
-> FetchCastReactions200Response FetchUserReactions(ctx).Fid(fid).ReactionType(reactionType).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
+> FetchUserReactions200Response FetchUserReactions(ctx).Fid(fid).ReactionType(reactionType).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
 
 By FID
 
@@ -195,7 +195,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReactionsAPI.FetchUserReactions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `FetchUserReactions`: FetchCastReactions200Response
+	// response from `FetchUserReactions`: FetchUserReactions200Response
 	fmt.Fprintf(os.Stdout, "Response from `ReactionsAPI.FetchUserReactions`: %v\n", resp)
 }
 ```
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FetchCastReactions200Response**](FetchCastReactions200Response.md)
+[**FetchUserReactions200Response**](FetchUserReactions200Response.md)
 
 ### Authorization
 

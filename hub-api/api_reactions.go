@@ -46,8 +46,8 @@ type ReactionsAPI interface {
 	FetchReactionsByTarget(ctx context.Context) ApiFetchReactionsByTargetRequest
 
 	// FetchReactionsByTargetExecute executes the request
-	//  @return FetchCastReactions200Response
-	FetchReactionsByTargetExecute(r ApiFetchReactionsByTargetRequest) (*FetchCastReactions200Response, *http.Response, error)
+	//  @return FetchReactionsByTarget200Response
+	FetchReactionsByTargetExecute(r ApiFetchReactionsByTargetRequest) (*FetchReactionsByTarget200Response, *http.Response, error)
 
 	/*
 		FetchUserReactions By FID
@@ -60,8 +60,8 @@ type ReactionsAPI interface {
 	FetchUserReactions(ctx context.Context) ApiFetchUserReactionsRequest
 
 	// FetchUserReactionsExecute executes the request
-	//  @return FetchCastReactions200Response
-	FetchUserReactionsExecute(r ApiFetchUserReactionsRequest) (*FetchCastReactions200Response, *http.Response, error)
+	//  @return FetchUserReactions200Response
+	FetchUserReactionsExecute(r ApiFetchUserReactionsRequest) (*FetchUserReactions200Response, *http.Response, error)
 
 	/*
 		LookupReactionById By FID or cast
@@ -307,7 +307,7 @@ func (r ApiFetchReactionsByTargetRequest) PageToken(pageToken string) ApiFetchRe
 	return r
 }
 
-func (r ApiFetchReactionsByTargetRequest) Execute() (*FetchCastReactions200Response, *http.Response, error) {
+func (r ApiFetchReactionsByTargetRequest) Execute() (*FetchReactionsByTarget200Response, *http.Response, error) {
 	return r.ApiService.FetchReactionsByTargetExecute(r)
 }
 
@@ -328,13 +328,13 @@ func (a *ReactionsAPIService) FetchReactionsByTarget(ctx context.Context) ApiFet
 
 // Execute executes the request
 //
-//	@return FetchCastReactions200Response
-func (a *ReactionsAPIService) FetchReactionsByTargetExecute(r ApiFetchReactionsByTargetRequest) (*FetchCastReactions200Response, *http.Response, error) {
+//	@return FetchReactionsByTarget200Response
+func (a *ReactionsAPIService) FetchReactionsByTargetExecute(r ApiFetchReactionsByTargetRequest) (*FetchReactionsByTarget200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FetchCastReactions200Response
+		localVarReturnValue *FetchReactionsByTarget200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactionsAPIService.FetchReactionsByTarget")
@@ -482,7 +482,7 @@ func (r ApiFetchUserReactionsRequest) PageToken(pageToken string) ApiFetchUserRe
 	return r
 }
 
-func (r ApiFetchUserReactionsRequest) Execute() (*FetchCastReactions200Response, *http.Response, error) {
+func (r ApiFetchUserReactionsRequest) Execute() (*FetchUserReactions200Response, *http.Response, error) {
 	return r.ApiService.FetchUserReactionsExecute(r)
 }
 
@@ -503,13 +503,13 @@ func (a *ReactionsAPIService) FetchUserReactions(ctx context.Context) ApiFetchUs
 
 // Execute executes the request
 //
-//	@return FetchCastReactions200Response
-func (a *ReactionsAPIService) FetchUserReactionsExecute(r ApiFetchUserReactionsRequest) (*FetchCastReactions200Response, *http.Response, error) {
+//	@return FetchUserReactions200Response
+func (a *ReactionsAPIService) FetchUserReactionsExecute(r ApiFetchUserReactionsRequest) (*FetchUserReactions200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FetchCastReactions200Response
+		localVarReturnValue *FetchUserReactions200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ReactionsAPIService.FetchUserReactions")

@@ -221,7 +221,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/fetch_users_casts_200_response'
+                $ref: '#/components/schemas/fetch_casts_mentioning_user_200_response'
           description: The requested Casts.
         default:
           content:
@@ -514,7 +514,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/fetch_cast_reactions_200_response'
+                $ref: '#/components/schemas/fetch_user_reactions_200_response'
           description: The requested Reactions.
         default:
           content:
@@ -581,7 +581,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/fetch_cast_reactions_200_response'
+                $ref: '#/components/schemas/fetch_reactions_by_target_200_response'
           description: The requested Reactions.
         default:
           content:
@@ -756,7 +756,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/fetch_user_following_200_response'
+                $ref: '#/components/schemas/fetch_user_followers_200_response'
           description: The requested Links.
         default:
           content:
@@ -3015,6 +3015,85 @@ components:
           hashScheme: HASH_SCHEME_BLAKE3
           hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
+    fetch_casts_mentioning_user_200_response:
+      allOf:
+      - properties:
+          messages:
+            items:
+              $ref: '#/components/schemas/CastAdd'
+            type: array
+        required:
+        - messages
+        type: object
+      - $ref: '#/components/schemas/PaginationResponse'
+      example:
+        nextPageToken: !!binary |-
+          QXV6TzFWMER0YUl0Q3d3YTEwWDZZc2ZTdGx5bnNHV1Q=
+        messages:
+        - signatureScheme: SIGNATURE_SCHEME_ED25519
+          data:
+            fid: 2
+            castAddBody:
+              mentionsPositions:
+              - 0
+              - 0
+              parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
+              embedsDeprecated:
+              - embedsDeprecated
+              - embedsDeprecated
+              mentions:
+              - 2
+              - 2
+              text: text
+              parentCastId:
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              embeds:
+              - castId:
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              - castId:
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+            type: MESSAGE_TYPE_CAST_ADD
+            timestamp: 48994466
+            network: FARCASTER_NETWORK_MAINNET
+          signature: signature
+          hashScheme: HASH_SCHEME_BLAKE3
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
+          signer: signer
+        - signatureScheme: SIGNATURE_SCHEME_ED25519
+          data:
+            fid: 2
+            castAddBody:
+              mentionsPositions:
+              - 0
+              - 0
+              parentUrl: chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2
+              embedsDeprecated:
+              - embedsDeprecated
+              - embedsDeprecated
+              mentions:
+              - 2
+              - 2
+              text: text
+              parentCastId:
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              embeds:
+              - castId:
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              - castId:
+                  fid: 2
+                  hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+            type: MESSAGE_TYPE_CAST_ADD
+            timestamp: 48994466
+            network: FARCASTER_NETWORK_MAINNET
+          signature: signature
+          hashScheme: HASH_SCHEME_BLAKE3
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
+          signer: signer
     fetch_casts_by_parent_200_response:
       allOf:
       - properties:
@@ -3144,7 +3223,144 @@ components:
           hashScheme: HASH_SCHEME_BLAKE3
           hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
           signer: signer
+    fetch_user_reactions_200_response:
+      allOf:
+      - properties:
+          messages:
+            items:
+              $ref: '#/components/schemas/Reaction'
+            type: array
+        required:
+        - messages
+        type: object
+      - $ref: '#/components/schemas/PaginationResponse'
+      example:
+        nextPageToken: !!binary |-
+          QXV6TzFWMER0YUl0Q3d3YTEwWDZZc2ZTdGx5bnNHV1Q=
+        messages:
+        - signatureScheme: SIGNATURE_SCHEME_ED25519
+          data:
+            fid: 2
+            reactionBody:
+              targetCastId:
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              type: Like
+              targetUrl: https://www.example.com/article
+            type: MESSAGE_TYPE_CAST_ADD
+            timestamp: 48994466
+            network: FARCASTER_NETWORK_MAINNET
+          signature: signature
+          hashScheme: HASH_SCHEME_BLAKE3
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
+          signer: signer
+        - signatureScheme: SIGNATURE_SCHEME_ED25519
+          data:
+            fid: 2
+            reactionBody:
+              targetCastId:
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              type: Like
+              targetUrl: https://www.example.com/article
+            type: MESSAGE_TYPE_CAST_ADD
+            timestamp: 48994466
+            network: FARCASTER_NETWORK_MAINNET
+          signature: signature
+          hashScheme: HASH_SCHEME_BLAKE3
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
+          signer: signer
+    fetch_reactions_by_target_200_response:
+      allOf:
+      - properties:
+          messages:
+            items:
+              $ref: '#/components/schemas/Reaction'
+            type: array
+        required:
+        - messages
+        type: object
+      - $ref: '#/components/schemas/PaginationResponse'
+      example:
+        nextPageToken: !!binary |-
+          QXV6TzFWMER0YUl0Q3d3YTEwWDZZc2ZTdGx5bnNHV1Q=
+        messages:
+        - signatureScheme: SIGNATURE_SCHEME_ED25519
+          data:
+            fid: 2
+            reactionBody:
+              targetCastId:
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              type: Like
+              targetUrl: https://www.example.com/article
+            type: MESSAGE_TYPE_CAST_ADD
+            timestamp: 48994466
+            network: FARCASTER_NETWORK_MAINNET
+          signature: signature
+          hashScheme: HASH_SCHEME_BLAKE3
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
+          signer: signer
+        - signatureScheme: SIGNATURE_SCHEME_ED25519
+          data:
+            fid: 2
+            reactionBody:
+              targetCastId:
+                fid: 2
+                hash: 0x03aff391a6eb1772b20b4ead9a89f732be75fe27
+              type: Like
+              targetUrl: https://www.example.com/article
+            type: MESSAGE_TYPE_CAST_ADD
+            timestamp: 48994466
+            network: FARCASTER_NETWORK_MAINNET
+          signature: signature
+          hashScheme: HASH_SCHEME_BLAKE3
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
+          signer: signer
     fetch_user_following_200_response:
+      allOf:
+      - properties:
+          messages:
+            items:
+              $ref: '#/components/schemas/LinkAdd'
+            type: array
+        required:
+        - messages
+        type: object
+      - $ref: '#/components/schemas/PaginationResponse'
+      example:
+        nextPageToken: !!binary |-
+          QXV6TzFWMER0YUl0Q3d3YTEwWDZZc2ZTdGx5bnNHV1Q=
+        messages:
+        - signatureScheme: SIGNATURE_SCHEME_ED25519
+          data:
+            fid: 2
+            linkBody:
+              targetFid: 1
+              type: follow
+              displayTimestamp: 48994466
+            type: MESSAGE_TYPE_CAST_ADD
+            timestamp: 48994466
+            network: FARCASTER_NETWORK_MAINNET
+          signature: signature
+          hashScheme: HASH_SCHEME_BLAKE3
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
+          signer: signer
+        - signatureScheme: SIGNATURE_SCHEME_ED25519
+          data:
+            fid: 2
+            linkBody:
+              targetFid: 1
+              type: follow
+              displayTimestamp: 48994466
+            type: MESSAGE_TYPE_CAST_ADD
+            timestamp: 48994466
+            network: FARCASTER_NETWORK_MAINNET
+          signature: signature
+          hashScheme: HASH_SCHEME_BLAKE3
+          hash: 0xd2b1ddc6c88e865a33cb1a565e0058d757042974
+          signer: signer
+    fetch_user_followers_200_response:
       allOf:
       - properties:
           messages:

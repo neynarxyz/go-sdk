@@ -32,8 +32,8 @@ type LinksAPI interface {
 	FetchUserFollowers(ctx context.Context) ApiFetchUserFollowersRequest
 
 	// FetchUserFollowersExecute executes the request
-	//  @return FetchUserFollowing200Response
-	FetchUserFollowersExecute(r ApiFetchUserFollowersRequest) (*FetchUserFollowing200Response, *http.Response, error)
+	//  @return FetchUserFollowers200Response
+	FetchUserFollowersExecute(r ApiFetchUserFollowersRequest) (*FetchUserFollowers200Response, *http.Response, error)
 
 	/*
 		FetchUserFollowing From source FID
@@ -106,7 +106,7 @@ func (r ApiFetchUserFollowersRequest) PageToken(pageToken string) ApiFetchUserFo
 	return r
 }
 
-func (r ApiFetchUserFollowersRequest) Execute() (*FetchUserFollowing200Response, *http.Response, error) {
+func (r ApiFetchUserFollowersRequest) Execute() (*FetchUserFollowers200Response, *http.Response, error) {
 	return r.ApiService.FetchUserFollowersExecute(r)
 }
 
@@ -127,13 +127,13 @@ func (a *LinksAPIService) FetchUserFollowers(ctx context.Context) ApiFetchUserFo
 
 // Execute executes the request
 //
-//	@return FetchUserFollowing200Response
-func (a *LinksAPIService) FetchUserFollowersExecute(r ApiFetchUserFollowersRequest) (*FetchUserFollowing200Response, *http.Response, error) {
+//	@return FetchUserFollowers200Response
+func (a *LinksAPIService) FetchUserFollowersExecute(r ApiFetchUserFollowersRequest) (*FetchUserFollowers200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FetchUserFollowing200Response
+		localVarReturnValue *FetchUserFollowers200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LinksAPIService.FetchUserFollowers")

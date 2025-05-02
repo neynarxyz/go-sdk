@@ -46,8 +46,8 @@ type CastsAPI interface {
 	FetchCastsMentioningUser(ctx context.Context) ApiFetchCastsMentioningUserRequest
 
 	// FetchCastsMentioningUserExecute executes the request
-	//  @return FetchUsersCasts200Response
-	FetchCastsMentioningUserExecute(r ApiFetchCastsMentioningUserRequest) (*FetchUsersCasts200Response, *http.Response, error)
+	//  @return FetchCastsMentioningUser200Response
+	FetchCastsMentioningUserExecute(r ApiFetchCastsMentioningUserRequest) (*FetchCastsMentioningUser200Response, *http.Response, error)
 
 	/*
 		FetchUsersCasts By FID
@@ -296,7 +296,7 @@ func (r ApiFetchCastsMentioningUserRequest) PageToken(pageToken string) ApiFetch
 	return r
 }
 
-func (r ApiFetchCastsMentioningUserRequest) Execute() (*FetchUsersCasts200Response, *http.Response, error) {
+func (r ApiFetchCastsMentioningUserRequest) Execute() (*FetchCastsMentioningUser200Response, *http.Response, error) {
 	return r.ApiService.FetchCastsMentioningUserExecute(r)
 }
 
@@ -317,13 +317,13 @@ func (a *CastsAPIService) FetchCastsMentioningUser(ctx context.Context) ApiFetch
 
 // Execute executes the request
 //
-//	@return FetchUsersCasts200Response
-func (a *CastsAPIService) FetchCastsMentioningUserExecute(r ApiFetchCastsMentioningUserRequest) (*FetchUsersCasts200Response, *http.Response, error) {
+//	@return FetchCastsMentioningUser200Response
+func (a *CastsAPIService) FetchCastsMentioningUserExecute(r ApiFetchCastsMentioningUserRequest) (*FetchCastsMentioningUser200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *FetchUsersCasts200Response
+		localVarReturnValue *FetchCastsMentioningUser200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CastsAPIService.FetchCastsMentioningUser")
