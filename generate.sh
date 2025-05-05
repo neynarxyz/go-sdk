@@ -34,6 +34,7 @@ npx --yes @openapitools/openapi-generator-cli \
     -o ./generated/hub-api \
     --openapi-normalizer 'SIMPLIFY_ONEOF_ANYOF=false' \
     --inline-schema-options 'SKIP_SCHEMA_REUSE=true' \
+    --type-mappings='file=[]byte' \
     --enable-post-process-file
 (
     cd ./generated/hub-api

@@ -17,7 +17,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"os"
 )
 
 type MessageAPI interface {
@@ -57,11 +56,11 @@ type MessageAPIService service
 type ApiPublishMessageRequest struct {
 	ctx        context.Context
 	ApiService MessageAPI
-	body       *os.File
+	body       []byte
 }
 
 // A Message is a delta operation on the Farcaster network. The message protobuf is an envelope that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
-func (r ApiPublishMessageRequest) Body(body *os.File) ApiPublishMessageRequest {
+func (r ApiPublishMessageRequest) Body(body []byte) ApiPublishMessageRequest {
 	r.body = body
 	return r
 }
@@ -191,11 +190,11 @@ func (a *MessageAPIService) PublishMessageExecute(r ApiPublishMessageRequest) (*
 type ApiValidateMessageRequest struct {
 	ctx        context.Context
 	ApiService MessageAPI
-	body       *os.File
+	body       []byte
 }
 
 // A Message is a delta operation on the Farcaster network. The message protobuf is an envelope that wraps a MessageData object and contains a hash and signature which can verify its authenticity.
-func (r ApiValidateMessageRequest) Body(body *os.File) ApiValidateMessageRequest {
+func (r ApiValidateMessageRequest) Body(body []byte) ApiValidateMessageRequest {
 	r.body = body
 	return r
 }
