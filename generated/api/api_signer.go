@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.33.1
+API version: 2.36.0
 Contact: team@neynar.com
 */
 
@@ -22,14 +22,14 @@ import (
 type SignerAPI interface {
 
 	/*
-		CreateSigner Create signer
+			CreateSigner Create signer
 
-		Creates a signer and returns the signer status. \
-	**Note**: While tesing please reuse the signer, it costs money to approve a signer.
+			Creates a signer and returns the signer status. \
+		**Note**: While tesing please reuse the signer, it costs money to approve a signer.
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiCreateSignerRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiCreateSignerRequest
 	*/
 	CreateSigner(ctx context.Context) ApiCreateSignerRequest
 

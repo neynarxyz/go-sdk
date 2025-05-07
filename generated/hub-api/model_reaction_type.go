@@ -3,7 +3,7 @@ Farcaster Hub API
 
 Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.21.0
+API version: 2.35.0
 Contact: team@neynar.com
 */
 
@@ -21,14 +21,14 @@ type ReactionType string
 
 // List of ReactionType
 const (
-	REACTIONTYPE_LIKE   ReactionType = "Like"
-	REACTIONTYPE_RECAST ReactionType = "Recast"
+	REACTIONTYPE_REACTION_TYPE_LIKE   ReactionType = "REACTION_TYPE_LIKE"
+	REACTIONTYPE_REACTION_TYPE_RECAST ReactionType = "REACTION_TYPE_RECAST"
 )
 
 // All allowed values of ReactionType enum
 var AllowedReactionTypeEnumValues = []ReactionType{
-	"Like",
-	"Recast",
+	"REACTION_TYPE_LIKE",
+	"REACTION_TYPE_RECAST",
 }
 
 func (v *ReactionType) UnmarshalJSON(src []byte) error {

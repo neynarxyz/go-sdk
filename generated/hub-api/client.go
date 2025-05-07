@@ -3,7 +3,7 @@ Farcaster Hub API
 
 Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.21.0
+API version: 2.35.0
 Contact: team@neynar.com
 */
 
@@ -41,7 +41,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the Farcaster Hub API API v2.21.0
+// APIClient manages communication with the Farcaster Hub API API v2.35.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

@@ -3,7 +3,7 @@ Farcaster Hub API
 
 Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.21.0
+API version: 2.35.0
 Contact: team@neynar.com
 */
 

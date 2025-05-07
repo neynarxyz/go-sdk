@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.33.1
+API version: 2.36.0
 Contact: team@neynar.com
 */
 
@@ -22,6 +22,7 @@ var _ MappedNullable = &UserExperimental{}
 
 // UserExperimental struct for UserExperimental
 type UserExperimental struct {
+	DeprecationNotice *string `json:"deprecation_notice,omitempty"`
 	// Score that represents the probability that the account is not spam.
 	NeynarUserScore float64 `json:"neynar_user_score"`
 }
@@ -44,6 +45,38 @@ func NewUserExperimental(neynarUserScore float64) *UserExperimental {
 func NewUserExperimentalWithDefaults() *UserExperimental {
 	this := UserExperimental{}
 	return &this
+}
+
+// GetDeprecationNotice returns the DeprecationNotice field value if set, zero value otherwise.
+func (o *UserExperimental) GetDeprecationNotice() string {
+	if o == nil || IsNil(o.DeprecationNotice) {
+		var ret string
+		return ret
+	}
+	return *o.DeprecationNotice
+}
+
+// GetDeprecationNoticeOk returns a tuple with the DeprecationNotice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserExperimental) GetDeprecationNoticeOk() (*string, bool) {
+	if o == nil || IsNil(o.DeprecationNotice) {
+		return nil, false
+	}
+	return o.DeprecationNotice, true
+}
+
+// HasDeprecationNotice returns a boolean if a field has been set.
+func (o *UserExperimental) HasDeprecationNotice() bool {
+	if o != nil && !IsNil(o.DeprecationNotice) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeprecationNotice gets a reference to the given string and assigns it to the DeprecationNotice field.
+func (o *UserExperimental) SetDeprecationNotice(v string) {
+	o.DeprecationNotice = &v
 }
 
 // GetNeynarUserScore returns the NeynarUserScore field value
@@ -80,6 +113,9 @@ func (o UserExperimental) MarshalJSON() ([]byte, error) {
 
 func (o UserExperimental) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DeprecationNotice) {
+		toSerialize["deprecation_notice"] = o.DeprecationNotice
+	}
 	toSerialize["neynar_user_score"] = o.NeynarUserScore
 	return toSerialize, nil
 }

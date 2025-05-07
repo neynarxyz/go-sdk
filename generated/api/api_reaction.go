@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.33.1
+API version: 2.36.0
 Contact: team@neynar.com
 */
 
@@ -22,14 +22,14 @@ import (
 type ReactionAPI interface {
 
 	/*
-		DeleteReaction Delete reaction
+			DeleteReaction Delete reaction
 
-		Delete a reaction (like or recast) to a cast \
-	(In order to delete a reaction `signer_uuid` must be approved)
+			Delete a reaction (like or recast) to a cast \
+		(In order to delete a reaction `signer_uuid` must be approved)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiDeleteReactionRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiDeleteReactionRequest
 	*/
 	DeleteReaction(ctx context.Context) ApiDeleteReactionRequest
 
@@ -66,14 +66,14 @@ type ReactionAPI interface {
 	FetchUserReactionsExecute(r ApiFetchUserReactionsRequest) (*ReactionsResponse, *http.Response, error)
 
 	/*
-		PublishReaction Post a reaction
+			PublishReaction Post a reaction
 
-		Post a reaction (like or recast) to a given cast \
-	(In order to post a reaction `signer_uuid` must be approved)
+			Post a reaction (like or recast) to a given cast \
+		(In order to post a reaction `signer_uuid` must be approved)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiPublishReactionRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiPublishReactionRequest
 	*/
 	PublishReaction(ctx context.Context) ApiPublishReactionRequest
 

@@ -3,7 +3,7 @@ Farcaster Hub API
 
 Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.21.0
+API version: 2.35.0
 Contact: team@neynar.com
 */
 
@@ -22,6 +22,7 @@ var _ MappedNullable = &MessageDataReaction{}
 
 // MessageDataReaction Represents a user's reaction to content on the Farcaster network. Reactions can be likes or recasts of casts, allowing users to express appreciation or share content with their followers.
 type MessageDataReaction struct {
+	Type MessageType `json:"type"`
 	// The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed.
 	Fid int32 `json:"fid"`
 	// Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
@@ -37,8 +38,9 @@ type _MessageDataReaction MessageDataReaction
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageDataReaction(fid int32, timestamp int64, network FarcasterNetwork, reactionBody ReactionBody) *MessageDataReaction {
+func NewMessageDataReaction(type_ MessageType, fid int32, timestamp int64, network FarcasterNetwork, reactionBody ReactionBody) *MessageDataReaction {
 	this := MessageDataReaction{}
+	this.Type = type_
 	this.Fid = fid
 	this.Timestamp = timestamp
 	this.Network = network
@@ -51,9 +53,40 @@ func NewMessageDataReaction(fid int32, timestamp int64, network FarcasterNetwork
 // but it doesn't guarantee that properties required by API are set
 func NewMessageDataReactionWithDefaults() *MessageDataReaction {
 	this := MessageDataReaction{}
+	var type_ MessageType = MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
+	this.Type = type_
 	var network FarcasterNetwork = FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 	this.Network = network
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *MessageDataReaction) GetType() MessageType {
+	if o == nil {
+		var ret MessageType
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *MessageDataReaction) GetTypeOk() (*MessageType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *MessageDataReaction) SetType(v MessageType) {
+	o.Type = v
+}
+
+// GetDefaultType returns the default value MESSAGETYPE_MESSAGE_TYPE_CAST_ADD of the Type field.
+func (o *MessageDataReaction) GetDefaultType() interface{} {
+	return MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
 }
 
 // GetFid returns the Fid field value
@@ -167,6 +200,10 @@ func (o MessageDataReaction) MarshalJSON() ([]byte, error) {
 
 func (o MessageDataReaction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if _, exists := toSerialize["type"]; !exists {
+		toSerialize["type"] = o.GetDefaultType()
+	}
+	toSerialize["type"] = o.Type
 	toSerialize["fid"] = o.Fid
 	toSerialize["timestamp"] = o.Timestamp
 	if _, exists := toSerialize["network"]; !exists {
@@ -182,6 +219,7 @@ func (o *MessageDataReaction) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"type",
 		"fid",
 		"timestamp",
 		"network",
@@ -191,6 +229,7 @@ func (o *MessageDataReaction) UnmarshalJSON(data []byte) (err error) {
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
 	defaultValueFuncMap := map[string]func() interface{}{
+		"type":    o.GetDefaultType,
 		"network": o.GetDefaultNetwork,
 	}
 	var defaultValueApplied bool

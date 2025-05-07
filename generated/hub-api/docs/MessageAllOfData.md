@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | [**MessageType**](MessageType.md) |  | [default to MESSAGETYPE_MESSAGE_TYPE_CAST_ADD]
 **Fid** | **int32** | The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed. | 
 **Timestamp** | **int64** | Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created. | 
 **Network** | [**FarcasterNetwork**](FarcasterNetwork.md) |  | [default to FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET]
@@ -21,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewMessageAllOfData
 
-`func NewMessageAllOfData(fid int32, timestamp int64, network FarcasterNetwork, castAddBody CastAddBody, targetHash string, reactionBody ReactionBody, linkBody LinkBody, verificationAddEthAddressBody VerificationAddEthAddressBody, verificationRemoveBody VerificationRemoveBody, userDataBody UserDataBody, usernameProofBody UserNameProof, frameActionBody FrameActionBody, ) *MessageAllOfData`
+`func NewMessageAllOfData(type_ MessageType, fid int32, timestamp int64, network FarcasterNetwork, castAddBody CastAddBody, targetHash string, reactionBody ReactionBody, linkBody LinkBody, verificationAddEthAddressBody VerificationAddEthAddressBody, verificationRemoveBody VerificationRemoveBody, userDataBody UserDataBody, usernameProofBody UserNameProof, frameActionBody FrameActionBody, ) *MessageAllOfData`
 
 NewMessageAllOfData instantiates a new MessageAllOfData object
 This constructor will assign default values to properties that have it defined,
@@ -35,6 +36,26 @@ will change when the set of required properties is changed
 NewMessageAllOfDataWithDefaults instantiates a new MessageAllOfData object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *MessageAllOfData) GetType() MessageType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *MessageAllOfData) GetTypeOk() (*MessageType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *MessageAllOfData) SetType(v MessageType)`
+
+SetType sets Type field to given value.
+
 
 ### GetFid
 

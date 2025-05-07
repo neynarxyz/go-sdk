@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-	url := "url_example" // string | URL to crawl metadata of (optional)
+	url := "url_example" // string | URL to crawl metadata of
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

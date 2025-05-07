@@ -21,3 +21,8 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+generated/hub-api/test/api_message_test.go
+generated/api/test/api_user_test.go
+**/.travis.yml
+**/.gitignore
+**/.openapi-generator-ignore

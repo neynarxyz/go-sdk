@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.33.1
+API version: 2.36.0
 Contact: team@neynar.com
 */
 
@@ -22,14 +22,14 @@ import (
 type UserAPI interface {
 
 	/*
-		DeleteVerification Delete verification
+			DeleteVerification Delete verification
 
-		Removes verification for an eth address for the user \
-	(In order to delete verification `signer_uuid` must be approved)
+			Removes verification for an eth address for the user \
+		(In order to delete verification `signer_uuid` must be approved)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiDeleteVerificationRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiDeleteVerificationRequest
 	*/
 	DeleteVerification(ctx context.Context) ApiDeleteVerificationRequest
 
@@ -52,17 +52,17 @@ type UserAPI interface {
 	FetchBulkUsersExecute(r ApiFetchBulkUsersRequest) (*BulkUsersResponse, *http.Response, error)
 
 	/*
-		FetchBulkUsersByEthOrSolAddress By Eth or Sol addresses
+			FetchBulkUsersByEthOrSolAddress By Eth or Sol addresses
 
-		Fetches all users based on multiple Ethereum or Solana addresses.
+			Fetches all users based on multiple Ethereum or Solana addresses.
 
-	Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.
+		Each farcaster user has a custody Ethereum address and optionally verified Ethereum or Solana addresses. This endpoint returns all users that have any of the given addresses as their custody or verified Ethereum or Solana addresses.
 
-	A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
-	You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
+		A custody address can be associated with only 1 farcaster user at a time but a verified address can be associated with multiple users.
+		You can pass in Ethereum and Solana addresses, comma separated, in the same request. The response will contain users associated with the given addresses.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiFetchBulkUsersByEthOrSolAddressRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiFetchBulkUsersByEthOrSolAddressRequest
 	*/
 	FetchBulkUsersByEthOrSolAddress(ctx context.Context) ApiFetchBulkUsersByEthOrSolAddressRequest
 
@@ -113,14 +113,14 @@ type UserAPI interface {
 	FetchUsersByLocationExecute(r ApiFetchUsersByLocationRequest) (*UsersResponse, *http.Response, error)
 
 	/*
-		FollowUser Follow user
+			FollowUser Follow user
 
-		Follow a user \
-	(In order to follow a user `signer_uuid` must be approved)
+			Follow a user \
+		(In order to follow a user `signer_uuid` must be approved)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiFollowUserRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiFollowUserRequest
 	*/
 	FollowUser(ctx context.Context) ApiFollowUserRequest
 
@@ -185,14 +185,14 @@ type UserAPI interface {
 	LookupUsersByXUsernameExecute(r ApiLookupUsersByXUsernameRequest) (*BulkUsersResponse, *http.Response, error)
 
 	/*
-		PublishVerification Add verification
+			PublishVerification Add verification
 
-		Adds verification for an eth address or contract for the user \
-	(In order to add verification `signer_uuid` must be approved)
+			Adds verification for an eth address or contract for the user \
+		(In order to add verification `signer_uuid` must be approved)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiPublishVerificationRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiPublishVerificationRequest
 	*/
 	PublishVerification(ctx context.Context) ApiPublishVerificationRequest
 
@@ -201,15 +201,15 @@ type UserAPI interface {
 	PublishVerificationExecute(r ApiPublishVerificationRequest) (*OperationResponse, *http.Response, error)
 
 	/*
-		RegisterAccount Register new account
+			RegisterAccount Register new account
 
-		Register account on farcaster.
+			Register account on farcaster.
 
-	**Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user.
+		**Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user.
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiRegisterAccountRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiRegisterAccountRequest
 	*/
 	RegisterAccount(ctx context.Context) ApiRegisterAccountRequest
 
@@ -232,14 +232,14 @@ type UserAPI interface {
 	SearchUserExecute(r ApiSearchUserRequest) (*UserSearchResponse, *http.Response, error)
 
 	/*
-		UnfollowUser Unfollow user
+			UnfollowUser Unfollow user
 
-		Unfollow a user \
-	(In order to unfollow a user `signer_uuid` must be approved)
+			Unfollow a user \
+		(In order to unfollow a user `signer_uuid` must be approved)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiUnfollowUserRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiUnfollowUserRequest
 	*/
 	UnfollowUser(ctx context.Context) ApiUnfollowUserRequest
 
@@ -248,14 +248,14 @@ type UserAPI interface {
 	UnfollowUserExecute(r ApiUnfollowUserRequest) (*BulkFollowResponse, *http.Response, error)
 
 	/*
-		UpdateUser Update user profile
+			UpdateUser Update user profile
 
-		Update user profile \
-	(In order to update user's profile `signer_uuid` must be approved)
+			Update user profile \
+		(In order to update user's profile `signer_uuid` must be approved)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiUpdateUserRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiUpdateUserRequest
 	*/
 	UpdateUser(ctx context.Context) ApiUpdateUserRequest
 

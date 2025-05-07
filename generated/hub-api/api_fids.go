@@ -3,7 +3,7 @@ Farcaster Hub API
 
 Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.21.0
+API version: 2.35.0
 Contact: team@neynar.com
 */
 
@@ -42,9 +42,16 @@ type FidsAPIService service
 type ApiFetchFidsRequest struct {
 	ctx        context.Context
 	ApiService FidsAPI
+	shardId    *int32
 	pageSize   *int32
 	reverse    *bool
 	pageToken  *string
+}
+
+// The shard ID to filter by
+func (r ApiFetchFidsRequest) ShardId(shardId int32) ApiFetchFidsRequest {
+	r.shardId = &shardId
+	return r
 }
 
 // Maximum number of messages to return in a single response
@@ -105,7 +112,11 @@ func (a *FidsAPIService) FetchFidsExecute(r ApiFetchFidsRequest) (*FidsResponse,
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.shardId == nil {
+		return localVarReturnValue, nil, reportError("shardId is required and must be specified")
+	}
 
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shard_id", r.shardId, "form", "")
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "form", "")
 	}

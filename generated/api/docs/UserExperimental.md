@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DeprecationNotice** | Pointer to **string** |  | [optional] 
 **NeynarUserScore** | **float64** | Score that represents the probability that the account is not spam. | 
 
 ## Methods
@@ -24,6 +25,31 @@ will change when the set of required properties is changed
 NewUserExperimentalWithDefaults instantiates a new UserExperimental object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDeprecationNotice
+
+`func (o *UserExperimental) GetDeprecationNotice() string`
+
+GetDeprecationNotice returns the DeprecationNotice field if non-nil, zero value otherwise.
+
+### GetDeprecationNoticeOk
+
+`func (o *UserExperimental) GetDeprecationNoticeOk() (*string, bool)`
+
+GetDeprecationNoticeOk returns a tuple with the DeprecationNotice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeprecationNotice
+
+`func (o *UserExperimental) SetDeprecationNotice(v string)`
+
+SetDeprecationNotice sets DeprecationNotice field to given value.
+
+### HasDeprecationNotice
+
+`func (o *UserExperimental) HasDeprecationNotice() bool`
+
+HasDeprecationNotice returns a boolean if a field has been set.
 
 ### GetNeynarUserScore
 

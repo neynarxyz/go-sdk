@@ -3,7 +3,7 @@ Farcaster Hub API
 
 Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.21.0
+API version: 2.35.0
 Contact: team@neynar.com
 */
 
@@ -22,6 +22,7 @@ var _ MappedNullable = &UserDataAddAllOfData{}
 
 // UserDataAddAllOfData struct for UserDataAddAllOfData
 type UserDataAddAllOfData struct {
+	Type MessageType `json:"type"`
 	// The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed.
 	Fid int32 `json:"fid"`
 	// Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
@@ -29,7 +30,6 @@ type UserDataAddAllOfData struct {
 	Network   FarcasterNetwork `json:"network"`
 	// Contains the type of profile metadata being updated and its new value.
 	UserDataBody UserDataBody `json:"userDataBody"`
-	Type         MessageType  `json:"type"`
 }
 
 type _UserDataAddAllOfData UserDataAddAllOfData
@@ -38,13 +38,13 @@ type _UserDataAddAllOfData UserDataAddAllOfData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserDataAddAllOfData(fid int32, timestamp int64, network FarcasterNetwork, userDataBody UserDataBody, type_ MessageType) *UserDataAddAllOfData {
+func NewUserDataAddAllOfData(type_ MessageType, fid int32, timestamp int64, network FarcasterNetwork, userDataBody UserDataBody) *UserDataAddAllOfData {
 	this := UserDataAddAllOfData{}
+	this.Type = type_
 	this.Fid = fid
 	this.Timestamp = timestamp
 	this.Network = network
 	this.UserDataBody = userDataBody
-	this.Type = type_
 	return &this
 }
 
@@ -53,11 +53,40 @@ func NewUserDataAddAllOfData(fid int32, timestamp int64, network FarcasterNetwor
 // but it doesn't guarantee that properties required by API are set
 func NewUserDataAddAllOfDataWithDefaults() *UserDataAddAllOfData {
 	this := UserDataAddAllOfData{}
-	var network FarcasterNetwork = FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
-	this.Network = network
 	var type_ MessageType = MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
 	this.Type = type_
+	var network FarcasterNetwork = FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
+	this.Network = network
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *UserDataAddAllOfData) GetType() MessageType {
+	if o == nil {
+		var ret MessageType
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *UserDataAddAllOfData) GetTypeOk() (*MessageType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *UserDataAddAllOfData) SetType(v MessageType) {
+	o.Type = v
+}
+
+// GetDefaultType returns the default value MESSAGETYPE_MESSAGE_TYPE_CAST_ADD of the Type field.
+func (o *UserDataAddAllOfData) GetDefaultType() interface{} {
+	return MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
 }
 
 // GetFid returns the Fid field value
@@ -161,35 +190,6 @@ func (o *UserDataAddAllOfData) SetUserDataBody(v UserDataBody) {
 	o.UserDataBody = v
 }
 
-// GetType returns the Type field value
-func (o *UserDataAddAllOfData) GetType() MessageType {
-	if o == nil {
-		var ret MessageType
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *UserDataAddAllOfData) GetTypeOk() (*MessageType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *UserDataAddAllOfData) SetType(v MessageType) {
-	o.Type = v
-}
-
-// GetDefaultType returns the default value MESSAGETYPE_MESSAGE_TYPE_CAST_ADD of the Type field.
-func (o *UserDataAddAllOfData) GetDefaultType() interface{} {
-	return MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
-}
-
 func (o UserDataAddAllOfData) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -200,6 +200,10 @@ func (o UserDataAddAllOfData) MarshalJSON() ([]byte, error) {
 
 func (o UserDataAddAllOfData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if _, exists := toSerialize["type"]; !exists {
+		toSerialize["type"] = o.GetDefaultType()
+	}
+	toSerialize["type"] = o.Type
 	toSerialize["fid"] = o.Fid
 	toSerialize["timestamp"] = o.Timestamp
 	if _, exists := toSerialize["network"]; !exists {
@@ -207,10 +211,6 @@ func (o UserDataAddAllOfData) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["network"] = o.Network
 	toSerialize["userDataBody"] = o.UserDataBody
-	if _, exists := toSerialize["type"]; !exists {
-		toSerialize["type"] = o.GetDefaultType()
-	}
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -219,18 +219,18 @@ func (o *UserDataAddAllOfData) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"type",
 		"fid",
 		"timestamp",
 		"network",
 		"userDataBody",
-		"type",
 	}
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
 	defaultValueFuncMap := map[string]func() interface{}{
-		"network": o.GetDefaultNetwork,
 		"type":    o.GetDefaultType,
+		"network": o.GetDefaultNetwork,
 	}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})

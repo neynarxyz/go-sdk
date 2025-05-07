@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.33.1
+API version: 2.36.0
 Contact: team@neynar.com
 */
 
@@ -22,14 +22,14 @@ import (
 type CastAPI interface {
 
 	/*
-		DeleteCast Delete a cast
+			DeleteCast Delete a cast
 
-		Delete an existing cast. \
-	(In order to delete a cast `signer_uuid` must be approved)
+			Delete an existing cast. \
+		(In order to delete a cast `signer_uuid` must be approved)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiDeleteCastRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiDeleteCastRequest
 	*/
 	DeleteCast(ctx context.Context) ApiDeleteCastRequest
 
@@ -108,14 +108,14 @@ type CastAPI interface {
 	LookupCastConversationExecute(r ApiLookupCastConversationRequest) (*Conversation, *http.Response, error)
 
 	/*
-		PublishCast Post a cast
+			PublishCast Post a cast
 
-		Posts a cast or cast reply. Works with mentions and embeds.
-	(In order to post a cast `signer_uuid` must be approved)
+			Posts a cast or cast reply. Works with mentions and embeds.
+		(In order to post a cast `signer_uuid` must be approved)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiPublishCastRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiPublishCastRequest
 	*/
 	PublishCast(ctx context.Context) ApiPublishCastRequest
 
@@ -696,10 +696,11 @@ func (a *CastAPIService) FetchEmbeddedUrlMetadataExecute(r ApiFetchEmbeddedUrlMe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-
-	if r.url != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")
+	if r.url == nil {
+		return localVarReturnValue, nil, reportError("url is required and must be specified")
 	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

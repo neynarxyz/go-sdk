@@ -3,7 +3,7 @@ Farcaster Hub API
 
 Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.21.0
+API version: 2.35.0
 Contact: team@neynar.com
 */
 
@@ -355,7 +355,7 @@ func (a *ReactionsAPIService) FetchReactionsByTargetExecute(r ApiFetchReactionsB
 	if r.reactionType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "reaction_type", r.reactionType, "form", "")
 	} else {
-		var defaultValue ReactionType = "Like"
+		var defaultValue ReactionType = "REACTION_TYPE_LIKE"
 		r.reactionType = &defaultValue
 	}
 	if r.pageSize != nil {

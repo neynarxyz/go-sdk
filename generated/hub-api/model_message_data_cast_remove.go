@@ -3,7 +3,7 @@ Farcaster Hub API
 
 Perform basic queries of Farcaster state via the REST API of a Farcaster hub. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.21.0
+API version: 2.35.0
 Contact: team@neynar.com
 */
 
@@ -22,6 +22,7 @@ var _ MappedNullable = &MessageDataCastRemove{}
 
 // MessageDataCastRemove Represents a request to remove (delete) a previously created cast. Only the original creator of a cast can remove it.
 type MessageDataCastRemove struct {
+	Type MessageType `json:"type"`
 	// The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed.
 	Fid int32 `json:"fid"`
 	// Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
@@ -37,8 +38,9 @@ type _MessageDataCastRemove MessageDataCastRemove
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageDataCastRemove(fid int32, timestamp int64, network FarcasterNetwork, targetHash string) *MessageDataCastRemove {
+func NewMessageDataCastRemove(type_ MessageType, fid int32, timestamp int64, network FarcasterNetwork, targetHash string) *MessageDataCastRemove {
 	this := MessageDataCastRemove{}
+	this.Type = type_
 	this.Fid = fid
 	this.Timestamp = timestamp
 	this.Network = network
@@ -51,9 +53,40 @@ func NewMessageDataCastRemove(fid int32, timestamp int64, network FarcasterNetwo
 // but it doesn't guarantee that properties required by API are set
 func NewMessageDataCastRemoveWithDefaults() *MessageDataCastRemove {
 	this := MessageDataCastRemove{}
+	var type_ MessageType = MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
+	this.Type = type_
 	var network FarcasterNetwork = FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 	this.Network = network
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *MessageDataCastRemove) GetType() MessageType {
+	if o == nil {
+		var ret MessageType
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *MessageDataCastRemove) GetTypeOk() (*MessageType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *MessageDataCastRemove) SetType(v MessageType) {
+	o.Type = v
+}
+
+// GetDefaultType returns the default value MESSAGETYPE_MESSAGE_TYPE_CAST_ADD of the Type field.
+func (o *MessageDataCastRemove) GetDefaultType() interface{} {
+	return MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
 }
 
 // GetFid returns the Fid field value
@@ -167,6 +200,10 @@ func (o MessageDataCastRemove) MarshalJSON() ([]byte, error) {
 
 func (o MessageDataCastRemove) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if _, exists := toSerialize["type"]; !exists {
+		toSerialize["type"] = o.GetDefaultType()
+	}
+	toSerialize["type"] = o.Type
 	toSerialize["fid"] = o.Fid
 	toSerialize["timestamp"] = o.Timestamp
 	if _, exists := toSerialize["network"]; !exists {
@@ -182,6 +219,7 @@ func (o *MessageDataCastRemove) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"type",
 		"fid",
 		"timestamp",
 		"network",
@@ -191,6 +229,7 @@ func (o *MessageDataCastRemove) UnmarshalJSON(data []byte) (err error) {
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
 	defaultValueFuncMap := map[string]func() interface{}{
+		"type":    o.GetDefaultType,
 		"network": o.GetDefaultNetwork,
 	}
 	var defaultValueApplied bool

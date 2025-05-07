@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.33.1
+  version: 2.36.0
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -965,7 +965,7 @@ paths:
         explode: true
         in: query
         name: url
-        required: false
+        required: true
         schema:
           type: string
         style: form
@@ -7906,6 +7906,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -8047,6 +8048,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -8166,6 +8168,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -8797,6 +8800,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -8893,6 +8897,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -9005,6 +9010,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -9129,6 +9135,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -9606,6 +9613,7 @@ components:
         power_badge: true
         experimental:
           neynar_user_score: 7.061401241503109
+          deprecation_notice: deprecation_notice
         display_name: display_name
         verifications:
         - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -10868,6 +10876,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -10955,6 +10964,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -11040,6 +11050,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -11486,6 +11497,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -11573,6 +11585,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -11658,6 +11671,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -12049,6 +12063,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -12136,6 +12151,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -12221,6 +12237,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -12374,6 +12391,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -12461,6 +12479,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -12546,6 +12565,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -12717,6 +12737,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -12804,6 +12825,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -12889,6 +12911,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -13088,6 +13111,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -13175,6 +13199,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -13260,6 +13285,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -13651,6 +13677,7 @@ components:
                 power_badge: true
                 experimental:
                   neynar_user_score: 7.061401241503109
+                  deprecation_notice: deprecation_notice
                 display_name: display_name
                 verifications:
                 - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -13738,6 +13765,7 @@ components:
                 power_badge: true
                 experimental:
                   neynar_user_score: 7.061401241503109
+                  deprecation_notice: deprecation_notice
                 display_name: display_name
                 verifications:
                 - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -13823,6 +13851,7 @@ components:
                 power_badge: true
                 experimental:
                   neynar_user_score: 7.061401241503109
+                  deprecation_notice: deprecation_notice
                 display_name: display_name
                 verifications:
                 - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -13976,6 +14005,7 @@ components:
                 power_badge: true
                 experimental:
                   neynar_user_score: 7.061401241503109
+                  deprecation_notice: deprecation_notice
                 display_name: display_name
                 verifications:
                 - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -14063,6 +14093,7 @@ components:
                 power_badge: true
                 experimental:
                   neynar_user_score: 7.061401241503109
+                  deprecation_notice: deprecation_notice
                 display_name: display_name
                 verifications:
                 - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -14148,6 +14179,7 @@ components:
                 power_badge: true
                 experimental:
                   neynar_user_score: 7.061401241503109
+                  deprecation_notice: deprecation_notice
                 display_name: display_name
                 verifications:
                 - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -14344,6 +14376,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -14431,6 +14464,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -14516,6 +14550,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -14948,6 +14983,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -15035,6 +15071,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -15120,6 +15157,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -15544,6 +15582,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -15629,6 +15668,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -15716,6 +15756,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -15801,6 +15842,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -16042,6 +16084,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -16129,6 +16172,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -16214,6 +16258,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -16655,6 +16700,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -16740,6 +16786,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -16831,6 +16878,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -17036,6 +17084,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -17121,6 +17170,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -17212,6 +17262,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -17332,6 +17383,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -17417,6 +17469,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -17508,6 +17561,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -17637,6 +17691,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -17723,6 +17778,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -17865,6 +17921,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -17950,6 +18007,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -18041,6 +18099,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -18157,6 +18216,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -18272,6 +18332,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -18357,6 +18418,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -18448,6 +18510,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -18564,6 +18627,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -18657,6 +18721,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -18742,6 +18807,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -18833,6 +18899,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -18949,6 +19016,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -19053,6 +19121,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -19139,6 +19208,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -19227,6 +19297,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -19313,6 +19384,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -19419,6 +19491,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -19504,6 +19577,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -19595,6 +19669,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -19715,6 +19790,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -19800,6 +19876,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -19891,6 +19968,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -20025,6 +20103,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -20110,6 +20189,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -20201,6 +20281,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -20330,6 +20411,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -20415,6 +20497,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -20506,6 +20589,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -20626,6 +20710,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -20711,6 +20796,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -20802,6 +20888,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -20931,6 +21018,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -21016,6 +21104,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -21117,6 +21206,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -21202,6 +21292,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -21293,6 +21384,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -21443,6 +21535,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -21528,6 +21621,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -21619,6 +21713,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -21744,6 +21839,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -21829,6 +21925,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -21920,6 +22017,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -22101,6 +22199,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -22188,6 +22287,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -22273,6 +22373,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -22705,6 +22806,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -22792,6 +22894,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -22877,6 +22980,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -23321,6 +23425,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -23408,6 +23513,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -23493,6 +23599,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -23925,6 +24032,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -24012,6 +24120,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -24097,6 +24206,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -24541,6 +24651,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -24628,6 +24739,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -24713,6 +24825,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -25145,6 +25258,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -25232,6 +25346,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -25317,6 +25432,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -25797,6 +25913,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -25884,6 +26001,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -25969,6 +26087,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -26401,6 +26520,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -26488,6 +26608,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -26573,6 +26694,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -27091,6 +27213,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -27178,6 +27301,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -27263,6 +27387,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -27648,6 +27773,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -27735,6 +27861,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -27835,6 +27962,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -27933,6 +28061,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -28073,6 +28202,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -28160,6 +28290,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -28245,6 +28376,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -28630,6 +28762,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -28717,6 +28850,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -28817,6 +28951,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -28915,6 +29050,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -29072,6 +29208,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -29159,6 +29296,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -29244,6 +29382,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -29629,6 +29768,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -29716,6 +29856,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -29816,6 +29957,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -29914,6 +30056,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -30086,6 +30229,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -30192,6 +30336,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -30353,6 +30498,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -30440,6 +30586,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -30525,6 +30672,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -30946,6 +31094,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -31033,6 +31182,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -31152,6 +31302,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -31306,6 +31457,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -31453,6 +31605,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -31540,6 +31693,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -31625,6 +31779,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -32068,6 +32223,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -32155,6 +32311,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -32240,6 +32397,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -32651,6 +32809,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -32740,6 +32899,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -32840,6 +33000,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -32925,6 +33086,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -33011,6 +33173,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -33096,6 +33259,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -33336,6 +33500,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -33421,6 +33586,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -33519,6 +33685,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -33604,6 +33771,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -33706,6 +33874,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -33793,6 +33962,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -34334,6 +34504,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -34421,6 +34592,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -34506,6 +34678,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -34890,6 +35063,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -34984,6 +35158,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -35222,6 +35397,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -35420,6 +35596,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -35621,6 +35798,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -35708,6 +35886,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -35793,6 +35972,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -36177,6 +36357,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -36271,6 +36452,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -36426,6 +36608,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -36538,6 +36721,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -36647,6 +36831,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -36735,6 +36920,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -36849,6 +37035,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -36935,6 +37122,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -37045,6 +37233,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -37131,6 +37320,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -37219,6 +37409,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -37305,6 +37496,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -37407,6 +37599,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -37515,6 +37708,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -37603,6 +37797,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -37724,6 +37919,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -37809,6 +38005,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -37900,6 +38097,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -38020,6 +38218,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -38105,6 +38304,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -38196,6 +38396,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -39940,6 +40141,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -40025,6 +40227,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -40222,6 +40425,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -40420,6 +40624,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -40545,6 +40750,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -40630,6 +40836,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -40827,6 +41034,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -41025,6 +41233,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -41126,6 +41335,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -41211,6 +41421,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -41408,6 +41619,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -41606,6 +41818,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -41799,6 +42012,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -41886,6 +42100,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -41971,6 +42186,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -42356,6 +42572,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -42443,6 +42660,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -42543,6 +42761,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -42641,6 +42860,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -42781,6 +43001,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -42868,6 +43089,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -42953,6 +43175,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -43338,6 +43561,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -43425,6 +43649,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -43525,6 +43750,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -43623,6 +43849,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -44350,7 +44577,10 @@ components:
     User_experimental:
       example:
         neynar_user_score: 7.061401241503109
+        deprecation_notice: deprecation_notice
       properties:
+        deprecation_notice:
+          type: string
         neynar_user_score:
           description: Score that represents the probability that the account is not
             spam.
@@ -44685,6 +44915,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -44772,6 +45003,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -44857,6 +45089,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -45248,6 +45481,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -45335,6 +45569,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -45420,6 +45655,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -45573,6 +45809,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -45660,6 +45897,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -45745,6 +45983,7 @@ components:
               power_badge: true
               experimental:
                 neynar_user_score: 7.061401241503109
+                deprecation_notice: deprecation_notice
               display_name: display_name
               verifications:
               - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -45941,6 +46180,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -46028,6 +46268,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -46113,6 +46354,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -46545,6 +46787,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -46632,6 +46875,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -46717,6 +46961,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -47147,6 +47392,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -47232,6 +47478,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -47319,6 +47566,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -47404,6 +47652,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -47532,6 +47781,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -47617,6 +47867,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -47765,6 +48016,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -47852,6 +48104,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -47937,6 +48190,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -48369,6 +48623,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -48456,6 +48711,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -48541,6 +48797,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -48986,6 +49243,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -49073,6 +49331,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -49158,6 +49417,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -49590,6 +49850,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -49677,6 +49938,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -49762,6 +50024,7 @@ components:
             power_badge: true
             experimental:
               neynar_user_score: 7.061401241503109
+              deprecation_notice: deprecation_notice
             display_name: display_name
             verifications:
             - 0x5a927ac639636e534b678e81768ca19e2c6280b7
@@ -50219,6 +50482,7 @@ components:
           power_badge: true
           experimental:
             neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
           display_name: display_name
           verifications:
           - 0x5a927ac639636e534b678e81768ca19e2c6280b7

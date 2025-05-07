@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.33.1
+API version: 2.36.0
 Contact: team@neynar.com
 */
 
@@ -22,14 +22,14 @@ import (
 type StorageAPI interface {
 
 	/*
-		BuyStorage Buy storage
+			BuyStorage Buy storage
 
-		This api will help you rent units of storage for an year for a specific FID.
-	A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
+			This api will help you rent units of storage for an year for a specific FID.
+		A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiBuyStorageRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiBuyStorageRequest
 	*/
 	BuyStorage(ctx context.Context) ApiBuyStorageRequest
 

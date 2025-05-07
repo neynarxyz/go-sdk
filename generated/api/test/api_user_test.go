@@ -11,10 +11,11 @@ package api
 
 import (
 	"context"
+	"testing"
+
 	openapiclient "github.com/neynarxyz/go-sdk/generated/api"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
 )
 
 func Test_api_UserAPIService(t *testing.T) {
@@ -48,9 +49,10 @@ func Test_api_UserAPIService(t *testing.T) {
 
 	t.Run("Test UserAPIService FetchBulkUsersByEthOrSolAddress", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
-
-		resp, httpRes, err := apiClient.UserAPI.FetchBulkUsersByEthOrSolAddress(context.Background()).Execute()
+		// Add x-api-key header
+		configuration.AddDefaultHeader("x-api-key", "NEYNAR_API_DOCS")
+		request := apiClient.UserAPI.FetchBulkUsersByEthOrSolAddress(context.Background()).Addresses("0xBFc7CAE0Fad9B346270Ae8fde24827D2D779eF07").AddressTypes([]openapiclient.BulkUserAddressType{openapiclient.AllowedBulkUserAddressTypeEnumValues[1]})
+		resp, httpRes, err := request.Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

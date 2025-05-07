@@ -1,9 +1,14 @@
 #!/bin/bash
 set -eux -o pipefail
 
+# This script generates the Neynar Go SDK from the OpenAPI specification.
+
 export GO_POST_PROCESS_FILE='gofmt -w'
 
-rm -rf ./generated/api/*
+# Delete all directories except test
+cd ./generated/api
+rm -rf *.* api/ docs/
+cd ../..
 npx --yes @openapitools/openapi-generator-cli \
     generate \
     --git-user-id neynarxyz \
@@ -14,16 +19,21 @@ npx --yes @openapitools/openapi-generator-cli \
     -o ./generated/api \
     --openapi-normalizer 'SIMPLIFY_ONEOF_ANYOF=false' \
     --inline-schema-options 'SKIP_SCHEMA_REUSE=true' \
+    --ignore-file-override=./.openapi-generator-ignore \
     --enable-post-process-file
 (
     cd ./generated/api
     go get github.com/stretchr/testify/assert
     go get golang.org/x/net/context
+    go fmt
     go build
     go test ./...
 )
 
-rm -rf ./generated/hub-api/*
+# Delete all directories except test
+cd ./generated/hub-api
+rm -rf *.* api/ docs/
+cd ../..
 npx --yes @openapitools/openapi-generator-cli \
     generate \
     --git-user-id neynarxyz \
@@ -34,12 +44,14 @@ npx --yes @openapitools/openapi-generator-cli \
     -o ./generated/hub-api \
     --openapi-normalizer 'SIMPLIFY_ONEOF_ANYOF=false' \
     --inline-schema-options 'SKIP_SCHEMA_REUSE=true' \
+    --ignore-file-override=./.openapi-generator-ignore \
     --type-mappings='file=[]byte' \
     --enable-post-process-file
 (
     cd ./generated/hub-api
     go get github.com/stretchr/testify/assert
     go get golang.org/x/net/context
+    go fmt
     go build
     go test ./...
 )

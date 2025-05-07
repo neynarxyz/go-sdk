@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.33.1
+API version: 2.36.0
 Contact: team@neynar.com
 */
 
@@ -164,16 +164,16 @@ type FrameAPI interface {
 	LookupNeynarFrameExecute(r ApiLookupNeynarFrameRequest) (*NeynarFrame, *http.Response, error)
 
 	/*
-		PostFrameAction Post a mini app action, cast action or a cast composer action
+			PostFrameAction Post a mini app action, cast action or a cast composer action
 
-		Post mini app actions, cast actions or cast composer actions to the server  \
-	(In order to post any of these actions, you need to have an approved `signer_uuid`)
+			Post mini app actions, cast actions or cast composer actions to the server  \
+		(In order to post any of these actions, you need to have an approved `signer_uuid`)
 
-	The POST request to the post_url has a timeout of 5 seconds for mini apps.
+		The POST request to the post_url has a timeout of 5 seconds for mini apps.
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiPostFrameActionRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiPostFrameActionRequest
 	*/
 	PostFrameAction(ctx context.Context) ApiPostFrameActionRequest
 
@@ -182,15 +182,15 @@ type FrameAPI interface {
 	PostFrameActionExecute(r ApiPostFrameActionRequest) (*Frame, *http.Response, error)
 
 	/*
-		PostFrameActionDeveloperManaged Signature packet
+			PostFrameActionDeveloperManaged Signature packet
 
-		Post a mini app action that has been signed with a developer managed signer
+			Post a mini app action that has been signed with a developer managed signer
 
-	The POST request to the post_url has a timeout of 5 seconds.
+		The POST request to the post_url has a timeout of 5 seconds.
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiPostFrameActionDeveloperManagedRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiPostFrameActionDeveloperManagedRequest
 	*/
 	PostFrameActionDeveloperManaged(ctx context.Context) ApiPostFrameActionDeveloperManagedRequest
 
@@ -242,14 +242,14 @@ type FrameAPI interface {
 	UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest) (*NeynarFrame, *http.Response, error)
 
 	/*
-		ValidateFrameAction Validate mini app action
+			ValidateFrameAction Validate mini app action
 
-		Validates a mini app against by an interacting user against a Farcaster Hub \
-	(In order to validate a mini app, message bytes from Frame Action must be provided in hex)
+			Validates a mini app against by an interacting user against a Farcaster Hub \
+		(In order to validate a mini app, message bytes from Frame Action must be provided in hex)
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiValidateFrameActionRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiValidateFrameActionRequest
 	*/
 	ValidateFrameAction(ctx context.Context) ApiValidateFrameActionRequest
 

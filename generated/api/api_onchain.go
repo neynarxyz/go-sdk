@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.33.1
+API version: 2.36.0
 Contact: team@neynar.com
 */
 
@@ -23,14 +23,14 @@ import (
 type OnchainAPI interface {
 
 	/*
-		DeployFungible Deploy fungible
+			DeployFungible Deploy fungible
 
-		Creates a new token.
-	This is an allowlisted API, reach out if you want access.
+			Creates a new token.
+		This is an allowlisted API, reach out if you want access.
 
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiDeployFungibleRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiDeployFungibleRequest
 	*/
 	DeployFungible(ctx context.Context) ApiDeployFungibleRequest
 

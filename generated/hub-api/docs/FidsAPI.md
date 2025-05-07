@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## FetchFids
 
-> FidsResponse FetchFids(ctx).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
+> FidsResponse FetchFids(ctx).ShardId(shardId).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
 
 Fetch a list of all the FIDs
 
@@ -29,13 +29,14 @@ import (
 )
 
 func main() {
+	shardId := int32(1) // int32 | The shard ID to filter by
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
 	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FidsAPI.FetchFids(context.Background()).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
+	resp, r, err := apiClient.FidsAPI.FetchFids(context.Background()).ShardId(shardId).PageSize(pageSize).Reverse(reverse).PageToken(pageToken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FidsAPI.FetchFids``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,6 +57,7 @@ Other parameters are passed through a pointer to a apiFetchFidsRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **shardId** | **int32** | The shard ID to filter by | 
  **pageSize** | **int32** | Maximum number of messages to return in a single response | 
  **reverse** | **bool** | Reverse the sort order, returning latest messages first | 
  **pageToken** | **string** | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page | 
