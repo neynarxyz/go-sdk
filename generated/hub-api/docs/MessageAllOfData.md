@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**MessageType**](MessageType.md) |  | [default to MESSAGETYPE_MESSAGE_TYPE_CAST_ADD]
+**Type** | Pointer to [**MessageType**](MessageType.md) |  | [optional] [default to MESSAGETYPE_MESSAGE_TYPE_CAST_ADD]
 **Fid** | **int32** | The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed. | 
 **Timestamp** | **int64** | Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created. | 
 **Network** | [**FarcasterNetwork**](FarcasterNetwork.md) |  | [default to FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET]
@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewMessageAllOfData
 
-`func NewMessageAllOfData(type_ MessageType, fid int32, timestamp int64, network FarcasterNetwork, castAddBody CastAddBody, targetHash string, reactionBody ReactionBody, linkBody LinkBody, verificationAddEthAddressBody VerificationAddEthAddressBody, verificationRemoveBody VerificationRemoveBody, userDataBody UserDataBody, usernameProofBody UserNameProof, frameActionBody FrameActionBody, ) *MessageAllOfData`
+`func NewMessageAllOfData(fid int32, timestamp int64, network FarcasterNetwork, castAddBody CastAddBody, targetHash string, reactionBody ReactionBody, linkBody LinkBody, verificationAddEthAddressBody VerificationAddEthAddressBody, verificationRemoveBody VerificationRemoveBody, userDataBody UserDataBody, usernameProofBody UserNameProof, frameActionBody FrameActionBody, ) *MessageAllOfData`
 
 NewMessageAllOfData instantiates a new MessageAllOfData object
 This constructor will assign default values to properties that have it defined,
@@ -56,6 +56,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *MessageAllOfData) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetFid
 

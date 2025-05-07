@@ -22,7 +22,7 @@ var _ MappedNullable = &MessageDataCommon{}
 
 // MessageDataCommon Common properties shared by all Farcaster message types. These properties provide essential metadata about the message's origin, timing, and network context.
 type MessageDataCommon struct {
-	Type MessageType `json:"type"`
+	Type *MessageType `json:"type,omitempty"`
 	// The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed.
 	Fid int32 `json:"fid"`
 	// Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created.
@@ -36,9 +36,10 @@ type _MessageDataCommon MessageDataCommon
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageDataCommon(type_ MessageType, fid int32, timestamp int64, network FarcasterNetwork) *MessageDataCommon {
+func NewMessageDataCommon(fid int32, timestamp int64, network FarcasterNetwork) *MessageDataCommon {
 	this := MessageDataCommon{}
-	this.Type = type_
+	var type_ MessageType = MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
+	this.Type = &type_
 	this.Fid = fid
 	this.Timestamp = timestamp
 	this.Network = network
@@ -51,39 +52,42 @@ func NewMessageDataCommon(type_ MessageType, fid int32, timestamp int64, network
 func NewMessageDataCommonWithDefaults() *MessageDataCommon {
 	this := MessageDataCommon{}
 	var type_ MessageType = MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
-	this.Type = type_
+	this.Type = &type_
 	var network FarcasterNetwork = FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET
 	this.Network = network
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *MessageDataCommon) GetType() MessageType {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret MessageType
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageDataCommon) GetTypeOk() (*MessageType, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *MessageDataCommon) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given MessageType and assigns it to the Type field.
 func (o *MessageDataCommon) SetType(v MessageType) {
-	o.Type = v
-}
-
-// GetDefaultType returns the default value MESSAGETYPE_MESSAGE_TYPE_CAST_ADD of the Type field.
-func (o *MessageDataCommon) GetDefaultType() interface{} {
-	return MESSAGETYPE_MESSAGE_TYPE_CAST_ADD
+	o.Type = &v
 }
 
 // GetFid returns the Fid field value
@@ -173,10 +177,9 @@ func (o MessageDataCommon) MarshalJSON() ([]byte, error) {
 
 func (o MessageDataCommon) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if _, exists := toSerialize["type"]; !exists {
-		toSerialize["type"] = o.GetDefaultType()
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
-	toSerialize["type"] = o.Type
 	toSerialize["fid"] = o.Fid
 	toSerialize["timestamp"] = o.Timestamp
 	if _, exists := toSerialize["network"]; !exists {
@@ -191,7 +194,6 @@ func (o *MessageDataCommon) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"fid",
 		"timestamp",
 		"network",
@@ -200,7 +202,6 @@ func (o *MessageDataCommon) UnmarshalJSON(data []byte) (err error) {
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
 	defaultValueFuncMap := map[string]func() interface{}{
-		"type":    o.GetDefaultType,
 		"network": o.GetDefaultNetwork,
 	}
 	var defaultValueApplied bool

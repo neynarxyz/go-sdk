@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**MessageType**](MessageType.md) |  | [default to MESSAGETYPE_MESSAGE_TYPE_CAST_ADD]
+**Type** | Pointer to [**MessageType**](MessageType.md) |  | [optional] [default to MESSAGETYPE_MESSAGE_TYPE_CAST_ADD]
 **Fid** | **int32** | The unique identifier (FID) of the user who created this message. FIDs are assigned sequentially when users register on the network and cannot be changed. | 
 **Timestamp** | **int64** | Seconds since Farcaster Epoch (2021-01-01T00:00:00Z). Used to order messages chronologically and determine the most recent state. Must be within 10 minutes of the current time when the message is created. | 
 **Network** | [**FarcasterNetwork**](FarcasterNetwork.md) |  | [default to FARCASTERNETWORK_FARCASTER_NETWORK_MAINNET]
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewMessageDataCastRemove
 
-`func NewMessageDataCastRemove(type_ MessageType, fid int32, timestamp int64, network FarcasterNetwork, targetHash string, ) *MessageDataCastRemove`
+`func NewMessageDataCastRemove(fid int32, timestamp int64, network FarcasterNetwork, targetHash string, ) *MessageDataCastRemove`
 
 NewMessageDataCastRemove instantiates a new MessageDataCastRemove object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *MessageDataCastRemove) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetFid
 

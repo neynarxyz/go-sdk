@@ -2051,7 +2051,6 @@ components:
       - fid
       - network
       - timestamp
-      - type
       type: object
     MessageDataFrameAction:
       allOf:
