@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.36.0
+  version: 2.35.1
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -1414,6 +1414,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Enables experimental features including filtering based on the\
+          \ Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a)\
+          \ for more details."
+        explode: false
+        in: header
+        name: x-neynar-experimental
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: simple
+        x-is-global-header: true
       responses:
         "200":
           content:

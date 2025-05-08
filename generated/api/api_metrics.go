@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.36.0
+API version: 2.35.1
 Contact: team@neynar.com
 */
 
@@ -40,12 +40,13 @@ type MetricsAPI interface {
 type MetricsAPIService service
 
 type ApiFetchCastMetricsRequest struct {
-	ctx        context.Context
-	ApiService MetricsAPI
-	q          *string
-	interval   *string
-	authorFid  *int32
-	channelId  *string
+	ctx                 context.Context
+	ApiService          MetricsAPI
+	q                   *string
+	interval            *string
+	authorFid           *int32
+	channelId           *string
+	xNeynarExperimental *bool
 }
 
 // Query string to search for casts
@@ -69,6 +70,12 @@ func (r ApiFetchCastMetricsRequest) AuthorFid(authorFid int32) ApiFetchCastMetri
 // Channel ID of the casts you want to search
 func (r ApiFetchCastMetricsRequest) ChannelId(channelId string) ApiFetchCastMetricsRequest {
 	r.channelId = &channelId
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchCastMetricsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchCastMetricsRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -142,6 +149,9 @@ func (a *MetricsAPIService) FetchCastMetricsExecute(r ApiFetchCastMetricsRequest
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xNeynarExperimental != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "x-neynar-experimental", r.xNeynarExperimental, "simple", "")
 	}
 	if r.ctx != nil {
 		// API Key Authentication
