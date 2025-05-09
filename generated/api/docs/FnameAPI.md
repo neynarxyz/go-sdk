@@ -25,7 +25,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/neynarxyz/go-sdk/generated/api"
+	openapiclient "github.com/neynarxyz/go-sdk/generated/neynar_sdk"
 )
 
 func main() {
