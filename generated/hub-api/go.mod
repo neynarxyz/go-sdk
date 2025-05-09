@@ -1,4 +1,4 @@
-module github.com/neynarxyz/go-sdk/generated/hub
+module github.com/neynarxyz/go-sdk/generated/neynar_hub_sdk
 
 go 1.23.0
 

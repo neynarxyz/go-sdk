@@ -7,13 +7,14 @@ export GO_POST_PROCESS_FILE='gofmt -w'
 
 # Delete all directories except test
 cd ./generated/api
-rm -rf *.* api/ docs/
+rm -rf ./*.* api/ docs/
 cd ../..
 npx --yes @openapitools/openapi-generator-cli \
     generate \
     --git-user-id neynarxyz \
     --git-repo-id go-sdk/generated \
     -g go \
+    --additional-properties=packageVersion="$SDK_VERSION" \
     --config ./src/api/openapi-generator-config.json \
     -i ./src/OAS/src/v2/spec.yaml \
     -o ./generated/api \
@@ -26,19 +27,21 @@ npx --yes @openapitools/openapi-generator-cli \
     go get github.com/stretchr/testify/assert
     go get golang.org/x/net/context
     go fmt
+    go tidy
     go build
     go test ./...
 )
 
 # Delete all directories except test
 cd ./generated/hub-api
-rm -rf *.* api/ docs/
+rm -rf ./*.* api/ docs/
 cd ../..
 npx --yes @openapitools/openapi-generator-cli \
     generate \
     --git-user-id neynarxyz \
     --git-repo-id go-sdk/generated \
     -g go \
+    --additional-properties=packageVersion="$SDK_VERSION" \
     --config ./src/hub-api/openapi-generator-config.json \
     -i ./src/OAS/src/hub-rest-api/spec.yaml \
     -o ./generated/hub-api \
@@ -52,6 +55,7 @@ npx --yes @openapitools/openapi-generator-cli \
     go get github.com/stretchr/testify/assert
     go get golang.org/x/net/context
     go fmt
+    go tidy
     go build
     go test ./...
 )

@@ -27,7 +27,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/neynarxyz/go-sdk/generated/hub"
+	openapiclient "github.com/neynarxyz/go-sdk/generated/neynar_hub_sdk"
 )
 
 func main() {
@@ -101,7 +101,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/neynarxyz/go-sdk/generated/hub"
+	openapiclient "github.com/neynarxyz/go-sdk/generated/neynar_hub_sdk"
 )
 
 func main() {
@@ -175,7 +175,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/neynarxyz/go-sdk/generated/hub"
+	openapiclient "github.com/neynarxyz/go-sdk/generated/neynar_hub_sdk"
 )
 
 func main() {
