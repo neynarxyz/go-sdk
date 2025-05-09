@@ -20,12 +20,12 @@ jobs:
 
       - name: Build API
         run: |
-          cd generated/api
+          cd generated/neynar_sdk
           go build
 
       - name: Build Hub API
         run: |
-          cd generated/hub-api
+          cd generated/neynar_hub_sdk
           go build
 
       - name: Install yq
@@ -36,7 +36,7 @@ jobs:
       - name: Create and Push Tag
         run: |
           # Parse version from openapi.yaml using yq
-          VERSION=$(yq '.info.version' generated/api/api/openapi.yaml)
+          VERSION=$(yq '.info.version' generated/neynar_sdk/api/openapi.yaml)
           if [ -z "$VERSION" ]; then
             echo "Could not determine version from openapi.yaml"
             exit 1
