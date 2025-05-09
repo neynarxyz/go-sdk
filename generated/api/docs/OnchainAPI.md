@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**DeployFungible**](OnchainAPI.md#DeployFungible) | **Post** /fungible | Deploy fungible
 [**FetchRelevantFungibleOwners**](OnchainAPI.md#FetchRelevantFungibleOwners) | **Get** /farcaster/fungible/owner/relevant | Relevant owners
 [**FetchUserBalance**](OnchainAPI.md#FetchUserBalance) | **Get** /farcaster/user/balance | Token balance
+[**RegisterAccountOnchain**](OnchainAPI.md#RegisterAccountOnchain) | **Post** /farcaster/user/register | Register account onchain
 
 
 
@@ -229,6 +230,72 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RegisterAccountOnchain
+
+> RegisterUserOnChainResponse RegisterAccountOnchain(ctx).RegisterUserOnChainReqBody(registerUserOnChainReqBody).Execute()
+
+Register account onchain
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/neynarxyz/go-sdk/generated/api"
+)
+
+func main() {
+	registerUserOnChainReqBody := *openapiclient.NewRegisterUserOnChainReqBody(*openapiclient.NewRegisterUserOnChainReqBodyRegistration(int32(1715190000), "Signature_example", "0x5a927ac639636e534b678e81768ca19e2c6280b7", "0x5a927ac639636e534b678e81768ca19e2c6280b7")) // RegisterUserOnChainReqBody | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OnchainAPI.RegisterAccountOnchain(context.Background()).RegisterUserOnChainReqBody(registerUserOnChainReqBody).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OnchainAPI.RegisterAccountOnchain``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RegisterAccountOnchain`: RegisterUserOnChainResponse
+	fmt.Fprintf(os.Stdout, "Response from `OnchainAPI.RegisterAccountOnchain`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRegisterAccountOnchainRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registerUserOnChainReqBody** | [**RegisterUserOnChainReqBody**](RegisterUserOnChainReqBody.md) |  | 
+
+### Return type
+
+[**RegisterUserOnChainResponse**](RegisterUserOnChainResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
