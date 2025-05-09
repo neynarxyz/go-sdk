@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.37.0
+API version: 2.38.1
 Contact: team@neynar.com
 */
 
@@ -31,6 +31,28 @@ type FarcasterManifestFrame struct {
 	SplashImageUrl        *string `json:"splash_image_url,omitempty"`
 	SplashBackgroundColor *string `json:"splash_background_color,omitempty"`
 	WebhookUrl            *string `json:"webhook_url,omitempty"`
+	// Short subtitle for the frame
+	Subtitle *string `json:"subtitle,omitempty"`
+	// Detailed description of the frame
+	Description *string `json:"description,omitempty"`
+	// URLs of screenshots showcasing the frame
+	ScreenshotUrls []string `json:"screenshot_urls,omitempty"`
+	// Primary category the frame belongs to
+	PrimaryCategory *string `json:"primary_category,omitempty"`
+	// Tags associated with the frame
+	Tags []string `json:"tags,omitempty"`
+	// URL of the hero image displayed for the frame
+	HeroImageUrl *string `json:"hero_image_url,omitempty"`
+	// Short tagline for the frame
+	Tagline *string `json:"tagline,omitempty"`
+	// Title used for Open Graph previews
+	OgTitle *string `json:"og_title,omitempty"`
+	// Description used for Open Graph previews
+	OgDescription *string `json:"og_description,omitempty"`
+	// Image URL used for Open Graph previews
+	OgImageUrl *string `json:"og_image_url,omitempty"`
+	// Whether search engines should not index this frame
+	Noindex *bool `json:"noindex,omitempty"`
 }
 
 type _FarcasterManifestFrame FarcasterManifestFrame
@@ -312,6 +334,358 @@ func (o *FarcasterManifestFrame) SetWebhookUrl(v string) {
 	o.WebhookUrl = &v
 }
 
+// GetSubtitle returns the Subtitle field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetSubtitle() string {
+	if o == nil || IsNil(o.Subtitle) {
+		var ret string
+		return ret
+	}
+	return *o.Subtitle
+}
+
+// GetSubtitleOk returns a tuple with the Subtitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetSubtitleOk() (*string, bool) {
+	if o == nil || IsNil(o.Subtitle) {
+		return nil, false
+	}
+	return o.Subtitle, true
+}
+
+// HasSubtitle returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasSubtitle() bool {
+	if o != nil && !IsNil(o.Subtitle) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubtitle gets a reference to the given string and assigns it to the Subtitle field.
+func (o *FarcasterManifestFrame) SetSubtitle(v string) {
+	o.Subtitle = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *FarcasterManifestFrame) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetScreenshotUrls returns the ScreenshotUrls field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetScreenshotUrls() []string {
+	if o == nil || IsNil(o.ScreenshotUrls) {
+		var ret []string
+		return ret
+	}
+	return o.ScreenshotUrls
+}
+
+// GetScreenshotUrlsOk returns a tuple with the ScreenshotUrls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetScreenshotUrlsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ScreenshotUrls) {
+		return nil, false
+	}
+	return o.ScreenshotUrls, true
+}
+
+// HasScreenshotUrls returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasScreenshotUrls() bool {
+	if o != nil && !IsNil(o.ScreenshotUrls) {
+		return true
+	}
+
+	return false
+}
+
+// SetScreenshotUrls gets a reference to the given []string and assigns it to the ScreenshotUrls field.
+func (o *FarcasterManifestFrame) SetScreenshotUrls(v []string) {
+	o.ScreenshotUrls = v
+}
+
+// GetPrimaryCategory returns the PrimaryCategory field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetPrimaryCategory() string {
+	if o == nil || IsNil(o.PrimaryCategory) {
+		var ret string
+		return ret
+	}
+	return *o.PrimaryCategory
+}
+
+// GetPrimaryCategoryOk returns a tuple with the PrimaryCategory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetPrimaryCategoryOk() (*string, bool) {
+	if o == nil || IsNil(o.PrimaryCategory) {
+		return nil, false
+	}
+	return o.PrimaryCategory, true
+}
+
+// HasPrimaryCategory returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasPrimaryCategory() bool {
+	if o != nil && !IsNil(o.PrimaryCategory) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrimaryCategory gets a reference to the given string and assigns it to the PrimaryCategory field.
+func (o *FarcasterManifestFrame) SetPrimaryCategory(v string) {
+	o.PrimaryCategory = &v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *FarcasterManifestFrame) SetTags(v []string) {
+	o.Tags = v
+}
+
+// GetHeroImageUrl returns the HeroImageUrl field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetHeroImageUrl() string {
+	if o == nil || IsNil(o.HeroImageUrl) {
+		var ret string
+		return ret
+	}
+	return *o.HeroImageUrl
+}
+
+// GetHeroImageUrlOk returns a tuple with the HeroImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetHeroImageUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.HeroImageUrl) {
+		return nil, false
+	}
+	return o.HeroImageUrl, true
+}
+
+// HasHeroImageUrl returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasHeroImageUrl() bool {
+	if o != nil && !IsNil(o.HeroImageUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetHeroImageUrl gets a reference to the given string and assigns it to the HeroImageUrl field.
+func (o *FarcasterManifestFrame) SetHeroImageUrl(v string) {
+	o.HeroImageUrl = &v
+}
+
+// GetTagline returns the Tagline field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetTagline() string {
+	if o == nil || IsNil(o.Tagline) {
+		var ret string
+		return ret
+	}
+	return *o.Tagline
+}
+
+// GetTaglineOk returns a tuple with the Tagline field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetTaglineOk() (*string, bool) {
+	if o == nil || IsNil(o.Tagline) {
+		return nil, false
+	}
+	return o.Tagline, true
+}
+
+// HasTagline returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasTagline() bool {
+	if o != nil && !IsNil(o.Tagline) {
+		return true
+	}
+
+	return false
+}
+
+// SetTagline gets a reference to the given string and assigns it to the Tagline field.
+func (o *FarcasterManifestFrame) SetTagline(v string) {
+	o.Tagline = &v
+}
+
+// GetOgTitle returns the OgTitle field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetOgTitle() string {
+	if o == nil || IsNil(o.OgTitle) {
+		var ret string
+		return ret
+	}
+	return *o.OgTitle
+}
+
+// GetOgTitleOk returns a tuple with the OgTitle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetOgTitleOk() (*string, bool) {
+	if o == nil || IsNil(o.OgTitle) {
+		return nil, false
+	}
+	return o.OgTitle, true
+}
+
+// HasOgTitle returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasOgTitle() bool {
+	if o != nil && !IsNil(o.OgTitle) {
+		return true
+	}
+
+	return false
+}
+
+// SetOgTitle gets a reference to the given string and assigns it to the OgTitle field.
+func (o *FarcasterManifestFrame) SetOgTitle(v string) {
+	o.OgTitle = &v
+}
+
+// GetOgDescription returns the OgDescription field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetOgDescription() string {
+	if o == nil || IsNil(o.OgDescription) {
+		var ret string
+		return ret
+	}
+	return *o.OgDescription
+}
+
+// GetOgDescriptionOk returns a tuple with the OgDescription field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetOgDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.OgDescription) {
+		return nil, false
+	}
+	return o.OgDescription, true
+}
+
+// HasOgDescription returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasOgDescription() bool {
+	if o != nil && !IsNil(o.OgDescription) {
+		return true
+	}
+
+	return false
+}
+
+// SetOgDescription gets a reference to the given string and assigns it to the OgDescription field.
+func (o *FarcasterManifestFrame) SetOgDescription(v string) {
+	o.OgDescription = &v
+}
+
+// GetOgImageUrl returns the OgImageUrl field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetOgImageUrl() string {
+	if o == nil || IsNil(o.OgImageUrl) {
+		var ret string
+		return ret
+	}
+	return *o.OgImageUrl
+}
+
+// GetOgImageUrlOk returns a tuple with the OgImageUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetOgImageUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.OgImageUrl) {
+		return nil, false
+	}
+	return o.OgImageUrl, true
+}
+
+// HasOgImageUrl returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasOgImageUrl() bool {
+	if o != nil && !IsNil(o.OgImageUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetOgImageUrl gets a reference to the given string and assigns it to the OgImageUrl field.
+func (o *FarcasterManifestFrame) SetOgImageUrl(v string) {
+	o.OgImageUrl = &v
+}
+
+// GetNoindex returns the Noindex field value if set, zero value otherwise.
+func (o *FarcasterManifestFrame) GetNoindex() bool {
+	if o == nil || IsNil(o.Noindex) {
+		var ret bool
+		return ret
+	}
+	return *o.Noindex
+}
+
+// GetNoindexOk returns a tuple with the Noindex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FarcasterManifestFrame) GetNoindexOk() (*bool, bool) {
+	if o == nil || IsNil(o.Noindex) {
+		return nil, false
+	}
+	return o.Noindex, true
+}
+
+// HasNoindex returns a boolean if a field has been set.
+func (o *FarcasterManifestFrame) HasNoindex() bool {
+	if o != nil && !IsNil(o.Noindex) {
+		return true
+	}
+
+	return false
+}
+
+// SetNoindex gets a reference to the given bool and assigns it to the Noindex field.
+func (o *FarcasterManifestFrame) SetNoindex(v bool) {
+	o.Noindex = &v
+}
+
 func (o FarcasterManifestFrame) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -340,6 +714,39 @@ func (o FarcasterManifestFrame) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.WebhookUrl) {
 		toSerialize["webhook_url"] = o.WebhookUrl
+	}
+	if !IsNil(o.Subtitle) {
+		toSerialize["subtitle"] = o.Subtitle
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.ScreenshotUrls) {
+		toSerialize["screenshot_urls"] = o.ScreenshotUrls
+	}
+	if !IsNil(o.PrimaryCategory) {
+		toSerialize["primary_category"] = o.PrimaryCategory
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	if !IsNil(o.HeroImageUrl) {
+		toSerialize["hero_image_url"] = o.HeroImageUrl
+	}
+	if !IsNil(o.Tagline) {
+		toSerialize["tagline"] = o.Tagline
+	}
+	if !IsNil(o.OgTitle) {
+		toSerialize["og_title"] = o.OgTitle
+	}
+	if !IsNil(o.OgDescription) {
+		toSerialize["og_description"] = o.OgDescription
+	}
+	if !IsNil(o.OgImageUrl) {
+		toSerialize["og_image_url"] = o.OgImageUrl
+	}
+	if !IsNil(o.Noindex) {
+		toSerialize["noindex"] = o.Noindex
 	}
 	return toSerialize, nil
 }

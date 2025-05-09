@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## FetchFrameCatalog
 
-> FrameCatalogResponse FetchFrameCatalog(ctx).Limit(limit).Cursor(cursor).TimeWindow(timeWindow).Execute()
+> FrameCatalogResponse FetchFrameCatalog(ctx).Limit(limit).Cursor(cursor).TimeWindow(timeWindow).Categories(categories).Execute()
 
 Mini apps catalog
 
@@ -113,10 +113,11 @@ func main() {
 	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 100)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
 	timeWindow := openapiclient.TrendingTimeWindow("1h") // TrendingTimeWindow | Time window used to calculate the change in trending score for each mini app, used to sort mini app results (optional) (default to "24h")
+	categories := []string{"Categories_example"} // []string | Comma separated list of categories to include in the results.  Includes all if left blank.  Example: `categories=games,social` OR: `categories=games&categories=social` (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FrameAPI.FetchFrameCatalog(context.Background()).Limit(limit).Cursor(cursor).TimeWindow(timeWindow).Execute()
+	resp, r, err := apiClient.FrameAPI.FetchFrameCatalog(context.Background()).Limit(limit).Cursor(cursor).TimeWindow(timeWindow).Categories(categories).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FrameAPI.FetchFrameCatalog``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -140,6 +141,7 @@ Name | Type | Description  | Notes
  **limit** | **int32** | Number of results to fetch | [default to 100]
  **cursor** | **string** | Pagination cursor | 
  **timeWindow** | [**TrendingTimeWindow**](TrendingTimeWindow.md) | Time window used to calculate the change in trending score for each mini app, used to sort mini app results | [default to &quot;24h&quot;]
+ **categories** | **[]string** | Comma separated list of categories to include in the results.  Includes all if left blank.  Example: &#x60;categories&#x3D;games,social&#x60; OR: &#x60;categories&#x3D;games&amp;categories&#x3D;social&#x60; | 
 
 ### Return type
 
