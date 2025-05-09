@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**DeployFungible**](OnchainAPI.md#DeployFungible) | **Post** /fungible | Deploy fungible
 [**FetchRelevantFungibleOwners**](OnchainAPI.md#FetchRelevantFungibleOwners) | **Get** /farcaster/fungible/owner/relevant | Relevant owners
 [**FetchUserBalance**](OnchainAPI.md#FetchUserBalance) | **Get** /farcaster/user/balance | Token balance
-[**RegisterAccountOnchain**](OnchainAPI.md#RegisterAccountOnchain) | **Post** /farcaster/user/register | Register account onchain
+[**RegisterAccountOnchain**](OnchainAPI.md#RegisterAccountOnchain) | **Post** /farcaster/user/register | Register Farcaster account onchain
 
 
 
@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 
 > RegisterUserOnChainResponse RegisterAccountOnchain(ctx).RegisterUserOnChainReqBody(registerUserOnChainReqBody).Execute()
 
-Register account onchain
+Register Farcaster account onchain
 
 
 
