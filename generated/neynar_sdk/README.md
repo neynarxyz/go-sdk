@@ -158,7 +158,7 @@ Class | Method | HTTP request | Description
 *OnchainAPI* | [**DeployFungible**](docs/OnchainAPI.md#deployfungible) | **Post** /fungible | Deploy fungible
 *OnchainAPI* | [**FetchRelevantFungibleOwners**](docs/OnchainAPI.md#fetchrelevantfungibleowners) | **Get** /farcaster/fungible/owner/relevant | Relevant owners
 *OnchainAPI* | [**FetchUserBalance**](docs/OnchainAPI.md#fetchuserbalance) | **Get** /farcaster/user/balance | Token balance
-*OnchainAPI* | [**RegisterAccountOnchain**](docs/OnchainAPI.md#registeraccountonchain) | **Post** /farcaster/user/register | Register account onchain
+*OnchainAPI* | [**RegisterAccountOnchain**](docs/OnchainAPI.md#registeraccountonchain) | **Post** /farcaster/user/register | Register Farcaster account onchain
 *ReactionAPI* | [**DeleteReaction**](docs/ReactionAPI.md#deletereaction) | **Delete** /farcaster/reaction | Delete reaction
 *ReactionAPI* | [**FetchCastReactions**](docs/ReactionAPI.md#fetchcastreactions) | **Get** /farcaster/reactions/cast | Reactions for cast
 *ReactionAPI* | [**FetchUserReactions**](docs/ReactionAPI.md#fetchuserreactions) | **Get** /farcaster/reactions/user | Reactions for user

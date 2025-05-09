@@ -948,7 +948,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorRes'
           description: Server Error
-      summary: Register account onchain
+      summary: Register Farcaster account onchain
       tags:
       - Onchain
   /farcaster/message:

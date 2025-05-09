@@ -67,7 +67,7 @@ type OnchainAPI interface {
 	FetchUserBalanceExecute(r ApiFetchUserBalanceRequest) (*BalanceResponse, *http.Response, error)
 
 	/*
-		RegisterAccountOnchain Register account onchain
+		RegisterAccountOnchain Register Farcaster account onchain
 
 		Register a new farcaster account onchain. Optionally you can pass in signers along to register a new account and create multiple signers in a single transaction
 
@@ -696,7 +696,7 @@ func (r ApiRegisterAccountOnchainRequest) Execute() (*RegisterUserOnChainRespons
 }
 
 /*
-RegisterAccountOnchain Register account onchain
+RegisterAccountOnchain Register Farcaster account onchain
 
 Register a new farcaster account onchain. Optionally you can pass in signers along to register a new account and create multiple signers in a single transaction
 
