@@ -7,8 +7,8 @@
 ## Usage
 
 Please refer to the READMEs of the individual Go modules for detailed instructions on how to use the SDK:
-- [api](api/README.md): The main module for interacting with the Neynar API.
-- [hub-api](hub-api/README.md): The module for interacting with Neynar's Farcaster hub (Hubble/Snapchain) API.
+- [sdk](neynar_sdk/README.md): The main module for interacting with the Neynar API.
+- [hub_sdk](neynar_hub_sdk/README.md): The module for interacting with Neynar's Farcaster hub (Hubble/Snapchain) API.
 
 ## Contribution Guidelines
 
