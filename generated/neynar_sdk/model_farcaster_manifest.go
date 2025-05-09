@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.37.0
+API version: 2.38.1
 Contact: team@neynar.com
 */
 
@@ -24,7 +24,6 @@ var _ MappedNullable = &FarcasterManifest{}
 type FarcasterManifest struct {
 	AccountAssociation FarcasterManifestAccountAssociation `json:"account_association"`
 	Frame              *FarcasterManifestFrame             `json:"frame,omitempty"`
-	Triggers           []FarcasterManifestTriggersInner    `json:"triggers,omitempty"`
 }
 
 type _FarcasterManifest FarcasterManifest
@@ -103,38 +102,6 @@ func (o *FarcasterManifest) SetFrame(v FarcasterManifestFrame) {
 	o.Frame = &v
 }
 
-// GetTriggers returns the Triggers field value if set, zero value otherwise.
-func (o *FarcasterManifest) GetTriggers() []FarcasterManifestTriggersInner {
-	if o == nil || IsNil(o.Triggers) {
-		var ret []FarcasterManifestTriggersInner
-		return ret
-	}
-	return o.Triggers
-}
-
-// GetTriggersOk returns a tuple with the Triggers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FarcasterManifest) GetTriggersOk() ([]FarcasterManifestTriggersInner, bool) {
-	if o == nil || IsNil(o.Triggers) {
-		return nil, false
-	}
-	return o.Triggers, true
-}
-
-// HasTriggers returns a boolean if a field has been set.
-func (o *FarcasterManifest) HasTriggers() bool {
-	if o != nil && !IsNil(o.Triggers) {
-		return true
-	}
-
-	return false
-}
-
-// SetTriggers gets a reference to the given []FarcasterManifestTriggersInner and assigns it to the Triggers field.
-func (o *FarcasterManifest) SetTriggers(v []FarcasterManifestTriggersInner) {
-	o.Triggers = v
-}
-
 func (o FarcasterManifest) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -148,9 +115,6 @@ func (o FarcasterManifest) ToMap() (map[string]interface{}, error) {
 	toSerialize["account_association"] = o.AccountAssociation
 	if !IsNil(o.Frame) {
 		toSerialize["frame"] = o.Frame
-	}
-	if !IsNil(o.Triggers) {
-		toSerialize["triggers"] = o.Triggers
 	}
 	return toSerialize, nil
 }

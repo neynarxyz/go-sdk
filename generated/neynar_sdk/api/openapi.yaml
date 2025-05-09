@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.37.0
+  version: 2.38.1
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -2949,6 +2949,34 @@ paths:
         required: false
         schema:
           $ref: '#/components/schemas/TrendingTimeWindow'
+        style: form
+      - description: "Comma separated list of categories to include in the results.\
+          \  Includes all if left blank.  Example: `categories=games,social` OR: `categories=games&categories=social`"
+        example:
+        - games
+        - social
+        explode: false
+        in: query
+        name: categories
+        required: false
+        schema:
+          items:
+            enum:
+            - games
+            - social
+            - finance
+            - utility
+            - productivity
+            - health-fitness
+            - news-media
+            - music
+            - shopping
+            - education
+            - developer-tools
+            - entertainment
+            - art-creativity
+            type: string
+          type: array
         style: form
       responses:
         "200":
@@ -7046,38 +7074,40 @@ components:
       type: object
     FarcasterManifest:
       example:
-        triggers:
-        - name: name
-          id: id
-          type: cast
-          url: url
-        - name: name
-          id: id
-          type: cast
-          url: url
         account_association:
           payload: payload
           signature: signature
           header: header
         frame:
           icon_url: icon_url
-          splash_image_url: splash_image_url
+          screenshot_urls:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+          noindex: true
           webhook_url: webhook_url
           home_url: home_url
+          og_title: og_title
           image_url: image_url
-          name: name
-          button_title: button_title
+          description: description
           splash_background_color: splash_background_color
           version: 0.0.0
+          tags:
+          - tags
+          - tags
+          splash_image_url: splash_image_url
+          primary_category: primary_category
+          og_description: og_description
+          subtitle: subtitle
+          name: name
+          hero_image_url: https://openapi-generator.tech
+          tagline: tagline
+          button_title: button_title
+          og_image_url: https://openapi-generator.tech
       properties:
         account_association:
           $ref: '#/components/schemas/FarcasterManifest_account_association'
         frame:
           $ref: '#/components/schemas/FarcasterManifest_frame'
-        triggers:
-          items:
-            $ref: '#/components/schemas/FarcasterManifest_triggers_inner'
-          type: array
       required:
       - account_association
       type: object
@@ -7879,29 +7909,35 @@ components:
             ogProductAvailability: ogProductAvailability
         frames_url: frames_url
         manifest:
-          triggers:
-          - name: name
-            id: id
-            type: cast
-            url: url
-          - name: name
-            id: id
-            type: cast
-            url: url
           account_association:
             payload: payload
             signature: signature
             header: header
           frame:
             icon_url: icon_url
-            splash_image_url: splash_image_url
+            screenshot_urls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
+            noindex: true
             webhook_url: webhook_url
             home_url: home_url
+            og_title: og_title
             image_url: image_url
-            name: name
-            button_title: button_title
+            description: description
             splash_background_color: splash_background_color
             version: 0.0.0
+            tags:
+            - tags
+            - tags
+            splash_image_url: splash_image_url
+            primary_category: primary_category
+            og_description: og_description
+            subtitle: subtitle
+            name: name
+            hero_image_url: https://openapi-generator.tech
+            tagline: tagline
+            button_title: button_title
+            og_image_url: https://openapi-generator.tech
         author:
           fid: 3
           profile:
@@ -35370,29 +35406,35 @@ components:
               ogProductAvailability: ogProductAvailability
           frames_url: frames_url
           manifest:
-            triggers:
-            - name: name
-              id: id
-              type: cast
-              url: url
-            - name: name
-              id: id
-              type: cast
-              url: url
             account_association:
               payload: payload
               signature: signature
               header: header
             frame:
               icon_url: icon_url
-              splash_image_url: splash_image_url
+              screenshot_urls:
+              - https://openapi-generator.tech
+              - https://openapi-generator.tech
+              noindex: true
               webhook_url: webhook_url
               home_url: home_url
+              og_title: og_title
               image_url: image_url
-              name: name
-              button_title: button_title
+              description: description
               splash_background_color: splash_background_color
               version: 0.0.0
+              tags:
+              - tags
+              - tags
+              splash_image_url: splash_image_url
+              primary_category: primary_category
+              og_description: og_description
+              subtitle: subtitle
+              name: name
+              hero_image_url: https://openapi-generator.tech
+              tagline: tagline
+              button_title: button_title
+              og_image_url: https://openapi-generator.tech
           author:
             fid: 3
             profile:
@@ -35569,29 +35611,35 @@ components:
               ogProductAvailability: ogProductAvailability
           frames_url: frames_url
           manifest:
-            triggers:
-            - name: name
-              id: id
-              type: cast
-              url: url
-            - name: name
-              id: id
-              type: cast
-              url: url
             account_association:
               payload: payload
               signature: signature
               header: header
             frame:
               icon_url: icon_url
-              splash_image_url: splash_image_url
+              screenshot_urls:
+              - https://openapi-generator.tech
+              - https://openapi-generator.tech
+              noindex: true
               webhook_url: webhook_url
               home_url: home_url
+              og_title: og_title
               image_url: image_url
-              name: name
-              button_title: button_title
+              description: description
               splash_background_color: splash_background_color
               version: 0.0.0
+              tags:
+              - tags
+              - tags
+              splash_image_url: splash_image_url
+              primary_category: primary_category
+              og_description: og_description
+              subtitle: subtitle
+              name: name
+              hero_image_url: https://openapi-generator.tech
+              tagline: tagline
+              button_title: button_title
+              og_image_url: https://openapi-generator.tech
           author:
             fid: 3
             profile:
@@ -36840,13 +36888,13 @@ components:
             username: username
           object: user
           username: username
-        transaction_hash: 0xabc123...
+        transaction_hash: 0x2e276b4d014334797d9951ce2d3b7a11a4a58855cb07b3761de36785c618220a
       properties:
         message:
           example: Account registered successfully
           type: string
         transaction_hash:
-          example: 0xabc123...
+          example: 0x2e276b4d014334797d9951ce2d3b7a11a4a58855cb07b3761de36785c618220a
           type: string
         user:
           $ref: '#/components/schemas/User'
@@ -40534,29 +40582,35 @@ components:
               ogProductAvailability: ogProductAvailability
           frames_url: frames_url
           manifest:
-            triggers:
-            - name: name
-              id: id
-              type: cast
-              url: url
-            - name: name
-              id: id
-              type: cast
-              url: url
             account_association:
               payload: payload
               signature: signature
               header: header
             frame:
               icon_url: icon_url
-              splash_image_url: splash_image_url
+              screenshot_urls:
+              - https://openapi-generator.tech
+              - https://openapi-generator.tech
+              noindex: true
               webhook_url: webhook_url
               home_url: home_url
+              og_title: og_title
               image_url: image_url
-              name: name
-              button_title: button_title
+              description: description
               splash_background_color: splash_background_color
               version: 0.0.0
+              tags:
+              - tags
+              - tags
+              splash_image_url: splash_image_url
+              primary_category: primary_category
+              og_description: og_description
+              subtitle: subtitle
+              name: name
+              hero_image_url: https://openapi-generator.tech
+              tagline: tagline
+              button_title: button_title
+              og_image_url: https://openapi-generator.tech
           author:
             fid: 3
             profile:
@@ -40733,29 +40787,35 @@ components:
               ogProductAvailability: ogProductAvailability
           frames_url: frames_url
           manifest:
-            triggers:
-            - name: name
-              id: id
-              type: cast
-              url: url
-            - name: name
-              id: id
-              type: cast
-              url: url
             account_association:
               payload: payload
               signature: signature
               header: header
             frame:
               icon_url: icon_url
-              splash_image_url: splash_image_url
+              screenshot_urls:
+              - https://openapi-generator.tech
+              - https://openapi-generator.tech
+              noindex: true
               webhook_url: webhook_url
               home_url: home_url
+              og_title: og_title
               image_url: image_url
-              name: name
-              button_title: button_title
+              description: description
               splash_background_color: splash_background_color
               version: 0.0.0
+              tags:
+              - tags
+              - tags
+              splash_image_url: splash_image_url
+              primary_category: primary_category
+              og_description: og_description
+              subtitle: subtitle
+              name: name
+              hero_image_url: https://openapi-generator.tech
+              tagline: tagline
+              button_title: button_title
+              og_image_url: https://openapi-generator.tech
           author:
             fid: 3
             profile:
@@ -41143,29 +41203,35 @@ components:
                 ogProductAvailability: ogProductAvailability
             frames_url: frames_url
             manifest:
-              triggers:
-              - name: name
-                id: id
-                type: cast
-                url: url
-              - name: name
-                id: id
-                type: cast
-                url: url
               account_association:
                 payload: payload
                 signature: signature
                 header: header
               frame:
                 icon_url: icon_url
-                splash_image_url: splash_image_url
+                screenshot_urls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
+                noindex: true
                 webhook_url: webhook_url
                 home_url: home_url
+                og_title: og_title
                 image_url: image_url
-                name: name
-                button_title: button_title
+                description: description
                 splash_background_color: splash_background_color
                 version: 0.0.0
+                tags:
+                - tags
+                - tags
+                splash_image_url: splash_image_url
+                primary_category: primary_category
+                og_description: og_description
+                subtitle: subtitle
+                name: name
+                hero_image_url: https://openapi-generator.tech
+                tagline: tagline
+                button_title: button_title
+                og_image_url: https://openapi-generator.tech
             author:
               fid: 3
               profile:
@@ -41342,29 +41408,35 @@ components:
                 ogProductAvailability: ogProductAvailability
             frames_url: frames_url
             manifest:
-              triggers:
-              - name: name
-                id: id
-                type: cast
-                url: url
-              - name: name
-                id: id
-                type: cast
-                url: url
               account_association:
                 payload: payload
                 signature: signature
                 header: header
               frame:
                 icon_url: icon_url
-                splash_image_url: splash_image_url
+                screenshot_urls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
+                noindex: true
                 webhook_url: webhook_url
                 home_url: home_url
+                og_title: og_title
                 image_url: image_url
-                name: name
-                button_title: button_title
+                description: description
                 splash_background_color: splash_background_color
                 version: 0.0.0
+                tags:
+                - tags
+                - tags
+                splash_image_url: splash_image_url
+                primary_category: primary_category
+                og_description: og_description
+                subtitle: subtitle
+                name: name
+                hero_image_url: https://openapi-generator.tech
+                tagline: tagline
+                button_title: button_title
+                og_image_url: https://openapi-generator.tech
             author:
               fid: 3
               profile:
@@ -41728,29 +41800,35 @@ components:
                 ogProductAvailability: ogProductAvailability
             frames_url: frames_url
             manifest:
-              triggers:
-              - name: name
-                id: id
-                type: cast
-                url: url
-              - name: name
-                id: id
-                type: cast
-                url: url
               account_association:
                 payload: payload
                 signature: signature
                 header: header
               frame:
                 icon_url: icon_url
-                splash_image_url: splash_image_url
+                screenshot_urls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
+                noindex: true
                 webhook_url: webhook_url
                 home_url: home_url
+                og_title: og_title
                 image_url: image_url
-                name: name
-                button_title: button_title
+                description: description
                 splash_background_color: splash_background_color
                 version: 0.0.0
+                tags:
+                - tags
+                - tags
+                splash_image_url: splash_image_url
+                primary_category: primary_category
+                og_description: og_description
+                subtitle: subtitle
+                name: name
+                hero_image_url: https://openapi-generator.tech
+                tagline: tagline
+                button_title: button_title
+                og_image_url: https://openapi-generator.tech
             author:
               fid: 3
               profile:
@@ -41927,29 +42005,35 @@ components:
                 ogProductAvailability: ogProductAvailability
             frames_url: frames_url
             manifest:
-              triggers:
-              - name: name
-                id: id
-                type: cast
-                url: url
-              - name: name
-                id: id
-                type: cast
-                url: url
               account_association:
                 payload: payload
                 signature: signature
                 header: header
               frame:
                 icon_url: icon_url
-                splash_image_url: splash_image_url
+                screenshot_urls:
+                - https://openapi-generator.tech
+                - https://openapi-generator.tech
+                noindex: true
                 webhook_url: webhook_url
                 home_url: home_url
+                og_title: og_title
                 image_url: image_url
-                name: name
-                button_title: button_title
+                description: description
                 splash_background_color: splash_background_color
                 version: 0.0.0
+                tags:
+                - tags
+                - tags
+                splash_image_url: splash_image_url
+                primary_category: primary_category
+                og_description: og_description
+                subtitle: subtitle
+                name: name
+                hero_image_url: https://openapi-generator.tech
+                tagline: tagline
+                button_title: button_title
+                og_image_url: https://openapi-generator.tech
             author:
               fid: 3
               profile:
@@ -44104,14 +44188,29 @@ components:
     FarcasterManifest_frame:
       example:
         icon_url: icon_url
-        splash_image_url: splash_image_url
+        screenshot_urls:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+        noindex: true
         webhook_url: webhook_url
         home_url: home_url
+        og_title: og_title
         image_url: image_url
-        name: name
-        button_title: button_title
+        description: description
         splash_background_color: splash_background_color
         version: 0.0.0
+        tags:
+        - tags
+        - tags
+        splash_image_url: splash_image_url
+        primary_category: primary_category
+        og_description: og_description
+        subtitle: subtitle
+        name: name
+        hero_image_url: https://openapi-generator.tech
+        tagline: tagline
+        button_title: button_title
+        og_image_url: https://openapi-generator.tech
       properties:
         version:
           enum:
@@ -44121,81 +44220,67 @@ components:
           - next
           type: string
         name:
-          maxLength: 32
           type: string
         home_url:
-          maxLength: 512
           type: string
         icon_url:
-          maxLength: 512
           type: string
         image_url:
-          maxLength: 512
           type: string
         button_title:
-          maxLength: 32
           type: string
         splash_image_url:
-          maxLength: 512
           type: string
         splash_background_color:
           type: string
         webhook_url:
-          maxLength: 512
           type: string
+        subtitle:
+          description: Short subtitle for the frame
+          type: string
+        description:
+          description: Detailed description of the frame
+          type: string
+        screenshot_urls:
+          description: URLs of screenshots showcasing the frame
+          items:
+            format: uri
+            type: string
+          type: array
+        primary_category:
+          description: Primary category the frame belongs to
+          type: string
+        tags:
+          description: Tags associated with the frame
+          items:
+            type: string
+          type: array
+        hero_image_url:
+          description: URL of the hero image displayed for the frame
+          format: uri
+          type: string
+        tagline:
+          description: Short tagline for the frame
+          type: string
+        og_title:
+          description: Title used for Open Graph previews
+          type: string
+        og_description:
+          description: Description used for Open Graph previews
+          type: string
+        og_image_url:
+          description: Image URL used for Open Graph previews
+          format: uri
+          type: string
+        noindex:
+          description: Whether search engines should not index this frame
+          type: boolean
       required:
       - home_url
       - icon_url
       - name
       - version
       type: object
-    FarcasterManifest_triggers_inner_oneOf:
-      example:
-        name: name
-        id: id
-        type: cast
-        url: url
-      properties:
-        type:
-          enum:
-          - cast
-          type: string
-        id:
-          type: string
-        url:
-          maxLength: 512
-          type: string
-        name:
-          maxLength: 32
-          type: string
-      required:
-      - id
-      - type
-      - url
-      type: object
-    FarcasterManifest_triggers_inner_oneOf_1:
-      properties:
-        type:
-          enum:
-          - composer
-          type: string
-        id:
-          type: string
-        url:
-          maxLength: 512
-          type: string
-        name:
-          maxLength: 32
-          type: string
-      required:
-      - id
-      - type
-      - url
-      type: object
-    FarcasterManifest_triggers_inner:
-      oneOf:
-      - $ref: '#/components/schemas/FarcasterManifest_triggers_inner_oneOf'
-      - $ref: '#/components/schemas/FarcasterManifest_triggers_inner_oneOf_1'
     HtmlMetadata_allOf_oembed:
       discriminator:
         mapping:

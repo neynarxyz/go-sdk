@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.37.0
+API version: 2.38.1
 Contact: team@neynar.com
 */
 
@@ -402,6 +402,7 @@ type ApiFetchFrameCatalogRequest struct {
 	limit      *int32
 	cursor     *string
 	timeWindow *TrendingTimeWindow
+	categories *[]string
 }
 
 // Number of results to fetch
@@ -419,6 +420,12 @@ func (r ApiFetchFrameCatalogRequest) Cursor(cursor string) ApiFetchFrameCatalogR
 // Time window used to calculate the change in trending score for each mini app, used to sort mini app results
 func (r ApiFetchFrameCatalogRequest) TimeWindow(timeWindow TrendingTimeWindow) ApiFetchFrameCatalogRequest {
 	r.timeWindow = &timeWindow
+	return r
+}
+
+// Comma separated list of categories to include in the results.  Includes all if left blank.  Example: &#x60;categories&#x3D;games,social&#x60; OR: &#x60;categories&#x3D;games&amp;categories&#x3D;social&#x60;
+func (r ApiFetchFrameCatalogRequest) Categories(categories []string) ApiFetchFrameCatalogRequest {
+	r.categories = &categories
 	return r
 }
 
@@ -477,6 +484,9 @@ func (a *FrameAPIService) FetchFrameCatalogExecute(r ApiFetchFrameCatalogRequest
 	} else {
 		var defaultValue TrendingTimeWindow = "24h"
 		r.timeWindow = &defaultValue
+	}
+	if r.categories != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "categories", r.categories, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
