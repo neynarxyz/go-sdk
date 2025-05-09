@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.36.1
+  version: 2.37.0
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -916,6 +916,41 @@ paths:
       summary: Register new account
       tags:
       - User
+  /farcaster/user/register:
+    post:
+      description: |
+        Register a new farcaster account on-chain. Optionally you can pass in signers along to register a new account and create multiple signers in a single transaction
+      externalDocs:
+        url: https://docs.neynar.com/reference/register-account-on-chain
+      operationId: register-account-on-chain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUserOnChainReqBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterUserOnChainResponse'
+          description: Successful operation.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Register account on-chain
+      tags:
+      - Onchain
   /farcaster/message:
     post:
       description: Publish a message to farcaster. The message must be signed by a
@@ -6701,6 +6736,10 @@ components:
     SolAddress:
       description: Solana address
       pattern: "^[1-9A-HJ-NP-Za-km-z]{32,44}$"
+      type: string
+    "0xHexSignature":
+      description: Hex encoded signature
+      pattern: "^0x[a-fA-F0-9]+$"
       type: string
     Fid:
       description: The unique identifier of a farcaster user (unsigned integer)
@@ -36676,6 +36715,142 @@ components:
       - signer
       - success
       type: object
+    RegisterUserOnChainReqBody:
+      example:
+        signers:
+        - public_key: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+          metadata: metadata
+          key_type: 1
+          signature: signature
+          metadata_type: 1
+          deadline: 1715190000
+        - public_key: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+          metadata: metadata
+          key_type: 1
+          signature: signature
+          metadata_type: 1
+          deadline: 1715190000
+        registration:
+          recovery_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          signature: signature
+          deadline: 1715190000
+          custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+        storage_units: 2
+      properties:
+        registration:
+          $ref: '#/components/schemas/RegisterUserOnChainReqBody_registration'
+        storage_units:
+          example: 2
+          minimum: 0
+          type: integer
+        signers:
+          items:
+            $ref: '#/components/schemas/RegisterUserOnChainReqBody_signers_inner'
+          type: array
+      required:
+      - registration
+      type: object
+    RegisterUserOnChainResponse:
+      example:
+        message: Account registered successfully
+        user:
+          fid: 3
+          profile:
+            bio:
+              mentioned_profiles_ranges:
+              - start: 0.08008281904610115
+                end: 0.6027456183070403
+              - start: 0.08008281904610115
+                end: 0.6027456183070403
+              mentioned_profiles:
+              - fid: 3
+                pfp_url: pfp_url
+                display_name: display_name
+                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+                object: user_dehydrated
+                username: username
+              - fid: 3
+                pfp_url: pfp_url
+                display_name: display_name
+                custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+                object: user_dehydrated
+                username: username
+              mentioned_channels_ranges:
+              - start: 0.08008281904610115
+                end: 0.6027456183070403
+              - start: 0.08008281904610115
+                end: 0.6027456183070403
+              text: text
+              mentioned_channels:
+              - viewer_context:
+                  role: member
+                  following: true
+                image_url: image_url
+                name: name
+                id: id
+                object: channel_dehydrated
+              - viewer_context:
+                  role: member
+                  following: true
+                image_url: image_url
+                name: name
+                id: id
+                object: channel_dehydrated
+            location:
+              address:
+                country: country
+                country_code: country_code
+                city: city
+                state: state
+                state_code: state_code
+              latitude: -63.615366350946985
+              longitude: 34.63682100059455
+          power_badge: true
+          experimental:
+            neynar_user_score: 7.061401241503109
+            deprecation_notice: deprecation_notice
+          display_name: display_name
+          verifications:
+          - 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          - 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          follower_count: 5
+          score: 9.301444243932576
+          verified_addresses:
+            eth_addresses:
+            - 0x5a927ac639636e534b678e81768ca19e2c6280b7
+            - 0x5a927ac639636e534b678e81768ca19e2c6280b7
+            sol_addresses:
+            - null
+            - null
+            primary:
+              eth_address: ""
+              sol_address: ""
+          pfp_url: pfp_url
+          following_count: 2
+          viewer_context:
+            followed_by: true
+            blocking: true
+            blocked_by: true
+            following: true
+          verified_accounts:
+          - platform: x
+            username: username
+          - platform: x
+            username: username
+          object: user
+          username: username
+        transaction_hash: 0xabc123...
+      properties:
+        message:
+          example: Account registered successfully
+          type: string
+        transaction_hash:
+          example: 0xabc123...
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      type: object
     MuteRecord:
       example:
         muted:
@@ -50587,6 +50762,77 @@ components:
           $ref: '#/components/schemas/RegisterUserReqBody_metadata_verified_accounts'
         location:
           $ref: '#/components/schemas/RegisterUserReqBody_metadata_location'
+      type: object
+    RegisterUserOnChainReqBody_registration:
+      example:
+        recovery_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+        signature: signature
+        deadline: 1715190000
+        custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+      properties:
+        deadline:
+          example: 1715190000
+          minimum: 0
+          type: integer
+        signature:
+          description: Hex encoded signature
+          pattern: "^0x[a-fA-F0-9]+$"
+          type: string
+        custody_address:
+          description: Ethereum address
+          example: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          pattern: "^0x[a-fA-F0-9]{40}$"
+          type: string
+        recovery_address:
+          description: Ethereum address
+          example: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          pattern: "^0x[a-fA-F0-9]{40}$"
+          type: string
+      required:
+      - custody_address
+      - deadline
+      - recovery_address
+      - signature
+      type: object
+    RegisterUserOnChainReqBody_signers_inner:
+      example:
+        public_key: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+        metadata: metadata
+        key_type: 1
+        signature: signature
+        metadata_type: 1
+        deadline: 1715190000
+      properties:
+        signature:
+          description: Hex encoded signature
+          pattern: "^0x[a-fA-F0-9]+$"
+          type: string
+        metadata:
+          description: Hex encoded signature
+          pattern: "^0x[a-fA-F0-9]+$"
+          type: string
+        public_key:
+          description: Ed25519 public key
+          example: 0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+          pattern: "^0x[a-fA-F0-9]{64}$"
+          type: string
+        key_type:
+          default: 1
+          minimum: 1
+          type: integer
+        metadata_type:
+          default: 1
+          minimum: 1
+          type: integer
+        deadline:
+          example: 1715190000
+          minimum: 0
+          type: integer
+      required:
+      - deadline
+      - metadata
+      - public_key
+      - signature
       type: object
     WebhookSubscriptionFilters_user_updated:
       example:
