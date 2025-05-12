@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.38.1
+  version: 2.38.2
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -6810,7 +6810,7 @@ components:
     FollowSortType:
       enum:
       - desc_chron
-      - affinity_score
+      - algorithmic
       example: desc_chron
       type: string
     SearchSortType:
