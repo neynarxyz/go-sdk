@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.38.1
+API version: 2.39.0
 Contact: team@neynar.com
 */
 
@@ -21,14 +21,14 @@ type FollowSortType string
 
 // List of FollowSortType
 const (
-	FOLLOWSORTTYPE_DESC_CHRON     FollowSortType = "desc_chron"
-	FOLLOWSORTTYPE_AFFINITY_SCORE FollowSortType = "affinity_score"
+	FOLLOWSORTTYPE_DESC_CHRON  FollowSortType = "desc_chron"
+	FOLLOWSORTTYPE_ALGORITHMIC FollowSortType = "algorithmic"
 )
 
 // All allowed values of FollowSortType enum
 var AllowedFollowSortTypeEnumValues = []FollowSortType{
 	"desc_chron",
-	"affinity_score",
+	"algorithmic",
 }
 
 func (v *FollowSortType) UnmarshalJSON(src []byte) error {

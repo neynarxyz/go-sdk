@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.38.1
+  version: 2.39.0
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -6765,8 +6765,8 @@ components:
       description: Solana address
       pattern: "^[1-9A-HJ-NP-Za-km-z]{32,44}$"
       type: string
-    "0xHexSignature":
-      description: Hex encoded signature
+    PrefixedHexString:
+      description: Hexadecimal number expressed as string with '0x' prefix
       pattern: "^0x[a-fA-F0-9]+$"
       type: string
     Fid:
@@ -6810,7 +6810,7 @@ components:
     FollowSortType:
       enum:
       - desc_chron
-      - affinity_score
+      - algorithmic
       example: desc_chron
       type: string
     SearchSortType:
@@ -50860,7 +50860,7 @@ components:
           minimum: 0
           type: integer
         signature:
-          description: Hex encoded signature
+          description: Hexadecimal number expressed as string with '0x' prefix
           pattern: "^0x[a-fA-F0-9]+$"
           type: string
         custody_address:
@@ -50889,11 +50889,11 @@ components:
         deadline: 1715190000
       properties:
         signature:
-          description: Hex encoded signature
+          description: Hexadecimal number expressed as string with '0x' prefix
           pattern: "^0x[a-fA-F0-9]+$"
           type: string
         metadata:
-          description: Hex encoded signature
+          description: Hexadecimal number expressed as string with '0x' prefix
           pattern: "^0x[a-fA-F0-9]+$"
           type: string
         public_key:
