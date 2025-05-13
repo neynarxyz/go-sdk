@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.38.1
+API version: 2.40.0
 Contact: team@neynar.com
 */
 
@@ -226,6 +226,20 @@ type FrameAPI interface {
 	// PublishNeynarFrameExecute executes the request
 	//  @return NeynarFrame
 	PublishNeynarFrameExecute(r ApiPublishNeynarFrameRequest) (*NeynarFrame, *http.Response, error)
+
+	/*
+		SearchFrames Search mini apps
+
+		Search for mini apps based on a query string
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiSearchFramesRequest
+	*/
+	SearchFrames(ctx context.Context) ApiSearchFramesRequest
+
+	// SearchFramesExecute executes the request
+	//  @return FrameCatalogResponse
+	SearchFramesExecute(r ApiSearchFramesRequest) (*FrameCatalogResponse, *http.Response, error)
 
 	/*
 		UpdateNeynarFrame Update mini app
@@ -2291,6 +2305,164 @@ func (a *FrameAPIService) PublishNeynarFrameExecute(r ApiPublishNeynarFrameReque
 	}
 	// body params
 	localVarPostBody = r.neynarFrameCreationReqBody
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorRes
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSearchFramesRequest struct {
+	ctx        context.Context
+	ApiService FrameAPI
+	q          *string
+	limit      *int32
+	cursor     *string
+}
+
+// Query string to search for mini apps
+func (r ApiSearchFramesRequest) Q(q string) ApiSearchFramesRequest {
+	r.q = &q
+	return r
+}
+
+// Number of results to fetch
+func (r ApiSearchFramesRequest) Limit(limit int32) ApiSearchFramesRequest {
+	r.limit = &limit
+	return r
+}
+
+// Pagination cursor
+func (r ApiSearchFramesRequest) Cursor(cursor string) ApiSearchFramesRequest {
+	r.cursor = &cursor
+	return r
+}
+
+func (r ApiSearchFramesRequest) Execute() (*FrameCatalogResponse, *http.Response, error) {
+	return r.ApiService.SearchFramesExecute(r)
+}
+
+/*
+SearchFrames Search mini apps
+
+Search for mini apps based on a query string
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSearchFramesRequest
+*/
+func (a *FrameAPIService) SearchFrames(ctx context.Context) ApiSearchFramesRequest {
+	return ApiSearchFramesRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return FrameCatalogResponse
+func (a *FrameAPIService) SearchFramesExecute(r ApiSearchFramesRequest) (*FrameCatalogResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FrameCatalogResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.SearchFrames")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/farcaster/frame/search"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.q == nil {
+		return localVarReturnValue, nil, reportError("q is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 20
+		r.limit = &defaultValue
+	}
+	if r.cursor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
