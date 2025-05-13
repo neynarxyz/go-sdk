@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.38.1
+API version: 2.40.0
 Contact: team@neynar.com
 */
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &RegisterUserOnChainReqBodySignersInner{}
 
 // RegisterUserOnChainReqBodySignersInner struct for RegisterUserOnChainReqBodySignersInner
 type RegisterUserOnChainReqBodySignersInner struct {
-	// Hex encoded signature
+	// Hexadecimal number expressed as string with '0x' prefix
 	Signature string `json:"signature" validate:"regexp=^0x[a-fA-F0-9]+$"`
-	// Hex encoded signature
+	// Hexadecimal number expressed as string with '0x' prefix
 	Metadata string `json:"metadata" validate:"regexp=^0x[a-fA-F0-9]+$"`
 	// Ed25519 public key
 	PublicKey    string `json:"public_key" validate:"regexp=^0x[a-fA-F0-9]{64}$"`

@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**PostFrameActionDeveloperManaged**](FrameAPI.md#PostFrameActionDeveloperManaged) | **Post** /farcaster/frame/developer_managed/action | Signature packet
 [**PublishFrameNotifications**](FrameAPI.md#PublishFrameNotifications) | **Post** /farcaster/frame/notifications | Send notifications
 [**PublishNeynarFrame**](FrameAPI.md#PublishNeynarFrame) | **Post** /farcaster/frame | Create mini app
+[**SearchFrames**](FrameAPI.md#SearchFrames) | **Get** /farcaster/frame/search | Search mini apps
 [**UpdateNeynarFrame**](FrameAPI.md#UpdateNeynarFrame) | **Put** /farcaster/frame | Update mini app
 [**ValidateFrameAction**](FrameAPI.md#ValidateFrameAction) | **Post** /farcaster/frame/validate | Validate mini app action
 
@@ -955,6 +956,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SearchFrames
+
+> FrameCatalogResponse SearchFrames(ctx).Q(q).Limit(limit).Cursor(cursor).Execute()
+
+Search mini apps
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/neynarxyz/go-sdk/generated/neynar_sdk"
+)
+
+func main() {
+	q := "q_example" // string | Query string to search for mini apps
+	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 20)
+	cursor := "cursor_example" // string | Pagination cursor (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrameAPI.SearchFrames(context.Background()).Q(q).Limit(limit).Cursor(cursor).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrameAPI.SearchFrames``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SearchFrames`: FrameCatalogResponse
+	fmt.Fprintf(os.Stdout, "Response from `FrameAPI.SearchFrames`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSearchFramesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **string** | Query string to search for mini apps | 
+ **limit** | **int32** | Number of results to fetch | [default to 20]
+ **cursor** | **string** | Pagination cursor | 
+
+### Return type
+
+[**FrameCatalogResponse**](FrameCatalogResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

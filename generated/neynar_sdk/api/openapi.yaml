@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.38.1
+  version: 2.40.0
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -3046,6 +3046,56 @@ paths:
                 $ref: '#/components/schemas/ErrorRes'
           description: Resource not found
       summary: List of mini apps
+      tags:
+      - Frame
+  /farcaster/frame/search:
+    get:
+      description: Search for mini apps based on a query string
+      externalDocs:
+        url: https://docs.neynar.com/reference/search-frames
+      operationId: search-frames
+      parameters:
+      - description: Query string to search for mini apps
+        explode: true
+        in: query
+        name: q
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Number of results to fetch
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 100
+          type: integer
+        style: form
+        x-is-limit-param: true
+      - description: Pagination cursor
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FrameCatalogResponse'
+          description: Successful response
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+      summary: Search mini apps
       tags:
       - Frame
   /farcaster/frame/crawl:
@@ -6765,8 +6815,8 @@ components:
       description: Solana address
       pattern: "^[1-9A-HJ-NP-Za-km-z]{32,44}$"
       type: string
-    "0xHexSignature":
-      description: Hex encoded signature
+    PrefixedHexString:
+      description: Hexadecimal number expressed as string with '0x' prefix
       pattern: "^0x[a-fA-F0-9]+$"
       type: string
     Fid:
@@ -6810,7 +6860,7 @@ components:
     FollowSortType:
       enum:
       - desc_chron
-      - affinity_score
+      - algorithmic
       example: desc_chron
       type: string
     SearchSortType:
@@ -50860,7 +50910,7 @@ components:
           minimum: 0
           type: integer
         signature:
-          description: Hex encoded signature
+          description: Hexadecimal number expressed as string with '0x' prefix
           pattern: "^0x[a-fA-F0-9]+$"
           type: string
         custody_address:
@@ -50889,11 +50939,11 @@ components:
         deadline: 1715190000
       properties:
         signature:
-          description: Hex encoded signature
+          description: Hexadecimal number expressed as string with '0x' prefix
           pattern: "^0x[a-fA-F0-9]+$"
           type: string
         metadata:
-          description: Hex encoded signature
+          description: Hexadecimal number expressed as string with '0x' prefix
           pattern: "^0x[a-fA-F0-9]+$"
           type: string
         public_key:
