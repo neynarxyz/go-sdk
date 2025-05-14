@@ -2463,7 +2463,10 @@ paths:
         name: time_window
         required: false
         schema:
-          $ref: '#/components/schemas/TrendingTimeWindow'
+          allOf:
+          - $ref: '#/components/schemas/TrendingTimeWindow'
+          - default: 24h
+            type: string
         style: form
       - description: "Channel ID to filter trending casts. Less active channels might\
           \ have no casts in the time window selected. Provide either `channel_id`\
@@ -2948,7 +2951,10 @@ paths:
         name: time_window
         required: false
         schema:
-          $ref: '#/components/schemas/TrendingTimeWindow'
+          allOf:
+          - $ref: '#/components/schemas/TrendingTimeWindow'
+          - default: 7d
+            type: string
         style: form
       - description: "Comma separated list of categories to include in the results.\
           \  Includes all if left blank.  Example: `categories=games,social` OR: `categories=games&categories=social`"
@@ -3011,7 +3017,10 @@ paths:
         name: time_window
         required: false
         schema:
-          $ref: '#/components/schemas/TrendingTimeWindow'
+          allOf:
+          - $ref: '#/components/schemas/TrendingTimeWindow'
+          - default: 7d
+            type: string
         style: form
       responses:
         "200":
@@ -6825,7 +6834,6 @@ components:
       format: int32
       type: integer
     TrendingTimeWindow:
-      default: 24h
       description: Time window for trending content
       enum:
       - 1h
