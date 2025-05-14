@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Latitude** | **float64** |  | 
 **Longitude** | **float64** |  | 
+**Radius** | Pointer to **float32** | The radius in meters for the location search. Any location within this radius will be returned. | [optional] 
 **Address** | Pointer to [**LocationAddress**](LocationAddress.md) |  | [optional] 
 
 ## Methods
@@ -66,6 +67,31 @@ and a boolean to check if the value has been set.
 
 SetLongitude sets Longitude field to given value.
 
+
+### GetRadius
+
+`func (o *Location) GetRadius() float32`
+
+GetRadius returns the Radius field if non-nil, zero value otherwise.
+
+### GetRadiusOk
+
+`func (o *Location) GetRadiusOk() (*float32, bool)`
+
+GetRadiusOk returns a tuple with the Radius field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRadius
+
+`func (o *Location) SetRadius(v float32)`
+
+SetRadius sets Radius field to given value.
+
+### HasRadius
+
+`func (o *Location) HasRadius() bool`
+
+HasRadius returns a boolean if a field has been set.
 
 ### GetAddress
 

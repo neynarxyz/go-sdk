@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TargetFids** | **[]int32** | An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer, with a maximum of 100 FIDs allowed per call. | 
+**TargetFids** | **[]int32** | An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app. | 
 **Notification** | [**SendFrameNotificationsReqBodyNotification**](SendFrameNotificationsReqBodyNotification.md) |  | 
+**Filters** | Pointer to [**SendFrameNotificationsReqBodyFilters**](SendFrameNotificationsReqBodyFilters.md) |  | [optional] 
 
 ## Methods
 
@@ -65,6 +66,31 @@ and a boolean to check if the value has been set.
 
 SetNotification sets Notification field to given value.
 
+
+### GetFilters
+
+`func (o *SendFrameNotificationsReqBody) GetFilters() SendFrameNotificationsReqBodyFilters`
+
+GetFilters returns the Filters field if non-nil, zero value otherwise.
+
+### GetFiltersOk
+
+`func (o *SendFrameNotificationsReqBody) GetFiltersOk() (*SendFrameNotificationsReqBodyFilters, bool)`
+
+GetFiltersOk returns a tuple with the Filters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilters
+
+`func (o *SendFrameNotificationsReqBody) SetFilters(v SendFrameNotificationsReqBodyFilters)`
+
+SetFilters sets Filters field to given value.
+
+### HasFilters
+
+`func (o *SendFrameNotificationsReqBody) HasFilters() bool`
+
+HasFilters returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

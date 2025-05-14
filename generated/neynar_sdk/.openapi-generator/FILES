@@ -264,6 +264,7 @@ docs/RespondChannelInviteReqBody.md
 docs/SearchSortType.md
 docs/SearchedUser.md
 docs/SendFrameNotificationsReqBody.md
+docs/SendFrameNotificationsReqBodyFilters.md
 docs/SendFrameNotificationsReqBodyNotification.md
 docs/SendFrameNotificationsResponse.md
 docs/SharedSignerPermission.md
@@ -587,6 +588,7 @@ model_respond_channel_invite_req_body.go
 model_search_sort_type.go
 model_searched_user.go
 model_send_frame_notifications_req_body.go
+model_send_frame_notifications_req_body_filters.go
 model_send_frame_notifications_req_body_notification.go
 model_send_frame_notifications_response.go
 model_shared_signer_permission.go
