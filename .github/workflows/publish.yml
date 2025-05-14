@@ -44,8 +44,9 @@ jobs:
           TAG_NAME="v$VERSION"
           # Only create tag if it doesn't already exist
           if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
-            echo "Tag $TAG_NAME already exists. Skipping."
-            exit 0
+            echo "INFO: Tag $TAG_NAME already exists; updating it."
           fi
-          git tag $TAG_NAME
-          git push origin $TAG_NAME
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -f $TAG_NAME
+          git push -f origin $TAG_NAME
