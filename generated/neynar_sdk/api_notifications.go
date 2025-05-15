@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.40.0
+API version: 2.41.0
 Contact: team@neynar.com
 */
 
@@ -103,7 +103,7 @@ func (r ApiFetchAllNotificationsRequest) Type_(type_ []NotificationType) ApiFetc
 	return r
 }
 
-// When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+// When true, only returns notifications from power badge users and users that the user follows.
 func (r ApiFetchAllNotificationsRequest) PriorityMode(priorityMode bool) ApiFetchAllNotificationsRequest {
 	r.priorityMode = &priorityMode
 	return r
@@ -284,7 +284,7 @@ func (r ApiFetchChannelNotificationsForUserRequest) ChannelIds(channelIds string
 	return r
 }
 
-// When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+// When true, only returns notifications from power badge users and users that the user follows.
 func (r ApiFetchChannelNotificationsForUserRequest) PriorityMode(priorityMode bool) ApiFetchChannelNotificationsForUserRequest {
 	r.priorityMode = &priorityMode
 	return r
@@ -466,7 +466,7 @@ func (r ApiFetchNotificationsByParentUrlForUserRequest) ParentUrls(parentUrls st
 	return r
 }
 
-// When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided).
+// When true, only returns notifications from power badge users and users that the user follows.
 func (r ApiFetchNotificationsByParentUrlForUserRequest) PriorityMode(priorityMode bool) ApiFetchNotificationsByParentUrlForUserRequest {
 	r.priorityMode = &priorityMode
 	return r
