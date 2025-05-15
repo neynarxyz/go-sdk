@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.40.0
+API version: 2.41.0
 Contact: team@neynar.com
 */
 
@@ -22,9 +22,10 @@ var _ MappedNullable = &SendFrameNotificationsReqBody{}
 
 // SendFrameNotificationsReqBody struct for SendFrameNotificationsReqBody
 type SendFrameNotificationsReqBody struct {
-	// An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer, with a maximum of 100 FIDs allowed per call.
+	// An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.
 	TargetFids   []int32                                   `json:"target_fids"`
 	Notification SendFrameNotificationsReqBodyNotification `json:"notification"`
+	Filters      *SendFrameNotificationsReqBodyFilters     `json:"filters,omitempty"`
 }
 
 type _SendFrameNotificationsReqBody SendFrameNotificationsReqBody
@@ -96,6 +97,38 @@ func (o *SendFrameNotificationsReqBody) SetNotification(v SendFrameNotifications
 	o.Notification = v
 }
 
+// GetFilters returns the Filters field value if set, zero value otherwise.
+func (o *SendFrameNotificationsReqBody) GetFilters() SendFrameNotificationsReqBodyFilters {
+	if o == nil || IsNil(o.Filters) {
+		var ret SendFrameNotificationsReqBodyFilters
+		return ret
+	}
+	return *o.Filters
+}
+
+// GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SendFrameNotificationsReqBody) GetFiltersOk() (*SendFrameNotificationsReqBodyFilters, bool) {
+	if o == nil || IsNil(o.Filters) {
+		return nil, false
+	}
+	return o.Filters, true
+}
+
+// HasFilters returns a boolean if a field has been set.
+func (o *SendFrameNotificationsReqBody) HasFilters() bool {
+	if o != nil && !IsNil(o.Filters) {
+		return true
+	}
+
+	return false
+}
+
+// SetFilters gets a reference to the given SendFrameNotificationsReqBodyFilters and assigns it to the Filters field.
+func (o *SendFrameNotificationsReqBody) SetFilters(v SendFrameNotificationsReqBodyFilters) {
+	o.Filters = &v
+}
+
 func (o SendFrameNotificationsReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -108,6 +141,9 @@ func (o SendFrameNotificationsReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["target_fids"] = o.TargetFids
 	toSerialize["notification"] = o.Notification
+	if !IsNil(o.Filters) {
+		toSerialize["filters"] = o.Filters
+	}
 	return toSerialize, nil
 }
 
