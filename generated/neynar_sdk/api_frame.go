@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.40.0
+API version: 2.41.0
 Contact: team@neynar.com
 */
 
@@ -495,9 +495,6 @@ func (a *FrameAPIService) FetchFrameCatalogExecute(r ApiFetchFrameCatalogRequest
 	}
 	if r.timeWindow != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "time_window", r.timeWindow, "form", "")
-	} else {
-		var defaultValue TrendingTimeWindow = "24h"
-		r.timeWindow = &defaultValue
 	}
 	if r.categories != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "categories", r.categories, "form", "csv")
@@ -1052,9 +1049,6 @@ func (a *FrameAPIService) FetchRelevantFramesExecute(r ApiFetchRelevantFramesReq
 	parameterAddToHeaderOrQuery(localVarQueryParams, "viewer_fid", r.viewerFid, "form", "")
 	if r.timeWindow != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "time_window", r.timeWindow, "form", "")
-	} else {
-		var defaultValue TrendingTimeWindow = "24h"
-		r.timeWindow = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

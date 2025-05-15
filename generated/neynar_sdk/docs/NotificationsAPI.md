@@ -34,7 +34,7 @@ import (
 func main() {
 	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
 	type_ := []openapiclient.NotificationType{openapiclient.NotificationType("follows")} // []NotificationType | Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies. (optional)
-	priorityMode := true // bool | When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided). (optional) (default to false)
+	priorityMode := true // bool | When true, only returns notifications from power badge users and users that the user follows. (optional) (default to false)
 	limit := int32(15) // int32 | Number of results to fetch (optional) (default to 15)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of the user you you want to fetch notifications for. The response will respect this user&#39;s mutes and blocks. | 
  **type_** | [**[]NotificationType**](NotificationType.md) | Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies. | 
- **priorityMode** | **bool** | When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided). | [default to false]
+ **priorityMode** | **bool** | When true, only returns notifications from power badge users and users that the user follows. | [default to false]
  **limit** | **int32** | Number of results to fetch | [default to 15]
  **cursor** | **string** | Pagination cursor. | 
 
@@ -108,7 +108,7 @@ import (
 func main() {
 	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
 	channelIds := "neynar,farcaster" // string | Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
-	priorityMode := true // bool | When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided). (optional) (default to false)
+	priorityMode := true // bool | When true, only returns notifications from power badge users and users that the user follows. (optional) (default to false)
 	limit := int32(15) // int32 | Number of results to fetch (optional) (default to 15)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of the user you you want to fetch notifications for. The response will respect this user&#39;s mutes and blocks. | 
  **channelIds** | **string** | Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels) | 
- **priorityMode** | **bool** | When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided). | [default to false]
+ **priorityMode** | **bool** | When true, only returns notifications from power badge users and users that the user follows. | [default to false]
  **limit** | **int32** | Number of results to fetch | [default to 15]
  **cursor** | **string** | Pagination cursor. | 
 
@@ -182,7 +182,7 @@ import (
 func main() {
 	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
 	parentUrls := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Comma separated parent_urls
-	priorityMode := true // bool | When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided). (optional) (default to false)
+	priorityMode := true // bool | When true, only returns notifications from power badge users and users that the user follows. (optional) (default to false)
 	limit := int32(15) // int32 | Number of results to fetch (optional) (default to 15)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of the user you you want to fetch notifications for. The response will respect this user&#39;s mutes and blocks. | 
  **parentUrls** | **string** | Comma separated parent_urls | 
- **priorityMode** | **bool** | When true, only returns notifications from power badge users and users that the viewer follows (if viewer_fid is provided). | [default to false]
+ **priorityMode** | **bool** | When true, only returns notifications from power badge users and users that the user follows. | [default to false]
  **limit** | **int32** | Number of results to fetch | [default to 15]
  **cursor** | **string** | Pagination cursor. | 
 

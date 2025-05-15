@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.40.0
+API version: 2.41.0
 Contact: team@neynar.com
 */
 
@@ -22,9 +22,11 @@ var _ MappedNullable = &Location{}
 
 // Location Coordinates and place names for a location
 type Location struct {
-	Latitude  float64          `json:"latitude"`
-	Longitude float64          `json:"longitude"`
-	Address   *LocationAddress `json:"address,omitempty"`
+	Latitude  float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
+	// The radius in meters for the location search. Any location within this radius will be returned.
+	Radius  *float32         `json:"radius,omitempty"`
+	Address *LocationAddress `json:"address,omitempty"`
 }
 
 type _Location Location
@@ -96,6 +98,38 @@ func (o *Location) SetLongitude(v float64) {
 	o.Longitude = v
 }
 
+// GetRadius returns the Radius field value if set, zero value otherwise.
+func (o *Location) GetRadius() float32 {
+	if o == nil || IsNil(o.Radius) {
+		var ret float32
+		return ret
+	}
+	return *o.Radius
+}
+
+// GetRadiusOk returns a tuple with the Radius field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Location) GetRadiusOk() (*float32, bool) {
+	if o == nil || IsNil(o.Radius) {
+		return nil, false
+	}
+	return o.Radius, true
+}
+
+// HasRadius returns a boolean if a field has been set.
+func (o *Location) HasRadius() bool {
+	if o != nil && !IsNil(o.Radius) {
+		return true
+	}
+
+	return false
+}
+
+// SetRadius gets a reference to the given float32 and assigns it to the Radius field.
+func (o *Location) SetRadius(v float32) {
+	o.Radius = &v
+}
+
 // GetAddress returns the Address field value if set, zero value otherwise.
 func (o *Location) GetAddress() LocationAddress {
 	if o == nil || IsNil(o.Address) {
@@ -140,6 +174,9 @@ func (o Location) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["latitude"] = o.Latitude
 	toSerialize["longitude"] = o.Longitude
+	if !IsNil(o.Radius) {
+		toSerialize["radius"] = o.Radius
+	}
 	if !IsNil(o.Address) {
 		toSerialize["address"] = o.Address
 	}
