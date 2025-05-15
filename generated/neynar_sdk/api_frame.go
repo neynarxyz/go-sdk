@@ -415,7 +415,7 @@ type ApiFetchFrameCatalogRequest struct {
 	ApiService FrameAPI
 	limit      *int32
 	cursor     *string
-	timeWindow *TrendingTimeWindow
+	timeWindow *MiniAppTimeWindow
 	categories *[]string
 }
 
@@ -432,7 +432,7 @@ func (r ApiFetchFrameCatalogRequest) Cursor(cursor string) ApiFetchFrameCatalogR
 }
 
 // Time window used to calculate the change in trending score for each mini app, used to sort mini app results
-func (r ApiFetchFrameCatalogRequest) TimeWindow(timeWindow TrendingTimeWindow) ApiFetchFrameCatalogRequest {
+func (r ApiFetchFrameCatalogRequest) TimeWindow(timeWindow MiniAppTimeWindow) ApiFetchFrameCatalogRequest {
 	r.timeWindow = &timeWindow
 	return r
 }
@@ -495,6 +495,9 @@ func (a *FrameAPIService) FetchFrameCatalogExecute(r ApiFetchFrameCatalogRequest
 	}
 	if r.timeWindow != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "time_window", r.timeWindow, "form", "")
+	} else {
+		var defaultValue MiniAppTimeWindow = "7d"
+		r.timeWindow = &defaultValue
 	}
 	if r.categories != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "categories", r.categories, "form", "csv")
@@ -987,7 +990,7 @@ type ApiFetchRelevantFramesRequest struct {
 	ctx        context.Context
 	ApiService FrameAPI
 	viewerFid  *int32
-	timeWindow *TrendingTimeWindow
+	timeWindow *MiniAppTimeWindow
 }
 
 // FID of the user to fetch relevant mini apps for
@@ -997,7 +1000,7 @@ func (r ApiFetchRelevantFramesRequest) ViewerFid(viewerFid int32) ApiFetchReleva
 }
 
 // Time window used to limit statistics used to calculate mini app relevance
-func (r ApiFetchRelevantFramesRequest) TimeWindow(timeWindow TrendingTimeWindow) ApiFetchRelevantFramesRequest {
+func (r ApiFetchRelevantFramesRequest) TimeWindow(timeWindow MiniAppTimeWindow) ApiFetchRelevantFramesRequest {
 	r.timeWindow = &timeWindow
 	return r
 }
@@ -1049,6 +1052,9 @@ func (a *FrameAPIService) FetchRelevantFramesExecute(r ApiFetchRelevantFramesReq
 	parameterAddToHeaderOrQuery(localVarQueryParams, "viewer_fid", r.viewerFid, "form", "")
 	if r.timeWindow != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "time_window", r.timeWindow, "form", "")
+	} else {
+		var defaultValue MiniAppTimeWindow = "7d"
+		r.timeWindow = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
