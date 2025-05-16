@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	reactionReqBody := *openapiclient.NewReactionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", openapiclient.ReactionType("like"), "Target_example") // ReactionReqBody | 
+	reactionReqBody := *openapiclient.NewReactionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", openapiclient.ReactionType("like"), openapiclient.ReactionReqBody_target{String: new(string)}) // ReactionReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -246,7 +246,7 @@ import (
 )
 
 func main() {
-	reactionReqBody := *openapiclient.NewReactionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", openapiclient.ReactionType("like"), "Target_example") // ReactionReqBody | 
+	reactionReqBody := *openapiclient.NewReactionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", openapiclient.ReactionType("like"), openapiclient.ReactionReqBody_target{String: new(string)}) // ReactionReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

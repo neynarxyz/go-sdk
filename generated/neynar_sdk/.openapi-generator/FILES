@@ -189,6 +189,7 @@ docs/LocationAddress.md
 docs/LoginAPI.md
 docs/MarkNotificationsAsSeenReqBody.md
 docs/MetricsAPI.md
+docs/MiniAppTimeWindow.md
 docs/MuteAPI.md
 docs/MuteListResponse.md
 docs/MuteRecord.md
@@ -239,6 +240,7 @@ docs/ReactionForCast.md
 docs/ReactionLike.md
 docs/ReactionRecast.md
 docs/ReactionReqBody.md
+docs/ReactionReqBodyTarget.md
 docs/ReactionType.md
 docs/ReactionWithCastInfo.md
 docs/ReactionWithUserInfo.md
@@ -311,7 +313,6 @@ docs/TransactionFrameResponse.md
 docs/TransactionFrameStatus.md
 docs/TransactionFrameType.md
 docs/TrendingChannelResponse.md
-docs/TrendingTimeWindow.md
 docs/UpdateUserReqBody.md
 docs/UpdateUserReqBodyLocation.md
 docs/UpdateUserReqBodyVerifiedAccounts.md
@@ -517,6 +518,7 @@ model_invite_channel_member_req_body.go
 model_location.go
 model_location_address.go
 model_mark_notifications_as_seen_req_body.go
+model_mini_app_time_window.go
 model_mute_list_response.go
 model_mute_record.go
 model_mute_req_body.go
@@ -563,6 +565,7 @@ model_reaction_for_cast.go
 model_reaction_like.go
 model_reaction_recast.go
 model_reaction_req_body.go
+model_reaction_req_body_target.go
 model_reaction_type.go
 model_reaction_with_cast_info.go
 model_reaction_with_user_info.go
@@ -632,7 +635,6 @@ model_transaction_frame_response.go
 model_transaction_frame_status.go
 model_transaction_frame_type.go
 model_trending_channel_response.go
-model_trending_time_window.go
 model_update_user_req_body.go
 model_update_user_req_body_location.go
 model_update_user_req_body_verified_accounts.go
