@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.41.0
+API version: 2.41.1
 Contact: team@neynar.com
 */
 
@@ -1816,7 +1816,7 @@ type ApiFetchTrendingFeedRequest struct {
 	limit               *int32
 	cursor              *string
 	viewerFid           *int32
-	timeWindow          *TrendingTimeWindow
+	timeWindow          *string
 	channelId           *string
 	parentUrl           *string
 	provider            *FeedTrendingProvider
@@ -1843,7 +1843,7 @@ func (r ApiFetchTrendingFeedRequest) ViewerFid(viewerFid int32) ApiFetchTrending
 }
 
 // Time window for trending casts (7d window for channel feeds only)
-func (r ApiFetchTrendingFeedRequest) TimeWindow(timeWindow TrendingTimeWindow) ApiFetchTrendingFeedRequest {
+func (r ApiFetchTrendingFeedRequest) TimeWindow(timeWindow string) ApiFetchTrendingFeedRequest {
 	r.timeWindow = &timeWindow
 	return r
 }
@@ -1933,6 +1933,9 @@ func (a *FeedAPIService) FetchTrendingFeedExecute(r ApiFetchTrendingFeedRequest)
 	}
 	if r.timeWindow != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "time_window", r.timeWindow, "form", "")
+	} else {
+		var defaultValue string = "24h"
+		r.timeWindow = &defaultValue
 	}
 	if r.channelId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "channel_id", r.channelId, "form", "")
