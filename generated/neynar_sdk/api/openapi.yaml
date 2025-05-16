@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.41.1
+  version: 2.42.0
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -37045,11 +37045,21 @@ components:
           signature: signature
           metadata_type: 1
           deadline: 1715190000
+        idem: ""
         registration:
           recovery_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
           signature: signature
           deadline: 1715190000
           custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+        pre_registration_calls:
+        - allow_failure: false
+          data: data
+          value: 0
+          target: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+        - allow_failure: false
+          data: data
+          value: 0
+          target: 0x5a927ac639636e534b678e81768ca19e2c6280b7
         storage_units: 2
       properties:
         registration:
@@ -37062,6 +37072,13 @@ components:
           items:
             $ref: '#/components/schemas/RegisterUserOnChainReqBody_signers_inner'
           type: array
+        pre_registration_calls:
+          items:
+            $ref: '#/components/schemas/RegisterUserOnChainReqBody_pre_registration_calls_inner'
+          type: array
+        idem:
+          allOf:
+          - $ref: '#/components/schemas/Idem'
       required:
       - registration
       type: object
@@ -51307,6 +51324,37 @@ components:
       - metadata
       - public_key
       - signature
+      type: object
+    RegisterUserOnChainReqBody_pre_registration_calls_inner:
+      example:
+        allow_failure: false
+        data: data
+        value: 0
+        target: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+      properties:
+        target:
+          description: Ethereum address
+          example: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          pattern: "^0x[a-fA-F0-9]{40}$"
+          type: string
+        value:
+          default: 0
+          description: "Value in wei to send with the transaction. This is not the\
+            \ amount of ETH that will be sent, but rather the value of the transaction."
+          minimum: 0
+          type: integer
+        data:
+          description: Hexadecimal number expressed as string with '0x' prefix
+          pattern: "^0x[a-fA-F0-9]+$"
+          type: string
+        allow_failure:
+          default: false
+          description: "Set it to true if you want to ignore the failure of this call.\
+            \ If set to false, the registration will fail if this call fails."
+          type: boolean
+      required:
+      - data
+      - target
       type: object
     WebhookSubscriptionFilters_user_updated:
       example:
