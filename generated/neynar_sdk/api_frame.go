@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.41.1
+API version: 2.42.0
 Contact: team@neynar.com
 */
 
@@ -843,7 +843,7 @@ func (r ApiFetchNotificationTokensRequest) Limit(limit int32) ApiFetchNotificati
 	return r
 }
 
-// Comma separated list of FIDs, up to 100 at a time
+// Comma separated list of FIDs, up to 100 at a time. If you pass in FIDs, you will get back the notification tokens for those FIDs. If you don&#39;t pass in FIDs, you will get back all the notification tokens for the mini app.
 func (r ApiFetchNotificationTokensRequest) Fids(fids string) ApiFetchNotificationTokensRequest {
 	r.fids = &fids
 	return r
