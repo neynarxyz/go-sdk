@@ -121,7 +121,7 @@ import (
 
 func main() {
 	contractAddress := "0x0db510e79909666d6dec7f5e49370838c16d950f" // string | Contract address of the fungible asset
-	networks := []openapiclient.Networks{openapiclient.Networks("base")} // []Networks | Comma separated list of networks to fetch balances for. Currently, only \"base\" is supported.
+	networks := []openapiclient.Networks{openapiclient.Networks("ethereum")} // []Networks | Comma separated list of networks to fetch balances for. Currently, only \"base\" is supported.
 	viewerFid := int32(194) // int32 | If you provide a viewer_fid, the response will include token holders from the user's network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -191,7 +191,7 @@ import (
 
 func main() {
 	fid := int32(3) // int32 | FID of the user to fetch
-	networks := []openapiclient.Networks{openapiclient.Networks("base")} // []Networks | Comma separated list of networks to fetch balances for. Currently, only \"base\" is supported.
+	networks := []openapiclient.Networks{openapiclient.Networks("ethereum")} // []Networks | Comma separated list of networks to fetch balances for. Currently, only \"base\" is supported.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

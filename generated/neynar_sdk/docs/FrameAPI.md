@@ -311,7 +311,7 @@ import (
 
 func main() {
 	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 20)
-	fids := "194, 191, 6131" // string | Comma separated list of FIDs, up to 100 at a time (optional)
+	fids := "194, 191, 6131" // string | Comma separated list of FIDs, up to 100 at a time. If you pass in FIDs, you will get back the notification tokens for those FIDs. If you don't pass in FIDs, you will get back all the notification tokens for the mini app. (optional)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -338,7 +338,7 @@ Other parameters are passed through a pointer to a apiFetchNotificationTokensReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int32** | Number of results to fetch | [default to 20]
- **fids** | **string** | Comma separated list of FIDs, up to 100 at a time | 
+ **fids** | **string** | Comma separated list of FIDs, up to 100 at a time. If you pass in FIDs, you will get back the notification tokens for those FIDs. If you don&#39;t pass in FIDs, you will get back all the notification tokens for the mini app. | 
  **cursor** | **string** | Pagination cursor | 
 
 ### Return type
