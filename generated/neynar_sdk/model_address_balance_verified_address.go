@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.42.1
+API version: 2.42.2
 Contact: team@neynar.com
 */
 
@@ -23,8 +23,8 @@ var _ MappedNullable = &AddressBalanceVerifiedAddress{}
 // AddressBalanceVerifiedAddress struct for AddressBalanceVerifiedAddress
 type AddressBalanceVerifiedAddress struct {
 	// The wallet address
-	Address string   `json:"address"`
-	Network Networks `json:"network"`
+	Address string  `json:"address"`
+	Network Network `json:"network"`
 }
 
 type _AddressBalanceVerifiedAddress AddressBalanceVerifiedAddress
@@ -33,7 +33,7 @@ type _AddressBalanceVerifiedAddress AddressBalanceVerifiedAddress
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAddressBalanceVerifiedAddress(address string, network Networks) *AddressBalanceVerifiedAddress {
+func NewAddressBalanceVerifiedAddress(address string, network Network) *AddressBalanceVerifiedAddress {
 	this := AddressBalanceVerifiedAddress{}
 	this.Address = address
 	this.Network = network
@@ -73,9 +73,9 @@ func (o *AddressBalanceVerifiedAddress) SetAddress(v string) {
 }
 
 // GetNetwork returns the Network field value
-func (o *AddressBalanceVerifiedAddress) GetNetwork() Networks {
+func (o *AddressBalanceVerifiedAddress) GetNetwork() Network {
 	if o == nil {
-		var ret Networks
+		var ret Network
 		return ret
 	}
 
@@ -84,7 +84,7 @@ func (o *AddressBalanceVerifiedAddress) GetNetwork() Networks {
 
 // GetNetworkOk returns a tuple with the Network field value
 // and a boolean to check if the value has been set.
-func (o *AddressBalanceVerifiedAddress) GetNetworkOk() (*Networks, bool) {
+func (o *AddressBalanceVerifiedAddress) GetNetworkOk() (*Network, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *AddressBalanceVerifiedAddress) GetNetworkOk() (*Networks, bool) {
 }
 
 // SetNetwork sets field value
-func (o *AddressBalanceVerifiedAddress) SetNetwork(v Networks) {
+func (o *AddressBalanceVerifiedAddress) SetNetwork(v Network) {
 	o.Network = v
 }
 

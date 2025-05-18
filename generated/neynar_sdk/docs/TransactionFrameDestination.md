@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | **string** | Ethereum address | 
-**Network** | [**Networks**](Networks.md) |  | 
+**Network** | [**Network**](Network.md) |  | 
 **TokenContractAddress** | **string** | Token contract address for the payment (e.g. 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 is USDC on Base) | 
 **Amount** | **float32** | Amount to send (must be greater than 0) | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewTransactionFrameDestination
 
-`func NewTransactionFrameDestination(address string, network Networks, tokenContractAddress string, amount float32, ) *TransactionFrameDestination`
+`func NewTransactionFrameDestination(address string, network Network, tokenContractAddress string, amount float32, ) *TransactionFrameDestination`
 
 NewTransactionFrameDestination instantiates a new TransactionFrameDestination object
 This constructor will assign default values to properties that have it defined,
@@ -50,20 +50,20 @@ SetAddress sets Address field to given value.
 
 ### GetNetwork
 
-`func (o *TransactionFrameDestination) GetNetwork() Networks`
+`func (o *TransactionFrameDestination) GetNetwork() Network`
 
 GetNetwork returns the Network field if non-nil, zero value otherwise.
 
 ### GetNetworkOk
 
-`func (o *TransactionFrameDestination) GetNetworkOk() (*Networks, bool)`
+`func (o *TransactionFrameDestination) GetNetworkOk() (*Network, bool)`
 
 GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetwork
 
-`func (o *TransactionFrameDestination) SetNetwork(v Networks)`
+`func (o *TransactionFrameDestination) SetNetwork(v Network)`
 
 SetNetwork sets Network field to given value.
 

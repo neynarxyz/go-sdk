@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.42.1
+API version: 2.42.2
 Contact: team@neynar.com
 */
 
@@ -360,7 +360,7 @@ type ApiFetchRelevantFungibleOwnersRequest struct {
 	ctx             context.Context
 	ApiService      OnchainAPI
 	contractAddress *string
-	networks        *[]Networks
+	networks        *[]Network
 	viewerFid       *int32
 }
 
@@ -370,8 +370,8 @@ func (r ApiFetchRelevantFungibleOwnersRequest) ContractAddress(contractAddress s
 	return r
 }
 
-// Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported.
-func (r ApiFetchRelevantFungibleOwnersRequest) Networks(networks []Networks) ApiFetchRelevantFungibleOwnersRequest {
+// Comma separated list of networks to fetch balances for.
+func (r ApiFetchRelevantFungibleOwnersRequest) Networks(networks []Network) ApiFetchRelevantFungibleOwnersRequest {
 	r.networks = &networks
 	return r
 }
@@ -516,7 +516,7 @@ type ApiFetchUserBalanceRequest struct {
 	ctx        context.Context
 	ApiService OnchainAPI
 	fid        *int32
-	networks   *[]Networks
+	networks   *[]Network
 }
 
 // FID of the user to fetch
@@ -525,8 +525,8 @@ func (r ApiFetchUserBalanceRequest) Fid(fid int32) ApiFetchUserBalanceRequest {
 	return r
 }
 
-// Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported.
-func (r ApiFetchUserBalanceRequest) Networks(networks []Networks) ApiFetchUserBalanceRequest {
+// Comma separated list of networks to fetch balances for
+func (r ApiFetchUserBalanceRequest) Networks(networks []Network) ApiFetchUserBalanceRequest {
 	r.networks = &networks
 	return r
 }

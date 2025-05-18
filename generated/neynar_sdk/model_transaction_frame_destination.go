@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.42.1
+API version: 2.42.2
 Contact: team@neynar.com
 */
 
@@ -23,8 +23,8 @@ var _ MappedNullable = &TransactionFrameDestination{}
 // TransactionFrameDestination struct for TransactionFrameDestination
 type TransactionFrameDestination struct {
 	// Ethereum address
-	Address string   `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
-	Network Networks `json:"network"`
+	Address string  `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	Network Network `json:"network"`
 	// Token contract address for the payment (e.g. 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 is USDC on Base)
 	TokenContractAddress string `json:"token_contract_address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	// Amount to send (must be greater than 0)
@@ -37,7 +37,7 @@ type _TransactionFrameDestination TransactionFrameDestination
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransactionFrameDestination(address string, network Networks, tokenContractAddress string, amount float32) *TransactionFrameDestination {
+func NewTransactionFrameDestination(address string, network Network, tokenContractAddress string, amount float32) *TransactionFrameDestination {
 	this := TransactionFrameDestination{}
 	this.Address = address
 	this.Network = network
@@ -79,9 +79,9 @@ func (o *TransactionFrameDestination) SetAddress(v string) {
 }
 
 // GetNetwork returns the Network field value
-func (o *TransactionFrameDestination) GetNetwork() Networks {
+func (o *TransactionFrameDestination) GetNetwork() Network {
 	if o == nil {
-		var ret Networks
+		var ret Network
 		return ret
 	}
 
@@ -90,7 +90,7 @@ func (o *TransactionFrameDestination) GetNetwork() Networks {
 
 // GetNetworkOk returns a tuple with the Network field value
 // and a boolean to check if the value has been set.
-func (o *TransactionFrameDestination) GetNetworkOk() (*Networks, bool) {
+func (o *TransactionFrameDestination) GetNetworkOk() (*Network, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *TransactionFrameDestination) GetNetworkOk() (*Networks, bool) {
 }
 
 // SetNetwork sets field value
-func (o *TransactionFrameDestination) SetNetwork(v Networks) {
+func (o *TransactionFrameDestination) SetNetwork(v Network) {
 	o.Network = v
 }
 
