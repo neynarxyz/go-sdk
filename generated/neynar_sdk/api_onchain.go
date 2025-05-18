@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.42.1
+API version: 2.42.3
 Contact: team@neynar.com
 */
 
@@ -360,7 +360,7 @@ type ApiFetchRelevantFungibleOwnersRequest struct {
 	ctx             context.Context
 	ApiService      OnchainAPI
 	contractAddress *string
-	networks        *[]Networks
+	network         *Network
 	viewerFid       *int32
 }
 
@@ -370,9 +370,9 @@ func (r ApiFetchRelevantFungibleOwnersRequest) ContractAddress(contractAddress s
 	return r
 }
 
-// Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported.
-func (r ApiFetchRelevantFungibleOwnersRequest) Networks(networks []Networks) ApiFetchRelevantFungibleOwnersRequest {
-	r.networks = &networks
+// Network of the fungible asset.
+func (r ApiFetchRelevantFungibleOwnersRequest) Network(network Network) ApiFetchRelevantFungibleOwnersRequest {
+	r.network = &network
 	return r
 }
 
@@ -425,12 +425,12 @@ func (a *OnchainAPIService) FetchRelevantFungibleOwnersExecute(r ApiFetchRelevan
 	if r.contractAddress == nil {
 		return localVarReturnValue, nil, reportError("contractAddress is required and must be specified")
 	}
-	if r.networks == nil {
-		return localVarReturnValue, nil, reportError("networks is required and must be specified")
+	if r.network == nil {
+		return localVarReturnValue, nil, reportError("network is required and must be specified")
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "contract_address", r.contractAddress, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "networks", r.networks, "form", "csv")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "network", r.network, "form", "")
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewer_fid", r.viewerFid, "form", "")
 	}
@@ -516,7 +516,7 @@ type ApiFetchUserBalanceRequest struct {
 	ctx        context.Context
 	ApiService OnchainAPI
 	fid        *int32
-	networks   *[]Networks
+	networks   *[]Network
 }
 
 // FID of the user to fetch
@@ -525,8 +525,8 @@ func (r ApiFetchUserBalanceRequest) Fid(fid int32) ApiFetchUserBalanceRequest {
 	return r
 }
 
-// Comma separated list of networks to fetch balances for. Currently, only \&quot;base\&quot; is supported.
-func (r ApiFetchUserBalanceRequest) Networks(networks []Networks) ApiFetchUserBalanceRequest {
+// Comma separated list of networks to fetch balances for
+func (r ApiFetchUserBalanceRequest) Networks(networks []Network) ApiFetchUserBalanceRequest {
 	r.networks = &networks
 	return r
 }

@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Address** | **string** | The wallet address | 
-**Network** | [**Networks**](Networks.md) |  | 
+**Network** | [**Network**](Network.md) |  | 
 
 ## Methods
 
 ### NewAddressBalanceVerifiedAddress
 
-`func NewAddressBalanceVerifiedAddress(address string, network Networks, ) *AddressBalanceVerifiedAddress`
+`func NewAddressBalanceVerifiedAddress(address string, network Network, ) *AddressBalanceVerifiedAddress`
 
 NewAddressBalanceVerifiedAddress instantiates a new AddressBalanceVerifiedAddress object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetAddress sets Address field to given value.
 
 ### GetNetwork
 
-`func (o *AddressBalanceVerifiedAddress) GetNetwork() Networks`
+`func (o *AddressBalanceVerifiedAddress) GetNetwork() Network`
 
 GetNetwork returns the Network field if non-nil, zero value otherwise.
 
 ### GetNetworkOk
 
-`func (o *AddressBalanceVerifiedAddress) GetNetworkOk() (*Networks, bool)`
+`func (o *AddressBalanceVerifiedAddress) GetNetworkOk() (*Network, bool)`
 
 GetNetworkOk returns a tuple with the Network field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetwork
 
-`func (o *AddressBalanceVerifiedAddress) SetNetwork(v Networks)`
+`func (o *AddressBalanceVerifiedAddress) SetNetwork(v Network)`
 
 SetNetwork sets Network field to given value.
 
