@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.41.1
+API version: 2.42.1
 Contact: team@neynar.com
 */
 
@@ -16,17 +16,23 @@ import (
 	"fmt"
 )
 
-// Networks A blockchain network e.g. \"base\"
+// Networks A blockchain network e.g. \"ethereum\", \"optimism\", \"base\", \"arbitrum\"
 type Networks string
 
 // List of Networks
 const (
-	NETWORKS_BASE Networks = "base"
+	NETWORKS_ETHEREUM Networks = "ethereum"
+	NETWORKS_OPTIMISM Networks = "optimism"
+	NETWORKS_BASE     Networks = "base"
+	NETWORKS_ARBITRUM Networks = "arbitrum"
 )
 
 // All allowed values of Networks enum
 var AllowedNetworksEnumValues = []Networks{
+	"ethereum",
+	"optimism",
 	"base",
+	"arbitrum",
 }
 
 func (v *Networks) UnmarshalJSON(src []byte) error {
