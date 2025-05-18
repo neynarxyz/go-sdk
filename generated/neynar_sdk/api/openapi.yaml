@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.42.1
+  version: 2.42.3
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -3683,15 +3683,14 @@ paths:
         schema:
           $ref: '#/components/schemas/Fid'
         style: form
-      - description: "Comma separated list of networks to fetch balances for. Currently,\
-          \ only \"base\" is supported."
+      - description: Comma separated list of networks to fetch balances for
         explode: false
         in: query
         name: networks
         required: true
         schema:
           items:
-            $ref: '#/components/schemas/Networks'
+            $ref: '#/components/schemas/Network'
           type: array
         style: form
       responses:
@@ -5812,16 +5811,13 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Comma separated list of networks to fetch balances for. Currently,\
-          \ only \"base\" is supported."
-        explode: false
+      - description: Network of the fungible asset.
+        explode: true
         in: query
-        name: networks
+        name: network
         required: true
         schema:
-          items:
-            $ref: '#/components/schemas/Networks'
-          type: array
+          $ref: '#/components/schemas/Network'
         style: form
       - description: "If you provide a viewer_fid, the response will include token\
           \ holders from the user's network, respecting their mutes and blocks and\
@@ -8432,7 +8428,7 @@ components:
           pattern: "^0x[a-fA-F0-9]{40}$"
           type: string
         network:
-          $ref: '#/components/schemas/Networks'
+          $ref: '#/components/schemas/Network'
         token_contract_address:
           description: Token contract address for the payment (e.g. 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913
             is USDC on Base)
@@ -9923,7 +9919,7 @@ components:
       - object
       - token
       type: object
-    Networks:
+    Network:
       description: "A blockchain network e.g. \"ethereum\", \"optimism\", \"base\"\
         , \"arbitrum\""
       enum:
@@ -45282,7 +45278,7 @@ components:
           description: The wallet address
           type: string
         network:
-          $ref: '#/components/schemas/Networks'
+          $ref: '#/components/schemas/Network'
       required:
       - address
       - network

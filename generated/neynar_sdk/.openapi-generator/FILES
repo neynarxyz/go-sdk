@@ -195,7 +195,7 @@ docs/MuteListResponse.md
 docs/MuteRecord.md
 docs/MuteReqBody.md
 docs/MuteResponse.md
-docs/Networks.md
+docs/Network.md
 docs/NextCursor.md
 docs/NeynarFrame.md
 docs/NeynarFrameCreationReqBody.md
@@ -524,7 +524,7 @@ model_mute_list_response.go
 model_mute_record.go
 model_mute_req_body.go
 model_mute_response.go
-model_networks.go
+model_network.go
 model_next_cursor.go
 model_neynar_frame.go
 model_neynar_frame_creation_req_body.go
