@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.42.3
+  version: 2.42.4
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -4490,10 +4490,26 @@ paths:
       - Notifications
   /farcaster/notifications/seen:
     post:
-      description: Mark notifications as seen
+      description: |
+        Mark notifications as seen.
+        You can choose one of two authorization methods, either:
+          1. Provide a valid signer_uuid in the request body (Most common)
+          2. Provide a valid, signed "Bearer" token in the request's `Authorization` header similar to the
+             approach described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication)
       externalDocs:
         url: https://docs.neynar.com/reference/mark-notifications-as-seen
       operationId: mark-notifications-as-seen
+      parameters:
+      - description: |
+          Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).
+        explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          example: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -6779,6 +6795,17 @@ components:
         type: boolean
       style: simple
       x-is-global-header: true
+    AuthorizationHeader:
+      description: |
+        Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).
+      explode: false
+      in: header
+      name: Authorization
+      required: false
+      schema:
+        example: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        type: string
+      style: simple
   responses:
     "401Response":
       content:
@@ -37056,13 +37083,13 @@ components:
           custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
         pre_registration_calls:
         - allow_failure: false
-          data: data
+          data: ""
           value: 0
-          target: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          target: ""
         - allow_failure: false
-          data: data
+          data: ""
           value: 0
-          target: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          target: ""
         storage_units: 2
       properties:
         registration:
@@ -40433,16 +40460,15 @@ components:
     MarkNotificationsAsSeenReqBody:
       example:
         signer_uuid: signer_uuid
-        type: follows
+        type: ""
       properties:
         signer_uuid:
-          description: |
-            The UUID of the signer. Signer should have atleast one write permission
+          description: The UUID of a signer with at least one write permission.  Required
+            unless a valid Authorization Bearer token is provided in the header.
           type: string
         type:
-          $ref: '#/components/schemas/NotificationType'
-      required:
-      - signer_uuid
+          allOf:
+          - $ref: '#/components/schemas/NotificationType'
       type: object
     FarcasterActionReqBody:
       example:
@@ -51331,15 +51357,13 @@ components:
     RegisterUserOnChainReqBody_pre_registration_calls_inner:
       example:
         allow_failure: false
-        data: data
+        data: ""
         value: 0
-        target: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+        target: ""
       properties:
         target:
-          description: Ethereum address
-          example: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-          pattern: "^0x[a-fA-F0-9]{40}$"
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/EthAddress'
         value:
           default: 0
           description: "Value in wei to send with the transaction. This is not the\
@@ -51347,9 +51371,8 @@ components:
           minimum: 0
           type: integer
         data:
-          description: Hexadecimal number expressed as string with '0x' prefix
-          pattern: "^0x[a-fA-F0-9]+$"
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/PrefixedHexString'
         allow_failure:
           default: false
           description: "Set it to true if you want to ignore the failure of this call.\

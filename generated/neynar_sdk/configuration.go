@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.42.3
+API version: 2.42.4
 Contact: team@neynar.com
 */
 
@@ -90,7 +90,7 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI-Generator/2.42.3/go",
+		UserAgent:     "OpenAPI-Generator/2.42.4/go",
 		Debug:         false,
 		Servers: ServerConfigurations{
 			{

@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.42.3
+API version: 2.42.4
 Contact: team@neynar.com
 */
 
@@ -64,12 +64,17 @@ type NotificationsAPI interface {
 	FetchNotificationsByParentUrlForUserExecute(r ApiFetchNotificationsByParentUrlForUserRequest) (*NotificationsResponse, *http.Response, error)
 
 	/*
-		MarkNotificationsAsSeen Mark as seen
+			MarkNotificationsAsSeen Mark as seen
 
-		Mark notifications as seen
+			Mark notifications as seen.
+		You can choose one of two authorization methods, either:
+		  1. Provide a valid signer_uuid in the request body (Most common)
+		  2. Provide a valid, signed "Bearer" token in the request's `Authorization` header similar to the
+		     approach described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication)
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiMarkNotificationsAsSeenRequest
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@return ApiMarkNotificationsAsSeenRequest
 	*/
 	MarkNotificationsAsSeen(ctx context.Context) ApiMarkNotificationsAsSeenRequest
 
@@ -630,10 +635,17 @@ type ApiMarkNotificationsAsSeenRequest struct {
 	ctx                            context.Context
 	ApiService                     NotificationsAPI
 	markNotificationsAsSeenReqBody *MarkNotificationsAsSeenReqBody
+	authorization                  *string
 }
 
 func (r ApiMarkNotificationsAsSeenRequest) MarkNotificationsAsSeenReqBody(markNotificationsAsSeenReqBody MarkNotificationsAsSeenReqBody) ApiMarkNotificationsAsSeenRequest {
 	r.markNotificationsAsSeenReqBody = &markNotificationsAsSeenReqBody
+	return r
+}
+
+// Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).
+func (r ApiMarkNotificationsAsSeenRequest) Authorization(authorization string) ApiMarkNotificationsAsSeenRequest {
+	r.authorization = &authorization
 	return r
 }
 
@@ -644,10 +656,16 @@ func (r ApiMarkNotificationsAsSeenRequest) Execute() (*OperationResponse, *http.
 /*
 MarkNotificationsAsSeen Mark as seen
 
-Mark notifications as seen
+Mark notifications as seen.
+You can choose one of two authorization methods, either:
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiMarkNotificationsAsSeenRequest
+ 1. Provide a valid signer_uuid in the request body (Most common)
+
+ 2. Provide a valid, signed "Bearer" token in the request's `Authorization` header similar to the
+    approach described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication)
+
+    @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+    @return ApiMarkNotificationsAsSeenRequest
 */
 func (a *NotificationsAPIService) MarkNotificationsAsSeen(ctx context.Context) ApiMarkNotificationsAsSeenRequest {
 	return ApiMarkNotificationsAsSeenRequest{
@@ -697,6 +715,9 @@ func (a *NotificationsAPIService) MarkNotificationsAsSeenExecute(r ApiMarkNotifi
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.authorization != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Authorization", r.authorization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.markNotificationsAsSeenReqBody
