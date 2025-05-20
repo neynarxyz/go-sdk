@@ -313,6 +313,11 @@ docs/TransactionFramePayAllOfTransaction.md
 docs/TransactionFrameResponse.md
 docs/TransactionFrameStatus.md
 docs/TransactionFrameType.md
+docs/TransactionSendFungiblesReceipt.md
+docs/TransactionSendFungiblesRecipient.md
+docs/TransactionSendFungiblesRequest.md
+docs/TransactionSendFungiblesResponse.md
+docs/TransactionSendTxInfo.md
 docs/TrendingChannelResponse.md
 docs/UpdateUserReqBody.md
 docs/UpdateUserReqBodyLocation.md
@@ -636,6 +641,11 @@ model_transaction_frame_pay_all_of_transaction.go
 model_transaction_frame_response.go
 model_transaction_frame_status.go
 model_transaction_frame_type.go
+model_transaction_send_fungibles_receipt.go
+model_transaction_send_fungibles_recipient.go
+model_transaction_send_fungibles_request.go
+model_transaction_send_fungibles_response.go
+model_transaction_send_tx_info.go
 model_trending_channel_response.go
 model_update_user_req_body.go
 model_update_user_req_body_location.go

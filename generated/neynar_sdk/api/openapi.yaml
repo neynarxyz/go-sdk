@@ -7,7 +7,7 @@ info:
   description: |
     The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
   title: Farcaster API V2
-  version: 2.42.3
+  version: 2.43.0
 servers:
 - url: https://api.neynar.com/v2
 security:
@@ -3667,6 +3667,51 @@ paths:
       summary: By location
       tags:
       - User
+  /farcaster/fungible/send:
+    post:
+      description: Send fungibles in bulk to several farcaster users. A funded wallet
+        is to required use this API. React out to us on the Neynar channel on farcaster
+        to get your wallet address.
+      externalDocs:
+        url: https://docs.neynar.com/reference/send-fungibles-to-users
+      operationId: send-fungibles-to-users
+      parameters:
+      - description: Wallet ID to use for transactions
+        explode: false
+        in: header
+        name: x-wallet-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionSendFungiblesRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSendFungiblesResponse'
+          description: Successful operation.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorRes'
+          description: Server Error
+      summary: Send fungibles
+      tags:
+      - Onchain
   /farcaster/user/balance:
     get:
       description: Fetches the token balances of a user given their FID
@@ -4490,10 +4535,26 @@ paths:
       - Notifications
   /farcaster/notifications/seen:
     post:
-      description: Mark notifications as seen
+      description: |
+        Mark notifications as seen.
+        You can choose one of two authorization methods, either:
+          1. Provide a valid signer_uuid in the request body (Most common)
+          2. Provide a valid, signed "Bearer" token in the request's `Authorization` header similar to the
+             approach described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication)
       externalDocs:
         url: https://docs.neynar.com/reference/mark-notifications-as-seen
       operationId: mark-notifications-as-seen
+      parameters:
+      - description: |
+          Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).
+        explode: false
+        in: header
+        name: Authorization
+        required: false
+        schema:
+          example: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -6779,6 +6840,26 @@ components:
         type: boolean
       style: simple
       x-is-global-header: true
+    AuthorizationHeader:
+      description: |
+        Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).
+      explode: false
+      in: header
+      name: Authorization
+      required: false
+      schema:
+        example: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        type: string
+      style: simple
+    WalletIdHeader:
+      description: Wallet ID to use for transactions
+      explode: false
+      in: header
+      name: x-wallet-id
+      required: true
+      schema:
+        type: string
+      style: simple
   responses:
     "401Response":
       content:
@@ -8500,6 +8581,150 @@ components:
       - status
       - type
       - url
+      type: object
+    TransactionSendFungiblesRecipient:
+      example:
+        fid: 3
+        amount: 0.08008282904610114
+      properties:
+        fid:
+          description: The unique identifier of a farcaster user (unsigned integer)
+          example: 3
+          format: int32
+          type: integer
+        amount:
+          description: Amount to send (must be greater than 0)
+          minimum: 0.000000010
+          type: number
+      required:
+      - amount
+      - fid
+      type: object
+    TransactionSendFungiblesRequest:
+      example:
+        recipients:
+        - fid: 3
+          amount: 0.08008282904610114
+        - fid: 3
+          amount: 0.08008282904610114
+        - fid: 3
+          amount: 0.08008282904610114
+        - fid: 3
+          amount: 0.08008282904610114
+        - fid: 3
+          amount: 0.08008282904610114
+        fungible_contract_address: 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913
+        network: base
+      properties:
+        network:
+          enum:
+          - base
+          - optimism
+          - base-sepolia
+          type: string
+        fungible_contract_address:
+          description: "Contract address of the fungible token to send. If not provided,\
+            \ the default is the native token of the network."
+          example: 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913
+          pattern: "^0x[a-fA-F0-9]{40}$"
+          type: string
+        recipients:
+          items:
+            $ref: '#/components/schemas/TransactionSendFungiblesRecipient'
+          maxItems: 200
+          minItems: 1
+          type: array
+      required:
+      - network
+      - recipients
+      type: object
+    TransactionSendFungiblesReceipt:
+      example:
+        fid: 3
+        reason: reason
+        amount: 0.8008281904610115
+        status: sent
+      properties:
+        fid:
+          description: The unique identifier of a farcaster user (unsigned integer)
+          example: 3
+          format: int32
+          type: integer
+        amount:
+          type: number
+        status:
+          enum:
+          - sent
+          - failed
+          type: string
+        reason:
+          description: Reason for failure (if status is failed)
+          type: string
+      required:
+      - amount
+      - fid
+      - status
+      type: object
+    TransactionSendTxInfo:
+      example:
+        approval_hash: approval_hash
+        gas_used: gas_used
+        transaction_hash: transaction_hash
+        network: base
+      properties:
+        network:
+          enum:
+          - base
+          - optimism
+          - base-sepolia
+          type: string
+        transaction_hash:
+          type: string
+        gas_used:
+          description: Gas used for the transaction.
+          type: string
+        approval_hash:
+          description: Hash of the transaction that approved the transfer. This is
+            only present if the fungible token is not native token of the network.
+          type: string
+      required:
+      - approval_hash
+      - gas_used
+      - network
+      - transaction_hash
+      type: object
+    TransactionSendFungiblesResponse:
+      example:
+        send_receipts:
+        - fid: 3
+          reason: reason
+          amount: 0.8008281904610115
+          status: sent
+        - fid: 3
+          reason: reason
+          amount: 0.8008281904610115
+          status: sent
+        transactions:
+        - approval_hash: approval_hash
+          gas_used: gas_used
+          transaction_hash: transaction_hash
+          network: base
+        - approval_hash: approval_hash
+          gas_used: gas_used
+          transaction_hash: transaction_hash
+          network: base
+      properties:
+        send_receipts:
+          items:
+            $ref: '#/components/schemas/TransactionSendFungiblesReceipt'
+          type: array
+        transactions:
+          items:
+            $ref: '#/components/schemas/TransactionSendTxInfo'
+          type: array
+      required:
+      - send_receipts
+      - transactions
       type: object
     TransactionFramePay:
       allOf:
@@ -37056,13 +37281,13 @@ components:
           custody_address: 0x5a927ac639636e534b678e81768ca19e2c6280b7
         pre_registration_calls:
         - allow_failure: false
-          data: data
+          data: ""
           value: 0
-          target: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          target: ""
         - allow_failure: false
-          data: data
+          data: ""
           value: 0
-          target: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+          target: ""
         storage_units: 2
       properties:
         registration:
@@ -40433,16 +40658,15 @@ components:
     MarkNotificationsAsSeenReqBody:
       example:
         signer_uuid: signer_uuid
-        type: follows
+        type: ""
       properties:
         signer_uuid:
-          description: |
-            The UUID of the signer. Signer should have atleast one write permission
+          description: The UUID of a signer with at least one write permission.  Required
+            unless a valid Authorization Bearer token is provided in the header.
           type: string
         type:
-          $ref: '#/components/schemas/NotificationType'
-      required:
-      - signer_uuid
+          allOf:
+          - $ref: '#/components/schemas/NotificationType'
       type: object
     FarcasterActionReqBody:
       example:
@@ -51331,15 +51555,13 @@ components:
     RegisterUserOnChainReqBody_pre_registration_calls_inner:
       example:
         allow_failure: false
-        data: data
+        data: ""
         value: 0
-        target: 0x5a927ac639636e534b678e81768ca19e2c6280b7
+        target: ""
       properties:
         target:
-          description: Ethereum address
-          example: 0x5a927ac639636e534b678e81768ca19e2c6280b7
-          pattern: "^0x[a-fA-F0-9]{40}$"
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/EthAddress'
         value:
           default: 0
           description: "Value in wei to send with the transaction. This is not the\
@@ -51347,9 +51569,8 @@ components:
           minimum: 0
           type: integer
         data:
-          description: Hexadecimal number expressed as string with '0x' prefix
-          pattern: "^0x[a-fA-F0-9]+$"
-          type: string
+          allOf:
+          - $ref: '#/components/schemas/PrefixedHexString'
         allow_failure:
           default: false
           description: "Set it to true if you want to ignore the failure of this call.\

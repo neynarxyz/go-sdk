@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.42.3
+API version: 2.43.0
 Contact: team@neynar.com
 */
 
@@ -12,9 +12,7 @@ Contact: team@neynar.com
 package neynar_sdk
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MarkNotificationsAsSeenReqBody type satisfies the MappedNullable interface at compile time
@@ -22,20 +20,17 @@ var _ MappedNullable = &MarkNotificationsAsSeenReqBody{}
 
 // MarkNotificationsAsSeenReqBody struct for MarkNotificationsAsSeenReqBody
 type MarkNotificationsAsSeenReqBody struct {
-	// The UUID of the signer. Signer should have atleast one write permission
-	SignerUuid string            `json:"signer_uuid"`
+	// The UUID of a signer with at least one write permission.  Required unless a valid Authorization Bearer token is provided in the header.
+	SignerUuid *string           `json:"signer_uuid,omitempty"`
 	Type       *NotificationType `json:"type,omitempty"`
 }
-
-type _MarkNotificationsAsSeenReqBody MarkNotificationsAsSeenReqBody
 
 // NewMarkNotificationsAsSeenReqBody instantiates a new MarkNotificationsAsSeenReqBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMarkNotificationsAsSeenReqBody(signerUuid string) *MarkNotificationsAsSeenReqBody {
+func NewMarkNotificationsAsSeenReqBody() *MarkNotificationsAsSeenReqBody {
 	this := MarkNotificationsAsSeenReqBody{}
-	this.SignerUuid = signerUuid
 	return &this
 }
 
@@ -47,28 +42,36 @@ func NewMarkNotificationsAsSeenReqBodyWithDefaults() *MarkNotificationsAsSeenReq
 	return &this
 }
 
-// GetSignerUuid returns the SignerUuid field value
+// GetSignerUuid returns the SignerUuid field value if set, zero value otherwise.
 func (o *MarkNotificationsAsSeenReqBody) GetSignerUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		var ret string
 		return ret
 	}
-
-	return o.SignerUuid
+	return *o.SignerUuid
 }
 
-// GetSignerUuidOk returns a tuple with the SignerUuid field value
+// GetSignerUuidOk returns a tuple with the SignerUuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MarkNotificationsAsSeenReqBody) GetSignerUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SignerUuid) {
 		return nil, false
 	}
-	return &o.SignerUuid, true
+	return o.SignerUuid, true
 }
 
-// SetSignerUuid sets field value
+// HasSignerUuid returns a boolean if a field has been set.
+func (o *MarkNotificationsAsSeenReqBody) HasSignerUuid() bool {
+	if o != nil && !IsNil(o.SignerUuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetSignerUuid gets a reference to the given string and assigns it to the SignerUuid field.
 func (o *MarkNotificationsAsSeenReqBody) SetSignerUuid(v string) {
-	o.SignerUuid = v
+	o.SignerUuid = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -113,64 +116,13 @@ func (o MarkNotificationsAsSeenReqBody) MarshalJSON() ([]byte, error) {
 
 func (o MarkNotificationsAsSeenReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["signer_uuid"] = o.SignerUuid
+	if !IsNil(o.SignerUuid) {
+		toSerialize["signer_uuid"] = o.SignerUuid
+	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
-}
-
-func (o *MarkNotificationsAsSeenReqBody) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"signer_uuid",
-	}
-
-	// defaultValueFuncMap captures the default values for required properties.
-	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{}{}
-	var defaultValueApplied bool
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
-			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
-				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
-				defaultValueApplied = true
-			}
-		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	if defaultValueApplied {
-		data, err = json.Marshal(allProperties)
-		if err != nil {
-			return err
-		}
-	}
-	varMarkNotificationsAsSeenReqBody := _MarkNotificationsAsSeenReqBody{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMarkNotificationsAsSeenReqBody)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MarkNotificationsAsSeenReqBody(varMarkNotificationsAsSeenReqBody)
-
-	return err
 }
 
 type NullableMarkNotificationsAsSeenReqBody struct {
