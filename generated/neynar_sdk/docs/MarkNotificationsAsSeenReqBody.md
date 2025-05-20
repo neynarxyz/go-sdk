@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | The UUID of the signer. Signer should have atleast one write permission  | 
+**SignerUuid** | Pointer to **string** | The UUID of a signer with at least one write permission.  Required unless a valid Authorization Bearer token is provided in the header. | [optional] 
 **Type** | Pointer to [**NotificationType**](NotificationType.md) |  | [optional] 
 
 ## Methods
 
 ### NewMarkNotificationsAsSeenReqBody
 
-`func NewMarkNotificationsAsSeenReqBody(signerUuid string, ) *MarkNotificationsAsSeenReqBody`
+`func NewMarkNotificationsAsSeenReqBody() *MarkNotificationsAsSeenReqBody`
 
 NewMarkNotificationsAsSeenReqBody instantiates a new MarkNotificationsAsSeenReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetSignerUuid sets SignerUuid field to given value.
 
+### HasSignerUuid
+
+`func (o *MarkNotificationsAsSeenReqBody) HasSignerUuid() bool`
+
+HasSignerUuid returns a boolean if a field has been set.
 
 ### GetType
 

@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## MarkNotificationsAsSeen
 
-> OperationResponse MarkNotificationsAsSeen(ctx).MarkNotificationsAsSeenReqBody(markNotificationsAsSeenReqBody).Execute()
+> OperationResponse MarkNotificationsAsSeen(ctx).MarkNotificationsAsSeenReqBody(markNotificationsAsSeenReqBody).Authorization(authorization).Execute()
 
 Mark as seen
 
@@ -254,11 +254,12 @@ import (
 )
 
 func main() {
-	markNotificationsAsSeenReqBody := *openapiclient.NewMarkNotificationsAsSeenReqBody("SignerUuid_example") // MarkNotificationsAsSeenReqBody | 
+	markNotificationsAsSeenReqBody := *openapiclient.NewMarkNotificationsAsSeenReqBody() // MarkNotificationsAsSeenReqBody | 
+	authorization := "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." // string | Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotificationsAPI.MarkNotificationsAsSeen(context.Background()).MarkNotificationsAsSeenReqBody(markNotificationsAsSeenReqBody).Execute()
+	resp, r, err := apiClient.NotificationsAPI.MarkNotificationsAsSeen(context.Background()).MarkNotificationsAsSeenReqBody(markNotificationsAsSeenReqBody).Authorization(authorization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NotificationsAPI.MarkNotificationsAsSeen``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -280,6 +281,7 @@ Other parameters are passed through a pointer to a apiMarkNotificationsAsSeenReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **markNotificationsAsSeenReqBody** | [**MarkNotificationsAsSeenReqBody**](MarkNotificationsAsSeenReqBody.md) |  | 
+ **authorization** | **string** | Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).  | 
 
 ### Return type
 
