@@ -3,7 +3,7 @@ Farcaster API V2
 
 The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.42.3
+API version: 2.43.0
 Contact: team@neynar.com
 */
 
@@ -80,6 +80,20 @@ type OnchainAPI interface {
 	// RegisterAccountOnchainExecute executes the request
 	//  @return RegisterUserOnChainResponse
 	RegisterAccountOnchainExecute(r ApiRegisterAccountOnchainRequest) (*RegisterUserOnChainResponse, *http.Response, error)
+
+	/*
+		SendFungiblesToUsers Send fungibles
+
+		Send fungibles in bulk to several farcaster users. A funded wallet is to required use this API. React out to us on the Neynar channel on farcaster to get your wallet address.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiSendFungiblesToUsersRequest
+	*/
+	SendFungiblesToUsers(ctx context.Context) ApiSendFungiblesToUsersRequest
+
+	// SendFungiblesToUsersExecute executes the request
+	//  @return TransactionSendFungiblesResponse
+	SendFungiblesToUsersExecute(r ApiSendFungiblesToUsersRequest) (*TransactionSendFungiblesResponse, *http.Response, error)
 }
 
 // OnchainAPIService OnchainAPI service
@@ -754,6 +768,163 @@ func (a *OnchainAPIService) RegisterAccountOnchainExecute(r ApiRegisterAccountOn
 	}
 	// body params
 	localVarPostBody = r.registerUserOnChainReqBody
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorRes
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorRes
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiSendFungiblesToUsersRequest struct {
+	ctx                             context.Context
+	ApiService                      OnchainAPI
+	xWalletId                       *string
+	transactionSendFungiblesRequest *TransactionSendFungiblesRequest
+}
+
+// Wallet ID to use for transactions
+func (r ApiSendFungiblesToUsersRequest) XWalletId(xWalletId string) ApiSendFungiblesToUsersRequest {
+	r.xWalletId = &xWalletId
+	return r
+}
+
+func (r ApiSendFungiblesToUsersRequest) TransactionSendFungiblesRequest(transactionSendFungiblesRequest TransactionSendFungiblesRequest) ApiSendFungiblesToUsersRequest {
+	r.transactionSendFungiblesRequest = &transactionSendFungiblesRequest
+	return r
+}
+
+func (r ApiSendFungiblesToUsersRequest) Execute() (*TransactionSendFungiblesResponse, *http.Response, error) {
+	return r.ApiService.SendFungiblesToUsersExecute(r)
+}
+
+/*
+SendFungiblesToUsers Send fungibles
+
+Send fungibles in bulk to several farcaster users. A funded wallet is to required use this API. React out to us on the Neynar channel on farcaster to get your wallet address.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSendFungiblesToUsersRequest
+*/
+func (a *OnchainAPIService) SendFungiblesToUsers(ctx context.Context) ApiSendFungiblesToUsersRequest {
+	return ApiSendFungiblesToUsersRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return TransactionSendFungiblesResponse
+func (a *OnchainAPIService) SendFungiblesToUsersExecute(r ApiSendFungiblesToUsersRequest) (*TransactionSendFungiblesResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TransactionSendFungiblesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OnchainAPIService.SendFungiblesToUsers")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/farcaster/fungible/send"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.xWalletId == nil {
+		return localVarReturnValue, nil, reportError("xWalletId is required and must be specified")
+	}
+	if r.transactionSendFungiblesRequest == nil {
+		return localVarReturnValue, nil, reportError("transactionSendFungiblesRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "x-wallet-id", r.xWalletId, "simple", "")
+	// body params
+	localVarPostBody = r.transactionSendFungiblesRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

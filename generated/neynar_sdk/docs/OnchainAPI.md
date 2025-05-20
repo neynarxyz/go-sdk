@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**FetchRelevantFungibleOwners**](OnchainAPI.md#FetchRelevantFungibleOwners) | **Get** /farcaster/fungible/owner/relevant | Relevant owners
 [**FetchUserBalance**](OnchainAPI.md#FetchUserBalance) | **Get** /farcaster/user/balance | Token balance
 [**RegisterAccountOnchain**](OnchainAPI.md#RegisterAccountOnchain) | **Post** /farcaster/user/register | Register Farcaster account onchain
+[**SendFungiblesToUsers**](OnchainAPI.md#SendFungiblesToUsers) | **Post** /farcaster/fungible/send | Send fungibles
 
 
 
@@ -288,6 +289,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RegisterUserOnChainResponse**](RegisterUserOnChainResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SendFungiblesToUsers
+
+> TransactionSendFungiblesResponse SendFungiblesToUsers(ctx).XWalletId(xWalletId).TransactionSendFungiblesRequest(transactionSendFungiblesRequest).Execute()
+
+Send fungibles
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/neynarxyz/go-sdk/generated/neynar_sdk"
+)
+
+func main() {
+	xWalletId := "xWalletId_example" // string | Wallet ID to use for transactions
+	transactionSendFungiblesRequest := *openapiclient.NewTransactionSendFungiblesRequest("Network_example", []openapiclient.TransactionSendFungiblesRecipient{*openapiclient.NewTransactionSendFungiblesRecipient(int32(3), float32(123))}) // TransactionSendFungiblesRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.OnchainAPI.SendFungiblesToUsers(context.Background()).XWalletId(xWalletId).TransactionSendFungiblesRequest(transactionSendFungiblesRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `OnchainAPI.SendFungiblesToUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SendFungiblesToUsers`: TransactionSendFungiblesResponse
+	fmt.Fprintf(os.Stdout, "Response from `OnchainAPI.SendFungiblesToUsers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSendFungiblesToUsersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xWalletId** | **string** | Wallet ID to use for transactions | 
+ **transactionSendFungiblesRequest** | [**TransactionSendFungiblesRequest**](TransactionSendFungiblesRequest.md) |  | 
+
+### Return type
+
+[**TransactionSendFungiblesResponse**](TransactionSendFungiblesResponse.md)
 
 ### Authorization
 
