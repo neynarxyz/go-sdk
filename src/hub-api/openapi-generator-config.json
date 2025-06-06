@@ -2,8 +2,7 @@
   "templateDir": "./src/hub-api/templates",
   "generateAliasAsModel": true,
   "additionalProperties": {
-    "packageName": "hub",
-    "packageVersion": "0.0.1",
+    "packageName": "neynar_hub_sdk",
     "isGoSubmodule": true,
     "generateInterfaces": true,
     "enumClassPrefix": true,

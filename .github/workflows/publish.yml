@@ -1,0 +1,52 @@
+name: Publish API and Hub API
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.24'
+
+      - name: Build API
+        run: |
+          cd generated/neynar_sdk
+          go build
+
+      - name: Build Hub API
+        run: |
+          cd generated/neynar_hub_sdk
+          go build
+
+      - name: Install yq
+        run: |
+          sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+
+      - name: Create and Push Tag
+        run: |
+          # Parse version from openapi.yaml using yq
+          VERSION=$(yq '.info.version' generated/neynar_sdk/api/openapi.yaml)
+          if [ -z "$VERSION" ]; then
+            echo "Could not determine version from openapi.yaml"
+            exit 1
+          fi
+          TAG_NAME="v$VERSION"
+          # Only create tag if it doesn't already exist
+          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+            echo "INFO: Tag $TAG_NAME already exists; updating it."
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -f $TAG_NAME
+          git push -f origin $TAG_NAME
