@@ -10,7 +10,7 @@ npx --yes @openapitools/openapi-generator-cli \
     --git-repo-id go-sdk/generated \
     -g go \
     --config ./src/api/openapi-generator-config.json \
-    -i ./src/OAS/src/v2/spec.yaml \
+    -i ./src/OAS/src/api/spec.yaml \
     -o ./generated/api \
     --openapi-normalizer 'SIMPLIFY_ONEOF_ANYOF=false' \
     --inline-schema-options 'SKIP_SCHEMA_REUSE=true' \
@@ -30,7 +30,7 @@ npx --yes @openapitools/openapi-generator-cli \
     --git-repo-id go-sdk/generated \
     -g go \
     --config ./src/hub-api/openapi-generator-config.json \
-    -i ./src/OAS/src/hub-rest-api/spec.yaml \
+    -i ./src/OAS/src/hub-api/spec.yaml \
     -o ./generated/hub-api \
     --openapi-normalizer 'SIMPLIFY_ONEOF_ANYOF=false' \
     --inline-schema-options 'SKIP_SCHEMA_REUSE=true' \
