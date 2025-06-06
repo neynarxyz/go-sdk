@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -25,8 +25,9 @@ type RemoveVerificationReqBody struct {
 	// UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
 	SignerUuid string `json:"signer_uuid"`
 	// Ethereum address
-	Address   string `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
-	BlockHash string `json:"block_hash"`
+	Address      string `json:"address" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
+	BlockHash    string `json:"block_hash"`
+	EthSignature string `json:"eth_signature"`
 }
 
 type _RemoveVerificationReqBody RemoveVerificationReqBody
@@ -35,11 +36,12 @@ type _RemoveVerificationReqBody RemoveVerificationReqBody
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRemoveVerificationReqBody(signerUuid string, address string, blockHash string) *RemoveVerificationReqBody {
+func NewRemoveVerificationReqBody(signerUuid string, address string, blockHash string, ethSignature string) *RemoveVerificationReqBody {
 	this := RemoveVerificationReqBody{}
 	this.SignerUuid = signerUuid
 	this.Address = address
 	this.BlockHash = blockHash
+	this.EthSignature = ethSignature
 	return &this
 }
 
@@ -123,6 +125,30 @@ func (o *RemoveVerificationReqBody) SetBlockHash(v string) {
 	o.BlockHash = v
 }
 
+// GetEthSignature returns the EthSignature field value
+func (o *RemoveVerificationReqBody) GetEthSignature() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.EthSignature
+}
+
+// GetEthSignatureOk returns a tuple with the EthSignature field value
+// and a boolean to check if the value has been set.
+func (o *RemoveVerificationReqBody) GetEthSignatureOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EthSignature, true
+}
+
+// SetEthSignature sets field value
+func (o *RemoveVerificationReqBody) SetEthSignature(v string) {
+	o.EthSignature = v
+}
+
 func (o RemoveVerificationReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -136,6 +162,7 @@ func (o RemoveVerificationReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize["signer_uuid"] = o.SignerUuid
 	toSerialize["address"] = o.Address
 	toSerialize["block_hash"] = o.BlockHash
+	toSerialize["eth_signature"] = o.EthSignature
 	return toSerialize, nil
 }
 
@@ -147,6 +174,7 @@ func (o *RemoveVerificationReqBody) UnmarshalJSON(data []byte) (err error) {
 		"signer_uuid",
 		"address",
 		"block_hash",
+		"eth_signature",
 	}
 
 	// defaultValueFuncMap captures the default values for required properties.

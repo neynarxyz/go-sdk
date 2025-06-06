@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **ProviderName** | Pointer to **string** |  | [optional] 
 **ContractAddress** | **string** |  | 
 **Chain** | **int32** |  | 
-**Metadata** | [**SubscriptionMetadata**](SubscriptionMetadata.md) |  | 
+**Metadata** | [**SubscribedToMetadata**](SubscribedToMetadata.md) |  | 
 **OwnerAddress** | **string** |  | 
-**Price** | [**SubscriptionPrice**](SubscriptionPrice.md) |  | 
+**Price** | [**SubscribedToPrice**](SubscribedToPrice.md) |  | 
 **Tiers** | Pointer to [**[]SubscriptionTier**](SubscriptionTier.md) |  | [optional] 
 **ProtocolVersion** | **int32** |  | 
-**Token** | [**SubscriptionToken**](SubscriptionToken.md) |  | 
+**Token** | [**SubscribedToToken**](SubscribedToToken.md) |  | 
 **ExpiresAt** | **time.Time** |  | 
 **SubscribedAt** | **time.Time** |  | 
 **Tier** | [**SubscriptionTier**](SubscriptionTier.md) |  | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewSubscribedTo
 
-`func NewSubscribedTo(object string, contractAddress string, chain int32, metadata SubscriptionMetadata, ownerAddress string, price SubscriptionPrice, protocolVersion int32, token SubscriptionToken, expiresAt time.Time, subscribedAt time.Time, tier SubscriptionTier, creator User, ) *SubscribedTo`
+`func NewSubscribedTo(object string, contractAddress string, chain int32, metadata SubscribedToMetadata, ownerAddress string, price SubscribedToPrice, protocolVersion int32, token SubscribedToToken, expiresAt time.Time, subscribedAt time.Time, tier SubscriptionTier, creator User, ) *SubscribedTo`
 
 NewSubscribedTo instantiates a new SubscribedTo object
 This constructor will assign default values to properties that have it defined,
@@ -125,20 +125,20 @@ SetChain sets Chain field to given value.
 
 ### GetMetadata
 
-`func (o *SubscribedTo) GetMetadata() SubscriptionMetadata`
+`func (o *SubscribedTo) GetMetadata() SubscribedToMetadata`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *SubscribedTo) GetMetadataOk() (*SubscriptionMetadata, bool)`
+`func (o *SubscribedTo) GetMetadataOk() (*SubscribedToMetadata, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *SubscribedTo) SetMetadata(v SubscriptionMetadata)`
+`func (o *SubscribedTo) SetMetadata(v SubscribedToMetadata)`
 
 SetMetadata sets Metadata field to given value.
 
@@ -165,20 +165,20 @@ SetOwnerAddress sets OwnerAddress field to given value.
 
 ### GetPrice
 
-`func (o *SubscribedTo) GetPrice() SubscriptionPrice`
+`func (o *SubscribedTo) GetPrice() SubscribedToPrice`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *SubscribedTo) GetPriceOk() (*SubscriptionPrice, bool)`
+`func (o *SubscribedTo) GetPriceOk() (*SubscribedToPrice, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *SubscribedTo) SetPrice(v SubscriptionPrice)`
+`func (o *SubscribedTo) SetPrice(v SubscribedToPrice)`
 
 SetPrice sets Price field to given value.
 
@@ -230,20 +230,20 @@ SetProtocolVersion sets ProtocolVersion field to given value.
 
 ### GetToken
 
-`func (o *SubscribedTo) GetToken() SubscriptionToken`
+`func (o *SubscribedTo) GetToken() SubscribedToToken`
 
 GetToken returns the Token field if non-nil, zero value otherwise.
 
 ### GetTokenOk
 
-`func (o *SubscribedTo) GetTokenOk() (*SubscriptionToken, bool)`
+`func (o *SubscribedTo) GetTokenOk() (*SubscribedToToken, bool)`
 
 GetTokenOk returns a tuple with the Token field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetToken
 
-`func (o *SubscribedTo) SetToken(v SubscriptionToken)`
+`func (o *SubscribedTo) SetToken(v SubscribedToToken)`
 
 SetToken sets Token field to given value.
 

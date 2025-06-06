@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 )
 
 type ReactionAPI interface {
@@ -24,9 +25,8 @@ type ReactionAPI interface {
 	/*
 			DeleteReaction Delete reaction
 
-			Delete a reaction (like or recast) to a cast \
+			Delete a reaction (like or recast) to a cast
 		(In order to delete a reaction `signer_uuid` must be approved)
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiDeleteReactionRequest
@@ -68,9 +68,8 @@ type ReactionAPI interface {
 	/*
 			PublishReaction Post a reaction
 
-			Post a reaction (like or recast) to a given cast \
+			Post a reaction (like or recast) to a given cast
 		(In order to post a reaction `signer_uuid` must be approved)
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiPublishReactionRequest
@@ -103,7 +102,7 @@ func (r ApiDeleteReactionRequest) Execute() (*OperationResponse, *http.Response,
 /*
 DeleteReaction Delete reaction
 
-Delete a reaction (like or recast) to a cast \
+Delete a reaction (like or recast) to a cast
 (In order to delete a reaction `signer_uuid` must be approved)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -132,7 +131,7 @@ func (a *ReactionAPIService) DeleteReactionExecute(r ApiDeleteReactionRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/reaction"
+	localVarPath := localBasePath + "/v2/farcaster/reaction/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -258,19 +257,20 @@ type ApiFetchCastReactionsRequest struct {
 	ctx        context.Context
 	ApiService ReactionAPI
 	hash       *string
-	types      *[]ReactionsType
+	types      *[]string
 	viewerFid  *int32
 	limit      *int32
 	cursor     *string
 }
 
+// Cast Hash
 func (r ApiFetchCastReactionsRequest) Hash(hash string) ApiFetchCastReactionsRequest {
 	r.hash = &hash
 	return r
 }
 
 // Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: &#39;likes&#39; and &#39;recasts&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.
-func (r ApiFetchCastReactionsRequest) Types(types []ReactionsType) ApiFetchCastReactionsRequest {
+func (r ApiFetchCastReactionsRequest) Types(types []string) ApiFetchCastReactionsRequest {
 	r.types = &types
 	return r
 }
@@ -328,7 +328,7 @@ func (a *ReactionAPIService) FetchCastReactionsExecute(r ApiFetchCastReactionsRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/reactions/cast"
+	localVarPath := localBasePath + "/v2/farcaster/reactions/cast/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -341,7 +341,17 @@ func (a *ReactionAPIService) FetchCastReactionsExecute(r ApiFetchCastReactionsRe
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "hash", r.hash, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "types", r.types, "form", "csv")
+	{
+		t := *r.types
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "types", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "types", t, "form", "multi")
+		}
+	}
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewer_fid", r.viewerFid, "form", "")
 	}
@@ -436,19 +446,20 @@ type ApiFetchUserReactionsRequest struct {
 	ctx        context.Context
 	ApiService ReactionAPI
 	fid        *int32
-	type_      *ReactionsType
+	type_      *string
 	viewerFid  *int32
 	limit      *int32
 	cursor     *string
 }
 
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiFetchUserReactionsRequest) Fid(fid int32) ApiFetchUserReactionsRequest {
 	r.fid = &fid
 	return r
 }
 
 // Type of reaction to fetch (likes or recasts or all)
-func (r ApiFetchUserReactionsRequest) Type_(type_ ReactionsType) ApiFetchUserReactionsRequest {
+func (r ApiFetchUserReactionsRequest) Type_(type_ string) ApiFetchUserReactionsRequest {
 	r.type_ = &type_
 	return r
 }
@@ -506,7 +517,7 @@ func (a *ReactionAPIService) FetchUserReactionsExecute(r ApiFetchUserReactionsRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/reactions/user"
+	localVarPath := localBasePath + "/v2/farcaster/reactions/user/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -628,7 +639,7 @@ func (r ApiPublishReactionRequest) Execute() (*OperationResponse, *http.Response
 /*
 PublishReaction Post a reaction
 
-Post a reaction (like or recast) to a given cast \
+Post a reaction (like or recast) to a given cast
 (In order to post a reaction `signer_uuid` must be approved)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -657,7 +668,7 @@ func (a *ReactionAPIService) PublishReactionExecute(r ApiPublishReactionRequest)
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/reaction"
+	localVarPath := localBasePath + "/v2/farcaster/reaction/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

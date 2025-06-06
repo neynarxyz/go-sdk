@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | [**[]SearchedUser**](SearchedUser.md) |  | 
+**Users** | [**[]User**](User.md) |  | 
 **Next** | Pointer to [**NextCursor**](NextCursor.md) |  | [optional] 
 
 ## Methods
 
 ### NewUserSearchResponseResult
 
-`func NewUserSearchResponseResult(users []SearchedUser, ) *UserSearchResponseResult`
+`func NewUserSearchResponseResult(users []User, ) *UserSearchResponseResult`
 
 NewUserSearchResponseResult instantiates a new UserSearchResponseResult object
 This constructor will assign default values to properties that have it defined,
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetUsers
 
-`func (o *UserSearchResponseResult) GetUsers() []SearchedUser`
+`func (o *UserSearchResponseResult) GetUsers() []User`
 
 GetUsers returns the Users field if non-nil, zero value otherwise.
 
 ### GetUsersOk
 
-`func (o *UserSearchResponseResult) GetUsersOk() (*[]SearchedUser, bool)`
+`func (o *UserSearchResponseResult) GetUsersOk() (*[]User, bool)`
 
 GetUsersOk returns a tuple with the Users field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsers
 
-`func (o *UserSearchResponseResult) SetUsers(v []SearchedUser)`
+`func (o *UserSearchResponseResult) SetUsers(v []User)`
 
 SetUsers sets Users field to given value.
 

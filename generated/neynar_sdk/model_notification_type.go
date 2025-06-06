@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// NotificationType the model 'NotificationType'
+// NotificationType The type of notification to mark as seen. If not provided, all notifications will be marked as seen.
 type NotificationType string
 
 // List of NotificationType

@@ -1,12 +1,12 @@
 # \StorageAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**BuyStorage**](StorageAPI.md#BuyStorage) | **Post** /farcaster/storage/buy | Buy storage
-[**LookupUserStorageAllocations**](StorageAPI.md#LookupUserStorageAllocations) | **Get** /farcaster/storage/allocations | Allocation of user
-[**LookupUserStorageUsage**](StorageAPI.md#LookupUserStorageUsage) | **Get** /farcaster/storage/usage | Usage of user
+[**BuyStorage**](StorageAPI.md#BuyStorage) | **Post** /v2/farcaster/storage/buy/ | Buy storage
+[**LookupUserStorageAllocations**](StorageAPI.md#LookupUserStorageAllocations) | **Get** /v2/farcaster/storage/allocations/ | Allocation of user
+[**LookupUserStorageUsage**](StorageAPI.md#LookupUserStorageUsage) | **Get** /v2/farcaster/storage/usage/ | Usage of user
 
 
 
@@ -97,7 +97,7 @@ import (
 )
 
 func main() {
-	fid := int32(3) // int32 | 
+	fid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -122,7 +122,7 @@ Other parameters are passed through a pointer to a apiLookupUserStorageAllocatio
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fid** | **int32** |  | 
+ **fid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 
 ### Return type
 
@@ -163,7 +163,7 @@ import (
 )
 
 func main() {
-	fid := int32(3) // int32 | 
+	fid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -188,7 +188,7 @@ Other parameters are passed through a pointer to a apiLookupUserStorageUsageRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fid** | **int32** |  | 
+ **fid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 
 ### Return type
 

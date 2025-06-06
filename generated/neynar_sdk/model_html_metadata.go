@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -20,56 +20,56 @@ var _ MappedNullable = &HtmlMetadata{}
 
 // HtmlMetadata struct for HtmlMetadata
 type HtmlMetadata struct {
-	Favicon                 *string                  `json:"favicon,omitempty"`
-	ModifiedTime            *string                  `json:"modifiedTime,omitempty"`
-	OgArticleAuthor         *string                  `json:"ogArticleAuthor,omitempty"`
-	OgArticleExpirationTime *string                  `json:"ogArticleExpirationTime,omitempty"`
-	OgArticleModifiedTime   *string                  `json:"ogArticleModifiedTime,omitempty"`
-	OgArticlePublishedTime  *string                  `json:"ogArticlePublishedTime,omitempty"`
-	OgArticlePublisher      *string                  `json:"ogArticlePublisher,omitempty"`
-	OgArticleSection        *string                  `json:"ogArticleSection,omitempty"`
-	OgArticleTag            *string                  `json:"ogArticleTag,omitempty"`
-	OgAudio                 *string                  `json:"ogAudio,omitempty"`
-	OgAudioSecureURL        *string                  `json:"ogAudioSecureURL,omitempty"`
-	OgAudioType             *string                  `json:"ogAudioType,omitempty"`
-	OgAudioURL              *string                  `json:"ogAudioURL,omitempty"`
-	OgAvailability          *string                  `json:"ogAvailability,omitempty"`
-	OgDate                  *string                  `json:"ogDate,omitempty"`
-	OgDescription           *string                  `json:"ogDescription,omitempty"`
-	OgDeterminer            *string                  `json:"ogDeterminer,omitempty"`
-	OgEpisode               *string                  `json:"ogEpisode,omitempty"`
-	OgImage                 []ImageObject            `json:"ogImage,omitempty"`
-	OgLocale                *string                  `json:"ogLocale,omitempty"`
-	OgLocaleAlternate       *string                  `json:"ogLocaleAlternate,omitempty"`
-	OgLogo                  *string                  `json:"ogLogo,omitempty"`
-	OgMovie                 *string                  `json:"ogMovie,omitempty"`
-	OgPriceAmount           *string                  `json:"ogPriceAmount,omitempty"`
-	OgPriceCurrency         *string                  `json:"ogPriceCurrency,omitempty"`
-	OgProductAvailability   *string                  `json:"ogProductAvailability,omitempty"`
-	OgProductCondition      *string                  `json:"ogProductCondition,omitempty"`
-	OgProductPriceAmount    *string                  `json:"ogProductPriceAmount,omitempty"`
-	OgProductPriceCurrency  *string                  `json:"ogProductPriceCurrency,omitempty"`
-	OgProductRetailerItemId *string                  `json:"ogProductRetailerItemId,omitempty"`
-	OgSiteName              *string                  `json:"ogSiteName,omitempty"`
-	OgTitle                 *string                  `json:"ogTitle,omitempty"`
-	OgType                  *string                  `json:"ogType,omitempty"`
-	OgUrl                   *string                  `json:"ogUrl,omitempty"`
-	OgVideo                 []VideoObject            `json:"ogVideo,omitempty"`
-	OgVideoActor            *string                  `json:"ogVideoActor,omitempty"`
-	OgVideoActorId          *string                  `json:"ogVideoActorId,omitempty"`
-	OgVideoActorRole        *string                  `json:"ogVideoActorRole,omitempty"`
-	OgVideoDirector         *string                  `json:"ogVideoDirector,omitempty"`
-	OgVideoDuration         *string                  `json:"ogVideoDuration,omitempty"`
-	OgVideoOther            *string                  `json:"ogVideoOther,omitempty"`
-	OgVideoReleaseDate      *string                  `json:"ogVideoReleaseDate,omitempty"`
-	OgVideoSecureURL        *string                  `json:"ogVideoSecureURL,omitempty"`
-	OgVideoSeries           *string                  `json:"ogVideoSeries,omitempty"`
-	OgVideoTag              *string                  `json:"ogVideoTag,omitempty"`
-	OgVideoTvShow           *string                  `json:"ogVideoTvShow,omitempty"`
-	OgVideoWriter           *string                  `json:"ogVideoWriter,omitempty"`
-	OgWebsite               *string                  `json:"ogWebsite,omitempty"`
-	UpdatedTime             *string                  `json:"updatedTime,omitempty"`
-	Oembed                  *HtmlMetadataAllOfOembed `json:"oembed,omitempty"`
+	Favicon                 *string             `json:"favicon,omitempty"`
+	ModifiedTime            *string             `json:"modifiedTime,omitempty"`
+	OgArticleAuthor         *string             `json:"ogArticleAuthor,omitempty"`
+	OgArticleExpirationTime *string             `json:"ogArticleExpirationTime,omitempty"`
+	OgArticleModifiedTime   *string             `json:"ogArticleModifiedTime,omitempty"`
+	OgArticlePublishedTime  *string             `json:"ogArticlePublishedTime,omitempty"`
+	OgArticlePublisher      *string             `json:"ogArticlePublisher,omitempty"`
+	OgArticleSection        *string             `json:"ogArticleSection,omitempty"`
+	OgArticleTag            *string             `json:"ogArticleTag,omitempty"`
+	OgAudio                 *string             `json:"ogAudio,omitempty"`
+	OgAudioSecureURL        *string             `json:"ogAudioSecureURL,omitempty"`
+	OgAudioType             *string             `json:"ogAudioType,omitempty"`
+	OgAudioURL              *string             `json:"ogAudioURL,omitempty"`
+	OgAvailability          *string             `json:"ogAvailability,omitempty"`
+	OgDate                  *string             `json:"ogDate,omitempty"`
+	OgDescription           *string             `json:"ogDescription,omitempty"`
+	OgDeterminer            *string             `json:"ogDeterminer,omitempty"`
+	OgEpisode               *string             `json:"ogEpisode,omitempty"`
+	OgImage                 []ImageObject       `json:"ogImage,omitempty"`
+	OgLocale                *string             `json:"ogLocale,omitempty"`
+	OgLocaleAlternate       *string             `json:"ogLocaleAlternate,omitempty"`
+	OgLogo                  *string             `json:"ogLogo,omitempty"`
+	OgMovie                 *string             `json:"ogMovie,omitempty"`
+	OgPriceAmount           *string             `json:"ogPriceAmount,omitempty"`
+	OgPriceCurrency         *string             `json:"ogPriceCurrency,omitempty"`
+	OgProductAvailability   *string             `json:"ogProductAvailability,omitempty"`
+	OgProductCondition      *string             `json:"ogProductCondition,omitempty"`
+	OgProductPriceAmount    *string             `json:"ogProductPriceAmount,omitempty"`
+	OgProductPriceCurrency  *string             `json:"ogProductPriceCurrency,omitempty"`
+	OgProductRetailerItemId *string             `json:"ogProductRetailerItemId,omitempty"`
+	OgSiteName              *string             `json:"ogSiteName,omitempty"`
+	OgTitle                 *string             `json:"ogTitle,omitempty"`
+	OgType                  *string             `json:"ogType,omitempty"`
+	OgUrl                   *string             `json:"ogUrl,omitempty"`
+	OgVideo                 []VideoObject       `json:"ogVideo,omitempty"`
+	OgVideoActor            *string             `json:"ogVideoActor,omitempty"`
+	OgVideoActorId          *string             `json:"ogVideoActorId,omitempty"`
+	OgVideoActorRole        *string             `json:"ogVideoActorRole,omitempty"`
+	OgVideoDirector         *string             `json:"ogVideoDirector,omitempty"`
+	OgVideoDuration         *string             `json:"ogVideoDuration,omitempty"`
+	OgVideoOther            *string             `json:"ogVideoOther,omitempty"`
+	OgVideoReleaseDate      *string             `json:"ogVideoReleaseDate,omitempty"`
+	OgVideoSecureURL        *string             `json:"ogVideoSecureURL,omitempty"`
+	OgVideoSeries           *string             `json:"ogVideoSeries,omitempty"`
+	OgVideoTag              *string             `json:"ogVideoTag,omitempty"`
+	OgVideoTvShow           *string             `json:"ogVideoTvShow,omitempty"`
+	OgVideoWriter           *string             `json:"ogVideoWriter,omitempty"`
+	OgWebsite               *string             `json:"ogWebsite,omitempty"`
+	UpdatedTime             *string             `json:"updatedTime,omitempty"`
+	Oembed                  *HtmlMetadataOembed `json:"oembed,omitempty"`
 }
 
 // NewHtmlMetadata instantiates a new HtmlMetadata object
@@ -1658,9 +1658,9 @@ func (o *HtmlMetadata) SetUpdatedTime(v string) {
 }
 
 // GetOembed returns the Oembed field value if set, zero value otherwise.
-func (o *HtmlMetadata) GetOembed() HtmlMetadataAllOfOembed {
+func (o *HtmlMetadata) GetOembed() HtmlMetadataOembed {
 	if o == nil || IsNil(o.Oembed) {
-		var ret HtmlMetadataAllOfOembed
+		var ret HtmlMetadataOembed
 		return ret
 	}
 	return *o.Oembed
@@ -1668,7 +1668,7 @@ func (o *HtmlMetadata) GetOembed() HtmlMetadataAllOfOembed {
 
 // GetOembedOk returns a tuple with the Oembed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HtmlMetadata) GetOembedOk() (*HtmlMetadataAllOfOembed, bool) {
+func (o *HtmlMetadata) GetOembedOk() (*HtmlMetadataOembed, bool) {
 	if o == nil || IsNil(o.Oembed) {
 		return nil, false
 	}
@@ -1684,8 +1684,8 @@ func (o *HtmlMetadata) HasOembed() bool {
 	return false
 }
 
-// SetOembed gets a reference to the given HtmlMetadataAllOfOembed and assigns it to the Oembed field.
-func (o *HtmlMetadata) SetOembed(v HtmlMetadataAllOfOembed) {
+// SetOembed gets a reference to the given HtmlMetadataOembed and assigns it to the Oembed field.
+func (o *HtmlMetadata) SetOembed(v HtmlMetadataOembed) {
 	o.Oembed = &v
 }
 

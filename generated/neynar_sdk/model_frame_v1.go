@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -30,11 +30,11 @@ type FrameV1 struct {
 	FramesUrl string              `json:"frames_url"`
 	Buttons   []FrameActionButton `json:"buttons,omitempty"`
 	// Post URL to take an action on this mini app
-	PostUrl          *string            `json:"post_url,omitempty"`
-	Title            *string            `json:"title,omitempty"`
-	ImageAspectRatio *string            `json:"image_aspect_ratio,omitempty"`
-	Input            *FrameV1AllOfInput `json:"input,omitempty"`
-	State            *FrameV1AllOfState `json:"state,omitempty"`
+	PostUrl          *string       `json:"post_url,omitempty"`
+	Title            *string       `json:"title,omitempty"`
+	ImageAspectRatio *string       `json:"image_aspect_ratio,omitempty"`
+	Input            *FrameV1Input `json:"input,omitempty"`
+	State            *FrameV1State `json:"state,omitempty"`
 }
 
 type _FrameV1 FrameV1
@@ -260,9 +260,9 @@ func (o *FrameV1) SetImageAspectRatio(v string) {
 }
 
 // GetInput returns the Input field value if set, zero value otherwise.
-func (o *FrameV1) GetInput() FrameV1AllOfInput {
+func (o *FrameV1) GetInput() FrameV1Input {
 	if o == nil || IsNil(o.Input) {
-		var ret FrameV1AllOfInput
+		var ret FrameV1Input
 		return ret
 	}
 	return *o.Input
@@ -270,7 +270,7 @@ func (o *FrameV1) GetInput() FrameV1AllOfInput {
 
 // GetInputOk returns a tuple with the Input field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FrameV1) GetInputOk() (*FrameV1AllOfInput, bool) {
+func (o *FrameV1) GetInputOk() (*FrameV1Input, bool) {
 	if o == nil || IsNil(o.Input) {
 		return nil, false
 	}
@@ -286,15 +286,15 @@ func (o *FrameV1) HasInput() bool {
 	return false
 }
 
-// SetInput gets a reference to the given FrameV1AllOfInput and assigns it to the Input field.
-func (o *FrameV1) SetInput(v FrameV1AllOfInput) {
+// SetInput gets a reference to the given FrameV1Input and assigns it to the Input field.
+func (o *FrameV1) SetInput(v FrameV1Input) {
 	o.Input = &v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
-func (o *FrameV1) GetState() FrameV1AllOfState {
+func (o *FrameV1) GetState() FrameV1State {
 	if o == nil || IsNil(o.State) {
-		var ret FrameV1AllOfState
+		var ret FrameV1State
 		return ret
 	}
 	return *o.State
@@ -302,7 +302,7 @@ func (o *FrameV1) GetState() FrameV1AllOfState {
 
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FrameV1) GetStateOk() (*FrameV1AllOfState, bool) {
+func (o *FrameV1) GetStateOk() (*FrameV1State, bool) {
 	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
@@ -318,8 +318,8 @@ func (o *FrameV1) HasState() bool {
 	return false
 }
 
-// SetState gets a reference to the given FrameV1AllOfState and assigns it to the State field.
-func (o *FrameV1) SetState(v FrameV1AllOfState) {
+// SetState gets a reference to the given FrameV1State and assigns it to the State field.
+func (o *FrameV1) SetState(v FrameV1State) {
 	o.State = &v
 }
 

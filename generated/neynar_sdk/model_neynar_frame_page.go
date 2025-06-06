@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -25,7 +25,7 @@ type NeynarFramePage struct {
 	// Unique identifier for the page.
 	Uuid string `json:"uuid"`
 	// The version of the page schema.
-	Version string `json:"version"`
+	Version *string `json:"version,omitempty"`
 	// The title of the page.
 	Title   string             `json:"title"`
 	Image   NeynarPageImage    `json:"image"`
@@ -39,10 +39,11 @@ type _NeynarFramePage NeynarFramePage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNeynarFramePage(uuid string, version string, title string, image NeynarPageImage) *NeynarFramePage {
+func NewNeynarFramePage(uuid string, title string, image NeynarPageImage) *NeynarFramePage {
 	this := NeynarFramePage{}
 	this.Uuid = uuid
-	this.Version = version
+	var version string = "vNext"
+	this.Version = &version
 	this.Title = title
 	this.Image = image
 	return &this
@@ -54,7 +55,7 @@ func NewNeynarFramePage(uuid string, version string, title string, image NeynarP
 func NewNeynarFramePageWithDefaults() *NeynarFramePage {
 	this := NeynarFramePage{}
 	var version string = "vNext"
-	this.Version = version
+	this.Version = &version
 	return &this
 }
 
@@ -82,33 +83,36 @@ func (o *NeynarFramePage) SetUuid(v string) {
 	o.Uuid = v
 }
 
-// GetVersion returns the Version field value
+// GetVersion returns the Version field value if set, zero value otherwise.
 func (o *NeynarFramePage) GetVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
-
-	return o.Version
+	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarFramePage) GetVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
-	return &o.Version, true
+	return o.Version, true
 }
 
-// SetVersion sets field value
+// HasVersion returns a boolean if a field has been set.
+func (o *NeynarFramePage) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *NeynarFramePage) SetVersion(v string) {
-	o.Version = v
-}
-
-// GetDefaultVersion returns the default value "vNext" of the Version field.
-func (o *NeynarFramePage) GetDefaultVersion() interface{} {
-	return "vNext"
+	o.Version = &v
 }
 
 // GetTitle returns the Title field value
@@ -234,10 +238,9 @@ func (o NeynarFramePage) MarshalJSON() ([]byte, error) {
 func (o NeynarFramePage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["uuid"] = o.Uuid
-	if _, exists := toSerialize["version"]; !exists {
-		toSerialize["version"] = o.GetDefaultVersion()
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
 	}
-	toSerialize["version"] = o.Version
 	toSerialize["title"] = o.Title
 	toSerialize["image"] = o.Image
 	if !IsNil(o.Buttons) {
@@ -255,16 +258,13 @@ func (o *NeynarFramePage) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"uuid",
-		"version",
 		"title",
 		"image",
 	}
 
 	// defaultValueFuncMap captures the default values for required properties.
 	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{}{
-		"version": o.GetDefaultVersion,
-	}
+	defaultValueFuncMap := map[string]func() interface{}{}
 	var defaultValueApplied bool
 	allProperties := make(map[string]interface{})
 

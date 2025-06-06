@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **ParentHash** | **NullableString** |  | 
 **ParentUrl** | **NullableString** |  | 
 **RootParentUrl** | **NullableString** |  | 
-**ParentAuthor** | [**CastParentAuthor**](CastParentAuthor.md) |  | 
+**ParentAuthor** | [**CastWithInteractionsParentAuthor**](CastWithInteractionsParentAuthor.md) |  | 
 **Author** | [**User**](User.md) |  | 
 **App** | Pointer to [**NullableUserDehydrated**](UserDehydrated.md) |  | [optional] 
 **Text** | **string** |  | 
@@ -21,9 +21,9 @@ Name | Type | Description | Notes
 **Replies** | [**CastWithInteractionsReplies**](CastWithInteractionsReplies.md) |  | 
 **ThreadHash** | **NullableString** |  | 
 **MentionedProfiles** | [**[]User**](User.md) |  | 
-**MentionedProfilesRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.  | 
+**MentionedProfilesRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list. | 
 **MentionedChannels** | [**[]ChannelDehydrated**](ChannelDehydrated.md) |  | 
-**MentionedChannelsRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.  | 
+**MentionedChannelsRanges** | [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list. | 
 **Channel** | [**NullableChannelOrChannelDehydrated**](ChannelOrChannelDehydrated.md) |  | 
 **ViewerContext** | Pointer to [**CastViewerContext**](CastViewerContext.md) |  | [optional] 
 **AuthorChannelContext** | Pointer to [**ChannelUserContext**](ChannelUserContext.md) |  | [optional] 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewCastWithInteractions
 
-`func NewCastWithInteractions(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel NullableChannelOrChannelDehydrated, ) *CastWithInteractions`
+`func NewCastWithInteractions(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastWithInteractionsParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel NullableChannelOrChannelDehydrated, ) *CastWithInteractions`
 
 NewCastWithInteractions instantiates a new CastWithInteractions object
 This constructor will assign default values to properties that have it defined,
@@ -179,20 +179,20 @@ SetRootParentUrl sets RootParentUrl field to given value.
 UnsetRootParentUrl ensures that no value is present for RootParentUrl, not even an explicit nil
 ### GetParentAuthor
 
-`func (o *CastWithInteractions) GetParentAuthor() CastParentAuthor`
+`func (o *CastWithInteractions) GetParentAuthor() CastWithInteractionsParentAuthor`
 
 GetParentAuthor returns the ParentAuthor field if non-nil, zero value otherwise.
 
 ### GetParentAuthorOk
 
-`func (o *CastWithInteractions) GetParentAuthorOk() (*CastParentAuthor, bool)`
+`func (o *CastWithInteractions) GetParentAuthorOk() (*CastWithInteractionsParentAuthor, bool)`
 
 GetParentAuthorOk returns a tuple with the ParentAuthor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentAuthor
 
-`func (o *CastWithInteractions) SetParentAuthor(v CastParentAuthor)`
+`func (o *CastWithInteractions) SetParentAuthor(v CastWithInteractionsParentAuthor)`
 
 SetParentAuthor sets ParentAuthor field to given value.
 

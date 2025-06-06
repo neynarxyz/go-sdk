@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -18,23 +18,23 @@ import (
 
 // SubscriptionCheckResponse struct for SubscriptionCheckResponse
 type SubscriptionCheckResponse struct {
-	MapmapOfStringSubscriptionStatus *map[string]SubscriptionStatus
+	MapmapOfStringSubscriptionCheckResponseAnyOfValue *map[string]SubscriptionCheckResponseAnyOfValue
 }
 
 // Unmarshal JSON data into any of the pointers in the struct
 func (dst *SubscriptionCheckResponse) UnmarshalJSON(data []byte) error {
 	var err error
-	// try to unmarshal JSON data into MapmapOfStringSubscriptionStatus
-	err = json.Unmarshal(data, &dst.MapmapOfStringSubscriptionStatus)
+	// try to unmarshal JSON data into MapmapOfStringSubscriptionCheckResponseAnyOfValue
+	err = json.Unmarshal(data, &dst.MapmapOfStringSubscriptionCheckResponseAnyOfValue)
 	if err == nil {
-		jsonMapmapOfStringSubscriptionStatus, _ := json.Marshal(dst.MapmapOfStringSubscriptionStatus)
-		if string(jsonMapmapOfStringSubscriptionStatus) == "{}" { // empty struct
-			dst.MapmapOfStringSubscriptionStatus = nil
+		jsonMapmapOfStringSubscriptionCheckResponseAnyOfValue, _ := json.Marshal(dst.MapmapOfStringSubscriptionCheckResponseAnyOfValue)
+		if string(jsonMapmapOfStringSubscriptionCheckResponseAnyOfValue) == "{}" { // empty struct
+			dst.MapmapOfStringSubscriptionCheckResponseAnyOfValue = nil
 		} else {
-			return nil // data stored in dst.MapmapOfStringSubscriptionStatus, return on the first match
+			return nil // data stored in dst.MapmapOfStringSubscriptionCheckResponseAnyOfValue, return on the first match
 		}
 	} else {
-		dst.MapmapOfStringSubscriptionStatus = nil
+		dst.MapmapOfStringSubscriptionCheckResponseAnyOfValue = nil
 	}
 
 	return fmt.Errorf("data failed to match schemas in anyOf(SubscriptionCheckResponse)")
@@ -42,8 +42,8 @@ func (dst *SubscriptionCheckResponse) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src SubscriptionCheckResponse) MarshalJSON() ([]byte, error) {
-	if src.MapmapOfStringSubscriptionStatus != nil {
-		return json.Marshal(&src.MapmapOfStringSubscriptionStatus)
+	if src.MapmapOfStringSubscriptionCheckResponseAnyOfValue != nil {
+		return json.Marshal(&src.MapmapOfStringSubscriptionCheckResponseAnyOfValue)
 	}
 
 	return nil, nil // no data in anyOf schemas

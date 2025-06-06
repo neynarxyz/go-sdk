@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | The signer_uuid of the user on behalf of whom the action is being performed.  | 
-**BaseUrl** | **string** | The base URL of the app on which the action is being performed.  | 
+**SignerUuid** | **string** | The signer_uuid of the user on behalf of whom the action is being performed. | 
+**BaseUrl** | **string** | The base URL of the app on which the action is being performed. | 
 **Action** | [**FarcasterActionReqBodyAction**](FarcasterActionReqBodyAction.md) |  | 
 
 ## Methods

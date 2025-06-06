@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** | The unique identifier of a farcaster user (unsigned integer) | 
+**Fid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 **Amount** | **float32** |  | 
 **Status** | **string** |  | 
 **Reason** | Pointer to **string** | Reason for failure (if status is failed) | [optional] 

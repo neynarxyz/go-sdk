@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Url** | Pointer to **string** |  | [optional] 
 **Token** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
-**Fid** | Pointer to **int32** | The unique identifier of a farcaster user (unsigned integer) | [optional] 
+**Fid** | Pointer to **int32** | The unique identifier of a farcaster user or app (unsigned integer) | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 

@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ExcludeAuthorFids** | Pointer to **[]int32** | Exclude casts that matches these authors. **Note:** This is applied as an AND operation against rest of the filters. Rest of the filters are bundled as an OR operation.  | [optional] 
+**ExcludeAuthorFids** | Pointer to **[]int32** | Exclude casts that matches these authors. **Note:** This is applied as an AND operation against rest of the filters. Rest of the filters are bundled as an OR operation. | [optional] 
 **AuthorFids** | Pointer to **[]int32** |  | [optional] 
 **MentionedFids** | Pointer to **[]int32** |  | [optional] 
 **ParentUrls** | Pointer to **[]string** |  | [optional] 
 **RootParentUrls** | Pointer to **[]string** |  | [optional] 
 **ParentHashes** | Pointer to **[]string** |  | [optional] 
 **ParentAuthorFids** | Pointer to **[]int32** |  | [optional] 
-**Text** | Pointer to **string** | Regex pattern to match the text key of the cast. **Note:**  1) Regex must be parsed by Go&#39;s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen  | [optional] 
-**Embeds** | Pointer to **string** | Regex pattern to match the embeded_url (key embeds) of the cast. **Note:**  1) Regex must be parsed by Go&#39;s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b  | [optional] 
+**Text** | Pointer to **string** | Regex pattern to match the text key of the cast. **Note:**  1) Regex must be parsed by Go&#39;s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: (?i)\\\\$degen should be written as (?i)\\\\\\\\$degen | [optional] 
+**Embeds** | Pointer to **string** | Regex pattern to match the embeded_url (key embeds) of the cast. **Note:**  1) Regex must be parsed by Go&#39;s RE2 engine (Test your expression here: https://www.lddgo.net/en/string/golangregex) 2) Use backslashes to escape special characters. For example: \\\\b(farcaster|neynar)\\\\b should be written as \\\\\\\\b(farcaster|neynar)\\\\\\\\b | [optional] 
 
 ## Methods
 

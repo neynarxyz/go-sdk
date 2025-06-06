@@ -5,8 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Object** | **string** |  | 
-**Fid** | **int32** | The unique identifier of a farcaster user (unsigned integer) | 
+**Fid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 **Status** | **string** |  | 
+**AppFid** | Pointer to **int32** | The unique identifier of a farcaster user or app (unsigned integer) | [optional] 
 
 ## Methods
 
@@ -86,6 +87,31 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+
+### GetAppFid
+
+`func (o *NotificationDelivery) GetAppFid() int32`
+
+GetAppFid returns the AppFid field if non-nil, zero value otherwise.
+
+### GetAppFidOk
+
+`func (o *NotificationDelivery) GetAppFidOk() (*int32, bool)`
+
+GetAppFidOk returns a tuple with the AppFid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppFid
+
+`func (o *NotificationDelivery) SetAppFid(v int32)`
+
+SetAppFid sets AppFid field to given value.
+
+### HasAppFid
+
+`func (o *NotificationDelivery) HasAppFid() bool`
+
+HasAppFid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

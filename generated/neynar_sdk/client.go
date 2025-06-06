@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -41,7 +41,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the Farcaster API V2 API v2.43.0
+// APIClient manages communication with the Neynar API API v3.0.1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -52,6 +52,8 @@ type APIClient struct {
 	ActionAPI ActionAPI
 
 	AgentsAPI AgentsAPI
+
+	AppHostAPI AppHostAPI
 
 	BanAPI BanAPI
 
@@ -110,6 +112,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.ActionAPI = (*ActionAPIService)(&c.common)
 	c.AgentsAPI = (*AgentsAPIService)(&c.common)
+	c.AppHostAPI = (*AppHostAPIService)(&c.common)
 	c.BanAPI = (*BanAPIService)(&c.common)
 	c.BlockAPI = (*BlockAPIService)(&c.common)
 	c.CastAPI = (*CastAPIService)(&c.common)

@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -23,9 +23,11 @@ var _ MappedNullable = &NotificationDelivery{}
 // NotificationDelivery struct for NotificationDelivery
 type NotificationDelivery struct {
 	Object string `json:"object"`
-	// The unique identifier of a farcaster user (unsigned integer)
+	// The unique identifier of a farcaster user or app (unsigned integer)
 	Fid    int32  `json:"fid"`
 	Status string `json:"status"`
+	// The unique identifier of a farcaster user or app (unsigned integer)
+	AppFid *int32 `json:"app_fid,omitempty"`
 }
 
 type _NotificationDelivery NotificationDelivery
@@ -122,6 +124,38 @@ func (o *NotificationDelivery) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetAppFid returns the AppFid field value if set, zero value otherwise.
+func (o *NotificationDelivery) GetAppFid() int32 {
+	if o == nil || IsNil(o.AppFid) {
+		var ret int32
+		return ret
+	}
+	return *o.AppFid
+}
+
+// GetAppFidOk returns a tuple with the AppFid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotificationDelivery) GetAppFidOk() (*int32, bool) {
+	if o == nil || IsNil(o.AppFid) {
+		return nil, false
+	}
+	return o.AppFid, true
+}
+
+// HasAppFid returns a boolean if a field has been set.
+func (o *NotificationDelivery) HasAppFid() bool {
+	if o != nil && !IsNil(o.AppFid) {
+		return true
+	}
+
+	return false
+}
+
+// SetAppFid gets a reference to the given int32 and assigns it to the AppFid field.
+func (o *NotificationDelivery) SetAppFid(v int32) {
+	o.AppFid = &v
+}
+
 func (o NotificationDelivery) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -135,6 +169,9 @@ func (o NotificationDelivery) ToMap() (map[string]interface{}, error) {
 	toSerialize["object"] = o.Object
 	toSerialize["fid"] = o.Fid
 	toSerialize["status"] = o.Status
+	if !IsNil(o.AppFid) {
+		toSerialize["app_fid"] = o.AppFid
+	}
 	return toSerialize, nil
 }
 

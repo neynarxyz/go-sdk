@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **NullableInt32** | The unique identifier of a farcaster user (unsigned integer) | 
+**Fid** | **NullableInt32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 
 ## Methods
 

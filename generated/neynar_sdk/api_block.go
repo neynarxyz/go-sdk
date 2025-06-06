@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -113,7 +113,7 @@ func (a *BlockAPIService) DeleteBlockExecute(r ApiDeleteBlockRequest) (*Operatio
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/block"
+	localVarPath := localBasePath + "/v2/farcaster/block/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -227,11 +227,17 @@ func (a *BlockAPIService) DeleteBlockExecute(r ApiDeleteBlockRequest) (*Operatio
 type ApiFetchBlockListRequest struct {
 	ctx                 context.Context
 	ApiService          BlockAPI
+	xNeynarExperimental *bool
 	blockerFid          *int32
 	blockedFid          *int32
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchBlockListRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchBlockListRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
+	return r
 }
 
 // Providing this will return the users that this user has blocked
@@ -255,12 +261,6 @@ func (r ApiFetchBlockListRequest) Limit(limit int32) ApiFetchBlockListRequest {
 // Pagination cursor.
 func (r ApiFetchBlockListRequest) Cursor(cursor string) ApiFetchBlockListRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchBlockListRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchBlockListRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -299,7 +299,7 @@ func (a *BlockAPIService) FetchBlockListExecute(r ApiFetchBlockListRequest) (*Bl
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/block/list"
+	localVarPath := localBasePath + "/v2/farcaster/block/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -469,7 +469,7 @@ func (a *BlockAPIService) PublishBlockExecute(r ApiPublishBlockRequest) (*Operat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/block"
+	localVarPath := localBasePath + "/v2/farcaster/block/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

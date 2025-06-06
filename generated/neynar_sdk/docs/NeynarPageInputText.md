@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Enabled** | **bool** | Indicates if text input is enabled. | [default to false]
+**Enabled** | Pointer to **bool** | Indicates if text input is enabled. | [optional] [default to false]
 **Placeholder** | Pointer to **string** | The placeholder text for the input. | [optional] 
 
 ## Methods
 
 ### NewNeynarPageInputText
 
-`func NewNeynarPageInputText(enabled bool, ) *NeynarPageInputText`
+`func NewNeynarPageInputText() *NeynarPageInputText`
 
 NewNeynarPageInputText instantiates a new NeynarPageInputText object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetEnabled sets Enabled field to given value.
 
+### HasEnabled
+
+`func (o *NeynarPageInputText) HasEnabled() bool`
+
+HasEnabled returns a boolean if a field has been set.
 
 ### GetPlaceholder
 

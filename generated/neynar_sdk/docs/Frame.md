@@ -11,11 +11,11 @@ Name | Type | Description | Notes
 **PostUrl** | Pointer to **string** | Post URL to take an action on this mini app | [optional] 
 **Title** | Pointer to **string** | Button title of a mini app | [optional] 
 **ImageAspectRatio** | Pointer to **string** |  | [optional] 
-**Input** | Pointer to [**FrameV1AllOfInput**](FrameV1AllOfInput.md) |  | [optional] 
-**State** | Pointer to [**FrameV1AllOfState**](FrameV1AllOfState.md) |  | [optional] 
+**Input** | Pointer to [**FrameV1Input**](FrameV1Input.md) |  | [optional] 
+**State** | Pointer to [**FrameV1State**](FrameV1State.md) |  | [optional] 
 **Manifest** | Pointer to [**FarcasterManifest**](FarcasterManifest.md) |  | [optional] 
 **Author** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
-**Metadata** | Pointer to [**FrameV2AllOfMetadata**](FrameV2AllOfMetadata.md) |  | [optional] 
+**Metadata** | Pointer to [**FrameV2Metadata**](FrameV2Metadata.md) |  | [optional] 
 
 ## Methods
 
@@ -198,20 +198,20 @@ HasImageAspectRatio returns a boolean if a field has been set.
 
 ### GetInput
 
-`func (o *Frame) GetInput() FrameV1AllOfInput`
+`func (o *Frame) GetInput() FrameV1Input`
 
 GetInput returns the Input field if non-nil, zero value otherwise.
 
 ### GetInputOk
 
-`func (o *Frame) GetInputOk() (*FrameV1AllOfInput, bool)`
+`func (o *Frame) GetInputOk() (*FrameV1Input, bool)`
 
 GetInputOk returns a tuple with the Input field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInput
 
-`func (o *Frame) SetInput(v FrameV1AllOfInput)`
+`func (o *Frame) SetInput(v FrameV1Input)`
 
 SetInput sets Input field to given value.
 
@@ -223,20 +223,20 @@ HasInput returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *Frame) GetState() FrameV1AllOfState`
+`func (o *Frame) GetState() FrameV1State`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *Frame) GetStateOk() (*FrameV1AllOfState, bool)`
+`func (o *Frame) GetStateOk() (*FrameV1State, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *Frame) SetState(v FrameV1AllOfState)`
+`func (o *Frame) SetState(v FrameV1State)`
 
 SetState sets State field to given value.
 
@@ -298,20 +298,20 @@ HasAuthor returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *Frame) GetMetadata() FrameV2AllOfMetadata`
+`func (o *Frame) GetMetadata() FrameV2Metadata`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *Frame) GetMetadataOk() (*FrameV2AllOfMetadata, bool)`
+`func (o *Frame) GetMetadataOk() (*FrameV2Metadata, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *Frame) SetMetadata(v FrameV2AllOfMetadata)`
+`func (o *Frame) SetMetadata(v FrameV2Metadata)`
 
 SetMetadata sets Metadata field to given value.
 

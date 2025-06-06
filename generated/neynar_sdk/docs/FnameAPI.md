@@ -1,10 +1,10 @@
 # \FnameAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**IsFnameAvailable**](FnameAPI.md#IsFnameAvailable) | **Get** /farcaster/fname/availability | Check fname availability
+[**IsFnameAvailable**](FnameAPI.md#IsFnameAvailable) | **Get** /v2/farcaster/fname/availability/ | Check fname availability
 
 
 
@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-	fname := "farcaster" // string | 
+	fname := "fname_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

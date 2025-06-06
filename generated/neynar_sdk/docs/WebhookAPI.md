@@ -1,15 +1,15 @@
 # \WebhookAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteWebhook**](WebhookAPI.md#DeleteWebhook) | **Delete** /farcaster/webhook | Delete a webhook
-[**FetchWebhooks**](WebhookAPI.md#FetchWebhooks) | **Get** /farcaster/webhook/list | Associated webhooks of user
-[**LookupWebhook**](WebhookAPI.md#LookupWebhook) | **Get** /farcaster/webhook | Fetch a webhook
-[**PublishWebhook**](WebhookAPI.md#PublishWebhook) | **Post** /farcaster/webhook | Create a webhook
-[**UpdateWebhook**](WebhookAPI.md#UpdateWebhook) | **Put** /farcaster/webhook | Update a webhook
-[**UpdateWebhookActiveStatus**](WebhookAPI.md#UpdateWebhookActiveStatus) | **Patch** /farcaster/webhook | Update webhook status
+[**DeleteWebhook**](WebhookAPI.md#DeleteWebhook) | **Delete** /v2/farcaster/webhook/ | Delete a webhook
+[**FetchWebhooks**](WebhookAPI.md#FetchWebhooks) | **Get** /v2/farcaster/webhook/list/ | Associated webhooks of user
+[**LookupWebhook**](WebhookAPI.md#LookupWebhook) | **Get** /v2/farcaster/webhook/ | Fetch a webhook
+[**PublishWebhook**](WebhookAPI.md#PublishWebhook) | **Post** /v2/farcaster/webhook/ | Create a webhook
+[**UpdateWebhook**](WebhookAPI.md#UpdateWebhook) | **Put** /v2/farcaster/webhook/ | Update a webhook
+[**UpdateWebhookActiveStatus**](WebhookAPI.md#UpdateWebhookActiveStatus) | **Patch** /v2/farcaster/webhook/ | Update webhook status
 
 
 

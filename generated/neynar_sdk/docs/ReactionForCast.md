@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ReactionType** | **string** |  | 
+**ReactionType** | [**ReactionType**](ReactionType.md) |  | 
 **ReactionTimestamp** | **time.Time** |  | 
 **Object** | **string** |  | 
 **User** | [**User**](User.md) |  | 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewReactionForCast
 
-`func NewReactionForCast(reactionType string, reactionTimestamp time.Time, object string, user User, ) *ReactionForCast`
+`func NewReactionForCast(reactionType ReactionType, reactionTimestamp time.Time, object string, user User, ) *ReactionForCast`
 
 NewReactionForCast instantiates a new ReactionForCast object
 This constructor will assign default values to properties that have it defined,
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetReactionType
 
-`func (o *ReactionForCast) GetReactionType() string`
+`func (o *ReactionForCast) GetReactionType() ReactionType`
 
 GetReactionType returns the ReactionType field if non-nil, zero value otherwise.
 
 ### GetReactionTypeOk
 
-`func (o *ReactionForCast) GetReactionTypeOk() (*string, bool)`
+`func (o *ReactionForCast) GetReactionTypeOk() (*ReactionType, bool)`
 
 GetReactionTypeOk returns a tuple with the ReactionType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReactionType
 
-`func (o *ReactionForCast) SetReactionType(v string)`
+`func (o *ReactionForCast) SetReactionType(v ReactionType)`
 
 SetReactionType sets ReactionType field to given value.
 

@@ -1,13 +1,13 @@
 # \NotificationsAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FetchAllNotifications**](NotificationsAPI.md#FetchAllNotifications) | **Get** /farcaster/notifications | For user
-[**FetchChannelNotificationsForUser**](NotificationsAPI.md#FetchChannelNotificationsForUser) | **Get** /farcaster/notifications/channel | For user by channel
-[**FetchNotificationsByParentUrlForUser**](NotificationsAPI.md#FetchNotificationsByParentUrlForUser) | **Get** /farcaster/notifications/parent_url | For user by parent_urls
-[**MarkNotificationsAsSeen**](NotificationsAPI.md#MarkNotificationsAsSeen) | **Post** /farcaster/notifications/seen | Mark as seen
+[**FetchAllNotifications**](NotificationsAPI.md#FetchAllNotifications) | **Get** /v2/farcaster/notifications/ | For user
+[**FetchChannelNotificationsForUser**](NotificationsAPI.md#FetchChannelNotificationsForUser) | **Get** /v2/farcaster/notifications/channel/ | For user by channel
+[**FetchNotificationsByParentUrlForUser**](NotificationsAPI.md#FetchNotificationsByParentUrlForUser) | **Get** /v2/farcaster/notifications/parent_url/ | For user by parent_urls
+[**MarkNotificationsAsSeen**](NotificationsAPI.md#MarkNotificationsAsSeen) | **Post** /v2/farcaster/notifications/seen/ | Mark as seen
 
 
 
@@ -32,9 +32,9 @@ import (
 )
 
 func main() {
-	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
-	type_ := []openapiclient.NotificationType{openapiclient.NotificationType("follows")} // []NotificationType | Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies. (optional)
-	priorityMode := true // bool | When true, only returns notifications from power badge users and users that the user follows. (optional) (default to false)
+	fid := int32(56) // int32 | FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
+	type_ := []string{"Type_example"} // []string | Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies. (optional)
+	priorityMode := false // bool | When true, only returns notifications from power badge users and users that the user follows. (optional) (default to false)
 	limit := int32(15) // int32 | Number of results to fetch (optional) (default to 15)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiFetchAllNotificationsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of the user you you want to fetch notifications for. The response will respect this user&#39;s mutes and blocks. | 
- **type_** | [**[]NotificationType**](NotificationType.md) | Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies. | 
+ **type_** | **[]string** | Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies. | 
  **priorityMode** | **bool** | When true, only returns notifications from power badge users and users that the user follows. | [default to false]
  **limit** | **int32** | Number of results to fetch | [default to 15]
  **cursor** | **string** | Pagination cursor. | 
@@ -106,7 +106,7 @@ import (
 )
 
 func main() {
-	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
+	fid := int32(56) // int32 | FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
 	channelIds := "neynar,farcaster" // string | Comma separated channel_ids (find list of all channels here - https://docs.neynar.com/reference/list-all-channels)
 	priorityMode := true // bool | When true, only returns notifications from power badge users and users that the user follows. (optional) (default to false)
 	limit := int32(15) // int32 | Number of results to fetch (optional) (default to 15)
@@ -180,7 +180,7 @@ import (
 )
 
 func main() {
-	fid := int32(194) // int32 | FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
+	fid := int32(56) // int32 | FID of the user you you want to fetch notifications for. The response will respect this user's mutes and blocks.
 	parentUrls := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Comma separated parent_urls
 	priorityMode := true // bool | When true, only returns notifications from power badge users and users that the user follows. (optional) (default to false)
 	limit := int32(15) // int32 | Number of results to fetch (optional) (default to 15)
@@ -255,7 +255,7 @@ import (
 
 func main() {
 	markNotificationsAsSeenReqBody := *openapiclient.NewMarkNotificationsAsSeenReqBody() // MarkNotificationsAsSeenReqBody | 
-	authorization := "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." // string | Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).  (optional)
+	authorization := "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." // string | Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication). (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -281,7 +281,7 @@ Other parameters are passed through a pointer to a apiMarkNotificationsAsSeenReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **markNotificationsAsSeenReqBody** | [**MarkNotificationsAsSeenReqBody**](MarkNotificationsAsSeenReqBody.md) |  | 
- **authorization** | **string** | Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication).  | 
+ **authorization** | **string** | Optional Bearer token for certain endpoints. The token format is described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication). | 
 
 ### Return type
 

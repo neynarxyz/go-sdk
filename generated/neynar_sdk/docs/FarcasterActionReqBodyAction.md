@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | The type of action being performed.  | 
-**Payload** | Pointer to **map[string]interface{}** | The payload of the action being performed.  | [optional] 
+**Type** | **string** | The type of action being performed. | 
+**Payload** | Pointer to **map[string]interface{}** | The payload of the action being performed. | [optional] 
 
 ## Methods
 

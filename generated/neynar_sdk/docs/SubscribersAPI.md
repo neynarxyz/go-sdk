@@ -1,13 +1,13 @@
 # \SubscribersAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FetchSubscribedToForFid**](SubscribersAPI.md#FetchSubscribedToForFid) | **Get** /farcaster/user/subscribed_to | Subscribed to
-[**FetchSubscribersForFid**](SubscribersAPI.md#FetchSubscribersForFid) | **Get** /farcaster/user/subscribers | Subscribers of a user
-[**FetchSubscriptionCheck**](SubscribersAPI.md#FetchSubscriptionCheck) | **Get** /stp/subscription_check | Hypersub subscription check
-[**FetchSubscriptionsForFid**](SubscribersAPI.md#FetchSubscriptionsForFid) | **Get** /farcaster/user/subscriptions_created | Subscriptions created by FID
+[**FetchSubscribedToForFid**](SubscribersAPI.md#FetchSubscribedToForFid) | **Get** /v2/farcaster/user/subscribed_to/ | Subscribed to
+[**FetchSubscribersForFid**](SubscribersAPI.md#FetchSubscribersForFid) | **Get** /v2/farcaster/user/subscribers/ | Subscribers of a user
+[**FetchSubscriptionCheck**](SubscribersAPI.md#FetchSubscriptionCheck) | **Get** /v2/stp/subscription_check/ | Hypersub subscription check
+[**FetchSubscriptionsForFid**](SubscribersAPI.md#FetchSubscriptionsForFid) | **Get** /v2/farcaster/user/subscriptions_created/ | Subscriptions created by FID
 
 
 
@@ -32,9 +32,9 @@ import (
 )
 
 func main() {
-	fid := int32(3206) // int32 | 
-	subscriptionProvider := openapiclient.SubscriptionProvider("fabric_stp") // SubscriptionProvider | 
-	viewerFid := int32(3) // int32 |  (optional)
+	fid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer)
+	subscriptionProvider := "subscriptionProvider_example" // string | The provider of the subscription.
+	viewerFid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -59,9 +59,9 @@ Other parameters are passed through a pointer to a apiFetchSubscribedToForFidReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fid** | **int32** |  | 
- **subscriptionProvider** | [**SubscriptionProvider**](SubscriptionProvider.md) |  | 
- **viewerFid** | **int32** |  | 
+ **fid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
+ **subscriptionProvider** | **string** | The provider of the subscription. | 
+ **viewerFid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 
 ### Return type
 
@@ -102,9 +102,9 @@ import (
 )
 
 func main() {
-	fid := int32(3206) // int32 | 
-	subscriptionProvider := openapiclient.SubscriptionProviders("fabric_stp") // SubscriptionProviders | 
-	viewerFid := int32(3) // int32 |  (optional)
+	fid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer)
+	subscriptionProvider := "subscriptionProvider_example" // string | The provider of the subscription.
+	viewerFid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -129,9 +129,9 @@ Other parameters are passed through a pointer to a apiFetchSubscribersForFidRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fid** | **int32** |  | 
- **subscriptionProvider** | [**SubscriptionProviders**](SubscriptionProviders.md) |  | 
- **viewerFid** | **int32** |  | 
+ **fid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
+ **subscriptionProvider** | **string** | The provider of the subscription. | 
+ **viewerFid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 
 ### Return type
 
@@ -242,8 +242,8 @@ import (
 )
 
 func main() {
-	fid := int32(528) // int32 | 
-	subscriptionProvider := openapiclient.SubscriptionProvider("fabric_stp") // SubscriptionProvider | 
+	fid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer)
+	subscriptionProvider := "subscriptionProvider_example" // string | The provider of the subscription.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -268,8 +268,8 @@ Other parameters are passed through a pointer to a apiFetchSubscriptionsForFidRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fid** | **int32** |  | 
- **subscriptionProvider** | [**SubscriptionProvider**](SubscriptionProvider.md) |  | 
+ **fid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
+ **subscriptionProvider** | **string** | The provider of the subscription. | 
 
 ### Return type
 

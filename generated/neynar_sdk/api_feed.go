@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 )
 
 type FeedAPI interface {
@@ -169,6 +170,7 @@ type ApiFetchCastsForUserRequest struct {
 	ctx                 context.Context
 	ApiService          FeedAPI
 	fid                 *int32
+	xNeynarExperimental *bool
 	appFid              *int32
 	viewerFid           *int32
 	limit               *int32
@@ -176,12 +178,17 @@ type ApiFetchCastsForUserRequest struct {
 	includeReplies      *bool
 	parentUrl           *string
 	channelId           *string
-	xNeynarExperimental *bool
 }
 
 // FID of user whose recent casts you want to fetch
 func (r ApiFetchCastsForUserRequest) Fid(fid int32) ApiFetchCastsForUserRequest {
 	r.fid = &fid
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchCastsForUserRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchCastsForUserRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -227,12 +234,6 @@ func (r ApiFetchCastsForUserRequest) ChannelId(channelId string) ApiFetchCastsFo
 	return r
 }
 
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchCastsForUserRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchCastsForUserRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
-	return r
-}
-
 func (r ApiFetchCastsForUserRequest) Execute() (*FeedResponse, *http.Response, error) {
 	return r.ApiService.FetchCastsForUserExecute(r)
 }
@@ -268,7 +269,7 @@ func (a *FeedAPIService) FetchCastsForUserExecute(r ApiFetchCastsForUserRequest)
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/feed/user/casts"
+	localVarPath := localBasePath + "/v2/farcaster/feed/user/casts/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -400,30 +401,36 @@ func (a *FeedAPIService) FetchCastsForUserExecute(r ApiFetchCastsForUserRequest)
 type ApiFetchFeedRequest struct {
 	ctx                 context.Context
 	ApiService          FeedAPI
-	feedType            *FeedType
-	filterType          *FilterType
+	xNeynarExperimental *bool
+	feedType            *string
+	filterType          *string
 	fid                 *int32
 	fids                *string
 	parentUrl           *string
 	channelId           *string
 	membersOnly         *bool
 	embedUrl            *string
-	embedTypes          *[]EmbedType
+	embedTypes          *[]string
 	withRecasts         *bool
 	limit               *int32
 	cursor              *string
 	viewerFid           *int32
-	xNeynarExperimental *bool
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchFeedRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFeedRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
+	return r
 }
 
 // Defaults to following (requires FID or address). If set to filter (requires filter_type)
-func (r ApiFetchFeedRequest) FeedType(feedType FeedType) ApiFetchFeedRequest {
+func (r ApiFetchFeedRequest) FeedType(feedType string) ApiFetchFeedRequest {
 	r.feedType = &feedType
 	return r
 }
 
 // Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id)
-func (r ApiFetchFeedRequest) FilterType(filterType FilterType) ApiFetchFeedRequest {
+func (r ApiFetchFeedRequest) FilterType(filterType string) ApiFetchFeedRequest {
 	r.filterType = &filterType
 	return r
 }
@@ -453,7 +460,6 @@ func (r ApiFetchFeedRequest) ChannelId(channelId string) ApiFetchFeedRequest {
 }
 
 // Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default.
-// Deprecated
 func (r ApiFetchFeedRequest) MembersOnly(membersOnly bool) ApiFetchFeedRequest {
 	r.membersOnly = &membersOnly
 	return r
@@ -466,7 +472,7 @@ func (r ApiFetchFeedRequest) EmbedUrl(embedUrl string) ApiFetchFeedRequest {
 }
 
 // Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type.
-func (r ApiFetchFeedRequest) EmbedTypes(embedTypes []EmbedType) ApiFetchFeedRequest {
+func (r ApiFetchFeedRequest) EmbedTypes(embedTypes []string) ApiFetchFeedRequest {
 	r.embedTypes = &embedTypes
 	return r
 }
@@ -492,12 +498,6 @@ func (r ApiFetchFeedRequest) Cursor(cursor string) ApiFetchFeedRequest {
 // Providing this will return a feed that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;.
 func (r ApiFetchFeedRequest) ViewerFid(viewerFid int32) ApiFetchFeedRequest {
 	r.viewerFid = &viewerFid
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchFeedRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFeedRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -536,16 +536,18 @@ func (a *FeedAPIService) FetchFeedExecute(r ApiFetchFeedRequest) (*FeedResponse,
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/feed"
+	localVarPath := localBasePath + "/v2/farcaster/feed/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.feedType == nil {
-		return localVarReturnValue, nil, reportError("feedType is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "feed_type", r.feedType, "form", "")
+	if r.feedType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "feed_type", r.feedType, "form", "")
+	} else {
+		var defaultValue string = "following"
+		r.feedType = &defaultValue
+	}
 	if r.filterType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "filter_type", r.filterType, "form", "")
 	}
@@ -571,7 +573,15 @@ func (a *FeedAPIService) FetchFeedExecute(r ApiFetchFeedRequest) (*FeedResponse,
 		parameterAddToHeaderOrQuery(localVarQueryParams, "embed_url", r.embedUrl, "form", "")
 	}
 	if r.embedTypes != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "embed_types", r.embedTypes, "form", "csv")
+		t := *r.embedTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "embed_types", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "embed_types", t, "form", "multi")
+		}
 	}
 	if r.withRecasts != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "with_recasts", r.withRecasts, "form", "")
@@ -676,6 +686,7 @@ type ApiFetchFeedByChannelIdsRequest struct {
 	ctx                 context.Context
 	ApiService          FeedAPI
 	channelIds          *string
+	xNeynarExperimental *bool
 	withRecasts         *bool
 	viewerFid           *int32
 	withReplies         *bool
@@ -684,12 +695,17 @@ type ApiFetchFeedByChannelIdsRequest struct {
 	limit               *int32
 	cursor              *string
 	shouldModerate      *bool
-	xNeynarExperimental *bool
 }
 
 // Comma separated list of up to 10 channel IDs e.g. neynar,farcaster
 func (r ApiFetchFeedByChannelIdsRequest) ChannelIds(channelIds string) ApiFetchFeedByChannelIdsRequest {
 	r.channelIds = &channelIds
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchFeedByChannelIdsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFeedByChannelIdsRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -711,8 +727,7 @@ func (r ApiFetchFeedByChannelIdsRequest) WithReplies(withReplies bool) ApiFetchF
 	return r
 }
 
-// Only include casts from members of the channel. True by default.
-// Deprecated
+// Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default.
 func (r ApiFetchFeedByChannelIdsRequest) MembersOnly(membersOnly bool) ApiFetchFeedByChannelIdsRequest {
 	r.membersOnly = &membersOnly
 	return r
@@ -737,15 +752,8 @@ func (r ApiFetchFeedByChannelIdsRequest) Cursor(cursor string) ApiFetchFeedByCha
 }
 
 // If true, only casts that have been liked by the moderator (if one exists) will be returned.
-// Deprecated
 func (r ApiFetchFeedByChannelIdsRequest) ShouldModerate(shouldModerate bool) ApiFetchFeedByChannelIdsRequest {
 	r.shouldModerate = &shouldModerate
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchFeedByChannelIdsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFeedByChannelIdsRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -784,7 +792,7 @@ func (a *FeedAPIService) FetchFeedByChannelIdsExecute(r ApiFetchFeedByChannelIds
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/feed/channels"
+	localVarPath := localBasePath + "/v2/farcaster/feed/channels/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -918,17 +926,23 @@ type ApiFetchFeedByParentUrlsRequest struct {
 	ctx                 context.Context
 	ApiService          FeedAPI
 	parentUrls          *string
+	xNeynarExperimental *bool
 	withRecasts         *bool
 	viewerFid           *int32
 	withReplies         *bool
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
 }
 
 // Comma separated list of parent_urls
 func (r ApiFetchFeedByParentUrlsRequest) ParentUrls(parentUrls string) ApiFetchFeedByParentUrlsRequest {
 	r.parentUrls = &parentUrls
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchFeedByParentUrlsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFeedByParentUrlsRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -959,12 +973,6 @@ func (r ApiFetchFeedByParentUrlsRequest) Limit(limit int32) ApiFetchFeedByParent
 // Pagination cursor.
 func (r ApiFetchFeedByParentUrlsRequest) Cursor(cursor string) ApiFetchFeedByParentUrlsRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchFeedByParentUrlsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFeedByParentUrlsRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -1003,7 +1011,7 @@ func (a *FeedAPIService) FetchFeedByParentUrlsExecute(r ApiFetchFeedByParentUrls
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/feed/parent_urls"
+	localVarPath := localBasePath + "/v2/farcaster/feed/parent_urls/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1122,17 +1130,23 @@ type ApiFetchFeedForYouRequest struct {
 	ctx                 context.Context
 	ApiService          FeedAPI
 	fid                 *int32
+	xNeynarExperimental *bool
 	viewerFid           *int32
-	provider            *ForYouProvider
+	provider            *string
 	limit               *int32
 	cursor              *string
 	providerMetadata    *string
-	xNeynarExperimental *bool
 }
 
 // FID of user whose feed you want to create
 func (r ApiFetchFeedForYouRequest) Fid(fid int32) ApiFetchFeedForYouRequest {
 	r.fid = &fid
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchFeedForYouRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFeedForYouRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -1142,7 +1156,8 @@ func (r ApiFetchFeedForYouRequest) ViewerFid(viewerFid int32) ApiFetchFeedForYou
 	return r
 }
 
-func (r ApiFetchFeedForYouRequest) Provider(provider ForYouProvider) ApiFetchFeedForYouRequest {
+// The provider of the For You feed.
+func (r ApiFetchFeedForYouRequest) Provider(provider string) ApiFetchFeedForYouRequest {
 	r.provider = &provider
 	return r
 }
@@ -1162,12 +1177,6 @@ func (r ApiFetchFeedForYouRequest) Cursor(cursor string) ApiFetchFeedForYouReque
 // provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.
 func (r ApiFetchFeedForYouRequest) ProviderMetadata(providerMetadata string) ApiFetchFeedForYouRequest {
 	r.providerMetadata = &providerMetadata
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchFeedForYouRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFeedForYouRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -1206,7 +1215,7 @@ func (a *FeedAPIService) FetchFeedForYouExecute(r ApiFetchFeedForYouRequest) (*F
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/feed/for_you"
+	localVarPath := localBasePath + "/v2/farcaster/feed/for_you/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1222,7 +1231,7 @@ func (a *FeedAPIService) FetchFeedForYouExecute(r ApiFetchFeedForYouRequest) (*F
 	if r.provider != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "provider", r.provider, "form", "")
 	} else {
-		var defaultValue ForYouProvider = "neynar"
+		var defaultValue string = "neynar"
 		r.provider = &defaultValue
 	}
 	if r.limit != nil {
@@ -1321,10 +1330,16 @@ func (a *FeedAPIService) FetchFeedForYouExecute(r ApiFetchFeedForYouRequest) (*F
 type ApiFetchFramesOnlyFeedRequest struct {
 	ctx                 context.Context
 	ApiService          FeedAPI
+	xNeynarExperimental *bool
 	limit               *int32
 	viewerFid           *int32
 	cursor              *string
-	xNeynarExperimental *bool
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchFramesOnlyFeedRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFramesOnlyFeedRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
+	return r
 }
 
 // Number of results to fetch
@@ -1342,12 +1357,6 @@ func (r ApiFetchFramesOnlyFeedRequest) ViewerFid(viewerFid int32) ApiFetchFrames
 // Pagination cursor.
 func (r ApiFetchFramesOnlyFeedRequest) Cursor(cursor string) ApiFetchFramesOnlyFeedRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchFramesOnlyFeedRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFramesOnlyFeedRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -1386,7 +1395,7 @@ func (a *FeedAPIService) FetchFramesOnlyFeedExecute(r ApiFetchFramesOnlyFeedRequ
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/feed/frames"
+	localVarPath := localBasePath + "/v2/farcaster/feed/frames/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1498,6 +1507,7 @@ func (r ApiFetchPopularCastsByUserRequest) Fid(fid int32) ApiFetchPopularCastsBy
 	return r
 }
 
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiFetchPopularCastsByUserRequest) ViewerFid(viewerFid int32) ApiFetchPopularCastsByUserRequest {
 	r.viewerFid = &viewerFid
 	return r
@@ -1538,7 +1548,7 @@ func (a *FeedAPIService) FetchPopularCastsByUserExecute(r ApiFetchPopularCastsBy
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/feed/user/popular"
+	localVarPath := localBasePath + "/v2/farcaster/feed/user/popular/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1645,7 +1655,7 @@ func (r ApiFetchRepliesAndRecastsForUserRequest) Fid(fid int32) ApiFetchRepliesA
 	return r
 }
 
-// filter to fetch only replies or recasts
+// Filter to fetch only replies or recasts
 func (r ApiFetchRepliesAndRecastsForUserRequest) Filter(filter string) ApiFetchRepliesAndRecastsForUserRequest {
 	r.filter = &filter
 	return r
@@ -1704,7 +1714,7 @@ func (a *FeedAPIService) FetchRepliesAndRecastsForUserExecute(r ApiFetchRepliesA
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/feed/user/replies_and_recasts"
+	localVarPath := localBasePath + "/v2/farcaster/feed/user/replies_and_recasts/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1813,15 +1823,21 @@ func (a *FeedAPIService) FetchRepliesAndRecastsForUserExecute(r ApiFetchRepliesA
 type ApiFetchTrendingFeedRequest struct {
 	ctx                 context.Context
 	ApiService          FeedAPI
+	xNeynarExperimental *bool
 	limit               *int32
 	cursor              *string
 	viewerFid           *int32
 	timeWindow          *string
 	channelId           *string
 	parentUrl           *string
-	provider            *FeedTrendingProvider
+	provider            *string
 	providerMetadata    *string
-	xNeynarExperimental *bool
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchTrendingFeedRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchTrendingFeedRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
+	return r
 }
 
 // Number of results to fetch
@@ -1861,7 +1877,7 @@ func (r ApiFetchTrendingFeedRequest) ParentUrl(parentUrl string) ApiFetchTrendin
 }
 
 // The provider of the trending casts feed.
-func (r ApiFetchTrendingFeedRequest) Provider(provider FeedTrendingProvider) ApiFetchTrendingFeedRequest {
+func (r ApiFetchTrendingFeedRequest) Provider(provider string) ApiFetchTrendingFeedRequest {
 	r.provider = &provider
 	return r
 }
@@ -1869,12 +1885,6 @@ func (r ApiFetchTrendingFeedRequest) Provider(provider FeedTrendingProvider) Api
 // provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.
 func (r ApiFetchTrendingFeedRequest) ProviderMetadata(providerMetadata string) ApiFetchTrendingFeedRequest {
 	r.providerMetadata = &providerMetadata
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchTrendingFeedRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchTrendingFeedRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -1913,7 +1923,7 @@ func (a *FeedAPIService) FetchTrendingFeedExecute(r ApiFetchTrendingFeedRequest)
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/feed/trending"
+	localVarPath := localBasePath + "/v2/farcaster/feed/trending/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1946,7 +1956,7 @@ func (a *FeedAPIService) FetchTrendingFeedExecute(r ApiFetchTrendingFeedRequest)
 	if r.provider != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "provider", r.provider, "form", "")
 	} else {
-		var defaultValue FeedTrendingProvider = "neynar"
+		var defaultValue string = "neynar"
 		r.provider = &defaultValue
 	}
 	if r.providerMetadata != nil {
@@ -2059,16 +2069,22 @@ type ApiFetchUserFollowingFeedRequest struct {
 	ctx                 context.Context
 	ApiService          FeedAPI
 	fid                 *int32
+	xNeynarExperimental *bool
 	viewerFid           *int32
 	withRecasts         *bool
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
 }
 
 // FID of user whose feed you want to create
 func (r ApiFetchUserFollowingFeedRequest) Fid(fid int32) ApiFetchUserFollowingFeedRequest {
 	r.fid = &fid
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchUserFollowingFeedRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchUserFollowingFeedRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -2093,12 +2109,6 @@ func (r ApiFetchUserFollowingFeedRequest) Limit(limit int32) ApiFetchUserFollowi
 // Pagination cursor.
 func (r ApiFetchUserFollowingFeedRequest) Cursor(cursor string) ApiFetchUserFollowingFeedRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchUserFollowingFeedRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchUserFollowingFeedRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -2137,7 +2147,7 @@ func (a *FeedAPIService) FetchUserFollowingFeedExecute(r ApiFetchUserFollowingFe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/feed/following"
+	localVarPath := localBasePath + "/v2/farcaster/feed/following/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

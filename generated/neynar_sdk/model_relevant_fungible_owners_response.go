@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -12,7 +12,9 @@ Contact: team@neynar.com
 package neynar_sdk
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RelevantFungibleOwnersResponse type satisfies the MappedNullable interface at compile time
@@ -20,16 +22,20 @@ var _ MappedNullable = &RelevantFungibleOwnersResponse{}
 
 // RelevantFungibleOwnersResponse struct for RelevantFungibleOwnersResponse
 type RelevantFungibleOwnersResponse struct {
-	TopRelevantOwnersHydrated   []User `json:"top_relevant_owners_hydrated,omitempty"`
-	AllRelevantOwnersDehydrated []User `json:"all_relevant_owners_dehydrated,omitempty"`
+	TopRelevantFungibleOwnersHydrated   []User `json:"top_relevant_fungible_owners_hydrated"`
+	AllRelevantFungibleOwnersDehydrated []User `json:"all_relevant_fungible_owners_dehydrated"`
 }
+
+type _RelevantFungibleOwnersResponse RelevantFungibleOwnersResponse
 
 // NewRelevantFungibleOwnersResponse instantiates a new RelevantFungibleOwnersResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRelevantFungibleOwnersResponse() *RelevantFungibleOwnersResponse {
+func NewRelevantFungibleOwnersResponse(topRelevantFungibleOwnersHydrated []User, allRelevantFungibleOwnersDehydrated []User) *RelevantFungibleOwnersResponse {
 	this := RelevantFungibleOwnersResponse{}
+	this.TopRelevantFungibleOwnersHydrated = topRelevantFungibleOwnersHydrated
+	this.AllRelevantFungibleOwnersDehydrated = allRelevantFungibleOwnersDehydrated
 	return &this
 }
 
@@ -41,68 +47,52 @@ func NewRelevantFungibleOwnersResponseWithDefaults() *RelevantFungibleOwnersResp
 	return &this
 }
 
-// GetTopRelevantOwnersHydrated returns the TopRelevantOwnersHydrated field value if set, zero value otherwise.
-func (o *RelevantFungibleOwnersResponse) GetTopRelevantOwnersHydrated() []User {
-	if o == nil || IsNil(o.TopRelevantOwnersHydrated) {
+// GetTopRelevantFungibleOwnersHydrated returns the TopRelevantFungibleOwnersHydrated field value
+func (o *RelevantFungibleOwnersResponse) GetTopRelevantFungibleOwnersHydrated() []User {
+	if o == nil {
 		var ret []User
 		return ret
 	}
-	return o.TopRelevantOwnersHydrated
+
+	return o.TopRelevantFungibleOwnersHydrated
 }
 
-// GetTopRelevantOwnersHydratedOk returns a tuple with the TopRelevantOwnersHydrated field value if set, nil otherwise
+// GetTopRelevantFungibleOwnersHydratedOk returns a tuple with the TopRelevantFungibleOwnersHydrated field value
 // and a boolean to check if the value has been set.
-func (o *RelevantFungibleOwnersResponse) GetTopRelevantOwnersHydratedOk() ([]User, bool) {
-	if o == nil || IsNil(o.TopRelevantOwnersHydrated) {
+func (o *RelevantFungibleOwnersResponse) GetTopRelevantFungibleOwnersHydratedOk() ([]User, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.TopRelevantOwnersHydrated, true
+	return o.TopRelevantFungibleOwnersHydrated, true
 }
 
-// HasTopRelevantOwnersHydrated returns a boolean if a field has been set.
-func (o *RelevantFungibleOwnersResponse) HasTopRelevantOwnersHydrated() bool {
-	if o != nil && !IsNil(o.TopRelevantOwnersHydrated) {
-		return true
-	}
-
-	return false
+// SetTopRelevantFungibleOwnersHydrated sets field value
+func (o *RelevantFungibleOwnersResponse) SetTopRelevantFungibleOwnersHydrated(v []User) {
+	o.TopRelevantFungibleOwnersHydrated = v
 }
 
-// SetTopRelevantOwnersHydrated gets a reference to the given []User and assigns it to the TopRelevantOwnersHydrated field.
-func (o *RelevantFungibleOwnersResponse) SetTopRelevantOwnersHydrated(v []User) {
-	o.TopRelevantOwnersHydrated = v
-}
-
-// GetAllRelevantOwnersDehydrated returns the AllRelevantOwnersDehydrated field value if set, zero value otherwise.
-func (o *RelevantFungibleOwnersResponse) GetAllRelevantOwnersDehydrated() []User {
-	if o == nil || IsNil(o.AllRelevantOwnersDehydrated) {
+// GetAllRelevantFungibleOwnersDehydrated returns the AllRelevantFungibleOwnersDehydrated field value
+func (o *RelevantFungibleOwnersResponse) GetAllRelevantFungibleOwnersDehydrated() []User {
+	if o == nil {
 		var ret []User
 		return ret
 	}
-	return o.AllRelevantOwnersDehydrated
+
+	return o.AllRelevantFungibleOwnersDehydrated
 }
 
-// GetAllRelevantOwnersDehydratedOk returns a tuple with the AllRelevantOwnersDehydrated field value if set, nil otherwise
+// GetAllRelevantFungibleOwnersDehydratedOk returns a tuple with the AllRelevantFungibleOwnersDehydrated field value
 // and a boolean to check if the value has been set.
-func (o *RelevantFungibleOwnersResponse) GetAllRelevantOwnersDehydratedOk() ([]User, bool) {
-	if o == nil || IsNil(o.AllRelevantOwnersDehydrated) {
+func (o *RelevantFungibleOwnersResponse) GetAllRelevantFungibleOwnersDehydratedOk() ([]User, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AllRelevantOwnersDehydrated, true
+	return o.AllRelevantFungibleOwnersDehydrated, true
 }
 
-// HasAllRelevantOwnersDehydrated returns a boolean if a field has been set.
-func (o *RelevantFungibleOwnersResponse) HasAllRelevantOwnersDehydrated() bool {
-	if o != nil && !IsNil(o.AllRelevantOwnersDehydrated) {
-		return true
-	}
-
-	return false
-}
-
-// SetAllRelevantOwnersDehydrated gets a reference to the given []User and assigns it to the AllRelevantOwnersDehydrated field.
-func (o *RelevantFungibleOwnersResponse) SetAllRelevantOwnersDehydrated(v []User) {
-	o.AllRelevantOwnersDehydrated = v
+// SetAllRelevantFungibleOwnersDehydrated sets field value
+func (o *RelevantFungibleOwnersResponse) SetAllRelevantFungibleOwnersDehydrated(v []User) {
+	o.AllRelevantFungibleOwnersDehydrated = v
 }
 
 func (o RelevantFungibleOwnersResponse) MarshalJSON() ([]byte, error) {
@@ -115,13 +105,63 @@ func (o RelevantFungibleOwnersResponse) MarshalJSON() ([]byte, error) {
 
 func (o RelevantFungibleOwnersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.TopRelevantOwnersHydrated) {
-		toSerialize["top_relevant_owners_hydrated"] = o.TopRelevantOwnersHydrated
-	}
-	if !IsNil(o.AllRelevantOwnersDehydrated) {
-		toSerialize["all_relevant_owners_dehydrated"] = o.AllRelevantOwnersDehydrated
-	}
+	toSerialize["top_relevant_fungible_owners_hydrated"] = o.TopRelevantFungibleOwnersHydrated
+	toSerialize["all_relevant_fungible_owners_dehydrated"] = o.AllRelevantFungibleOwnersDehydrated
 	return toSerialize, nil
+}
+
+func (o *RelevantFungibleOwnersResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"top_relevant_fungible_owners_hydrated",
+		"all_relevant_fungible_owners_dehydrated",
+	}
+
+	// defaultValueFuncMap captures the default values for required properties.
+	// These values are used when required properties are missing from the payload.
+	defaultValueFuncMap := map[string]func() interface{}{}
+	var defaultValueApplied bool
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
+				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
+				defaultValueApplied = true
+			}
+		}
+		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	if defaultValueApplied {
+		data, err = json.Marshal(allProperties)
+		if err != nil {
+			return err
+		}
+	}
+	varRelevantFungibleOwnersResponse := _RelevantFungibleOwnersResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRelevantFungibleOwnersResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RelevantFungibleOwnersResponse(varRelevantFungibleOwnersResponse)
+
+	return err
 }
 
 type NullableRelevantFungibleOwnersResponse struct {

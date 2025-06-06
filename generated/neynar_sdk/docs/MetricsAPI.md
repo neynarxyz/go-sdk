@@ -1,16 +1,16 @@
 # \MetricsAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FetchCastMetrics**](MetricsAPI.md#FetchCastMetrics) | **Get** /farcaster/cast/metrics | Metrics for casts
+[**FetchCastMetrics**](MetricsAPI.md#FetchCastMetrics) | **Get** /v2/farcaster/cast/metrics/ | Metrics for casts
 
 
 
 ## FetchCastMetrics
 
-> CastsMetricsResponse FetchCastMetrics(ctx).Q(q).Interval(interval).AuthorFid(authorFid).ChannelId(channelId).XNeynarExperimental(xNeynarExperimental).Execute()
+> CastsMetricsResponse FetchCastMetrics(ctx).Q(q).XNeynarExperimental(xNeynarExperimental).Interval(interval).AuthorFid(authorFid).ChannelId(channelId).Execute()
 
 Metrics for casts
 
@@ -30,14 +30,14 @@ import (
 
 func main() {
 	q := "star wars" // string | Query string to search for casts
-	interval := "interval_example" // string | Interval of time for which to fetch metrics. Choices are `1d`, `7d`, `30d` (optional)
-	authorFid := int32(194) // int32 | Fid of the user whose casts you want to search (optional)
-	channelId := "channelId_example" // string | Channel ID of the casts you want to search (optional)
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	interval := "interval_example" // string | Interval of time for which to fetch metrics. Default is 30d. (optional)
+	authorFid := int32(3) // int32 | Fid of the user whose casts you want to search (optional)
+	channelId := "channelId_example" // string | Channel ID of the casts you want to search (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsAPI.FetchCastMetrics(context.Background()).Q(q).Interval(interval).AuthorFid(authorFid).ChannelId(channelId).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.MetricsAPI.FetchCastMetrics(context.Background()).Q(q).XNeynarExperimental(xNeynarExperimental).Interval(interval).AuthorFid(authorFid).ChannelId(channelId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.FetchCastMetrics``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,10 +59,10 @@ Other parameters are passed through a pointer to a apiFetchCastMetricsRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **q** | **string** | Query string to search for casts | 
- **interval** | **string** | Interval of time for which to fetch metrics. Choices are &#x60;1d&#x60;, &#x60;7d&#x60;, &#x60;30d&#x60; | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **interval** | **string** | Interval of time for which to fetch metrics. Default is 30d. | 
  **authorFid** | **int32** | Fid of the user whose casts you want to search | 
  **channelId** | **string** | Channel ID of the casts you want to search | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 

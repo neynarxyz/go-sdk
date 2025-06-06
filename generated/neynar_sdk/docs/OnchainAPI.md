@@ -1,14 +1,14 @@
 # \OnchainAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeployFungible**](OnchainAPI.md#DeployFungible) | **Post** /fungible | Deploy fungible
-[**FetchRelevantFungibleOwners**](OnchainAPI.md#FetchRelevantFungibleOwners) | **Get** /farcaster/fungible/owner/relevant | Relevant owners
-[**FetchUserBalance**](OnchainAPI.md#FetchUserBalance) | **Get** /farcaster/user/balance | Token balance
-[**RegisterAccountOnchain**](OnchainAPI.md#RegisterAccountOnchain) | **Post** /farcaster/user/register | Register Farcaster account onchain
-[**SendFungiblesToUsers**](OnchainAPI.md#SendFungiblesToUsers) | **Post** /farcaster/fungible/send | Send fungibles
+[**DeployFungible**](OnchainAPI.md#DeployFungible) | **Post** /v2/fungible/ | Deploy fungible
+[**FetchRelevantFungibleOwners**](OnchainAPI.md#FetchRelevantFungibleOwners) | **Get** /v2/farcaster/fungible/owner/relevant/ | Relevant owners
+[**FetchUserBalance**](OnchainAPI.md#FetchUserBalance) | **Get** /v2/farcaster/user/balance/ | Token balance
+[**RegisterAccountOnchain**](OnchainAPI.md#RegisterAccountOnchain) | **Post** /v2/farcaster/user/register/ | Register Farcaster account onchain
+[**SendFungiblesToUsers**](OnchainAPI.md#SendFungiblesToUsers) | **Post** /v2/farcaster/fungible/send/ | Send fungibles
 
 
 
@@ -36,15 +36,15 @@ func main() {
 	owner := "owner_example" // string | Ethereum address of the one who is creating the token
 	symbol := "symbol_example" // string | Symbol/Ticker for the token
 	name := "name_example" // string | Name of the token
-	metadataMedia := os.NewFile(1234, "some_file") // *os.File | Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png  (optional)
+	metadataMedia := os.NewFile(1234, "some_file") // *os.File | Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png (optional)
 	metadataDescription := "metadataDescription_example" // string | Description of the token (optional)
-	metadataNsfw := "metadataNsfw_example" // string | Indicates if the token is NSFW (Not Safe For Work).  (optional)
+	metadataNsfw := "metadataNsfw_example" // string | Indicates if the token is NSFW (Not Safe For Work). (optional)
 	metadataWebsiteLink := "metadataWebsiteLink_example" // string | Website link related to the token (optional)
 	metadataTwitter := "metadataTwitter_example" // string | Twitter profile link (optional)
 	metadataDiscord := "metadataDiscord_example" // string | Discord server link (optional)
 	metadataTelegram := "metadataTelegram_example" // string | Telegram link (optional)
 	network := "network_example" // string | Network/Chain name (optional) (default to "base")
-	factory := "factory_example" // string | Factory name - wow -> [wow.xyz](https://wow.xyz) - clanker -> [clanker.world](https://www.clanker.world)  (optional) (default to "wow")
+	factory := "factory_example" // string | Factory name - wow -> [wow.xyz](https://wow.xyz) - clanker -> [clanker.world](https://www.clanker.world) (optional) (default to "wow")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -72,15 +72,15 @@ Name | Type | Description  | Notes
  **owner** | **string** | Ethereum address of the one who is creating the token | 
  **symbol** | **string** | Symbol/Ticker for the token | 
  **name** | **string** | Name of the token | 
- **metadataMedia** | ***os.File** | Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png  | 
+ **metadataMedia** | ***os.File** | Media file associated with the token.  Supported formats are image/jpeg, image/gif and image/png | 
  **metadataDescription** | **string** | Description of the token | 
- **metadataNsfw** | **string** | Indicates if the token is NSFW (Not Safe For Work).  | 
+ **metadataNsfw** | **string** | Indicates if the token is NSFW (Not Safe For Work). | 
  **metadataWebsiteLink** | **string** | Website link related to the token | 
  **metadataTwitter** | **string** | Twitter profile link | 
  **metadataDiscord** | **string** | Discord server link | 
  **metadataTelegram** | **string** | Telegram link | 
  **network** | **string** | Network/Chain name | [default to &quot;base&quot;]
- **factory** | **string** | Factory name - wow -&gt; [wow.xyz](https://wow.xyz) - clanker -&gt; [clanker.world](https://www.clanker.world)  | [default to &quot;wow&quot;]
+ **factory** | **string** | Factory name - wow -&gt; [wow.xyz](https://wow.xyz) - clanker -&gt; [clanker.world](https://www.clanker.world) | [default to &quot;wow&quot;]
 
 ### Return type
 
@@ -121,9 +121,9 @@ import (
 )
 
 func main() {
-	contractAddress := "0x0db510e79909666d6dec7f5e49370838c16d950f" // string | Contract address of the fungible asset
-	network := openapiclient.Network("ethereum") // Network | Network of the fungible asset.
-	viewerFid := int32(194) // int32 | If you provide a viewer_fid, the response will include token holders from the user's network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired. (optional)
+	contractAddress := "0x0db510e79909666d6dec7f5e49370838c16d950f (eth) --OR-- EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v (solana)" // string | Contract address of the fungible asset
+	network := "network_example" // string | Network of the fungible asset.
+	viewerFid := int32(3) // int32 | If you provide a viewer_fid, the response will include token holders from the user's network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -149,7 +149,7 @@ Other parameters are passed through a pointer to a apiFetchRelevantFungibleOwner
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contractAddress** | **string** | Contract address of the fungible asset | 
- **network** | [**Network**](Network.md) | Network of the fungible asset. | 
+ **network** | **string** | Network of the fungible asset. | 
  **viewerFid** | **int32** | If you provide a viewer_fid, the response will include token holders from the user&#39;s network, respecting their mutes and blocks and including viewer_context; if not provided, the response will show top token holders across the network—both sets can be combined to generate a longer list if desired. | 
 
 ### Return type
@@ -191,8 +191,8 @@ import (
 )
 
 func main() {
-	fid := int32(3) // int32 | FID of the user to fetch
-	networks := []openapiclient.Network{openapiclient.Network("ethereum")} // []Network | Comma separated list of networks to fetch balances for
+	fid := int32(56) // int32 | FID of the user to fetch
+	networks := []string{"Networks_example"} // []string | Comma separated list of networks to fetch balances for
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -218,7 +218,7 @@ Other parameters are passed through a pointer to a apiFetchUserBalanceRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of the user to fetch | 
- **networks** | [**[]Network**](Network.md) | Comma separated list of networks to fetch balances for | 
+ **networks** | **[]string** | Comma separated list of networks to fetch balances for | 
 
 ### Return type
 

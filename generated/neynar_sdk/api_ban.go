@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -113,7 +113,7 @@ func (a *BanAPIService) DeleteBansExecute(r ApiDeleteBansRequest) (*BanResponse,
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/ban"
+	localVarPath := localBasePath + "/v2/farcaster/ban/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -227,9 +227,15 @@ func (a *BanAPIService) DeleteBansExecute(r ApiDeleteBansRequest) (*BanResponse,
 type ApiFetchBanListRequest struct {
 	ctx                 context.Context
 	ApiService          BanAPI
+	xNeynarExperimental *bool
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchBanListRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchBanListRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
+	return r
 }
 
 // Number of results to fetch
@@ -241,12 +247,6 @@ func (r ApiFetchBanListRequest) Limit(limit int32) ApiFetchBanListRequest {
 // Pagination cursor.
 func (r ApiFetchBanListRequest) Cursor(cursor string) ApiFetchBanListRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchBanListRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchBanListRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -285,7 +285,7 @@ func (a *BanAPIService) FetchBanListExecute(r ApiFetchBanListRequest) (*BanListR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/ban/list"
+	localVarPath := localBasePath + "/v2/farcaster/ban/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -449,7 +449,7 @@ func (a *BanAPIService) PublishBansExecute(r ApiPublishBansRequest) (*BanRespons
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/ban"
+	localVarPath := localBasePath + "/v2/farcaster/ban/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -23,23 +23,23 @@ var _ MappedNullable = &CastWithInteractions{}
 
 // CastWithInteractions struct for CastWithInteractions
 type CastWithInteractions struct {
-	Object            string                        `json:"object"`
-	Hash              string                        `json:"hash"`
-	ParentHash        NullableString                `json:"parent_hash"`
-	ParentUrl         NullableString                `json:"parent_url"`
-	RootParentUrl     NullableString                `json:"root_parent_url"`
-	ParentAuthor      CastParentAuthor              `json:"parent_author"`
-	Author            User                          `json:"author"`
-	App               NullableUserDehydrated        `json:"app,omitempty"`
-	Text              string                        `json:"text"`
-	Timestamp         time.Time                     `json:"timestamp"`
-	Embeds            []Embed                       `json:"embeds"`
-	Type              *CastNotificationType         `json:"type,omitempty"`
-	Frames            []Frame                       `json:"frames,omitempty"`
-	Reactions         CastWithInteractionsReactions `json:"reactions"`
-	Replies           CastWithInteractionsReplies   `json:"replies"`
-	ThreadHash        NullableString                `json:"thread_hash"`
-	MentionedProfiles []User                        `json:"mentioned_profiles"`
+	Object            string                           `json:"object"`
+	Hash              string                           `json:"hash"`
+	ParentHash        NullableString                   `json:"parent_hash"`
+	ParentUrl         NullableString                   `json:"parent_url"`
+	RootParentUrl     NullableString                   `json:"root_parent_url"`
+	ParentAuthor      CastWithInteractionsParentAuthor `json:"parent_author"`
+	Author            User                             `json:"author"`
+	App               NullableUserDehydrated           `json:"app,omitempty"`
+	Text              string                           `json:"text"`
+	Timestamp         time.Time                        `json:"timestamp"`
+	Embeds            []Embed                          `json:"embeds"`
+	Type              *CastNotificationType            `json:"type,omitempty"`
+	Frames            []Frame                          `json:"frames,omitempty"`
+	Reactions         CastWithInteractionsReactions    `json:"reactions"`
+	Replies           CastWithInteractionsReplies      `json:"replies"`
+	ThreadHash        NullableString                   `json:"thread_hash"`
+	MentionedProfiles []User                           `json:"mentioned_profiles"`
 	// Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.
 	MentionedProfilesRanges []TextRange         `json:"mentioned_profiles_ranges"`
 	MentionedChannels       []ChannelDehydrated `json:"mentioned_channels"`
@@ -56,7 +56,7 @@ type _CastWithInteractions CastWithInteractions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastWithInteractions(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel NullableChannelOrChannelDehydrated) *CastWithInteractions {
+func NewCastWithInteractions(object string, hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastWithInteractionsParentAuthor, author User, text string, timestamp time.Time, embeds []Embed, reactions CastWithInteractionsReactions, replies CastWithInteractionsReplies, threadHash NullableString, mentionedProfiles []User, mentionedProfilesRanges []TextRange, mentionedChannels []ChannelDehydrated, mentionedChannelsRanges []TextRange, channel NullableChannelOrChannelDehydrated) *CastWithInteractions {
 	this := CastWithInteractions{}
 	this.Object = object
 	this.Hash = hash
@@ -214,9 +214,9 @@ func (o *CastWithInteractions) SetRootParentUrl(v string) {
 }
 
 // GetParentAuthor returns the ParentAuthor field value
-func (o *CastWithInteractions) GetParentAuthor() CastParentAuthor {
+func (o *CastWithInteractions) GetParentAuthor() CastWithInteractionsParentAuthor {
 	if o == nil {
-		var ret CastParentAuthor
+		var ret CastWithInteractionsParentAuthor
 		return ret
 	}
 
@@ -225,7 +225,7 @@ func (o *CastWithInteractions) GetParentAuthor() CastParentAuthor {
 
 // GetParentAuthorOk returns a tuple with the ParentAuthor field value
 // and a boolean to check if the value has been set.
-func (o *CastWithInteractions) GetParentAuthorOk() (*CastParentAuthor, bool) {
+func (o *CastWithInteractions) GetParentAuthorOk() (*CastWithInteractionsParentAuthor, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -233,7 +233,7 @@ func (o *CastWithInteractions) GetParentAuthorOk() (*CastParentAuthor, bool) {
 }
 
 // SetParentAuthor sets field value
-func (o *CastWithInteractions) SetParentAuthor(v CastParentAuthor) {
+func (o *CastWithInteractions) SetParentAuthor(v CastWithInteractionsParentAuthor) {
 	o.ParentAuthor = v
 }
 

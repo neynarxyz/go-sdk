@@ -1,17 +1,17 @@
 # \CastAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteCast**](CastAPI.md#DeleteCast) | **Delete** /farcaster/cast | Delete a cast
-[**FetchBulkCasts**](CastAPI.md#FetchBulkCasts) | **Get** /farcaster/casts | Bulk fetch casts
-[**FetchComposerActions**](CastAPI.md#FetchComposerActions) | **Get** /farcaster/cast/composer_actions/list | Fetch composer actions
-[**FetchEmbeddedUrlMetadata**](CastAPI.md#FetchEmbeddedUrlMetadata) | **Get** /farcaster/cast/embed/crawl | Embedded URL metadata
-[**LookupCastByHashOrWarpcastUrl**](CastAPI.md#LookupCastByHashOrWarpcastUrl) | **Get** /farcaster/cast | By hash or URL
-[**LookupCastConversation**](CastAPI.md#LookupCastConversation) | **Get** /farcaster/cast/conversation | Conversation for a cast
-[**PublishCast**](CastAPI.md#PublishCast) | **Post** /farcaster/cast | Post a cast
-[**SearchCasts**](CastAPI.md#SearchCasts) | **Get** /farcaster/cast/search | Search for casts
+[**DeleteCast**](CastAPI.md#DeleteCast) | **Delete** /v2/farcaster/cast/ | Delete a cast
+[**FetchBulkCasts**](CastAPI.md#FetchBulkCasts) | **Get** /v2/farcaster/casts/ | Bulk fetch casts
+[**FetchComposerActions**](CastAPI.md#FetchComposerActions) | **Get** /v2/farcaster/cast/composer_actions/list/ | Fetch composer actions
+[**FetchEmbeddedUrlMetadata**](CastAPI.md#FetchEmbeddedUrlMetadata) | **Get** /v2/farcaster/cast/embed/crawl/ | Embedded URL metadata
+[**LookupCastByHashOrWarpcastUrl**](CastAPI.md#LookupCastByHashOrWarpcastUrl) | **Get** /v2/farcaster/cast/ | By hash or URL
+[**LookupCastConversation**](CastAPI.md#LookupCastConversation) | **Get** /v2/farcaster/cast/conversation/ | Conversation for a cast
+[**PublishCast**](CastAPI.md#PublishCast) | **Post** /v2/farcaster/cast/ | Post a cast
+[**SearchCasts**](CastAPI.md#SearchCasts) | **Get** /v2/farcaster/cast/search/ | Search for casts
 
 
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## FetchBulkCasts
 
-> CastsResponse FetchBulkCasts(ctx).Casts(casts).ViewerFid(viewerFid).SortType(sortType).XNeynarExperimental(xNeynarExperimental).Execute()
+> CastsResponse FetchBulkCasts(ctx).Casts(casts).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).SortType(sortType).Execute()
 
 Bulk fetch casts
 
@@ -103,13 +103,13 @@ import (
 
 func main() {
 	casts := "0xa896906a5e397b4fec247c3ee0e9e4d4990b8004,0x27ff810f7f718afd8c40be236411f017982e0994" // string | Hashes of the cast to be retrived (Comma separated, no spaces)
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	viewerFid := int32(3) // int32 | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. (optional)
 	sortType := "sortType_example" // string | Optional parameter to sort the casts based on different criteria (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.FetchBulkCasts(context.Background()).Casts(casts).ViewerFid(viewerFid).SortType(sortType).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.CastAPI.FetchBulkCasts(context.Background()).Casts(casts).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).SortType(sortType).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.FetchBulkCasts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,9 +131,9 @@ Other parameters are passed through a pointer to a apiFetchBulkCastsRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **casts** | **string** | Hashes of the cast to be retrived (Comma separated, no spaces) | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **viewerFid** | **int32** | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. | 
  **sortType** | **string** | Optional parameter to sort the casts based on different criteria | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -174,7 +174,7 @@ import (
 )
 
 func main() {
-	list := openapiclient.CastComposerType("top") // CastComposerType | Type of list to fetch.
+	list := "top" // string | Type of list to fetch.
 	limit := int32(25) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -201,7 +201,7 @@ Other parameters are passed through a pointer to a apiFetchComposerActionsReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **list** | [**CastComposerType**](CastComposerType.md) | Type of list to fetch. | 
+ **list** | **string** | Type of list to fetch. | 
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
 
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 
 ## LookupCastByHashOrWarpcastUrl
 
-> CastResponse LookupCastByHashOrWarpcastUrl(ctx).Identifier(identifier).Type_(type_).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+> CastResponse LookupCastByHashOrWarpcastUrl(ctx).Identifier(identifier).Type_(type_).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Execute()
 
 By hash or URL
 
@@ -310,14 +310,14 @@ import (
 )
 
 func main() {
-	identifier := "https://warpcast.com/rish/0x9288c1" // string | Cast identifier (Its either a url or a hash)
-	type_ := openapiclient.CastParamType("url") // CastParamType | 
-	viewerFid := int32(3) // int32 | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. (optional)
+	identifier := "https://farcaster.xyz/v/0xeb000a9f" // string | Cast identifier (Its either a url or a hash)
+	type_ := "url" // string | The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	viewerFid := int32(3) // int32 | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.LookupCastByHashOrWarpcastUrl(context.Background()).Identifier(identifier).Type_(type_).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.CastAPI.LookupCastByHashOrWarpcastUrl(context.Background()).Identifier(identifier).Type_(type_).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.LookupCastByHashOrWarpcastUrl``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -339,9 +339,9 @@ Other parameters are passed through a pointer to a apiLookupCastByHashOrWarpcast
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **identifier** | **string** | Cast identifier (Its either a url or a hash) | 
- **type_** | [**CastParamType**](CastParamType.md) |  | 
- **viewerFid** | **int32** | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. | 
+ **type_** | **string** | The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash | 
  **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **viewerFid** | **int32** | adds viewer_context to cast object to show whether viewer has liked or recasted the cast. | 
 
 ### Return type
 
@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 
 ## LookupCastConversation
 
-> Conversation LookupCastConversation(ctx).Identifier(identifier).Type_(type_).ReplyDepth(replyDepth).IncludeChronologicalParentCasts(includeChronologicalParentCasts).ViewerFid(viewerFid).SortType(sortType).Fold(fold).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> Conversation LookupCastConversation(ctx).Identifier(identifier).Type_(type_).XNeynarExperimental(xNeynarExperimental).ReplyDepth(replyDepth).IncludeChronologicalParentCasts(includeChronologicalParentCasts).ViewerFid(viewerFid).SortType(sortType).Fold(fold).Limit(limit).Cursor(cursor).Execute()
 
 Conversation for a cast
 
@@ -382,20 +382,20 @@ import (
 )
 
 func main() {
-	identifier := "https://warpcast.com/rish/0x9288c1" // string | Cast identifier (Its either a url or a hash)
-	type_ := openapiclient.CastParamType("url") // CastParamType | 
+	identifier := "https://warpcast.com/rish/0x9288c1" // string | Cast identifier (It's either a URL or a hash)
+	type_ := "url" // string | The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	replyDepth := int32(56) // int32 | The depth of replies in the conversation that will be returned (default 2) (optional) (default to 2)
 	includeChronologicalParentCasts := true // bool | Include all parent casts in chronological order (optional) (default to false)
 	viewerFid := int32(3) // int32 | Providing this will return a conversation that respects this user's mutes and blocks and includes `viewer_context`. (optional)
-	sortType := openapiclient.CastConversationSortType("chron") // CastConversationSortType | Sort type for the ordering of descendants. Default is `chron` (optional)
+	sortType := "chron" // string | Sort type for the ordering of descendants. Default is `chron` (optional)
 	fold := "fold_example" // string | Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding. (optional)
 	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.LookupCastConversation(context.Background()).Identifier(identifier).Type_(type_).ReplyDepth(replyDepth).IncludeChronologicalParentCasts(includeChronologicalParentCasts).ViewerFid(viewerFid).SortType(sortType).Fold(fold).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.CastAPI.LookupCastConversation(context.Background()).Identifier(identifier).Type_(type_).XNeynarExperimental(xNeynarExperimental).ReplyDepth(replyDepth).IncludeChronologicalParentCasts(includeChronologicalParentCasts).ViewerFid(viewerFid).SortType(sortType).Fold(fold).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.LookupCastConversation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -416,16 +416,16 @@ Other parameters are passed through a pointer to a apiLookupCastConversationRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **identifier** | **string** | Cast identifier (Its either a url or a hash) | 
- **type_** | [**CastParamType**](CastParamType.md) |  | 
+ **identifier** | **string** | Cast identifier (It&#39;s either a URL or a hash) | 
+ **type_** | **string** | The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **replyDepth** | **int32** | The depth of replies in the conversation that will be returned (default 2) | [default to 2]
  **includeChronologicalParentCasts** | **bool** | Include all parent casts in chronological order | [default to false]
  **viewerFid** | **int32** | Providing this will return a conversation that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
- **sortType** | [**CastConversationSortType**](CastConversationSortType.md) | Sort type for the ordering of descendants. Default is &#x60;chron&#x60; | 
+ **sortType** | **string** | Sort type for the ordering of descendants. Default is &#x60;chron&#x60; | 
  **fold** | **string** | Show conversation above or below the fold. Lower quality responses are hidden below the fold. Not passing in a value shows the full conversation without any folding. | 
  **limit** | **int32** | Number of results to fetch | [default to 20]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -513,7 +513,7 @@ Name | Type | Description  | Notes
 
 ## SearchCasts
 
-> CastsSearchResponse SearchCasts(ctx).Q(q).Mode(mode).SortType(sortType).AuthorFid(authorFid).ViewerFid(viewerFid).ParentUrl(parentUrl).ChannelId(channelId).PriorityMode(priorityMode).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> CastsSearchResponse SearchCasts(ctx).Q(q).XNeynarExperimental(xNeynarExperimental).Mode(mode).SortType(sortType).AuthorFid(authorFid).ViewerFid(viewerFid).ParentUrl(parentUrl).ChannelId(channelId).PriorityMode(priorityMode).Limit(limit).Cursor(cursor).Execute()
 
 Search for casts
 
@@ -532,21 +532,21 @@ import (
 )
 
 func main() {
-	q := "star (wars | trek) "space battle" after:2024-05-04" // string | Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | `+`       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | `\\|`      | Acts as the OR operator.                                                                                 | | `*`       | When used at the end of a term, signifies a prefix query.                                                  | | `\"`       | Wraps several terms into a phrase (for example, `\"star wars\"`).                                          | | `(`, `)`  | Wrap a clause for precedence (for example, `star + (wars \\| trek)`).                                     | | `~n`      | When used after a term (for example, `satr~3`), sets `fuzziness`. When used after a phrase, sets `slop`. | | `-`       | Negates the term.                                                                                        | | `before:` | Search for casts before a specific date. (e.g. `before:2025-04-20`)                                       | | `after:`  | Search for casts after a specific date. (e.g. `after:2025-04-20`)                                         | 
-	mode := "literal" // string | Choices are: - `literal` - Searches for the words in the query string (default) - `semantic` - Searches for the meaning of the query string - `hybrid` - Combines both literal and semantic results  (optional)
-	sortType := openapiclient.SearchSortType("desc_chron") // SearchSortType | Choices are: - `desc_chron` - All casts sorted by time (default) - `algorithmic` - Casts sorted by engagement and time  (optional)
-	authorFid := int32(194) // int32 | Fid of the user whose casts you want to search (optional)
+	q := "star (wars | trek) "space battle" after:2024-05-04" // string | Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | `+`       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | `\\|`      | Acts as the OR operator.                                                                                 | | `*`       | When used at the end of a term, signifies a prefix query.                                                  | | `\"`       | Wraps several terms into a phrase (for example, `\"star wars\"`).                                          | | `(`, `)`  | Wrap a clause for precedence (for example, `star + (wars \\| trek)`).                                     | | `~n`      | When used after a term (for example, `satr~3`), sets `fuzziness`. When used after a phrase, sets `slop`. | | `-`       | Negates the term.                                                                                        | | `before:` | Search for casts before a specific date. (e.g. `before:2025-04-20`)                                       | | `after:`  | Search for casts after a specific date. (e.g. `after:2025-04-20`)                                         |
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	mode := "literal" // string | Choices are: - `literal` - Searches for the words in the query string (default) - `semantic` - Searches for the meaning of the query string - `hybrid` - Combines both literal and semantic results (optional)
+	sortType := "desc_chron" // string | Choices are: - `desc_chron` - All casts sorted by time (default) - `algorithmic` - Casts sorted by engagement and time (optional)
+	authorFid := int32(3) // int32 | Fid of the user whose casts you want to search (optional)
 	viewerFid := int32(3) // int32 | Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`. (optional)
 	parentUrl := "parentUrl_example" // string | Parent URL of the casts you want to search (optional)
 	channelId := "channelId_example" // string | Channel ID of the casts you want to search (optional)
 	priorityMode := true // bool | When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided). (optional) (default to false)
 	limit := int32(25) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CastAPI.SearchCasts(context.Background()).Q(q).Mode(mode).SortType(sortType).AuthorFid(authorFid).ViewerFid(viewerFid).ParentUrl(parentUrl).ChannelId(channelId).PriorityMode(priorityMode).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.CastAPI.SearchCasts(context.Background()).Q(q).XNeynarExperimental(xNeynarExperimental).Mode(mode).SortType(sortType).AuthorFid(authorFid).ViewerFid(viewerFid).ParentUrl(parentUrl).ChannelId(channelId).PriorityMode(priorityMode).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CastAPI.SearchCasts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -567,9 +567,10 @@ Other parameters are passed through a pointer to a apiSearchCastsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **string** | Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | &#x60;+&#x60;       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | &#x60;\\|&#x60;      | Acts as the OR operator.                                                                                 | | &#x60;*&#x60;       | When used at the end of a term, signifies a prefix query.                                                  | | &#x60;\&quot;&#x60;       | Wraps several terms into a phrase (for example, &#x60;\&quot;star wars\&quot;&#x60;).                                          | | &#x60;(&#x60;, &#x60;)&#x60;  | Wrap a clause for precedence (for example, &#x60;star + (wars \\| trek)&#x60;).                                     | | &#x60;~n&#x60;      | When used after a term (for example, &#x60;satr~3&#x60;), sets &#x60;fuzziness&#x60;. When used after a phrase, sets &#x60;slop&#x60;. | | &#x60;-&#x60;       | Negates the term.                                                                                        | | &#x60;before:&#x60; | Search for casts before a specific date. (e.g. &#x60;before:2025-04-20&#x60;)                                       | | &#x60;after:&#x60;  | Search for casts after a specific date. (e.g. &#x60;after:2025-04-20&#x60;)                                         |  | 
- **mode** | **string** | Choices are: - &#x60;literal&#x60; - Searches for the words in the query string (default) - &#x60;semantic&#x60; - Searches for the meaning of the query string - &#x60;hybrid&#x60; - Combines both literal and semantic results  | 
- **sortType** | [**SearchSortType**](SearchSortType.md) | Choices are: - &#x60;desc_chron&#x60; - All casts sorted by time (default) - &#x60;algorithmic&#x60; - Casts sorted by engagement and time  | 
+ **q** | **string** | Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | &#x60;+&#x60;       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | &#x60;\\|&#x60;      | Acts as the OR operator.                                                                                 | | &#x60;*&#x60;       | When used at the end of a term, signifies a prefix query.                                                  | | &#x60;\&quot;&#x60;       | Wraps several terms into a phrase (for example, &#x60;\&quot;star wars\&quot;&#x60;).                                          | | &#x60;(&#x60;, &#x60;)&#x60;  | Wrap a clause for precedence (for example, &#x60;star + (wars \\| trek)&#x60;).                                     | | &#x60;~n&#x60;      | When used after a term (for example, &#x60;satr~3&#x60;), sets &#x60;fuzziness&#x60;. When used after a phrase, sets &#x60;slop&#x60;. | | &#x60;-&#x60;       | Negates the term.                                                                                        | | &#x60;before:&#x60; | Search for casts before a specific date. (e.g. &#x60;before:2025-04-20&#x60;)                                       | | &#x60;after:&#x60;  | Search for casts after a specific date. (e.g. &#x60;after:2025-04-20&#x60;)                                         | | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **mode** | **string** | Choices are: - &#x60;literal&#x60; - Searches for the words in the query string (default) - &#x60;semantic&#x60; - Searches for the meaning of the query string - &#x60;hybrid&#x60; - Combines both literal and semantic results | 
+ **sortType** | **string** | Choices are: - &#x60;desc_chron&#x60; - All casts sorted by time (default) - &#x60;algorithmic&#x60; - Casts sorted by engagement and time | 
  **authorFid** | **int32** | Fid of the user whose casts you want to search | 
  **viewerFid** | **int32** | Providing this will return search results that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **parentUrl** | **string** | Parent URL of the casts you want to search | 
@@ -577,7 +578,6 @@ Name | Type | Description  | Notes
  **priorityMode** | **bool** | When true, only returns search results from power badge users and users that the viewer follows (if viewer_fid is provided). | [default to false]
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 

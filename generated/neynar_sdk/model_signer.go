@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -29,7 +29,7 @@ type Signer struct {
 	PublicKey         string  `json:"public_key" validate:"regexp=^0x[a-fA-F0-9]{64}$"`
 	Status            string  `json:"status"`
 	SignerApprovalUrl *string `json:"signer_approval_url,omitempty"`
-	// The unique identifier of a farcaster user (unsigned integer)
+	// The unique identifier of a farcaster user or app (unsigned integer)
 	Fid         *int32                   `json:"fid,omitempty"`
 	Permissions []SharedSignerPermission `json:"permissions,omitempty"`
 }

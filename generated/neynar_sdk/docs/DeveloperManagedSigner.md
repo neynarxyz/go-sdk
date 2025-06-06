@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **PublicKey** | **string** | Ed25519 public key | 
 **Status** | **string** |  | 
 **SignerApprovalUrl** | Pointer to **string** |  | [optional] 
-**Fid** | Pointer to **int32** | The unique identifier of a farcaster user (unsigned integer) | [optional] 
+**Fid** | Pointer to **int32** | The unique identifier of a farcaster user or app (unsigned integer) | [optional] 
 
 ## Methods
 

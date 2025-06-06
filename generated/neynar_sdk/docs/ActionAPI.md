@@ -1,10 +1,10 @@
 # \ActionAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PublishFarcasterAction**](ActionAPI.md#PublishFarcasterAction) | **Post** /farcaster/action | User actions across apps
+[**PublishFarcasterAction**](ActionAPI.md#PublishFarcasterAction) | **Post** /v2/farcaster/action/ | User actions across apps
 
 
 
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json, */*
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

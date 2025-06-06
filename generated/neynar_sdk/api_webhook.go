@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -155,7 +155,7 @@ func (a *WebhookAPIService) DeleteWebhookExecute(r ApiDeleteWebhookRequest) (*We
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/webhook"
+	localVarPath := localBasePath + "/v2/farcaster/webhook/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -284,7 +284,7 @@ func (a *WebhookAPIService) FetchWebhooksExecute(r ApiFetchWebhooksRequest) (*We
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/webhook/list"
+	localVarPath := localBasePath + "/v2/farcaster/webhook/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -404,7 +404,7 @@ func (a *WebhookAPIService) LookupWebhookExecute(r ApiLookupWebhookRequest) (*We
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/webhook"
+	localVarPath := localBasePath + "/v2/farcaster/webhook/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -538,7 +538,7 @@ func (a *WebhookAPIService) PublishWebhookExecute(r ApiPublishWebhookRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/webhook"
+	localVarPath := localBasePath + "/v2/farcaster/webhook/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -684,7 +684,7 @@ func (a *WebhookAPIService) UpdateWebhookExecute(r ApiUpdateWebhookRequest) (*We
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/webhook"
+	localVarPath := localBasePath + "/v2/farcaster/webhook/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -819,7 +819,7 @@ func (a *WebhookAPIService) UpdateWebhookActiveStatusExecute(r ApiUpdateWebhookA
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/webhook"
+	localVarPath := localBasePath + "/v2/farcaster/webhook/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

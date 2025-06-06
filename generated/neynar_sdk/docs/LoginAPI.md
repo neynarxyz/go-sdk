@@ -1,10 +1,10 @@
 # \LoginAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FetchNonce**](LoginAPI.md#FetchNonce) | **Get** /farcaster/login/nonce | Fetch nonce
+[**FetchNonce**](LoginAPI.md#FetchNonce) | **Get** /v2/farcaster/login/nonce/ | Fetch nonce
 
 
 

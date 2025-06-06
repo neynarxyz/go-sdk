@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -22,14 +22,14 @@ var _ MappedNullable = &RegisterUserOnChainReqBodyPreRegistrationCallsInner{}
 
 // RegisterUserOnChainReqBodyPreRegistrationCallsInner struct for RegisterUserOnChainReqBodyPreRegistrationCallsInner
 type RegisterUserOnChainReqBodyPreRegistrationCallsInner struct {
-	// Ethereum address
+	// Set it to true if you want to ignore the failure of this call. If set to false, the registration will fail if this call fails.
+	AllowFailure *bool `json:"allow_failure,omitempty"`
+	// Call data payload (hex-encoded)
+	Data string `json:"data" validate:"regexp=^0x[a-fA-F0-9]+$"`
+	// Must be on the allowed contract allowlist. Contact support for more details.
 	Target string `json:"target" validate:"regexp=^0x[a-fA-F0-9]{40}$"`
 	// Value in wei to send with the transaction. This is not the amount of ETH that will be sent, but rather the value of the transaction.
 	Value *int32 `json:"value,omitempty"`
-	// Hexadecimal number expressed as string with '0x' prefix
-	Data string `json:"data" validate:"regexp=^0x[a-fA-F0-9]+$"`
-	// Set it to true if you want to ignore the failure of this call. If set to false, the registration will fail if this call fails.
-	AllowFailure *bool `json:"allow_failure,omitempty"`
 }
 
 type _RegisterUserOnChainReqBodyPreRegistrationCallsInner RegisterUserOnChainReqBodyPreRegistrationCallsInner
@@ -38,14 +38,14 @@ type _RegisterUserOnChainReqBodyPreRegistrationCallsInner RegisterUserOnChainReq
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegisterUserOnChainReqBodyPreRegistrationCallsInner(target string, data string) *RegisterUserOnChainReqBodyPreRegistrationCallsInner {
+func NewRegisterUserOnChainReqBodyPreRegistrationCallsInner(data string, target string) *RegisterUserOnChainReqBodyPreRegistrationCallsInner {
 	this := RegisterUserOnChainReqBodyPreRegistrationCallsInner{}
+	var allowFailure bool = false
+	this.AllowFailure = &allowFailure
+	this.Data = data
 	this.Target = target
 	var value int32 = 0
 	this.Value = &value
-	this.Data = data
-	var allowFailure bool = false
-	this.AllowFailure = &allowFailure
 	return &this
 }
 
@@ -54,11 +54,67 @@ func NewRegisterUserOnChainReqBodyPreRegistrationCallsInner(target string, data 
 // but it doesn't guarantee that properties required by API are set
 func NewRegisterUserOnChainReqBodyPreRegistrationCallsInnerWithDefaults() *RegisterUserOnChainReqBodyPreRegistrationCallsInner {
 	this := RegisterUserOnChainReqBodyPreRegistrationCallsInner{}
-	var value int32 = 0
-	this.Value = &value
 	var allowFailure bool = false
 	this.AllowFailure = &allowFailure
+	var value int32 = 0
+	this.Value = &value
 	return &this
+}
+
+// GetAllowFailure returns the AllowFailure field value if set, zero value otherwise.
+func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) GetAllowFailure() bool {
+	if o == nil || IsNil(o.AllowFailure) {
+		var ret bool
+		return ret
+	}
+	return *o.AllowFailure
+}
+
+// GetAllowFailureOk returns a tuple with the AllowFailure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) GetAllowFailureOk() (*bool, bool) {
+	if o == nil || IsNil(o.AllowFailure) {
+		return nil, false
+	}
+	return o.AllowFailure, true
+}
+
+// HasAllowFailure returns a boolean if a field has been set.
+func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) HasAllowFailure() bool {
+	if o != nil && !IsNil(o.AllowFailure) {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowFailure gets a reference to the given bool and assigns it to the AllowFailure field.
+func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) SetAllowFailure(v bool) {
+	o.AllowFailure = &v
+}
+
+// GetData returns the Data field value
+func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) GetData() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) GetDataOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) SetData(v string) {
+	o.Data = v
 }
 
 // GetTarget returns the Target field value
@@ -117,62 +173,6 @@ func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) SetValue(v int32) 
 	o.Value = &v
 }
 
-// GetData returns the Data field value
-func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) GetData() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) GetDataOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) SetData(v string) {
-	o.Data = v
-}
-
-// GetAllowFailure returns the AllowFailure field value if set, zero value otherwise.
-func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) GetAllowFailure() bool {
-	if o == nil || IsNil(o.AllowFailure) {
-		var ret bool
-		return ret
-	}
-	return *o.AllowFailure
-}
-
-// GetAllowFailureOk returns a tuple with the AllowFailure field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) GetAllowFailureOk() (*bool, bool) {
-	if o == nil || IsNil(o.AllowFailure) {
-		return nil, false
-	}
-	return o.AllowFailure, true
-}
-
-// HasAllowFailure returns a boolean if a field has been set.
-func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) HasAllowFailure() bool {
-	if o != nil && !IsNil(o.AllowFailure) {
-		return true
-	}
-
-	return false
-}
-
-// SetAllowFailure gets a reference to the given bool and assigns it to the AllowFailure field.
-func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) SetAllowFailure(v bool) {
-	o.AllowFailure = &v
-}
-
 func (o RegisterUserOnChainReqBodyPreRegistrationCallsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -183,13 +183,13 @@ func (o RegisterUserOnChainReqBodyPreRegistrationCallsInner) MarshalJSON() ([]by
 
 func (o RegisterUserOnChainReqBodyPreRegistrationCallsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AllowFailure) {
+		toSerialize["allow_failure"] = o.AllowFailure
+	}
+	toSerialize["data"] = o.Data
 	toSerialize["target"] = o.Target
 	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
-	}
-	toSerialize["data"] = o.Data
-	if !IsNil(o.AllowFailure) {
-		toSerialize["allow_failure"] = o.AllowFailure
 	}
 	return toSerialize, nil
 }
@@ -199,8 +199,8 @@ func (o *RegisterUserOnChainReqBodyPreRegistrationCallsInner) UnmarshalJSON(data
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"target",
 		"data",
+		"target",
 	}
 
 	// defaultValueFuncMap captures the default values for required properties.

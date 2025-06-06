@@ -1,26 +1,27 @@
 # \FrameAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteNeynarFrame**](FrameAPI.md#DeleteNeynarFrame) | **Delete** /farcaster/frame | Delete mini app
-[**FetchFrameCatalog**](FrameAPI.md#FetchFrameCatalog) | **Get** /farcaster/frame/catalog | Mini apps catalog
-[**FetchFrameMetaTagsFromUrl**](FrameAPI.md#FetchFrameMetaTagsFromUrl) | **Get** /farcaster/frame/crawl | Meta tags from URL
-[**FetchNeynarFrames**](FrameAPI.md#FetchNeynarFrames) | **Get** /farcaster/frame/list | List of mini apps
-[**FetchNotificationTokens**](FrameAPI.md#FetchNotificationTokens) | **Get** /farcaster/frame/notification_tokens | List of mini app notification tokens 
-[**FetchRelevantFrames**](FrameAPI.md#FetchRelevantFrames) | **Get** /farcaster/frame/relevant | Relevant mini apps
-[**FetchValidateFrameAnalytics**](FrameAPI.md#FetchValidateFrameAnalytics) | **Get** /farcaster/frame/validate/analytics | Analytics for the mini app
-[**FetchValidateFrameList**](FrameAPI.md#FetchValidateFrameList) | **Get** /farcaster/frame/validate/list | All mini apps validated by user
-[**GetTransactionPayFrame**](FrameAPI.md#GetTransactionPayFrame) | **Get** /farcaster/frame/transaction/pay | Get transaction pay mini app
-[**LookupNeynarFrame**](FrameAPI.md#LookupNeynarFrame) | **Get** /farcaster/frame | Mini app by UUID or URL
-[**PostFrameAction**](FrameAPI.md#PostFrameAction) | **Post** /farcaster/frame/action | Post a mini app action, cast action or a cast composer action
-[**PostFrameActionDeveloperManaged**](FrameAPI.md#PostFrameActionDeveloperManaged) | **Post** /farcaster/frame/developer_managed/action | Signature packet
-[**PublishFrameNotifications**](FrameAPI.md#PublishFrameNotifications) | **Post** /farcaster/frame/notifications | Send notifications
-[**PublishNeynarFrame**](FrameAPI.md#PublishNeynarFrame) | **Post** /farcaster/frame | Create mini app
-[**SearchFrames**](FrameAPI.md#SearchFrames) | **Get** /farcaster/frame/search | Search mini apps
-[**UpdateNeynarFrame**](FrameAPI.md#UpdateNeynarFrame) | **Put** /farcaster/frame | Update mini app
-[**ValidateFrameAction**](FrameAPI.md#ValidateFrameAction) | **Post** /farcaster/frame/validate | Validate mini app action
+[**DeleteNeynarFrame**](FrameAPI.md#DeleteNeynarFrame) | **Delete** /v2/farcaster/frame/ | Delete mini app
+[**FetchFrameCatalog**](FrameAPI.md#FetchFrameCatalog) | **Get** /v2/farcaster/frame/catalog/ | Mini apps catalog
+[**FetchFrameMetaTagsFromUrl**](FrameAPI.md#FetchFrameMetaTagsFromUrl) | **Get** /v2/farcaster/frame/crawl/ | Meta tags from URL
+[**FetchNeynarFrames**](FrameAPI.md#FetchNeynarFrames) | **Get** /v2/farcaster/frame/list/ | List of mini apps
+[**FetchNotificationTokens**](FrameAPI.md#FetchNotificationTokens) | **Get** /v2/farcaster/frame/notification_tokens/ | List of mini app notification tokens
+[**FetchRelevantFrames**](FrameAPI.md#FetchRelevantFrames) | **Get** /v2/farcaster/frame/relevant/ | Relevant mini apps
+[**FetchValidateFrameAnalytics**](FrameAPI.md#FetchValidateFrameAnalytics) | **Get** /v2/farcaster/frame/validate/analytics/ | Analytics for the mini app
+[**FetchValidateFrameList**](FrameAPI.md#FetchValidateFrameList) | **Get** /v2/farcaster/frame/validate/list/ | All mini apps validated by user
+[**GetNotificationCampaignStats**](FrameAPI.md#GetNotificationCampaignStats) | **Get** /v2/farcaster/frame/notifications/ | Get notification campaign stats
+[**GetTransactionPayFrame**](FrameAPI.md#GetTransactionPayFrame) | **Get** /v2/farcaster/frame/transaction/pay/ | Get transaction pay mini app
+[**LookupNeynarFrame**](FrameAPI.md#LookupNeynarFrame) | **Get** /v2/farcaster/frame/ | Mini app by UUID or URL
+[**PostFrameAction**](FrameAPI.md#PostFrameAction) | **Post** /v2/farcaster/frame/action/ | Post a mini app action, cast action or a cast composer action
+[**PostFrameActionDeveloperManaged**](FrameAPI.md#PostFrameActionDeveloperManaged) | **Post** /v2/farcaster/frame/developer_managed/action/ | Signature packet
+[**PublishFrameNotifications**](FrameAPI.md#PublishFrameNotifications) | **Post** /v2/farcaster/frame/notifications/ | Send notifications
+[**PublishNeynarFrame**](FrameAPI.md#PublishNeynarFrame) | **Post** /v2/farcaster/frame/ | Create mini app
+[**SearchFrames**](FrameAPI.md#SearchFrames) | **Get** /v2/farcaster/frame/search/ | Search mini apps
+[**UpdateNeynarFrame**](FrameAPI.md#UpdateNeynarFrame) | **Put** /v2/farcaster/frame/ | Update mini app
+[**ValidateFrameAction**](FrameAPI.md#ValidateFrameAction) | **Post** /v2/farcaster/frame/validate/ | Validate mini app action
 
 
 
@@ -111,10 +112,10 @@ import (
 )
 
 func main() {
-	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 100)
+	limit := int32(100) // int32 | Number of results to fetch (optional) (default to 100)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
-	timeWindow := openapiclient.MiniAppTimeWindow("1h") // MiniAppTimeWindow | Time window used to calculate the change in trending score for each mini app, used to sort mini app results (optional) (default to "7d")
-	categories := []string{"Categories_example"} // []string | Comma separated list of categories to include in the results.  Includes all if left blank.  Example: `categories=games,social` OR: `categories=games&categories=social` (optional)
+	timeWindow := "7d" // string | Time window used to calculate the change in trending score for each mini app, used to sort mini app results (optional) (default to "7d")
+	categories := []string{"Categories_example"} // []string | Comma separated list of categories to include in the results. Includes all if left blank. Example: categories=games,social OR categories=games&categories=social (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -141,8 +142,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int32** | Number of results to fetch | [default to 100]
  **cursor** | **string** | Pagination cursor | 
- **timeWindow** | [**MiniAppTimeWindow**](MiniAppTimeWindow.md) | Time window used to calculate the change in trending score for each mini app, used to sort mini app results | [default to &quot;7d&quot;]
- **categories** | **[]string** | Comma separated list of categories to include in the results.  Includes all if left blank.  Example: &#x60;categories&#x3D;games,social&#x60; OR: &#x60;categories&#x3D;games&amp;categories&#x3D;social&#x60; | 
+ **timeWindow** | **string** | Time window used to calculate the change in trending score for each mini app, used to sort mini app results | [default to &quot;7d&quot;]
+ **categories** | **[]string** | Comma separated list of categories to include in the results. Includes all if left blank. Example: categories&#x3D;games,social OR categories&#x3D;games&amp;categories&#x3D;social | 
 
 ### Return type
 
@@ -293,7 +294,7 @@ Other parameters are passed through a pointer to a apiFetchNeynarFramesRequest s
 
 > FrameNotificationTokens FetchNotificationTokens(ctx).Limit(limit).Fids(fids).Cursor(cursor).Execute()
 
-List of mini app notification tokens 
+List of mini app notification tokens
 
 
 
@@ -310,7 +311,7 @@ import (
 )
 
 func main() {
-	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 20)
+	limit := int32(20) // int32 | Number of results to fetch (optional) (default to 20)
 	fids := "194, 191, 6131" // string | Comma separated list of FIDs, up to 100 at a time. If you pass in FIDs, you will get back the notification tokens for those FIDs. If you don't pass in FIDs, you will get back all the notification tokens for the mini app. (optional)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
 
@@ -381,7 +382,7 @@ import (
 
 func main() {
 	viewerFid := int32(56) // int32 | FID of the user to fetch relevant mini apps for
-	timeWindow := openapiclient.MiniAppTimeWindow("1h") // MiniAppTimeWindow | Time window used to limit statistics used to calculate mini app relevance (optional) (default to "7d")
+	timeWindow := "timeWindow_example" // string | Time window used to limit statistics used to calculate mini app relevance (optional) (default to "7d")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -407,7 +408,7 @@ Other parameters are passed through a pointer to a apiFetchRelevantFramesRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **viewerFid** | **int32** | FID of the user to fetch relevant mini apps for | 
- **timeWindow** | [**MiniAppTimeWindow**](MiniAppTimeWindow.md) | Time window used to limit statistics used to calculate mini app relevance | [default to &quot;7d&quot;]
+ **timeWindow** | **string** | Time window used to limit statistics used to calculate mini app relevance | [default to &quot;7d&quot;]
 
 ### Return type
 
@@ -449,11 +450,11 @@ import (
 )
 
 func main() {
-	frameUrl := "https://shorturl.at/bDRY9" // string | 
-	analyticsType := openapiclient.ValidateFrameAnalyticsType("total-interactors") // ValidateFrameAnalyticsType | 
-	start := time.Now() // time.Time |  (default to "2024-04-06T06:44:56.811Z")
-	stop := time.Now() // time.Time |  (default to "2024-04-08T06:44:56.811Z")
-	aggregateWindow := openapiclient.ValidateFrameAggregateWindow("10s") // ValidateFrameAggregateWindow | Required for `analytics_type=interactions-per-cast` (optional)
+	frameUrl := "https://shorturl.at/bDRY9" // string | URL of the mini app to fetch analytics for
+	analyticsType := "analyticsType_example" // string | Type of analytics to fetch
+	start := time.Now() // time.Time | 
+	stop := time.Now() // time.Time | 
+	aggregateWindow := "aggregateWindow_example" // string | Required for `analytics_type=interactions-per-cast` (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -478,11 +479,11 @@ Other parameters are passed through a pointer to a apiFetchValidateFrameAnalytic
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **frameUrl** | **string** |  | 
- **analyticsType** | [**ValidateFrameAnalyticsType**](ValidateFrameAnalyticsType.md) |  | 
- **start** | **time.Time** |  | [default to &quot;2024-04-06T06:44:56.811Z&quot;]
- **stop** | **time.Time** |  | [default to &quot;2024-04-08T06:44:56.811Z&quot;]
- **aggregateWindow** | [**ValidateFrameAggregateWindow**](ValidateFrameAggregateWindow.md) | Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60; | 
+ **frameUrl** | **string** | URL of the mini app to fetch analytics for | 
+ **analyticsType** | **string** | Type of analytics to fetch | 
+ **start** | **time.Time** |  | 
+ **stop** | **time.Time** |  | 
+ **aggregateWindow** | **string** | Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60; | 
 
 ### Return type
 
@@ -548,6 +549,76 @@ Other parameters are passed through a pointer to a apiFetchValidateFrameListRequ
 ### Return type
 
 [**FrameValidateListResponse**](FrameValidateListResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetNotificationCampaignStats
+
+> GetNotificationCampaignStats200Response GetNotificationCampaignStats(ctx).CampaignId(campaignId).Limit(limit).Cursor(cursor).Execute()
+
+Get notification campaign stats
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/neynarxyz/go-sdk/generated/neynar_sdk"
+)
+
+func main() {
+	campaignId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | An ID of a specific notification campaign to query (optional)
+	limit := int32(56) // int32 | The number of results to return (optional) (default to 100)
+	cursor := "cursor_example" // string | Pagination cursor (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FrameAPI.GetNotificationCampaignStats(context.Background()).CampaignId(campaignId).Limit(limit).Cursor(cursor).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FrameAPI.GetNotificationCampaignStats``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetNotificationCampaignStats`: GetNotificationCampaignStats200Response
+	fmt.Fprintf(os.Stdout, "Response from `FrameAPI.GetNotificationCampaignStats`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetNotificationCampaignStatsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **campaignId** | **string** | An ID of a specific notification campaign to query | 
+ **limit** | **int32** | The number of results to return | [default to 100]
+ **cursor** | **string** | Pagination cursor | 
+
+### Return type
+
+[**GetNotificationCampaignStats200Response**](GetNotificationCampaignStats200Response.md)
 
 ### Authorization
 
@@ -650,7 +721,7 @@ import (
 )
 
 func main() {
-	type_ := openapiclient.FrameType("uuid") // FrameType | 
+	type_ := "type__example" // string | Type of identifier (either 'uuid' or 'url')
 	uuid := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | UUID of the mini app to fetch (optional)
 	url := "url_example" // string | URL of the Neynar mini app to fetch (optional)
 
@@ -677,7 +748,7 @@ Other parameters are passed through a pointer to a apiLookupNeynarFrameRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **type_** | [**FrameType**](FrameType.md) |  | 
+ **type_** | **string** | Type of identifier (either &#39;uuid&#39; or &#39;url&#39;) | 
  **uuid** | **string** | UUID of the mini app to fetch | 
  **url** | **string** | URL of the Neynar mini app to fetch | 
 
@@ -918,7 +989,7 @@ import (
 )
 
 func main() {
-	neynarFrameCreationReqBody := *openapiclient.NewNeynarFrameCreationReqBody("Name_example", []openapiclient.NeynarFramePage{*openapiclient.NewNeynarFramePage("Uuid_example", "vNext", "Welcome to Neynar", *openapiclient.NewNeynarPageImage("https://i.imgur.com/qo2AzBf.jpeg", "AspectRatio_example"))}) // NeynarFrameCreationReqBody | 
+	neynarFrameCreationReqBody := *openapiclient.NewNeynarFrameCreationReqBody("Name_example", []openapiclient.NeynarFramePage{*openapiclient.NewNeynarFramePage("Uuid_example", "Welcome to Neynar", *openapiclient.NewNeynarPageImage("https://i.imgur.com/qo2AzBf.jpeg", "AspectRatio_example"))}) // NeynarFrameCreationReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -985,7 +1056,7 @@ import (
 
 func main() {
 	q := "q_example" // string | Query string to search for mini apps
-	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 20)
+	limit := int32(20) // int32 | Number of results to fetch (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -1054,7 +1125,7 @@ import (
 )
 
 func main() {
-	neynarFrameUpdateReqBody := *openapiclient.NewNeynarFrameUpdateReqBody("Uuid_example", []openapiclient.NeynarFramePage{*openapiclient.NewNeynarFramePage("Uuid_example", "vNext", "Welcome to Neynar", *openapiclient.NewNeynarPageImage("https://i.imgur.com/qo2AzBf.jpeg", "AspectRatio_example"))}) // NeynarFrameUpdateReqBody | 
+	neynarFrameUpdateReqBody := *openapiclient.NewNeynarFrameUpdateReqBody("Uuid_example", []openapiclient.NeynarFramePage{*openapiclient.NewNeynarFramePage("Uuid_example", "Welcome to Neynar", *openapiclient.NewNeynarPageImage("https://i.imgur.com/qo2AzBf.jpeg", "AspectRatio_example"))}) // NeynarFrameUpdateReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

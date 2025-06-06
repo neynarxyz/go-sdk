@@ -355,7 +355,7 @@ func (a *ReactionsAPIService) FetchReactionsByTargetExecute(r ApiFetchReactionsB
 	if r.reactionType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "reaction_type", r.reactionType, "form", "")
 	} else {
-		var defaultValue ReactionType = "REACTION_TYPE_LIKE"
+		var defaultValue ReactionType = "Like"
 		r.reactionType = &defaultValue
 	}
 	if r.pageSize != nil {

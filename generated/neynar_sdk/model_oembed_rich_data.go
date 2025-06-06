@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -20,7 +20,7 @@ import (
 // checks if the OembedRichData type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &OembedRichData{}
 
-// OembedRichData struct for OembedRichData
+// OembedRichData Rich OEmbed data
 type OembedRichData struct {
 	Type    string         `json:"type"`
 	Version NullableString `json:"version"`

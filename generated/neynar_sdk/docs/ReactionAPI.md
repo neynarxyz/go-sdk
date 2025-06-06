@@ -1,13 +1,13 @@
 # \ReactionAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteReaction**](ReactionAPI.md#DeleteReaction) | **Delete** /farcaster/reaction | Delete reaction
-[**FetchCastReactions**](ReactionAPI.md#FetchCastReactions) | **Get** /farcaster/reactions/cast | Reactions for cast
-[**FetchUserReactions**](ReactionAPI.md#FetchUserReactions) | **Get** /farcaster/reactions/user | Reactions for user
-[**PublishReaction**](ReactionAPI.md#PublishReaction) | **Post** /farcaster/reaction | Post a reaction
+[**DeleteReaction**](ReactionAPI.md#DeleteReaction) | **Delete** /v2/farcaster/reaction/ | Delete reaction
+[**FetchCastReactions**](ReactionAPI.md#FetchCastReactions) | **Get** /v2/farcaster/reactions/cast/ | Reactions for cast
+[**FetchUserReactions**](ReactionAPI.md#FetchUserReactions) | **Get** /v2/farcaster/reactions/user/ | Reactions for user
+[**PublishReaction**](ReactionAPI.md#PublishReaction) | **Post** /v2/farcaster/reaction/ | Post a reaction
 
 
 
@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	reactionReqBody := *openapiclient.NewReactionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", openapiclient.ReactionType("like"), openapiclient.ReactionReqBody_target{String: new(string)}) // ReactionReqBody | 
+	reactionReqBody := *openapiclient.NewReactionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", openapiclient.ReactionType("like"), "0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/") // ReactionReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -98,9 +98,9 @@ import (
 )
 
 func main() {
-	hash := "hash_example" // string |  (default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be")
-	types := []openapiclient.ReactionsType{openapiclient.ReactionsType("all")} // []ReactionsType | Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values. 
-	viewerFid := int32(56) // int32 | Providing this will return a list of reactions that respects this user's mutes and blocks and includes `viewer_context`. (optional)
+	hash := "hash_example" // string | Cast Hash (default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be")
+	types := []string{"Types_example"} // []string | Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: 'likes' and 'recasts'. By default api returns both. To select multiple types, use a comma-separated list of these values.
+	viewerFid := int32(3) // int32 | Providing this will return a list of reactions that respects this user's mutes and blocks and includes `viewer_context`. (optional)
 	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
@@ -127,8 +127,8 @@ Other parameters are passed through a pointer to a apiFetchCastReactionsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **hash** | **string** |  | [default to &quot;0xfe90f9de682273e05b201629ad2338bdcd89b6be&quot;]
- **types** | [**[]ReactionsType**](ReactionsType.md) | Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: &#39;likes&#39; and &#39;recasts&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.  | 
+ **hash** | **string** | Cast Hash | [default to &quot;0xfe90f9de682273e05b201629ad2338bdcd89b6be&quot;]
+ **types** | **[]string** | Customize which reaction types the request should search for. This is a comma-separated string that can include the following values: &#39;likes&#39; and &#39;recasts&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. | 
  **viewerFid** | **int32** | Providing this will return a list of reactions that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
@@ -172,8 +172,8 @@ import (
 )
 
 func main() {
-	fid := int32(3) // int32 | 
-	type_ := openapiclient.ReactionsType("all") // ReactionsType | Type of reaction to fetch (likes or recasts or all)
+	fid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer)
+	type_ := "type__example" // string | Type of reaction to fetch (likes or recasts or all)
 	viewerFid := int32(3) // int32 | Providing this will return a list of reactions that respects this user's mutes and blocks and includes `viewer_context`. (optional)
 	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
@@ -201,8 +201,8 @@ Other parameters are passed through a pointer to a apiFetchUserReactionsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fid** | **int32** |  | 
- **type_** | [**ReactionsType**](ReactionsType.md) | Type of reaction to fetch (likes or recasts or all) | 
+ **fid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
+ **type_** | **string** | Type of reaction to fetch (likes or recasts or all) | 
  **viewerFid** | **int32** | Providing this will return a list of reactions that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
@@ -246,7 +246,7 @@ import (
 )
 
 func main() {
-	reactionReqBody := *openapiclient.NewReactionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", openapiclient.ReactionType("like"), openapiclient.ReactionReqBody_target{String: new(string)}) // ReactionReqBody | 
+	reactionReqBody := *openapiclient.NewReactionReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", openapiclient.ReactionType("like"), "0x3702ec1b298bb7ac6f00346432d959ad7b05b9a8 -OR- http://neynar.com/") // ReactionReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -6,11 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
 **Url** | **string** |  | 
-**Object** | **string** |  | 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**DescriptionMentionedProfiles** | Pointer to [**[]UserDehydrated**](UserDehydrated.md) |  | [optional] 
-**DescriptionMentionedProfilesRanges** | Pointer to [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. | [optional] 
+**Object** | **string** |  | 
 **CreatedAt** | Pointer to **float32** | Epoch timestamp in seconds. | [optional] 
 **FollowerCount** | Pointer to **float32** | Number of followers the channel has. | [optional] 
 **ExternalLink** | Pointer to [**ChannelExternalLink**](ChannelExternalLink.md) |  | [optional] 
@@ -23,6 +21,8 @@ Name | Type | Description | Notes
 **PinnedCastHash** | Pointer to **string** | Cast Hash | [optional] [default to "0xfe90f9de682273e05b201629ad2338bdcd89b6be"]
 **Hosts** | Pointer to [**[]User**](User.md) |  | [optional] 
 **ViewerContext** | Pointer to [**ChannelUserContext**](ChannelUserContext.md) |  | [optional] 
+**DescriptionMentionedProfiles** | Pointer to [**[]UserDehydrated**](UserDehydrated.md) |  | [optional] 
+**DescriptionMentionedProfilesRanges** | Pointer to [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. | [optional] 
 
 ## Methods
 
@@ -83,26 +83,6 @@ and a boolean to check if the value has been set.
 SetUrl sets Url field to given value.
 
 
-### GetObject
-
-`func (o *Channel) GetObject() string`
-
-GetObject returns the Object field if non-nil, zero value otherwise.
-
-### GetObjectOk
-
-`func (o *Channel) GetObjectOk() (*string, bool)`
-
-GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetObject
-
-`func (o *Channel) SetObject(v string)`
-
-SetObject sets Object field to given value.
-
-
 ### GetName
 
 `func (o *Channel) GetName() string`
@@ -153,55 +133,25 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetDescriptionMentionedProfiles
+### GetObject
 
-`func (o *Channel) GetDescriptionMentionedProfiles() []UserDehydrated`
+`func (o *Channel) GetObject() string`
 
-GetDescriptionMentionedProfiles returns the DescriptionMentionedProfiles field if non-nil, zero value otherwise.
+GetObject returns the Object field if non-nil, zero value otherwise.
 
-### GetDescriptionMentionedProfilesOk
+### GetObjectOk
 
-`func (o *Channel) GetDescriptionMentionedProfilesOk() (*[]UserDehydrated, bool)`
+`func (o *Channel) GetObjectOk() (*string, bool)`
 
-GetDescriptionMentionedProfilesOk returns a tuple with the DescriptionMentionedProfiles field if it's non-nil, zero value otherwise
+GetObjectOk returns a tuple with the Object field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescriptionMentionedProfiles
+### SetObject
 
-`func (o *Channel) SetDescriptionMentionedProfiles(v []UserDehydrated)`
+`func (o *Channel) SetObject(v string)`
 
-SetDescriptionMentionedProfiles sets DescriptionMentionedProfiles field to given value.
+SetObject sets Object field to given value.
 
-### HasDescriptionMentionedProfiles
-
-`func (o *Channel) HasDescriptionMentionedProfiles() bool`
-
-HasDescriptionMentionedProfiles returns a boolean if a field has been set.
-
-### GetDescriptionMentionedProfilesRanges
-
-`func (o *Channel) GetDescriptionMentionedProfilesRanges() []TextRange`
-
-GetDescriptionMentionedProfilesRanges returns the DescriptionMentionedProfilesRanges field if non-nil, zero value otherwise.
-
-### GetDescriptionMentionedProfilesRangesOk
-
-`func (o *Channel) GetDescriptionMentionedProfilesRangesOk() (*[]TextRange, bool)`
-
-GetDescriptionMentionedProfilesRangesOk returns a tuple with the DescriptionMentionedProfilesRanges field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescriptionMentionedProfilesRanges
-
-`func (o *Channel) SetDescriptionMentionedProfilesRanges(v []TextRange)`
-
-SetDescriptionMentionedProfilesRanges sets DescriptionMentionedProfilesRanges field to given value.
-
-### HasDescriptionMentionedProfilesRanges
-
-`func (o *Channel) HasDescriptionMentionedProfilesRanges() bool`
-
-HasDescriptionMentionedProfilesRanges returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -502,6 +452,56 @@ SetViewerContext sets ViewerContext field to given value.
 `func (o *Channel) HasViewerContext() bool`
 
 HasViewerContext returns a boolean if a field has been set.
+
+### GetDescriptionMentionedProfiles
+
+`func (o *Channel) GetDescriptionMentionedProfiles() []UserDehydrated`
+
+GetDescriptionMentionedProfiles returns the DescriptionMentionedProfiles field if non-nil, zero value otherwise.
+
+### GetDescriptionMentionedProfilesOk
+
+`func (o *Channel) GetDescriptionMentionedProfilesOk() (*[]UserDehydrated, bool)`
+
+GetDescriptionMentionedProfilesOk returns a tuple with the DescriptionMentionedProfiles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescriptionMentionedProfiles
+
+`func (o *Channel) SetDescriptionMentionedProfiles(v []UserDehydrated)`
+
+SetDescriptionMentionedProfiles sets DescriptionMentionedProfiles field to given value.
+
+### HasDescriptionMentionedProfiles
+
+`func (o *Channel) HasDescriptionMentionedProfiles() bool`
+
+HasDescriptionMentionedProfiles returns a boolean if a field has been set.
+
+### GetDescriptionMentionedProfilesRanges
+
+`func (o *Channel) GetDescriptionMentionedProfilesRanges() []TextRange`
+
+GetDescriptionMentionedProfilesRanges returns the DescriptionMentionedProfilesRanges field if non-nil, zero value otherwise.
+
+### GetDescriptionMentionedProfilesRangesOk
+
+`func (o *Channel) GetDescriptionMentionedProfilesRangesOk() (*[]TextRange, bool)`
+
+GetDescriptionMentionedProfilesRangesOk returns a tuple with the DescriptionMentionedProfilesRanges field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescriptionMentionedProfilesRanges
+
+`func (o *Channel) SetDescriptionMentionedProfilesRanges(v []TextRange)`
+
+SetDescriptionMentionedProfilesRanges sets DescriptionMentionedProfilesRanges field to given value.
+
+### HasDescriptionMentionedProfilesRanges
+
+`func (o *Channel) HasDescriptionMentionedProfilesRanges() bool`
+
+HasDescriptionMentionedProfilesRanges returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -24,9 +24,8 @@ type CastAPI interface {
 	/*
 			DeleteCast Delete a cast
 
-			Delete an existing cast. \
+			Delete an existing cast.
 		(In order to delete a cast `signer_uuid` must be approved)
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiDeleteCastRequest
@@ -82,7 +81,7 @@ type CastAPI interface {
 	/*
 		LookupCastByHashOrWarpcastUrl By hash or URL
 
-		Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+		Gets information about an individual cast by passing in a Farcaster web URL or cast hash
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiLookupCastByHashOrWarpcastUrlRequest
@@ -96,7 +95,7 @@ type CastAPI interface {
 	/*
 		LookupCastConversation Conversation for a cast
 
-		Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+		Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Farcaster URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiLookupCastConversationRequest
@@ -112,7 +111,6 @@ type CastAPI interface {
 
 			Posts a cast or cast reply. Works with mentions and embeds.
 		(In order to post a cast `signer_uuid` must be approved)
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiPublishCastRequest
@@ -159,7 +157,7 @@ func (r ApiDeleteCastRequest) Execute() (*OperationResponse, *http.Response, err
 /*
 DeleteCast Delete a cast
 
-Delete an existing cast. \
+Delete an existing cast.
 (In order to delete a cast `signer_uuid` must be approved)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -188,7 +186,7 @@ func (a *CastAPIService) DeleteCastExecute(r ApiDeleteCastRequest) (*OperationRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/cast"
+	localVarPath := localBasePath + "/v2/farcaster/cast/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -314,14 +312,20 @@ type ApiFetchBulkCastsRequest struct {
 	ctx                 context.Context
 	ApiService          CastAPI
 	casts               *string
+	xNeynarExperimental *bool
 	viewerFid           *int32
 	sortType            *string
-	xNeynarExperimental *bool
 }
 
 // Hashes of the cast to be retrived (Comma separated, no spaces)
 func (r ApiFetchBulkCastsRequest) Casts(casts string) ApiFetchBulkCastsRequest {
 	r.casts = &casts
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchBulkCastsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchBulkCastsRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -334,12 +338,6 @@ func (r ApiFetchBulkCastsRequest) ViewerFid(viewerFid int32) ApiFetchBulkCastsRe
 // Optional parameter to sort the casts based on different criteria
 func (r ApiFetchBulkCastsRequest) SortType(sortType string) ApiFetchBulkCastsRequest {
 	r.sortType = &sortType
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchBulkCastsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchBulkCastsRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -378,7 +376,7 @@ func (a *CastAPIService) FetchBulkCastsExecute(r ApiFetchBulkCastsRequest) (*Cas
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/casts"
+	localVarPath := localBasePath + "/v2/farcaster/casts/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -478,13 +476,13 @@ func (a *CastAPIService) FetchBulkCastsExecute(r ApiFetchBulkCastsRequest) (*Cas
 type ApiFetchComposerActionsRequest struct {
 	ctx        context.Context
 	ApiService CastAPI
-	list       *CastComposerType
+	list       *string
 	limit      *int32
 	cursor     *string
 }
 
 // Type of list to fetch.
-func (r ApiFetchComposerActionsRequest) List(list CastComposerType) ApiFetchComposerActionsRequest {
+func (r ApiFetchComposerActionsRequest) List(list string) ApiFetchComposerActionsRequest {
 	r.list = &list
 	return r
 }
@@ -536,7 +534,7 @@ func (a *CastAPIService) FetchComposerActionsExecute(r ApiFetchComposerActionsRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/cast/composer_actions/list"
+	localVarPath := localBasePath + "/v2/farcaster/cast/composer_actions/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -691,7 +689,7 @@ func (a *CastAPIService) FetchEmbeddedUrlMetadataExecute(r ApiFetchEmbeddedUrlMe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/cast/embed/crawl"
+	localVarPath := localBasePath + "/v2/farcaster/cast/embed/crawl/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -783,9 +781,9 @@ type ApiLookupCastByHashOrWarpcastUrlRequest struct {
 	ctx                 context.Context
 	ApiService          CastAPI
 	identifier          *string
-	type_               *CastParamType
-	viewerFid           *int32
+	type_               *string
 	xNeynarExperimental *bool
+	viewerFid           *int32
 }
 
 // Cast identifier (Its either a url or a hash)
@@ -794,20 +792,21 @@ func (r ApiLookupCastByHashOrWarpcastUrlRequest) Identifier(identifier string) A
 	return r
 }
 
-func (r ApiLookupCastByHashOrWarpcastUrlRequest) Type_(type_ CastParamType) ApiLookupCastByHashOrWarpcastUrlRequest {
+// The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash
+func (r ApiLookupCastByHashOrWarpcastUrlRequest) Type_(type_ string) ApiLookupCastByHashOrWarpcastUrlRequest {
 	r.type_ = &type_
-	return r
-}
-
-// adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
-func (r ApiLookupCastByHashOrWarpcastUrlRequest) ViewerFid(viewerFid int32) ApiLookupCastByHashOrWarpcastUrlRequest {
-	r.viewerFid = &viewerFid
 	return r
 }
 
 // Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
 func (r ApiLookupCastByHashOrWarpcastUrlRequest) XNeynarExperimental(xNeynarExperimental bool) ApiLookupCastByHashOrWarpcastUrlRequest {
 	r.xNeynarExperimental = &xNeynarExperimental
+	return r
+}
+
+// adds viewer_context to cast object to show whether viewer has liked or recasted the cast.
+func (r ApiLookupCastByHashOrWarpcastUrlRequest) ViewerFid(viewerFid int32) ApiLookupCastByHashOrWarpcastUrlRequest {
+	r.viewerFid = &viewerFid
 	return r
 }
 
@@ -818,7 +817,7 @@ func (r ApiLookupCastByHashOrWarpcastUrlRequest) Execute() (*CastResponse, *http
 /*
 LookupCastByHashOrWarpcastUrl By hash or URL
 
-Gets information about an individual cast by passing in a Warpcast web URL or cast hash
+Gets information about an individual cast by passing in a Farcaster web URL or cast hash
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiLookupCastByHashOrWarpcastUrlRequest
@@ -846,7 +845,7 @@ func (a *CastAPIService) LookupCastByHashOrWarpcastUrlExecute(r ApiLookupCastByH
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/cast"
+	localVarPath := localBasePath + "/v2/farcaster/cast/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -948,25 +947,32 @@ type ApiLookupCastConversationRequest struct {
 	ctx                             context.Context
 	ApiService                      CastAPI
 	identifier                      *string
-	type_                           *CastParamType
+	type_                           *string
+	xNeynarExperimental             *bool
 	replyDepth                      *int32
 	includeChronologicalParentCasts *bool
 	viewerFid                       *int32
-	sortType                        *CastConversationSortType
+	sortType                        *string
 	fold                            *string
 	limit                           *int32
 	cursor                          *string
-	xNeynarExperimental             *bool
 }
 
-// Cast identifier (Its either a url or a hash)
+// Cast identifier (It&#39;s either a URL or a hash)
 func (r ApiLookupCastConversationRequest) Identifier(identifier string) ApiLookupCastConversationRequest {
 	r.identifier = &identifier
 	return r
 }
 
-func (r ApiLookupCastConversationRequest) Type_(type_ CastParamType) ApiLookupCastConversationRequest {
+// The query param accepted by the API. Sent along with identifier param. url - Cast identifier is a url hash - Cast identifier is a hash
+func (r ApiLookupCastConversationRequest) Type_(type_ string) ApiLookupCastConversationRequest {
 	r.type_ = &type_
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiLookupCastConversationRequest) XNeynarExperimental(xNeynarExperimental bool) ApiLookupCastConversationRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -989,7 +995,7 @@ func (r ApiLookupCastConversationRequest) ViewerFid(viewerFid int32) ApiLookupCa
 }
 
 // Sort type for the ordering of descendants. Default is &#x60;chron&#x60;
-func (r ApiLookupCastConversationRequest) SortType(sortType CastConversationSortType) ApiLookupCastConversationRequest {
+func (r ApiLookupCastConversationRequest) SortType(sortType string) ApiLookupCastConversationRequest {
 	r.sortType = &sortType
 	return r
 }
@@ -1012,12 +1018,6 @@ func (r ApiLookupCastConversationRequest) Cursor(cursor string) ApiLookupCastCon
 	return r
 }
 
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiLookupCastConversationRequest) XNeynarExperimental(xNeynarExperimental bool) ApiLookupCastConversationRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
-	return r
-}
-
 func (r ApiLookupCastConversationRequest) Execute() (*Conversation, *http.Response, error) {
 	return r.ApiService.LookupCastConversationExecute(r)
 }
@@ -1025,7 +1025,7 @@ func (r ApiLookupCastConversationRequest) Execute() (*Conversation, *http.Respon
 /*
 LookupCastConversation Conversation for a cast
 
-Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Warpcast URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
+Gets all casts related to a conversation surrounding a cast by passing in a cast hash or Farcaster URL. Includes all the ancestors of a cast up to the root parent in a chronological order. Includes all direct_replies to the cast up to the reply_depth specified in the query parameter.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiLookupCastConversationRequest
@@ -1053,7 +1053,7 @@ func (a *CastAPIService) LookupCastConversationExecute(r ApiLookupCastConversati
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/cast/conversation"
+	localVarPath := localBasePath + "/v2/farcaster/cast/conversation/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1225,7 +1225,7 @@ func (a *CastAPIService) PublishCastExecute(r ApiPublishCastRequest) (*PostCastR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/cast"
+	localVarPath := localBasePath + "/v2/farcaster/cast/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1351,8 +1351,9 @@ type ApiSearchCastsRequest struct {
 	ctx                 context.Context
 	ApiService          CastAPI
 	q                   *string
+	xNeynarExperimental *bool
 	mode                *string
-	sortType            *SearchSortType
+	sortType            *string
 	authorFid           *int32
 	viewerFid           *int32
 	parentUrl           *string
@@ -1360,12 +1361,17 @@ type ApiSearchCastsRequest struct {
 	priorityMode        *bool
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
 }
 
 // Query string to search for casts. Supported operators:  | Operator  | Description                                                                                              | | --------- | -------------------------------------------------------------------------------------------------------- | | &#x60;+&#x60;       | Acts as the AND operator. This is the default operator between terms and can usually be omitted.         | | &#x60;\\|&#x60;      | Acts as the OR operator.                                                                                 | | &#x60;*&#x60;       | When used at the end of a term, signifies a prefix query.                                                  | | &#x60;\&quot;&#x60;       | Wraps several terms into a phrase (for example, &#x60;\&quot;star wars\&quot;&#x60;).                                          | | &#x60;(&#x60;, &#x60;)&#x60;  | Wrap a clause for precedence (for example, &#x60;star + (wars \\| trek)&#x60;).                                     | | &#x60;~n&#x60;      | When used after a term (for example, &#x60;satr~3&#x60;), sets &#x60;fuzziness&#x60;. When used after a phrase, sets &#x60;slop&#x60;. | | &#x60;-&#x60;       | Negates the term.                                                                                        | | &#x60;before:&#x60; | Search for casts before a specific date. (e.g. &#x60;before:2025-04-20&#x60;)                                       | | &#x60;after:&#x60;  | Search for casts after a specific date. (e.g. &#x60;after:2025-04-20&#x60;)                                         |
 func (r ApiSearchCastsRequest) Q(q string) ApiSearchCastsRequest {
 	r.q = &q
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiSearchCastsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiSearchCastsRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -1376,7 +1382,7 @@ func (r ApiSearchCastsRequest) Mode(mode string) ApiSearchCastsRequest {
 }
 
 // Choices are: - &#x60;desc_chron&#x60; - All casts sorted by time (default) - &#x60;algorithmic&#x60; - Casts sorted by engagement and time
-func (r ApiSearchCastsRequest) SortType(sortType SearchSortType) ApiSearchCastsRequest {
+func (r ApiSearchCastsRequest) SortType(sortType string) ApiSearchCastsRequest {
 	r.sortType = &sortType
 	return r
 }
@@ -1423,12 +1429,6 @@ func (r ApiSearchCastsRequest) Cursor(cursor string) ApiSearchCastsRequest {
 	return r
 }
 
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiSearchCastsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiSearchCastsRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
-	return r
-}
-
 func (r ApiSearchCastsRequest) Execute() (*CastsSearchResponse, *http.Response, error) {
 	return r.ApiService.SearchCastsExecute(r)
 }
@@ -1464,7 +1464,7 @@ func (a *CastAPIService) SearchCastsExecute(r ApiSearchCastsRequest) (*CastsSear
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/cast/search"
+	localVarPath := localBasePath + "/v2/farcaster/cast/search/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

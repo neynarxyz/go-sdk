@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -22,14 +22,11 @@ var _ MappedNullable = &Channel{}
 
 // Channel struct for Channel
 type Channel struct {
-	Id                           string           `json:"id"`
-	Url                          string           `json:"url"`
-	Object                       string           `json:"object"`
-	Name                         *string          `json:"name,omitempty"`
-	Description                  *string          `json:"description,omitempty"`
-	DescriptionMentionedProfiles []UserDehydrated `json:"description_mentioned_profiles,omitempty"`
-	// Positions within the text (inclusive start, exclusive end) where each mention occurs.
-	DescriptionMentionedProfilesRanges []TextRange `json:"description_mentioned_profiles_ranges,omitempty"`
+	Id          string  `json:"id"`
+	Url         string  `json:"url"`
+	Name        *string `json:"name,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Object      string  `json:"object"`
 	// Epoch timestamp in seconds.
 	CreatedAt *float32 `json:"created_at,omitempty"`
 	// Number of followers the channel has.
@@ -46,8 +43,11 @@ type Channel struct {
 	// Cast Hash
 	PinnedCastHash *string `json:"pinned_cast_hash,omitempty"`
 	// Deprecated
-	Hosts         []User              `json:"hosts,omitempty"`
-	ViewerContext *ChannelUserContext `json:"viewer_context,omitempty"`
+	Hosts                        []User              `json:"hosts,omitempty"`
+	ViewerContext                *ChannelUserContext `json:"viewer_context,omitempty"`
+	DescriptionMentionedProfiles []UserDehydrated    `json:"description_mentioned_profiles,omitempty"`
+	// Positions within the text (inclusive start, exclusive end) where each mention occurs.
+	DescriptionMentionedProfilesRanges []TextRange `json:"description_mentioned_profiles_ranges,omitempty"`
 }
 
 type _Channel Channel
@@ -124,30 +124,6 @@ func (o *Channel) SetUrl(v string) {
 	o.Url = v
 }
 
-// GetObject returns the Object field value
-func (o *Channel) GetObject() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Object
-}
-
-// GetObjectOk returns a tuple with the Object field value
-// and a boolean to check if the value has been set.
-func (o *Channel) GetObjectOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Object, true
-}
-
-// SetObject sets field value
-func (o *Channel) SetObject(v string) {
-	o.Object = v
-}
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Channel) GetName() string {
 	if o == nil || IsNil(o.Name) {
@@ -212,68 +188,28 @@ func (o *Channel) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetDescriptionMentionedProfiles returns the DescriptionMentionedProfiles field value if set, zero value otherwise.
-func (o *Channel) GetDescriptionMentionedProfiles() []UserDehydrated {
-	if o == nil || IsNil(o.DescriptionMentionedProfiles) {
-		var ret []UserDehydrated
+// GetObject returns the Object field value
+func (o *Channel) GetObject() string {
+	if o == nil {
+		var ret string
 		return ret
 	}
-	return o.DescriptionMentionedProfiles
+
+	return o.Object
 }
 
-// GetDescriptionMentionedProfilesOk returns a tuple with the DescriptionMentionedProfiles field value if set, nil otherwise
+// GetObjectOk returns a tuple with the Object field value
 // and a boolean to check if the value has been set.
-func (o *Channel) GetDescriptionMentionedProfilesOk() ([]UserDehydrated, bool) {
-	if o == nil || IsNil(o.DescriptionMentionedProfiles) {
+func (o *Channel) GetObjectOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DescriptionMentionedProfiles, true
+	return &o.Object, true
 }
 
-// HasDescriptionMentionedProfiles returns a boolean if a field has been set.
-func (o *Channel) HasDescriptionMentionedProfiles() bool {
-	if o != nil && !IsNil(o.DescriptionMentionedProfiles) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescriptionMentionedProfiles gets a reference to the given []UserDehydrated and assigns it to the DescriptionMentionedProfiles field.
-func (o *Channel) SetDescriptionMentionedProfiles(v []UserDehydrated) {
-	o.DescriptionMentionedProfiles = v
-}
-
-// GetDescriptionMentionedProfilesRanges returns the DescriptionMentionedProfilesRanges field value if set, zero value otherwise.
-func (o *Channel) GetDescriptionMentionedProfilesRanges() []TextRange {
-	if o == nil || IsNil(o.DescriptionMentionedProfilesRanges) {
-		var ret []TextRange
-		return ret
-	}
-	return o.DescriptionMentionedProfilesRanges
-}
-
-// GetDescriptionMentionedProfilesRangesOk returns a tuple with the DescriptionMentionedProfilesRanges field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Channel) GetDescriptionMentionedProfilesRangesOk() ([]TextRange, bool) {
-	if o == nil || IsNil(o.DescriptionMentionedProfilesRanges) {
-		return nil, false
-	}
-	return o.DescriptionMentionedProfilesRanges, true
-}
-
-// HasDescriptionMentionedProfilesRanges returns a boolean if a field has been set.
-func (o *Channel) HasDescriptionMentionedProfilesRanges() bool {
-	if o != nil && !IsNil(o.DescriptionMentionedProfilesRanges) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescriptionMentionedProfilesRanges gets a reference to the given []TextRange and assigns it to the DescriptionMentionedProfilesRanges field.
-func (o *Channel) SetDescriptionMentionedProfilesRanges(v []TextRange) {
-	o.DescriptionMentionedProfilesRanges = v
+// SetObject sets field value
+func (o *Channel) SetObject(v string) {
+	o.Object = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -666,6 +602,70 @@ func (o *Channel) SetViewerContext(v ChannelUserContext) {
 	o.ViewerContext = &v
 }
 
+// GetDescriptionMentionedProfiles returns the DescriptionMentionedProfiles field value if set, zero value otherwise.
+func (o *Channel) GetDescriptionMentionedProfiles() []UserDehydrated {
+	if o == nil || IsNil(o.DescriptionMentionedProfiles) {
+		var ret []UserDehydrated
+		return ret
+	}
+	return o.DescriptionMentionedProfiles
+}
+
+// GetDescriptionMentionedProfilesOk returns a tuple with the DescriptionMentionedProfiles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetDescriptionMentionedProfilesOk() ([]UserDehydrated, bool) {
+	if o == nil || IsNil(o.DescriptionMentionedProfiles) {
+		return nil, false
+	}
+	return o.DescriptionMentionedProfiles, true
+}
+
+// HasDescriptionMentionedProfiles returns a boolean if a field has been set.
+func (o *Channel) HasDescriptionMentionedProfiles() bool {
+	if o != nil && !IsNil(o.DescriptionMentionedProfiles) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescriptionMentionedProfiles gets a reference to the given []UserDehydrated and assigns it to the DescriptionMentionedProfiles field.
+func (o *Channel) SetDescriptionMentionedProfiles(v []UserDehydrated) {
+	o.DescriptionMentionedProfiles = v
+}
+
+// GetDescriptionMentionedProfilesRanges returns the DescriptionMentionedProfilesRanges field value if set, zero value otherwise.
+func (o *Channel) GetDescriptionMentionedProfilesRanges() []TextRange {
+	if o == nil || IsNil(o.DescriptionMentionedProfilesRanges) {
+		var ret []TextRange
+		return ret
+	}
+	return o.DescriptionMentionedProfilesRanges
+}
+
+// GetDescriptionMentionedProfilesRangesOk returns a tuple with the DescriptionMentionedProfilesRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetDescriptionMentionedProfilesRangesOk() ([]TextRange, bool) {
+	if o == nil || IsNil(o.DescriptionMentionedProfilesRanges) {
+		return nil, false
+	}
+	return o.DescriptionMentionedProfilesRanges, true
+}
+
+// HasDescriptionMentionedProfilesRanges returns a boolean if a field has been set.
+func (o *Channel) HasDescriptionMentionedProfilesRanges() bool {
+	if o != nil && !IsNil(o.DescriptionMentionedProfilesRanges) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescriptionMentionedProfilesRanges gets a reference to the given []TextRange and assigns it to the DescriptionMentionedProfilesRanges field.
+func (o *Channel) SetDescriptionMentionedProfilesRanges(v []TextRange) {
+	o.DescriptionMentionedProfilesRanges = v
+}
+
 func (o Channel) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -678,19 +678,13 @@ func (o Channel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["url"] = o.Url
-	toSerialize["object"] = o.Object
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.DescriptionMentionedProfiles) {
-		toSerialize["description_mentioned_profiles"] = o.DescriptionMentionedProfiles
-	}
-	if !IsNil(o.DescriptionMentionedProfilesRanges) {
-		toSerialize["description_mentioned_profiles_ranges"] = o.DescriptionMentionedProfilesRanges
-	}
+	toSerialize["object"] = o.Object
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -726,6 +720,12 @@ func (o Channel) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewer_context"] = o.ViewerContext
+	}
+	if !IsNil(o.DescriptionMentionedProfiles) {
+		toSerialize["description_mentioned_profiles"] = o.DescriptionMentionedProfiles
+	}
+	if !IsNil(o.DescriptionMentionedProfilesRanges) {
+		toSerialize["description_mentioned_profiles_ranges"] = o.DescriptionMentionedProfilesRanges
 	}
 	return toSerialize, nil
 }

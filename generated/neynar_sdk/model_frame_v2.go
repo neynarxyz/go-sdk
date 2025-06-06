@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -29,10 +29,10 @@ type FrameV2 struct {
 	// Launch URL of the mini app
 	FramesUrl string `json:"frames_url"`
 	// Button title of a mini app
-	Title    *string               `json:"title,omitempty"`
-	Manifest *FarcasterManifest    `json:"manifest,omitempty"`
-	Author   *UserDehydrated       `json:"author,omitempty"`
-	Metadata *FrameV2AllOfMetadata `json:"metadata,omitempty"`
+	Title    *string            `json:"title,omitempty"`
+	Manifest *FarcasterManifest `json:"manifest,omitempty"`
+	Author   *UserDehydrated    `json:"author,omitempty"`
+	Metadata *FrameV2Metadata   `json:"metadata,omitempty"`
 }
 
 type _FrameV2 FrameV2
@@ -226,9 +226,9 @@ func (o *FrameV2) SetAuthor(v UserDehydrated) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *FrameV2) GetMetadata() FrameV2AllOfMetadata {
+func (o *FrameV2) GetMetadata() FrameV2Metadata {
 	if o == nil || IsNil(o.Metadata) {
-		var ret FrameV2AllOfMetadata
+		var ret FrameV2Metadata
 		return ret
 	}
 	return *o.Metadata
@@ -236,7 +236,7 @@ func (o *FrameV2) GetMetadata() FrameV2AllOfMetadata {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FrameV2) GetMetadataOk() (*FrameV2AllOfMetadata, bool) {
+func (o *FrameV2) GetMetadataOk() (*FrameV2Metadata, bool) {
 	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
@@ -252,8 +252,8 @@ func (o *FrameV2) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given FrameV2AllOfMetadata and assigns it to the Metadata field.
-func (o *FrameV2) SetMetadata(v FrameV2AllOfMetadata) {
+// SetMetadata gets a reference to the given FrameV2Metadata and assigns it to the Metadata field.
+func (o *FrameV2) SetMetadata(v FrameV2Metadata) {
 	o.Metadata = &v
 }
 
