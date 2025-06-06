@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -85,14 +85,20 @@ type ApiFetchFollowSuggestionsRequest struct {
 	ctx                 context.Context
 	ApiService          FollowsAPI
 	fid                 *int32
+	xNeynarExperimental *bool
 	viewerFid           *int32
 	limit               *int32
-	xNeynarExperimental *bool
 }
 
 // FID of the user whose following you want to fetch.
 func (r ApiFetchFollowSuggestionsRequest) Fid(fid int32) ApiFetchFollowSuggestionsRequest {
 	r.fid = &fid
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchFollowSuggestionsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFollowSuggestionsRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -105,12 +111,6 @@ func (r ApiFetchFollowSuggestionsRequest) ViewerFid(viewerFid int32) ApiFetchFol
 // Number of results to fetch
 func (r ApiFetchFollowSuggestionsRequest) Limit(limit int32) ApiFetchFollowSuggestionsRequest {
 	r.limit = &limit
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchFollowSuggestionsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFollowSuggestionsRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -149,7 +149,7 @@ func (a *FollowsAPIService) FetchFollowSuggestionsExecute(r ApiFetchFollowSugges
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/following/suggested"
+	localVarPath := localBasePath + "/v2/farcaster/following/suggested/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -321,7 +321,7 @@ func (a *FollowsAPIService) FetchRelevantFollowersExecute(r ApiFetchRelevantFoll
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/followers/relevant"
+	localVarPath := localBasePath + "/v2/farcaster/followers/relevant/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -420,16 +420,22 @@ type ApiFetchUserFollowersRequest struct {
 	ctx                 context.Context
 	ApiService          FollowsAPI
 	fid                 *int32
+	xNeynarExperimental *bool
 	viewerFid           *int32
-	sortType            *FollowSortType
+	sortType            *string
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
 }
 
 // User who&#39;s profile you are looking at
 func (r ApiFetchUserFollowersRequest) Fid(fid int32) ApiFetchUserFollowersRequest {
 	r.fid = &fid
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchUserFollowersRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchUserFollowersRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -440,7 +446,7 @@ func (r ApiFetchUserFollowersRequest) ViewerFid(viewerFid int32) ApiFetchUserFol
 }
 
 // Sort type for fetch followers. Default is &#x60;desc_chron&#x60;
-func (r ApiFetchUserFollowersRequest) SortType(sortType FollowSortType) ApiFetchUserFollowersRequest {
+func (r ApiFetchUserFollowersRequest) SortType(sortType string) ApiFetchUserFollowersRequest {
 	r.sortType = &sortType
 	return r
 }
@@ -454,12 +460,6 @@ func (r ApiFetchUserFollowersRequest) Limit(limit int32) ApiFetchUserFollowersRe
 // Pagination cursor.
 func (r ApiFetchUserFollowersRequest) Cursor(cursor string) ApiFetchUserFollowersRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchUserFollowersRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchUserFollowersRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -498,7 +498,7 @@ func (a *FollowsAPIService) FetchUserFollowersExecute(r ApiFetchUserFollowersReq
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/followers"
+	localVarPath := localBasePath + "/v2/farcaster/followers/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -619,16 +619,22 @@ type ApiFetchUserFollowingRequest struct {
 	ctx                 context.Context
 	ApiService          FollowsAPI
 	fid                 *int32
+	xNeynarExperimental *bool
 	viewerFid           *int32
-	sortType            *FollowSortType
+	sortType            *string
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
 }
 
 // FID of the user whose following you want to fetch.
 func (r ApiFetchUserFollowingRequest) Fid(fid int32) ApiFetchUserFollowingRequest {
 	r.fid = &fid
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchUserFollowingRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchUserFollowingRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -639,7 +645,7 @@ func (r ApiFetchUserFollowingRequest) ViewerFid(viewerFid int32) ApiFetchUserFol
 }
 
 // Optional parameter to sort the users based on different criteria.
-func (r ApiFetchUserFollowingRequest) SortType(sortType FollowSortType) ApiFetchUserFollowingRequest {
+func (r ApiFetchUserFollowingRequest) SortType(sortType string) ApiFetchUserFollowingRequest {
 	r.sortType = &sortType
 	return r
 }
@@ -653,12 +659,6 @@ func (r ApiFetchUserFollowingRequest) Limit(limit int32) ApiFetchUserFollowingRe
 // Pagination cursor.
 func (r ApiFetchUserFollowingRequest) Cursor(cursor string) ApiFetchUserFollowingRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchUserFollowingRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchUserFollowingRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -697,7 +697,7 @@ func (a *FollowsAPIService) FetchUserFollowingExecute(r ApiFetchUserFollowingReq
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/following"
+	localVarPath := localBasePath + "/v2/farcaster/following/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

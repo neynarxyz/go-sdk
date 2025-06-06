@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 )
 
 type NotificationsAPI interface {
@@ -72,7 +73,6 @@ type NotificationsAPI interface {
 		  2. Provide a valid, signed "Bearer" token in the request's `Authorization` header similar to the
 		     approach described [here](https://docs.farcaster.xyz/reference/warpcast/api#authentication)
 
-
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiMarkNotificationsAsSeenRequest
 	*/
@@ -90,7 +90,7 @@ type ApiFetchAllNotificationsRequest struct {
 	ctx          context.Context
 	ApiService   NotificationsAPI
 	fid          *int32
-	type_        *[]NotificationType
+	type_        *[]string
 	priorityMode *bool
 	limit        *int32
 	cursor       *string
@@ -103,7 +103,7 @@ func (r ApiFetchAllNotificationsRequest) Fid(fid int32) ApiFetchAllNotifications
 }
 
 // Notification type to fetch. Comma separated values of follows, recasts, likes, mentions, replies.
-func (r ApiFetchAllNotificationsRequest) Type_(type_ []NotificationType) ApiFetchAllNotificationsRequest {
+func (r ApiFetchAllNotificationsRequest) Type_(type_ []string) ApiFetchAllNotificationsRequest {
 	r.type_ = &type_
 	return r
 }
@@ -161,7 +161,7 @@ func (a *NotificationsAPIService) FetchAllNotificationsExecute(r ApiFetchAllNoti
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/notifications"
+	localVarPath := localBasePath + "/v2/farcaster/notifications/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -172,7 +172,15 @@ func (a *NotificationsAPIService) FetchAllNotificationsExecute(r ApiFetchAllNoti
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
 	if r.type_ != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "csv")
+		t := *r.type_
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "type", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "type", t, "form", "multi")
+		}
 	}
 	if r.priorityMode != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "priority_mode", r.priorityMode, "form", "")
@@ -342,7 +350,7 @@ func (a *NotificationsAPIService) FetchChannelNotificationsForUserExecute(r ApiF
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/notifications/channel"
+	localVarPath := localBasePath + "/v2/farcaster/notifications/channel/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -524,7 +532,7 @@ func (a *NotificationsAPIService) FetchNotificationsByParentUrlForUserExecute(r 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/notifications/parent_url"
+	localVarPath := localBasePath + "/v2/farcaster/notifications/parent_url/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -690,7 +698,7 @@ func (a *NotificationsAPIService) MarkNotificationsAsSeenExecute(r ApiMarkNotifi
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/notifications/seen"
+	localVarPath := localBasePath + "/v2/farcaster/notifications/seen/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

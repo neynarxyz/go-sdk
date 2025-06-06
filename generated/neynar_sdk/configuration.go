@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -90,11 +90,11 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI-Generator/2.43.0/go",
+		UserAgent:     "OpenAPI-Generator/3.0.1/go",
 		Debug:         false,
 		Servers: ServerConfigurations{
 			{
-				URL:         "https://api.neynar.com/v2",
+				URL:         "https://api.neynar.com",
 				Description: "No description provided",
 			},
 		},

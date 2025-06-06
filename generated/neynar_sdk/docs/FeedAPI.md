@@ -1,25 +1,25 @@
 # \FeedAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FetchCastsForUser**](FeedAPI.md#FetchCastsForUser) | **Get** /farcaster/feed/user/casts | Chronologically
-[**FetchFeed**](FeedAPI.md#FetchFeed) | **Get** /farcaster/feed | By filters
-[**FetchFeedByChannelIds**](FeedAPI.md#FetchFeedByChannelIds) | **Get** /farcaster/feed/channels | By channel IDs
-[**FetchFeedByParentUrls**](FeedAPI.md#FetchFeedByParentUrls) | **Get** /farcaster/feed/parent_urls | By parent URLs
-[**FetchFeedForYou**](FeedAPI.md#FetchFeedForYou) | **Get** /farcaster/feed/for_you | For you
-[**FetchFramesOnlyFeed**](FeedAPI.md#FetchFramesOnlyFeed) | **Get** /farcaster/feed/frames | Casts with mini apps
-[**FetchPopularCastsByUser**](FeedAPI.md#FetchPopularCastsByUser) | **Get** /farcaster/feed/user/popular | 10 most popular casts
-[**FetchRepliesAndRecastsForUser**](FeedAPI.md#FetchRepliesAndRecastsForUser) | **Get** /farcaster/feed/user/replies_and_recasts | Replies and recasts
-[**FetchTrendingFeed**](FeedAPI.md#FetchTrendingFeed) | **Get** /farcaster/feed/trending | Trending feeds
-[**FetchUserFollowingFeed**](FeedAPI.md#FetchUserFollowingFeed) | **Get** /farcaster/feed/following | Following
+[**FetchCastsForUser**](FeedAPI.md#FetchCastsForUser) | **Get** /v2/farcaster/feed/user/casts/ | Chronologically
+[**FetchFeed**](FeedAPI.md#FetchFeed) | **Get** /v2/farcaster/feed/ | By filters
+[**FetchFeedByChannelIds**](FeedAPI.md#FetchFeedByChannelIds) | **Get** /v2/farcaster/feed/channels/ | By channel IDs
+[**FetchFeedByParentUrls**](FeedAPI.md#FetchFeedByParentUrls) | **Get** /v2/farcaster/feed/parent_urls/ | By parent URLs
+[**FetchFeedForYou**](FeedAPI.md#FetchFeedForYou) | **Get** /v2/farcaster/feed/for_you/ | For you
+[**FetchFramesOnlyFeed**](FeedAPI.md#FetchFramesOnlyFeed) | **Get** /v2/farcaster/feed/frames/ | Casts with mini apps
+[**FetchPopularCastsByUser**](FeedAPI.md#FetchPopularCastsByUser) | **Get** /v2/farcaster/feed/user/popular/ | 10 most popular casts
+[**FetchRepliesAndRecastsForUser**](FeedAPI.md#FetchRepliesAndRecastsForUser) | **Get** /v2/farcaster/feed/user/replies_and_recasts/ | Replies and recasts
+[**FetchTrendingFeed**](FeedAPI.md#FetchTrendingFeed) | **Get** /v2/farcaster/feed/trending/ | Trending feeds
+[**FetchUserFollowingFeed**](FeedAPI.md#FetchUserFollowingFeed) | **Get** /v2/farcaster/feed/following/ | Following
 
 
 
 ## FetchCastsForUser
 
-> FeedResponse FetchCastsForUser(ctx).Fid(fid).AppFid(appFid).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).IncludeReplies(includeReplies).ParentUrl(parentUrl).ChannelId(channelId).XNeynarExperimental(xNeynarExperimental).Execute()
+> FeedResponse FetchCastsForUser(ctx).Fid(fid).XNeynarExperimental(xNeynarExperimental).AppFid(appFid).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).IncludeReplies(includeReplies).ParentUrl(parentUrl).ChannelId(channelId).Execute()
 
 Chronologically
 
@@ -39,6 +39,7 @@ import (
 
 func main() {
 	fid := int32(194) // int32 | FID of user whose recent casts you want to fetch
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	appFid := int32(9152) // int32 | Optionally filter to casts created via a specific app FID, e.g. 9152 for Warpcast (optional)
 	viewerFid := int32(3) // int32 | FID of the user viewing the feed (optional)
 	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
@@ -46,11 +47,10 @@ func main() {
 	includeReplies := true // bool | Include reply casts by the author in the response, true by default (optional) (default to true)
 	parentUrl := "parentUrl_example" // string | Parent URL to filter the feed; mutually exclusive with channel_id (optional)
 	channelId := "channelId_example" // string | Channel ID to filter the feed; mutually exclusive with parent_url (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FeedAPI.FetchCastsForUser(context.Background()).Fid(fid).AppFid(appFid).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).IncludeReplies(includeReplies).ParentUrl(parentUrl).ChannelId(channelId).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FeedAPI.FetchCastsForUser(context.Background()).Fid(fid).XNeynarExperimental(xNeynarExperimental).AppFid(appFid).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).IncludeReplies(includeReplies).ParentUrl(parentUrl).ChannelId(channelId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeedAPI.FetchCastsForUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -72,6 +72,7 @@ Other parameters are passed through a pointer to a apiFetchCastsForUserRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of user whose recent casts you want to fetch | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **appFid** | **int32** | Optionally filter to casts created via a specific app FID, e.g. 9152 for Warpcast | 
  **viewerFid** | **int32** | FID of the user viewing the feed | 
  **limit** | **int32** | Number of results to fetch | [default to 25]
@@ -79,7 +80,6 @@ Name | Type | Description  | Notes
  **includeReplies** | **bool** | Include reply casts by the author in the response, true by default | [default to true]
  **parentUrl** | **string** | Parent URL to filter the feed; mutually exclusive with channel_id | 
  **channelId** | **string** | Channel ID to filter the feed; mutually exclusive with parent_url | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 
 ## FetchFeed
 
-> FeedResponse FetchFeed(ctx).FeedType(feedType).FilterType(filterType).Fid(fid).Fids(fids).ParentUrl(parentUrl).ChannelId(channelId).MembersOnly(membersOnly).EmbedUrl(embedUrl).EmbedTypes(embedTypes).WithRecasts(withRecasts).Limit(limit).Cursor(cursor).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+> FeedResponse FetchFeed(ctx).XNeynarExperimental(xNeynarExperimental).FeedType(feedType).FilterType(filterType).Fid(fid).Fids(fids).ParentUrl(parentUrl).ChannelId(channelId).MembersOnly(membersOnly).EmbedUrl(embedUrl).EmbedTypes(embedTypes).WithRecasts(withRecasts).Limit(limit).Cursor(cursor).ViewerFid(viewerFid).Execute()
 
 By filters
 
@@ -120,24 +120,24 @@ import (
 )
 
 func main() {
-	feedType := openapiclient.FeedType("following") // FeedType | Defaults to following (requires FID or address). If set to filter (requires filter_type) (default to "following")
-	filterType := openapiclient.FilterType("fids") // FilterType | Used when feed_type=filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id) (optional)
-	fid := int32(56) // int32 | (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type (optional)
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	feedType := "filter" // string | Defaults to following (requires FID or address). If set to filter (requires filter_type) (optional) (default to "following")
+	filterType := "fids" // string | Used when feed_type=filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id) (optional)
+	fid := int32(3) // int32 | (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type (optional)
 	fids := "3,2,194" // string | Used when filter_type=FIDs . Create a feed based on a list of FIDs. Max array size is 100. Requires feed_type and filter_type. (optional)
-	parentUrl := "parentUrl_example" // string | Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type. (optional)
-	channelId := "channelId_example" // string | Used when filter_type=channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type. (optional)
+	parentUrl := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Used when filter_type=parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type. (optional)
+	channelId := "neynar" // string | Used when filter_type=channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type. (optional)
 	membersOnly := true // bool | Used when filter_type=channel_id. Only include casts from members of the channel. True by default. (optional) (default to true)
-	embedUrl := "embedUrl_example" // string | Used when filter_type=embed_url. Casts with embedded URLs prefixed by this embed_url param will be returned. We normalize your given URL prefix and prepend 'https://' if no protocol is included. Requires feed_type and filter_type. (optional)
-	embedTypes := []openapiclient.EmbedType{openapiclient.EmbedType("text")} // []EmbedType | Used when filter_type=embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type. (optional)
+	embedUrl := "https://example.com" // string | Used when filter_type=embed_url. Casts with embedded URLs prefixed by this embed_url param will be returned. We normalize your given URL prefix and prepend 'https://' if no protocol is included. Requires feed_type and filter_type. (optional)
+	embedTypes := []string{"EmbedTypes_example"} // []string | Used when filter_type=embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type. (optional)
 	withRecasts := true // bool | Include recasts in the response, true by default (optional) (default to true)
 	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 	viewerFid := int32(3) // int32 | Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FeedAPI.FetchFeed(context.Background()).FeedType(feedType).FilterType(filterType).Fid(fid).Fids(fids).ParentUrl(parentUrl).ChannelId(channelId).MembersOnly(membersOnly).EmbedUrl(embedUrl).EmbedTypes(embedTypes).WithRecasts(withRecasts).Limit(limit).Cursor(cursor).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FeedAPI.FetchFeed(context.Background()).XNeynarExperimental(xNeynarExperimental).FeedType(feedType).FilterType(filterType).Fid(fid).Fids(fids).ParentUrl(parentUrl).ChannelId(channelId).MembersOnly(membersOnly).EmbedUrl(embedUrl).EmbedTypes(embedTypes).WithRecasts(withRecasts).Limit(limit).Cursor(cursor).ViewerFid(viewerFid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeedAPI.FetchFeed``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -158,20 +158,20 @@ Other parameters are passed through a pointer to a apiFetchFeedRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **feedType** | [**FeedType**](FeedType.md) | Defaults to following (requires FID or address). If set to filter (requires filter_type) | [default to &quot;following&quot;]
- **filterType** | [**FilterType**](FilterType.md) | Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id) | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **feedType** | **string** | Defaults to following (requires FID or address). If set to filter (requires filter_type) | [default to &quot;following&quot;]
+ **filterType** | **string** | Used when feed_type&#x3D;filter. Can be set to FIDs (requires FIDs) or parent_url (requires parent_url) or channel_id (requires channel_id) | 
  **fid** | **int32** | (Optional) FID of user whose feed you want to create. By default, the API expects this field, except if you pass a filter_type | 
  **fids** | **string** | Used when filter_type&#x3D;FIDs . Create a feed based on a list of FIDs. Max array size is 100. Requires feed_type and filter_type. | 
  **parentUrl** | **string** | Used when filter_type&#x3D;parent_url can be used to fetch content under any parent url e.g. FIP-2 channels on Warpcast. Requires feed_type and filter_type. | 
  **channelId** | **string** | Used when filter_type&#x3D;channel_id can be used to fetch casts under a channel. Requires feed_type and filter_type. | 
  **membersOnly** | **bool** | Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default. | [default to true]
  **embedUrl** | **string** | Used when filter_type&#x3D;embed_url. Casts with embedded URLs prefixed by this embed_url param will be returned. We normalize your given URL prefix and prepend &#39;https://&#39; if no protocol is included. Requires feed_type and filter_type. | 
- **embedTypes** | [**[]EmbedType**](EmbedType.md) | Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type. | 
+ **embedTypes** | **[]string** | Used when filter_type&#x3D;embed_types can be used to fetch all casts with matching content types. Requires feed_type and filter_type. | 
  **withRecasts** | **bool** | Include recasts in the response, true by default | [default to true]
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
  **viewerFid** | **int32** | Providing this will return a feed that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 
 ## FetchFeedByChannelIds
 
-> FeedResponse FetchFeedByChannelIds(ctx).ChannelIds(channelIds).WithRecasts(withRecasts).ViewerFid(viewerFid).WithReplies(withReplies).MembersOnly(membersOnly).Fids(fids).Limit(limit).Cursor(cursor).ShouldModerate(shouldModerate).XNeynarExperimental(xNeynarExperimental).Execute()
+> FeedResponse FetchFeedByChannelIds(ctx).ChannelIds(channelIds).XNeynarExperimental(xNeynarExperimental).WithRecasts(withRecasts).ViewerFid(viewerFid).WithReplies(withReplies).MembersOnly(membersOnly).Fids(fids).Limit(limit).Cursor(cursor).ShouldModerate(shouldModerate).Execute()
 
 By channel IDs
 
@@ -213,19 +213,19 @@ import (
 
 func main() {
 	channelIds := "neynar,farcaster" // string | Comma separated list of up to 10 channel IDs e.g. neynar,farcaster
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	withRecasts := true // bool | Include recasts in the response, true by default (optional) (default to true)
 	viewerFid := int32(3) // int32 | Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`. (optional)
 	withReplies := true // bool | Include replies in the response, false by default (optional) (default to false)
-	membersOnly := true // bool | Only include casts from members of the channel. True by default. (optional) (default to true)
+	membersOnly := true // bool | Used when filter_type=channel_id. Only include casts from members of the channel. True by default. (optional) (default to true)
 	fids := "fids_example" // string | Comma separated list of FIDs to filter the feed by, up to 10 at a time (optional)
-	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
+	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 	shouldModerate := true // bool | If true, only casts that have been liked by the moderator (if one exists) will be returned. (optional) (default to false)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FeedAPI.FetchFeedByChannelIds(context.Background()).ChannelIds(channelIds).WithRecasts(withRecasts).ViewerFid(viewerFid).WithReplies(withReplies).MembersOnly(membersOnly).Fids(fids).Limit(limit).Cursor(cursor).ShouldModerate(shouldModerate).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FeedAPI.FetchFeedByChannelIds(context.Background()).ChannelIds(channelIds).XNeynarExperimental(xNeynarExperimental).WithRecasts(withRecasts).ViewerFid(viewerFid).WithReplies(withReplies).MembersOnly(membersOnly).Fids(fids).Limit(limit).Cursor(cursor).ShouldModerate(shouldModerate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeedAPI.FetchFeedByChannelIds``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -247,15 +247,15 @@ Other parameters are passed through a pointer to a apiFetchFeedByChannelIdsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **channelIds** | **string** | Comma separated list of up to 10 channel IDs e.g. neynar,farcaster | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **withRecasts** | **bool** | Include recasts in the response, true by default | [default to true]
  **viewerFid** | **int32** | Providing this will return a feed that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **withReplies** | **bool** | Include replies in the response, false by default | [default to false]
- **membersOnly** | **bool** | Only include casts from members of the channel. True by default. | [default to true]
+ **membersOnly** | **bool** | Used when filter_type&#x3D;channel_id. Only include casts from members of the channel. True by default. | [default to true]
  **fids** | **string** | Comma separated list of FIDs to filter the feed by, up to 10 at a time | 
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
  **shouldModerate** | **bool** | If true, only casts that have been liked by the moderator (if one exists) will be returned. | [default to false]
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 
 ## FetchFeedByParentUrls
 
-> FeedResponse FetchFeedByParentUrls(ctx).ParentUrls(parentUrls).WithRecasts(withRecasts).ViewerFid(viewerFid).WithReplies(withReplies).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> FeedResponse FetchFeedByParentUrls(ctx).ParentUrls(parentUrls).XNeynarExperimental(xNeynarExperimental).WithRecasts(withRecasts).ViewerFid(viewerFid).WithReplies(withReplies).Limit(limit).Cursor(cursor).Execute()
 
 By parent URLs
 
@@ -297,16 +297,16 @@ import (
 
 func main() {
 	parentUrls := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Comma separated list of parent_urls
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	withRecasts := true // bool | Include recasts in the response, true by default (optional) (default to true)
 	viewerFid := int32(3) // int32 | Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`. (optional)
 	withReplies := true // bool | Include replies in the response, false by default (optional) (default to false)
-	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
+	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FeedAPI.FetchFeedByParentUrls(context.Background()).ParentUrls(parentUrls).WithRecasts(withRecasts).ViewerFid(viewerFid).WithReplies(withReplies).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FeedAPI.FetchFeedByParentUrls(context.Background()).ParentUrls(parentUrls).XNeynarExperimental(xNeynarExperimental).WithRecasts(withRecasts).ViewerFid(viewerFid).WithReplies(withReplies).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeedAPI.FetchFeedByParentUrls``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -328,12 +328,12 @@ Other parameters are passed through a pointer to a apiFetchFeedByParentUrlsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **parentUrls** | **string** | Comma separated list of parent_urls | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **withRecasts** | **bool** | Include recasts in the response, true by default | [default to true]
  **viewerFid** | **int32** | Providing this will return a feed that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **withReplies** | **bool** | Include replies in the response, false by default | [default to false]
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -355,7 +355,7 @@ Name | Type | Description  | Notes
 
 ## FetchFeedForYou
 
-> FeedResponse FetchFeedForYou(ctx).Fid(fid).ViewerFid(viewerFid).Provider(provider).Limit(limit).Cursor(cursor).ProviderMetadata(providerMetadata).XNeynarExperimental(xNeynarExperimental).Execute()
+> FeedResponse FetchFeedForYou(ctx).Fid(fid).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Provider(provider).Limit(limit).Cursor(cursor).ProviderMetadata(providerMetadata).Execute()
 
 For you
 
@@ -374,17 +374,17 @@ import (
 )
 
 func main() {
-	fid := int32(194) // int32 | FID of user whose feed you want to create
+	fid := int32(56) // int32 | FID of user whose feed you want to create
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	viewerFid := int32(3) // int32 | Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`. (optional)
-	provider := openapiclient.ForYouProvider("neynar") // ForYouProvider |  (optional) (default to "neynar")
+	provider := "provider_example" // string | The provider of the For You feed. (optional) (default to "neynar")
 	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	providerMetadata := "providerMetadata_example" // string | provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	providerMetadata := "providerMetadata_example" // string | provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FeedAPI.FetchFeedForYou(context.Background()).Fid(fid).ViewerFid(viewerFid).Provider(provider).Limit(limit).Cursor(cursor).ProviderMetadata(providerMetadata).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FeedAPI.FetchFeedForYou(context.Background()).Fid(fid).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Provider(provider).Limit(limit).Cursor(cursor).ProviderMetadata(providerMetadata).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeedAPI.FetchFeedForYou``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -406,12 +406,12 @@ Other parameters are passed through a pointer to a apiFetchFeedForYouRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of user whose feed you want to create | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **viewerFid** | **int32** | Providing this will return a feed that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
- **provider** | [**ForYouProvider**](ForYouProvider.md) |  | [default to &quot;neynar&quot;]
+ **provider** | **string** | The provider of the For You feed. | [default to &quot;neynar&quot;]
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
- **providerMetadata** | **string** | provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **providerMetadata** | **string** | provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. | 
 
 ### Return type
 
@@ -433,7 +433,7 @@ Name | Type | Description  | Notes
 
 ## FetchFramesOnlyFeed
 
-> FeedResponse FetchFramesOnlyFeed(ctx).Limit(limit).ViewerFid(viewerFid).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> FeedResponse FetchFramesOnlyFeed(ctx).XNeynarExperimental(xNeynarExperimental).Limit(limit).ViewerFid(viewerFid).Cursor(cursor).Execute()
 
 Casts with mini apps
 
@@ -452,14 +452,14 @@ import (
 )
 
 func main() {
-	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	limit := int32(25) // int32 | Number of results to fetch (optional) (default to 25)
 	viewerFid := int32(3) // int32 | Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`. (optional)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FeedAPI.FetchFramesOnlyFeed(context.Background()).Limit(limit).ViewerFid(viewerFid).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FeedAPI.FetchFramesOnlyFeed(context.Background()).XNeynarExperimental(xNeynarExperimental).Limit(limit).ViewerFid(viewerFid).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeedAPI.FetchFramesOnlyFeed``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -480,10 +480,10 @@ Other parameters are passed through a pointer to a apiFetchFramesOnlyFeedRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **viewerFid** | **int32** | Providing this will return a feed that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -524,8 +524,8 @@ import (
 )
 
 func main() {
-	fid := int32(194) // int32 | FID of user whose feed you want to create
-	viewerFid := int32(3) // int32 |  (optional)
+	fid := int32(56) // int32 | FID of user whose feed you want to create
+	viewerFid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -551,7 +551,7 @@ Other parameters are passed through a pointer to a apiFetchPopularCastsByUserReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of user whose feed you want to create | 
- **viewerFid** | **int32** |  | 
+ **viewerFid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 
 ### Return type
 
@@ -592,8 +592,8 @@ import (
 )
 
 func main() {
-	fid := int32(194) // int32 | FID of user whose replies and recasts you want to fetch
-	filter := "replies" // string | filter to fetch only replies or recasts (optional) (default to "all")
+	fid := int32(56) // int32 | FID of user whose replies and recasts you want to fetch
+	filter := "replies" // string | Filter to fetch only replies or recasts (optional) (default to "all")
 	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 	viewerFid := int32(3) // int32 | Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`. (optional)
@@ -622,7 +622,7 @@ Other parameters are passed through a pointer to a apiFetchRepliesAndRecastsForU
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of user whose replies and recasts you want to fetch | 
- **filter** | **string** | filter to fetch only replies or recasts | [default to &quot;all&quot;]
+ **filter** | **string** | Filter to fetch only replies or recasts | [default to &quot;all&quot;]
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
  **viewerFid** | **int32** | Providing this will return a feed that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
@@ -647,7 +647,7 @@ Name | Type | Description  | Notes
 
 ## FetchTrendingFeed
 
-> FeedResponse FetchTrendingFeed(ctx).Limit(limit).Cursor(cursor).ViewerFid(viewerFid).TimeWindow(timeWindow).ChannelId(channelId).ParentUrl(parentUrl).Provider(provider).ProviderMetadata(providerMetadata).XNeynarExperimental(xNeynarExperimental).Execute()
+> FeedResponse FetchTrendingFeed(ctx).XNeynarExperimental(xNeynarExperimental).Limit(limit).Cursor(cursor).ViewerFid(viewerFid).TimeWindow(timeWindow).ChannelId(channelId).ParentUrl(parentUrl).Provider(provider).ProviderMetadata(providerMetadata).Execute()
 
 Trending feeds
 
@@ -666,19 +666,19 @@ import (
 )
 
 func main() {
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	limit := int32(10) // int32 | Number of results to fetch (optional) (default to 10)
 	cursor := "cursor_example" // string | Pagination cursor (optional)
 	viewerFid := int32(3) // int32 | Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`. (optional)
 	timeWindow := "24h" // string | Time window for trending casts (7d window for channel feeds only) (optional) (default to "24h")
 	channelId := "neynar" // string | Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both. (optional)
 	parentUrl := "chain://eip155:1/erc721:0xd4498134211baad5846ce70ce04e7c4da78931cc" // string | Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either `channel_id` or `parent_url`, not both. (optional)
-	provider := openapiclient.FeedTrendingProvider("neynar") // FeedTrendingProvider | The provider of the trending casts feed. (optional) (default to "neynar")
-	providerMetadata := "providerMetadata_example" // string | provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	provider := "neynar" // string | The provider of the trending casts feed. (optional) (default to "neynar")
+	providerMetadata := "providerMetadata_example" // string | provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FeedAPI.FetchTrendingFeed(context.Background()).Limit(limit).Cursor(cursor).ViewerFid(viewerFid).TimeWindow(timeWindow).ChannelId(channelId).ParentUrl(parentUrl).Provider(provider).ProviderMetadata(providerMetadata).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FeedAPI.FetchTrendingFeed(context.Background()).XNeynarExperimental(xNeynarExperimental).Limit(limit).Cursor(cursor).ViewerFid(viewerFid).TimeWindow(timeWindow).ChannelId(channelId).ParentUrl(parentUrl).Provider(provider).ProviderMetadata(providerMetadata).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeedAPI.FetchTrendingFeed``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -699,15 +699,15 @@ Other parameters are passed through a pointer to a apiFetchTrendingFeedRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **limit** | **int32** | Number of results to fetch | [default to 10]
  **cursor** | **string** | Pagination cursor | 
  **viewerFid** | **int32** | Providing this will return a feed that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **timeWindow** | **string** | Time window for trending casts (7d window for channel feeds only) | [default to &quot;24h&quot;]
  **channelId** | **string** | Channel ID to filter trending casts. Less active channels might have no casts in the time window selected. Provide either &#x60;channel_id&#x60; or &#x60;parent_url&#x60;, not both. | 
  **parentUrl** | **string** | Parent URL to filter trending casts. Less active channels might have no casts in the time window selected. Provide either &#x60;channel_id&#x60; or &#x60;parent_url&#x60;, not both. | 
- **provider** | [**FeedTrendingProvider**](FeedTrendingProvider.md) | The provider of the trending casts feed. | [default to &quot;neynar&quot;]
- **providerMetadata** | **string** | provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use.  | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **provider** | **string** | The provider of the trending casts feed. | [default to &quot;neynar&quot;]
+ **providerMetadata** | **string** | provider_metadata is a URI-encoded stringified JSON object that can be used to pass additional metadata to the provider. Only available for mbd provider right now. See [here](https://docs.neynar.com/docs/feed-for-you-w-external-providers) on how to use. | 
 
 ### Return type
 
@@ -729,7 +729,7 @@ Name | Type | Description  | Notes
 
 ## FetchUserFollowingFeed
 
-> FeedResponse FetchUserFollowingFeed(ctx).Fid(fid).ViewerFid(viewerFid).WithRecasts(withRecasts).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> FeedResponse FetchUserFollowingFeed(ctx).Fid(fid).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).WithRecasts(withRecasts).Limit(limit).Cursor(cursor).Execute()
 
 Following
 
@@ -748,16 +748,16 @@ import (
 )
 
 func main() {
-	fid := int32(3) // int32 | FID of user whose feed you want to create
+	fid := int32(56) // int32 | FID of user whose feed you want to create
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	viewerFid := int32(3) // int32 | Providing this will return a feed that respects this user's mutes and blocks and includes `viewer_context`. (optional)
 	withRecasts := true // bool | Include recasts in the response, true by default (optional) (default to true)
 	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FeedAPI.FetchUserFollowingFeed(context.Background()).Fid(fid).ViewerFid(viewerFid).WithRecasts(withRecasts).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FeedAPI.FetchUserFollowingFeed(context.Background()).Fid(fid).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).WithRecasts(withRecasts).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeedAPI.FetchUserFollowingFeed``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -779,11 +779,11 @@ Other parameters are passed through a pointer to a apiFetchUserFollowingFeedRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of user whose feed you want to create | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **viewerFid** | **int32** | Providing this will return a feed that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **withRecasts** | **bool** | Include recasts in the response, true by default | [default to true]
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 

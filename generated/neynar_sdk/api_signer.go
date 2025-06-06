@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -24,9 +24,9 @@ type SignerAPI interface {
 	/*
 			CreateSigner Create signer
 
-			Creates a signer and returns the signer status. \
-		**Note**: While tesing please reuse the signer, it costs money to approve a signer.
+			Creates a signer and returns the signer status.
 
+		**Note**: While tesing please reuse the signer, it costs money to approve a signer.
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiCreateSignerRequest
@@ -151,7 +151,8 @@ func (r ApiCreateSignerRequest) Execute() (*Signer, *http.Response, error) {
 /*
 CreateSigner Create signer
 
-Creates a signer and returns the signer status. \
+Creates a signer and returns the signer status.
+
 **Note**: While tesing please reuse the signer, it costs money to approve a signer.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -180,7 +181,7 @@ func (a *SignerAPIService) CreateSignerExecute(r ApiCreateSignerRequest) (*Signe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/signer"
+	localVarPath := localBasePath + "/v2/farcaster/signer/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -268,7 +269,7 @@ type ApiFetchAuthorizationUrlRequest struct {
 	ctx          context.Context
 	ApiService   SignerAPI
 	clientId     *string
-	responseType *AuthorizationUrlResponseType
+	responseType *string
 }
 
 func (r ApiFetchAuthorizationUrlRequest) ClientId(clientId string) ApiFetchAuthorizationUrlRequest {
@@ -276,7 +277,7 @@ func (r ApiFetchAuthorizationUrlRequest) ClientId(clientId string) ApiFetchAutho
 	return r
 }
 
-func (r ApiFetchAuthorizationUrlRequest) ResponseType(responseType AuthorizationUrlResponseType) ApiFetchAuthorizationUrlRequest {
+func (r ApiFetchAuthorizationUrlRequest) ResponseType(responseType string) ApiFetchAuthorizationUrlRequest {
 	r.responseType = &responseType
 	return r
 }
@@ -316,7 +317,7 @@ func (a *SignerAPIService) FetchAuthorizationUrlExecute(r ApiFetchAuthorizationU
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/login/authorize"
+	localVarPath := localBasePath + "/v2/farcaster/login/authorize/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -426,7 +427,7 @@ type ApiFetchSignersRequest struct {
 	signature  *string
 }
 
-// A Sign-In with Ethereum (SIWE) message that the user&#39;s Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded.  example:  example.com wants you to sign in with your Ethereum account:\\\\n0x23A...F232\\\\n\\\\nSign in to continue.\\\\n\\\\nURI: example.com\\\\nVersion: 1\\\\nChain ID: 1\\\\nNonce: xyz123\\\\nIssued At: 2021-09-01T14:52:07Z  Note: This is just an example message (So, message is invalid, since we don&#39;t want any signers related to NEYNAR_API_DOCS to be exposed).   [Checkout fetch-signers API documentation for more details.](https://docs.neynar.com/docs/fetch-signers-1)
+// A Sign-In with Ethereum (SIWE) message that the user&#39;s Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded.
 func (r ApiFetchSignersRequest) Message(message string) ApiFetchSignersRequest {
 	r.message = &message
 	return r
@@ -473,7 +474,7 @@ func (a *SignerAPIService) FetchSignersExecute(r ApiFetchSignersRequest) (*Signe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/signer/list"
+	localVarPath := localBasePath + "/v2/farcaster/signer/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -593,6 +594,7 @@ type ApiLookupDeveloperManagedSignerRequest struct {
 	publicKey  *string
 }
 
+// Ed25519 public key
 func (r ApiLookupDeveloperManagedSignerRequest) PublicKey(publicKey string) ApiLookupDeveloperManagedSignerRequest {
 	r.publicKey = &publicKey
 	return r
@@ -633,7 +635,7 @@ func (a *SignerAPIService) LookupDeveloperManagedSignerExecute(r ApiLookupDevelo
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/signer/developer_managed"
+	localVarPath := localBasePath + "/v2/farcaster/signer/developer_managed/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -727,6 +729,7 @@ type ApiLookupSignerRequest struct {
 	signerUuid *string
 }
 
+// UUID of the signer. &#x60;signer_uuid&#x60; is paired with API key, can&#39;t use a &#x60;uuid&#x60; made with a different API key.
 func (r ApiLookupSignerRequest) SignerUuid(signerUuid string) ApiLookupSignerRequest {
 	r.signerUuid = &signerUuid
 	return r
@@ -767,7 +770,7 @@ func (a *SignerAPIService) LookupSignerExecute(r ApiLookupSignerRequest) (*Signe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/signer"
+	localVarPath := localBasePath + "/v2/farcaster/signer/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -934,7 +937,7 @@ func (a *SignerAPIService) PublishMessageToFarcasterExecute(r ApiPublishMessageT
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/message"
+	localVarPath := localBasePath + "/v2/farcaster/message/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1080,7 +1083,7 @@ func (a *SignerAPIService) RegisterSignedKeyExecute(r ApiRegisterSignedKeyReques
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/signer/signed_key"
+	localVarPath := localBasePath + "/v2/farcaster/signer/signed_key/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1248,7 +1251,7 @@ func (a *SignerAPIService) RegisterSignedKeyForDeveloperManagedSignerExecute(r A
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/signer/developer_managed/signed_key"
+	localVarPath := localBasePath + "/v2/farcaster/signer/developer_managed/signed_key/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

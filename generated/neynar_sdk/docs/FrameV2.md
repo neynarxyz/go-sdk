@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | Button title of a mini app | [optional] 
 **Manifest** | Pointer to [**FarcasterManifest**](FarcasterManifest.md) |  | [optional] 
 **Author** | Pointer to [**UserDehydrated**](UserDehydrated.md) |  | [optional] 
-**Metadata** | Pointer to [**FrameV2AllOfMetadata**](FrameV2AllOfMetadata.md) |  | [optional] 
+**Metadata** | Pointer to [**FrameV2Metadata**](FrameV2Metadata.md) |  | [optional] 
 
 ## Methods
 
@@ -168,20 +168,20 @@ HasAuthor returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *FrameV2) GetMetadata() FrameV2AllOfMetadata`
+`func (o *FrameV2) GetMetadata() FrameV2Metadata`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *FrameV2) GetMetadataOk() (*FrameV2AllOfMetadata, bool)`
+`func (o *FrameV2) GetMetadataOk() (*FrameV2Metadata, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *FrameV2) SetMetadata(v FrameV2AllOfMetadata)`
+`func (o *FrameV2) SetMetadata(v FrameV2Metadata)`
 
 SetMetadata sets Metadata field to given value.
 

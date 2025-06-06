@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -85,20 +85,23 @@ type ApiFetchSubscribedToForFidRequest struct {
 	ctx                  context.Context
 	ApiService           SubscribersAPI
 	fid                  *int32
-	subscriptionProvider *SubscriptionProvider
+	subscriptionProvider *string
 	viewerFid            *int32
 }
 
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiFetchSubscribedToForFidRequest) Fid(fid int32) ApiFetchSubscribedToForFidRequest {
 	r.fid = &fid
 	return r
 }
 
-func (r ApiFetchSubscribedToForFidRequest) SubscriptionProvider(subscriptionProvider SubscriptionProvider) ApiFetchSubscribedToForFidRequest {
+// The provider of the subscription.
+func (r ApiFetchSubscribedToForFidRequest) SubscriptionProvider(subscriptionProvider string) ApiFetchSubscribedToForFidRequest {
 	r.subscriptionProvider = &subscriptionProvider
 	return r
 }
 
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiFetchSubscribedToForFidRequest) ViewerFid(viewerFid int32) ApiFetchSubscribedToForFidRequest {
 	r.viewerFid = &viewerFid
 	return r
@@ -139,7 +142,7 @@ func (a *SubscribersAPIService) FetchSubscribedToForFidExecute(r ApiFetchSubscri
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/subscribed_to"
+	localVarPath := localBasePath + "/v2/farcaster/user/subscribed_to/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -238,20 +241,23 @@ type ApiFetchSubscribersForFidRequest struct {
 	ctx                  context.Context
 	ApiService           SubscribersAPI
 	fid                  *int32
-	subscriptionProvider *SubscriptionProviders
+	subscriptionProvider *string
 	viewerFid            *int32
 }
 
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiFetchSubscribersForFidRequest) Fid(fid int32) ApiFetchSubscribersForFidRequest {
 	r.fid = &fid
 	return r
 }
 
-func (r ApiFetchSubscribersForFidRequest) SubscriptionProvider(subscriptionProvider SubscriptionProviders) ApiFetchSubscribersForFidRequest {
+// The provider of the subscription.
+func (r ApiFetchSubscribersForFidRequest) SubscriptionProvider(subscriptionProvider string) ApiFetchSubscribersForFidRequest {
 	r.subscriptionProvider = &subscriptionProvider
 	return r
 }
 
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiFetchSubscribersForFidRequest) ViewerFid(viewerFid int32) ApiFetchSubscribersForFidRequest {
 	r.viewerFid = &viewerFid
 	return r
@@ -292,7 +298,7 @@ func (a *SubscribersAPIService) FetchSubscribersForFidExecute(r ApiFetchSubscrib
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/subscribers"
+	localVarPath := localBasePath + "/v2/farcaster/user/subscribers/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -448,7 +454,7 @@ func (a *SubscribersAPIService) FetchSubscriptionCheckExecute(r ApiFetchSubscrip
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/stp/subscription_check"
+	localVarPath := localBasePath + "/v2/stp/subscription_check/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -548,15 +554,17 @@ type ApiFetchSubscriptionsForFidRequest struct {
 	ctx                  context.Context
 	ApiService           SubscribersAPI
 	fid                  *int32
-	subscriptionProvider *SubscriptionProvider
+	subscriptionProvider *string
 }
 
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiFetchSubscriptionsForFidRequest) Fid(fid int32) ApiFetchSubscriptionsForFidRequest {
 	r.fid = &fid
 	return r
 }
 
-func (r ApiFetchSubscriptionsForFidRequest) SubscriptionProvider(subscriptionProvider SubscriptionProvider) ApiFetchSubscriptionsForFidRequest {
+// The provider of the subscription.
+func (r ApiFetchSubscriptionsForFidRequest) SubscriptionProvider(subscriptionProvider string) ApiFetchSubscriptionsForFidRequest {
 	r.subscriptionProvider = &subscriptionProvider
 	return r
 }
@@ -596,7 +604,7 @@ func (a *SubscribersAPIService) FetchSubscriptionsForFidExecute(r ApiFetchSubscr
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/subscriptions_created"
+	localVarPath := localBasePath + "/v2/farcaster/user/subscriptions_created/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

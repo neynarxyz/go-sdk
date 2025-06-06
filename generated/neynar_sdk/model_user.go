@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &User{}
 // User struct for User
 type User struct {
 	Object string `json:"object"`
-	// The unique identifier of a farcaster user (unsigned integer)
+	// The unique identifier of a farcaster user or app (unsigned integer)
 	Fid         int32   `json:"fid"`
 	Username    string  `json:"username"`
 	DisplayName *string `json:"display_name,omitempty"`
@@ -35,16 +35,15 @@ type User struct {
 	// The number of followers the user has.
 	FollowerCount int32 `json:"follower_count"`
 	// The number of users the user is following.
-	FollowingCount    int32                 `json:"following_count"`
-	Verifications     []string              `json:"verifications"`
-	VerifiedAddresses UserVerifiedAddresses `json:"verified_addresses"`
-	// Verified accounts of the user on other platforms, currently only X is supported.
-	VerifiedAccounts []UserVerifiedAccountsInner `json:"verified_accounts"`
-	PowerBadge       bool                        `json:"power_badge"`
-	Experimental     *UserExperimental           `json:"experimental,omitempty"`
+	FollowingCount    int32                       `json:"following_count"`
+	Verifications     []string                    `json:"verifications"`
+	VerifiedAddresses UserVerifiedAddresses       `json:"verified_addresses"`
+	VerifiedAccounts  []UserVerifiedAccountsInner `json:"verified_accounts"`
+	PowerBadge        bool                        `json:"power_badge"`
+	Experimental      *UserExperimental           `json:"experimental,omitempty"`
+	ViewerContext     *UserViewerContext          `json:"viewer_context,omitempty"`
 	// Score that represents the probability that the account is not spam.
-	Score         float64            `json:"score"`
-	ViewerContext *UserViewerContext `json:"viewer_context,omitempty"`
+	Score float64 `json:"score"`
 }
 
 type _User User
@@ -438,30 +437,6 @@ func (o *User) SetExperimental(v UserExperimental) {
 	o.Experimental = &v
 }
 
-// GetScore returns the Score field value
-func (o *User) GetScore() float64 {
-	if o == nil {
-		var ret float64
-		return ret
-	}
-
-	return o.Score
-}
-
-// GetScoreOk returns a tuple with the Score field value
-// and a boolean to check if the value has been set.
-func (o *User) GetScoreOk() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Score, true
-}
-
-// SetScore sets field value
-func (o *User) SetScore(v float64) {
-	o.Score = v
-}
-
 // GetViewerContext returns the ViewerContext field value if set, zero value otherwise.
 func (o *User) GetViewerContext() UserViewerContext {
 	if o == nil || IsNil(o.ViewerContext) {
@@ -494,6 +469,30 @@ func (o *User) SetViewerContext(v UserViewerContext) {
 	o.ViewerContext = &v
 }
 
+// GetScore returns the Score field value
+func (o *User) GetScore() float64 {
+	if o == nil {
+		var ret float64
+		return ret
+	}
+
+	return o.Score
+}
+
+// GetScoreOk returns a tuple with the Score field value
+// and a boolean to check if the value has been set.
+func (o *User) GetScoreOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Score, true
+}
+
+// SetScore sets field value
+func (o *User) SetScore(v float64) {
+	o.Score = v
+}
+
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -524,10 +523,10 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Experimental) {
 		toSerialize["experimental"] = o.Experimental
 	}
-	toSerialize["score"] = o.Score
 	if !IsNil(o.ViewerContext) {
 		toSerialize["viewer_context"] = o.ViewerContext
 	}
+	toSerialize["score"] = o.Score
 	return toSerialize, nil
 }
 

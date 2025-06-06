@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -12,9 +12,7 @@ Contact: team@neynar.com
 package neynar_sdk
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the NeynarPageInputText type satisfies the MappedNullable interface at compile time
@@ -23,20 +21,19 @@ var _ MappedNullable = &NeynarPageInputText{}
 // NeynarPageInputText struct for NeynarPageInputText
 type NeynarPageInputText struct {
 	// Indicates if text input is enabled.
-	Enabled bool `json:"enabled"`
+	Enabled *bool `json:"enabled,omitempty"`
 	// The placeholder text for the input.
 	Placeholder *string `json:"placeholder,omitempty"`
 }
-
-type _NeynarPageInputText NeynarPageInputText
 
 // NewNeynarPageInputText instantiates a new NeynarPageInputText object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNeynarPageInputText(enabled bool) *NeynarPageInputText {
+func NewNeynarPageInputText() *NeynarPageInputText {
 	this := NeynarPageInputText{}
-	this.Enabled = enabled
+	var enabled bool = false
+	this.Enabled = &enabled
 	return &this
 }
 
@@ -46,37 +43,40 @@ func NewNeynarPageInputText(enabled bool) *NeynarPageInputText {
 func NewNeynarPageInputTextWithDefaults() *NeynarPageInputText {
 	this := NeynarPageInputText{}
 	var enabled bool = false
-	this.Enabled = enabled
+	this.Enabled = &enabled
 	return &this
 }
 
-// GetEnabled returns the Enabled field value
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *NeynarPageInputText) GetEnabled() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
 	}
-
-	return o.Enabled
+	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NeynarPageInputText) GetEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Enabled, true
 }
 
-// SetEnabled sets field value
-func (o *NeynarPageInputText) SetEnabled(v bool) {
-	o.Enabled = v
-}
+// HasEnabled returns a boolean if a field has been set.
+func (o *NeynarPageInputText) HasEnabled() bool {
+	if o != nil && !IsNil(o.Enabled) {
+		return true
+	}
 
-// GetDefaultEnabled returns the default value false of the Enabled field.
-func (o *NeynarPageInputText) GetDefaultEnabled() interface{} {
 	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *NeynarPageInputText) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetPlaceholder returns the Placeholder field value if set, zero value otherwise.
@@ -121,69 +121,13 @@ func (o NeynarPageInputText) MarshalJSON() ([]byte, error) {
 
 func (o NeynarPageInputText) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if _, exists := toSerialize["enabled"]; !exists {
-		toSerialize["enabled"] = o.GetDefaultEnabled()
+	if !IsNil(o.Enabled) {
+		toSerialize["enabled"] = o.Enabled
 	}
-	toSerialize["enabled"] = o.Enabled
 	if !IsNil(o.Placeholder) {
 		toSerialize["placeholder"] = o.Placeholder
 	}
 	return toSerialize, nil
-}
-
-func (o *NeynarPageInputText) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"enabled",
-	}
-
-	// defaultValueFuncMap captures the default values for required properties.
-	// These values are used when required properties are missing from the payload.
-	defaultValueFuncMap := map[string]func() interface{}{
-		"enabled": o.GetDefaultEnabled,
-	}
-	var defaultValueApplied bool
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
-			if _, ok := defaultValueFuncMap[requiredProperty]; ok {
-				allProperties[requiredProperty] = defaultValueFuncMap[requiredProperty]()
-				defaultValueApplied = true
-			}
-		}
-		if value, exists := allProperties[requiredProperty]; !exists || value == "" {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	if defaultValueApplied {
-		data, err = json.Marshal(allProperties)
-		if err != nil {
-			return err
-		}
-	}
-	varNeynarPageInputText := _NeynarPageInputText{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNeynarPageInputText)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NeynarPageInputText(varNeynarPageInputText)
-
-	return err
 }
 
 type NullableNeynarPageInputText struct {

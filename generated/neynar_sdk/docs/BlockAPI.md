@@ -1,12 +1,12 @@
 # \BlockAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteBlock**](BlockAPI.md#DeleteBlock) | **Delete** /farcaster/block | Unblock FID
-[**FetchBlockList**](BlockAPI.md#FetchBlockList) | **Get** /farcaster/block/list | Blocked / Blocked by FIDs
-[**PublishBlock**](BlockAPI.md#PublishBlock) | **Post** /farcaster/block | Block FID
+[**DeleteBlock**](BlockAPI.md#DeleteBlock) | **Delete** /v2/farcaster/block/ | Unblock FID
+[**FetchBlockList**](BlockAPI.md#FetchBlockList) | **Get** /v2/farcaster/block/list/ | Blocked / Blocked by FIDs
+[**PublishBlock**](BlockAPI.md#PublishBlock) | **Post** /v2/farcaster/block/ | Block FID
 
 
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## FetchBlockList
 
-> BlockListResponse FetchBlockList(ctx).BlockerFid(blockerFid).BlockedFid(blockedFid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> BlockListResponse FetchBlockList(ctx).XNeynarExperimental(xNeynarExperimental).BlockerFid(blockerFid).BlockedFid(blockedFid).Limit(limit).Cursor(cursor).Execute()
 
 Blocked / Blocked by FIDs
 
@@ -97,15 +97,15 @@ import (
 )
 
 func main() {
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	blockerFid := int32(194) // int32 | Providing this will return the users that this user has blocked (optional)
 	blockedFid := int32(194) // int32 | Providing this will return the users that have blocked this user (optional)
 	limit := int32(20) // int32 | Number of results to fetch (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BlockAPI.FetchBlockList(context.Background()).BlockerFid(blockerFid).BlockedFid(blockedFid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.BlockAPI.FetchBlockList(context.Background()).XNeynarExperimental(xNeynarExperimental).BlockerFid(blockerFid).BlockedFid(blockedFid).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `BlockAPI.FetchBlockList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -126,11 +126,11 @@ Other parameters are passed through a pointer to a apiFetchBlockListRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **blockerFid** | **int32** | Providing this will return the users that this user has blocked | 
  **blockedFid** | **int32** | Providing this will return the users that have blocked this user | 
  **limit** | **int32** | Number of results to fetch | [default to 20]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 

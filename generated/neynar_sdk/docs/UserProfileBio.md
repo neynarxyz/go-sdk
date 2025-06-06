@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Text** | **string** |  | 
 **MentionedProfiles** | Pointer to [**[]UserDehydrated**](UserDehydrated.md) |  | [optional] 
-**MentionedProfilesRanges** | Pointer to [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list.  | [optional] 
+**MentionedProfilesRanges** | Pointer to [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_profiles list. | [optional] 
 **MentionedChannels** | Pointer to [**[]ChannelDehydrated**](ChannelDehydrated.md) |  | [optional] 
-**MentionedChannelsRanges** | Pointer to [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list.  | [optional] 
+**MentionedChannelsRanges** | Pointer to [**[]TextRange**](TextRange.md) | Positions within the text (inclusive start, exclusive end) where each mention occurs. Each index within this list corresponds to the same-numbered index in the mentioned_channels list. | [optional] 
 
 ## Methods
 

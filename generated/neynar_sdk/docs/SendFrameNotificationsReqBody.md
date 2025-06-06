@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TargetFids** | **[]int32** | An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app. | 
-**Notification** | [**SendFrameNotificationsReqBodyNotification**](SendFrameNotificationsReqBodyNotification.md) |  | 
 **Filters** | Pointer to [**SendFrameNotificationsReqBodyFilters**](SendFrameNotificationsReqBodyFilters.md) |  | [optional] 
+**Notification** | [**SendFrameNotificationsReqBodyNotification**](SendFrameNotificationsReqBodyNotification.md) |  | 
 
 ## Methods
 
@@ -47,26 +47,6 @@ and a boolean to check if the value has been set.
 SetTargetFids sets TargetFids field to given value.
 
 
-### GetNotification
-
-`func (o *SendFrameNotificationsReqBody) GetNotification() SendFrameNotificationsReqBodyNotification`
-
-GetNotification returns the Notification field if non-nil, zero value otherwise.
-
-### GetNotificationOk
-
-`func (o *SendFrameNotificationsReqBody) GetNotificationOk() (*SendFrameNotificationsReqBodyNotification, bool)`
-
-GetNotificationOk returns a tuple with the Notification field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNotification
-
-`func (o *SendFrameNotificationsReqBody) SetNotification(v SendFrameNotificationsReqBodyNotification)`
-
-SetNotification sets Notification field to given value.
-
-
 ### GetFilters
 
 `func (o *SendFrameNotificationsReqBody) GetFilters() SendFrameNotificationsReqBodyFilters`
@@ -91,6 +71,26 @@ SetFilters sets Filters field to given value.
 `func (o *SendFrameNotificationsReqBody) HasFilters() bool`
 
 HasFilters returns a boolean if a field has been set.
+
+### GetNotification
+
+`func (o *SendFrameNotificationsReqBody) GetNotification() SendFrameNotificationsReqBodyNotification`
+
+GetNotification returns the Notification field if non-nil, zero value otherwise.
+
+### GetNotificationOk
+
+`func (o *SendFrameNotificationsReqBody) GetNotificationOk() (*SendFrameNotificationsReqBodyNotification, bool)`
+
+GetNotificationOk returns a tuple with the Notification field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNotification
+
+`func (o *SendFrameNotificationsReqBody) SetNotification(v SendFrameNotificationsReqBodyNotification)`
+
+SetNotification sets Notification field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

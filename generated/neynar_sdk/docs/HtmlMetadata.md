@@ -53,7 +53,7 @@ Name | Type | Description | Notes
 **OgVideoWriter** | Pointer to **string** |  | [optional] 
 **OgWebsite** | Pointer to **string** |  | [optional] 
 **UpdatedTime** | Pointer to **string** |  | [optional] 
-**Oembed** | Pointer to [**HtmlMetadataAllOfOembed**](HtmlMetadataAllOfOembed.md) |  | [optional] 
+**Oembed** | Pointer to [**HtmlMetadataOembed**](HtmlMetadataOembed.md) |  | [optional] 
 
 ## Methods
 
@@ -1301,20 +1301,20 @@ HasUpdatedTime returns a boolean if a field has been set.
 
 ### GetOembed
 
-`func (o *HtmlMetadata) GetOembed() HtmlMetadataAllOfOembed`
+`func (o *HtmlMetadata) GetOembed() HtmlMetadataOembed`
 
 GetOembed returns the Oembed field if non-nil, zero value otherwise.
 
 ### GetOembedOk
 
-`func (o *HtmlMetadata) GetOembedOk() (*HtmlMetadataAllOfOembed, bool)`
+`func (o *HtmlMetadata) GetOembedOk() (*HtmlMetadataOembed, bool)`
 
 GetOembedOk returns a tuple with the Oembed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOembed
 
-`func (o *HtmlMetadata) SetOembed(v HtmlMetadataAllOfOembed)`
+`func (o *HtmlMetadata) SetOembed(v HtmlMetadataOembed)`
 
 SetOembed sets Oembed field to given value.
 

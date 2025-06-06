@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -25,8 +25,8 @@ type SendFrameNotificationsReqBodyFilters struct {
 	// Only send notifications to users who follow the given FID.
 	FollowingFid *int32 `json:"following_fid,omitempty"`
 	// Only send notifications to users with a score greater than or equal to this value.
-	MinimumUserScore *float32  `json:"minimum_user_score,omitempty"`
-	NearLocation     *Location `json:"near_location,omitempty"`
+	MinimumUserScore *float32                                          `json:"minimum_user_score,omitempty"`
+	NearLocation     *SendFrameNotificationsReqBodyFiltersNearLocation `json:"near_location,omitempty"`
 }
 
 // NewSendFrameNotificationsReqBodyFilters instantiates a new SendFrameNotificationsReqBodyFilters object
@@ -143,9 +143,9 @@ func (o *SendFrameNotificationsReqBodyFilters) SetMinimumUserScore(v float32) {
 }
 
 // GetNearLocation returns the NearLocation field value if set, zero value otherwise.
-func (o *SendFrameNotificationsReqBodyFilters) GetNearLocation() Location {
+func (o *SendFrameNotificationsReqBodyFilters) GetNearLocation() SendFrameNotificationsReqBodyFiltersNearLocation {
 	if o == nil || IsNil(o.NearLocation) {
-		var ret Location
+		var ret SendFrameNotificationsReqBodyFiltersNearLocation
 		return ret
 	}
 	return *o.NearLocation
@@ -153,7 +153,7 @@ func (o *SendFrameNotificationsReqBodyFilters) GetNearLocation() Location {
 
 // GetNearLocationOk returns a tuple with the NearLocation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SendFrameNotificationsReqBodyFilters) GetNearLocationOk() (*Location, bool) {
+func (o *SendFrameNotificationsReqBodyFilters) GetNearLocationOk() (*SendFrameNotificationsReqBodyFiltersNearLocation, bool) {
 	if o == nil || IsNil(o.NearLocation) {
 		return nil, false
 	}
@@ -169,8 +169,8 @@ func (o *SendFrameNotificationsReqBodyFilters) HasNearLocation() bool {
 	return false
 }
 
-// SetNearLocation gets a reference to the given Location and assigns it to the NearLocation field.
-func (o *SendFrameNotificationsReqBodyFilters) SetNearLocation(v Location) {
+// SetNearLocation gets a reference to the given SendFrameNotificationsReqBodyFiltersNearLocation and assigns it to the NearLocation field.
+func (o *SendFrameNotificationsReqBodyFilters) SetNearLocation(v SendFrameNotificationsReqBodyFiltersNearLocation) {
 	o.NearLocation = &v
 }
 

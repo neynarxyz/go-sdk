@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -25,11 +25,11 @@ type TransactionFramePay struct {
 	// Unique identifier for the transaction mini app
 	Id string `json:"id"`
 	// URL that can be used to access the transaction mini app
-	Url         string                              `json:"url"`
-	Type        TransactionFrameType                `json:"type"`
-	Config      TransactionFrameConfig              `json:"config"`
-	Status      TransactionFrameStatus              `json:"status"`
-	Transaction TransactionFramePayAllOfTransaction `json:"transaction"`
+	Url         string                         `json:"url"`
+	Type        TransactionFrameType           `json:"type"`
+	Config      TransactionFrameConfig         `json:"config"`
+	Status      TransactionFrameStatus         `json:"status"`
+	Transaction TransactionFramePayTransaction `json:"transaction"`
 }
 
 type _TransactionFramePay TransactionFramePay
@@ -38,7 +38,7 @@ type _TransactionFramePay TransactionFramePay
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransactionFramePay(id string, url string, type_ TransactionFrameType, config TransactionFrameConfig, status TransactionFrameStatus, transaction TransactionFramePayAllOfTransaction) *TransactionFramePay {
+func NewTransactionFramePay(id string, url string, type_ TransactionFrameType, config TransactionFrameConfig, status TransactionFrameStatus, transaction TransactionFramePayTransaction) *TransactionFramePay {
 	this := TransactionFramePay{}
 	this.Id = id
 	this.Url = url
@@ -178,9 +178,9 @@ func (o *TransactionFramePay) SetStatus(v TransactionFrameStatus) {
 }
 
 // GetTransaction returns the Transaction field value
-func (o *TransactionFramePay) GetTransaction() TransactionFramePayAllOfTransaction {
+func (o *TransactionFramePay) GetTransaction() TransactionFramePayTransaction {
 	if o == nil {
-		var ret TransactionFramePayAllOfTransaction
+		var ret TransactionFramePayTransaction
 		return ret
 	}
 
@@ -189,7 +189,7 @@ func (o *TransactionFramePay) GetTransaction() TransactionFramePayAllOfTransacti
 
 // GetTransactionOk returns a tuple with the Transaction field value
 // and a boolean to check if the value has been set.
-func (o *TransactionFramePay) GetTransactionOk() (*TransactionFramePayAllOfTransaction, bool) {
+func (o *TransactionFramePay) GetTransactionOk() (*TransactionFramePayTransaction, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -197,7 +197,7 @@ func (o *TransactionFramePay) GetTransactionOk() (*TransactionFramePayAllOfTrans
 }
 
 // SetTransaction sets field value
-func (o *TransactionFramePay) SetTransaction(v TransactionFramePayAllOfTransaction) {
+func (o *TransactionFramePay) SetTransaction(v TransactionFramePayTransaction) {
 	o.Transaction = v
 }
 

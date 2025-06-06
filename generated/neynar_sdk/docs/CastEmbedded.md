@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **App** | Pointer to [**NullableUserDehydrated**](UserDehydrated.md) |  | [optional] 
 **Text** | **string** |  | 
 **Timestamp** | **time.Time** |  | 
-**Type** | [**CastNotificationType**](CastNotificationType.md) |  | 
 **Embeds** | [**[]EmbedDeep**](EmbedDeep.md) |  | 
 **Channel** | [**NullableChannelDehydrated**](ChannelDehydrated.md) |  | 
 
@@ -21,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewCastEmbedded
 
-`func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author UserDehydrated, text string, timestamp time.Time, type_ CastNotificationType, embeds []EmbedDeep, channel NullableChannelDehydrated, ) *CastEmbedded`
+`func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author UserDehydrated, text string, timestamp time.Time, embeds []EmbedDeep, channel NullableChannelDehydrated, ) *CastEmbedded`
 
 NewCastEmbedded instantiates a new CastEmbedded object
 This constructor will assign default values to properties that have it defined,
@@ -259,26 +258,6 @@ and a boolean to check if the value has been set.
 `func (o *CastEmbedded) SetTimestamp(v time.Time)`
 
 SetTimestamp sets Timestamp field to given value.
-
-
-### GetType
-
-`func (o *CastEmbedded) GetType() CastNotificationType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *CastEmbedded) GetTypeOk() (*CastNotificationType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *CastEmbedded) SetType(v CastNotificationType)`
-
-SetType sets Type field to given value.
 
 
 ### GetEmbeds

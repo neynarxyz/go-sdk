@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -43,10 +43,10 @@ type ApiFetchCastMetricsRequest struct {
 	ctx                 context.Context
 	ApiService          MetricsAPI
 	q                   *string
+	xNeynarExperimental *bool
 	interval            *string
 	authorFid           *int32
 	channelId           *string
-	xNeynarExperimental *bool
 }
 
 // Query string to search for casts
@@ -55,7 +55,13 @@ func (r ApiFetchCastMetricsRequest) Q(q string) ApiFetchCastMetricsRequest {
 	return r
 }
 
-// Interval of time for which to fetch metrics. Choices are &#x60;1d&#x60;, &#x60;7d&#x60;, &#x60;30d&#x60;
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchCastMetricsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchCastMetricsRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
+	return r
+}
+
+// Interval of time for which to fetch metrics. Default is 30d.
 func (r ApiFetchCastMetricsRequest) Interval(interval string) ApiFetchCastMetricsRequest {
 	r.interval = &interval
 	return r
@@ -70,12 +76,6 @@ func (r ApiFetchCastMetricsRequest) AuthorFid(authorFid int32) ApiFetchCastMetri
 // Channel ID of the casts you want to search
 func (r ApiFetchCastMetricsRequest) ChannelId(channelId string) ApiFetchCastMetricsRequest {
 	r.channelId = &channelId
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchCastMetricsRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchCastMetricsRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -114,7 +114,7 @@ func (a *MetricsAPIService) FetchCastMetricsExecute(r ApiFetchCastMetricsRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/cast/metrics"
+	localVarPath := localBasePath + "/v2/farcaster/cast/metrics/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

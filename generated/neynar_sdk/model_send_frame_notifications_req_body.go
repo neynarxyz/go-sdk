@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -24,8 +24,8 @@ var _ MappedNullable = &SendFrameNotificationsReqBody{}
 type SendFrameNotificationsReqBody struct {
 	// An array of target FIDs to whom the notifications should be sent. Each FID must be a positive integer. Pass an empty array to send notifications to all FIDs with notifications enabled for the mini app.
 	TargetFids   []int32                                   `json:"target_fids"`
-	Notification SendFrameNotificationsReqBodyNotification `json:"notification"`
 	Filters      *SendFrameNotificationsReqBodyFilters     `json:"filters,omitempty"`
+	Notification SendFrameNotificationsReqBodyNotification `json:"notification"`
 }
 
 type _SendFrameNotificationsReqBody SendFrameNotificationsReqBody
@@ -73,30 +73,6 @@ func (o *SendFrameNotificationsReqBody) SetTargetFids(v []int32) {
 	o.TargetFids = v
 }
 
-// GetNotification returns the Notification field value
-func (o *SendFrameNotificationsReqBody) GetNotification() SendFrameNotificationsReqBodyNotification {
-	if o == nil {
-		var ret SendFrameNotificationsReqBodyNotification
-		return ret
-	}
-
-	return o.Notification
-}
-
-// GetNotificationOk returns a tuple with the Notification field value
-// and a boolean to check if the value has been set.
-func (o *SendFrameNotificationsReqBody) GetNotificationOk() (*SendFrameNotificationsReqBodyNotification, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Notification, true
-}
-
-// SetNotification sets field value
-func (o *SendFrameNotificationsReqBody) SetNotification(v SendFrameNotificationsReqBodyNotification) {
-	o.Notification = v
-}
-
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *SendFrameNotificationsReqBody) GetFilters() SendFrameNotificationsReqBodyFilters {
 	if o == nil || IsNil(o.Filters) {
@@ -129,6 +105,30 @@ func (o *SendFrameNotificationsReqBody) SetFilters(v SendFrameNotificationsReqBo
 	o.Filters = &v
 }
 
+// GetNotification returns the Notification field value
+func (o *SendFrameNotificationsReqBody) GetNotification() SendFrameNotificationsReqBodyNotification {
+	if o == nil {
+		var ret SendFrameNotificationsReqBodyNotification
+		return ret
+	}
+
+	return o.Notification
+}
+
+// GetNotificationOk returns a tuple with the Notification field value
+// and a boolean to check if the value has been set.
+func (o *SendFrameNotificationsReqBody) GetNotificationOk() (*SendFrameNotificationsReqBodyNotification, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Notification, true
+}
+
+// SetNotification sets field value
+func (o *SendFrameNotificationsReqBody) SetNotification(v SendFrameNotificationsReqBodyNotification) {
+	o.Notification = v
+}
+
 func (o SendFrameNotificationsReqBody) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -140,10 +140,10 @@ func (o SendFrameNotificationsReqBody) MarshalJSON() ([]byte, error) {
 func (o SendFrameNotificationsReqBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["target_fids"] = o.TargetFids
-	toSerialize["notification"] = o.Notification
 	if !IsNil(o.Filters) {
 		toSerialize["filters"] = o.Filters
 	}
+	toSerialize["notification"] = o.Notification
 	return toSerialize, nil
 }
 

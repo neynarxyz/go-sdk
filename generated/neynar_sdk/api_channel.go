@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -317,7 +317,7 @@ func (a *ChannelAPIService) FetchAllChannelsExecute(r ApiFetchAllChannelsRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/list"
+	localVarPath := localBasePath + "/v2/farcaster/channel/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -404,7 +404,7 @@ type ApiFetchBulkChannelsRequest struct {
 	ctx        context.Context
 	ApiService ChannelAPI
 	ids        *string
-	type_      *ChannelType
+	type_      *string
 	viewerFid  *int32
 }
 
@@ -415,7 +415,7 @@ func (r ApiFetchBulkChannelsRequest) Ids(ids string) ApiFetchBulkChannelsRequest
 }
 
 // Type of identifier being used to query the channels. Defaults to ID.
-func (r ApiFetchBulkChannelsRequest) Type_(type_ ChannelType) ApiFetchBulkChannelsRequest {
+func (r ApiFetchBulkChannelsRequest) Type_(type_ string) ApiFetchBulkChannelsRequest {
 	r.type_ = &type_
 	return r
 }
@@ -461,7 +461,7 @@ func (a *ChannelAPIService) FetchBulkChannelsExecute(r ApiFetchBulkChannelsReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/bulk"
+	localVarPath := localBasePath + "/v2/farcaster/channel/bulk/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -623,7 +623,7 @@ func (a *ChannelAPIService) FetchChannelInvitesExecute(r ApiFetchChannelInvitesR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/member/invite/list"
+	localVarPath := localBasePath + "/v2/farcaster/channel/member/invite/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -737,15 +737,21 @@ type ApiFetchChannelMembersRequest struct {
 	ctx                 context.Context
 	ApiService          ChannelAPI
 	channelId           *string
+	xNeynarExperimental *bool
 	fid                 *int32
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
 }
 
 // Channel ID for the channel being queried
 func (r ApiFetchChannelMembersRequest) ChannelId(channelId string) ApiFetchChannelMembersRequest {
 	r.channelId = &channelId
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchChannelMembersRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchChannelMembersRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -764,12 +770,6 @@ func (r ApiFetchChannelMembersRequest) Limit(limit int32) ApiFetchChannelMembers
 // Pagination cursor.
 func (r ApiFetchChannelMembersRequest) Cursor(cursor string) ApiFetchChannelMembersRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchChannelMembersRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchChannelMembersRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -808,7 +808,7 @@ func (a *ChannelAPIService) FetchChannelMembersExecute(r ApiFetchChannelMembersR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/member/list"
+	localVarPath := localBasePath + "/v2/farcaster/channel/member/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -926,15 +926,21 @@ type ApiFetchFollowersForAChannelRequest struct {
 	ctx                 context.Context
 	ApiService          ChannelAPI
 	id                  *string
+	xNeynarExperimental *bool
 	viewerFid           *int32
 	cursor              *string
 	limit               *int32
-	xNeynarExperimental *bool
 }
 
 // Channel ID for the channel being queried
 func (r ApiFetchFollowersForAChannelRequest) Id(id string) ApiFetchFollowersForAChannelRequest {
 	r.id = &id
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchFollowersForAChannelRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFollowersForAChannelRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -953,12 +959,6 @@ func (r ApiFetchFollowersForAChannelRequest) Cursor(cursor string) ApiFetchFollo
 // Number of followers to fetch
 func (r ApiFetchFollowersForAChannelRequest) Limit(limit int32) ApiFetchFollowersForAChannelRequest {
 	r.limit = &limit
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchFollowersForAChannelRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchFollowersForAChannelRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -997,7 +997,7 @@ func (a *ChannelAPIService) FetchFollowersForAChannelExecute(r ApiFetchFollowers
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/followers"
+	localVarPath := localBasePath + "/v2/farcaster/channel/followers/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1161,7 +1161,7 @@ func (a *ChannelAPIService) FetchRelevantFollowersForAChannelExecute(r ApiFetchR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/followers/relevant"
+	localVarPath := localBasePath + "/v2/farcaster/channel/followers/relevant/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1316,7 +1316,7 @@ func (a *ChannelAPIService) FetchTrendingChannelsExecute(r ApiFetchTrendingChann
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/trending"
+	localVarPath := localBasePath + "/v2/farcaster/channel/trending/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1484,7 +1484,7 @@ func (a *ChannelAPIService) FetchUserChannelMembershipsExecute(r ApiFetchUserCha
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/memberships/list"
+	localVarPath := localBasePath + "/v2/farcaster/user/memberships/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1653,7 +1653,7 @@ func (a *ChannelAPIService) FetchUserChannelsExecute(r ApiFetchUserChannelsReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/channels"
+	localVarPath := localBasePath + "/v2/farcaster/user/channels/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1801,7 +1801,7 @@ func (a *ChannelAPIService) FetchUsersActiveChannelsExecute(r ApiFetchUsersActiv
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/user"
+	localVarPath := localBasePath + "/v2/farcaster/channel/user/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1955,7 +1955,7 @@ func (a *ChannelAPIService) FollowChannelExecute(r ApiFollowChannelRequest) (*Op
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/follow"
+	localVarPath := localBasePath + "/v2/farcaster/channel/follow/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2123,7 +2123,7 @@ func (a *ChannelAPIService) InviteChannelMemberExecute(r ApiInviteChannelMemberR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/member/invite"
+	localVarPath := localBasePath + "/v2/farcaster/channel/member/invite/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2227,7 +2227,7 @@ type ApiLookupChannelRequest struct {
 	ctx        context.Context
 	ApiService ChannelAPI
 	id         *string
-	type_      *ChannelType
+	type_      *string
 	viewerFid  *int32
 }
 
@@ -2238,7 +2238,7 @@ func (r ApiLookupChannelRequest) Id(id string) ApiLookupChannelRequest {
 }
 
 // Type of identifier being used to query the channel. Defaults to ID.
-func (r ApiLookupChannelRequest) Type_(type_ ChannelType) ApiLookupChannelRequest {
+func (r ApiLookupChannelRequest) Type_(type_ string) ApiLookupChannelRequest {
 	r.type_ = &type_
 	return r
 }
@@ -2284,7 +2284,7 @@ func (a *ChannelAPIService) LookupChannelExecute(r ApiLookupChannelRequest) (*Ch
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel"
+	localVarPath := localBasePath + "/v2/farcaster/channel/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2424,7 +2424,7 @@ func (a *ChannelAPIService) RemoveChannelMemberExecute(r ApiRemoveChannelMemberR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/member"
+	localVarPath := localBasePath + "/v2/farcaster/channel/member/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2570,7 +2570,7 @@ func (a *ChannelAPIService) RespondChannelInviteExecute(r ApiRespondChannelInvit
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/member/invite"
+	localVarPath := localBasePath + "/v2/farcaster/channel/member/invite/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2731,7 +2731,7 @@ func (a *ChannelAPIService) SearchChannelsExecute(r ApiSearchChannelsRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/search"
+	localVarPath := localBasePath + "/v2/farcaster/channel/search/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2864,7 +2864,7 @@ func (a *ChannelAPIService) UnfollowChannelExecute(r ApiUnfollowChannelRequest) 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/channel/follow"
+	localVarPath := localBasePath + "/v2/farcaster/channel/follow/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

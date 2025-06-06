@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -24,7 +24,7 @@ var _ MappedNullable = &BlockReqBody{}
 type BlockReqBody struct {
 	// UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
 	SignerUuid string `json:"signer_uuid"`
-	// The unique identifier of a farcaster user (unsigned integer)
+	// The unique identifier of a farcaster user or app (unsigned integer)
 	BlockedFid int32 `json:"blocked_fid"`
 }
 

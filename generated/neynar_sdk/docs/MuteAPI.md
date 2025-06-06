@@ -1,12 +1,12 @@
 # \MuteAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteMute**](MuteAPI.md#DeleteMute) | **Delete** /farcaster/mute | Unmute FID
-[**FetchMuteList**](MuteAPI.md#FetchMuteList) | **Get** /farcaster/mute/list | Muted FIDs of user
-[**PublishMute**](MuteAPI.md#PublishMute) | **Post** /farcaster/mute | Mute FID
+[**DeleteMute**](MuteAPI.md#DeleteMute) | **Delete** /v2/farcaster/mute/ | Unmute FID
+[**FetchMuteList**](MuteAPI.md#FetchMuteList) | **Get** /v2/farcaster/mute/list/ | Muted FIDs of user
+[**PublishMute**](MuteAPI.md#PublishMute) | **Post** /v2/farcaster/mute/ | Mute FID
 
 
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## FetchMuteList
 
-> MuteListResponse FetchMuteList(ctx).Fid(fid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> MuteListResponse FetchMuteList(ctx).Fid(fid).XNeynarExperimental(xNeynarExperimental).Limit(limit).Cursor(cursor).Execute()
 
 Muted FIDs of user
 
@@ -97,14 +97,14 @@ import (
 )
 
 func main() {
-	fid := int32(194) // int32 | The user's FID (identifier)
+	fid := int32(56) // int32 | The user's FID (identifier)
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	limit := int32(20) // int32 | Number of results to fetch (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MuteAPI.FetchMuteList(context.Background()).Fid(fid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.MuteAPI.FetchMuteList(context.Background()).Fid(fid).XNeynarExperimental(xNeynarExperimental).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MuteAPI.FetchMuteList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -126,9 +126,9 @@ Other parameters are passed through a pointer to a apiFetchMuteListRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | The user&#39;s FID (identifier) | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **limit** | **int32** | Number of results to fetch | [default to 20]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 

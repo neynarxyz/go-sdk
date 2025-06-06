@@ -1,19 +1,19 @@
 # \FollowsAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FetchFollowSuggestions**](FollowsAPI.md#FetchFollowSuggestions) | **Get** /farcaster/following/suggested | Suggest Follows
-[**FetchRelevantFollowers**](FollowsAPI.md#FetchRelevantFollowers) | **Get** /farcaster/followers/relevant | Relevant followers
-[**FetchUserFollowers**](FollowsAPI.md#FetchUserFollowers) | **Get** /farcaster/followers | Followers
-[**FetchUserFollowing**](FollowsAPI.md#FetchUserFollowing) | **Get** /farcaster/following | Following
+[**FetchFollowSuggestions**](FollowsAPI.md#FetchFollowSuggestions) | **Get** /v2/farcaster/following/suggested/ | Suggest Follows
+[**FetchRelevantFollowers**](FollowsAPI.md#FetchRelevantFollowers) | **Get** /v2/farcaster/followers/relevant/ | Relevant followers
+[**FetchUserFollowers**](FollowsAPI.md#FetchUserFollowers) | **Get** /v2/farcaster/followers/ | Followers
+[**FetchUserFollowing**](FollowsAPI.md#FetchUserFollowing) | **Get** /v2/farcaster/following/ | Following
 
 
 
 ## FetchFollowSuggestions
 
-> UsersResponse FetchFollowSuggestions(ctx).Fid(fid).ViewerFid(viewerFid).Limit(limit).XNeynarExperimental(xNeynarExperimental).Execute()
+> UsersResponse FetchFollowSuggestions(ctx).Fid(fid).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Limit(limit).Execute()
 
 Suggest Follows
 
@@ -32,14 +32,14 @@ import (
 )
 
 func main() {
-	fid := int32(2) // int32 | FID of the user whose following you want to fetch.
-	viewerFid := int32(3) // int32 | Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`. (optional)
-	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
+	fid := int32(56) // int32 | FID of the user whose following you want to fetch.
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	viewerFid := int32(56) // int32 | Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`. (optional)
+	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 25)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FollowsAPI.FetchFollowSuggestions(context.Background()).Fid(fid).ViewerFid(viewerFid).Limit(limit).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FollowsAPI.FetchFollowSuggestions(context.Background()).Fid(fid).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FollowsAPI.FetchFollowSuggestions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,9 +61,9 @@ Other parameters are passed through a pointer to a apiFetchFollowSuggestionsRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of the user whose following you want to fetch. | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **viewerFid** | **int32** | Providing this will return a list of users that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **limit** | **int32** | Number of results to fetch | [default to 25]
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## FetchUserFollowers
 
-> FollowersResponse FetchUserFollowers(ctx).Fid(fid).ViewerFid(viewerFid).SortType(sortType).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> FollowersResponse FetchUserFollowers(ctx).Fid(fid).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).SortType(sortType).Limit(limit).Cursor(cursor).Execute()
 
 Followers
 
@@ -175,15 +175,15 @@ import (
 
 func main() {
 	fid := int32(56) // int32 | User who's profile you are looking at
-	viewerFid := int32(56) // int32 | Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`. (optional)
-	sortType := openapiclient.FollowSortType("desc_chron") // FollowSortType | Sort type for fetch followers. Default is `desc_chron` (optional)
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	viewerFid := int32(3) // int32 | Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`. (optional)
+	sortType := "desc_chron" // string | Sort type for fetch followers. Default is `desc_chron` (optional)
 	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FollowsAPI.FetchUserFollowers(context.Background()).Fid(fid).ViewerFid(viewerFid).SortType(sortType).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FollowsAPI.FetchUserFollowers(context.Background()).Fid(fid).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).SortType(sortType).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FollowsAPI.FetchUserFollowers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,11 +205,11 @@ Other parameters are passed through a pointer to a apiFetchUserFollowersRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | User who&#39;s profile you are looking at | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **viewerFid** | **int32** | Providing this will return a list of followers that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
- **sortType** | [**FollowSortType**](FollowSortType.md) | Sort type for fetch followers. Default is &#x60;desc_chron&#x60; | 
+ **sortType** | **string** | Sort type for fetch followers. Default is &#x60;desc_chron&#x60; | 
  **limit** | **int32** | Number of results to fetch | [default to 20]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ## FetchUserFollowing
 
-> FollowersResponse FetchUserFollowing(ctx).Fid(fid).ViewerFid(viewerFid).SortType(sortType).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> FollowersResponse FetchUserFollowing(ctx).Fid(fid).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).SortType(sortType).Limit(limit).Cursor(cursor).Execute()
 
 Following
 
@@ -250,16 +250,16 @@ import (
 )
 
 func main() {
-	fid := int32(2) // int32 | FID of the user whose following you want to fetch.
-	viewerFid := int32(3) // int32 | Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`. (optional)
-	sortType := openapiclient.FollowSortType("desc_chron") // FollowSortType | Optional parameter to sort the users based on different criteria. (optional)
-	limit := int32(25) // int32 | Number of results to fetch (optional) (default to 25)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
+	fid := int32(56) // int32 | FID of the user whose following you want to fetch.
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	viewerFid := int32(3) // int32 | Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`. (optional)
+	sortType := "desc_chron" // string | Optional parameter to sort the users based on different criteria. (optional)
+	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 25)
+	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FollowsAPI.FetchUserFollowing(context.Background()).Fid(fid).ViewerFid(viewerFid).SortType(sortType).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.FollowsAPI.FetchUserFollowing(context.Background()).Fid(fid).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).SortType(sortType).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FollowsAPI.FetchUserFollowing``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,11 +281,11 @@ Other parameters are passed through a pointer to a apiFetchUserFollowingRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | FID of the user whose following you want to fetch. | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **viewerFid** | **int32** | Providing this will return a list of users that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
- **sortType** | [**FollowSortType**](FollowSortType.md) | Optional parameter to sort the users based on different criteria. | 
+ **sortType** | **string** | Optional parameter to sort the users based on different criteria. | 
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 

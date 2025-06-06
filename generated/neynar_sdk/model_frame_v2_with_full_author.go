@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -29,10 +29,10 @@ type FrameV2WithFullAuthor struct {
 	// Launch URL of the mini app
 	FramesUrl string `json:"frames_url"`
 	// Button title of a mini app
-	Title    *string                             `json:"title,omitempty"`
-	Manifest *FarcasterManifest                  `json:"manifest,omitempty"`
-	Author   *User                               `json:"author,omitempty"`
-	Metadata *FrameV2WithFullAuthorAllOfMetadata `json:"metadata,omitempty"`
+	Title    *string                        `json:"title,omitempty"`
+	Manifest *FarcasterManifest             `json:"manifest,omitempty"`
+	Author   *User                          `json:"author,omitempty"`
+	Metadata *FrameV2WithFullAuthorMetadata `json:"metadata,omitempty"`
 }
 
 type _FrameV2WithFullAuthor FrameV2WithFullAuthor
@@ -226,9 +226,9 @@ func (o *FrameV2WithFullAuthor) SetAuthor(v User) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *FrameV2WithFullAuthor) GetMetadata() FrameV2WithFullAuthorAllOfMetadata {
+func (o *FrameV2WithFullAuthor) GetMetadata() FrameV2WithFullAuthorMetadata {
 	if o == nil || IsNil(o.Metadata) {
-		var ret FrameV2WithFullAuthorAllOfMetadata
+		var ret FrameV2WithFullAuthorMetadata
 		return ret
 	}
 	return *o.Metadata
@@ -236,7 +236,7 @@ func (o *FrameV2WithFullAuthor) GetMetadata() FrameV2WithFullAuthorAllOfMetadata
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FrameV2WithFullAuthor) GetMetadataOk() (*FrameV2WithFullAuthorAllOfMetadata, bool) {
+func (o *FrameV2WithFullAuthor) GetMetadataOk() (*FrameV2WithFullAuthorMetadata, bool) {
 	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
@@ -252,8 +252,8 @@ func (o *FrameV2WithFullAuthor) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given FrameV2WithFullAuthorAllOfMetadata and assigns it to the Metadata field.
-func (o *FrameV2WithFullAuthor) SetMetadata(v FrameV2WithFullAuthorAllOfMetadata) {
+// SetMetadata gets a reference to the given FrameV2WithFullAuthorMetadata and assigns it to the Metadata field.
+func (o *FrameV2WithFullAuthor) SetMetadata(v FrameV2WithFullAuthorMetadata) {
 	o.Metadata = &v
 }
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Uuid** | **string** | Unique identifier for the page. | 
-**Version** | **string** | The version of the page schema. | [default to "vNext"]
+**Version** | Pointer to **string** | The version of the page schema. | [optional] [default to "vNext"]
 **Title** | **string** | The title of the page. | 
 **Image** | [**NeynarPageImage**](NeynarPageImage.md) |  | 
 **Buttons** | Pointer to [**[]NeynarPageButton**](NeynarPageButton.md) |  | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewNeynarFramePage
 
-`func NewNeynarFramePage(uuid string, version string, title string, image NeynarPageImage, ) *NeynarFramePage`
+`func NewNeynarFramePage(uuid string, title string, image NeynarPageImage, ) *NeynarFramePage`
 
 NewNeynarFramePage instantiates a new NeynarFramePage object
 This constructor will assign default values to properties that have it defined,
@@ -69,6 +69,11 @@ and a boolean to check if the value has been set.
 
 SetVersion sets Version field to given value.
 
+### HasVersion
+
+`func (o *NeynarFramePage) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
 
 ### GetTitle
 

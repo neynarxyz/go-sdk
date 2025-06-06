@@ -1,17 +1,17 @@
 # \SignerAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateSigner**](SignerAPI.md#CreateSigner) | **Post** /farcaster/signer | Create signer
-[**FetchAuthorizationUrl**](SignerAPI.md#FetchAuthorizationUrl) | **Get** /farcaster/login/authorize | Fetch authorization url
-[**FetchSigners**](SignerAPI.md#FetchSigners) | **Get** /farcaster/signer/list | List signers
-[**LookupDeveloperManagedSigner**](SignerAPI.md#LookupDeveloperManagedSigner) | **Get** /farcaster/signer/developer_managed | Status by public key
-[**LookupSigner**](SignerAPI.md#LookupSigner) | **Get** /farcaster/signer | Status
-[**PublishMessageToFarcaster**](SignerAPI.md#PublishMessageToFarcaster) | **Post** /farcaster/message | Publish message
-[**RegisterSignedKey**](SignerAPI.md#RegisterSignedKey) | **Post** /farcaster/signer/signed_key | Register Signed Key
-[**RegisterSignedKeyForDeveloperManagedSigner**](SignerAPI.md#RegisterSignedKeyForDeveloperManagedSigner) | **Post** /farcaster/signer/developer_managed/signed_key | Register Signed Key
+[**CreateSigner**](SignerAPI.md#CreateSigner) | **Post** /v2/farcaster/signer/ | Create signer
+[**FetchAuthorizationUrl**](SignerAPI.md#FetchAuthorizationUrl) | **Get** /v2/farcaster/login/authorize/ | Fetch authorization url
+[**FetchSigners**](SignerAPI.md#FetchSigners) | **Get** /v2/farcaster/signer/list/ | List signers
+[**LookupDeveloperManagedSigner**](SignerAPI.md#LookupDeveloperManagedSigner) | **Get** /v2/farcaster/signer/developer_managed/ | Status by public key
+[**LookupSigner**](SignerAPI.md#LookupSigner) | **Get** /v2/farcaster/signer/ | Status
+[**PublishMessageToFarcaster**](SignerAPI.md#PublishMessageToFarcaster) | **Post** /v2/farcaster/message/ | Publish message
+[**RegisterSignedKey**](SignerAPI.md#RegisterSignedKey) | **Post** /v2/farcaster/signer/signed_key/ | Register Signed Key
+[**RegisterSignedKeyForDeveloperManagedSigner**](SignerAPI.md#RegisterSignedKeyForDeveloperManagedSigner) | **Post** /v2/farcaster/signer/developer_managed/signed_key/ | Register Signed Key
 
 
 
@@ -98,7 +98,7 @@ import (
 
 func main() {
 	clientId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	responseType := openapiclient.AuthorizationUrlResponseType("code") // AuthorizationUrlResponseType | 
+	responseType := "responseType_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,7 +124,7 @@ Other parameters are passed through a pointer to a apiFetchAuthorizationUrlReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **clientId** | **string** |  | 
- **responseType** | [**AuthorizationUrlResponseType**](AuthorizationUrlResponseType.md) |  | 
+ **responseType** | **string** |  | 
 
 ### Return type
 
@@ -165,8 +165,8 @@ import (
 )
 
 func main() {
-	message := "example.com%20wants%20you%20to%20sign%20in%20with%20your%20Ethereum%20account%3A%5Cn0x23A...F232%5Cn%5CnSign%20in%20to%20continue.%5Cn%5CnURI%3A%20example.com%5CnVersion%3A%201%5CnChain%20ID%3A%201%5CnNonce%3A%20xyz123%5CnIssued%20At%3A%202021-09-01T14%3A52%3A07Z" // string | A Sign-In with Ethereum (SIWE) message that the user's Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded.  example:  example.com wants you to sign in with your Ethereum account:\\\\n0x23A...F232\\\\n\\\\nSign in to continue.\\\\n\\\\nURI: example.com\\\\nVersion: 1\\\\nChain ID: 1\\\\nNonce: xyz123\\\\nIssued At: 2021-09-01T14:52:07Z  Note: This is just an example message (So, message is invalid, since we don't want any signers related to NEYNAR_API_DOCS to be exposed).   [Checkout fetch-signers API documentation for more details.](https://docs.neynar.com/docs/fetch-signers-1) 
-	signature := "0x25f8...1cf" // string | The digital signature produced by signing the provided SIWE message with the user's Ethereum private key. This signature is used to verify the authenticity of the message and the identity of the signer. 
+	message := "example.com%20wants%20you%20to%20sign%20in%20with%20your%20Ethereum%20account%3A%5Cn0x23A...F232%5Cn%5CnSign%20in%20to%20continue.%5Cn%5CnURI%3A%20example.com%5CnVersion%3A%201%5CnChain%20ID%3A%201%5CnNonce%3A%20xyz123%5CnIssued%20At%3A%202021-09-01T14%3A52%3A07Z" // string | A Sign-In with Ethereum (SIWE) message that the user's Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded.
+	signature := "0x25f8...1cf" // string | The digital signature produced by signing the provided SIWE message with the user's Ethereum private key. This signature is used to verify the authenticity of the message and the identity of the signer.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -191,8 +191,8 @@ Other parameters are passed through a pointer to a apiFetchSignersRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **message** | **string** | A Sign-In with Ethereum (SIWE) message that the user&#39;s Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded.  example:  example.com wants you to sign in with your Ethereum account:\\\\n0x23A...F232\\\\n\\\\nSign in to continue.\\\\n\\\\nURI: example.com\\\\nVersion: 1\\\\nChain ID: 1\\\\nNonce: xyz123\\\\nIssued At: 2021-09-01T14:52:07Z  Note: This is just an example message (So, message is invalid, since we don&#39;t want any signers related to NEYNAR_API_DOCS to be exposed).   [Checkout fetch-signers API documentation for more details.](https://docs.neynar.com/docs/fetch-signers-1)  | 
- **signature** | **string** | The digital signature produced by signing the provided SIWE message with the user&#39;s Ethereum private key. This signature is used to verify the authenticity of the message and the identity of the signer.  | 
+ **message** | **string** | A Sign-In with Ethereum (SIWE) message that the user&#39;s Ethereum wallet signs. This message includes details such as the domain, address, statement, URI, nonce, and other relevant information following the EIP-4361 standard. It should be structured and URL-encoded. | 
+ **signature** | **string** | The digital signature produced by signing the provided SIWE message with the user&#39;s Ethereum private key. This signature is used to verify the authenticity of the message and the identity of the signer. | 
 
 ### Return type
 
@@ -233,7 +233,7 @@ import (
 )
 
 func main() {
-	publicKey := "0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22" // string | 
+	publicKey := "0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22" // string | Ed25519 public key
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -258,7 +258,7 @@ Other parameters are passed through a pointer to a apiLookupDeveloperManagedSign
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **publicKey** | **string** |  | 
+ **publicKey** | **string** | Ed25519 public key | 
 
 ### Return type
 
@@ -299,7 +299,7 @@ import (
 )
 
 func main() {
-	signerUuid := "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec" // string | 
+	signerUuid := "19d0c5fd-9b33-4a48-a0e2-bc7b0555baec" // string | UUID of the signer. `signer_uuid` is paired with API key, can't use a `uuid` made with a different API key.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -324,7 +324,7 @@ Other parameters are passed through a pointer to a apiLookupSignerRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **signerUuid** | **string** |  | 
+ **signerUuid** | **string** | UUID of the signer. &#x60;signer_uuid&#x60; is paired with API key, can&#39;t use a &#x60;uuid&#x60; made with a different API key. | 
 
 ### Return type
 
@@ -497,7 +497,7 @@ import (
 )
 
 func main() {
-	registerDeveloperManagedSignedKeyReqBody := *openapiclient.NewRegisterDeveloperManagedSignedKeyReqBody("0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef", "0x7867e84cb6a64bf6e1954e52884133f1114eb3fd97f63ff55fa76c77c80beb6434eea9d3736b59caa3130d63121177acc752dc8a2561e9edf700642f390f92d11b", int32(3), int32(123)) // RegisterDeveloperManagedSignedKeyReqBody | 
+	registerDeveloperManagedSignedKeyReqBody := *openapiclient.NewRegisterDeveloperManagedSignedKeyReqBody("0x3daa8f99c5f760688a3c9f95716ed93dee5ed5d7722d776b7c4deac957755f22", "0x7867e84cb6a64bf6e1954e52884133f1114eb3fd97f63ff55fa76c77c80beb6434eea9d3736b59caa3130d63121177acc752dc8a2561e9edf700642f390f92d11b", int32(3), int32(123)) // RegisterDeveloperManagedSignedKeyReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

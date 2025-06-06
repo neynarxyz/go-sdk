@@ -1,12 +1,12 @@
 # \BanAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteBans**](BanAPI.md#DeleteBans) | **Delete** /farcaster/ban | Unban FIDs from app
-[**FetchBanList**](BanAPI.md#FetchBanList) | **Get** /farcaster/ban/list | Banned FIDs of app
-[**PublishBans**](BanAPI.md#PublishBans) | **Post** /farcaster/ban | Ban FIDs from app
+[**DeleteBans**](BanAPI.md#DeleteBans) | **Delete** /v2/farcaster/ban/ | Unban FIDs from app
+[**FetchBanList**](BanAPI.md#FetchBanList) | **Get** /v2/farcaster/ban/list/ | Banned FIDs of app
+[**PublishBans**](BanAPI.md#PublishBans) | **Post** /v2/farcaster/ban/ | Ban FIDs from app
 
 
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## FetchBanList
 
-> BanListResponse FetchBanList(ctx).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> BanListResponse FetchBanList(ctx).XNeynarExperimental(xNeynarExperimental).Limit(limit).Cursor(cursor).Execute()
 
 Banned FIDs of app
 
@@ -97,13 +97,13 @@ import (
 )
 
 func main() {
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	limit := int32(20) // int32 | Number of results to fetch (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BanAPI.FetchBanList(context.Background()).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.BanAPI.FetchBanList(context.Background()).XNeynarExperimental(xNeynarExperimental).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `BanAPI.FetchBanList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,9 +124,9 @@ Other parameters are passed through a pointer to a apiFetchBanListRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **limit** | **int32** | Number of results to fetch | [default to 20]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ExcludeFids** | Pointer to **[]int32** | Only send notifications to users who are not in the given FIDs. | [optional] 
 **FollowingFid** | Pointer to **int32** | Only send notifications to users who follow the given FID. | [optional] 
 **MinimumUserScore** | Pointer to **float32** | Only send notifications to users with a score greater than or equal to this value. | [optional] 
-**NearLocation** | Pointer to [**Location**](Location.md) |  | [optional] 
+**NearLocation** | Pointer to [**SendFrameNotificationsReqBodyFiltersNearLocation**](SendFrameNotificationsReqBodyFiltersNearLocation.md) |  | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasMinimumUserScore returns a boolean if a field has been set.
 
 ### GetNearLocation
 
-`func (o *SendFrameNotificationsReqBodyFilters) GetNearLocation() Location`
+`func (o *SendFrameNotificationsReqBodyFilters) GetNearLocation() SendFrameNotificationsReqBodyFiltersNearLocation`
 
 GetNearLocation returns the NearLocation field if non-nil, zero value otherwise.
 
 ### GetNearLocationOk
 
-`func (o *SendFrameNotificationsReqBodyFilters) GetNearLocationOk() (*Location, bool)`
+`func (o *SendFrameNotificationsReqBodyFilters) GetNearLocationOk() (*SendFrameNotificationsReqBodyFiltersNearLocation, bool)`
 
 GetNearLocationOk returns a tuple with the NearLocation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNearLocation
 
-`func (o *SendFrameNotificationsReqBodyFilters) SetNearLocation(v Location)`
+`func (o *SendFrameNotificationsReqBodyFilters) SetNearLocation(v SendFrameNotificationsReqBodyFiltersNearLocation)`
 
 SetNearLocation sets NearLocation field to given value.
 

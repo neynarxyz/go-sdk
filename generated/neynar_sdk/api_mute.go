@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -113,7 +113,7 @@ func (a *MuteAPIService) DeleteMuteExecute(r ApiDeleteMuteRequest) (*MuteRespons
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/mute"
+	localVarPath := localBasePath + "/v2/farcaster/mute/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -228,14 +228,20 @@ type ApiFetchMuteListRequest struct {
 	ctx                 context.Context
 	ApiService          MuteAPI
 	fid                 *int32
+	xNeynarExperimental *bool
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
 }
 
 // The user&#39;s FID (identifier)
 func (r ApiFetchMuteListRequest) Fid(fid int32) ApiFetchMuteListRequest {
 	r.fid = &fid
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchMuteListRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchMuteListRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -248,12 +254,6 @@ func (r ApiFetchMuteListRequest) Limit(limit int32) ApiFetchMuteListRequest {
 // Pagination cursor.
 func (r ApiFetchMuteListRequest) Cursor(cursor string) ApiFetchMuteListRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchMuteListRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchMuteListRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -292,7 +292,7 @@ func (a *MuteAPIService) FetchMuteListExecute(r ApiFetchMuteListRequest) (*MuteL
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/mute/list"
+	localVarPath := localBasePath + "/v2/farcaster/mute/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -460,7 +460,7 @@ func (a *MuteAPIService) PublishMuteExecute(r ApiPublishMuteRequest) (*MuteRespo
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/mute"
+	localVarPath := localBasePath + "/v2/farcaster/mute/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

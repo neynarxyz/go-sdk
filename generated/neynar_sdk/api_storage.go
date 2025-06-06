@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -26,7 +26,6 @@ type StorageAPI interface {
 
 			This api will help you rent units of storage for an year for a specific FID.
 		A storage unit lets you store 5000 casts, 2500 reactions and 2500 links.
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiBuyStorageRequest
@@ -116,7 +115,7 @@ func (a *StorageAPIService) BuyStorageExecute(r ApiBuyStorageRequest) (*StorageA
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/storage/buy"
+	localVarPath := localBasePath + "/v2/farcaster/storage/buy/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -233,6 +232,7 @@ type ApiLookupUserStorageAllocationsRequest struct {
 	fid        *int32
 }
 
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiLookupUserStorageAllocationsRequest) Fid(fid int32) ApiLookupUserStorageAllocationsRequest {
 	r.fid = &fid
 	return r
@@ -273,7 +273,7 @@ func (a *StorageAPIService) LookupUserStorageAllocationsExecute(r ApiLookupUserS
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/storage/allocations"
+	localVarPath := localBasePath + "/v2/farcaster/storage/allocations/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -367,6 +367,7 @@ type ApiLookupUserStorageUsageRequest struct {
 	fid        *int32
 }
 
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiLookupUserStorageUsageRequest) Fid(fid int32) ApiLookupUserStorageUsageRequest {
 	r.fid = &fid
 	return r
@@ -407,7 +408,7 @@ func (a *StorageAPIService) LookupUserStorageUsageExecute(r ApiLookupUserStorage
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/storage/usage"
+	localVarPath := localBasePath + "/v2/farcaster/storage/usage/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

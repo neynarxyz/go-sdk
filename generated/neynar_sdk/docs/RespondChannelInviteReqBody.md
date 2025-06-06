@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | UUID of the signer. &#x60;signer_uuid&#x60; is paired with API key, can&#39;t use a &#x60;uuid&#x60; made with a different API key.  | 
+**SignerUuid** | **string** | UUID of the signer. &#x60;signer_uuid&#x60; is paired with API key, can&#39;t use a &#x60;uuid&#x60; made with a different API key. | 
 **ChannelId** | **string** | The unique identifier of a farcaster channel | 
 **Role** | [**ChannelMemberRole**](ChannelMemberRole.md) |  | 
 **Accept** | **bool** | Accept or reject the invite | 

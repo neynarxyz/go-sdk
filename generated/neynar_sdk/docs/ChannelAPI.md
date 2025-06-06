@@ -1,26 +1,26 @@
 # \ChannelAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**FetchAllChannels**](ChannelAPI.md#FetchAllChannels) | **Get** /farcaster/channel/list | Fetch all channels with their details
-[**FetchBulkChannels**](ChannelAPI.md#FetchBulkChannels) | **Get** /farcaster/channel/bulk | Bulk fetch
-[**FetchChannelInvites**](ChannelAPI.md#FetchChannelInvites) | **Get** /farcaster/channel/member/invite/list | Open invites
-[**FetchChannelMembers**](ChannelAPI.md#FetchChannelMembers) | **Get** /farcaster/channel/member/list | Fetch members
-[**FetchFollowersForAChannel**](ChannelAPI.md#FetchFollowersForAChannel) | **Get** /farcaster/channel/followers | For channel
-[**FetchRelevantFollowersForAChannel**](ChannelAPI.md#FetchRelevantFollowersForAChannel) | **Get** /farcaster/channel/followers/relevant | Relevant followers
-[**FetchTrendingChannels**](ChannelAPI.md#FetchTrendingChannels) | **Get** /farcaster/channel/trending | Channels by activity
-[**FetchUserChannelMemberships**](ChannelAPI.md#FetchUserChannelMemberships) | **Get** /farcaster/user/memberships/list | Member of
-[**FetchUserChannels**](ChannelAPI.md#FetchUserChannels) | **Get** /farcaster/user/channels | Following
-[**FetchUsersActiveChannels**](ChannelAPI.md#FetchUsersActiveChannels) | **Get** /farcaster/channel/user | Fetch channels that user is active in
-[**FollowChannel**](ChannelAPI.md#FollowChannel) | **Post** /farcaster/channel/follow | Follow a channel
-[**InviteChannelMember**](ChannelAPI.md#InviteChannelMember) | **Post** /farcaster/channel/member/invite | Invite
-[**LookupChannel**](ChannelAPI.md#LookupChannel) | **Get** /farcaster/channel | By ID or parent_url
-[**RemoveChannelMember**](ChannelAPI.md#RemoveChannelMember) | **Delete** /farcaster/channel/member | Remove user
-[**RespondChannelInvite**](ChannelAPI.md#RespondChannelInvite) | **Put** /farcaster/channel/member/invite | Accept or reject an invite
-[**SearchChannels**](ChannelAPI.md#SearchChannels) | **Get** /farcaster/channel/search | Search by ID or name
-[**UnfollowChannel**](ChannelAPI.md#UnfollowChannel) | **Delete** /farcaster/channel/follow | Unfollow a channel
+[**FetchAllChannels**](ChannelAPI.md#FetchAllChannels) | **Get** /v2/farcaster/channel/list/ | Fetch all channels with their details
+[**FetchBulkChannels**](ChannelAPI.md#FetchBulkChannels) | **Get** /v2/farcaster/channel/bulk/ | Bulk fetch
+[**FetchChannelInvites**](ChannelAPI.md#FetchChannelInvites) | **Get** /v2/farcaster/channel/member/invite/list/ | Open invites
+[**FetchChannelMembers**](ChannelAPI.md#FetchChannelMembers) | **Get** /v2/farcaster/channel/member/list/ | Fetch members
+[**FetchFollowersForAChannel**](ChannelAPI.md#FetchFollowersForAChannel) | **Get** /v2/farcaster/channel/followers/ | For channel
+[**FetchRelevantFollowersForAChannel**](ChannelAPI.md#FetchRelevantFollowersForAChannel) | **Get** /v2/farcaster/channel/followers/relevant/ | Relevant followers
+[**FetchTrendingChannels**](ChannelAPI.md#FetchTrendingChannels) | **Get** /v2/farcaster/channel/trending/ | Channels by activity
+[**FetchUserChannelMemberships**](ChannelAPI.md#FetchUserChannelMemberships) | **Get** /v2/farcaster/user/memberships/list/ | Member of
+[**FetchUserChannels**](ChannelAPI.md#FetchUserChannels) | **Get** /v2/farcaster/user/channels/ | Following
+[**FetchUsersActiveChannels**](ChannelAPI.md#FetchUsersActiveChannels) | **Get** /v2/farcaster/channel/user/ | Fetch channels that user is active in
+[**FollowChannel**](ChannelAPI.md#FollowChannel) | **Post** /v2/farcaster/channel/follow/ | Follow a channel
+[**InviteChannelMember**](ChannelAPI.md#InviteChannelMember) | **Post** /v2/farcaster/channel/member/invite/ | Invite
+[**LookupChannel**](ChannelAPI.md#LookupChannel) | **Get** /v2/farcaster/channel/ | By ID or parent_url
+[**RemoveChannelMember**](ChannelAPI.md#RemoveChannelMember) | **Delete** /v2/farcaster/channel/member/ | Remove user
+[**RespondChannelInvite**](ChannelAPI.md#RespondChannelInvite) | **Put** /v2/farcaster/channel/member/invite/ | Accept or reject an invite
+[**SearchChannels**](ChannelAPI.md#SearchChannels) | **Get** /v2/farcaster/channel/search/ | Search by ID or name
+[**UnfollowChannel**](ChannelAPI.md#UnfollowChannel) | **Delete** /v2/farcaster/channel/follow/ | Unfollow a channel
 
 
 
@@ -114,8 +114,8 @@ import (
 
 func main() {
 	ids := "neynar,warpcast" // string | Comma separated list of channel IDs or parent_urls, up to 100 at a time
-	type_ := openapiclient.ChannelType("id") // ChannelType | Type of identifier being used to query the channels. Defaults to ID. (optional)
-	viewerFid := int32(194) // int32 | FID of the user viewing the channels. (optional)
+	type_ := "id" // string | Type of identifier being used to query the channels. Defaults to ID. (optional)
+	viewerFid := int32(3) // int32 | FID of the user viewing the channels. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -141,7 +141,7 @@ Other parameters are passed through a pointer to a apiFetchBulkChannelsRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **string** | Comma separated list of channel IDs or parent_urls, up to 100 at a time | 
- **type_** | [**ChannelType**](ChannelType.md) | Type of identifier being used to query the channels. Defaults to ID. | 
+ **type_** | **string** | Type of identifier being used to query the channels. Defaults to ID. | 
  **viewerFid** | **int32** | FID of the user viewing the channels. | 
 
 ### Return type
@@ -184,8 +184,8 @@ import (
 
 func main() {
 	channelId := "neynar" // string | Channel ID for the channel being queried (optional)
-	invitedFid := int32(194) // int32 | FID of the user being invited (optional)
-	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 20)
+	invitedFid := int32(3) // int32 | FID of the user being invited (optional)
+	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 
 ## FetchChannelMembers
 
-> ChannelMemberListResponse FetchChannelMembers(ctx).ChannelId(channelId).Fid(fid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> ChannelMemberListResponse FetchChannelMembers(ctx).ChannelId(channelId).XNeynarExperimental(xNeynarExperimental).Fid(fid).Limit(limit).Cursor(cursor).Execute()
 
 Fetch members
 
@@ -256,14 +256,14 @@ import (
 
 func main() {
 	channelId := "neynar" // string | Channel ID for the channel being queried
-	fid := int32(194) // int32 | FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members. (optional)
-	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 20)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	fid := int32(3) // int32 | FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members. (optional)
+	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 20)
+	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.FetchChannelMembers(context.Background()).ChannelId(channelId).Fid(fid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.ChannelAPI.FetchChannelMembers(context.Background()).ChannelId(channelId).XNeynarExperimental(xNeynarExperimental).Fid(fid).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.FetchChannelMembers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -285,10 +285,10 @@ Other parameters are passed through a pointer to a apiFetchChannelMembersRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **channelId** | **string** | Channel ID for the channel being queried | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **fid** | **int32** | FID of the user being queried. Specify this to check if a user is a member of the channel without paginating through all members. | 
  **limit** | **int32** | Number of results to fetch | [default to 20]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## FetchFollowersForAChannel
 
-> UsersResponse FetchFollowersForAChannel(ctx).Id(id).ViewerFid(viewerFid).Cursor(cursor).Limit(limit).XNeynarExperimental(xNeynarExperimental).Execute()
+> UsersResponse FetchFollowersForAChannel(ctx).Id(id).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Cursor(cursor).Limit(limit).Execute()
 
 For channel
 
@@ -330,14 +330,14 @@ import (
 
 func main() {
 	id := "founders" // string | Channel ID for the channel being queried
-	viewerFid := int32(56) // int32 | Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`. (optional)
-	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	limit := int32(30) // int32 | Number of followers to fetch (optional) (default to 25)
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	viewerFid := int32(3) // int32 | Providing this will return a list of followers that respects this user's mutes and blocks and includes `viewer_context`. (optional)
+	cursor := "cursor_example" // string | Pagination cursor. (optional)
+	limit := int32(56) // int32 | Number of followers to fetch (optional) (default to 25)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChannelAPI.FetchFollowersForAChannel(context.Background()).Id(id).ViewerFid(viewerFid).Cursor(cursor).Limit(limit).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.ChannelAPI.FetchFollowersForAChannel(context.Background()).Id(id).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Cursor(cursor).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChannelAPI.FetchFollowersForAChannel``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -359,10 +359,10 @@ Other parameters are passed through a pointer to a apiFetchFollowersForAChannelR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Channel ID for the channel being queried | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **viewerFid** | **int32** | Providing this will return a list of followers that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **cursor** | **string** | Pagination cursor. | 
  **limit** | **int32** | Number of followers to fetch | [default to 25]
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -404,7 +404,7 @@ import (
 
 func main() {
 	id := "neynar" // string | Channel ID being queried
-	viewerFid := int32(3) // int32 | The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.
+	viewerFid := int32(56) // int32 | The FID of the user to customize this response for. Providing this will also return a list of followers that respects this user's mutes and blocks and includes `viewer_context`.
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
@@ -474,7 +474,7 @@ import (
 
 func main() {
 	timeWindow := "timeWindow_example" // string |  (optional)
-	limit := int32(10) // int32 | Number of results to fetch (optional) (default to 10)
+	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 10)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -614,7 +614,7 @@ import (
 
 func main() {
 	fid := int32(56) // int32 | The FID of the user.
-	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
+	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -683,8 +683,8 @@ import (
 )
 
 func main() {
-	fid := int32(194) // int32 | The user's FID (identifier)
-	limit := int32(20) // int32 | Number of results to fetch (optional) (default to 20)
+	fid := int32(56) // int32 | The user's FID (identifier)
+	limit := int32(56) // int32 | Number of results to fetch (optional) (default to 20)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -886,8 +886,8 @@ import (
 
 func main() {
 	id := "neynar" // string | Channel ID for the channel being queried
-	type_ := openapiclient.ChannelType("id") // ChannelType | Type of identifier being used to query the channel. Defaults to ID. (optional)
-	viewerFid := int32(194) // int32 | FID of the user viewing the channel. (optional)
+	type_ := "id" // string | Type of identifier being used to query the channel. Defaults to ID. (optional)
+	viewerFid := int32(3) // int32 | FID of the user viewing the channel. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -913,7 +913,7 @@ Other parameters are passed through a pointer to a apiLookupChannelRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string** | Channel ID for the channel being queried | 
- **type_** | [**ChannelType**](ChannelType.md) | Type of identifier being used to query the channel. Defaults to ID. | 
+ **type_** | **string** | Type of identifier being used to query the channel. Defaults to ID. | 
  **viewerFid** | **int32** | FID of the user viewing the channel. | 
 
 ### Return type

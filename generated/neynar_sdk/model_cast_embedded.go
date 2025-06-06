@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -32,7 +32,6 @@ type CastEmbedded struct {
 	App           NullableUserDehydrated    `json:"app,omitempty"`
 	Text          string                    `json:"text"`
 	Timestamp     time.Time                 `json:"timestamp"`
-	Type          CastNotificationType      `json:"type"`
 	Embeds        []EmbedDeep               `json:"embeds"`
 	Channel       NullableChannelDehydrated `json:"channel"`
 }
@@ -43,7 +42,7 @@ type _CastEmbedded CastEmbedded
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author UserDehydrated, text string, timestamp time.Time, type_ CastNotificationType, embeds []EmbedDeep, channel NullableChannelDehydrated) *CastEmbedded {
+func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableString, rootParentUrl NullableString, parentAuthor CastEmbeddedParentAuthor, author UserDehydrated, text string, timestamp time.Time, embeds []EmbedDeep, channel NullableChannelDehydrated) *CastEmbedded {
 	this := CastEmbedded{}
 	this.Hash = hash
 	this.ParentHash = parentHash
@@ -53,7 +52,6 @@ func NewCastEmbedded(hash string, parentHash NullableString, parentUrl NullableS
 	this.Author = author
 	this.Text = text
 	this.Timestamp = timestamp
-	this.Type = type_
 	this.Embeds = embeds
 	this.Channel = channel
 	return &this
@@ -308,30 +306,6 @@ func (o *CastEmbedded) SetTimestamp(v time.Time) {
 	o.Timestamp = v
 }
 
-// GetType returns the Type field value
-func (o *CastEmbedded) GetType() CastNotificationType {
-	if o == nil {
-		var ret CastNotificationType
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *CastEmbedded) GetTypeOk() (*CastNotificationType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *CastEmbedded) SetType(v CastNotificationType) {
-	o.Type = v
-}
-
 // GetEmbeds returns the Embeds field value
 func (o *CastEmbedded) GetEmbeds() []EmbedDeep {
 	if o == nil {
@@ -403,7 +377,6 @@ func (o CastEmbedded) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["text"] = o.Text
 	toSerialize["timestamp"] = o.Timestamp
-	toSerialize["type"] = o.Type
 	toSerialize["embeds"] = o.Embeds
 	toSerialize["channel"] = o.Channel.Get()
 	return toSerialize, nil
@@ -422,7 +395,6 @@ func (o *CastEmbedded) UnmarshalJSON(data []byte) (err error) {
 		"author",
 		"text",
 		"timestamp",
-		"type",
 		"embeds",
 		"channel",
 	}

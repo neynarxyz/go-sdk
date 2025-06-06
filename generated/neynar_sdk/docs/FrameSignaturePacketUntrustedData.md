@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | Pointer to **int32** | The unique identifier of a farcaster user (unsigned integer) | [optional] 
+**Fid** | Pointer to **int32** | The unique identifier of a farcaster user or app (unsigned integer) | [optional] 
 **Url** | Pointer to **string** | URL of the mini app | [optional] 
 **MessageHash** | Pointer to **string** | Message hash | [optional] 
 **Timestamp** | Pointer to **string** | Timestamp | [optional] 

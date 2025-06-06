@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Fid** | **int32** |  | 
+**Fid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 
 ## Methods
 

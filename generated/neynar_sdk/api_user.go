@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 )
 
 type UserAPI interface {
@@ -24,9 +25,8 @@ type UserAPI interface {
 	/*
 			DeleteVerification Delete verification
 
-			Removes verification for an eth address for the user \
+			Removes verification for an eth address for the user
 		(In order to delete verification `signer_uuid` must be approved)
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiDeleteVerificationRequest
@@ -115,9 +115,8 @@ type UserAPI interface {
 	/*
 			FollowUser Follow user
 
-			Follow a user \
+			Follow a user
 		(In order to follow a user `signer_uuid` must be approved)
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiFollowUserRequest
@@ -187,9 +186,8 @@ type UserAPI interface {
 	/*
 			PublishVerification Add verification
 
-			Adds verification for an eth address or contract for the user \
+			Adds verification for an eth address or contract for the user
 		(In order to add verification `signer_uuid` must be approved)
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiPublishVerificationRequest
@@ -206,7 +204,6 @@ type UserAPI interface {
 			Register account on farcaster.
 
 		**Note:** This API must be called within 10 minutes of the fetch FID API call (i.e., /v2/farcaster/user/fid). Otherwise, Neynar will assign this FID to another available user.
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiRegisterAccountRequest
@@ -234,9 +231,8 @@ type UserAPI interface {
 	/*
 			UnfollowUser Unfollow user
 
-			Unfollow a user \
+			Unfollow a user
 		(In order to unfollow a user `signer_uuid` must be approved)
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiUnfollowUserRequest
@@ -250,9 +246,8 @@ type UserAPI interface {
 	/*
 			UpdateUser Update user profile
 
-			Update user profile \
+			Update user profile
 		(In order to update user's profile `signer_uuid` must be approved)
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiUpdateUserRequest
@@ -285,7 +280,7 @@ func (r ApiDeleteVerificationRequest) Execute() (*OperationResponse, *http.Respo
 /*
 DeleteVerification Delete verification
 
-Removes verification for an eth address for the user \
+Removes verification for an eth address for the user
 (In order to delete verification `signer_uuid` must be approved)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -314,7 +309,7 @@ func (a *UserAPIService) DeleteVerificationExecute(r ApiDeleteVerificationReques
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/verification"
+	localVarPath := localBasePath + "/v2/farcaster/user/verification/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -397,8 +392,8 @@ type ApiFetchBulkUsersRequest struct {
 	ctx                 context.Context
 	ApiService          UserAPI
 	fids                *string
-	viewerFid           *int32
 	xNeynarExperimental *bool
+	viewerFid           *int32
 }
 
 // Comma separated list of FIDs, up to 100 at a time
@@ -407,14 +402,15 @@ func (r ApiFetchBulkUsersRequest) Fids(fids string) ApiFetchBulkUsersRequest {
 	return r
 }
 
-func (r ApiFetchBulkUsersRequest) ViewerFid(viewerFid int32) ApiFetchBulkUsersRequest {
-	r.viewerFid = &viewerFid
-	return r
-}
-
 // Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
 func (r ApiFetchBulkUsersRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchBulkUsersRequest {
 	r.xNeynarExperimental = &xNeynarExperimental
+	return r
+}
+
+// The unique identifier of a farcaster user or app (unsigned integer)
+func (r ApiFetchBulkUsersRequest) ViewerFid(viewerFid int32) ApiFetchBulkUsersRequest {
+	r.viewerFid = &viewerFid
 	return r
 }
 
@@ -453,7 +449,7 @@ func (a *UserAPIService) FetchBulkUsersExecute(r ApiFetchBulkUsersRequest) (*Bul
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/bulk"
+	localVarPath := localBasePath + "/v2/farcaster/user/bulk/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -551,9 +547,9 @@ type ApiFetchBulkUsersByEthOrSolAddressRequest struct {
 	ctx                 context.Context
 	ApiService          UserAPI
 	addresses           *string
-	addressTypes        *[]BulkUserAddressType
-	viewerFid           *int32
 	xNeynarExperimental *bool
+	addressTypes        *[]string
+	viewerFid           *int32
 }
 
 // Comma separated list of Ethereum addresses, up to 350 at a time
@@ -562,20 +558,21 @@ func (r ApiFetchBulkUsersByEthOrSolAddressRequest) Addresses(addresses string) A
 	return r
 }
 
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchBulkUsersByEthOrSolAddressRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchBulkUsersByEthOrSolAddressRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
+	return r
+}
+
 // Customize which address types the request should search for. This is a comma-separated string that can include the following values: &#39;custody_address&#39; and &#39;verified_address&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.
-func (r ApiFetchBulkUsersByEthOrSolAddressRequest) AddressTypes(addressTypes []BulkUserAddressType) ApiFetchBulkUsersByEthOrSolAddressRequest {
+func (r ApiFetchBulkUsersByEthOrSolAddressRequest) AddressTypes(addressTypes []string) ApiFetchBulkUsersByEthOrSolAddressRequest {
 	r.addressTypes = &addressTypes
 	return r
 }
 
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiFetchBulkUsersByEthOrSolAddressRequest) ViewerFid(viewerFid int32) ApiFetchBulkUsersByEthOrSolAddressRequest {
 	r.viewerFid = &viewerFid
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchBulkUsersByEthOrSolAddressRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchBulkUsersByEthOrSolAddressRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -619,7 +616,7 @@ func (a *UserAPIService) FetchBulkUsersByEthOrSolAddressExecute(r ApiFetchBulkUs
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/bulk-by-address"
+	localVarPath := localBasePath + "/v2/farcaster/user/bulk-by-address/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -630,7 +627,15 @@ func (a *UserAPIService) FetchBulkUsersByEthOrSolAddressExecute(r ApiFetchBulkUs
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "addresses", r.addresses, "form", "")
 	if r.addressTypes != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "address_types", r.addressTypes, "form", "csv")
+		t := *r.addressTypes
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "address_types", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "address_types", t, "form", "multi")
+		}
 	}
 	if r.viewerFid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "viewer_fid", r.viewerFid, "form", "")
@@ -730,12 +735,19 @@ func (a *UserAPIService) FetchBulkUsersByEthOrSolAddressExecute(r ApiFetchBulkUs
 type ApiFetchPowerUsersRequest struct {
 	ctx                 context.Context
 	ApiService          UserAPI
+	xNeynarExperimental *bool
 	viewerFid           *int32
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
 }
 
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchPowerUsersRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchPowerUsersRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
+	return r
+}
+
+// The unique identifier of a farcaster user or app (unsigned integer)
 func (r ApiFetchPowerUsersRequest) ViewerFid(viewerFid int32) ApiFetchPowerUsersRequest {
 	r.viewerFid = &viewerFid
 	return r
@@ -750,12 +762,6 @@ func (r ApiFetchPowerUsersRequest) Limit(limit int32) ApiFetchPowerUsersRequest 
 // Pagination cursor.
 func (r ApiFetchPowerUsersRequest) Cursor(cursor string) ApiFetchPowerUsersRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchPowerUsersRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchPowerUsersRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -794,7 +800,7 @@ func (a *UserAPIService) FetchPowerUsersExecute(r ApiFetchPowerUsersRequest) (*U
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/power"
+	localVarPath := localBasePath + "/v2/farcaster/user/power/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -940,7 +946,7 @@ func (a *UserAPIService) FetchPowerUsersLiteExecute(r ApiFetchPowerUsersLiteRequ
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/power_lite"
+	localVarPath := localBasePath + "/v2/farcaster/user/power_lite/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1043,10 +1049,10 @@ type ApiFetchUsersByLocationRequest struct {
 	ApiService          UserAPI
 	latitude            *float32
 	longitude           *float32
+	xNeynarExperimental *bool
 	viewerFid           *int32
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
 }
 
 // Latitude of the location
@@ -1058,6 +1064,12 @@ func (r ApiFetchUsersByLocationRequest) Latitude(latitude float32) ApiFetchUsers
 // Longitude of the location
 func (r ApiFetchUsersByLocationRequest) Longitude(longitude float32) ApiFetchUsersByLocationRequest {
 	r.longitude = &longitude
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiFetchUsersByLocationRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchUsersByLocationRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -1076,12 +1088,6 @@ func (r ApiFetchUsersByLocationRequest) Limit(limit int32) ApiFetchUsersByLocati
 // Pagination cursor
 func (r ApiFetchUsersByLocationRequest) Cursor(cursor string) ApiFetchUsersByLocationRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiFetchUsersByLocationRequest) XNeynarExperimental(xNeynarExperimental bool) ApiFetchUsersByLocationRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -1120,7 +1126,7 @@ func (a *UserAPIService) FetchUsersByLocationExecute(r ApiFetchUsersByLocationRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/by_location"
+	localVarPath := localBasePath + "/v2/farcaster/user/by_location/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1267,7 +1273,7 @@ func (r ApiFollowUserRequest) Execute() (*BulkFollowResponse, *http.Response, er
 /*
 FollowUser Follow user
 
-Follow a user \
+Follow a user
 (In order to follow a user `signer_uuid` must be approved)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1296,7 +1302,7 @@ func (a *UserAPIService) FollowUserExecute(r ApiFollowUserRequest) (*BulkFollowR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/follow"
+	localVarPath := localBasePath + "/v2/farcaster/user/follow/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1465,7 +1471,7 @@ func (a *UserAPIService) GetFreshAccountFIDExecute(r ApiGetFreshAccountFIDReques
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/fid"
+	localVarPath := localBasePath + "/v2/farcaster/user/fid/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1599,7 +1605,7 @@ func (a *UserAPIService) LookupUserByCustodyAddressExecute(r ApiLookupUserByCust
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/custody-address"
+	localVarPath := localBasePath + "/v2/farcaster/user/custody-address/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1702,8 +1708,8 @@ type ApiLookupUserByUsernameRequest struct {
 	ctx                 context.Context
 	ApiService          UserAPI
 	username            *string
-	viewerFid           *int32
 	xNeynarExperimental *bool
+	viewerFid           *int32
 }
 
 // Username of the user to fetch
@@ -1712,14 +1718,15 @@ func (r ApiLookupUserByUsernameRequest) Username(username string) ApiLookupUserB
 	return r
 }
 
-func (r ApiLookupUserByUsernameRequest) ViewerFid(viewerFid int32) ApiLookupUserByUsernameRequest {
-	r.viewerFid = &viewerFid
-	return r
-}
-
 // Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
 func (r ApiLookupUserByUsernameRequest) XNeynarExperimental(xNeynarExperimental bool) ApiLookupUserByUsernameRequest {
 	r.xNeynarExperimental = &xNeynarExperimental
+	return r
+}
+
+// The unique identifier of a farcaster user or app (unsigned integer)
+func (r ApiLookupUserByUsernameRequest) ViewerFid(viewerFid int32) ApiLookupUserByUsernameRequest {
+	r.viewerFid = &viewerFid
 	return r
 }
 
@@ -1758,7 +1765,7 @@ func (a *UserAPIService) LookupUserByUsernameExecute(r ApiLookupUserByUsernameRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/by_username"
+	localVarPath := localBasePath + "/v2/farcaster/user/by_username/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1878,8 +1885,8 @@ type ApiLookupUsersByXUsernameRequest struct {
 	ctx                 context.Context
 	ApiService          UserAPI
 	xUsername           *string
-	viewerFid           *int32
 	xNeynarExperimental *bool
+	viewerFid           *int32
 }
 
 // X (Twitter) username to search for, without the @ symbol
@@ -1888,15 +1895,15 @@ func (r ApiLookupUsersByXUsernameRequest) XUsername(xUsername string) ApiLookupU
 	return r
 }
 
-// FID of the viewer for contextual information like follows and blocks
-func (r ApiLookupUsersByXUsernameRequest) ViewerFid(viewerFid int32) ApiLookupUsersByXUsernameRequest {
-	r.viewerFid = &viewerFid
-	return r
-}
-
 // Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
 func (r ApiLookupUsersByXUsernameRequest) XNeynarExperimental(xNeynarExperimental bool) ApiLookupUsersByXUsernameRequest {
 	r.xNeynarExperimental = &xNeynarExperimental
+	return r
+}
+
+// FID of the viewer for contextual information like follows and blocks
+func (r ApiLookupUsersByXUsernameRequest) ViewerFid(viewerFid int32) ApiLookupUsersByXUsernameRequest {
+	r.viewerFid = &viewerFid
 	return r
 }
 
@@ -1935,7 +1942,7 @@ func (a *UserAPIService) LookupUsersByXUsernameExecute(r ApiLookupUsersByXUserna
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/by_x_username"
+	localVarPath := localBasePath + "/v2/farcaster/user/by_x_username/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2069,7 +2076,7 @@ func (r ApiPublishVerificationRequest) Execute() (*OperationResponse, *http.Resp
 /*
 PublishVerification Add verification
 
-Adds verification for an eth address or contract for the user \
+Adds verification for an eth address or contract for the user
 (In order to add verification `signer_uuid` must be approved)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2098,7 +2105,7 @@ func (a *UserAPIService) PublishVerificationExecute(r ApiPublishVerificationRequ
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/verification"
+	localVarPath := localBasePath + "/v2/farcaster/user/verification/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2225,7 +2232,7 @@ func (a *UserAPIService) RegisterAccountExecute(r ApiRegisterAccountRequest) (*R
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user"
+	localVarPath := localBasePath + "/v2/farcaster/user/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2362,14 +2369,20 @@ type ApiSearchUserRequest struct {
 	ctx                 context.Context
 	ApiService          UserAPI
 	q                   *string
+	xNeynarExperimental *bool
 	viewerFid           *int32
 	limit               *int32
 	cursor              *string
-	xNeynarExperimental *bool
 }
 
 func (r ApiSearchUserRequest) Q(q string) ApiSearchUserRequest {
 	r.q = &q
+	return r
+}
+
+// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
+func (r ApiSearchUserRequest) XNeynarExperimental(xNeynarExperimental bool) ApiSearchUserRequest {
+	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -2388,12 +2401,6 @@ func (r ApiSearchUserRequest) Limit(limit int32) ApiSearchUserRequest {
 // Pagination cursor.
 func (r ApiSearchUserRequest) Cursor(cursor string) ApiSearchUserRequest {
 	r.cursor = &cursor
-	return r
-}
-
-// Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details.
-func (r ApiSearchUserRequest) XNeynarExperimental(xNeynarExperimental bool) ApiSearchUserRequest {
-	r.xNeynarExperimental = &xNeynarExperimental
 	return r
 }
 
@@ -2432,7 +2439,7 @@ func (a *UserAPIService) SearchUserExecute(r ApiSearchUserRequest) (*UserSearchR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/search"
+	localVarPath := localBasePath + "/v2/farcaster/user/search/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2553,7 +2560,7 @@ func (r ApiUnfollowUserRequest) Execute() (*BulkFollowResponse, *http.Response, 
 /*
 UnfollowUser Unfollow user
 
-Unfollow a user \
+Unfollow a user
 (In order to unfollow a user `signer_uuid` must be approved)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2582,7 +2589,7 @@ func (a *UserAPIService) UnfollowUserExecute(r ApiUnfollowUserRequest) (*BulkFol
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/follow"
+	localVarPath := localBasePath + "/v2/farcaster/user/follow/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2722,7 +2729,7 @@ func (r ApiUpdateUserRequest) Execute() (*OperationResponse, *http.Response, err
 /*
 UpdateUser Update user profile
 
-Update user profile \
+Update user profile
 (In order to update user's profile `signer_uuid` must be approved)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2751,7 +2758,7 @@ func (a *UserAPIService) UpdateUserExecute(r ApiUpdateUserRequest) (*OperationRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user"
+	localVarPath := localBasePath + "/v2/farcaster/user/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &UserDehydrated{}
 // UserDehydrated struct for UserDehydrated
 type UserDehydrated struct {
 	Object string `json:"object"`
-	// The unique identifier of a farcaster user (unsigned integer)
+	// The unique identifier of a farcaster user or app (unsigned integer)
 	Fid         int32   `json:"fid"`
 	Username    *string `json:"username,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Success** | **bool** |  | 
-**TargetFid** | **int32** | The unique identifier of a farcaster user (unsigned integer) | 
+**TargetFid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 **Hash** | **string** |  | 
 
 ## Methods

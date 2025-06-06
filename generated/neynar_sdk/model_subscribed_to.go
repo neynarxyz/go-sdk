@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -27,12 +27,12 @@ type SubscribedTo struct {
 	ProviderName    *string              `json:"provider_name,omitempty"`
 	ContractAddress string               `json:"contract_address"`
 	Chain           int32                `json:"chain"`
-	Metadata        SubscriptionMetadata `json:"metadata"`
+	Metadata        SubscribedToMetadata `json:"metadata"`
 	OwnerAddress    string               `json:"owner_address"`
-	Price           SubscriptionPrice    `json:"price"`
+	Price           SubscribedToPrice    `json:"price"`
 	Tiers           []SubscriptionTier   `json:"tiers,omitempty"`
 	ProtocolVersion int32                `json:"protocol_version"`
-	Token           SubscriptionToken    `json:"token"`
+	Token           SubscribedToToken    `json:"token"`
 	ExpiresAt       time.Time            `json:"expires_at"`
 	SubscribedAt    time.Time            `json:"subscribed_at"`
 	Tier            SubscriptionTier     `json:"tier"`
@@ -45,7 +45,7 @@ type _SubscribedTo SubscribedTo
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscribedTo(object string, contractAddress string, chain int32, metadata SubscriptionMetadata, ownerAddress string, price SubscriptionPrice, protocolVersion int32, token SubscriptionToken, expiresAt time.Time, subscribedAt time.Time, tier SubscriptionTier, creator User) *SubscribedTo {
+func NewSubscribedTo(object string, contractAddress string, chain int32, metadata SubscribedToMetadata, ownerAddress string, price SubscribedToPrice, protocolVersion int32, token SubscribedToToken, expiresAt time.Time, subscribedAt time.Time, tier SubscriptionTier, creator User) *SubscribedTo {
 	this := SubscribedTo{}
 	this.Object = object
 	this.ContractAddress = contractAddress
@@ -175,9 +175,9 @@ func (o *SubscribedTo) SetChain(v int32) {
 }
 
 // GetMetadata returns the Metadata field value
-func (o *SubscribedTo) GetMetadata() SubscriptionMetadata {
+func (o *SubscribedTo) GetMetadata() SubscribedToMetadata {
 	if o == nil {
-		var ret SubscriptionMetadata
+		var ret SubscribedToMetadata
 		return ret
 	}
 
@@ -186,7 +186,7 @@ func (o *SubscribedTo) GetMetadata() SubscriptionMetadata {
 
 // GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
-func (o *SubscribedTo) GetMetadataOk() (*SubscriptionMetadata, bool) {
+func (o *SubscribedTo) GetMetadataOk() (*SubscribedToMetadata, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -194,7 +194,7 @@ func (o *SubscribedTo) GetMetadataOk() (*SubscriptionMetadata, bool) {
 }
 
 // SetMetadata sets field value
-func (o *SubscribedTo) SetMetadata(v SubscriptionMetadata) {
+func (o *SubscribedTo) SetMetadata(v SubscribedToMetadata) {
 	o.Metadata = v
 }
 
@@ -223,9 +223,9 @@ func (o *SubscribedTo) SetOwnerAddress(v string) {
 }
 
 // GetPrice returns the Price field value
-func (o *SubscribedTo) GetPrice() SubscriptionPrice {
+func (o *SubscribedTo) GetPrice() SubscribedToPrice {
 	if o == nil {
-		var ret SubscriptionPrice
+		var ret SubscribedToPrice
 		return ret
 	}
 
@@ -234,7 +234,7 @@ func (o *SubscribedTo) GetPrice() SubscriptionPrice {
 
 // GetPriceOk returns a tuple with the Price field value
 // and a boolean to check if the value has been set.
-func (o *SubscribedTo) GetPriceOk() (*SubscriptionPrice, bool) {
+func (o *SubscribedTo) GetPriceOk() (*SubscribedToPrice, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -242,7 +242,7 @@ func (o *SubscribedTo) GetPriceOk() (*SubscriptionPrice, bool) {
 }
 
 // SetPrice sets field value
-func (o *SubscribedTo) SetPrice(v SubscriptionPrice) {
+func (o *SubscribedTo) SetPrice(v SubscribedToPrice) {
 	o.Price = v
 }
 
@@ -303,9 +303,9 @@ func (o *SubscribedTo) SetProtocolVersion(v int32) {
 }
 
 // GetToken returns the Token field value
-func (o *SubscribedTo) GetToken() SubscriptionToken {
+func (o *SubscribedTo) GetToken() SubscribedToToken {
 	if o == nil {
-		var ret SubscriptionToken
+		var ret SubscribedToToken
 		return ret
 	}
 
@@ -314,7 +314,7 @@ func (o *SubscribedTo) GetToken() SubscriptionToken {
 
 // GetTokenOk returns a tuple with the Token field value
 // and a boolean to check if the value has been set.
-func (o *SubscribedTo) GetTokenOk() (*SubscriptionToken, bool) {
+func (o *SubscribedTo) GetTokenOk() (*SubscribedToToken, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -322,7 +322,7 @@ func (o *SubscribedTo) GetTokenOk() (*SubscriptionToken, bool) {
 }
 
 // SetToken sets field value
-func (o *SubscribedTo) SetToken(v SubscriptionToken) {
+func (o *SubscribedTo) SetToken(v SubscribedToToken) {
 	o.Token = v
 }
 

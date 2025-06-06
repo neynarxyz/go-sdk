@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**ReactionType**](ReactionType.md) |  | [default to REACTIONTYPE_REACTION_TYPE_LIKE]
+**Type** | [**ReactionType**](ReactionType.md) |  | [default to REACTIONTYPE_LIKE]
 **TargetCastId** | Pointer to [**CastId**](CastId.md) | The unique identifier of the cast being reacted to. Must be a valid CastId containing the creator&#39;s FID and the cast&#39;s hash. | [optional] 
 **TargetUrl** | Pointer to **string** | The URL being reacted to. Used when reacting to external content or when the cast ID is not available. | [optional] 
 

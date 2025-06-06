@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"reflect"
 	"time"
 )
 
@@ -83,7 +84,6 @@ type FrameAPI interface {
 
 		Returns a list of notifications tokens related to a mini app
 
-
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiFetchNotificationTokensRequest
 	*/
@@ -136,6 +136,20 @@ type FrameAPI interface {
 	FetchValidateFrameListExecute(r ApiFetchValidateFrameListRequest) (*FrameValidateListResponse, *http.Response, error)
 
 	/*
+		GetNotificationCampaignStats Get notification campaign stats
+
+		Retrieve notification delivery and opened stats for notification campaigns
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiGetNotificationCampaignStatsRequest
+	*/
+	GetNotificationCampaignStats(ctx context.Context) ApiGetNotificationCampaignStatsRequest
+
+	// GetNotificationCampaignStatsExecute executes the request
+	//  @return GetNotificationCampaignStats200Response
+	GetNotificationCampaignStatsExecute(r ApiGetNotificationCampaignStatsRequest) (*GetNotificationCampaignStats200Response, *http.Response, error)
+
+	/*
 		GetTransactionPayFrame Get transaction pay mini app
 
 		Retrieves details about a transaction pay mini app by ID
@@ -166,11 +180,10 @@ type FrameAPI interface {
 	/*
 			PostFrameAction Post a mini app action, cast action or a cast composer action
 
-			Post mini app actions, cast actions or cast composer actions to the server  \
+			Post mini app actions, cast actions or cast composer actions to the server
 		(In order to post any of these actions, you need to have an approved `signer_uuid`)
 
 		The POST request to the post_url has a timeout of 5 seconds for mini apps.
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiPostFrameActionRequest
@@ -188,7 +201,6 @@ type FrameAPI interface {
 
 		The POST request to the post_url has a timeout of 5 seconds.
 
-
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiPostFrameActionDeveloperManagedRequest
 	*/
@@ -202,7 +214,6 @@ type FrameAPI interface {
 		PublishFrameNotifications Send notifications
 
 		Send notifications to interactors of a mini app
-
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiPublishFrameNotificationsRequest
@@ -258,9 +269,8 @@ type FrameAPI interface {
 	/*
 			ValidateFrameAction Validate mini app action
 
-			Validates a mini app against by an interacting user against a Farcaster Hub \
+			Validates a mini app against by an interacting user against a Farcaster Hub
 		(In order to validate a mini app, message bytes from Frame Action must be provided in hex)
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiValidateFrameActionRequest
@@ -321,7 +331,7 @@ func (a *FrameAPIService) DeleteNeynarFrameExecute(r ApiDeleteNeynarFrameRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame"
+	localVarPath := localBasePath + "/v2/farcaster/frame/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -415,7 +425,7 @@ type ApiFetchFrameCatalogRequest struct {
 	ApiService FrameAPI
 	limit      *int32
 	cursor     *string
-	timeWindow *MiniAppTimeWindow
+	timeWindow *string
 	categories *[]string
 }
 
@@ -432,12 +442,12 @@ func (r ApiFetchFrameCatalogRequest) Cursor(cursor string) ApiFetchFrameCatalogR
 }
 
 // Time window used to calculate the change in trending score for each mini app, used to sort mini app results
-func (r ApiFetchFrameCatalogRequest) TimeWindow(timeWindow MiniAppTimeWindow) ApiFetchFrameCatalogRequest {
+func (r ApiFetchFrameCatalogRequest) TimeWindow(timeWindow string) ApiFetchFrameCatalogRequest {
 	r.timeWindow = &timeWindow
 	return r
 }
 
-// Comma separated list of categories to include in the results.  Includes all if left blank.  Example: &#x60;categories&#x3D;games,social&#x60; OR: &#x60;categories&#x3D;games&amp;categories&#x3D;social&#x60;
+// Comma separated list of categories to include in the results. Includes all if left blank. Example: categories&#x3D;games,social OR categories&#x3D;games&amp;categories&#x3D;social
 func (r ApiFetchFrameCatalogRequest) Categories(categories []string) ApiFetchFrameCatalogRequest {
 	r.categories = &categories
 	return r
@@ -478,7 +488,7 @@ func (a *FrameAPIService) FetchFrameCatalogExecute(r ApiFetchFrameCatalogRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/catalog"
+	localVarPath := localBasePath + "/v2/farcaster/frame/catalog/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -496,11 +506,19 @@ func (a *FrameAPIService) FetchFrameCatalogExecute(r ApiFetchFrameCatalogRequest
 	if r.timeWindow != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "time_window", r.timeWindow, "form", "")
 	} else {
-		var defaultValue MiniAppTimeWindow = "7d"
+		var defaultValue string = "7d"
 		r.timeWindow = &defaultValue
 	}
 	if r.categories != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "categories", r.categories, "form", "csv")
+		t := *r.categories
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "categories", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "categories", t, "form", "multi")
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -617,7 +635,7 @@ func (a *FrameAPIService) FetchFrameMetaTagsFromUrlExecute(r ApiFetchFrameMetaTa
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/crawl"
+	localVarPath := localBasePath + "/v2/farcaster/frame/crawl/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -745,7 +763,7 @@ func (a *FrameAPIService) FetchNeynarFramesExecute(r ApiFetchNeynarFramesRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/list"
+	localVarPath := localBasePath + "/v2/farcaster/frame/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -862,7 +880,7 @@ func (r ApiFetchNotificationTokensRequest) Execute() (*FrameNotificationTokens, 
 /*
 FetchNotificationTokens List of mini app notification tokens
 
-# Returns a list of notifications tokens related to a mini app
+Returns a list of notifications tokens related to a mini app
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiFetchNotificationTokensRequest
@@ -890,7 +908,7 @@ func (a *FrameAPIService) FetchNotificationTokensExecute(r ApiFetchNotificationT
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/notification_tokens"
+	localVarPath := localBasePath + "/v2/farcaster/frame/notification_tokens/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -990,7 +1008,7 @@ type ApiFetchRelevantFramesRequest struct {
 	ctx        context.Context
 	ApiService FrameAPI
 	viewerFid  *int32
-	timeWindow *MiniAppTimeWindow
+	timeWindow *string
 }
 
 // FID of the user to fetch relevant mini apps for
@@ -1000,7 +1018,7 @@ func (r ApiFetchRelevantFramesRequest) ViewerFid(viewerFid int32) ApiFetchReleva
 }
 
 // Time window used to limit statistics used to calculate mini app relevance
-func (r ApiFetchRelevantFramesRequest) TimeWindow(timeWindow MiniAppTimeWindow) ApiFetchRelevantFramesRequest {
+func (r ApiFetchRelevantFramesRequest) TimeWindow(timeWindow string) ApiFetchRelevantFramesRequest {
 	r.timeWindow = &timeWindow
 	return r
 }
@@ -1040,7 +1058,7 @@ func (a *FrameAPIService) FetchRelevantFramesExecute(r ApiFetchRelevantFramesReq
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/relevant"
+	localVarPath := localBasePath + "/v2/farcaster/frame/relevant/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1053,7 +1071,7 @@ func (a *FrameAPIService) FetchRelevantFramesExecute(r ApiFetchRelevantFramesReq
 	if r.timeWindow != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "time_window", r.timeWindow, "form", "")
 	} else {
-		var defaultValue MiniAppTimeWindow = "7d"
+		var defaultValue string = "7d"
 		r.timeWindow = &defaultValue
 	}
 	// to determine the Content-Type header
@@ -1128,18 +1146,20 @@ type ApiFetchValidateFrameAnalyticsRequest struct {
 	ctx             context.Context
 	ApiService      FrameAPI
 	frameUrl        *string
-	analyticsType   *ValidateFrameAnalyticsType
+	analyticsType   *string
 	start           *time.Time
 	stop            *time.Time
-	aggregateWindow *ValidateFrameAggregateWindow
+	aggregateWindow *string
 }
 
+// URL of the mini app to fetch analytics for
 func (r ApiFetchValidateFrameAnalyticsRequest) FrameUrl(frameUrl string) ApiFetchValidateFrameAnalyticsRequest {
 	r.frameUrl = &frameUrl
 	return r
 }
 
-func (r ApiFetchValidateFrameAnalyticsRequest) AnalyticsType(analyticsType ValidateFrameAnalyticsType) ApiFetchValidateFrameAnalyticsRequest {
+// Type of analytics to fetch
+func (r ApiFetchValidateFrameAnalyticsRequest) AnalyticsType(analyticsType string) ApiFetchValidateFrameAnalyticsRequest {
 	r.analyticsType = &analyticsType
 	return r
 }
@@ -1155,7 +1175,7 @@ func (r ApiFetchValidateFrameAnalyticsRequest) Stop(stop time.Time) ApiFetchVali
 }
 
 // Required for &#x60;analytics_type&#x3D;interactions-per-cast&#x60;
-func (r ApiFetchValidateFrameAnalyticsRequest) AggregateWindow(aggregateWindow ValidateFrameAggregateWindow) ApiFetchValidateFrameAnalyticsRequest {
+func (r ApiFetchValidateFrameAnalyticsRequest) AggregateWindow(aggregateWindow string) ApiFetchValidateFrameAnalyticsRequest {
 	r.aggregateWindow = &aggregateWindow
 	return r
 }
@@ -1195,7 +1215,7 @@ func (a *FrameAPIService) FetchValidateFrameAnalyticsExecute(r ApiFetchValidateF
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/validate/analytics"
+	localVarPath := localBasePath + "/v2/farcaster/frame/validate/analytics/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1371,7 +1391,7 @@ func (a *FrameAPIService) FetchValidateFrameListExecute(r ApiFetchValidateFrameL
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/validate/list"
+	localVarPath := localBasePath + "/v2/farcaster/frame/validate/list/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1477,6 +1497,174 @@ func (a *FrameAPIService) FetchValidateFrameListExecute(r ApiFetchValidateFrameL
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetNotificationCampaignStatsRequest struct {
+	ctx        context.Context
+	ApiService FrameAPI
+	campaignId *string
+	limit      *int32
+	cursor     *string
+}
+
+// An ID of a specific notification campaign to query
+func (r ApiGetNotificationCampaignStatsRequest) CampaignId(campaignId string) ApiGetNotificationCampaignStatsRequest {
+	r.campaignId = &campaignId
+	return r
+}
+
+// The number of results to return
+func (r ApiGetNotificationCampaignStatsRequest) Limit(limit int32) ApiGetNotificationCampaignStatsRequest {
+	r.limit = &limit
+	return r
+}
+
+// Pagination cursor
+func (r ApiGetNotificationCampaignStatsRequest) Cursor(cursor string) ApiGetNotificationCampaignStatsRequest {
+	r.cursor = &cursor
+	return r
+}
+
+func (r ApiGetNotificationCampaignStatsRequest) Execute() (*GetNotificationCampaignStats200Response, *http.Response, error) {
+	return r.ApiService.GetNotificationCampaignStatsExecute(r)
+}
+
+/*
+GetNotificationCampaignStats Get notification campaign stats
+
+Retrieve notification delivery and opened stats for notification campaigns
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetNotificationCampaignStatsRequest
+*/
+func (a *FrameAPIService) GetNotificationCampaignStats(ctx context.Context) ApiGetNotificationCampaignStatsRequest {
+	return ApiGetNotificationCampaignStatsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetNotificationCampaignStats200Response
+func (a *FrameAPIService) GetNotificationCampaignStatsExecute(r ApiGetNotificationCampaignStatsRequest) (*GetNotificationCampaignStats200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetNotificationCampaignStats200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FrameAPIService.GetNotificationCampaignStats")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/farcaster/frame/notifications/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.campaignId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "campaign_id", r.campaignId, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	} else {
+		var defaultValue int32 = 100
+		r.limit = &defaultValue
+	}
+	if r.cursor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GetNotificationCampaignStats400Response
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorRes
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetTransactionPayFrameRequest struct {
 	ctx        context.Context
 	ApiService FrameAPI
@@ -1524,7 +1712,7 @@ func (a *FrameAPIService) GetTransactionPayFrameExecute(r ApiGetTransactionPayFr
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/transaction/pay"
+	localVarPath := localBasePath + "/v2/farcaster/frame/transaction/pay/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1637,12 +1825,13 @@ func (a *FrameAPIService) GetTransactionPayFrameExecute(r ApiGetTransactionPayFr
 type ApiLookupNeynarFrameRequest struct {
 	ctx        context.Context
 	ApiService FrameAPI
-	type_      *FrameType
+	type_      *string
 	uuid       *string
 	url        *string
 }
 
-func (r ApiLookupNeynarFrameRequest) Type_(type_ FrameType) ApiLookupNeynarFrameRequest {
+// Type of identifier (either &#39;uuid&#39; or &#39;url&#39;)
+func (r ApiLookupNeynarFrameRequest) Type_(type_ string) ApiLookupNeynarFrameRequest {
 	r.type_ = &type_
 	return r
 }
@@ -1694,7 +1883,7 @@ func (a *FrameAPIService) LookupNeynarFrameExecute(r ApiLookupNeynarFrameRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame"
+	localVarPath := localBasePath + "/v2/farcaster/frame/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1806,7 +1995,7 @@ func (r ApiPostFrameActionRequest) Execute() (*Frame, *http.Response, error) {
 /*
 PostFrameAction Post a mini app action, cast action or a cast composer action
 
-Post mini app actions, cast actions or cast composer actions to the server  \
+Post mini app actions, cast actions or cast composer actions to the server
 (In order to post any of these actions, you need to have an approved `signer_uuid`)
 
 The POST request to the post_url has a timeout of 5 seconds for mini apps.
@@ -1837,7 +2026,7 @@ func (a *FrameAPIService) PostFrameActionExecute(r ApiPostFrameActionRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/action"
+	localVarPath := localBasePath + "/v2/farcaster/frame/action/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1985,7 +2174,7 @@ func (a *FrameAPIService) PostFrameActionDeveloperManagedExecute(r ApiPostFrameA
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/developer_managed/action"
+	localVarPath := localBasePath + "/v2/farcaster/frame/developer_managed/action/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2103,7 +2292,7 @@ func (r ApiPublishFrameNotificationsRequest) Execute() (*SendFrameNotificationsR
 /*
 PublishFrameNotifications Send notifications
 
-# Send notifications to interactors of a mini app
+Send notifications to interactors of a mini app
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiPublishFrameNotificationsRequest
@@ -2131,7 +2320,7 @@ func (a *FrameAPIService) PublishFrameNotificationsExecute(r ApiPublishFrameNoti
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/notifications"
+	localVarPath := localBasePath + "/v2/farcaster/frame/notifications/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2277,7 +2466,7 @@ func (a *FrameAPIService) PublishNeynarFrameExecute(r ApiPublishNeynarFrameReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame"
+	localVarPath := localBasePath + "/v2/farcaster/frame/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2427,7 +2616,7 @@ func (a *FrameAPIService) SearchFramesExecute(r ApiSearchFramesRequest) (*FrameC
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/search"
+	localVarPath := localBasePath + "/v2/farcaster/frame/search/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2570,7 +2759,7 @@ func (a *FrameAPIService) UpdateNeynarFrameExecute(r ApiUpdateNeynarFrameRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame"
+	localVarPath := localBasePath + "/v2/farcaster/frame/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2688,7 +2877,7 @@ func (r ApiValidateFrameActionRequest) Execute() (*ValidateFrameActionResponse, 
 /*
 ValidateFrameAction Validate mini app action
 
-Validates a mini app against by an interacting user against a Farcaster Hub \
+Validates a mini app against by an interacting user against a Farcaster Hub
 (In order to validate a mini app, message bytes from Frame Action must be provided in hex)
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -2717,7 +2906,7 @@ func (a *FrameAPIService) ValidateFrameActionExecute(r ApiValidateFrameActionReq
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/frame/validate"
+	localVarPath := localBasePath + "/v2/farcaster/frame/validate/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

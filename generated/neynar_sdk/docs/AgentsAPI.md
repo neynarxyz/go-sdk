@@ -1,12 +1,12 @@
 # \AgentsAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTransactionPayFrame**](AgentsAPI.md#CreateTransactionPayFrame) | **Post** /farcaster/frame/transaction/pay | Create transaction pay mini app
-[**FetchUserInteractions**](AgentsAPI.md#FetchUserInteractions) | **Get** /farcaster/user/interactions | User interactions
-[**LookupCastConversationSummary**](AgentsAPI.md#LookupCastConversationSummary) | **Get** /farcaster/cast/conversation/summary | Cast conversation summary
+[**CreateTransactionPayFrame**](AgentsAPI.md#CreateTransactionPayFrame) | **Post** /v2/farcaster/frame/transaction/pay/ | Create transaction pay mini app
+[**FetchUserInteractions**](AgentsAPI.md#FetchUserInteractions) | **Get** /v2/farcaster/user/interactions/ | User interactions
+[**LookupCastConversationSummary**](AgentsAPI.md#LookupCastConversationSummary) | **Get** /v2/farcaster/cast/conversation/summary/ | Cast conversation summary
 
 
 
@@ -98,7 +98,7 @@ import (
 
 func main() {
 	fids := "194, 191" // string | Comma separated list of two FIDs
-	type_ := []openapiclient.NotificationType{openapiclient.NotificationType("follows")} // []NotificationType | Comma seperated list of Interaction type to fetch (optional)
+	type_ := []string{"Type_example"} // []string | Comma seperated list of Interaction type to fetch (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,7 +124,7 @@ Other parameters are passed through a pointer to a apiFetchUserInteractionsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fids** | **string** | Comma separated list of two FIDs | 
- **type_** | [**[]NotificationType**](NotificationType.md) | Comma seperated list of Interaction type to fetch | 
+ **type_** | **[]string** | Comma seperated list of Interaction type to fetch | 
 
 ### Return type
 
@@ -165,7 +165,7 @@ import (
 )
 
 func main() {
-	identifier := "0x9288c1e862aa72bd69d0e383a28b9a76b63cbdb4" // string | Cast identifier (Its either a url or a hash)
+	identifier := "0x9288c1e862aa72bd69d0e383a28b9a76b63cbdb4" // string | Cast identifier (It's either a URL or a hash))
 	limit := int32(50) // int32 | Number of casts to consider in a summary up to a point of target cast (optional) (default to 20)
 	prompt := "be unreasonably dramatic" // string | Additional prompt used to generate a summary (optional)
 
@@ -192,7 +192,7 @@ Other parameters are passed through a pointer to a apiLookupCastConversationSumm
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **identifier** | **string** | Cast identifier (Its either a url or a hash) | 
+ **identifier** | **string** | Cast identifier (It&#39;s either a URL or a hash)) | 
  **limit** | **int32** | Number of casts to consider in a summary up to a point of target cast | [default to 20]
  **prompt** | **string** | Additional prompt used to generate a summary | 
 

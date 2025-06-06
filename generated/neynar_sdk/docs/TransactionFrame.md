@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **Type** | [**TransactionFrameType**](TransactionFrameType.md) |  | 
 **Config** | [**TransactionFrameConfig**](TransactionFrameConfig.md) |  | 
 **Status** | [**TransactionFrameStatus**](TransactionFrameStatus.md) |  | 
-**Transaction** | [**TransactionFramePayAllOfTransaction**](TransactionFramePayAllOfTransaction.md) |  | 
+**Transaction** | [**TransactionFramePayTransaction**](TransactionFramePayTransaction.md) |  | 
 
 ## Methods
 
 ### NewTransactionFrame
 
-`func NewTransactionFrame(id string, url string, type_ TransactionFrameType, config TransactionFrameConfig, status TransactionFrameStatus, transaction TransactionFramePayAllOfTransaction, ) *TransactionFrame`
+`func NewTransactionFrame(id string, url string, type_ TransactionFrameType, config TransactionFrameConfig, status TransactionFrameStatus, transaction TransactionFramePayTransaction, ) *TransactionFrame`
 
 NewTransactionFrame instantiates a new TransactionFrame object
 This constructor will assign default values to properties that have it defined,
@@ -132,20 +132,20 @@ SetStatus sets Status field to given value.
 
 ### GetTransaction
 
-`func (o *TransactionFrame) GetTransaction() TransactionFramePayAllOfTransaction`
+`func (o *TransactionFrame) GetTransaction() TransactionFramePayTransaction`
 
 GetTransaction returns the Transaction field if non-nil, zero value otherwise.
 
 ### GetTransactionOk
 
-`func (o *TransactionFrame) GetTransactionOk() (*TransactionFramePayAllOfTransaction, bool)`
+`func (o *TransactionFrame) GetTransactionOk() (*TransactionFramePayTransaction, bool)`
 
 GetTransactionOk returns a tuple with the Transaction field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransaction
 
-`func (o *TransactionFrame) SetTransaction(v TransactionFramePayAllOfTransaction)`
+`func (o *TransactionFrame) SetTransaction(v TransactionFramePayTransaction)`
 
 SetTransaction sets Transaction field to given value.
 

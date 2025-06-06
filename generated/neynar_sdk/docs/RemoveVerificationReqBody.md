@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SignerUuid** | **string** | UUID of the signer. &#x60;signer_uuid&#x60; is paired with API key, can&#39;t use a &#x60;uuid&#x60; made with a different API key.  | 
+**SignerUuid** | **string** | UUID of the signer. &#x60;signer_uuid&#x60; is paired with API key, can&#39;t use a &#x60;uuid&#x60; made with a different API key. | 
 **Address** | **string** | Ethereum address | 
 **BlockHash** | **string** |  | 
+**EthSignature** | **string** |  | 
 
 ## Methods
 
 ### NewRemoveVerificationReqBody
 
-`func NewRemoveVerificationReqBody(signerUuid string, address string, blockHash string, ) *RemoveVerificationReqBody`
+`func NewRemoveVerificationReqBody(signerUuid string, address string, blockHash string, ethSignature string, ) *RemoveVerificationReqBody`
 
 NewRemoveVerificationReqBody instantiates a new RemoveVerificationReqBody object
 This constructor will assign default values to properties that have it defined,
@@ -85,6 +86,26 @@ and a boolean to check if the value has been set.
 `func (o *RemoveVerificationReqBody) SetBlockHash(v string)`
 
 SetBlockHash sets BlockHash field to given value.
+
+
+### GetEthSignature
+
+`func (o *RemoveVerificationReqBody) GetEthSignature() string`
+
+GetEthSignature returns the EthSignature field if non-nil, zero value otherwise.
+
+### GetEthSignatureOk
+
+`func (o *RemoveVerificationReqBody) GetEthSignatureOk() (*string, bool)`
+
+GetEthSignatureOk returns a tuple with the EthSignature field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEthSignature
+
+`func (o *RemoveVerificationReqBody) SetEthSignature(v string)`
+
+SetEthSignature sets EthSignature field to given value.
 
 
 

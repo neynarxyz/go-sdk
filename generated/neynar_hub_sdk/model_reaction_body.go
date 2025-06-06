@@ -46,7 +46,7 @@ func NewReactionBody(type_ ReactionType) *ReactionBody {
 // but it doesn't guarantee that properties required by API are set
 func NewReactionBodyWithDefaults() *ReactionBody {
 	this := ReactionBody{}
-	var type_ ReactionType = REACTIONTYPE_REACTION_TYPE_LIKE
+	var type_ ReactionType = REACTIONTYPE_LIKE
 	this.Type = type_
 	return &this
 }
@@ -75,9 +75,9 @@ func (o *ReactionBody) SetType(v ReactionType) {
 	o.Type = v
 }
 
-// GetDefaultType returns the default value REACTIONTYPE_REACTION_TYPE_LIKE of the Type field.
+// GetDefaultType returns the default value REACTIONTYPE_LIKE of the Type field.
 func (o *ReactionBody) GetDefaultType() interface{} {
-	return REACTIONTYPE_REACTION_TYPE_LIKE
+	return REACTIONTYPE_LIKE
 }
 
 // GetTargetCastId returns the TargetCastId field value if set, zero value otherwise.

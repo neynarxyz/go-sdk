@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TopRelevantOwnersHydrated** | Pointer to [**[]User**](User.md) |  | [optional] 
-**AllRelevantOwnersDehydrated** | Pointer to [**[]User**](User.md) |  | [optional] 
+**TopRelevantFungibleOwnersHydrated** | [**[]User**](User.md) |  | 
+**AllRelevantFungibleOwnersDehydrated** | [**[]User**](User.md) |  | 
 
 ## Methods
 
 ### NewRelevantFungibleOwnersResponse
 
-`func NewRelevantFungibleOwnersResponse() *RelevantFungibleOwnersResponse`
+`func NewRelevantFungibleOwnersResponse(topRelevantFungibleOwnersHydrated []User, allRelevantFungibleOwnersDehydrated []User, ) *RelevantFungibleOwnersResponse`
 
 NewRelevantFungibleOwnersResponse instantiates a new RelevantFungibleOwnersResponse object
 This constructor will assign default values to properties that have it defined,
@@ -26,55 +26,45 @@ NewRelevantFungibleOwnersResponseWithDefaults instantiates a new RelevantFungibl
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTopRelevantOwnersHydrated
+### GetTopRelevantFungibleOwnersHydrated
 
-`func (o *RelevantFungibleOwnersResponse) GetTopRelevantOwnersHydrated() []User`
+`func (o *RelevantFungibleOwnersResponse) GetTopRelevantFungibleOwnersHydrated() []User`
 
-GetTopRelevantOwnersHydrated returns the TopRelevantOwnersHydrated field if non-nil, zero value otherwise.
+GetTopRelevantFungibleOwnersHydrated returns the TopRelevantFungibleOwnersHydrated field if non-nil, zero value otherwise.
 
-### GetTopRelevantOwnersHydratedOk
+### GetTopRelevantFungibleOwnersHydratedOk
 
-`func (o *RelevantFungibleOwnersResponse) GetTopRelevantOwnersHydratedOk() (*[]User, bool)`
+`func (o *RelevantFungibleOwnersResponse) GetTopRelevantFungibleOwnersHydratedOk() (*[]User, bool)`
 
-GetTopRelevantOwnersHydratedOk returns a tuple with the TopRelevantOwnersHydrated field if it's non-nil, zero value otherwise
+GetTopRelevantFungibleOwnersHydratedOk returns a tuple with the TopRelevantFungibleOwnersHydrated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTopRelevantOwnersHydrated
+### SetTopRelevantFungibleOwnersHydrated
 
-`func (o *RelevantFungibleOwnersResponse) SetTopRelevantOwnersHydrated(v []User)`
+`func (o *RelevantFungibleOwnersResponse) SetTopRelevantFungibleOwnersHydrated(v []User)`
 
-SetTopRelevantOwnersHydrated sets TopRelevantOwnersHydrated field to given value.
+SetTopRelevantFungibleOwnersHydrated sets TopRelevantFungibleOwnersHydrated field to given value.
 
-### HasTopRelevantOwnersHydrated
 
-`func (o *RelevantFungibleOwnersResponse) HasTopRelevantOwnersHydrated() bool`
+### GetAllRelevantFungibleOwnersDehydrated
 
-HasTopRelevantOwnersHydrated returns a boolean if a field has been set.
+`func (o *RelevantFungibleOwnersResponse) GetAllRelevantFungibleOwnersDehydrated() []User`
 
-### GetAllRelevantOwnersDehydrated
+GetAllRelevantFungibleOwnersDehydrated returns the AllRelevantFungibleOwnersDehydrated field if non-nil, zero value otherwise.
 
-`func (o *RelevantFungibleOwnersResponse) GetAllRelevantOwnersDehydrated() []User`
+### GetAllRelevantFungibleOwnersDehydratedOk
 
-GetAllRelevantOwnersDehydrated returns the AllRelevantOwnersDehydrated field if non-nil, zero value otherwise.
+`func (o *RelevantFungibleOwnersResponse) GetAllRelevantFungibleOwnersDehydratedOk() (*[]User, bool)`
 
-### GetAllRelevantOwnersDehydratedOk
-
-`func (o *RelevantFungibleOwnersResponse) GetAllRelevantOwnersDehydratedOk() (*[]User, bool)`
-
-GetAllRelevantOwnersDehydratedOk returns a tuple with the AllRelevantOwnersDehydrated field if it's non-nil, zero value otherwise
+GetAllRelevantFungibleOwnersDehydratedOk returns a tuple with the AllRelevantFungibleOwnersDehydrated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAllRelevantOwnersDehydrated
+### SetAllRelevantFungibleOwnersDehydrated
 
-`func (o *RelevantFungibleOwnersResponse) SetAllRelevantOwnersDehydrated(v []User)`
+`func (o *RelevantFungibleOwnersResponse) SetAllRelevantFungibleOwnersDehydrated(v []User)`
 
-SetAllRelevantOwnersDehydrated sets AllRelevantOwnersDehydrated field to given value.
+SetAllRelevantFungibleOwnersDehydrated sets AllRelevantFungibleOwnersDehydrated field to given value.
 
-### HasAllRelevantOwnersDehydrated
-
-`func (o *RelevantFungibleOwnersResponse) HasAllRelevantOwnersDehydrated() bool`
-
-HasAllRelevantOwnersDehydrated returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"reflect"
 )
 
 type OnchainAPI interface {
@@ -27,7 +28,6 @@ type OnchainAPI interface {
 
 			Creates a new token.
 		This is an allowlisted API, reach out if you want access.
-
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@return ApiDeployFungibleRequest
@@ -69,8 +69,7 @@ type OnchainAPI interface {
 	/*
 		RegisterAccountOnchain Register Farcaster account onchain
 
-		Register a new farcaster account onchain. Optionally you can pass in signers along to register a new account and create multiple signers in a single transaction
-
+		Register a new farcaster account onchain. Optionally you can pass in signers to register a new account and create multiple signers in a single transaction
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiRegisterAccountOnchainRequest
@@ -224,7 +223,7 @@ func (a *OnchainAPIService) DeployFungibleExecute(r ApiDeployFungibleRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/fungible"
+	localVarPath := localBasePath + "/v2/fungible/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -374,7 +373,7 @@ type ApiFetchRelevantFungibleOwnersRequest struct {
 	ctx             context.Context
 	ApiService      OnchainAPI
 	contractAddress *string
-	network         *Network
+	network         *string
 	viewerFid       *int32
 }
 
@@ -385,7 +384,7 @@ func (r ApiFetchRelevantFungibleOwnersRequest) ContractAddress(contractAddress s
 }
 
 // Network of the fungible asset.
-func (r ApiFetchRelevantFungibleOwnersRequest) Network(network Network) ApiFetchRelevantFungibleOwnersRequest {
+func (r ApiFetchRelevantFungibleOwnersRequest) Network(network string) ApiFetchRelevantFungibleOwnersRequest {
 	r.network = &network
 	return r
 }
@@ -431,7 +430,7 @@ func (a *OnchainAPIService) FetchRelevantFungibleOwnersExecute(r ApiFetchRelevan
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/fungible/owner/relevant"
+	localVarPath := localBasePath + "/v2/farcaster/fungible/owner/relevant/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -530,7 +529,7 @@ type ApiFetchUserBalanceRequest struct {
 	ctx        context.Context
 	ApiService OnchainAPI
 	fid        *int32
-	networks   *[]Network
+	networks   *[]string
 }
 
 // FID of the user to fetch
@@ -540,7 +539,7 @@ func (r ApiFetchUserBalanceRequest) Fid(fid int32) ApiFetchUserBalanceRequest {
 }
 
 // Comma separated list of networks to fetch balances for
-func (r ApiFetchUserBalanceRequest) Networks(networks []Network) ApiFetchUserBalanceRequest {
+func (r ApiFetchUserBalanceRequest) Networks(networks []string) ApiFetchUserBalanceRequest {
 	r.networks = &networks
 	return r
 }
@@ -580,7 +579,7 @@ func (a *OnchainAPIService) FetchUserBalanceExecute(r ApiFetchUserBalanceRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/balance"
+	localVarPath := localBasePath + "/v2/farcaster/user/balance/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -593,7 +592,17 @@ func (a *OnchainAPIService) FetchUserBalanceExecute(r ApiFetchUserBalanceRequest
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "fid", r.fid, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "networks", r.networks, "form", "csv")
+	{
+		t := *r.networks
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "networks", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "networks", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -712,7 +721,7 @@ func (r ApiRegisterAccountOnchainRequest) Execute() (*RegisterUserOnChainRespons
 /*
 RegisterAccountOnchain Register Farcaster account onchain
 
-Register a new farcaster account onchain. Optionally you can pass in signers along to register a new account and create multiple signers in a single transaction
+Register a new farcaster account onchain. Optionally you can pass in signers to register a new account and create multiple signers in a single transaction
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiRegisterAccountOnchainRequest
@@ -740,7 +749,7 @@ func (a *OnchainAPIService) RegisterAccountOnchainExecute(r ApiRegisterAccountOn
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/user/register"
+	localVarPath := localBasePath + "/v2/farcaster/user/register/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -893,7 +902,7 @@ func (a *OnchainAPIService) SendFungiblesToUsersExecute(r ApiSendFungiblesToUser
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/farcaster/fungible/send"
+	localVarPath := localBasePath + "/v2/farcaster/fungible/send/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

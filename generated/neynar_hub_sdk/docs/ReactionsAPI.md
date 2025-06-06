@@ -34,7 +34,7 @@ import (
 func main() {
 	targetFid := int32(56) // int32 | The FID of the cast's creator. Required to uniquely identify the cast that received the reactions. Must be used in conjunction with target_hash.
 	targetHash := "0xfec8fd3546e1f46cf5ad10a4ff9f5d53a3bbe9be" // string | The unique hash identifier of the cast that received the reactions. This is a 40-character hexadecimal string prefixed with '0x' that uniquely identifies the cast within the creator's posts. Must be used with target_fid.
-	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType |  (default to "REACTION_TYPE_LIKE")
+	reactionType := openapiclient.ReactionType("Like") // ReactionType |  (default to "Like")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
 	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **targetFid** | **int32** | The FID of the cast&#39;s creator. Required to uniquely identify the cast that received the reactions. Must be used in conjunction with target_hash. | 
  **targetHash** | **string** | The unique hash identifier of the cast that received the reactions. This is a 40-character hexadecimal string prefixed with &#39;0x&#39; that uniquely identifies the cast within the creator&#39;s posts. Must be used with target_fid. | 
- **reactionType** | [**ReactionType**](ReactionType.md) |  | [default to &quot;REACTION_TYPE_LIKE&quot;]
+ **reactionType** | [**ReactionType**](ReactionType.md) |  | [default to &quot;Like&quot;]
  **pageSize** | **int32** | Maximum number of messages to return in a single response | 
  **reverse** | **bool** | Reverse the sort order, returning latest messages first | 
  **pageToken** | **string** | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page | 
@@ -109,7 +109,7 @@ import (
 
 func main() {
 	url := "chain://eip155:1/erc721:0x39d89b649ffa044383333d297e325d42d31329b2" // string | Target URL starting with 'chain://'.
-	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType |  (optional) (default to "REACTION_TYPE_LIKE")
+	reactionType := openapiclient.ReactionType("Like") // ReactionType |  (optional) (default to "Like")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
 	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)
@@ -138,7 +138,7 @@ Other parameters are passed through a pointer to a apiFetchReactionsByTargetRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **url** | **string** | Target URL starting with &#39;chain://&#39;. | 
- **reactionType** | [**ReactionType**](ReactionType.md) |  | [default to &quot;REACTION_TYPE_LIKE&quot;]
+ **reactionType** | [**ReactionType**](ReactionType.md) |  | [default to &quot;Like&quot;]
  **pageSize** | **int32** | Maximum number of messages to return in a single response | 
  **reverse** | **bool** | Reverse the sort order, returning latest messages first | 
  **pageToken** | **string** | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page | 
@@ -183,7 +183,7 @@ import (
 
 func main() {
 	fid := int32(56) // int32 | The FID of the reaction's creator
-	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType |  (default to "REACTION_TYPE_LIKE")
+	reactionType := openapiclient.ReactionType("Like") // ReactionType |  (default to "Like")
 	pageSize := int32(56) // int32 | Maximum number of messages to return in a single response (optional)
 	reverse := true // bool | Reverse the sort order, returning latest messages first (optional)
 	pageToken := "pageToken_example" // string | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page (optional)
@@ -212,7 +212,7 @@ Other parameters are passed through a pointer to a apiFetchUserReactionsRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fid** | **int32** | The FID of the reaction&#39;s creator | 
- **reactionType** | [**ReactionType**](ReactionType.md) |  | [default to &quot;REACTION_TYPE_LIKE&quot;]
+ **reactionType** | [**ReactionType**](ReactionType.md) |  | [default to &quot;Like&quot;]
  **pageSize** | **int32** | Maximum number of messages to return in a single response | 
  **reverse** | **bool** | Reverse the sort order, returning latest messages first | 
  **pageToken** | **string** | The page token returned by the previous query, to fetch the next page. If this parameter is empty, fetch the first page | 
@@ -259,7 +259,7 @@ func main() {
 	fid := int32(616) // int32 | The FID of the reaction's creator
 	targetFid := int32(616) // int32 | The FID of the cast's creator
 	targetHash := "0xfec8fd3546e1f46cf5ad10a4ff9f5d53a3bbe9be" // string | The cast's hash
-	reactionType := openapiclient.ReactionType("REACTION_TYPE_LIKE") // ReactionType |  (default to "REACTION_TYPE_LIKE")
+	reactionType := openapiclient.ReactionType("Like") // ReactionType |  (default to "Like")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
  **fid** | **int32** | The FID of the reaction&#39;s creator | 
  **targetFid** | **int32** | The FID of the cast&#39;s creator | 
  **targetHash** | **string** | The cast&#39;s hash | 
- **reactionType** | [**ReactionType**](ReactionType.md) |  | [default to &quot;REACTION_TYPE_LIKE&quot;]
+ **reactionType** | [**ReactionType**](ReactionType.md) |  | [default to &quot;Like&quot;]
 
 ### Return type
 

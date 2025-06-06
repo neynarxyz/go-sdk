@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Object** | **string** |  | 
-**Fid** | **int32** | The unique identifier of a farcaster user (unsigned integer) | 
+**Fid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 **Username** | **string** |  | 
 **DisplayName** | Pointer to **string** |  | [optional] 
 **CustodyAddress** | **string** | Ethereum address | 
@@ -15,11 +15,11 @@ Name | Type | Description | Notes
 **FollowingCount** | **int32** | The number of users the user is following. | 
 **Verifications** | **[]string** |  | 
 **VerifiedAddresses** | [**UserVerifiedAddresses**](UserVerifiedAddresses.md) |  | 
-**VerifiedAccounts** | [**[]UserVerifiedAccountsInner**](UserVerifiedAccountsInner.md) | Verified accounts of the user on other platforms, currently only X is supported. | 
+**VerifiedAccounts** | [**[]UserVerifiedAccountsInner**](UserVerifiedAccountsInner.md) |  | 
 **PowerBadge** | **bool** |  | 
 **Experimental** | Pointer to [**UserExperimental**](UserExperimental.md) |  | [optional] 
-**Score** | **float64** | Score that represents the probability that the account is not spam. | 
 **ViewerContext** | Pointer to [**UserViewerContext**](UserViewerContext.md) |  | [optional] 
+**Score** | **float64** | Score that represents the probability that the account is not spam. | 
 
 ## Methods
 
@@ -335,26 +335,6 @@ SetExperimental sets Experimental field to given value.
 
 HasExperimental returns a boolean if a field has been set.
 
-### GetScore
-
-`func (o *User) GetScore() float64`
-
-GetScore returns the Score field if non-nil, zero value otherwise.
-
-### GetScoreOk
-
-`func (o *User) GetScoreOk() (*float64, bool)`
-
-GetScoreOk returns a tuple with the Score field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetScore
-
-`func (o *User) SetScore(v float64)`
-
-SetScore sets Score field to given value.
-
-
 ### GetViewerContext
 
 `func (o *User) GetViewerContext() UserViewerContext`
@@ -379,6 +359,26 @@ SetViewerContext sets ViewerContext field to given value.
 `func (o *User) HasViewerContext() bool`
 
 HasViewerContext returns a boolean if a field has been set.
+
+### GetScore
+
+`func (o *User) GetScore() float64`
+
+GetScore returns the Score field if non-nil, zero value otherwise.
+
+### GetScoreOk
+
+`func (o *User) GetScoreOk() (*float64, bool)`
+
+GetScoreOk returns a tuple with the Score field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScore
+
+`func (o *User) SetScore(v float64)`
+
+SetScore sets Score field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

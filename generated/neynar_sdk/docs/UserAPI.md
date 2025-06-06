@@ -1,25 +1,25 @@
 # \UserAPI
 
-All URIs are relative to *https://api.neynar.com/v2*
+All URIs are relative to *https://api.neynar.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteVerification**](UserAPI.md#DeleteVerification) | **Delete** /farcaster/user/verification | Delete verification
-[**FetchBulkUsers**](UserAPI.md#FetchBulkUsers) | **Get** /farcaster/user/bulk | By FIDs
-[**FetchBulkUsersByEthOrSolAddress**](UserAPI.md#FetchBulkUsersByEthOrSolAddress) | **Get** /farcaster/user/bulk-by-address | By Eth or Sol addresses
-[**FetchPowerUsers**](UserAPI.md#FetchPowerUsers) | **Get** /farcaster/user/power | Power users
-[**FetchPowerUsersLite**](UserAPI.md#FetchPowerUsersLite) | **Get** /farcaster/user/power_lite | Power user FIDs
-[**FetchUsersByLocation**](UserAPI.md#FetchUsersByLocation) | **Get** /farcaster/user/by_location | By location
-[**FollowUser**](UserAPI.md#FollowUser) | **Post** /farcaster/user/follow | Follow user
-[**GetFreshAccountFID**](UserAPI.md#GetFreshAccountFID) | **Get** /farcaster/user/fid | Fetch fresh FID
-[**LookupUserByCustodyAddress**](UserAPI.md#LookupUserByCustodyAddress) | **Get** /farcaster/user/custody-address | By custody-address
-[**LookupUserByUsername**](UserAPI.md#LookupUserByUsername) | **Get** /farcaster/user/by_username | By username
-[**LookupUsersByXUsername**](UserAPI.md#LookupUsersByXUsername) | **Get** /farcaster/user/by_x_username | By X username
-[**PublishVerification**](UserAPI.md#PublishVerification) | **Post** /farcaster/user/verification | Add verification
-[**RegisterAccount**](UserAPI.md#RegisterAccount) | **Post** /farcaster/user | Register new account
-[**SearchUser**](UserAPI.md#SearchUser) | **Get** /farcaster/user/search | Search for Usernames
-[**UnfollowUser**](UserAPI.md#UnfollowUser) | **Delete** /farcaster/user/follow | Unfollow user
-[**UpdateUser**](UserAPI.md#UpdateUser) | **Patch** /farcaster/user | Update user profile
+[**DeleteVerification**](UserAPI.md#DeleteVerification) | **Delete** /v2/farcaster/user/verification/ | Delete verification
+[**FetchBulkUsers**](UserAPI.md#FetchBulkUsers) | **Get** /v2/farcaster/user/bulk/ | By FIDs
+[**FetchBulkUsersByEthOrSolAddress**](UserAPI.md#FetchBulkUsersByEthOrSolAddress) | **Get** /v2/farcaster/user/bulk-by-address/ | By Eth or Sol addresses
+[**FetchPowerUsers**](UserAPI.md#FetchPowerUsers) | **Get** /v2/farcaster/user/power/ | Power users
+[**FetchPowerUsersLite**](UserAPI.md#FetchPowerUsersLite) | **Get** /v2/farcaster/user/power_lite/ | Power user FIDs
+[**FetchUsersByLocation**](UserAPI.md#FetchUsersByLocation) | **Get** /v2/farcaster/user/by_location/ | By location
+[**FollowUser**](UserAPI.md#FollowUser) | **Post** /v2/farcaster/user/follow/ | Follow user
+[**GetFreshAccountFID**](UserAPI.md#GetFreshAccountFID) | **Get** /v2/farcaster/user/fid/ | Fetch fresh FID
+[**LookupUserByCustodyAddress**](UserAPI.md#LookupUserByCustodyAddress) | **Get** /v2/farcaster/user/custody-address/ | By custody-address
+[**LookupUserByUsername**](UserAPI.md#LookupUserByUsername) | **Get** /v2/farcaster/user/by_username/ | By username
+[**LookupUsersByXUsername**](UserAPI.md#LookupUsersByXUsername) | **Get** /v2/farcaster/user/by_x_username/ | By X username
+[**PublishVerification**](UserAPI.md#PublishVerification) | **Post** /v2/farcaster/user/verification/ | Add verification
+[**RegisterAccount**](UserAPI.md#RegisterAccount) | **Post** /v2/farcaster/user/ | Register new account
+[**SearchUser**](UserAPI.md#SearchUser) | **Get** /v2/farcaster/user/search/ | Search for Usernames
+[**UnfollowUser**](UserAPI.md#UnfollowUser) | **Delete** /v2/farcaster/user/follow/ | Unfollow user
+[**UpdateUser**](UserAPI.md#UpdateUser) | **Patch** /v2/farcaster/user/ | Update user profile
 
 
 
@@ -44,7 +44,7 @@ import (
 )
 
 func main() {
-	removeVerificationReqBody := *openapiclient.NewRemoveVerificationReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "0x5a927ac639636e534b678e81768ca19e2c6280b7", "BlockHash_example") // RemoveVerificationReqBody | 
+	removeVerificationReqBody := *openapiclient.NewRemoveVerificationReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "0x5a927ac639636e534b678e81768ca19e2c6280b7", "0x191905a9201170abb55f4c90a4cc968b44c1b71cdf3db2764b775c93e7e22b29", "0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b") // RemoveVerificationReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## FetchBulkUsers
 
-> BulkUsersResponse FetchBulkUsers(ctx).Fids(fids).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+> BulkUsersResponse FetchBulkUsers(ctx).Fids(fids).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Execute()
 
 By FIDs
 
@@ -111,12 +111,12 @@ import (
 
 func main() {
 	fids := "194, 191, 6131" // string | Comma separated list of FIDs, up to 100 at a time
-	viewerFid := int32(3) // int32 |  (optional)
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	viewerFid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.FetchBulkUsers(context.Background()).Fids(fids).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.UserAPI.FetchBulkUsers(context.Background()).Fids(fids).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.FetchBulkUsers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -138,8 +138,8 @@ Other parameters are passed through a pointer to a apiFetchBulkUsersRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fids** | **string** | Comma separated list of FIDs, up to 100 at a time | 
- **viewerFid** | **int32** |  | 
  **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **viewerFid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 
 ### Return type
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## FetchBulkUsersByEthOrSolAddress
 
-> BulkUsersByAddressResponse FetchBulkUsersByEthOrSolAddress(ctx).Addresses(addresses).AddressTypes(addressTypes).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+> BulkUsersByAddressResponse FetchBulkUsersByEthOrSolAddress(ctx).Addresses(addresses).XNeynarExperimental(xNeynarExperimental).AddressTypes(addressTypes).ViewerFid(viewerFid).Execute()
 
 By Eth or Sol addresses
 
@@ -181,13 +181,13 @@ import (
 
 func main() {
 	addresses := "0xa6a8736f18f383f1cc2d938576933e5ea7df01a1,0x7cac817861e5c3384753403fb6c0c556c204b1ce" // string | Comma separated list of Ethereum addresses, up to 350 at a time
-	addressTypes := []openapiclient.BulkUserAddressType{openapiclient.BulkUserAddressType("custody_address")} // []BulkUserAddressType | Customize which address types the request should search for. This is a comma-separated string that can include the following values: 'custody_address' and 'verified_address'. By default api returns both. To select multiple types, use a comma-separated list of these values.  (optional)
-	viewerFid := int32(3) // int32 |  (optional)
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	addressTypes := []string{"AddressTypes_example"} // []string | Customize which address types the request should search for. This is a comma-separated string that can include the following values: 'custody_address' and 'verified_address'. By default api returns both. To select multiple types, use a comma-separated list of these values. (optional)
+	viewerFid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.FetchBulkUsersByEthOrSolAddress(context.Background()).Addresses(addresses).AddressTypes(addressTypes).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.UserAPI.FetchBulkUsersByEthOrSolAddress(context.Background()).Addresses(addresses).XNeynarExperimental(xNeynarExperimental).AddressTypes(addressTypes).ViewerFid(viewerFid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.FetchBulkUsersByEthOrSolAddress``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,9 +209,9 @@ Other parameters are passed through a pointer to a apiFetchBulkUsersByEthOrSolAd
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **addresses** | **string** | Comma separated list of Ethereum addresses, up to 350 at a time | 
- **addressTypes** | [**[]BulkUserAddressType**](BulkUserAddressType.md) | Customize which address types the request should search for. This is a comma-separated string that can include the following values: &#39;custody_address&#39; and &#39;verified_address&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values.  | 
- **viewerFid** | **int32** |  | 
  **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **addressTypes** | **[]string** | Customize which address types the request should search for. This is a comma-separated string that can include the following values: &#39;custody_address&#39; and &#39;verified_address&#39;. By default api returns both. To select multiple types, use a comma-separated list of these values. | 
+ **viewerFid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 
 ### Return type
 
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ## FetchPowerUsers
 
-> UsersResponse FetchPowerUsers(ctx).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> UsersResponse FetchPowerUsers(ctx).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).Execute()
 
 Power users
 
@@ -252,14 +252,14 @@ import (
 )
 
 func main() {
-	viewerFid := int32(3) // int32 |  (optional)
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	viewerFid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer) (optional)
 	limit := int32(10) // int32 | Number of power users to fetch (optional) (default to 25)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.FetchPowerUsers(context.Background()).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.UserAPI.FetchPowerUsers(context.Background()).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.FetchPowerUsers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -280,10 +280,10 @@ Other parameters are passed through a pointer to a apiFetchPowerUsersRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **viewerFid** | **int32** |  | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **viewerFid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
  **limit** | **int32** | Number of power users to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -371,7 +371,7 @@ Name | Type | Description  | Notes
 
 ## FetchUsersByLocation
 
-> UsersResponse FetchUsersByLocation(ctx).Latitude(latitude).Longitude(longitude).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> UsersResponse FetchUsersByLocation(ctx).Latitude(latitude).Longitude(longitude).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).Execute()
 
 By location
 
@@ -392,14 +392,14 @@ import (
 func main() {
 	latitude := float32(37.77) // float32 | Latitude of the location
 	longitude := float32(-122.41) // float32 | Longitude of the location
-	viewerFid := int32(3) // int32 | FID of the user viewing the feed. Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`. (optional)
-	limit := int32(30) // int32 | Number of results to fetch (optional) (default to 25)
-	cursor := "cursor_example" // string | Pagination cursor (optional)
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	viewerFid := int32(3) // int32 | FID of the user viewing the feed. Providing this will return a list of users that respects this user's mutes and blocks and includes `viewer_context`. (optional)
+	limit := int32(25) // int32 | Number of results to fetch (optional) (default to 25)
+	cursor := "cursor_example" // string | Pagination cursor (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.FetchUsersByLocation(context.Background()).Latitude(latitude).Longitude(longitude).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.UserAPI.FetchUsersByLocation(context.Background()).Latitude(latitude).Longitude(longitude).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.FetchUsersByLocation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -422,10 +422,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **latitude** | **float32** | Latitude of the location | 
  **longitude** | **float32** | Longitude of the location | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **viewerFid** | **int32** | FID of the user viewing the feed. Providing this will return a list of users that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **limit** | **int32** | Number of results to fetch | [default to 25]
  **cursor** | **string** | Pagination cursor | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 
@@ -645,7 +645,7 @@ Name | Type | Description  | Notes
 
 ## LookupUserByUsername
 
-> UserResponse LookupUserByUsername(ctx).Username(username).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+> UserResponse LookupUserByUsername(ctx).Username(username).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Execute()
 
 By username
 
@@ -665,12 +665,12 @@ import (
 
 func main() {
 	username := "neynar" // string | Username of the user to fetch
-	viewerFid := int32(3) // int32 |  (optional)
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	viewerFid := int32(3) // int32 | The unique identifier of a farcaster user or app (unsigned integer) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.LookupUserByUsername(context.Background()).Username(username).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.UserAPI.LookupUserByUsername(context.Background()).Username(username).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.LookupUserByUsername``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -692,8 +692,8 @@ Other parameters are passed through a pointer to a apiLookupUserByUsernameReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **string** | Username of the user to fetch | 
- **viewerFid** | **int32** |  | 
  **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **viewerFid** | **int32** | The unique identifier of a farcaster user or app (unsigned integer) | 
 
 ### Return type
 
@@ -715,7 +715,7 @@ Name | Type | Description  | Notes
 
 ## LookupUsersByXUsername
 
-> BulkUsersResponse LookupUsersByXUsername(ctx).XUsername(xUsername).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+> BulkUsersResponse LookupUsersByXUsername(ctx).XUsername(xUsername).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Execute()
 
 By X username
 
@@ -735,12 +735,12 @@ import (
 
 func main() {
 	xUsername := "xUsername_example" // string | X (Twitter) username to search for, without the @ symbol
-	viewerFid := int32(56) // int32 | FID of the viewer for contextual information like follows and blocks (optional)
 	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
+	viewerFid := int32(3) // int32 | FID of the viewer for contextual information like follows and blocks (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.LookupUsersByXUsername(context.Background()).XUsername(xUsername).ViewerFid(viewerFid).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.UserAPI.LookupUsersByXUsername(context.Background()).XUsername(xUsername).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.LookupUsersByXUsername``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -762,8 +762,8 @@ Other parameters are passed through a pointer to a apiLookupUsersByXUsernameRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **xUsername** | **string** | X (Twitter) username to search for, without the @ symbol | 
- **viewerFid** | **int32** | FID of the viewer for contextual information like follows and blocks | 
  **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
+ **viewerFid** | **int32** | FID of the viewer for contextual information like follows and blocks | 
 
 ### Return type
 
@@ -804,7 +804,7 @@ import (
 )
 
 func main() {
-	addVerificationReqBody := *openapiclient.NewAddVerificationReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "0x5a927ac639636e534b678e81768ca19e2c6280b7", "BlockHash_example", "EthSignature_example") // AddVerificationReqBody | 
+	addVerificationReqBody := *openapiclient.NewAddVerificationReqBody("19d0c5fd-9b33-4a48-a0e2-bc7b0555baec", "0x5a927ac639636e534b678e81768ca19e2c6280b7", "0x191905a9201170abb55f4c90a4cc968b44c1b71cdf3db2764b775c93e7e22b29", "0x2fc09da1f4dcb723fefb91f77932c249c418c0af00c66ed92ee1f35002c80d6a1145280c9f361d207d28447f8f7463366840d3a9309036cf6954afd1fd331beb1b") // AddVerificationReqBody | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -917,7 +917,7 @@ Name | Type | Description  | Notes
 
 ## SearchUser
 
-> UserSearchResponse SearchUser(ctx).Q(q).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+> UserSearchResponse SearchUser(ctx).Q(q).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).Execute()
 
 Search for Usernames
 
@@ -937,14 +937,14 @@ import (
 
 func main() {
 	q := "r" // string | 
+	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 	viewerFid := int32(3) // int32 | Providing this will return search results that respects this user's mutes and blocks and includes `viewer_context`. (optional)
 	limit := int32(10) // int32 | Number of users to fetch (optional) (default to 5)
 	cursor := "cursor_example" // string | Pagination cursor. (optional)
-	xNeynarExperimental := true // bool | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.SearchUser(context.Background()).Q(q).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).XNeynarExperimental(xNeynarExperimental).Execute()
+	resp, r, err := apiClient.UserAPI.SearchUser(context.Background()).Q(q).XNeynarExperimental(xNeynarExperimental).ViewerFid(viewerFid).Limit(limit).Cursor(cursor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.SearchUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -966,10 +966,10 @@ Other parameters are passed through a pointer to a apiSearchUserRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **q** | **string** |  | 
+ **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
  **viewerFid** | **int32** | Providing this will return search results that respects this user&#39;s mutes and blocks and includes &#x60;viewer_context&#x60;. | 
  **limit** | **int32** | Number of users to fetch | [default to 5]
  **cursor** | **string** | Pagination cursor. | 
- **xNeynarExperimental** | **bool** | Enables experimental features including filtering based on the Neynar score. See [docs](https://neynar.notion.site/Experimental-Features-1d2655195a8b80eb98b4d4ae7b76ae4a) for more details. | [default to false]
 
 ### Return type
 

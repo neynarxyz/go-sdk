@@ -21,14 +21,14 @@ type ReactionType string
 
 // List of ReactionType
 const (
-	REACTIONTYPE_REACTION_TYPE_LIKE   ReactionType = "REACTION_TYPE_LIKE"
-	REACTIONTYPE_REACTION_TYPE_RECAST ReactionType = "REACTION_TYPE_RECAST"
+	REACTIONTYPE_LIKE   ReactionType = "Like"
+	REACTIONTYPE_RECAST ReactionType = "Recast"
 )
 
 // All allowed values of ReactionType enum
 var AllowedReactionTypeEnumValues = []ReactionType{
-	"REACTION_TYPE_LIKE",
-	"REACTION_TYPE_RECAST",
+	"Like",
+	"Recast",
 }
 
 func (v *ReactionType) UnmarshalJSON(src []byte) error {

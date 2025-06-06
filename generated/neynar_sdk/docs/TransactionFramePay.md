@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **Type** | [**TransactionFrameType**](TransactionFrameType.md) |  | 
 **Config** | [**TransactionFrameConfig**](TransactionFrameConfig.md) |  | 
 **Status** | [**TransactionFrameStatus**](TransactionFrameStatus.md) |  | 
-**Transaction** | [**TransactionFramePayAllOfTransaction**](TransactionFramePayAllOfTransaction.md) |  | 
+**Transaction** | [**TransactionFramePayTransaction**](TransactionFramePayTransaction.md) |  | 
 
 ## Methods
 
 ### NewTransactionFramePay
 
-`func NewTransactionFramePay(id string, url string, type_ TransactionFrameType, config TransactionFrameConfig, status TransactionFrameStatus, transaction TransactionFramePayAllOfTransaction, ) *TransactionFramePay`
+`func NewTransactionFramePay(id string, url string, type_ TransactionFrameType, config TransactionFrameConfig, status TransactionFrameStatus, transaction TransactionFramePayTransaction, ) *TransactionFramePay`
 
 NewTransactionFramePay instantiates a new TransactionFramePay object
 This constructor will assign default values to properties that have it defined,
@@ -132,20 +132,20 @@ SetStatus sets Status field to given value.
 
 ### GetTransaction
 
-`func (o *TransactionFramePay) GetTransaction() TransactionFramePayAllOfTransaction`
+`func (o *TransactionFramePay) GetTransaction() TransactionFramePayTransaction`
 
 GetTransaction returns the Transaction field if non-nil, zero value otherwise.
 
 ### GetTransactionOk
 
-`func (o *TransactionFramePay) GetTransactionOk() (*TransactionFramePayAllOfTransaction, bool)`
+`func (o *TransactionFramePay) GetTransactionOk() (*TransactionFramePayTransaction, bool)`
 
 GetTransactionOk returns a tuple with the Transaction field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransaction
 
-`func (o *TransactionFramePay) SetTransaction(v TransactionFramePayAllOfTransaction)`
+`func (o *TransactionFramePay) SetTransaction(v TransactionFramePayTransaction)`
 
 SetTransaction sets Transaction field to given value.
 

@@ -1,9 +1,9 @@
 /*
-Farcaster API V2
+Neynar API
 
-The Farcaster API allows you to interact with the Farcaster protocol. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
+The Neynar API allows you to interact with the Farcaster protocol among other things. See the [Neynar docs](https://docs.neynar.com/reference) for more details.
 
-API version: 2.43.0
+API version: 3.0.1
 Contact: team@neynar.com
 */
 
@@ -22,8 +22,8 @@ var _ MappedNullable = &UserSearchResponseResult{}
 
 // UserSearchResponseResult struct for UserSearchResponseResult
 type UserSearchResponseResult struct {
-	Users []SearchedUser `json:"users"`
-	Next  *NextCursor    `json:"next,omitempty"`
+	Users []User      `json:"users"`
+	Next  *NextCursor `json:"next,omitempty"`
 }
 
 type _UserSearchResponseResult UserSearchResponseResult
@@ -32,7 +32,7 @@ type _UserSearchResponseResult UserSearchResponseResult
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserSearchResponseResult(users []SearchedUser) *UserSearchResponseResult {
+func NewUserSearchResponseResult(users []User) *UserSearchResponseResult {
 	this := UserSearchResponseResult{}
 	this.Users = users
 	return &this
@@ -47,9 +47,9 @@ func NewUserSearchResponseResultWithDefaults() *UserSearchResponseResult {
 }
 
 // GetUsers returns the Users field value
-func (o *UserSearchResponseResult) GetUsers() []SearchedUser {
+func (o *UserSearchResponseResult) GetUsers() []User {
 	if o == nil {
-		var ret []SearchedUser
+		var ret []User
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *UserSearchResponseResult) GetUsers() []SearchedUser {
 
 // GetUsersOk returns a tuple with the Users field value
 // and a boolean to check if the value has been set.
-func (o *UserSearchResponseResult) GetUsersOk() ([]SearchedUser, bool) {
+func (o *UserSearchResponseResult) GetUsersOk() ([]User, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *UserSearchResponseResult) GetUsersOk() ([]SearchedUser, bool) {
 }
 
 // SetUsers sets field value
-func (o *UserSearchResponseResult) SetUsers(v []SearchedUser) {
+func (o *UserSearchResponseResult) SetUsers(v []User) {
 	o.Users = v
 }
 

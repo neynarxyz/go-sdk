@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **PostUrl** | Pointer to **string** | Post URL to take an action on this mini app | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
 **ImageAspectRatio** | Pointer to **string** |  | [optional] 
-**Input** | Pointer to [**FrameV1AllOfInput**](FrameV1AllOfInput.md) |  | [optional] 
-**State** | Pointer to [**FrameV1AllOfState**](FrameV1AllOfState.md) |  | [optional] 
+**Input** | Pointer to [**FrameV1Input**](FrameV1Input.md) |  | [optional] 
+**State** | Pointer to [**FrameV1State**](FrameV1State.md) |  | [optional] 
 
 ## Methods
 
@@ -195,20 +195,20 @@ HasImageAspectRatio returns a boolean if a field has been set.
 
 ### GetInput
 
-`func (o *FrameV1) GetInput() FrameV1AllOfInput`
+`func (o *FrameV1) GetInput() FrameV1Input`
 
 GetInput returns the Input field if non-nil, zero value otherwise.
 
 ### GetInputOk
 
-`func (o *FrameV1) GetInputOk() (*FrameV1AllOfInput, bool)`
+`func (o *FrameV1) GetInputOk() (*FrameV1Input, bool)`
 
 GetInputOk returns a tuple with the Input field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInput
 
-`func (o *FrameV1) SetInput(v FrameV1AllOfInput)`
+`func (o *FrameV1) SetInput(v FrameV1Input)`
 
 SetInput sets Input field to given value.
 
@@ -220,20 +220,20 @@ HasInput returns a boolean if a field has been set.
 
 ### GetState
 
-`func (o *FrameV1) GetState() FrameV1AllOfState`
+`func (o *FrameV1) GetState() FrameV1State`
 
 GetState returns the State field if non-nil, zero value otherwise.
 
 ### GetStateOk
 
-`func (o *FrameV1) GetStateOk() (*FrameV1AllOfState, bool)`
+`func (o *FrameV1) GetStateOk() (*FrameV1State, bool)`
 
 GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetState
 
-`func (o *FrameV1) SetState(v FrameV1AllOfState)`
+`func (o *FrameV1) SetState(v FrameV1State)`
 
 SetState sets State field to given value.
 
