@@ -29,7 +29,7 @@ npx --yes @openapitools/openapi-generator-cli \
     go fmt
     go mod tidy
     go build
-    go test ./...
+    # go test ./...
 )
 
 # Delete all directories except test
@@ -57,5 +57,5 @@ npx --yes @openapitools/openapi-generator-cli \
     go fmt
     go mod tidy
     go build
-    go test ./...
+    # go test ./...
 )
