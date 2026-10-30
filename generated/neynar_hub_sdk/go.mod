@@ -2,7 +2,7 @@ module github.com/neynarxyz/go-sdk/generated/neynar_hub_sdk
 
 go 1.23.0
 
-toolchain go1.24.3
+toolchain go1.27.3
 
 require (
 	github.com/stretchr/testify v1.10.0
